@@ -5,6 +5,7 @@ import HowItWorks from "@/components/landing/HowItWorks";
 import Sites from "@/components/landing/Sites";
 import Capabilities from "@/components/landing/Capabilities";
 import Cloud from "@/components/landing/Cloud";
+import Developers from "@/components/landing/Developers";
 import PricingTeaser from "@/components/landing/PricingTeaser";
 import FAQ from "@/components/landing/FAQ";
 import CTA from "@/components/landing/CTA";
@@ -26,6 +27,7 @@ export default function Home() {
                 <Sites />
                 <Capabilities />
                 <Cloud />
+                <Developers />
                 <PricingTeaser />
                 <FAQ />
                 <CTA />

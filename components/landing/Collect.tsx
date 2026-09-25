@@ -1,5 +1,5 @@
 import React from "react";
-import { Briefcase, Home, ListChecks, Mail, MapPin, ShoppingBag } from "lucide-react";
+import { BookOpen, Briefcase, Calendar, Car, FileText, Home, Image, ListChecks, Mail, MapPin, MessageSquareQuote, Plane, ShoppingBag } from "lucide-react";
 import SectionHeading from "@/components/landing/SectionHeading";
 import Reveal from "@/components/landing/Reveal";
 
@@ -31,9 +31,9 @@ const TYPES = [
     {
         icon: Briefcase,
         title: "Job posts",
-        body: "Turn a job search into a clean list of roles you can filter by company, location and pay.",
+        body: "Turn a job board search or a company's careers page into a clean list of roles you can filter by company, location and pay.",
         fields: ["Role", "Company", "Location", "Salary", "Posted", "Job link"],
-        goodFor: "seeing who is hiring, researching salaries, finding companies to pitch.",
+        goodFor: "seeing who is hiring, tracking openings on company careers pages, researching salaries.",
         tint: "text-indigo-500 bg-indigo-50 dark:bg-indigo-950/40",
     },
     {
@@ -52,6 +52,17 @@ const TYPES = [
         goodFor: "directories, event lists, catalogues and tables on any other site.",
         tint: "text-[#2772ED] bg-[#2772ED]/10",
     },
+];
+
+// Smaller data types, one line each (all supported by the extension today).
+const MORE = [
+    { icon: MessageSquareQuote, title: "Reviews", body: "Ratings, titles and review text, across every page of reviews." },
+    { icon: Plane, title: "Hotels and travel", body: "Hotel names, prices, ratings and locations from travel sites." },
+    { icon: Car, title: "Cars", body: "Car listings with their prices and details." },
+    { icon: Calendar, title: "Events", body: "Event names, dates and places from event listings." },
+    { icon: BookOpen, title: "Research papers", body: "Titles, authors, sources, snippets and full-text links from Scholar search results." },
+    { icon: Image, title: "Images and links", body: "Every image or link on a page, with its web address." },
+    { icon: FileText, title: "Page text", body: "A page's readable text, saved as a document or ready to paste into an AI tool." },
 ];
 
 export default function Collect() {
@@ -93,10 +104,19 @@ export default function Collect() {
                     ))}
                 </div>
 
-                <Reveal>
-                    <p className="mt-10 text-center text-[15px] text-slate-500 dark:text-slate-400">
-                        Also: reviews, hotels and travel, cars, events, research papers, images, links and full page text.
-                    </p>
+                <Reveal className="mt-14">
+                    <h3 className="text-center text-sm font-semibold text-slate-900 dark:text-white">More you can collect</h3>
+                    <ul className="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-5">
+                        {MORE.map((m) => (
+                            <li key={m.title} className="flex gap-3">
+                                <m.icon className="w-4 h-4 mt-0.5 shrink-0 text-slate-400 dark:text-slate-500" aria-hidden="true" />
+                                <div>
+                                    <h4 className="text-sm font-semibold text-slate-800 dark:text-slate-100">{m.title}</h4>
+                                    <p className="mt-0.5 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{m.body}</p>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
                 </Reveal>
             </div>
         </section>
