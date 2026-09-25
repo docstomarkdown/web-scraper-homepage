@@ -10,7 +10,7 @@ const FREE = [
     "Ready-made sites and automatic lists",
     "Export to Excel, CSV, JSON or Google Sheets",
 ];
-const PAID = ["Higher monthly volume", "Larger bulk runs", "Cloud runs on our servers"];
+const PAID = ["Higher monthly volume", "Larger bulk runs", "Cloud runs on our servers", "Scheduled runs, daily or weekly"];
 
 export default function PricingTeaser() {
     return (

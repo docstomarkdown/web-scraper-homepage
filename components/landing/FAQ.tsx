@@ -15,7 +15,7 @@ const FAQS = [
     },
     {
         q: "Which websites does it work on?",
-        a: "Popular sites such as Amazon, Zillow and Maps have ready-made settings. On other sites it detects the lists on the page automatically, and you can point it at a specific area if you need to.",
+        a: "Popular sites such as Amazon, Zillow and Maps have ready-made settings. On other sites, including independent online stores and directories, it detects the lists on the page automatically, and you can point it at a specific area if you need to.",
     },
     {
         q: "Can I get emails for businesses I find on Maps?",
@@ -28,6 +28,10 @@ const FAQS = [
     {
         q: "Can I use it on sites I log in to, like an MLS or a member directory?",
         a: "Often, yes. It runs in your own browser, so it can read pages you're already signed in to, and it detects lists automatically on sites without a ready-made setup. Check the site's rules on exporting data first; many MLS systems have their own.",
+    },
+    {
+        q: "Can it check prices every day on its own?",
+        a: "That's coming with Pro: scheduled cloud runs, daily or weekly. Today you run it whenever you need fresh numbers, and each run gives you a new table to compare.",
     },
     {
         q: "Will websites block me?",

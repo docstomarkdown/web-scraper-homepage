@@ -50,7 +50,7 @@ export default function Sites() {
                             <dd>
                                 <span className="inline-flex items-center gap-1 rounded-full border border-dashed border-[#2772ED]/40 bg-[#2772ED]/5 px-3 py-1 text-sm text-[#1f5ec2] dark:text-[#7aa7ff]">
                                     <Plus className="w-3.5 h-3.5" aria-hidden="true" />
-                                    Any site with a list: detected automatically
+                                    Any site with a list, like independent online stores and directories: detected automatically
                                 </span>
                             </dd>
                         </div>
