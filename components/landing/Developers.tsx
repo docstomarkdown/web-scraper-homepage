@@ -8,7 +8,7 @@ const POINTS = [
     {
         icon: Bot,
         title: "Connect AI agents over MCP",
-        body: "Claude and other MCP clients can queue scrapes of one URL or many, and fetch the results as structured data.",
+        body: "Claude and other MCP clients can queue scrapes of one URL or many, and page through a Shopify store's catalog with no browser needed.",
     },
     {
         icon: MonitorSmartphone,

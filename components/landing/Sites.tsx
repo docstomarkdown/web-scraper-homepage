@@ -7,6 +7,7 @@ import Reveal from "@/components/landing/Reveal";
 // Keep this to sites whose setup is actually tuned; generic fallback packs don't belong here.
 const GROUPS = [
     { label: "Maps and directories", sites: ["Maps", "Yellow Pages", "Manta"] },
+    { label: "Shopify", sites: ["Any Shopify store: full catalog"] },
     {
         label: "Online stores",
         sites: ["Amazon", "Walmart", "Target", "Etsy", "Costco", "Wayfair", "Newegg", "Lowe's", "Nike", "Zara", "Flipkart", "Allegro"],
@@ -18,7 +19,7 @@ const GROUPS = [
 
 export default function Sites() {
     return (
-        <section id="ready-made-sites" className="py-20 md:py-24 bg-slate-50/70 dark:bg-slate-900/40 border-y border-slate-100 dark:border-slate-800/60">
+        <section id="ready-made-sites" className="py-20 md:py-24 bg-white dark:bg-slate-950">
             <div className="max-w-5xl mx-auto px-6 md:px-12">
                 <Reveal>
                     <SectionHeading

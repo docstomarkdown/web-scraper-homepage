@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Anchor, BadgeCheck, Bath, BedDouble, Clock, Fish, Footprints, Home, MapPin, Maximize2, Moon, Star, Wind } from "lucide-react";
+import { Anchor, Backpack, BadgeCheck, Bath, BedDouble, Clock, Fish, Footprints, Home, MapPin, Maximize2, Moon, Mountain, Shirt, ShoppingCart, Star, Wind } from "lucide-react";
 
 // The fake "web page" on the left of the hero demo, one layout per scenario.
 // Illustrative sample data only: generic names, no real brands.
@@ -256,11 +256,57 @@ function ReviewsPage({ stage, reduceMotion }: { stage: number; reduceMotion: boo
     );
 }
 
+/* -------------------------------- Shopify --------------------------------- */
+
+const SHOP_ITEMS = [
+    { name: "Alpine Down Jacket", price: "$189.00", icon: Shirt, tile: "from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600", tint: "text-slate-700 dark:text-slate-200", variants: "6 colors" },
+    { name: "Summit 40L Pack", price: "$149.00", icon: Backpack, tile: "from-emerald-100 to-emerald-200 dark:from-emerald-900/40 dark:to-emerald-800/40", tint: "text-emerald-700 dark:text-emerald-300", variants: "3 colors" },
+    { name: "Ridge Trail Shoe", price: "$129.00", icon: Footprints, tile: "from-orange-100 to-amber-200 dark:from-orange-900/40 dark:to-amber-900/40", tint: "text-orange-600 dark:text-orange-300", variants: "12 sizes" },
+    { name: "Basecamp Tent 2P", price: "$329.00", icon: Mountain, tile: "from-sky-100 to-sky-200 dark:from-sky-900/40 dark:to-sky-800/40", tint: "text-sky-700 dark:text-sky-300", variants: "2 colors" },
+];
+
+function ShopifyPage({ stage, reduceMotion }: { stage: number; reduceMotion: boolean }) {
+    return (
+        <div className="flex flex-col h-full">
+            {/* Store header */}
+            <div className="flex items-center justify-between px-2.5 py-2 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+                <p className="text-[11px] font-bold tracking-wide text-slate-900 dark:text-white">TRAIL GEAR CO.</p>
+                <ShoppingCart className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" />
+            </div>
+            <div className="flex gap-1 px-2.5 pt-2">
+                {["All", "Jackets", "Packs", "Footwear"].map((c, i) => (
+                    <span
+                        key={c}
+                        className={`rounded-full px-2 py-0.5 text-[9px] font-medium ${i === 0 ? "bg-slate-900 text-white dark:bg-white dark:text-slate-900" : "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300"}`}
+                    >
+                        {c}
+                    </span>
+                ))}
+            </div>
+            <div className="p-2.5 grid grid-cols-2 gap-2">
+                {SHOP_ITEMS.map((p, idx) => (
+                    <Item key={p.name} idx={idx} stage={stage} reduceMotion={reduceMotion} className={`${card} p-1.5`}>
+                        <div className={`h-12 rounded-md bg-gradient-to-br ${p.tile} flex items-center justify-center`}>
+                            <p.icon className={`w-5 h-5 ${p.tint}`} strokeWidth={1.5} />
+                        </div>
+                        <p className="mt-1 text-[10px] font-medium text-slate-800 dark:text-slate-100 leading-tight truncate">{p.name}</p>
+                        <p className="text-[11px] font-bold text-slate-900 dark:text-white">{p.price}</p>
+                        <p className="text-[9px] text-slate-400 dark:text-slate-500">{p.variants}</p>
+                    </Item>
+                ))}
+            </div>
+            <p className="px-2.5 text-[9px] text-slate-400 dark:text-slate-500">Showing 4 of 1,248 products</p>
+        </div>
+    );
+}
+
 export default function SourcePage({ id, stage, reduceMotion }: Props) {
     const p = { stage, reduceMotion };
     switch (id) {
         case "local":
             return <MapsPage {...p} />;
+        case "shopify":
+            return <ShopifyPage {...p} />;
         case "products":
             return <ProductsPage {...p} />;
         case "property":

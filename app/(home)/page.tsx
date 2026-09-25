@@ -1,6 +1,7 @@
 import React from "react";
 import Hero from "@/components/landing/Hero";
 import Collect from "@/components/landing/Collect";
+import ShopifyStores from "@/components/landing/ShopifyStores";
 import HowItWorks from "@/components/landing/HowItWorks";
 import Sites from "@/components/landing/Sites";
 import Capabilities from "@/components/landing/Capabilities";
@@ -23,6 +24,7 @@ export default function Home() {
             <main className="flex-1">
                 <Hero />
                 <Collect />
+                <ShopifyStores />
                 <HowItWorks />
                 <Sites />
                 <Capabilities />

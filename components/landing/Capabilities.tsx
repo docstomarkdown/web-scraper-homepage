@@ -38,7 +38,7 @@ const ITEMS = [
 
 export default function Capabilities() {
     return (
-        <section id="features" className="py-20 md:py-24 bg-white dark:bg-slate-950">
+        <section id="features" className="py-20 md:py-24 bg-slate-50/70 dark:bg-slate-900/40 border-y border-slate-100 dark:border-slate-800/60">
             <div className="max-w-6xl mx-auto px-6 md:px-12">
                 <Reveal>
                     <SectionHeading eyebrow="Features" title="Everything you need for clean data" />

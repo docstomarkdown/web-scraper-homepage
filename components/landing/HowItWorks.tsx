@@ -23,7 +23,7 @@ const STEPS = [
 
 export default function HowItWorks() {
     return (
-        <section id="how-it-works" className="py-20 md:py-24 bg-white dark:bg-slate-950">
+        <section id="how-it-works" className="py-20 md:py-24 bg-slate-50/70 dark:bg-slate-900/40 border-y border-slate-100 dark:border-slate-800/60">
             <div className="max-w-6xl mx-auto px-6 md:px-12">
                 <Reveal>
                     <SectionHeading eyebrow="How it works" title="From web page to spreadsheet in three steps" />

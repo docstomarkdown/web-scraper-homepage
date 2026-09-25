@@ -4,7 +4,7 @@ Use these to review any page on this site. Read the page top to bottom *as* one 
 every moment they'd hesitate ("what does this mean?", "does it do X?", "is this for me?"), fix the
 copy, then move to the next persona. Do one persona at a time and commit each round separately.
 
-Last full review: 2026-09-25 (homepage, all seven personas).
+Last full review: 2026-09-25 (homepage, personas 1–7). Persona 8 added with the Shopify section; not yet run as a full review.
 
 ## How to run a review
 
@@ -63,6 +63,14 @@ Last full review: 2026-09-25 (homepage, all seven personas).
 - **Will ask:** "Is there an API?" "Can Claude use it?" "Can an agent use my logged-in browser?"
 - **Watch for:** claims about limits, pricing per request or data privacy that aren't verified.
 
+### 8. Shopify agency or dropshipper: "Kai"
+- **Wants:** a competitor's or client's full Shopify catalog (every variant, SKU, price and image), a
+  file to migrate products into another store, and product research across many stores.
+- **Looks for:** the Shopify section, the import CSV, collection filtering, image download, bulk stores.
+- **Will ask:** "Does it get every product or just what's on the page?" "Can I import the file into my
+  store?" "Does it work on any Shopify store?"
+- **Watch for:** promising password-protected stores; implying the import CSV needs no review.
+
 ## Product facts checked (keep copy consistent with these)
 
 Verified against the code on 2026-09-25. Re-check before relying on them if much time has passed.
@@ -85,4 +93,12 @@ Verified against the code on 2026-09-25. Re-check before relying on them if much
   (`webscraper-pro-cloud-worker/src/mcp/server.ts`)
 - **Ready-made sites list** (`components/landing/Sites.tsx`) only includes sites with tuned setups.
   Generic fallback packs and sites with known extraction bugs stay off it.
+- **Shopify store mode is shown as live on the site by the owner's decision (2026-09-25), ahead of
+  release.** Only phase 1 (the core fetch module) is built; the extension card, Shopify import CSV,
+  chat tool, MCP tools and multi-store bulk runs are phases 2–5 in
+  `chrome-extension-source/change_documentation/SHOPIFY_MODE_PLAN.md`. Before the site goes public,
+  confirm each Shopify claim on the homepage (hero demo, `ShopifyStores.tsx`, Sites, FAQ, Developers)
+  has shipped. Row columns come from `lib/platform/shopify/rows.ts`: title, vendor, type, price,
+  compare-at price, available, variant options, SKU, barcode, grams, tags, description, images, URL.
+  Password-protected stores are not supported.
 - **Not claimed:** LinkedIn support; "the AI never sees your data"; user counts or ratings.

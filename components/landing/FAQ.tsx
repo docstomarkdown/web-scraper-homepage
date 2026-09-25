@@ -26,6 +26,14 @@ const FAQS = [
         a: "Yes, in two steps. First collect the businesses from Maps. Then run Collect contacts on the websites from that list, and it adds the emails, phone numbers and social profiles it finds on each site.",
     },
     {
+        q: "Does it work on any Shopify store?",
+        a: "On most of them. It reads the store's public product feed, so you get the whole catalog with variants and images. It can't read password-protected stores, and a few stores block these requests; for those, turn the store feed off in settings and it collects from the page like any other site.",
+    },
+    {
+        q: "Can I import the export into my own Shopify store?",
+        a: "Yes. Choose Shopify import CSV when you export, and the file uses Shopify's product import layout. Try it on a test store first, and review the products before importing into a live store.",
+    },
+    {
         q: "Will it get every page of results, not just the first?",
         a: "Yes. It clicks through next-page buttons, presses “Load more” and keeps scrolling pages that load as you go, until the list ends.",
     },

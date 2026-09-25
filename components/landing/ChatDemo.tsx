@@ -17,6 +17,7 @@ import {
     Search,
     ShoppingBag,
     Sparkles,
+    Store,
     Table2,
 } from "lucide-react";
 
@@ -53,6 +54,24 @@ export const SCENARIOS: Scenario[] = [
             ["Hill Country Orthodontics", "(512) 555-0164", "hcortho.com"],
         ],
         file: "dentists-austin.xlsx",
+    },
+    {
+        id: "shopify",
+        chip: "Shopify stores",
+        icon: Store,
+        source: "Shopify store · Trail Gear Co.",
+        prompt: "Export this store's full catalog",
+        working: "Reading the store's catalog…",
+        found: "Found 1,248 products · adding 3,904 variants…",
+        total: "3,904",
+        columns: ["Product", "SKU", "Price"],
+        rows: [
+            ["Alpine Down Jacket · Black / M", "ADJ-BLK-M", "$189.00"],
+            ["Alpine Down Jacket · Black / L", "ADJ-BLK-L", "$189.00"],
+            ["Summit 40L Pack · Moss", "S40-MOS", "$149.00"],
+            ["Merino Trail Socks · 3-pack", "MTS-3P-M", "$24.00"],
+        ],
+        file: "trail-gear-catalog.csv",
     },
     {
         id: "products",
