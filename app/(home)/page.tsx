@@ -1,6 +1,11 @@
 import React from "react";
 import Hero from "@/components/landing/Hero";
-import Features from "@/components/landing/Features";
+import Collect from "@/components/landing/Collect";
+import HowItWorks from "@/components/landing/HowItWorks";
+import Sites from "@/components/landing/Sites";
+import Capabilities from "@/components/landing/Capabilities";
+import Cloud from "@/components/landing/Cloud";
+import PricingTeaser from "@/components/landing/PricingTeaser";
 import FAQ from "@/components/landing/FAQ";
 import CTA from "@/components/landing/CTA";
 import Footer from "@/components/landing/Footer";
@@ -16,7 +21,12 @@ export default function Home() {
         <div className="min-h-screen flex flex-col bg-white dark:bg-slate-950">
             <main className="flex-1">
                 <Hero />
-                <Features />
+                <Collect />
+                <HowItWorks />
+                <Sites />
+                <Capabilities />
+                <Cloud />
+                <PricingTeaser />
                 <FAQ />
                 <CTA />
             </main>

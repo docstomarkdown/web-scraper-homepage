@@ -1,61 +1,55 @@
-"use client";
-
 import React from "react";
-import { Download, MousePointer, FileJson, RefreshCcw, ChevronRight, Zap } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
-import { fadeUpVariant, staggerContainer } from "@/lib/framer-animations";
+import { Download, Globe, MessageSquareText } from "lucide-react";
+import SectionHeading from "@/components/landing/SectionHeading";
+import Reveal from "@/components/landing/Reveal";
 
-const steps = [
-    { title: "Install Extension", description: <>Add our <strong>Chrome extension in seconds</strong>. No complex setup or local configuration is needed.</>, icon: Download, lightColor: "bg-blue-100 text-blue-600" },
-    { title: "Select Data Points", description: <>Navigate to any website and <strong>simply click</strong> on the text, images, or links to extract.</>, icon: MousePointer, lightColor: "bg-indigo-100 text-indigo-600" },
-    { title: "Auto-Paginate", description: <>Select the 'Next' button once. We handle <strong>pagination and infinite scroll</strong> for you.</>, icon: RefreshCcw, lightColor: "bg-violet-100 text-violet-600" },
-    { title: "Export Instantly", description: <>Export your data to <strong>Google Sheets, Excel, JSON, or CSV</strong>.</>, icon: FileJson, lightColor: "bg-emerald-100 text-emerald-600" },
+const STEPS = [
+    {
+        icon: Globe,
+        title: "Open the page",
+        body: "Go to the page you want in Chrome: a Maps search, a store category, a job board or a page of listings.",
+    },
+    {
+        icon: MessageSquareText,
+        title: "Ask, or click Collect",
+        body: "Type what you want in plain English, or click Collect. It finds the list, follows every page and fills the table.",
+    },
+    {
+        icon: Download,
+        title: "Export",
+        body: "Download Excel, CSV or JSON, or send the table straight to Google Sheets.",
+    },
 ];
 
 export default function HowItWorks() {
     return (
-        <section id="how-it-works-v2" className="py-20 bg-white relative overflow-hidden">
-            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-            <div className="max-w-7xl mx-auto px-6 md:px-12 relative">
-                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpVariant} className="text-center max-w-3xl mx-auto mb-20">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-blue-700 text-sm font-medium mb-6 border border-blue-100">
-                        <Zap className="w-4 h-4" />
-                        <span>Simple 4-step workflow</span>
-                    </div>
-                    <h2 className="text-4xl md:text-5xl font-bold text-slate-700 mb-6 tracking-tight">
-                        From URL to data in <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">seconds</span>
-                    </h2>
-                    <p className="text-lg text-slate-500 leading-relaxed">
-                        No scraper scripts. No infrastructure. No technical setup. Just open the extension, point at what you want, and export.
-                    </p>
-                </motion.div>
+        <section id="how-it-works" className="py-20 md:py-24 bg-white dark:bg-slate-950">
+            <div className="max-w-6xl mx-auto px-6 md:px-12">
+                <Reveal>
+                    <SectionHeading eyebrow="How it works" title="From web page to spreadsheet in three steps" />
+                </Reveal>
 
-                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} className="relative grid md:grid-cols-4 gap-12">
-                    <motion.div initial={{ scaleX: 0, opacity: 0 }} whileInView={{ scaleX: 1, opacity: 1 }} transition={{ duration: 1, delay: 0.5 }} viewport={{ once: true }} className="hidden md:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-blue-100 via-violet-100 to-emerald-100 origin-left" />
-                    {steps.map((step, i) => {
-                        const Icon = step.icon;
-                        return (
-                            <motion.div key={i} variants={fadeUpVariant} className="relative group">
-                                <div className="relative z-10 flex flex-col items-center text-center">
-                                    <div className={cn("w-24 h-24 rounded-3xl rotate-3 flex items-center justify-center shadow-xl shadow-slate-200 transition-all duration-300 group-hover:rotate-6 group-hover:scale-110 mb-8 bg-white")}>
-                                        <div className={cn("w-20 h-20 rounded-2xl flex items-center justify-center transition-colors", step.lightColor)}>
-                                            <Icon className="w-8 h-8" />
-                                        </div>
-                                    </div>
-                                    <h3 className="text-xl font-bold text-slate-700 mb-3 leading-snug">{step.title}</h3>
-                                    <p className="text-slate-500 leading-relaxed max-w-[260px] mx-auto [&>strong]:text-slate-500 [&>strong]:font-semibold">{step.description}</p>
-                                    {i < steps.length - 1 && (
-                                        <div className="absolute top-8 -right-4 hidden lg:flex items-center justify-center w-8 h-8 rounded-full bg-white border-2 border-slate-100 text-slate-400 font-bold text-sm">
-                                            <ChevronRight className="w-4 h-4" />
-                                        </div>
-                                    )}
-                                </div>
-                            </motion.div>
-                        );
-                    })}
-                </motion.div>
+                <div className="mt-14 relative">
+                    {/* Connector line behind the step badges (desktop) */}
+                    <div
+                        className="hidden md:block absolute top-6 left-[16%] right-[16%] h-px bg-gradient-to-r from-transparent via-slate-300 dark:via-slate-700 to-transparent"
+                        aria-hidden="true"
+                    />
+                    <ol className="relative grid md:grid-cols-3 gap-8 md:gap-6">
+                        {STEPS.map((s, i) => (
+                            <li key={s.title} className="relative text-center px-2">
+                                <Reveal delay={i * 0.08}>
+                                    <span className="relative z-10 mx-auto flex w-12 h-12 items-center justify-center rounded-2xl bg-[#2772ED] text-white shadow-lg shadow-[#2772ED]/25">
+                                        <s.icon className="w-5 h-5" aria-hidden="true" />
+                                    </span>
+                                    <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">Step {i + 1}</p>
+                                    <h3 className="mt-1 text-lg font-semibold text-slate-900 dark:text-white">{s.title}</h3>
+                                    <p className="mt-2 text-[15px] text-slate-600 dark:text-slate-300 leading-relaxed max-w-xs mx-auto">{s.body}</p>
+                                </Reveal>
+                            </li>
+                        ))}
+                    </ol>
+                </div>
             </div>
         </section>
     );

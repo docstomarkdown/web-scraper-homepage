@@ -26,7 +26,7 @@ export default function Footer() {
                         </Link>
 
                         <p className="text-base text-slate-500 dark:text-slate-400 leading-relaxed max-w-xs">
-                            Extract data from any website visually. Point, click, and export — no code required. Works across ecommerce sites and any page you visit.
+                            Turn any web page into a spreadsheet. Ask for the data you want, or click Collect, then export to Excel, CSV or Google Sheets.
                         </p>
 
                         <div className="flex gap-2">
