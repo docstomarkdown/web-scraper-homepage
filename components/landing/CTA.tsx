@@ -36,7 +36,7 @@ export default function CTA() {
                         className="mt-9 group inline-flex items-center justify-center gap-2 rounded-xl bg-[#2772ED] hover:bg-[#1f5ec2] px-8 py-4 text-base font-semibold text-white shadow-lg shadow-[#2772ED]/25 transition-all hover:-translate-y-px active:scale-[0.98]"
                     >
                         <Chrome className="w-5 h-5" aria-hidden="true" />
-                        Add to Chrome — it&apos;s free
+                        Add to Chrome
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                     </Link>
                 </Reveal>

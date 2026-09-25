@@ -49,9 +49,8 @@ export default function ShopifyStores() {
                 <Reveal>
                     <SectionHeading
                         eyebrow="Shopify stores"
-                        badge="Pro"
                         title="Export any Shopify store's full catalog"
-                        intro="Open a Shopify store and get every product in one go, straight from the store's own product feed. No paging through the site. Included in Pro."
+                        intro="Open a Shopify store and get every product in one go, straight from the store's own product feed. No paging through the site."
                     />
                 </Reveal>
 

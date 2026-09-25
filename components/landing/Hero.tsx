@@ -72,7 +72,7 @@ export default function Hero() {
                     </h1>
 
                     <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed mt-6 max-w-md mx-auto lg:mx-0">
-                        A free Chrome extension. Just ask for the data you want, and get a clean table ready for Excel or Google Sheets.
+                        A Chrome extension. Just ask for the data you want, and get a clean table ready for Excel or Google Sheets.
                     </p>
 
                     <div className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center lg:justify-start gap-3 mt-9">
@@ -82,7 +82,7 @@ export default function Hero() {
                             className="w-full sm:w-auto group inline-flex items-center justify-center rounded-xl bg-[#2772ED] hover:bg-[#1f5ec2] px-7 lg:px-5 xl:px-7 py-3.5 text-base font-semibold text-white whitespace-nowrap transition-all hover:translate-y-[-1px] active:scale-[0.98] gap-2 shadow-lg shadow-[#2772ED]/25"
                         >
                             <Chrome className="w-5 h-5" />
-                            Add to Chrome — it&apos;s free
+                            Add to Chrome
                             <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                         </Link>
                         <button

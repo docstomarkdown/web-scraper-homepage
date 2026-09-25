@@ -42,7 +42,7 @@ Last full review: 2026-09-25 (homepage, personas 1–7). Persona 8 added with th
 ### 4. First-time, non-technical visitor: "Dana"
 - **Wants:** to understand what this is in five seconds, and whether it's safe.
 - **Looks for:** what it is (a Chrome extension), how to start, whether an account is needed.
-- **Will ask:** "Do I need an account?" "Where does my data go?" "Is it free?"
+- **Will ask:** "Do I need an account?" "Where does my data go?" "What does the plan include?"
 - **Watch for:** any jargon (scrape, pagination, JSON-first wording); steps that skip installing.
 
 ### 5. Recruiter: "Sam"
@@ -85,9 +85,14 @@ Verified against the code on 2026-09-25. Re-check before relying on them if much
 - **Research papers (Scholar):** title, link, authors/source line, snippet, full-text links.
   (`chrome-extension-source/public/site-sitemaps/scholar/google-scholar.json`)
 - **No account needed for the extension.** The cloud dashboard uses Google sign-in.
-- **Scheduled runs are not live.** Describe them as coming with Pro.
-- **Cloud:** up to 200 URLs per batch, results as CSV, JSON or Excel. Don't claim cloud screenshots,
-  PDFs or cloud Google Sheets export until they're verified in production.
+- **Pricing is one paid plan, Pro, with everything included** (owner decision, 2026-09-25). Don't
+  describe anything as free, and don't single out a feature as paid or "Pro only". Only cloud features
+  are marked "coming soon".
+- **Cloud is coming soon** (owner decision): cloud runs, scheduled runs, the cloud dashboard, and cloud
+  scraping via MCP or the REST API are all described as coming soon. Browser-relay MCP tools run in the
+  user's own browser and aren't part of this.
+- **Cloud (when it launches):** up to 200 URLs per batch, results as CSV, JSON or Excel. Don't claim
+  cloud screenshots, PDFs or cloud Google Sheets export until they're verified in production.
 - **Developer access:** MCP server (`scrape_url`, `scrape_urls`, `get_scrape_result`, plus browser-relay
   tools that use the page open in the user's extension) and a REST API with an API key.
   (`webscraper-pro-cloud-worker/src/mcp/server.ts`)
@@ -101,6 +106,5 @@ Verified against the code on 2026-09-25. Re-check before relying on them if much
   has shipped. Row columns come from `lib/platform/shopify/rows.ts`: title, vendor, type, price,
   compare-at price, available, variant options, SKU, barcode, grams, tags, description, images, URL.
   Password-protected stores are not supported.
-- **Shopify catalog export is a paid (Pro) feature** (owner decision, 2026-09-25). Keep it out of any
-  Free list.
+- **Shopify catalog export is included in the single plan.** Don't badge it separately.
 - **Not claimed:** LinkedIn support; "the AI never sees your data"; user counts or ratings.

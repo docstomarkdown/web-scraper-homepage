@@ -8,7 +8,7 @@ const POINTS = [
     {
         icon: Bot,
         title: "Connect AI agents over MCP",
-        body: "Claude and other MCP clients can queue scrapes of one URL or many, and page through a Shopify store's catalog with no browser needed.",
+        body: "Claude and other MCP clients can call it as a tool. Cloud scraping of URL lists and whole Shopify catalogs, with no browser needed, is coming soon.",
     },
     {
         icon: MonitorSmartphone,
@@ -18,7 +18,7 @@ const POINTS = [
     {
         icon: Braces,
         title: "Call the REST API",
-        body: "Send URLs with an API key and get the results back as JSON.",
+        body: "Send URLs with an API key and get the results back as JSON. Coming soon, with the cloud.",
     },
 ];
 

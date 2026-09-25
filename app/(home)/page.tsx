@@ -15,7 +15,7 @@ import Footer from "@/components/landing/Footer";
 export const metadata = {
     title: "Web Scraper",
     description:
-        "Turn any web page into a spreadsheet. Collect Maps leads, Amazon products, and Zillow listings in one click, then export to Google Sheets, Excel, or CSV. Free Chrome extension.",
+        "Turn any web page into a spreadsheet. Collect Maps leads, Amazon products, and Zillow listings in one click, then export to Google Sheets, Excel, or CSV. A Chrome extension.",
 };
 
 export default function Home() {

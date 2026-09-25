@@ -6,12 +6,12 @@ import Reveal from "@/components/landing/Reveal";
 // Native <details> keeps every answer in the HTML (readable by search engines and without JS).
 const FAQS = [
     {
-        q: "Is Web Scraper Pro free?",
-        a: "Yes. The Chrome extension is free to install and use. Pro adds Shopify catalog export, more volume, cloud runs and scheduled runs.",
+        q: "What's included in the plan?",
+        a: "Everything. There's one plan, Pro, with every feature included: chat, ready-made sites, Maps leads and contact details, Shopify catalog export, bulk runs and every export format. Cloud runs are coming soon. No credits, and you can cancel anytime.",
     },
     {
         q: "Do I need an account?",
-        a: "Not for the extension: install it and start collecting. The cloud dashboard uses a Google sign-in.",
+        a: "The extension works right after you install it. The cloud dashboard, coming soon, will use a Google sign-in.",
     },
     {
         q: "Do I need to know how to code?",
@@ -27,7 +27,7 @@ const FAQS = [
     },
     {
         q: "Does it work on any Shopify store?",
-        a: "Shopify catalog export is part of Pro, and it works on most stores. It reads the store's public product feed, so you get the whole catalog with variants and images. It can't read password-protected stores, and a few stores block these requests; for those, turn the store feed off in settings and it collects from the page like any other site.",
+        a: "On most of them. It reads the store's public product feed, so you get the whole catalog with variants and images. It can't read password-protected stores, and a few stores block these requests; for those, turn the store feed off in settings and it collects from the page like any other site.",
     },
     {
         q: "Can I import the export into my own Shopify store?",
@@ -43,7 +43,7 @@ const FAQS = [
     },
     {
         q: "Can it check prices every day on its own?",
-        a: "That's coming with Pro: scheduled cloud runs, daily or weekly. Today you run it whenever you need fresh numbers, and each run gives you a new table to compare.",
+        a: "That's coming soon with cloud runs, which can run on a schedule, daily or weekly. For now you run it whenever you need fresh numbers, and each run gives you a new table to compare.",
     },
     {
         q: "Will websites block me?",
@@ -55,7 +55,7 @@ const FAQS = [
     },
     {
         q: "What's the difference between the extension and the cloud?",
-        a: "The extension runs in your browser, on the page you have open. The cloud runs on our servers: you paste a list of URLs, close your laptop, and download the results later.",
+        a: "The extension runs in your browser, on the page you have open. The cloud, coming soon, will run on our servers: you paste a list of URLs, close your laptop, and download the results later.",
     },
     {
         q: "Where is my data stored?",

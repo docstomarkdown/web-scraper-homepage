@@ -28,13 +28,18 @@ export default function Cloud() {
                         />
                         <div className="relative grid lg:grid-cols-2 gap-10 items-center">
                             <div>
-                                <p className="text-sm font-semibold text-blue-100">Cloud</p>
+                                <p className="text-sm font-semibold text-blue-100">
+                                    Cloud
+                                    <span className="ml-2 inline-flex align-middle rounded-full bg-white/20 px-2 py-0.5 text-[11px] font-semibold text-white">
+                                        Coming soon
+                                    </span>
+                                </p>
                                 <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight text-white leading-tight">
                                     Bigger jobs? Run them in the cloud.
                                 </h2>
                                 <p className="mt-4 text-lg text-blue-50/90 leading-relaxed">
-                                    Instead of running in your browser, it runs on our servers. Paste your URLs, and the results are waiting in your
-                                    dashboard.
+                                    Instead of running in your browser, it will run on our servers. Paste your URLs, and the results will be waiting in
+                                    your dashboard.
                                 </p>
                                 <ul className="mt-6 space-y-3">
                                     {POINTS.map((p) => (

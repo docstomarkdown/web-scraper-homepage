@@ -7,7 +7,7 @@ const STEPS = [
     {
         icon: Globe,
         title: "Install, then open a page",
-        body: "Add the free extension to Chrome, then go to the page you want: a Maps search, a store category, a job board or a page of listings.",
+        body: "Add the extension to Chrome, then go to the page you want: a Maps search, a store category, a job board or a page of listings.",
     },
     {
         icon: MessageSquareText,
