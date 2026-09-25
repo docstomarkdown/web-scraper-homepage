@@ -39,6 +39,10 @@ Build every section so a later SEO pass only has to tune it, not restructure it:
 
 ## Copy rules
 
+- **Before writing or changing any page or post**, read `docs/content-standards.md` (helpful content,
+  spam policies, duplicates, internal/external links, per-page-type rules, pre-publish checklist) and
+  `docs/writing-style.md` (voice, word list, structure). Both are binding. New pages go where
+  `docs/site-structure.md` says; update its status column when a page ships.
 - Review new or changed copy by walking the page as each persona in `docs/personas.md`, and keep copy
   consistent with the product facts listed there.
 
