@@ -7,7 +7,7 @@ import Reveal from "@/components/landing/Reveal";
 const FAQS = [
     {
         q: "Is Web Scraper Pro free?",
-        a: "Yes. The Chrome extension is free to install and use. Paid plans with more volume and cloud runs are coming soon.",
+        a: "Yes. The Chrome extension is free to install and use. Pro adds Shopify catalog export, more volume, cloud runs and scheduled runs.",
     },
     {
         q: "Do I need an account?",
@@ -27,7 +27,7 @@ const FAQS = [
     },
     {
         q: "Does it work on any Shopify store?",
-        a: "On most of them. It reads the store's public product feed, so you get the whole catalog with variants and images. It can't read password-protected stores, and a few stores block these requests; for those, turn the store feed off in settings and it collects from the page like any other site.",
+        a: "Shopify catalog export is part of Pro, and it works on most stores. It reads the store's public product feed, so you get the whole catalog with variants and images. It can't read password-protected stores, and a few stores block these requests; for those, turn the store feed off in settings and it collects from the page like any other site.",
     },
     {
         q: "Can I import the export into my own Shopify store?",

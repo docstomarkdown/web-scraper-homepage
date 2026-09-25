@@ -101,4 +101,6 @@ Verified against the code on 2026-09-25. Re-check before relying on them if much
   has shipped. Row columns come from `lib/platform/shopify/rows.ts`: title, vendor, type, price,
   compare-at price, available, variant options, SKU, barcode, grams, tags, description, images, URL.
   Password-protected stores are not supported.
+- **Shopify catalog export is a paid (Pro) feature** (owner decision, 2026-09-25). Keep it out of any
+  Free list.
 - **Not claimed:** LinkedIn support; "the AI never sees your data"; user counts or ratings.
