@@ -7,7 +7,7 @@ const TYPES = [
     {
         icon: MapPin,
         title: "Local business leads",
-        body: "Search Maps or a business directory and get every result as a row. Add emails from each business's own website in the same run.",
+        body: "Search Maps or a business directory and get every result as a row. Then collect emails from each business's own website in one more step.",
         fields: ["Name", "Category", "Address", "Phone", "Website", "Rating", "Email"],
         goodFor: "building prospect lists by city and niche, finding local partners, sizing up competitors nearby.",
         tint: "text-rose-500 bg-rose-50 dark:bg-rose-950/40",
@@ -39,7 +39,7 @@ const TYPES = [
     {
         icon: Mail,
         title: "Emails and contact details",
-        body: "Give it a list of websites and it finds the contact emails, phone numbers and social profiles on each one.",
+        body: "Give it a list of websites, or the websites from a list you've already collected, and it finds the emails, phone numbers and social profiles on each one.",
         fields: ["Website", "Email", "Phone", "Social profiles"],
         goodFor: "adding contact details to a list of companies before outreach.",
         tint: "text-sky-500 bg-sky-50 dark:bg-sky-950/40",

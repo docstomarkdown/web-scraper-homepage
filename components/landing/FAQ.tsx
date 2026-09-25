@@ -19,7 +19,7 @@ const FAQS = [
     },
     {
         q: "Can I get emails for businesses I find on Maps?",
-        a: "Yes. Collect the businesses from Maps, then collect contacts from their websites to add emails, phone numbers and social profiles to the same table.",
+        a: "Yes, in two steps. First collect the businesses from Maps. Then run Collect contacts on the websites from that list, and it adds the emails, phone numbers and social profiles it finds on each site.",
     },
     {
         q: "Will it get every page of results, not just the first?",
@@ -28,6 +28,10 @@ const FAQS = [
     {
         q: "Can I use it on sites I log in to, like an MLS or a member directory?",
         a: "Often, yes. It runs in your own browser, so it can read pages you're already signed in to, and it detects lists automatically on sites without a ready-made setup. Check the site's rules on exporting data first; many MLS systems have their own.",
+    },
+    {
+        q: "Will websites block me?",
+        a: "Most sites work normally, because it runs in your own browser just like a regular visit. If a site shows a check or asks you to sign in, do that in the tab and carry on.",
     },
     {
         q: "What can I export to?",
