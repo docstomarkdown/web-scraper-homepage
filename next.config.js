@@ -15,6 +15,12 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        // The old credits-based pricing page no longer matches the single plan; send visitors to the homepage section.
+        source: '/pricing',
+        destination: '/#pricing',
+        permanent: false,
+      },
+      {
         source: '/tools/invoice-generator',
         destination: '/invoice-generator',
         permanent: true,

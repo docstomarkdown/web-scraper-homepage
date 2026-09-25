@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import SourcePage from "@/components/landing/SourcePage";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
 import {
     ArrowUp,
     Briefcase,
@@ -166,6 +166,9 @@ export default function ChatDemo({
     const [typed, setTyped] = useState(reduceMotion ? s.prompt.length : 0);
     const onCycleEndRef = useRef(onCycleEnd);
     onCycleEndRef.current = onCycleEnd;
+    // Pause the loop while the demo is off screen, so it doesn't burn CPU in the background.
+    const rootRef = useRef<HTMLDivElement>(null);
+    const inView = useInView(rootRef, { margin: "100px" });
 
     // Stage clock.
     useEffect(() => {
@@ -173,6 +176,7 @@ export default function ChatDemo({
             setStage(3);
             return;
         }
+        if (!inView) return;
         let i = 0;
         let timer: ReturnType<typeof setTimeout>;
         const tick = () => {
@@ -189,7 +193,7 @@ export default function ChatDemo({
         };
         tick();
         return () => clearTimeout(timer);
-    }, [scenarioIndex, replayKey, reduceMotion]);
+    }, [scenarioIndex, replayKey, reduceMotion, inView]);
 
     // Typewriter for the prompt during stage 0.
     useEffect(() => {
@@ -208,6 +212,7 @@ export default function ChatDemo({
 
     return (
         <div
+            ref={rootRef}
             className="relative w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xl shadow-slate-200/60 dark:shadow-black/30 overflow-hidden"
             role="img"
             aria-label={`Demo: the user types "${s.prompt}" in the extension chat. It collects ${s.total} rows with ${s.columns.join(", ")} columns and downloads ${s.file}.`}

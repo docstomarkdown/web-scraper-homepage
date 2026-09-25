@@ -109,9 +109,9 @@ export default function Footer() {
                 </div>
 
                 <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-                <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-400 dark:text-slate-500">
-                    <p>© {year} Web Scraper Pro. All rights reserved.</p>
-                    <p className="text-slate-400 dark:text-slate-500">
+                <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500 dark:text-slate-400">
+                    <p className="text-slate-500 dark:text-slate-400">© {year} Web Scraper Pro. All rights reserved.</p>
+                    <p className="text-slate-500 dark:text-slate-400">
                         Built thoughtfully by{" "}
                         <Link
                             href="https://thinksolv.com"
@@ -123,6 +123,11 @@ export default function Footer() {
                         </Link>
                     </p>
                 </div>
+                <p className="mt-6 text-xs text-slate-500 dark:text-slate-400 leading-relaxed text-center sm:text-left">
+                    Amazon, Zillow, Shopify, Walmart and all other company, product and site names mentioned on this site are
+                    trademarks of their respective owners. Web Scraper Pro is not affiliated with, endorsed by or sponsored by any of
+                    them. Names are used only to describe the sites the extension works with.
+                </p>
             </div>
         </footer>
     );

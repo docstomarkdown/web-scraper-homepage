@@ -284,36 +284,40 @@ export const toolsGroups = [
 export const navigationConfig = {
   mainNav: [
     {
-      title: "Home",
-      href: "/",
-    },
-    /* {
-      title: "Tools",
-      grouped: true,
-      groups: toolsGroups,
-    },
-    */
-    /*
-    {
       title: "Features",
-      href: "/#features-section",
+      href: "/#what-you-can-collect",
     },
-    */
+    {
+      title: "Shopify",
+      href: "/#shopify-stores",
+    },
+    {
+      title: "Pricing",
+      href: "/#pricing",
+    },
+    {
+      title: "FAQ",
+      href: "/#faq",
+    },
     {
       title: "Docs",
       href: "https://docs.webscraper.pro",
       external: true,
     },
-    {
-      title: "Contact",
-      href: "/contact",
-    },
   ],
   footerNav: {
     product: [
       {
-        title: "Features",
-        href: "/#features",
+        title: "What you can collect",
+        href: "/#what-you-can-collect",
+      },
+      {
+        title: "Shopify stores",
+        href: "/#shopify-stores",
+      },
+      {
+        title: "Pricing",
+        href: "/#pricing",
       },
       {
         title: "FAQ",

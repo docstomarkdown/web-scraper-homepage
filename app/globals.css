@@ -224,3 +224,7 @@
     break-before: auto;
   }
 }
+/* Keep in-page anchor targets clear of the fixed header. */
+section[id] {
+  scroll-margin-top: 5rem;
+}
