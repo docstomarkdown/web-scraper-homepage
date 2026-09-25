@@ -6,6 +6,7 @@ import { Menu, X, ExternalLink, ChevronDown, FileText, ShoppingCart, Package, Ca
 import { usePathname } from "next/navigation";
 import { productConfig } from "@/config/product";
 import { navigationConfig } from "@/config/site";
+import { NavMenuDesktop, NavMenuMobile, hasMenu } from "@/components/layout/nav-menu";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/ui/icons";
@@ -76,10 +77,11 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1">
             {navigationConfig.mainNav.map((item: any) => {
+              if (item.menu) return hasMenu(item.menu) ? <NavMenuDesktop key={item.title} id={item.menu} /> : null;
               if (item.grouped && item.groups) {
                 return (
                   <DropdownMenu key={item.title}>
-                    <DropdownMenuTrigger className="flex items-center px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full transition-all duration-200 outline-none group data-[state=open]:bg-slate-50 data-[state=open]:text-slate-900">
+                    <DropdownMenuTrigger className="flex items-center px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full transition-all duration-200 outline-none group data-[state=open]:bg-slate-50 dark:data-[state=open]:bg-slate-800 data-[state=open]:text-slate-900 dark:data-[state=open]:text-white">
                       {item.title}
                       <ChevronDown className="ml-1 h-3.5 w-3.5 opacity-50 group-data-[state=open]:rotate-180 transition-transform duration-200" />
                     </DropdownMenuTrigger>
@@ -101,7 +103,7 @@ export default function Header() {
                             <div key={group.title} className="break-inside-avoid">
                               <div className="group/section relative p-4 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all duration-200">
                                 <div className="flex items-center gap-3 mb-3">
-                                  <div className="p-2 rounded-xl bg-blue-50 text-blue-600 group-hover/section:bg-blue-100 transition-colors">
+                                  <div className="p-2 rounded-xl bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-300 group-hover/section:bg-blue-100 dark:group-hover/section:bg-blue-900/50 transition-colors">
                                     <IconComponent className="h-4 w-4" />
                                   </div>
                                   <h4 className="font-semibold text-sm text-slate-900 dark:text-white">
@@ -113,7 +115,7 @@ export default function Header() {
                                     <Link
                                       key={subItem.href}
                                       href={subItem.href}
-                                      className="block py-1.5 text-sm text-slate-500 dark:text-slate-400 hover:text-blue-600 transition-colors"
+                                      className="block py-1.5 text-sm text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-[#7aa7ff] transition-colors"
                                     >
                                       {subItem.title}
                                     </Link>
@@ -177,7 +179,9 @@ export default function Header() {
                   <div className="flex flex-col gap-6">
                     {navigationConfig.mainNav.map((item: any, i: number) => (
                       <div key={i}>
-                        {item.grouped ? (
+                        {item.menu ? (
+                          hasMenu(item.menu) && <NavMenuMobile id={item.menu} />
+                        ) : item.grouped ? (
                           <div className="space-y-4">
                             <h4 className="font-semibold text-slate-900 dark:text-white text-lg">{item.title}</h4>
                             <div className="pl-4 space-y-6">

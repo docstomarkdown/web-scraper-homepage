@@ -15,6 +15,7 @@ const GROUPS = [
     { label: "Real estate", sites: ["Zillow", "Realtor.com", "Rightmove"] },
     { label: "Travel", sites: ["Booking.com", "Hotels.com", "Tripadvisor"] },
     { label: "Jobs, cars and software", sites: ["Monster", "CarGurus", "Capterra", "Product Hunt"] },
+    { label: "Research papers", sites: ["Scholar search results"] },
 ];
 
 export default function Sites() {

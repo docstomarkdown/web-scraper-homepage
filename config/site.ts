@@ -1,3 +1,5 @@
+import { publishedPages } from "./pages"
+
 // Site configuration
 export const siteConfig = {
   name: "Web Scraper",
@@ -282,31 +284,17 @@ export const toolsGroups = [
 
 // Navigation
 export const navigationConfig = {
+  // Menus are built from config/pages.ts (see components/layout/nav-menu.tsx); a menu with no pages is hidden.
   mainNav: [
-    {
-      title: "Features",
-      href: "/#what-you-can-collect",
-    },
-    {
-      title: "Shopify",
-      href: "/#shopify-stores",
-    },
-    {
-      title: "Pricing",
-      href: "/#pricing",
-    },
-    {
-      title: "FAQ",
-      href: "/#faq",
-    },
-    {
-      title: "Docs",
-      href: "https://docs.webscraper.pro",
-      external: true,
-    },
+    { title: "Product", href: "/#what-you-can-collect", menu: "product" },
+    { title: "Use cases", href: "/use-cases", menu: "use-cases" },
+    { title: "Sites", href: "/scrapers", menu: "scrapers" },
+    { title: "Resources", href: "/guides", menu: "resources" },
+    { title: "Pricing", href: "/#pricing" },
   ],
   footerNav: {
     product: [
+      ...publishedPages("feature").map((p) => ({ title: p.label, href: p.href })),
       {
         title: "What you can collect",
         href: "/#what-you-can-collect",

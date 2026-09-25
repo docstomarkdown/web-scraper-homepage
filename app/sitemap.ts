@@ -2,6 +2,7 @@
 import { MetadataRoute } from 'next'
 import { getAllPosts, getAllAuthors, getAllCategories } from '@/lib/posts'
 import { siteConfig } from '@/config/site'
+import { publishedPages } from '@/config/pages'
 
 // Get base URL from environment variable or fallback to site config
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || siteConfig.url.replace(/\/$/, '')
@@ -29,12 +30,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.5,
     },
     {
-      url: `${BASE_URL}/pricing`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.9,
-    },
-    {
       url: `${BASE_URL}/privacy-policy`,
       lastModified: new Date(),
       changeFrequency: 'yearly' as const,
@@ -45,12 +40,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: 'yearly' as const,
       priority: 0.3,
-    },
-    {
-      url: `${BASE_URL}/about`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
     },
   ]
 
@@ -91,5 +80,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error('Error generating sitemap entries:', error)
   }
 
-  return [...staticPages, ...blogPosts, ...authors, ...categories]
+  const sitePages: MetadataRoute.Sitemap = publishedPages().map(p => ({
+    url: `${BASE_URL}${p.href}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }))
+
+  return [...staticPages, ...sitePages, ...blogPosts, ...authors, ...categories]
 }

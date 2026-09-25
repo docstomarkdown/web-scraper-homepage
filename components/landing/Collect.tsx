@@ -1,9 +1,18 @@
 import React from "react";
+import Link from "next/link";
 import { BookOpen, Briefcase, Calendar, Car, FileText, Home, Image, ListChecks, Mail, MapPin, MessageSquareQuote, Plane, ShoppingBag } from "lucide-react";
 import SectionHeading from "@/components/landing/SectionHeading";
 import Reveal from "@/components/landing/Reveal";
 
-const TYPES = [
+const TYPES: {
+    icon: typeof MapPin;
+    title: string;
+    body: string;
+    fields: string[];
+    goodFor: string;
+    tint: string;
+    link?: { href: string; text: string };
+}[] = [
     {
         icon: MapPin,
         title: "Local business leads",
@@ -11,6 +20,7 @@ const TYPES = [
         fields: ["Name", "Category", "Address", "Phone", "Website", "Rating", "Email"],
         goodFor: "building prospect lists by city and niche, finding local partners, sizing up competitors nearby.",
         tint: "text-rose-500 bg-rose-50 dark:bg-rose-950/40",
+        link: { href: "/maps-leads", text: "Collect local business leads from Maps" },
     },
     {
         icon: ShoppingBag,
@@ -99,6 +109,14 @@ export default function Collect() {
                                         </li>
                                     ))}
                                 </ul>
+                                {t.link && (
+                                    <Link
+                                        href={t.link.href}
+                                        className="mt-5 inline-block text-sm font-semibold text-[#1f5ec2] dark:text-[#7aa7ff] hover:underline"
+                                    >
+                                        {t.link.text} →
+                                    </Link>
+                                )}
                             </article>
                         </Reveal>
                     ))}
