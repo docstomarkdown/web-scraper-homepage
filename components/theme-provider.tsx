@@ -10,6 +10,9 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
       attribute="class"
       defaultTheme="system"
       enableSystem
+      // Follow the OS setting only; there is no theme switch. A fresh key ignores
+      // choices saved by an earlier toggle under the default "theme" key.
+      storageKey="wsp-theme-system"
       {...props}
     >
       {children}

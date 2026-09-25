@@ -8,7 +8,7 @@ import { productConfig } from "@/config/product";
 
 export default function CTA() {
     return (
-        <section className="py-20 bg-gradient-to-b from-white to-slate-50/70 relative overflow-hidden">
+        <section className="py-20 bg-gradient-to-b from-white dark:from-slate-950 to-slate-50/70 dark:to-slate-900/60 relative overflow-hidden">
             <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
                 <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-[#2772ED]/7 rounded-full blur-[110px]" />
@@ -22,15 +22,15 @@ export default function CTA() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.7 }}
                 >
-                    <div className="rounded-3xl border border-slate-200 bg-white shadow-xl shadow-slate-200/50 px-8 py-12 md:px-12 md:py-14 text-center">
+                    <div className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xl shadow-slate-200/50 px-8 py-12 md:px-12 md:py-14 text-center">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2772ED]/10 border border-[#2772ED]/20 text-[#2772ED] text-[11px] font-semibold normal-case tracking-normal mb-6">
                             Ready To Start
                         </div>
 
-                        <h2 className="text-3xl md:text-4xl font-semibold text-slate-700 tracking-tight leading-[1.15]">
+                        <h2 className="text-3xl md:text-4xl font-semibold text-slate-700 dark:text-slate-200 tracking-tight leading-[1.15]">
                             Start extracting structured data in minutes.
                         </h2>
-                        <p className="text-base text-slate-500 leading-relaxed mt-4 max-w-2xl mx-auto">
+                        <p className="text-base text-slate-500 dark:text-slate-400 leading-relaxed mt-4 max-w-2xl mx-auto">
                             Built for lists, detail pages, images, and structured properties.
                         </p>
 

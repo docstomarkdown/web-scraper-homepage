@@ -8,12 +8,12 @@ import Footer from "@/components/landing/Footer";
 export const metadata = {
     title: "Web Scraper",
     description:
-        "Extract data from any website without code. Point, click, and export to CSV, JSON, or Google Sheets using the Web Scraper Chrome extension.",
+        "Turn any web page into a spreadsheet. Collect Maps leads, Amazon products, and Zillow listings in one click, then export to Google Sheets, Excel, or CSV. Free Chrome extension.",
 };
 
 export default function Home() {
     return (
-        <div className="min-h-screen flex flex-col bg-white">
+        <div className="min-h-screen flex flex-col bg-white dark:bg-slate-950">
             <main className="flex-1">
                 <Hero />
                 <Features />

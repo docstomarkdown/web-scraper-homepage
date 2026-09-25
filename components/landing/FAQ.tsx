@@ -17,7 +17,7 @@ export default function FAQ() {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
     return (
-        <section id="faq" className="py-20 bg-slate-50/50 relative overflow-hidden">
+        <section id="faq" className="py-20 bg-slate-50/50 dark:bg-slate-900/60 relative overflow-hidden">
             <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
             <div className="max-w-4xl mx-auto px-6 md:px-12 relative">
                 <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpVariant} className="text-center mb-16">
@@ -25,15 +25,15 @@ export default function FAQ() {
                         <HelpCircle className="w-4 h-4" />
                         <span>FAQ</span>
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-bold text-slate-700 mb-6 tracking-tight">
+                    <h2 className="text-4xl md:text-5xl font-bold text-slate-700 dark:text-slate-200 mb-6 tracking-tight">
                         Frequently Asked <span className="text-blue-600">Questions</span>
                     </h2>
-                    <p className="text-slate-500 text-lg leading-relaxed">
+                    <p className="text-slate-500 dark:text-slate-400 text-lg leading-relaxed">
                         Quick answers to the most common questions about Web Scraper Pro.
                     </p>
                 </motion.div>
 
-                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={staggerContainer} className="bg-white border border-slate-100/80 rounded-3xl shadow-sm divide-y divide-slate-100 overflow-hidden">
+                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={staggerContainer} className="bg-white dark:bg-slate-900 border border-slate-100/80 rounded-3xl shadow-sm divide-y divide-slate-100 dark:divide-slate-800 overflow-hidden">
                     {faqs.map((faq, i) => {
                         const isOpen = openIndex === i;
                         return (
@@ -43,11 +43,11 @@ export default function FAQ() {
                                         <div className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm tracking-wide transition-all duration-300 ${isOpen ? "bg-blue-600 text-white shadow-md shadow-blue-500/20" : "bg-blue-50 text-blue-600"}`}>
                                             Q{i + 1}
                                         </div>
-                                        <span className={`text-[17px] font-semibold leading-snug transition-colors duration-200 pr-4 ${isOpen ? "text-blue-600" : "text-slate-700 group-hover:text-blue-600"}`}>
+                                        <span className={`text-[17px] font-semibold leading-snug transition-colors duration-200 pr-4 ${isOpen ? "text-blue-600" : "text-slate-700 dark:text-slate-200 group-hover:text-blue-600"}`}>
                                             {faq.question}
                                         </span>
                                     </div>
-                                    <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${isOpen ? "bg-blue-50 text-blue-600" : "bg-slate-50 text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600"}`}>
+                                    <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${isOpen ? "bg-blue-50 text-blue-600" : "bg-slate-50 dark:bg-slate-800/60 text-slate-400 dark:text-slate-500 group-hover:bg-blue-50 group-hover:text-blue-600"}`}>
                                         <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
                                     </div>
                                 </button>
@@ -55,7 +55,7 @@ export default function FAQ() {
                                 <AnimatePresence>
                                     {isOpen && (
                                         <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }} className="overflow-hidden">
-                                            <p className="pb-6 pl-[80px] md:pl-[92px] pr-6 md:pr-12 text-slate-500 leading-relaxed text-[15px] [&>strong]:text-slate-500 [&>strong]:font-semibold">
+                                            <p className="pb-6 pl-[80px] md:pl-[92px] pr-6 md:pr-12 text-slate-500 dark:text-slate-400 leading-relaxed text-[15px] [&>strong]:text-slate-500 [&>strong]:font-semibold">
                                                 {faq.answer}
                                             </p>
                                         </motion.div>
