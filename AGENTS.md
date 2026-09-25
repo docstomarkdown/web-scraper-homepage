@@ -54,6 +54,8 @@ Build every section so a later SEO pass only has to tune it, not restructure it:
 
 ## Other
 
+- Logo files, logo usage rules, and brand colors (brand blue plus the mint accent family) are in
+  `docs/brand.md`. Use those tokens for new colored elements instead of arbitrary Tailwind colors.
 - Respect `prefers-reduced-motion` in animated components (`useReducedMotion` from framer-motion):
   show the final state without motion.
 - Layouts must work at phone width (375px) with no horizontal scroll.

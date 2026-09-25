@@ -67,9 +67,14 @@ export const metadata: Metadata = {
     },*/
   },
   icons: {
-    icon: '/logo.svg',
-    shortcut: '/logo.svg',
-    apple: '/logo.svg',
+    // PNGs first so tabs use them; the 16px one has a larger dot to stay readable
+    icon: [
+      { url: '/favicon-16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/logo.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon-32.png',
+    apple: '/apple-touch-icon.png',
   },
   category: 'technology',
 }
