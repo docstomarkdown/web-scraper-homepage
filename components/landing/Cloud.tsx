@@ -33,7 +33,7 @@ export default function Cloud() {
                                     Bigger jobs? Run them in the cloud.
                                 </h2>
                                 <p className="mt-4 text-lg text-blue-50/90 leading-relaxed">
-                                    Send the same scrape to our servers instead of your browser. Paste your URLs, and the results are waiting in your
+                                    Instead of running in your browser, it runs on our servers. Paste your URLs, and the results are waiting in your
                                     dashboard.
                                 </p>
                                 <ul className="mt-6 space-y-3">

@@ -6,8 +6,8 @@ import Reveal from "@/components/landing/Reveal";
 const STEPS = [
     {
         icon: Globe,
-        title: "Open the page",
-        body: "Go to the page you want in Chrome: a Maps search, a store category, a job board or a page of listings.",
+        title: "Install, then open a page",
+        body: "Add the free extension to Chrome, then go to the page you want: a Maps search, a store category, a job board or a page of listings.",
     },
     {
         icon: MessageSquareText,

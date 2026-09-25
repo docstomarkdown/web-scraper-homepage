@@ -72,7 +72,7 @@ export default function Hero() {
                     </h1>
 
                     <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed mt-6 max-w-md mx-auto lg:mx-0">
-                        Just ask for the data you want. Get a clean table, ready for Excel or Google Sheets.
+                        A free Chrome extension. Just ask for the data you want, and get a clean table ready for Excel or Google Sheets.
                     </p>
 
                     <div className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center lg:justify-start gap-3 mt-9">

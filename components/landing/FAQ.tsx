@@ -10,6 +10,10 @@ const FAQS = [
         a: "Yes. The Chrome extension is free to install and use. Paid plans with more volume and cloud runs are coming soon.",
     },
     {
+        q: "Do I need an account?",
+        a: "Not for the extension: install it and start collecting. The cloud dashboard uses a Google sign-in.",
+    },
+    {
         q: "Do I need to know how to code?",
         a: "No. Type what you want in the chat, or click Collect. There are no selectors or scripts to set up.",
     },
@@ -44,6 +48,10 @@ const FAQS = [
     {
         q: "What's the difference between the extension and the cloud?",
         a: "The extension runs in your browser, on the page you have open. The cloud runs on our servers: you paste a list of URLs, close your laptop, and download the results later.",
+    },
+    {
+        q: "Where is my data stored?",
+        a: "What you collect with the extension is saved in your browser until you export it. Chat messages are processed on our servers to work out what to collect.",
     },
     {
         q: "Is web scraping legal?",
