@@ -95,7 +95,7 @@ export default function Hero() {
                         </button>
                     </div>
 
-                    <p className="text-sm font-medium text-slate-700 dark:text-slate-200 mt-10 mb-3">What do you want to collect?</p>
+                    <p className="text-sm font-medium text-slate-700 dark:text-slate-200 mt-10 mb-3">What do you want to collect? <span className="font-normal text-slate-500 dark:text-slate-400">Pick one to see it work.</span></p>
                     <div className="flex flex-wrap justify-center lg:justify-start gap-2">
                         {SCENARIOS.map((sc, idx) => {
                             const active = idx === scenarioIndex;

@@ -9,6 +9,7 @@ const TYPES = [
         title: "Local business leads",
         body: "Search Maps or a business directory and get every result as a row. Add emails from each business's own website in the same run.",
         fields: ["Name", "Category", "Address", "Phone", "Website", "Rating", "Email"],
+        goodFor: "building prospect lists by city and niche, finding local partners, sizing up competitors nearby.",
         tint: "text-rose-500 bg-rose-50 dark:bg-rose-950/40",
     },
     {
@@ -16,13 +17,15 @@ const TYPES = [
         title: "Product prices and reviews",
         body: "Pull a store's product list across every page, then open each product for its full details and customer reviews.",
         fields: ["Product", "Price", "Sale price", "Rating", "Reviews", "Seller", "Image"],
+        goodFor: "checking competitor prices, researching what sells, gathering reviews for product ideas.",
         tint: "text-amber-500 bg-amber-50 dark:bg-amber-950/40",
     },
     {
         icon: Home,
         title: "Property listings",
         body: "Collect homes for sale or rent with price, size and location, ready to sort and compare in a spreadsheet.",
-        fields: ["Address", "Price", "Beds", "Baths", "Sq ft", "Listing link"],
+        fields: ["Address", "Price", "Beds", "Baths", "Sq ft", "Photos", "Listing link"],
+        goodFor: "comparing homes in a neighbourhood, pulling this week's new listings, building a list of rentals.",
         tint: "text-emerald-500 bg-emerald-50 dark:bg-emerald-950/40",
     },
     {
@@ -30,6 +33,7 @@ const TYPES = [
         title: "Job posts",
         body: "Turn a job search into a clean list of roles you can filter by company, location and pay.",
         fields: ["Role", "Company", "Location", "Salary", "Posted", "Job link"],
+        goodFor: "seeing who is hiring, researching salaries, finding companies to pitch.",
         tint: "text-indigo-500 bg-indigo-50 dark:bg-indigo-950/40",
     },
     {
@@ -37,6 +41,7 @@ const TYPES = [
         title: "Emails and contact details",
         body: "Give it a list of websites and it finds the contact emails, phone numbers and social profiles on each one.",
         fields: ["Website", "Email", "Phone", "Social profiles"],
+        goodFor: "adding contact details to a list of companies before outreach.",
         tint: "text-sky-500 bg-sky-50 dark:bg-sky-950/40",
     },
     {
@@ -44,6 +49,7 @@ const TYPES = [
         title: "Any list on any page",
         body: "On sites without a ready-made setup, it spots the lists on the page for you. Pick one and it names the columns and follows every page.",
         fields: ["Automatic columns", "Next page", "Load more", "Infinite scroll"],
+        goodFor: "directories, event lists, catalogues and tables on any other site.",
         tint: "text-[#2772ED] bg-[#2772ED]/10",
     },
 ];
@@ -69,6 +75,9 @@ export default function Collect() {
                                 </span>
                                 <h3 className="mt-4 text-lg font-semibold text-slate-900 dark:text-white">{t.title}</h3>
                                 <p className="mt-2 text-[15px] text-slate-600 dark:text-slate-300 leading-relaxed">{t.body}</p>
+                                <p className="mt-3 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                                    <span className="font-medium text-slate-700 dark:text-slate-200">Good for:</span> {t.goodFor}
+                                </p>
                                 <ul className="mt-4 flex flex-wrap gap-1.5" aria-label={`Columns for ${t.title.toLowerCase()}`}>
                                     {t.fields.map((f) => (
                                         <li

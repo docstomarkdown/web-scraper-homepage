@@ -22,12 +22,12 @@ const FAQS = [
         a: "Yes. Collect the businesses from Maps, then collect contacts from their websites to add emails, phone numbers and social profiles to the same table.",
     },
     {
-        q: "Does it handle pagination and infinite scroll?",
-        a: "Yes. It follows next-page buttons, clicks “Load more” and scrolls infinite feeds until the list ends.",
+        q: "Will it get every page of results, not just the first?",
+        a: "Yes. It clicks through next-page buttons, presses “Load more” and keeps scrolling pages that load as you go, until the list ends.",
     },
     {
-        q: "Can it collect data from pages behind a login?",
-        a: "Yes. It runs in your own browser, so it can read pages you're already signed in to.",
+        q: "Can I use it on sites I log in to, like an MLS or a member directory?",
+        a: "Often, yes. It runs in your own browser, so it can read pages you're already signed in to, and it detects lists automatically on sites without a ready-made setup. Check the site's rules on exporting data first; many MLS systems have their own.",
     },
     {
         q: "What can I export to?",
