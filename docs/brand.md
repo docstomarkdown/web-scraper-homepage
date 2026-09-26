@@ -39,6 +39,27 @@ The master files live in the extension repo, not here:
 - `chrome-extension-source/scripts/build-icons.mjs`: renders the extension icon set from those two
   files.
 
+### Animated marks
+
+The extension's chat shows the logo, without its tile, as a small spider while it works. The same
+marks are available here as standalone SVGs in `public/brand/`, for loading states and demos:
+
+| File | Motion | Use |
+|---|---|---|
+| `thinking-crawl.svg` | The dot walks along the W's strokes, pausing at each joint | Collecting: a tool is running ("Searching maps…") |
+| `thinking-step.svg` | The W's two halves rock like legs stepping in place | Waiting: the assistant is thinking |
+| `thinking-scuttle.svg` | Legs step while the mark slides side to side | Not used in the product yet; for larger moments |
+| `logo-mark.svg` | Still | The mark at rest, and the fallback for reduced motion |
+
+Use them with a plain `<img>`, for example `<img src="/brand/thinking-crawl.svg" alt="" width="28"
+height="28">`. They switch to the dark-mode colors on their own when the viewer's system is in dark
+mode. The motion is SMIL, which an `<img>` can't pause, so when the viewer prefers reduced motion,
+show `logo-mark.svg` instead.
+
+These files are generated from `components/chat/ThinkingMark.tsx` in `chrome-extension-source` by
+`npx vite-node scripts/build-logo-animations.ts`, which writes them to
+`web_store_assets/logo/animations/`. Change the animation there, then copy the files here again.
+
 ### Changing the logo
 
 1. Edit the master files in `chrome-extension-source/web_store_assets/logo/`.
