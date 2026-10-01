@@ -40,7 +40,7 @@ const MAX_FILE = 50 * 1024 * 1024
 declare global {
   interface Window {
     turnstile?: {
-      render: (el: HTMLElement, opts: { sitekey: string; callback: (token: string) => void; "expired-callback"?: () => void; theme?: string }) => string
+      render: (el: HTMLElement, opts: { sitekey: string; action?: string; callback: (token: string) => void; "expired-callback"?: () => void; theme?: string }) => string
       reset: (id?: string) => void
     }
   }
@@ -76,6 +76,8 @@ export default function SupportForm() {
       if (!window.turnstile || !turnstileRef.current || widgetId.current) return
       widgetId.current = window.turnstile.render(turnstileRef.current, {
         sitekey: TURNSTILE_SITE_KEY,
+        // The admin app accepts only tokens issued for this action.
+        action: "support",
         callback: setToken,
         "expired-callback": () => setToken(""),
         theme: "auto",
