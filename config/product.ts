@@ -79,7 +79,7 @@ export const pricing = {
         "Team management",
       ],
       ctaText: "Contact Sales",
-      ctaUrl: "/contact",
+      ctaUrl: "/support?type=billing",
       popular: false,
     },
   ],
@@ -418,14 +418,13 @@ export const productConfig = {
     links: {
       product: [
         { name: "Features", href: "/#features-section" },
-        { name: "Pricing", href: "/pricing" },
         { name: "How it Works", href: "/#how-it-works" },
         { name: "Use Cases", href: "/#use-cases" },
       ],
       support: [
         { name: "Documentation", href: "/docs" },
         { name: "Help Center", href: "/help" },
-        { name: "Contact Us", href: "/contact" },
+        { name: "Contact Us", href: "/support" },
         { name: "Status", href: "/status" },
       ],
       company: [

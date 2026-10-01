@@ -7,7 +7,6 @@ import Sites from "@/components/landing/Sites";
 import Capabilities from "@/components/landing/Capabilities";
 import Cloud from "@/components/landing/Cloud";
 import Developers from "@/components/landing/Developers";
-import PricingTeaser from "@/components/landing/PricingTeaser";
 import FAQ from "@/components/landing/FAQ";
 import CTA from "@/components/landing/CTA";
 import Footer from "@/components/landing/Footer";
@@ -30,7 +29,6 @@ export default function Home() {
                 <Capabilities />
                 <Cloud />
                 <Developers />
-                <PricingTeaser />
                 <FAQ />
                 <CTA />
             </main>

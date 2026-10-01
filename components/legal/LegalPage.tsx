@@ -266,7 +266,7 @@ export default function LegalPage({ type, content, sections }: LegalPageProps) {
                                 </p>
                             </div>
                             <Link
-                                href="/contact"
+                                href="/support"
                                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold transition-all duration-200 shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 shrink-0"
                             >
                                 <Mail className="w-4 h-4" />

@@ -75,11 +75,11 @@ const pricingData = {
       description: "For high volume extraction",
       monthly: {
         price: "$99",
-        ctaurl: "/contact",
+        ctaurl: "/support?type=billing",
       },
       yearly: {
         price: "$990",
-        ctaurl: "/contact",
+        ctaurl: "/support?type=billing",
       },
       features: [
         "500,000 credits / month",

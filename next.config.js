@@ -15,10 +15,17 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        // The old credits-based pricing page no longer matches the single plan; send visitors to the homepage section.
+        // No pricing is shown until billing is live; old links to /pricing land on the homepage. Temporary
+        // (not permanent) so a real pricing page can take this address later.
         source: '/pricing',
-        destination: '/#pricing',
+        destination: '/',
         permanent: false,
+      },
+      {
+        // The contact form was replaced by the support form, which reaches the same inbox.
+        source: '/contact',
+        destination: '/support',
+        permanent: true,
       },
       {
         source: '/tools/invoice-generator',

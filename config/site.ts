@@ -290,7 +290,7 @@ export const navigationConfig = {
     { title: "Use cases", href: "/use-cases", menu: "use-cases" },
     { title: "Sites", href: "/scrapers", menu: "scrapers" },
     { title: "Resources", href: "/guides", menu: "resources" },
-    { title: "Pricing", href: "/#pricing" },
+    { title: "Support", href: "/support" },
   ],
   footerNav: {
     product: [
@@ -304,16 +304,12 @@ export const navigationConfig = {
         href: "/#shopify-stores",
       },
       {
-        title: "Pricing",
-        href: "/#pricing",
-      },
-      {
         title: "FAQ",
         href: "/#faq",
       },
       {
-        title: "Contact",
-        href: "/contact",
+        title: "Support",
+        href: "/support",
       },
     ],
     freeTools: [

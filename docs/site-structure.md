@@ -36,7 +36,7 @@ writing rules in `docs/writing-style.md`, and product facts in `docs/personas.md
 | **Product** | The feature pages (§2) and the Cloud page |
 | **Use cases** | The use-case pages (§3) |
 | **Sites** | The `/scrapers` directory (§4). The menu says "Sites" because "scrapers" is jargon; the URL keeps the search term. |
-| **Resources** | Guides, developer docs, blog, comparisons, what's new, "Is web scraping legal?", your data and privacy, seller calculators, contact |
+| **Resources** | Guides, developer docs, blog, comparisons, what's new, "Is web scraping legal?", your data and privacy, seller calculators, support |
 | **Pricing** | The pricing page |
 | **Add to Chrome** | The CTA button |
 
@@ -133,11 +133,10 @@ The hub at `/use-cases` lists them all.
 
 | Page | URL | Status |
 |---|---|---|
-| Pricing | `/pricing` | ⚪ Waiting on a price. Until then, keep the homepage teaser and the redirect. |
+| Pricing | `/pricing` | ⚪ Waiting on billing. Hidden until then: no nav, footer or homepage section, and `/pricing` redirects to the homepage. |
 | Privacy and your data | `/privacy` (a plain-English page beside the legal policy) | 🟢. Must match the analytics facts. |
 | About | `/about` | 🟢 |
-| Contact | `/contact` | ✅ |
-| Get help (support form) | `/support` | ✅ Built 2026-10-01, not yet linked from the nav or footer. Files a private ticket in the admin app's support inbox; the extension's Support links open it filled in. |
+| Get help (support form) | `/support` | ✅ In the top bar and footer. Files a private ticket in the admin app's support inbox; the extension's Support links open it filled in. Replaced the contact page on 2026-10-01: `/contact` redirects here. |
 | Terms, Privacy policy | `/terms-of-service`, `/privacy-policy` | ✅ |
 
 ## 7. Build order
