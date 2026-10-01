@@ -16,7 +16,12 @@ import { Textarea } from "@/components/ui/textarea"
  *
  * The extension's links open this page with ?source=extension&type=…&url=…&subject=…&message=…&v=…
  * (chrome-extension-source/lib/config/supportLinks.ts), so the page address, a subject, the details of
- * the collection being reported and the extension version are already filled in.
+ * the collection being reported and the extension version are already filled in. The details the
+ * extension adds for the team (everything after DETAILS_MARKER in its message) are shown separately and
+ * sent after what the person writes, so they type into an empty box instead of the middle of a template.
+ *
+ * There's no subject field: the ticket's subject is the first line of the message, after the extension's
+ * subject when there is one.
  */
 
 const ADMIN_URL =
@@ -27,11 +32,52 @@ const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
 const TYPES = [
   { value: "site_problem", label: "A site doesn't scrape correctly" },
   { value: "extension_bug", label: "Problem with the extension" },
-  { value: "dashboard", label: "Problem with Web Scraper Pro Cloud" },
-  { value: "feature_request", label: "Feature request" },
   { value: "billing", label: "Plans, payments or purchases" },
+  { value: "feature_request", label: "Feature request" },
   { value: "other", label: "Something else" },
+  // Offered only to someone sent here with it already chosen (?type=dashboard).
+  { value: "dashboard", label: "Problem with Web Scraper Pro Cloud" },
 ] as const
+
+/** The message box's label and example, worded for each topic. */
+const MESSAGE_PROMPTS: Record<string, { label: string; placeholder: string }> = {
+  site_problem: {
+    label: "What looks wrong?",
+    placeholder: "For example: the Price column is empty, or only 10 of the 50 products came through.",
+  },
+  extension_bug: { label: "What happened?", placeholder: "What you clicked, and what the extension did." },
+  billing: { label: "Your question", placeholder: "Ask about plans, payments, invoices or refunds." },
+  feature_request: {
+    label: "What would you like it to do?",
+    placeholder: "What you'd like to collect, and from which sites.",
+  },
+  dashboard: { label: "What happened?", placeholder: "What you did in Web Scraper Pro Cloud, and what went wrong." },
+  other: { label: "How can we help?", placeholder: "Tell us what you need." },
+}
+
+/** Where the extension's prefilled message switches from the person's part to the details for the team
+ * (lib/services/problemReport.ts in the extension). */
+const DETAILS_MARKER = "Added for the support team:"
+
+/** Splits the extension's prefilled message into what the person still has to write and the details it
+ * adds for the team. A message without the marker is all the person's. */
+function splitPrefill(message: string | null): { own: string; details: string } {
+  if (!message) return { own: "", details: "" }
+  const at = message.indexOf(DETAILS_MARKER)
+  if (at < 0) return { own: message, details: "" }
+  const own = message
+    .slice(0, at)
+    .replace(/^\s*What looks wrong:\s*/i, "")
+    .trim()
+  return { own, details: message.slice(at + DETAILS_MARKER.length).trim() }
+}
+
+/** The ticket's subject: the first line of the message, cut at a word, after the extension's subject. */
+function subjectFor(message: string, preset: string | null) {
+  const first = message.trim().split(/\n/)[0].trim()
+  const snippet = first.length > 90 ? `${first.slice(0, 90).replace(/\s+\S*$/, "")}…` : first
+  return (preset ? `${preset}: ${snippet}` : snippet).slice(0, 150)
+}
 
 const ACCEPT = ".png,.jpg,.jpeg,.gif,.webp,.mp4,.webm,.mov,.pdf,.csv,.xlsx,.txt,.log,.json"
 const SMALL_TOTAL = 4 * 1024 * 1024
@@ -57,8 +103,11 @@ export default function SupportForm() {
   const params = useSearchParams()
   const fromExtension = params.get("source") === "extension"
   const presetType = TYPES.some((t) => t.value === params.get("type")) ? params.get("type")! : "site_problem"
+  const topics = TYPES.filter((t) => t.value !== "dashboard" || presetType === "dashboard")
+  const prefill = splitPrefill(params.get("message"))
 
   const [type, setType] = useState(presetType)
+  const ask = MESSAGE_PROMPTS[type] ?? MESSAGE_PROMPTS.other
   const [files, setFiles] = useState<File[]>([])
   const [status, setStatus] = useState<"idle" | "sending" | "uploading">("idle")
   const [error, setError] = useState("")
@@ -113,6 +162,9 @@ export default function SupportForm() {
     setError("")
     const form = new FormData(event.currentTarget)
     form.set("type", type)
+    const own = String(form.get("description") ?? "").trim()
+    form.set("subject", subjectFor(own, params.get("subject")))
+    if (prefill.details) form.set("description", `${own}\n\n${DETAILS_MARKER}\n${prefill.details}`)
     form.delete("files")
     // Small files ride with the form; the rest are uploaded one by one afterwards.
     const sorted = [...files].sort((a, b) => a.size - b.size)
@@ -136,7 +188,9 @@ export default function SupportForm() {
       if (!res.ok) {
         setError(json.error ?? "Your request didn't go through. Try again in a minute.")
         // Point at the field the server objected to.
-        const field = typeof json.field === "string" ? document.querySelector<HTMLElement>(`#support-${json.field === "site" ? "site" : json.field}`) : null
+        // There's no subject box; a subject problem is a message problem.
+        const target = json.field === "subject" ? "description" : json.field
+        const field = typeof target === "string" ? document.querySelector<HTMLElement>(`#support-${target}`) : null
         field?.focus()
         window.turnstile?.reset(widgetId.current)
         setToken("")
@@ -214,7 +268,7 @@ export default function SupportForm() {
       <fieldset className="space-y-2">
         <legend className="mb-1 text-sm font-medium text-slate-900 dark:text-white">What do you need help with?</legend>
         <div className="grid gap-2 sm:grid-cols-2">
-          {TYPES.map((t) => (
+          {topics.map((t) => (
             <label
               key={t.value}
               className={`flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-2 text-sm ${
@@ -230,38 +284,38 @@ export default function SupportForm() {
         </div>
       </fieldset>
 
-      {(type === "site_problem" || params.get("url")) && (
-        <div className="space-y-1.5">
-          <Label htmlFor="support-site" className="text-slate-900 dark:text-white">
-            Page address
-          </Label>
-          <Input id="support-site" name="site" defaultValue={params.get("url") ?? ""} placeholder="https://www.example.com/search?q=shoes" className={fieldClass} />
-          <p className="text-xs text-slate-500 dark:text-slate-400">Copy it from the address bar of the page you were scraping.</p>
-        </div>
-      )}
-
-      <div className="space-y-1.5">
-        <Label htmlFor="support-subject" className="text-slate-900 dark:text-white">
-          Subject
-        </Label>
-        <Input id="support-subject" name="subject" required minLength={3} maxLength={150} defaultValue={params.get("subject") ?? ""} placeholder="Price column is empty on search results" className={fieldClass} />
-      </div>
-
       <div className="space-y-1.5">
         <Label htmlFor="support-description" className="text-slate-900 dark:text-white">
-          What happened
+          {ask.label}
         </Label>
         <Textarea
           id="support-description"
           name="description"
           required
           minLength={10}
-          rows={params.get("message") ? 10 : 6}
-          defaultValue={params.get("message") ?? ""}
-          placeholder="What you did, what you expected, and what you got instead."
+          rows={6}
+          defaultValue={prefill.own}
+          placeholder={ask.placeholder}
           className={fieldClass}
         />
       </div>
+
+      {prefill.details && (
+        <div className="space-y-1.5 rounded-lg bg-slate-50 px-3 py-2.5 dark:bg-slate-800/60">
+          <p className="text-xs font-medium text-slate-700 dark:text-slate-300">We&apos;ll include these details from the extension</p>
+          <pre className="whitespace-pre-wrap break-words font-sans text-xs text-slate-500 dark:text-slate-400">{prefill.details}</pre>
+        </div>
+      )}
+
+      {(type === "site_problem" || params.get("url")) && (
+        <div className="space-y-1.5">
+          <Label htmlFor="support-site" className="text-slate-900 dark:text-white">
+            Page address (optional)
+          </Label>
+          <Input id="support-site" name="site" defaultValue={params.get("url") ?? ""} placeholder="https://www.example.com/search?q=shoes" className={fieldClass} />
+          <p className="text-xs text-slate-500 dark:text-slate-400">Paste the address of the page you were scraping. It helps us see the problem for ourselves.</p>
+        </div>
+      )}
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-1.5">
