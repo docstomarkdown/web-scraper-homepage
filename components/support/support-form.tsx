@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { CheckCircle2, Paperclip, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -99,7 +100,9 @@ function sizeLabel(n: number) {
   return n >= 1024 * 1024 ? `${(n / 1024 / 1024).toFixed(1)} MB` : `${Math.max(1, Math.round(n / 1024))} KB`
 }
 
-export default function SupportForm() {
+/** `header` and `tips` are the page's heading and advice, shown around the form and replaced by the
+ * thank-you screen once a request is sent. */
+export default function SupportForm({ header, tips }: { header: React.ReactNode; tips: React.ReactNode }) {
   const params = useSearchParams()
   const fromExtension = params.get("source") === "extension"
   const presetType = TYPES.some((t) => t.value === params.get("type")) ? params.get("type")! : "site_problem"
@@ -222,6 +225,7 @@ export default function SupportForm() {
         }
       }
       setDone({ id: json.id, email: String(form.get("email")), failedUploads })
+      window.scrollTo({ top: 0, behavior: "smooth" })
     } catch {
       setError("We couldn't reach our support system. Check your connection and try again.")
     } finally {
@@ -230,40 +234,67 @@ export default function SupportForm() {
   }
 
   if (done) {
+    const steps = [
+      "A person on the Web Scraper Pro team reads your request.",
+      <>
+        We reply by email to <strong className="font-semibold text-slate-900 dark:text-white">{done.email}</strong>, usually
+        within one working day.
+      </>,
+      "To add details or files, reply to our email.",
+    ]
     return (
-      <div className="mt-8 rounded-xl border border-emerald-200 bg-white p-6 dark:border-emerald-900 dark:bg-slate-900">
-        <div className="flex items-center gap-2 text-lg font-semibold text-slate-900 dark:text-white">
-          <CheckCircle2 className="h-5 w-5 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
-          Request {done.id} received
+      <div className="text-center" role="status">
+        <CheckCircle2 className="mx-auto h-14 w-14 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
+        <h1 className="mt-5 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+          Thanks, we&apos;ve got your request
+        </h1>
+        <p className="mt-3 text-base text-slate-600 dark:text-slate-300">Request number {done.id}</p>
+
+        <div className="mx-auto mt-10 max-w-md rounded-xl border border-slate-200 bg-white p-6 text-left dark:border-slate-800 dark:bg-slate-900">
+          <h2 className="text-sm font-semibold text-slate-900 dark:text-white">What happens next</h2>
+          <ol className="mt-4 space-y-4">
+            {steps.map((step, i) => (
+              <li key={i} className="flex gap-3 text-sm text-slate-600 dark:text-slate-300">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-50 text-xs font-semibold text-[#1f5ec2] dark:bg-blue-950/50 dark:text-[#7aa7ff]">
+                  {i + 1}
+                </span>
+                <span className="pt-0.5">{step}</span>
+              </li>
+            ))}
+          </ol>
+          {done.failedUploads.length > 0 && (
+            <p className="mt-5 rounded-md bg-amber-50 px-3 py-2 text-sm text-amber-800 dark:bg-amber-950/40 dark:text-amber-300">
+              These files didn&apos;t upload: {done.failedUploads.join(", ")}. Attach them to your reply to our email.
+            </p>
+          )}
         </div>
-        <p className="mt-2 text-slate-600 dark:text-slate-300">
-          We&apos;ll reply to <strong className="text-slate-900 dark:text-white">{done.email}</strong>. To add details later, reply to our email
-          about request {done.id}.
-        </p>
-        {done.failedUploads.length > 0 && (
-          <p className="mt-3 text-sm text-amber-700 dark:text-amber-400">
-            These files didn&apos;t upload: {done.failedUploads.join(", ")}. Attach them to your reply to our email.
-          </p>
-        )}
-        <Button
-          type="button"
-          variant="outline"
-          className="mt-5 dark:border-slate-700 dark:text-slate-200"
-          onClick={() => {
-            setDone(null)
-            setFiles([])
-            setToken("")
-            widgetId.current = undefined
-          }}
-        >
-          Send another request
-        </Button>
+
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <Button asChild className="bg-[#2772ED] text-white hover:bg-[#1f5ec2]">
+            <Link href="/">Back to the homepage</Link>
+          </Button>
+          <Button
+            type="button"
+            variant="outline"
+            className="dark:border-slate-700 dark:text-slate-200"
+            onClick={() => {
+              setDone(null)
+              setFiles([])
+              setToken("")
+              widgetId.current = undefined
+            }}
+          >
+            Send another request
+          </Button>
+        </div>
       </div>
     )
   }
 
   const busy = status !== "idle"
   return (
+    <>
+    {header}
     <form onSubmit={submit} className="mt-8 space-y-5 rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
       <fieldset className="space-y-2">
         <legend className="mb-1 text-sm font-medium text-slate-900 dark:text-white">What do you need help with?</legend>
@@ -372,5 +403,7 @@ export default function SupportForm() {
         {status === "sending" ? "Sending…" : status === "uploading" ? "Uploading files…" : "Send request"}
       </Button>
     </form>
+    {tips}
+    </>
   )
 }
