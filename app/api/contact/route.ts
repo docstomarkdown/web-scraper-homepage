@@ -9,6 +9,43 @@ const sesClient = new SESClient({
   },
 })
 
+/**
+ * Files the message as a ticket in the support inbox (admin.webscraper.pro), so contact-form questions
+ * (plans, payments, anything) live with every other support request. Returns the ticket number, or null
+ * when the admin app isn't configured or didn't answer; the email below goes out either way.
+ */
+async function fileTicket(req: NextRequest, fields: { name: string; email: string; subject?: string; message: string }) {
+  const adminUrl = process.env.ADMIN_URL
+  const secret = process.env.WEBSITE_INTAKE_SECRET
+  if (!adminUrl || !secret) return null
+  const form = new FormData()
+  form.set("type", "other")
+  form.set("source", "contact")
+  form.set("subject", (fields.subject || "Inquiry via Website").slice(0, 150).padEnd(3, "."))
+  form.set("description", fields.message.length >= 10 ? fields.message : `${fields.message} (sent from the contact form)`)
+  form.set("email", fields.email)
+  form.set("name", fields.name.slice(0, 100))
+  try {
+    const res = await fetch(`${adminUrl.replace(/\/+$/, "")}/api/public/tickets`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${secret}`,
+        "X-Client-IP": req.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "",
+      },
+      body: form,
+      signal: AbortSignal.timeout(8000),
+    })
+    if (!res.ok) {
+      console.error("Support inbox refused the contact message:", res.status, await res.text())
+      return null
+    }
+    return ((await res.json()) as { id?: number }).id ?? null
+  } catch (error) {
+    console.error("Support inbox unreachable:", error)
+    return null
+  }
+}
+
 export async function POST(req: NextRequest) {
   try {
     const { name, email, subject, message, captcha } = await req.json()
@@ -42,6 +79,8 @@ export async function POST(req: NextRequest) {
       )
     }
 
+    const ticketId = await fileTicket(req, { name, email, subject, message })
+
     const sourceEmail = process.env.AWS_SOURCE_EMAIL
     if (!sourceEmail) {
       return NextResponse.json({ error: "Server configuration error" }, { status: 500 })
@@ -56,7 +95,7 @@ export async function POST(req: NextRequest) {
       ReplyToAddresses: [email],
       Message: {
         Subject: {
-          Data: subject || "Inquiry via Website",
+          Data: `${ticketId ? `[#${ticketId}] ` : ""}${subject || "Inquiry via Website"}`,
           Charset: "UTF-8",
         },
         Body: {

@@ -137,6 +137,7 @@ The hub at `/use-cases` lists them all.
 | Privacy and your data | `/privacy` (a plain-English page beside the legal policy) | 🟢. Must match the analytics facts. |
 | About | `/about` | 🟢 |
 | Contact | `/contact` | ✅ |
+| Get help (support form) | `/support` | ✅ Built 2026-10-01, not yet linked from the nav or footer. Files a private ticket in the admin app's support inbox; the extension's Support links open it filled in. |
 | Terms, Privacy policy | `/terms-of-service`, `/privacy-policy` | ✅ |
 
 ## 7. Build order
