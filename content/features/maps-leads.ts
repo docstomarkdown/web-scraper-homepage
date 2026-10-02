@@ -143,5 +143,5 @@ export const mapsLeads: FeaturePageContent = {
             a: "Yes. There's one plan, Pro, and it includes every feature, including Maps leads, contact details, bulk runs and every export format.",
         },
     ],
-    related: ["email-extractor", "bulk-scraper", "export-to-google-sheets", "list-scraper"],
+    related: ["ai-chat", "email-extractor", "bulk-scraper", "export-to-google-sheets", "list-scraper"],
 };

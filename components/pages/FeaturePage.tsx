@@ -16,8 +16,10 @@ export interface FeaturePageContent {
     intro: string;
     /** ISO date the page's claims were last checked against the released extension. */
     lastUpdated: string;
-    sample: { caption: string; columns: string[]; rows: string[][] };
-    fields: { heading: string; intro?: string; items: { name: string; description: string }[] };
+    /** `label` defaults to "Sample data." */
+    sample?: { label?: string; caption: string; columns: string[]; rows: string[][] };
+    /** `eyebrow` defaults to "What you get". */
+    fields: { eyebrow?: string; heading: string; intro?: string; items: { name: string; description: string; /** A prompt or input that shows the item in use; renders items as cards. */ example?: string }[] };
     steps: { heading: string; intro?: string; items: { title: string; body: string }[] };
     /** Extra sections that are specific to this feature (e.g. "Add emails to your list"). */
     sections?: { id: string; eyebrow: string; heading: string; paragraphs: string[]; points?: string[] }[];
@@ -33,15 +35,16 @@ const formatDate = (iso: string) =>
 
 const container = "max-w-6xl mx-auto px-6 md:px-12";
 
-export default function FeaturePage({ content: c }: { content: FeaturePageContent }) {
+/** `visual` (optional) sits beside the headline, e.g. a product demo; without it the sample table does. */
+export default function FeaturePage({ content: c, visual }: { content: FeaturePageContent; visual?: React.ReactNode }) {
     const related = relatedPages(c.related);
     const installUrl = `${productConfig.product.ctaUrl}?utm_source=website&utm_medium=${c.page.slug}&utm_campaign=chrome_install`;
 
     return (
         <main className="flex-1 bg-white dark:bg-slate-950">
             {/* Hero */}
-            <section className="pt-32 pb-16 md:pt-40 md:pb-20">
-                <div className={container}>
+            <section className="pt-32 pb-16 md:pt-36 md:pb-20">
+                <div className={visual ? "max-w-7xl mx-auto px-6 md:px-12 grid lg:grid-cols-[5fr_7fr] gap-12 items-center" : container}>
                     <Reveal className="max-w-3xl">
                         <p className="text-sm font-semibold text-[#2772ED] dark:text-[#7aa7ff]">{c.eyebrow}</p>
                         <h1 className="mt-3 text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
@@ -69,38 +72,13 @@ export default function FeaturePage({ content: c }: { content: FeaturePageConten
                         </p>
                     </Reveal>
 
-                    {/* Sample output */}
-                    <Reveal className="mt-14">
-                        <figure className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xl shadow-slate-200/50 dark:shadow-black/30 overflow-hidden">
-                            <div className="overflow-x-auto">
-                                <table className="w-full min-w-[720px] text-left text-sm">
-                                    <thead className="bg-slate-50 dark:bg-slate-800/70 text-slate-700 dark:text-slate-200">
-                                        <tr>
-                                            {c.sample.columns.map((col) => (
-                                                <th key={col} scope="col" className="px-4 py-3 font-semibold whitespace-nowrap">
-                                                    {col}
-                                                </th>
-                                            ))}
-                                        </tr>
-                                    </thead>
-                                    <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-slate-600 dark:text-slate-300">
-                                        {c.sample.rows.map((row, i) => (
-                                            <tr key={i}>
-                                                {row.map((cell, j) => (
-                                                    <td key={j} className="px-4 py-3 whitespace-nowrap">
-                                                        {cell}
-                                                    </td>
-                                                ))}
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                            <figcaption className="border-t border-slate-100 dark:border-slate-800 px-4 py-3 text-sm text-slate-500 dark:text-slate-400">
-                                <span className="font-medium text-slate-700 dark:text-slate-200">Sample data.</span> {c.sample.caption}
-                            </figcaption>
-                        </figure>
-                    </Reveal>
+                    {visual && <Reveal delay={0.1}>{visual}</Reveal>}
+
+                    {!visual && c.sample && (
+                        <Reveal className="mt-14">
+                            <SampleTable sample={c.sample} />
+                        </Reveal>
+                    )}
                 </div>
             </section>
 
@@ -108,8 +86,25 @@ export default function FeaturePage({ content: c }: { content: FeaturePageConten
             <section id="what-you-get" className="py-20 bg-slate-50/70 dark:bg-slate-900/40 border-y border-slate-100 dark:border-slate-800/60">
                 <div className={container}>
                     <Reveal>
-                        <SectionHeading eyebrow="What you get" title={c.fields.heading} intro={c.fields.intro} align="left" />
+                        <SectionHeading eyebrow={c.fields.eyebrow ?? "What you get"} title={c.fields.heading} intro={c.fields.intro} align="left" />
                     </Reveal>
+                    {c.fields.items.some((f) => f.example) ? (
+                        <ul className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            {c.fields.items.map((f, i) => (
+                                <Reveal key={f.name} delay={i * 0.03} className="h-full">
+                                    <li className="h-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5">
+                                        <h3 className="font-semibold text-slate-900 dark:text-white">{f.name}</h3>
+                                        {f.example && (
+                                            <p className="mt-3 inline-block rounded-2xl rounded-br-sm bg-[#2772ED] px-3 py-1.5 text-sm text-white">
+                                                {f.example}
+                                            </p>
+                                        )}
+                                        <p className="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{f.description}</p>
+                                    </li>
+                                </Reveal>
+                            ))}
+                        </ul>
+                    ) : (
                     <Reveal className="mt-10">
                         <dl className="grid md:grid-cols-2 gap-x-10 gap-y-6">
                             {c.fields.items.map((f) => (
@@ -120,6 +115,7 @@ export default function FeaturePage({ content: c }: { content: FeaturePageConten
                             ))}
                         </dl>
                     </Reveal>
+                    )}
                 </div>
             </section>
 
@@ -258,5 +254,39 @@ export default function FeaturePage({ content: c }: { content: FeaturePageConten
 
             <CTA />
         </main>
+    );
+}
+
+function SampleTable({ sample }: { sample: NonNullable<FeaturePageContent["sample"]> }) {
+    return (
+        <figure className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xl shadow-slate-200/50 dark:shadow-black/30 overflow-hidden">
+            <div className="overflow-x-auto">
+                <table className="w-full min-w-[720px] text-left text-sm">
+                    <thead className="bg-slate-50 dark:bg-slate-800/70 text-slate-700 dark:text-slate-200">
+                        <tr>
+                            {sample.columns.map((col) => (
+                                <th key={col} scope="col" className="px-4 py-3 font-semibold whitespace-nowrap">
+                                    {col}
+                                </th>
+                            ))}
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-slate-600 dark:text-slate-300">
+                        {sample.rows.map((row, i) => (
+                            <tr key={i}>
+                                {row.map((cell, j) => (
+                                    <td key={j} className="px-4 py-3 whitespace-nowrap">
+                                        {cell}
+                                    </td>
+                                ))}
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <figcaption className="border-t border-slate-100 dark:border-slate-800 px-4 py-3 text-sm text-slate-500 dark:text-slate-400">
+                <span className="font-medium text-slate-700 dark:text-slate-200">{sample.label ?? "Sample data."}</span> {sample.caption}
+            </figcaption>
+        </figure>
     );
 }

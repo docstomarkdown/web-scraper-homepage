@@ -62,7 +62,7 @@ const resource = make("resource", "/");
 
 export const pages: SitePage[] = [
     // Product: one page per feature
-    connect(["ai-chat", "AI chat", "Ask for the data you want in plain words, and it collects and exports it for you.", "planned", "message"]),
+    connect(["ai-chat", "AI chat", "Ask for the data you want in plain words, and it collects and exports it for you.", "live", "message"]),
     connect(["mcp", "MCP and AI agents", "Connect Claude or another AI agent to collect data through your browser.", "planned", "bot"]),
     collect(["maps-leads", "Maps leads", "Every business from a Maps search, with phone, website, address and rating.", "live", "map-pin"]),
     collect(["list-scraper", "Lists from any website", "Directories, search results and catalogs on other sites, with named columns and every page of results.", "planned", "list"]),

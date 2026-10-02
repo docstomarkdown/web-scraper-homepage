@@ -66,15 +66,17 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },*/
   },
+  // `?v=` busts browsers' long-lived favicon cache; bump it whenever the logo changes.
+  // public/favicon.ico (16/32/48) covers browsers and crawlers that only ask for /favicon.ico.
   icons: {
     // PNGs first so tabs use them; the 16px one has a larger dot to stay readable
     icon: [
-      { url: '/favicon-16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/logo.svg', type: 'image/svg+xml' },
+      { url: '/favicon-16.png?v=2', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32.png?v=2', sizes: '32x32', type: 'image/png' },
+      { url: '/logo.svg?v=2', type: 'image/svg+xml' },
     ],
-    shortcut: '/favicon-32.png',
-    apple: '/apple-touch-icon.png',
+    shortcut: '/favicon.ico?v=2',
+    apple: '/apple-touch-icon.png?v=2',
   },
   category: 'technology',
 }

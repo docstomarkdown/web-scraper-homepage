@@ -155,13 +155,16 @@ export default function ChatDemo({
     scenarioIndex,
     replayKey,
     onCycleEnd,
+    scenarios = SCENARIOS,
 }: {
     scenarioIndex: number;
     replayKey: number;
     onCycleEnd: () => void;
+    /** Defaults to the homepage scenarios; feature pages pass their own. */
+    scenarios?: Scenario[];
 }) {
     const reduceMotion = useReducedMotion();
-    const s = SCENARIOS[scenarioIndex];
+    const s = scenarios[scenarioIndex % scenarios.length];
     const [stage, setStage] = useState<Stage>(reduceMotion ? 3 : 0);
     const [typed, setTyped] = useState(reduceMotion ? s.prompt.length : 0);
     const onCycleEndRef = useRef(onCycleEnd);

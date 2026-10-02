@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Calendar, Car, Chrome, FileText, Image, Mail, Play, Plane, Plus } from "lucide-react";
+import { ArrowDown, ArrowRight, BookOpen, Calendar, Car, Chrome, FileText, Image, Mail, Plane, Plus } from "lucide-react";
 import { motion } from "framer-motion";
 import { productConfig } from "@/config/product";
 import ChatDemo, { SCENARIOS } from "@/components/landing/ChatDemo";
@@ -22,17 +22,11 @@ export default function Hero() {
     const [scenarioIndex, setScenarioIndex] = useState(0);
     const [replayKey, setReplayKey] = useState(0);
     const pinnedRef = useRef(false);
-    const demoRef = useRef<HTMLDivElement>(null);
 
     const pickScenario = (idx: number) => {
         pinnedRef.current = true;
         setScenarioIndex(idx);
         setReplayKey((k) => k + 1);
-    };
-
-    const replayMaps = () => {
-        pickScenario(0);
-        demoRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
     };
 
     // Auto-rotate through scenarios until the visitor picks one.
@@ -85,14 +79,13 @@ export default function Hero() {
                             Add to Chrome
                             <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                         </Link>
-                        <button
-                            type="button"
-                            onClick={replayMaps}
+                        <Link
+                            href="#how-it-works"
                             className="w-full sm:w-auto inline-flex items-center justify-center rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 hover:border-[#2772ED]/50 hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff] px-6 lg:px-4 xl:px-6 py-3.5 text-base font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap transition-colors gap-2"
                         >
-                            <Play className="w-4 h-4" />
-                            See it on Maps
-                        </button>
+                            <ArrowDown className="w-4 h-4" aria-hidden="true" />
+                            See how it works
+                        </Link>
                     </div>
 
                     <p className="text-sm font-medium text-slate-700 dark:text-slate-200 mt-10 mb-3">What do you want to collect? <span className="font-normal text-slate-500 dark:text-slate-400">Pick one to see it work.</span></p>
@@ -134,7 +127,6 @@ export default function Hero() {
                 </motion.div>
 
                 <motion.div
-                    ref={demoRef}
                     initial={{ opacity: 0, x: 30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.7, delay: 0.2 }}
