@@ -5,8 +5,8 @@ import { Metadata } from "next";
 import LegalPage from "@/components/legal/LegalPage";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Web Scraper.do",
-  description: "Read the terms and conditions for using Web Scraper.do.",
+  title: "Terms of Service | Web Scraper Pro",
+  description: "Read the terms and conditions for using Web Scraper Pro.",
   keywords: ["terms of service", "user agreement", "legal"],
 };
 

@@ -1,79 +1,77 @@
-## About Web Scraper.pro
+_Last updated: October 2, 2026_
 
-Web Scraper.pro is a product of **Thinksolv Technologies Pvt Ltd** ("we", "us", "our"). Our website address is [https://www.webscraper.pro](https://www.webscraper.pro). We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, store, and safeguard your data when you use our browser extension and related services.
+## About Web Scraper Pro
+
+Web Scraper Pro is a product of **Thinksolv Technologies Pvt Ltd** ("we", "us", "our"). Our website address is [https://www.webscraper.pro](https://www.webscraper.pro). This Privacy Policy explains what information we collect when you use our browser extension, website, and related services, and how we use and protect it.
 
 ## Information We Collect
 
-We collect only the minimum information necessary to deliver and improve our services:
+We collect only what we need to run and improve our services:
 
-- **Account Information** — Your email address, used to authenticate your Web Scraper.pro license and manage your subscription.
-- **Usage Analytics** — Anonymized, aggregated usage data such as feature usage frequency and session duration to help us improve the product experience.
-- **Technical Data** — Browser type, operating system, and extension version for compatibility and debugging purposes.
-- **Support Communications** — Any information you voluntarily provide when contacting our support team.
+- **Email Address** — The email address of the Google account signed in to your browser, when available, or the one you give us. We use it to identify your account and to reply to you.
+- **Usage Information** — How you use the extension, such as the features you use and the addresses of the pages where you use it. This helps us keep the extension working on the sites you use and improve it.
+- **Chat Messages** — What you type in the extension's chat, so we can reply. Messages are processed by our servers and a third-party AI service.
+- **Feedback and Support** — What you send us when you rate a chat reply or contact support, such as your message, any files you attach, and your chat conversation if you choose to include it.
+- **Technical Data** — Your browser, operating system, and extension version, for compatibility and troubleshooting.
 
-We do **not** collect, store, or transmit the data you scrape. All scraped content is processed locally on your device or exported directly to your configured destinations.
+**The data you collect from websites stays in your browser.** We don't receive it unless you choose to send it, for example by exporting it to Google Sheets or attaching it to a support request.
 
 ## How We Use Your Information
 
-Your information is used strictly for the following purposes:
+- **Providing the Service** — To run the extension's features, including chat, and to apply fair-use limits.
+- **Improving the Product** — To understand which features are used and fix problems.
+- **Support** — To answer your questions and troubleshoot issues.
+- **Service Messages** — To tell you about important changes to our services or these terms. We don't send marketing emails without your consent.
 
-- **Service Delivery** — To authenticate your account, validate your license, and manage usage quotas.
-- **Product Improvement** — To understand how features are used and prioritize development efforts.
-- **Customer Support** — To respond to your inquiries, troubleshoot issues, and provide assistance.
-- **Service Communications** — To send essential notifications about your account, security updates, or changes to our terms. We do not send marketing emails without your explicit consent.
+## Google Account and Google Sheets
+
+If you export to Google Sheets, the extension asks for permission to create files in your Google Drive. It can access only the files it creates, not your other files. We use this access only to create and fill in the spreadsheets you export.
+
+Web Scraper Pro's use and transfer of information received from Google APIs adheres to the [Google API Services User Data Policy](https://developers.google.com/terms/api-services-user-data-policy), including the Limited Use requirements. We don't use this information for advertising, we don't sell it, and people can't read it unless you ask us to for support, it's needed for security or the law, or it's aggregated and anonymized.
 
 ## Browser Extension Permissions
 
-Web Scraper.pro requires specific browser permissions to function. Here is a transparent breakdown of each:
-
-- **Access to all websites** — Required to enable data extraction from the web pages you choose to scrape. The extension only activates on pages where you explicitly initiate a scraping session.
-- **Downloads** — Required to export your extracted data to your local device in formats such as CSV, JSON, or Excel.
-- **Storage** — Used to save your extension preferences, saved selectors, and scraping configurations locally in your browser.
-- **Cloud Integration (Optional)** — If you choose to connect a cloud storage provider, data is transferred directly from your browser to your configured destination. We do not route this data through our servers.
+- **Access to Websites** — To read the page you're on and collect the data you ask for.
+- **Tabs and Side Panel** — To show the extension next to the page and work with the tab you're using.
+- **Storage** — To keep your settings and collected data in your browser.
+- **Google Account** — To read your browser's signed-in email address and to connect to Google Sheets when you export.
 
 ## Data Storage and Security
 
-We implement industry-standard security measures to protect your information:
-
-- **Encryption** — All data transmitted between your browser and our servers is encrypted using TLS (Transport Layer Security).
-- **Access Control** — Only authorized personnel with a legitimate business need can access user account data.
-- **Local Processing** — Scraped data is processed entirely within your browser. We have no access to the content you extract.
-- **Secure Infrastructure** — Our backend services are hosted on trusted cloud infrastructure with regular security audits.
+- **Encryption** — Data sent between your browser and our servers is encrypted in transit.
+- **Access Control** — Only authorized people who need it for their work can access account data.
+- **Trusted Providers** — Our services run on established cloud infrastructure.
 
 ## Data Sharing
 
-We do **not** sell, rent, or trade your personal information. Your data may only be shared in the following limited circumstances:
+We don't sell, rent, or trade your personal information. We share it only:
 
-- **With Your Consent** — When you explicitly authorize an integration or data export to a third-party service.
-- **Legal Requirements** — If required by law, regulation, or valid legal process such as a court order or subpoena.
-- **Business Transfer** — In the event of a merger, acquisition, or sale of assets, your data may be transferred to the new entity. You will be notified in advance of any such change.
+- **With Service Providers** — Companies that host our services, process chat messages, provide analytics, or send email for us. They may use it only to provide those services to us.
+- **With Your Consent** — When you choose an integration or export, such as Google Sheets.
+- **For Legal Reasons** — If required by law, regulation, or valid legal process.
+- **In a Business Transfer** — If we're involved in a merger, acquisition, or sale of assets. We'll tell you before this happens.
 
 ## Cookies
 
-Web Scraper.pro uses only essential cookies required for the proper functioning of our website and services:
-
-- **Session Cookies** — To maintain your authenticated session and remember your preferences.
-- **Security Cookies** — To protect against unauthorized access and cross-site request forgery.
-
-We do **not** use third-party advertising or tracking cookies. We do not participate in ad networks or behavioral profiling.
+Our website uses cookies to keep you signed in, protect forms from abuse, and understand how the site is used through analytics. We don't use advertising cookies.
 
 ## Your Rights
 
-You have full control over your personal data. You may:
+You can:
 
-- **Access** your personal data by requesting a copy from our support team.
-- **Update** your account information at any time through your account settings.
-- **Delete** your account and all associated data by contacting us. We will process deletion requests promptly.
-- **Opt Out** of non-essential communications at any time.
+- **Access** your personal data by asking our support team for a copy.
+- **Correct** your information by contacting us.
+- **Delete** your account and its data by contacting us. We'll process deletion requests promptly.
+- **Opt Out** of non-essential messages at any time.
 
 ## Data Retention
 
-We retain your personal information only for as long as necessary to provide our services and fulfill the purposes described in this policy. When you delete your account, we remove your personal data from our active systems within 30 days.
+We keep personal information only as long as we need it to provide our services and for the purposes in this policy. When you delete your account, we remove your personal data from our active systems within 30 days.
 
 ## Children's Privacy
 
-Web Scraper.pro is not intended for use by individuals under the age of 13. We do not knowingly collect personal information from children. If we become aware that a child has provided us with personal data, we will take steps to delete it promptly.
+Web Scraper Pro isn't intended for anyone under 13. We don't knowingly collect personal information from children. If we learn that a child has given us personal data, we'll delete it promptly.
 
 ## Changes to This Policy
 
-We may update this Privacy Policy from time to time to reflect changes in our practices or for legal and regulatory reasons. If we make material changes, we will notify you via email or through a prominent notice on our website before the changes take effect.
+We may update this Privacy Policy to reflect changes in our practices or for legal reasons. If we make material changes, we'll notify you by email or through a notice on our website before they take effect.
