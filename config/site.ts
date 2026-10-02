@@ -2,9 +2,9 @@ import { publishedPages } from "./pages"
 
 // Site configuration
 export const siteConfig = {
-  name: "Web Scraper",
+  name: "Web Scraper Pro",
   description: "Extract data from any website without code. Simple, powerful, and designed for everyone.",
-  metaDescription: "Extract data from any website without code with Web Scraper.pro. Save time and streamline your workflow with automated data extraction.",
+  metaDescription: "Extract data from any website without code with Web Scraper Pro. Save time and streamline your workflow with automated data extraction.",
   url: "https://www.webscraper.pro/",
   ogImage: "https://webscraper.pro/og.jpg",
   links: {
@@ -20,7 +20,7 @@ export const siteConfig = {
     "Workflow",
     "Integration",
     "Scraping",
-    "Web Scraper.pro",
+    "Web Scraper Pro",
   ],
 }
 

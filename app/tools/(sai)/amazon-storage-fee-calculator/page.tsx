@@ -6,7 +6,7 @@ import { StorageFeeHowToUse } from "./_components/StorageFeeHowToUse"
 import { ToolPageTitle, FadeIn, ToolFAQ } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
-    title: 'Amazon Storage Fee Calculator — Estimate FBA Inventory Costs | Web Scraper.do',
+    title: 'Amazon Storage Fee Calculator — Estimate FBA Inventory Costs | Web Scraper Pro',
     description: 'Calculate your monthly Amazon FBA storage fees, seasonal Q4 peak rates, and long-term inventory surcharges. Free tool for FBA sellers and private label brands.',
 }
 export default function AmazonStorageFeeCalculatorPage() {

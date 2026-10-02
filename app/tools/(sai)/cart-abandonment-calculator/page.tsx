@@ -7,7 +7,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle, ToolSectionHeader } from "@/app/tools/_
 import { CTA } from "@/components/sections/CTA"
 import { Lightbulb } from "lucide-react"
 export const metadata: Metadata = {
-    title: 'Cart Abandonment Rate Calculator | Web Scraper.do',
+    title: 'Cart Abandonment Rate Calculator | Web Scraper Pro',
     description: 'Calculate your Cart Abandonment Rate to identify lost revenue opportunities and optimize your checkout flow.',
 }
 export default function CartAbandonmentCalculatorPage() {

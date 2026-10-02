@@ -8,7 +8,7 @@ import { CTA } from "@/components/sections/CTA"
 import { BookOpen } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: 'Poshmark Fee Calculator - Calculate Seller Fees & Profit | Web Scraper.do',
+    title: 'Poshmark Fee Calculator - Calculate Seller Fees & Profit | Web Scraper Pro',
     description: 'Calculate your Poshmark seller fees and net earnings instantly. Account for the flat fee for items under $15, commission, and shipping discounts for precise profit tracking.',
 }
 

@@ -7,7 +7,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: 'A/B Test Duration Calculator | Web Scraper.do',
+    title: 'A/B Test Duration Calculator | Web Scraper Pro',
     description: 'Calculate how long to run your A/B test for statistical significance. Avoid common testing mistakes.',
 }
 

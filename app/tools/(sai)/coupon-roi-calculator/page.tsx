@@ -7,7 +7,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle, ToolSectionHeader } from "@/app/tools/_
 import { BookOpen } from "lucide-react"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
-    title: 'Coupon ROI Calculator - Calculate Campaign Profitability | Web Scraper.do',
+    title: 'Coupon ROI Calculator - Calculate Campaign Profitability | Web Scraper Pro',
     description: 'Free tool to calculate the return on investment of your coupon campaigns. Analyze break-even points, net profit, and true cost of discounting.',
 }
 export default function CouponROICalculatorPage() {

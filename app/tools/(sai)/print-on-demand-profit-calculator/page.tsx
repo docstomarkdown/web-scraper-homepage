@@ -8,7 +8,7 @@ import { CTA } from "@/components/sections/CTA"
 import { BookOpen } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: 'Print on Demand Profit Calculator - Calculate Margins & Fees | Web Scraper.do',
+    title: 'Print on Demand Profit Calculator - Calculate Margins & Fees | Web Scraper Pro',
     description: 'Calculate your true profit for Print on Demand (POD) products. Account for base costs, platform fees (Etsy/Shopify), and shipping to ensure profitability.',
 }
 

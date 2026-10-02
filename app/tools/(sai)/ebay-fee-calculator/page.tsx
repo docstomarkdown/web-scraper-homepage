@@ -8,7 +8,7 @@ import { CTA } from "@/components/sections/CTA"
 import { BookOpen } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: 'eBay Fee Calculator - Calculate Final Value Fees & Profit | Web Scraper.do',
+    title: 'eBay Fee Calculator - Calculate Final Value Fees & Profit | Web Scraper Pro',
     description: 'Calculate your exact eBay fees, including Final Value Fees, Ad Fees, and shipping costs. Determine your true net profit per item.',
 }
 
