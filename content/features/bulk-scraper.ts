@@ -9,148 +9,158 @@ import { getPage } from "@/config/pages";
 //   verification, Stop keeps rows, "Collection results page" merge: lib/bulk/executors/, lib/bulk/useBulkRunner.ts
 // - Maps contact details during a bulk run: DECISIONS.md D-023
 // - Not in Bulk: Shopify catalogs; no notifications for bulk runs: change_documentation/REFACTORING_TODO.md
+// Title and headings target what people type ("how to scrape multiple pages", "web scrape multiple pages",
+// "scrape a list of urls"): youtube-research/AUTOSUGGEST.md and SEARCH_QUERIES.md, 2026-10-21.
 
 export const bulkScraper: FeaturePageContent = {
     page: getPage("bulk-scraper"),
     meta: {
-        title: "Bulk Scraper: Collect from a List of URLs in One Run",
+        title: "How to Scrape Multiple Pages or URLs of a Website at Once",
         description:
-            "Paste or upload a list of web pages and Web Scraper Pro collects from every one of them in turn: lists, Maps searches, contact details or page text, merged into one table.",
+            "Paste or upload a list of web addresses, say what to collect from each site, and Web Scraper Pro works through them one by one in your browser: lists, Google Maps searches, contact details or page text, merged into one table. Free, no code.",
     },
-    eyebrow: "Bulk runs",
-    h1: "Collect from a list of web pages in one run",
+    eyebrow: "Bulk scraper",
+    h1: "How to scrape multiple pages or URLs of a website at once",
     intro:
-        "Give it the addresses, say what to collect from each, and let it work through them one by one in your browser. You get one table per site and a combined one.",
+        "Paste or upload the addresses. Say what to collect from each site. The extension works through them one by one in your browser and gives you one table per site and one merged table. Free, no code.",
     lastUpdated: "2026-10-20",
     hero: "ext/bulk-overview",
     sample: {
-        caption: "The combined table after a run over three category pages. Products and prices are made up.",
-        columns: ["Source URL", "Product Name", "Price", "Rating", "Product URL"],
+        caption: "The merged table after a run over three category pages. Products and prices are made up.",
+        columns: ["Source URL", "Product Name", "Price", "Rating"],
         rows: [
-            ["store.example/boots", "Ridge Hiking Boots", "$129.00", "4.8", "store.example/ridge-boots"],
-            ["store.example/boots", "Scree Approach Boots", "$149.00", "4.5", "store.example/scree-boots"],
-            ["store.example/jackets", "Summit Rain Jacket", "$74.50", "4.3", "store.example/summit-jacket"],
-            ["store.example/socks", "Basecamp Socks, 3 pack", "$18.00", "4.7", "store.example/basecamp-socks"],
+            ["store.example/boots", "Ridge Hiking Boots", "$129.00", "4.8"],
+            ["store.example/boots", "Scree Approach Boots", "$149.00", "4.5"],
+            ["store.example/jackets", "Summit Rain Jacket", "$74.50", "4.3"],
+            ["store.example/socks", "Basecamp Socks, 3 pack", "$18.00", "4.7"],
+        ],
+    },
+    steps: {
+        heading: "How to scrape a list of URLs in four steps",
+        intro: "Sites run one at a time, on purpose, so each one sees an ordinary visitor. A few hundred pages is a normal run.",
+        items: [
+            {
+                title: "Add the addresses",
+                body: "Click the Bulk scrape icon at the top of the side panel. Choose Bulk scrape, Collect contacts or Collect page text. Then upload a CSV or TXT file with one address per line, or paste the addresses in.",
+                points: [
+                    "Use saved data takes the addresses from a column of a table you collected earlier, such as the Website column of a Google Maps list.",
+                    "Paste a list of addresses into the Chat tab and it offers to open a bulk run with them filled in.",
+                ],
+                screenshot: "ext/bulk-upload",
+            },
+            {
+                title: "Check what it found",
+                body: "The Detect step groups the addresses by site and says what each one is: a list page, a Google Maps search, a Scholar search, or a plain page. Drag the sites into the order you want and remove any you don't.",
+                points: ["Pages from the same site share one setup."],
+            },
+            {
+                title: "Set up each site",
+                body: "For a list site, confirm the list it found or pick an area on the page. For contacts, choose emails, phones and social links. For page text, choose clean text, page details or both.",
+                points: [
+                    "If a list goes on over many pages, choose Next page, Load more or Auto scroll and set a page limit.",
+                    "Google Maps searches collect each business's contact details during the run.",
+                ],
+                screenshot: "ext/bulk-contacts-config",
+            },
+            {
+                title: "Click Start collecting",
+                body: "Sites load one after another in an embedded browser on the right, while the cards on the left count rows. Stop keeps everything collected so far. When it finishes, the Collection results page shows every site's table and merges them into one.",
+                points: ["If a site asks you to verify, the run pauses with Waiting for you. Complete the check and it carries on."],
+                screenshot: "ext/bulk-run",
+            },
         ],
     },
     fields: {
         eyebrow: "What a run can collect",
         heading: "The same jobs, over many pages",
-        intro: "Each address in the list is set up with one of these. Pages from the same site share one setup.",
+        intro: "Each address in the list is set up with one of these.",
         items: [
-            { name: "Lists", description: "The detected list on each page, or an area you point at, with the next pages, Load more or auto scroll if you want them." },
-            { name: "Maps searches", description: "Paste several Maps search links and get every search's businesses, with their contact details added during the run." },
+            { name: "Lists", description: "The list on each page, or an area you point at, across the next pages if you want them." },
+            { name: "Google Maps searches", description: "Every business from each search, with its contact details added during the run." },
             { name: "Contact details", description: "Emails, phone numbers and social links from each website, one row per site." },
             { name: "Page text", description: "The readable text and details of each page: title, description, author, date and word count." },
             { name: "Research papers", description: "Google Scholar result pages, with every paper's title, authors, source, year and citations." },
-        ],
-    },
-    steps: {
-        heading: "Four steps, then it runs on its own",
-        items: [
-            {
-                title: "Add the addresses",
-                points: ["One address per line, pasted or in a CSV or TXT file.", "Use saved data takes the addresses from a column of a table you collected earlier, such as the Website column of a Maps list."],
-                screenshot: "ext/bulk-upload",
-                body: "Click the Bulk scrape icon at the top of the side panel and choose Bulk scrape, Collect contacts or Collect page text. Upload a CSV or TXT file with one address per line, paste them in, or reuse a column from a table you collected earlier.",
-            },
-            {
-                title: "Check what it found",
-                points: ["Drag the sites into order and remove any you don't want.", "Pages from the same site share one setup."],
-                body: "The Detect step groups the addresses by site and says what each one is: a list page, a Maps search, a Scholar search, or a plain page. Drag the sites into the order you want.",
-            },
-            {
-                title: "Set up each site",
-                points: ["Lists: confirm the list, then Next page, Load more or Auto scroll with a page limit.", "Contacts: Email addresses, Phone numbers and Social media links, on for every site unless you untick them.", "Page text: clean text, page details or both."],
-                screenshot: "ext/bulk-contacts-config",
-                body: "For a list site, confirm the list or pick an area on the page, and choose Next page, Load more or Auto scroll if the pages go on. For contacts, choose emails, phones and social links. For text, choose clean text, page details or both.",
-            },
-            {
-                title: "Start collecting",
-                points: ["Sites load one after another in the embedded browser on the right while the cards count rows.", "Stop keeps everything collected so far. If a site asks you to verify, the run pauses with Waiting for you."],
-                screenshot: "ext/bulk-run",
-                body: "Sites run one after another in an embedded browser frame, so you can watch progress and stop at any time; what's collected is kept. When it finishes, the Collection results page shows every site's table and merges them into one.",
-            },
+            { name: "Source URL", description: "Every row in the merged table says which page it came from." },
         ],
     },
     sections: [
         {
+            id: "many-cities",
+            eyebrow: "Google Maps",
+            heading: "How to scrape Google Maps for many cities at once",
+            paragraphs: [
+                "Paste one Google Maps search link per town into the Bulk page. Each search runs in turn, with emails and social links read from each business's website during the run, and the merged table holds every town.",
+            ],
+        },
+        {
             id: "settings",
-            eyebrow: "Settings that change the result",
+            eyebrow: "Settings",
             heading: "The Results settings apply to every site in the run",
-            paragraphs: ["A bulk run uses the same settings as a single collection, so set them once under Settings → Results."],
-            points: ["Pages to go through sets the page limit each list site starts with; change it per site on the Configure step.", "Remove duplicates, Hide mostly empty columns and Save prices as numbers apply to every site's table and to the merged one.", "For Maps searches in a bulk run, Add emails from their websites decides whether contact details are read during the run."],
+            paragraphs: ["A bulk run uses the same settings as a single collection. Set them once under Settings → Results."],
+            points: [
+                "Pages to go through sets the page limit each list site starts with. Change it per site on the Configure step.",
+                "Remove duplicates, Hide mostly empty columns and Save prices as numbers apply to every site's table and to the merged one.",
+                "Add emails from their websites decides whether Google Maps searches read contact details during the run.",
+            ],
         },
         {
             id: "pushback",
             eyebrow: "When a site pushes back",
             heading: "What the run does when a site asks a question or stops answering",
-            paragraphs: ["Sites run one at a time on purpose, so each one sees an ordinary visitor and the load stays light."],
-            points: ["A verification page pauses the run with Waiting for you. Complete the check in the embedded browser and it carries on.", "A site that stops answering is skipped after its pages time out; its rows so far are kept and the run moves to the next site.", "A long list needs the tab open. A run doesn't send a notification when it finishes; check the panel or History."],
-        },
-        {
-            id: "from-chat",
-            eyebrow: "From chat",
-            heading: "Paste the addresses into chat",
-            paragraphs: [
-                "Chat works on one page at a time, so when you paste a list of addresses it offers to open a bulk run with them already filled in.",
-            ],
-        },
-        {
-            id: "signed-in",
-            eyebrow: "Sites that ask questions",
-            heading: "It waits for you when a site checks",
-            paragraphs: [
-                "If a site shows a verification step, the run pauses and shows Waiting for you. Complete the check in the frame and the run carries on. Sites you're signed in to are collected as you see them.",
+            paragraphs: ["Sites run one at a time so each one sees an ordinary visitor and the load stays light."],
+            points: [
+                "A verification page pauses the run with Waiting for you. Complete the check in the embedded browser and it carries on.",
+                "A site that stops answering is skipped after its pages time out. Its rows so far are kept and the run moves on.",
+                "A long list needs the tab open. The run doesn't send a notification when it finishes; check the panel or History.",
             ],
         },
     ],
     limits: {
         heading: "Good to know",
         items: [
-            "Sites run one at a time, on purpose: it keeps the load on each site light and avoids triggering their limits. A long list takes a while; the tab needs to stay open.",
+            "Sites run one at a time. A long list takes a while, and the tab needs to stay open.",
             "Shopify catalog exports run from the store's own page, not from a bulk run.",
-            "A bulk run doesn't send a notification when it finishes; keep the panel visible or check History.",
+            "Sites you're signed in to are collected as you see them.",
             "Each site's rules on collecting and reusing data still apply. For personal details such as emails, collect only what you need.",
         ],
     },
     useCases: {
         heading: "What people use it for",
         items: [
-            { title: "Many cities, one list", body: "Paste ten Maps searches, one per town, and get every business with its contact details in one table." },
-            { title: "Emails for a client list", body: "Upload the client's list of company websites and hand back the same list with emails and phones." },
-            { title: "Catalog across categories", body: "Every category page of a store in one run, merged into a single product sheet." },
-            { title: "Articles for research", body: "A reading list of pages, as clean text with titles and dates, ready for a report or an AI tool." },
+            { title: "Many cities, one list", body: "Ten Google Maps searches, one per town, and every business with its contact details in one table." },
+            { title: "Emails for a client list", body: "A client's list of company websites, handed back with emails and phones." },
+            { title: "A catalog across categories", body: "Every category page of a store in one run, merged into a single product sheet." },
+            { title: "Articles for research", body: "A reading list of pages as clean text with titles and dates, ready for a report or an AI tool." },
         ],
     },
     faqs: [
         {
-            q: "How many addresses can I add?",
-            a: "There's no fixed limit on the list. Sites run one at a time, so the practical limit is how long you want the run to take; a few hundred pages is normal.",
+            q: "Is bulk scraping free?",
+            a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create.",
         },
         {
-            q: "Can I reuse a list I collected?",
-            a: "Yes. Choose Reuse URLs from a saved table, pick the collection in History, then the column that holds the addresses, such as Website or Product URL.",
+            q: "How many URLs can I scrape at once?",
+            a: "There's no fixed limit on the list. Sites run one at a time, so the practical limit is how long you want the run to take. A few hundred pages is normal.",
+        },
+        {
+            q: "Can I scrape all the pages of a website?",
+            a: "Every page of a list, yes: choose Next page, Load more or Auto scroll for that site and set a page limit. The run doesn't crawl a whole site on its own; you give it the addresses.",
         },
         {
             q: "Do I get one table or many?",
             a: "Both. Each site is saved as its own collection, and View merged table puts them in one table with a Source URL column.",
         },
         {
-            q: "Can it run while I do something else?",
-            a: "It runs in your browser, so the tab stays open, but you can keep working in other windows. Runs that go through many pages of one site are faster when their tab stays in front.",
-        },
-        {
-            q: "Is this free?",
-            a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create.",
-        },
-        {
-            q: "Can I run a bulk job overnight?",
-            a: "Only while the browser tab stays open. The run happens in your browser; scheduled runs that work without you are coming with the cloud.",
-        },
-        {
             q: "Can I use a list I already collected as the input?",
-            a: "Yes. On the Upload step, choose Use saved data and pick the table and its address column, such as the Website column of a Maps list.",
+            a: "Yes. On the Upload step, choose Use saved data and pick the table and its address column, such as the Website column of a Google Maps list.",
+        },
+        {
+            q: "Can it run while I do something else?",
+            a: "Yes, in other windows. The run happens in your browser, so its tab must stay open.",
+        },
+        {
+            q: "Can I run it overnight?",
+            a: "Only while the browser tab stays open. Scheduled runs that work without you are coming with the cloud.",
         },
     ],
     related: ["email-extractor", "maps-leads", "list-scraper", "page-text", "export-to-google-sheets"],
