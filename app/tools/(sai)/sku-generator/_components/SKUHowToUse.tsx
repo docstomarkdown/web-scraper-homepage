@@ -1,26 +1,28 @@
-"use client";
-import { ToolSteps } from "@/app/tools/_shared/components";
-import { Tag, Blocks, Sliders, Copy } from "lucide-react";
+"use client"
+import { ToolSteps } from "@/app/tools/_shared/components"
+import { FileText, Layers, Tag } from "lucide-react"
+
 export function SKUHowToUse() {
     return (
         <ToolSteps
+            title="How to use this tool"
             steps={[
                 {
-                    title: "Class Info",
-                    description: "Enter tightly mapped standardized core internal branding categories explicitly tied referencing unique specialized individual colors.",
-                    icon: Tag
+                    title: "Enter the parts",
+                    description: "Type a brand prefix, a category code and a short product name, for example NIKE, SHO and AF1.",
+                    icon: Tag,
                 },
                 {
-                    title: "Set Pattern",
-                    description: "Define structured uniform universal separating string characters forcing absolutely consistent scalable physical packaging labels.",
-                    icon: Blocks
+                    title: "Add attributes and a number",
+                    description: "Add a colour and a size part if the product has variants, pick the separator and the case, and set where the running number starts.",
+                    icon: Layers,
                 },
                 {
-                    title: "Get Value",
-                    description: "Instantly map perfectly organized deeply structured clean scannable distinct global alphanumeric warehouse tracking inventory outputs.",
-                    icon: Sliders
-                }
+                    title: "Copy or export",
+                    description: "The SKU appears as you type. Add it to the list, repeat for other products, and download the list as a CSV for your inventory system.",
+                    icon: FileText,
+                },
             ]}
         />
-    );
-}
+    )
+}

@@ -325,7 +325,7 @@ export function ContainerLoadCalculator() {
                                             <div className="flex-shrink-0">
                                                 <div className="w-[176px]">
                                                     <Select value={selectedContainer} onValueChange={(v) => setSelectedContainer(v as keyof typeof CONTAINERS)}>
-                                                        <SelectTrigger className="h-11 border-2 border-slate-200 bg-white transition-all hover:border-blue-300 hover:shadow-md px-3 w-full rounded-xl font-semibold text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-blue-800 dark:text-slate-300">
+                                                        <SelectTrigger aria-label="Container type" className="h-11 border-2 border-slate-200 bg-white transition-all hover:border-blue-300 hover:shadow-md px-3 w-full rounded-xl font-semibold text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-blue-800 dark:text-slate-300">
                                                             <span className="font-bold text-sm text-blue-600 truncate dark:text-blue-400">
                                                                 {CONTAINERS[selectedContainer]?.name}
                                                             </span>
@@ -336,9 +336,9 @@ export function ContainerLoadCalculator() {
                                                                     <div className="flex flex-col text-left">
                                                                         <span className="font-bold text-sm text-slate-700 dark:text-slate-200">{data.name}</span>
                                                                         {key === "custom" ? (
-                                                                            <span className="text-[10px] text-slate-400 font-medium dark:text-slate-500">User defined dimensions</span>
+                                                                            <span className="text-xs text-slate-600 dark:text-slate-300 font-medium">User defined dimensions</span>
                                                                         ) : (
-                                                                            <span className="text-[10px] text-slate-500 font-medium dark:text-slate-400">
+                                                                            <span className="text-xs text-slate-600 dark:text-slate-300 font-medium">
                                                                                 Wt: {data.maxWeight.toLocaleString()} kg · {(data.length / 1000).toFixed(1)}m × {(data.width / 1000).toFixed(2)}m
                                                                             </span>
                                                                         )}
@@ -368,11 +368,11 @@ export function ContainerLoadCalculator() {
                                             <div className="flex-shrink-0">
                                                 <Tabs value={loadType} onValueChange={(v) => setLoadType(v as any)} className="w-[176px]">
                                                     <TabsList className="grid w-full grid-cols-2 h-auto p-1 bg-slate-100/60 border border-slate-200/50 rounded-xl dark:bg-slate-800 dark:border-slate-800">
-                                                        <TabsTrigger value="loose" className="flex items-center justify-center py-1.5 text-[10px] font-bold rounded-lg data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-sm">
+                                                        <TabsTrigger value="loose" className="flex items-center justify-center py-1.5 text-xs font-bold rounded-lg data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-sm">
                                                             <Box className="w-3 h-3 mr-1" />
                                                             Loose
                                                         </TabsTrigger>
-                                                        <TabsTrigger value="pallet" className="flex items-center justify-center py-1.5 text-[10px] font-bold rounded-lg data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-sm">
+                                                        <TabsTrigger value="pallet" className="flex items-center justify-center py-1.5 text-xs font-bold rounded-lg data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-sm">
                                                             <Layers className="w-3 h-3 mr-1" />
                                                             Pallets
                                                         </TabsTrigger>
@@ -395,8 +395,8 @@ export function ContainerLoadCalculator() {
                                     groupingAction={
                                         <Tabs value={unitSystem} onValueChange={(v) => setUnitSystem(v as any)} className="w-[140px]">
                                             <TabsList className="grid w-full grid-cols-2 h-7 p-0.5 bg-slate-100/60 border border-slate-200/50 rounded-lg dark:bg-slate-800 dark:border-slate-800">
-                                                <TabsTrigger value="metric" className="py-0.5 text-[11px] font-bold rounded-md data-[state=active]:bg-white data-[state=active]:text-blue-600 tracking-tight">cm / kg</TabsTrigger>
-                                                <TabsTrigger value="imperial" className="py-0.5 text-[11px] font-bold rounded-md data-[state=active]:bg-white data-[state=active]:text-blue-600 tracking-tight">in / lb</TabsTrigger>
+                                                <TabsTrigger value="metric" className="py-0.5 text-xs font-bold rounded-md data-[state=active]:bg-white data-[state=active]:text-blue-600 tracking-tight">cm / kg</TabsTrigger>
+                                                <TabsTrigger value="imperial" className="py-0.5 text-xs font-bold rounded-md data-[state=active]:bg-white data-[state=active]:text-blue-600 tracking-tight">in / lb</TabsTrigger>
                                             </TabsList>
                                         </Tabs>
                                     }
@@ -566,7 +566,7 @@ export function ContainerLoadCalculator() {
                                     <div className="w-12 h-12 rounded-2xl bg-red-100 flex items-center justify-center text-red-600 mb-4 shadow-sm dark:bg-red-900/40 dark:text-red-400">
                                         <XCircle className="w-6 h-6" />
                                     </div>
-                                    <h4 className="text-[17px] font-bold text-red-600 mb-2 tracking-tight dark:text-red-400">Cargo Does Not Fit</h4>
+                                    <h3 className="text-[17px] font-bold text-red-600 mb-2 tracking-tight dark:text-red-400">Cargo Does Not Fit</h3>
                                     <p className="text-[13.5px] text-red-500/80 leading-relaxed max-w-[280px]">
                                         {result.noFit
                                             ? "Your carton or pallet dimensions are larger than the container's interior entry height or width. Check measurements."

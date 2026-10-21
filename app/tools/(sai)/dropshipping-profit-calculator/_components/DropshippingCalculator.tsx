@@ -154,7 +154,7 @@ export function DropshippingCalculator() {
                         <ResultFeedbackCard
                             title="Net Profit / Loss"
                             titleLabel="Live"
-                            labelClassName="text-blue-400 bg-slate-800/50 border-slate-700/50"
+                            labelClassName="text-white bg-slate-900/70 border-slate-700/50"
                             mainValue={
                                 <Counter value={netProfit} formatter={formatCurrency} key={currency} />
                             }
@@ -233,7 +233,7 @@ export function DropshippingCalculator() {
                             </div>
                         ) : (
                             <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center dark:bg-slate-900 dark:border-slate-800">
-                                <p className="text-sm text-slate-400 dark:text-slate-500">Enter order details to calculate profit.</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-300">Enter order details to calculate profit.</p>
                             </div>
                         )}
                     </FadeIn>
@@ -241,4 +241,4 @@ export function DropshippingCalculator() {
             </div>
         </FadeIn>
     )
-}
+}

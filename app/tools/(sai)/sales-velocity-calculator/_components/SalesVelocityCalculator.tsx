@@ -144,7 +144,7 @@ export function SalesVelocityCalculator() {
                             <div className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 dark:bg-slate-900 dark:border-slate-800">
                                 <div className="flex items-center gap-2 mb-2">
                                     <TrendingUp className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
-                                    <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 dark:text-slate-400">Forecasting Insight</span>
+                                    <span className="text-sm sm:text-[14px] font-bold text-slate-600 dark:text-slate-300">Forecasting Insight</span>
                                 </div>
                                 <p className="text-sm text-slate-600 leading-relaxed pl-6 dark:text-slate-300">
                                     {oosDays > 0 ? (
@@ -164,13 +164,13 @@ export function SalesVelocityCalculator() {
                                 <div className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 dark:bg-slate-900 dark:border-slate-800">
                                     <div className="flex items-center gap-2 mb-2">
                                         <DollarSign className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
-                                        <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 dark:text-slate-400">Projected Monthly Revenue</span>
+                                        <span className="text-sm sm:text-[14px] font-bold text-slate-600 dark:text-slate-300">Projected Monthly Revenue</span>
                                     </div>
                                     <div className="pl-6 flex items-baseline gap-1.5">
                                         <span className="text-[16px] sm:text-[17px] font-bold tracking-tight text-slate-700 dark:text-slate-200">
                                             <Counter value={revenueRunRate} formatter={formatCurrency} key={currency} />
                                         </span>
-                                        <span className="text-[0.6em] font-medium text-slate-400 ml-1 dark:text-slate-500">/ mo</span>
+                                        <span className="text-[0.6em] font-medium text-slate-600 dark:text-slate-300 ml-1">/ mo</span>
                                     </div>
                                 </div>
                             )}

@@ -38,12 +38,12 @@ export function BudgetAllocation({
         { name: "Shipping Costs", value: shippingCost, color: "#a855f7" },
     ].filter(i => i.value > 0)
     return (
-        <Card className={cn("border border-slate-200/60 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] bg-[#F5F8FD] rounded-2xl p-5 flex flex-col gap-5 dark:border-slate-800", className)}>
+        <Card className={cn("border border-slate-200/60 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] bg-[#F5F8FD] dark:bg-slate-900 rounded-2xl p-5 flex flex-col gap-5 dark:border-slate-800", className)}>
             <div className="flex items-center gap-2.5 pb-2 border-b border-slate-200/50 dark:border-slate-800">
                 <div className="flex items-center justify-center w-7 h-7 rounded-lg bg-blue-600/10 border border-blue-100/50 dark:border-blue-900/50">
                     <PieChart className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                 </div>
-                <span className="text-[14px] sm:text-[15px] font-bold text-blue-700 leading-none dark:text-blue-400">
+                <span className="text-[14px] sm:text-[15px] font-bold text-blue-800 leading-none dark:text-blue-200">
                     Budget Split
                 </span>
             </div>
@@ -71,14 +71,14 @@ export function BudgetAllocation({
                             </RechartsPie>
                         </ResponsiveContainer>
                     ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-center p-4 text-slate-400 text-[10.5px] leading-tight font-medium border-2 border-dashed border-slate-200/70 rounded-full bg-slate-50/40 dark:text-slate-500 dark:border-slate-800 dark:bg-slate-800/60">
+                        <div className="absolute inset-0 flex items-center justify-center text-center p-4 text-slate-600 dark:text-slate-300 text-xs leading-tight font-medium border-2 border-dashed border-slate-200/70 rounded-full bg-slate-50/40 dark:border-slate-800 dark:bg-slate-800/60">
                             Add data to see budget split
                         </div>
                     )}
                     {/* Center Label */}
                     {totalCost > 0 && (
                         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                            <span className="text-[11px] font-medium text-slate-400 dark:text-slate-500">Costs</span>
+                            <span className="text-xs font-medium text-slate-600 dark:text-slate-300">Costs</span>
                             <span className="text-xs font-bold text-slate-900 dark:text-white">{formatCurrency(totalCost)}</span>
                         </div>
                     )}
@@ -91,13 +91,13 @@ export function BudgetAllocation({
                         { label: "Product Costs", value: productCost, pct: productPct, color: "bg-amber-500" },
                         { label: "Shipping Costs", value: shippingCost, pct: shippingPct, color: "bg-purple-500" },
                     ].map((item) => (
-                        <div key={item.label} className="flex items-center justify-between text-[11px] px-3 bg-white border border-slate-100 rounded-lg py-1.5 shadow-sm dark:bg-slate-900 dark:border-slate-800">
+                        <div key={item.label} className="flex items-center justify-between text-xs px-3 bg-white border border-slate-100 rounded-lg py-1.5 shadow-sm dark:bg-slate-900 dark:border-slate-800">
                             <div className="flex items-center gap-2 shrink-0">
                                 <div className={`w-2 h-2 rounded-full ${item.color} shrink-0`} />
                                 <span className="text-slate-600 font-bold whitespace-nowrap dark:text-slate-300">{item.label}</span>
                             </div>
                             <div className="flex items-center gap-3 shrink-0 ml-4">
-                                <span className="text-slate-500 font-semibold tabular-nums min-w-[50px] text-right dark:text-slate-400">{formatCurrency(item.value)}</span>
+                                <span className="text-slate-600 dark:text-slate-300 font-semibold tabular-nums min-w-[50px] text-right">{formatCurrency(item.value)}</span>
                                 <span className="font-extrabold text-slate-900 tabular-nums min-w-[32px] text-right dark:text-white">{item.pct.toFixed(0)}%</span>
                             </div>
                         </div>

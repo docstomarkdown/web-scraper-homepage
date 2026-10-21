@@ -187,15 +187,15 @@ export function StorageFeeCalculator() {
                                                 <span className={cn("text-sm font-semibold transition-colors", showAdvanced ? "text-blue-700 dark:text-blue-400" : "text-slate-700 dark:text-slate-200")}>
                                                     Advanced Settings
                                                 </span>
-                                                <span className="text-[11px] text-slate-400 font-medium dark:text-slate-500">
+                                                <span className="text-xs text-slate-600 font-medium dark:text-slate-300">
                                                     Season & Size Tier Rules
                                                 </span>
                                             </div>
                                         </div>
                                         <div className="flex items-center gap-3">
                                             <span className={cn(
-                                                "text-[10px] px-2 py-0.5 rounded-full font-bold tracking-wide uppercase transition-colors",
-                                                showAdvanced ? "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-400" : "bg-slate-200 text-slate-500 dark:bg-slate-700 dark:text-slate-400"
+                                                "text-xs px-2 py-0.5 rounded-full font-bold tracking-wide uppercase transition-colors",
+                                                showAdvanced ? "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-400" : "bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-200"
                                             )}>
                                                 Optional
                                             </span>
@@ -208,15 +208,15 @@ export function StorageFeeCalculator() {
                                         <FadeIn className="pt-4 space-y-5 max-w-[520px] mx-auto w-full px-1">
                                             <div className="flex items-center gap-3 w-full relative z-10">
                                                 <div className="flex items-center gap-2 flex-1 min-w-0 text-left">
-                                                    <label className="text-[14.5px] font-medium text-slate-600/90 cursor-pointer py-1 dark:text-slate-300">Season</label>
+                                                    <label className="text-sm font-medium text-slate-600/90 cursor-pointer py-1 dark:text-slate-300">Season</label>
                                                     <Tooltip>
                                                         <TooltipTrigger asChild>
-                                                            <button type="button" className="text-slate-400 hover:text-blue-600 transition-colors cursor-help dark:text-slate-500 dark:hover:text-blue-400">
+                                                            <button type="button" aria-label="About this field" className="text-slate-500 hover:text-blue-600 transition-colors cursor-help dark:text-slate-500 dark:hover:text-blue-400">
                                                                 <Info className="h-3.5 w-3.5" />
                                                             </button>
                                                         </TooltipTrigger>
-                                                        <TooltipContent className="bg-slate-900 text-white border-slate-800 text-[13px] dark:bg-slate-800 dark:border-slate-700">
-                                                            Amazon's monthly storage fees vary by season (Peak vs Standard).
+                                                        <TooltipContent className="bg-slate-900 text-white border-slate-800 text-xs dark:bg-slate-800 dark:border-slate-700">
+                                                            Amazon&apos;s monthly storage fees vary by season (Peak vs Standard).
                                                         </TooltipContent>
                                                     </Tooltip>
                                                 </div>
@@ -235,14 +235,14 @@ export function StorageFeeCalculator() {
 
                                             <div className="flex items-center gap-3 w-full relative z-10">
                                                 <div className="flex items-center gap-2 flex-1 min-w-0 text-left">
-                                                    <label className="text-[14.5px] font-medium text-slate-600/90 cursor-pointer py-1 dark:text-slate-300">Size Tier</label>
+                                                    <label className="text-sm font-medium text-slate-600/90 cursor-pointer py-1 dark:text-slate-300">Size Tier</label>
                                                     <Tooltip>
                                                         <TooltipTrigger asChild>
-                                                            <button type="button" className="text-slate-400 hover:text-blue-600 transition-colors cursor-help dark:text-slate-500 dark:hover:text-blue-400">
+                                                            <button type="button" aria-label="About this field" className="text-slate-500 hover:text-blue-600 transition-colors cursor-help dark:text-slate-500 dark:hover:text-blue-400">
                                                                 <Info className="h-3.5 w-3.5" />
                                                             </button>
                                                         </TooltipTrigger>
-                                                        <TooltipContent className="bg-slate-900 text-white border-slate-800 text-[13px] dark:bg-slate-800 dark:border-slate-700">
+                                                        <TooltipContent className="bg-slate-900 text-white border-slate-800 text-xs dark:bg-slate-800 dark:border-slate-700">
                                                             Auto-detect calculates if the product is Standard or Oversize based on dimensions.
                                                         </TooltipContent>
                                                     </Tooltip>

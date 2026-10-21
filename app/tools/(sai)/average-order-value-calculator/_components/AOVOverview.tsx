@@ -1,29 +1,19 @@
 "use client"
 import { ToolOverview } from "@/app/tools/_shared/components"
 
+/** One paragraph on what the calculator is for, and three plain facts about it. */
 export function AOVOverview() {
     return (
         <ToolOverview
-            heading="What is the AOV Calculator?"
-            headingAccent="AOV Calculator"
-            definition="The Average Order Value (AOV) Calculator is a free, simple tool that helps online businesses measure how much money they earn on each customer order. Just enter your total revenue and number of orders, and the tool instantly calculates your AOV—showing whether your store is attracting high-value buyers or needs improvement. Used by ecommerce owners, marketers, DTC brands, Shopify/WooCommerce sellers, and analytics teams, it reveals how effectively your store converts traffic into revenue and helps you identify opportunities to grow basket size."
+            heading="What is average order value?"
+            headingAccent="average order value"
+            definition="Average order value is what a typical order is worth: revenue divided by orders over the same period. It's the quickest health check for a store, because raising it adds revenue without finding new customers. Enter two numbers from your sales report and read the result."
             facts={[
-                {
-                    stat: "Instant",
-                    label: "AOV Calculation",
-                    detail: "Quickly see how much revenue you earn per order with just two inputs—no complex formulas or spreadsheets needed."
-                },
-                {
-                    stat: "Clear",
-                    label: "Revenue Insights",
-                    detail: "Understand your total revenue, order count, and (optional) revenue per customer to spot buying patterns and performance trends."
-                },
-                {
-                    stat: "Actionable",
-                    label: "Growth Ideas",
-                    detail: "Get smart suggestions—like bundles, upsells, and free-shipping thresholds—to help you increase your store’s average order value."
-                }
+                { stat: "2 inputs", label: "What you enter", detail: "Total revenue and total orders for the same period." },
+                { stat: "Revenue ÷ orders", label: "The formula", detail: "$50,000 from 1,250 orders is a $40 AOV." },
+                { stat: "3 levers", label: "How stores raise it", detail: "Bundles, a free shipping threshold and checkout add-ons." }
             ]}
+            accent="emerald"
         />
     )
 }

@@ -2,8 +2,8 @@ import { Metadata } from "next"
 import EtsyPageContent from "./_components/EtsyPageContent"
 
 export const metadata: Metadata = {
-    title: 'Etsy Fee Calculator - Calculate Transaction & Listing Fees',
-    description: 'Calculate your exact Etsy fees and net profit. Includes listing fees, transaction fees (6.5%), payment processing, and Offsite Ads calculations.',
+    title: "Etsy Fee Calculator: Free Listing, Transaction and Ads Fees",
+    description: "Enter the item price, shipping charged and your costs to see Etsy's listing, transaction, payment and offsite ads fees, plus profit and margin.",
     alternates: { canonical: "/tools/etsy-fee-calculator" },
 }
 

@@ -2,233 +2,149 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { toolsGroups } from "@/config/site";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-    Search,
-    Sparkles,
-    ArrowRight,
-    Calculator,
-    ArrowLeftRight,
-    Box,
-    Tag,
-    BarChart3,
-    Clock,
-    Truck,
-    CreditCard,
-    Globe,
-    Zap
-} from "lucide-react";
-// Full descriptions for tools
+import { useReducedMotion } from "framer-motion";
+import { Search, ArrowRight, Calculator, ArrowLeftRight, Box, Clock, CreditCard, Zap } from "lucide-react";
+
+// One honest sentence per tool, in plain words: what you put in and what you get out.
 const toolDescriptions: Record<string, string> = {
-    // 1. Dropshipping Profit Calculator
-    "Dropshipping Profit Calculator": "Calculate your net profit margins with precision, accounting for ads, purchase costs, and shipping fees.",
-    // 2. Amazon FBA Fee Calculator
-    "Amazon FBA Fee Calculator": "Estimate Amazon FBA fees, referral fees, and net profit based on product size and weight.",
-    // 3. Profit Margin Calculator
-    "Profit Margin Calculator": "Instantly determine your gross margin, markup percentage, and profit per unit for any product.",
-    // 4. Discount Percentage Calculator
-    "Discount Percentage Calculator": "Quickly calculate the original price, discount percentage, or final sale price with ease.",
-    // 5. ROI Calculator
-    "Return on Investment (ROI) Calculator": "Measure the profitability of your investments and make smarter sourcing decisions.",
-    // 6. ROAS Calculator
-    "Return on Ad Spend (ROAS) Calculator": "Evaluate the effectiveness of your digital advertising campaigns by calculating Return on Ad Spend.",
-    // 7. CPA Calculator
-    "Cost Per Acquisition (CPA) Calculator": "Determine the true cost to acquire a customer and optimize your marketing budget.",
-    // 8. Dimensional Weight Calculator
-    "Dimensional Weight Calculator": "Calculate the dimensional weight of your packages to accurately estimate shipping costs.",
-    // 9. Free Shipping Calculator
-    "Free Shipping Calculator": "Determine the minimum order value required to offer free shipping without hurting your profits.",
-    // 10. Inventory Reorder Calculator
-    "Inventory Reorder Calculator": "Calculate the optimal reorder point and quantity to prevent stockouts while minimizing holding costs.",
-    // 11. Safety Stock Calculator
-    "Safety Stock Calculator": "Determine the right amount of buffer stock to hold to protect against demand spikes and supply delays.",
-    // 12. Sales Velocity Calculator
-    "Sales Velocity Calculator": "Track how fast your products are selling to optimize inventory levels and forecast future demand.",
-    // 13. Promo Code Generator
-    "Promo Code Generator": "Generate unique, random promo codes for your marketing campaigns, sales, and special offers.",
-    // 14. Price Elasticity Calculator
-    "Price Elasticity Calculator": "Analyze how changes in price affect customer demand to find the optimal price point for revenue.",
-    // 15. Bundle Profit Calculator
-    "Bundle Profit Calculator": "Calculate the profitability of product bundles to increase average order value and clear inventory.",
-    // 16. MOQ Cost Calculator
-    "Minimum Order Quantity (MOQ) Cost Calculator": "Calculate total investment and per-unit costs when purchasing Minimum Order Quantities.",
-    // 17. Landed Cost Calculator
-    "Landed Cost Calculator": "Determine the true cost of a product including manufacturing, shipping, customs, insurance, and other fees.",
-    // 18. Break-Even Calculator
-    "Break-Even Calculator": "Determine the exact sales volume needed to cover all fixed and variable costs and start generating profit.",
-    // 19. Wholesale Price Calculator
-    "Wholesale Price Calculator": "Calculate the optimal wholesale price to offer retailers while maintaining your target profit margin.",
-    // 20. SKU Generator
-    "SKU Generator": "Generate consistent, meaningful, and organized Stock Keeping Units (SKUs) for your entire inventory.",
-    // 21. PPC Bid Calculator
-    "Pay-Per-Click (PPC) Bid Calculator": "Calculate the maximum PPC bid you can afford to pay to achieve your target Advertising Cost of Sales.",
-    // 22. ACoS Calculator
-    "Advertising Cost of Sales (ACoS) Calculator": "Measure the efficiency and profitability of your Amazon PPC campaigns with ACoS calculations.",
-    // 23. TACoS Calculator
-    "Total Advertising Cost of Sales (TACoS) Calculator": "Understand the holistic impact of advertising spend on your total revenue with TACoS.",
-    // 24. Ad Spend Budget Planner
-    "Ad Spend Budget Planner": "Plan your advertising budget effectively based on your revenue goals and target ROAS.",
-    // 25. Return Rate Calculator
-    "Return Rate Calculator": "Calculate your product return rate to identify quality issues and improve customer satisfaction.",
-    // 26. CLV Calculator
-    "Customer Lifetime Value (CLV) Calculator": "Calculate the total worth of a customer to your business over the entirety of their relationship.",
-    // 27. Time Zone Meeting Planner
-    "Time Zone Meeting Planner": "Plan international meetings effortlessly by finding the best overlapping times across time zones.",
-    // 28. Mercari Fee Calculator
-    "Mercari Fee Calculator": "Calculate selling fees and estimated profit for items sold on the Mercari marketplace.",
-    // 29. Packaging Cost Calculator
-    "Packaging Cost Calculator": "Estimate the cost of packaging materials per unit to accurately price your products.",
-    // 30. PayPal Fee Calculator
-    "PayPal Fee Calculator": "Calculate PayPal transaction fees and the net amount you will receive for domestic and international payments.",
-    // 31. FBA Removal Order Cost Calculator
-    "FBA Removal Order Cost Calculator": "Estimate the fees associated with removing or disposing of inventory from Amazon FBA centers.",
-    // 32. Coupon ROI Calculator
-    "Coupon ROI Calculator": "Measure the Return on Investment of your coupon campaigns to ensure they are driving profitable sales.",
-    // 33. POD Profit Calculator
-    "Print on Demand Profit Calculator": "Calculate profits for print-on-demand products by accounting for base costs, platform fees, and shipping.",
-    // 34. Etsy Fee Calculator
-    "Etsy Fee Calculator": "Estimate Etsy listing fees, transaction fees, and payment processing fees to determine your net profit.",
-    // 35. eBay Fee Calculator
-    "eBay Fee Calculator": "Calculate eBay final value fees, insertion fees, and estimated profit for your listings.",
-    // 36. Poshmark Fee Calculator
-    "Poshmark Fee Calculator": "Calculate Poshmark selling fees and your net earnings to price your fashion items correctly.",
-    // 37. CAC Calculator
-    "Customer Acquisition Cost (CAC) Calculator": "Calculate the average cost to acquire a new customer to ensure your marketing is sustainable.",
-    // 38. Conversion Rate Calculator
-    "Conversion Rate Calculator": "Measure the percentage of visitors who complete a desired action to gauge website performance.",
-    // 39. AOV Calculator
-    "Average Order Value (AOV) Calculator": "Calculate the average amount spent each time a customer places an order.",
-    // 40. Cart Abandonment Rate Calculator
-    "Cart Abandonment Rate Calculator": "Identify the percentage of users who add items to their cart but leave without purchasing.",
-    // 41. A/B Test Duration Calculator
-    "A/B Test Duration Calculator": "Estimate how long to run an A/B test to achieve statistically significant results.",
-    // 42. Amazon Storage Fee Calculator
-    "Amazon Storage Fee Calculator": "Estimate monthly inventory storage fees for Amazon FBA based on product size and seasonality.",
-    "Pallet Configuration Calculator": "Calculate the most efficient way to stack boxes and maximize pallet space.",
-    "Lead Time Calculator": "Track supply chain timelines from production to final delivery including all transit steps.",
-    "Reorder Point Calculator": "Identify the perfect time to restock products based on sales velocity and lead times.",
-    "Economic Order Quantity (EOQ) Calculator": "Find the optimal order volume to minimize purchasing and inventory holding costs.",
-    "Days of Inventory Calculator": "Predict how many days your current stock will last to prevent costly stockouts.",
-    "Inventory Turnover Calculator": "Measure how often your stock is sold and replaced to assess business efficiency.",
-    "Cost of Goods Sold (COGS) Calculator": "Determine your total product cost including manufacturing, shipping, and fulfillment fees.",
-    "Gross Margin Calculator": "Analyze your product profitability by calculating margins, markups, and unit costs.",
-    "Net Profit Calculator": "Calculate actual profit after ads, taxes, and overhead to see your bottom line.",
-    "Affiliate Commission Calculator": "Calculate partner payouts and net revenue to optimize your affiliate program structure.",
-    "Dimension Converter": "Instantly convert dimensions between imperial and metric units for logistics and shipping.",
-    "Universal Product Code (UPC) / European Article Number (EAN) Validator": "Verify UPC and EAN barcodes to ensure your product identifiers are valid.",
-    "Global Trade Item Number (GTIN) Converter": "Easily convert between GTIN-8, 12, 13, and 14 formats for global retail.",
-    "Product Weight Converter": "Convert weights between various units and see the impact on shipping carrier tiers.",
-    "Cubic Feet Calculator": "Measure total shipment volume in CFT or CBM with freight tier analysis.",
-    "Container Load Calculator": "Calculate exactly how many items fit into standard 20ft, 40ft, and HC containers.",
-    "Influencer Marketing ROI Calculator": "Track campaign performance by calculating conversion rates and total return on ad spend.",
-    "Email Marketing ROI Calculator": "Evaluate email profitability by measuring click-through rates and customer purchase conversions.",
+    "Dropshipping Profit Calculator": "Enter the price, the product cost, shipping and ad spend, and see the profit left on each order.",
+    "Amazon FBA Fee Calculator": "Enter a product's size, weight and price to estimate Amazon's fulfilment and referral fees and the profit left.",
+    "Profit Margin Calculator": "Enter cost and price to get the gross margin, the markup and the profit per unit.",
+    "Discount Percentage Calculator": "Work out the sale price, the discount percentage or the original price from the other two.",
+    "Return on Investment (ROI) Calculator": "Enter what you spent and what came back to get the return as a percentage.",
+    "Return on Ad Spend (ROAS) Calculator": "Enter ad spend and the sales it brought in to get the return on ad spend.",
+    "Cost Per Acquisition (CPA) Calculator": "Enter ad spend and the number of customers won to get the cost of each new customer.",
+    "Dimensional Weight Calculator": "Enter a parcel's dimensions to get the weight carriers charge for, which is often more than the scale weight.",
+    "Free Shipping Threshold Calculator": "Find the order value above which you can offer free shipping without losing your margin.",
+    "Inventory Reorder Point Calculator": "Enter sales per day and lead time to get the stock level at which to reorder, and how much.",
+    "Safety Stock Calculator": "Work out how much extra stock covers a sales spike or a late delivery.",
+    "Sales Velocity Calculator": "Enter units sold over a period to get sales per day, week and month for restocking.",
+    "Promo Code Generator": "Make a batch of random, unique promo codes in the length and pattern you choose.",
+    "Price Elasticity Calculator": "Enter two prices and the quantities sold at each to see how much demand moves when the price does.",
+    "Bundle Profit Calculator": "Enter the items in a bundle and its price to see the profit compared with selling them one by one.",
+    "Minimum Order Quantity (MOQ) Cost Calculator": "Enter a supplier's minimum order and unit price to get the total outlay and the cost per unit.",
+    "Landed Cost Calculator": "Add the product cost, shipping, duties, insurance and fees to get what each unit really costs delivered.",
+    "Break-Even Calculator": "Enter fixed costs, unit cost and price to get the number of sales that covers your costs.",
+    "Wholesale Price Calculator": "Enter your cost and target margin to get a wholesale price that still leaves retailers room.",
+    "SKU Generator": "Build consistent stock codes from a prefix and the attributes you choose, for a whole product list.",
+    "Pay-Per-Click (PPC) Bid Calculator": "Enter price, margin and conversion rate to get the most you can bid per click and still profit.",
+    "Advertising Cost of Sales (ACoS) Calculator": "Enter ad spend and ad sales to get ACoS, and the break-even ACoS for your margin.",
+    "Total Advertising Cost of Sales (TACoS) Calculator": "Enter ad spend and total sales to see what share of all revenue goes on ads.",
+    "Ad Spend Budget Planner": "Enter a revenue goal and target ROAS to get the ad budget that reaches it.",
+    "Return Rate Calculator": "Enter orders and returns to get the return rate and what the returns cost.",
+    "Customer Lifetime Value (CLV) Calculator": "Enter average order value, orders per year and years as a customer to get what a customer is worth.",
+    "Time Zone Meeting Planner": "Pick cities and see the hours that overlap for a meeting.",
+    "Mercari Fee Calculator": "Enter a sale price to get Mercari's fees and what you receive.",
+    "Packaging Cost Calculator": "Add box, filler, tape and labels to get the packaging cost per unit.",
+    "PayPal Fee Calculator": "Enter an amount to get PayPal's fee and the net you receive, for domestic and international payments.",
+    "FBA Removal Order Cost Calculator": "Enter units and sizes to estimate what Amazon charges to return or dispose of your stock.",
+    "Coupon ROI Calculator": "Enter the discount, the orders it brought and your margin to see whether a coupon paid for itself.",
+    "Print on Demand Profit Calculator": "Enter base cost, platform fees, shipping and price to get the profit on each print-on-demand item.",
+    "Etsy Fee Calculator": "Enter a sale price to get Etsy's listing, transaction and payment fees and the profit left.",
+    "eBay Fee Calculator": "Enter a sale price to get eBay's final value and insertion fees and the profit left.",
+    "Poshmark Fee Calculator": "Enter a sale price to get Poshmark's fee and what you receive.",
+    "Customer Acquisition Cost (CAC) Calculator": "Enter marketing spend and new customers to get the cost of winning each one.",
+    "Conversion Rate Calculator": "Enter visitors and orders to get the conversion rate.",
+    "Average Order Value (AOV) Calculator": "Enter revenue and orders to get the average spent per order.",
+    "Cart Abandonment Rate Calculator": "Enter carts started and orders completed to get the share of shoppers who left.",
+    "A/B Test Duration Calculator": "Enter traffic, conversion rate and the lift you want to detect to get how long a test needs to run.",
+    "Amazon Storage Fee Calculator": "Enter product size and months in storage to estimate Amazon's monthly storage fees, including peak season.",
+    "Pallet Configuration Calculator": "Enter box and pallet sizes to get how many boxes fit per layer and per pallet.",
+    "Lead Time Calculator": "Add production, transit and customs days to get the date stock arrives.",
+    "Reorder Point Calculator": "Enter daily sales and lead time to get the stock level that triggers a reorder.",
+    "Economic Order Quantity (EOQ) Calculator": "Enter demand, order cost and holding cost to get the order size that costs least overall.",
+    "Days of Inventory Calculator": "Enter stock on hand and daily sales to get how many days the stock lasts.",
+    "Inventory Turnover Calculator": "Enter cost of goods sold and average stock to get how many times a year stock turns over.",
+    "Cost of Goods Sold (COGS) Calculator": "Add product, shipping and fulfilment costs to get the cost of the goods you sold.",
+    "Gross Margin Calculator": "Enter cost and price to get the gross margin, the markup and the unit profit.",
+    "Net Profit Calculator": "Enter revenue, product costs, ads, fees and overheads to get the profit that's left.",
+    "Affiliate Commission Calculator": "Enter sales and the commission rate to get the payout and your net revenue.",
+    "Dimension Converter": "Convert lengths between inches, centimetres and the other units carriers use.",
+    "Universal Product Code (UPC) / European Article Number (EAN) Validator": "Paste a UPC or EAN and check that its check digit is right.",
+    "Global Trade Item Number (GTIN) Converter": "Convert a product code between GTIN-8, 12, 13 and 14.",
+    "Product Weight Converter": "Convert weights between grams, kilograms, ounces and pounds, and see which carrier tier they fall in.",
+    "Cubic Feet Calculator": "Enter a shipment's dimensions to get its volume in cubic feet or cubic metres.",
+    "Container Load Calculator": "Enter carton size to get how many fit in a 20-foot, 40-foot or high-cube container.",
+    "Influencer Marketing ROI Calculator": "Enter what a campaign cost and the sales it brought to get its return.",
+    "Email Marketing ROI Calculator": "Enter campaign cost, opens, clicks and orders to get the return on an email campaign.",
 };
-// Helper to determine category and icon
+
 const getToolCategoryAndIcon = (title: string) => {
     const lowerTitle = title.toLowerCase();
-    if (lowerTitle.includes("calculator")) return { category: "Calculators", icon: Calculator };
+    if (lowerTitle.includes("fee")) return { category: "Fees", icon: CreditCard };
     if (lowerTitle.includes("converter")) return { category: "Converters", icon: ArrowLeftRight };
     if (lowerTitle.includes("generator")) return { category: "Generators", icon: Zap };
     if (lowerTitle.includes("planner")) return { category: "Planning", icon: Clock };
-    if (lowerTitle.includes("fee")) return { category: "Fees", icon: CreditCard };
-    if (lowerTitle.includes("weight") || lowerTitle.includes("dimension") || lowerTitle.includes("cubic")) return { category: "Logistics", icon: Box };
-    return { category: "Other", icon: Sparkles };
+    if (lowerTitle.includes("weight") || lowerTitle.includes("dimension") || lowerTitle.includes("cubic") || lowerTitle.includes("pallet") || lowerTitle.includes("container")) return { category: "Shipping", icon: Box };
+    return { category: "Calculators", icon: Calculator };
 };
+
 export default function ToolsPage() {
     const [searchQuery, setSearchQuery] = useState("");
     const [activeCategory, setActiveCategory] = useState("All");
-    // Flatten and enrich tools data
-    const allTools = useMemo(() => {
-        const tools = toolsGroups.flatMap(group => group.items.map(item => {
-            const { category, icon } = getToolCategoryAndIcon(item.title);
-            return {
-                ...item,
-                description: toolDescriptions[item.title] || "Powerful tool to streamline your workflow.",
-                category,
-                icon
-            };
-        }));
-        return tools;
-    }, []);
-    // Get unique categories
-    const categories = useMemo(() => {
-        const cats = Array.from(new Set(allTools.map(t => t.category))).sort();
-        return ["All", ...cats];
-    }, [allTools]);
-    // Filter tools
-    const filteredTools = useMemo(() => {
-        return allTools.filter(tool => {
-            const matchesSearch = tool.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                tool.description.toLowerCase().includes(searchQuery.toLowerCase());
-            const matchesCategory = activeCategory === "All" || tool.category === activeCategory;
-            return matchesSearch && matchesCategory;
-        });
-    }, [allTools, searchQuery, activeCategory]);
+    const reduceMotion = useReducedMotion();
+    const allTools = useMemo(
+        () =>
+            toolsGroups.flatMap((group) =>
+                group.items.map((item) => {
+                    const { category, icon } = getToolCategoryAndIcon(item.title);
+                    return { ...item, description: toolDescriptions[item.title] ?? `${item.title}: enter your numbers and read the result.`, category, icon };
+                }),
+            ),
+        [],
+    );
+    const categories = useMemo(() => ["All", ...Array.from(new Set(allTools.map((t) => t.category))).sort()], [allTools]);
+    const filteredTools = useMemo(
+        () =>
+            allTools.filter((tool) => {
+                const q = searchQuery.toLowerCase();
+                const matchesSearch = tool.title.toLowerCase().includes(q) || tool.description.toLowerCase().includes(q);
+                return matchesSearch && (activeCategory === "All" || tool.category === activeCategory);
+            }),
+        [allTools, searchQuery, activeCategory],
+    );
+    const linkBlue = "text-[#1f5ec2] dark:text-[#7aa7ff]";
+
     return (
-        <div className="min-h-screen bg-slate-50 relative overflow-hidden dark:bg-slate-950">
-            {/* Ambient Background */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-0 left-1/4 w-[1000px] h-[600px] bg-blue-100/40 rounded-full blur-3xl mix-blend-multiply opacity-70 animate-blob dark:bg-blue-900/40" />
-                <div className="absolute top-0 right-1/4 w-[1000px] h-[600px] bg-purple-100/40 rounded-full blur-3xl mix-blend-multiply opacity-70 animate-blob animation-delay-2000 dark:bg-purple-900/40" />
-                <div className="absolute -bottom-32 left-1/3 w-[1000px] h-[600px] bg-pink-100/40 rounded-full blur-3xl mix-blend-multiply opacity-70 animate-blob animation-delay-4000 dark:bg-pink-900/40" />
-            </div>
-            <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24">
-                {/* Header Section */}
-                <div className="text-center max-w-3xl mx-auto mb-16">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-slate-200 shadow-sm mb-8 dark:bg-slate-900/80 dark:border-slate-800"
-                    >
-                        <Sparkles className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-                        <span className="text-sm font-semibold text-slate-700 dark:text-slate-200">Premium E-commerce Tools</span>
-                    </motion.div>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.1 }}
-                        className="md:text-[42px] md:text-6xl font-bold text-slate-900 mb-6 tracking-tight dark:text-white"
-                    >
-                        Everything you need to <span className="text-blue-600 dark:text-blue-400">grow faster</span>
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        className="text-xl text-slate-600 leading-relaxed dark:text-slate-300"
-                    >
-                        A complete suite of 30+ powerful calculators, converters, and generators designed for modern e-commerce sellers.
-                    </motion.p>
+        <div className="min-h-screen bg-white dark:bg-slate-950">
+            <div className="max-w-6xl mx-auto px-6 md:px-12 pt-28 pb-24">
+                <div className="max-w-[56rem]">
+                    <p className={`text-base font-semibold ${linkBlue}`}>Free calculators</p>
+                    <h1 className="mt-3 text-[2rem] md:text-[2.5rem] font-semibold tracking-tight text-slate-800 dark:text-white leading-[1.2]">
+                        Free calculators for online sellers
+                    </h1>
+                    <p className="mt-5 text-lg md:text-xl text-slate-700 dark:text-slate-200 leading-[1.65]">
+                        Marketplace fees, profit margins, shipping, inventory and ad spend, worked out in your browser. No sign-up, and
+                        nothing you type is stored.
+                    </p>
                 </div>
-                {/* Search and Filter Section */}
-                <div className="sticky top-20 z-30 bg-slate-50/90 backdrop-blur-md py-4 mb-8 -mx-4 px-4 sm:mx-0 sm:px-0 rounded-2xl dark:bg-slate-800/60">
-                    <div className="flex flex-col md:flex-row gap-4 items-center justify-between max-w-5xl mx-auto">
-                        {/* Search Bar */}
-                        <div className="relative w-full md:w-96 group">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <Search className="h-5 w-5 text-slate-400 group-focus-within:text-blue-500 transition-colors dark:text-slate-500 dark:group-focus-within:text-blue-400" />
-                            </div>
+
+                <div className="sticky top-20 z-30 bg-white/95 dark:bg-slate-950/95 backdrop-blur py-4 mt-10 mb-8 border-b border-slate-200 dark:border-slate-800">
+                    <div className="flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
+                        <div className="relative w-full md:w-96">
+                            <label htmlFor="tool-search" className="sr-only">Search the calculators</label>
+                            <Search className="absolute inset-y-0 left-3 my-auto h-5 w-5 text-slate-600 dark:text-slate-300 pointer-events-none" aria-hidden="true" />
                             <input
-                                type="text"
-                                className="block w-full pl-10 pr-3 py-3 border border-slate-200 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all duration-300 shadow-sm dark:border-slate-800 dark:bg-slate-900"
-                                placeholder="Search tools (e.g. 'profit', 'weight')..."
+                                id="tool-search"
+                                type="search"
+                                className="block w-full pl-10 pr-3 py-3 text-base border border-slate-300 rounded-xl bg-white text-slate-900 placeholder:text-slate-500 focus:outline-none focus:border-[#1f5ec2] focus:ring-2 focus:ring-[#1f5ec2]/30 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-400"
+                                placeholder="Search, for example profit or weight"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                             />
                         </div>
-                        {/* Category Pills */}
-                        <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto no-scrollbar mask-gradient">
+                        <div className="flex gap-2 overflow-x-auto pb-1 md:pb-0 w-full md:w-auto" role="group" aria-label="Filter by type">
                             {categories.map((category) => (
                                 <button
                                     key={category}
+                                    type="button"
                                     onClick={() => setActiveCategory(category)}
-                                    className={`
-                                        whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border
-                                        ${activeCategory === category
-                                            ? "bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-600/20"
-                                            : "bg-white text-slate-600 border-slate-200 hover:border-blue-300 hover:bg-blue-50"}
-                                    `}
+                                    aria-pressed={activeCategory === category}
+                                    className={`whitespace-nowrap px-4 py-2 rounded-full text-base font-medium border transition-colors motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1f5ec2] ${
+                                        activeCategory === category
+                                            ? "bg-[#1f5ec2] text-white border-[#1f5ec2]"
+                                            : "bg-white text-slate-700 border-slate-300 hover:border-[#1f5ec2] dark:bg-slate-900 dark:text-slate-200 dark:border-slate-700"
+                                    }`}
                                 >
                                     {category}
                                 </button>
@@ -236,73 +152,56 @@ export default function ToolsPage() {
                         </div>
                     </div>
                 </div>
-                {/* Tools Grid */}
-                <motion.div
-                    layout
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto"
-                >
-                    <AnimatePresence mode="popLayout">
+
+                <h2 className="text-[1.5rem] font-semibold tracking-tight text-slate-800 dark:text-white">
+                    {activeCategory === "All" ? "All calculators" : activeCategory}
+                    <span className="ml-2 font-normal text-slate-600 dark:text-slate-300">({filteredTools.length})</span>
+                </h2>
+
+                {filteredTools.length > 0 ? (
+                    <ul className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" aria-live="polite">
                         {filteredTools.map((tool) => {
                             const Icon = tool.icon;
                             return (
-                                <motion.div
-                                    layout
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ opacity: 0, scale: 0.9 }}
-                                    transition={{ duration: 0.3 }}
-                                    key={tool.title}
-                                >
-                                    <Link href={tool.href} className="block h-full">
-                                        <div className="group h-full bg-white rounded-2xl border border-slate-200 p-6 hover:shadow-xl hover:shadow-slate-900/5 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden dark:bg-slate-900 dark:border-slate-800">
-                                            {/* Hover Gradient Effect */}
-                                            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 dark:from-blue-950/30" />
-                                            <div className="relative flex flex-col h-full">
-                                                {/* Header */}
-                                                <div className="flex items-start justify-between mb-4">
-                                                    <div className="p-3 bg-blue-50 rounded-xl text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 dark:bg-blue-950/40 dark:text-blue-400">
-                                                        <Icon className="w-6 h-6" />
-                                                    </div>
-                                                    <div className="px-2.5 py-1 bg-slate-100 rounded-lg text-[10px] font-bold text-slate-500 uppercase tracking-wider dark:bg-slate-800 dark:text-slate-400">
-                                                        {tool.category}
-                                                    </div>
-                                                </div>
-                                                {/* Content */}
-                                                <div className="flex-1">
-                                                    <h3 className="text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors mb-2 dark:text-white dark:group-hover:text-blue-400">
-                                                        {tool.title}
-                                                    </h3>
-                                                    <p className="text-slate-500 text-sm leading-relaxed dark:text-slate-400">
-                                                        {tool.description}
-                                                    </p>
-                                                </div>
-                                                {/* Footer / Action */}
-                                                <div className="mt-6 flex items-center text-blue-600 font-medium text-sm group-hover:translate-x-1 transition-transform duration-300 dark:text-blue-400">
-                                                    Try Tool <ArrowRight className="w-4 h-4 ml-1" />
-                                                </div>
+                                <li key={tool.title}>
+                                    <Link
+                                        href={tool.href}
+                                        className={`group block h-full bg-white rounded-2xl border border-slate-200 p-6 hover:border-[#2772ED]/50 ${reduceMotion ? "" : "transition-colors"} dark:bg-slate-900 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1f5ec2]`}
+                                    >
+                                        <div className="flex flex-col h-full">
+                                            <div className="flex items-start justify-between mb-4">
+                                                <span className="p-3 bg-[#2772ED]/10 rounded-xl text-[#1f5ec2] dark:bg-[#2772ED]/20 dark:text-[#7aa7ff]" aria-hidden="true">
+                                                    <Icon className="w-6 h-6" />
+                                                </span>
+                                                <span className="px-2.5 py-1 bg-slate-100 rounded-lg text-sm text-slate-700 dark:bg-slate-800 dark:text-slate-200">{tool.category}</span>
                                             </div>
+                                            <h3 className={`text-lg font-semibold text-slate-800 dark:text-white group-hover:text-[#1f5ec2] dark:group-hover:text-[#7aa7ff] leading-snug`}>{tool.title}</h3>
+                                            <p className="mt-2 flex-1 text-base text-slate-700 leading-[1.6] dark:text-slate-200">{tool.description}</p>
+                                            <span className={`mt-5 inline-flex items-center text-base font-semibold ${linkBlue}`}>
+                                                Open
+                                                <ArrowRight className="w-4 h-4 ml-1" aria-hidden="true" />
+                                            </span>
                                         </div>
                                     </Link>
-                                </motion.div>
+                                </li>
                             );
                         })}
-                    </AnimatePresence>
-                </motion.div>
-                {/* Empty State */}
-                {filteredTools.length === 0 && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="text-center py-24"
-                    >
-                        <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 dark:bg-slate-800">
-                            <Search className="w-8 h-8 text-slate-400 dark:text-slate-500" />
-                        </div>
-                        <h3 className="text-lg font-semibold text-slate-900 dark:text-white">No tools found</h3>
-                        <p className="text-slate-500 dark:text-slate-400">Try adjusting your search or filters.</p>
-                    </motion.div>
+                    </ul>
+                ) : (
+                    <div className="mt-10 text-base text-slate-700 dark:text-slate-200" aria-live="polite">
+                        <p>Nothing matches that search. Try a shorter word, such as fee, margin or weight, or clear the filter.</p>
+                    </div>
                 )}
+
+                <p className="mt-16 text-base text-slate-700 dark:text-slate-200 max-w-[56rem] leading-[1.65]">
+                    These calculators are a side project of Web Scraper Pro, a free Chrome extension that turns web pages into
+                    spreadsheets. For the prices, listings and reviews behind the numbers, see{" "}
+                    <Link href="/use-cases/ecommerce" className={`${linkBlue} underline underline-offset-2`}>
+                        how sellers track competitor prices
+                    </Link>
+                    .
+                </p>
             </div>
         </div>
     );
-}
+}

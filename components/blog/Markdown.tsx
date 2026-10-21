@@ -25,7 +25,10 @@ const components = {
             <table className="w-full text-base leading-[1.5] text-left border-collapse" {...p} />
         </div>
     ),
-    th: (p: React.ComponentProps<"th">) => <th className="border-b-2 border-slate-200 dark:border-slate-700 py-2.5 pr-5 font-semibold text-slate-800 dark:text-white align-bottom" {...p} />,
+    th: ({ children, ...p }: React.ComponentProps<"th">) => {
+        const empty = children === undefined || children === null || (typeof children === "string" && children.trim() === "") || (Array.isArray(children) && children.every((c) => typeof c === "string" && c.trim() === ""));
+        return <th className="border-b-2 border-slate-200 dark:border-slate-700 py-2.5 pr-5 font-semibold text-slate-800 dark:text-white align-bottom" {...p}>{empty ? <span className="sr-only">Row</span> : children}</th>;
+    },
     td: (p: React.ComponentProps<"td">) => <td className="border-b border-slate-100 dark:border-slate-800/60 py-3 pr-5 text-slate-700 dark:text-slate-200 align-top" {...p} />,
     img: ({ src, alt }: React.ComponentProps<"img">) => {
         const s = typeof src === "string" ? src : "";

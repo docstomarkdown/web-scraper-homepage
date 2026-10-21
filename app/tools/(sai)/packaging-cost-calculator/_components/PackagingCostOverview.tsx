@@ -1,30 +1,21 @@
 "use client"
-import React from "react"
-import { ToolOverview } from "@/app/tools/_shared/components"
+import { Info } from "lucide-react"
+import { ToolOverview, ToolSectionHeader } from "@/app/tools/_shared/components"
 
 export function PackagingCostOverview() {
     return (
-        <ToolOverview
-            heading="What is the Packaging Cost Calculator?"
-            headingAccent="Packaging Cost Calculator"
-            definition="The Packaging Cost Calculator is a free online tool that helps sellers quickly calculate the total packaging cost per order, including materials and packing time. It shows your cost per unit and total expense instantly for clear cost understanding.This tool is mainly used by eCommerce sellers, small business owners, and fulfillment teams to know their exact packaging costs. It is commonly used on e-commerce tools and cost calculators for quick and accurate profit planning."
-            facts={[
-                {
-                    stat: "Accurate",
-                    label: "Hidden Cost Detection",
-                    detail: "Reveals the full per-unit packaging cost — materials plus labor — so no expense goes unaccounted for in your pricing."
-                },
-                {
-                    stat: "Instant",
-                    label: "Batch Scaling",
-                    detail: "Enter your order quantity to instantly project total packaging spend across your entire fulfillment run."
-                },
-                {
-                    stat: "Smarter",
-                    label: "Pricing Decisions",
-                    detail: "Know your real fulfillment floor cost so you can set prices that protect your margin — not just cover the product."
-                }
-            ]}
-        />
+        <div className="w-full">
+            <ToolSectionHeader icon={Info} title="About this calculator" />
+            <ToolOverview
+                heading="What the packaging cost calculator does"
+                definition="It adds the box, padding, tape, label and inserts to the minutes it takes to pack an order and gives you packaging cost per order and per batch. Most sellers leave this out of their pricing."
+                accent="blue"
+                facts={[
+                    { stat: "Materials", label: "Box, padding, tape, label, inserts", detail: "Each as a cost per order. Mailers cost less than boxes for anything that won't break." },
+                    { stat: "Labour", label: "Minutes ÷ 60 × hourly wage", detail: "Three minutes at $15 an hour is $0.75 per order, whether you pay someone or do it yourself." },
+                    { stat: "Per batch", label: "Cost per order × orders", detail: "See what a month of orders costs to pack before you set prices or hire help." },
+                ]}
+            />
+        </div>
     )
 }

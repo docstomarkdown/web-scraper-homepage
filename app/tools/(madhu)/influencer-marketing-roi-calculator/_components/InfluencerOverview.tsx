@@ -1,30 +1,20 @@
 "use client"
-import { ToolOverview } from "@/app/tools/_shared/components/ToolOverview"
+import { ToolOverview } from "@/app/tools/_shared/components"
 
+/** What this calculator does, in plain words. Copy rules: docs/writing-style.md. */
 export function InfluencerOverview() {
     return (
-        <ToolOverview
-            heading="Why Use the Influencer"
-            headingAccent="ROI Calculator"
-            definition="The primary purpose of the Influencer Marketing ROI Calculator is to accurately measure the true financial success of brand partnerships and eliminate unprofitable marketing spend. Built for eCommerce brands, marketers, and independent creators, this tool instantly processes your campaign expenses and revenue to reveal your exact net profit and return on investment (ROI). Whether you use the simple mode for a quick check or add details to break down your budget, it gives you the clear data needed to predictably scale winning campaigns without wasting budget."
-            facts={[
-                {
-                    stat: "Fast",
-                    label: "Instant Results",
-                    detail: "Get your true ROI and Profit/Loss instantly by entering just two numbers: Cost and Revenue."
-                },
-                {
-                    stat: "Deep",
-                    label: "Detailed Breakdown",
-                    detail: "Optionally expand your costs into influencer fees, ad spend, and product COGS for a complete budget analysis."
-                },
-                {
-                    stat: "Accurate",
-                    label: "Hidden Costs",
-                    detail: "Accounts for product values and shipping costs so you know exactly what actually went into your pocket."
-                }
-            ]}
-            accent="blue"
-        />
+        <div id="overview">
+            <ToolOverview
+                heading="What the Influencer Marketing ROI Calculator tells you"
+                headingAccent="Influencer Marketing ROI Calculator"
+                definition="An influencer campaign has more costs than the fee: the products you send, the shipping, and any ads you run behind the post. Type each cost, or one total, and the revenue the campaign produced, and the calculator shows the profit and the return on investment."
+                facts={[
+                    { stat: "True cost", label: "all in", detail: "Fee, ad spend, product cost and shipping added up, or a single total if that's what you have." },
+                    { stat: "Profit", label: "or loss", detail: "Revenue minus the true cost, in money." },
+                    { stat: "ROI", label: "as a percentage", detail: "Profit divided by cost; 100% means the campaign paid for itself twice over." },
+                ]}
+            />
+        </div>
     )
 }

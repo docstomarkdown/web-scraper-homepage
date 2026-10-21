@@ -154,7 +154,7 @@ export function PackagingCostCalculator() {
                                         <div className="flex items-center gap-3">
                                             <div className={cn(
                                                 "w-8 h-8 rounded-full flex items-center justify-center transition-colors",
-                                                showAdvanced ? "bg-blue-100 text-blue-600 dark:bg-blue-900/40 dark:text-blue-400" : "bg-white text-slate-400 group-hover:text-blue-500 dark:bg-slate-900 dark:text-slate-500 dark:group-hover:text-blue-400"
+                                                showAdvanced ? "bg-blue-100 text-blue-600 dark:bg-blue-900/40 dark:text-blue-400" : "bg-white text-slate-600 dark:text-slate-300 group-hover:text-blue-500 dark:bg-slate-900 dark:group-hover:text-blue-400"
                                             )}>
                                                 <Scissors className="w-4 h-4" />
                                             </div>
@@ -162,19 +162,19 @@ export function PackagingCostCalculator() {
                                                 <span className={cn("text-sm font-semibold transition-colors", showAdvanced ? "text-blue-700 dark:text-blue-400" : "text-slate-700 dark:text-slate-200")}>
                                                     Advanced Settings
                                                 </span>
-                                                <span className="text-[11px] text-slate-400 font-medium dark:text-slate-500">
+                                                <span className="text-xs text-slate-600 dark:text-slate-300 font-medium">
                                                     Tape, Label & Branding details
                                                 </span>
                                             </div>
                                         </div>
                                         <div className="flex items-center gap-3">
                                             <span className={cn(
-                                                "text-[10px] px-2 py-0.5 rounded-full font-bold tracking-wide uppercase transition-colors",
+                                                "text-xs px-2 py-0.5 rounded-full font-bold tracking-wide  transition-colors",
                                                 showAdvanced ? "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-400" : "bg-slate-200 text-slate-500 dark:bg-slate-700 dark:text-slate-400"
                                             )}>
                                                 Optional
                                             </span>
-                                            {showAdvanced ? <Percent className="w-4 h-4 text-blue-500 dark:text-blue-400" /> : <Package className="w-4 h-4 text-slate-400 opacity-50 dark:text-slate-500" />}
+                                            {showAdvanced ? <Percent className="w-4 h-4 text-blue-500 dark:text-blue-400" /> : <Package className="w-4 h-4 text-slate-600 dark:text-slate-300 opacity-50" />}
                                         </div>
                                     </div>
 

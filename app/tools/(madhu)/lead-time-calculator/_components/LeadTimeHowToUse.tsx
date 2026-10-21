@@ -1,26 +1,16 @@
 "use client"
 import { ToolSteps } from "@/app/tools/_shared/components"
-import { Factory, Truck, CalendarCheck } from "lucide-react"
+import { AlertTriangle, Clock, Table, Truck } from "lucide-react"
+
 export function LeadTimeHowToUse() {
     return (
         <ToolSteps
-            title="How to Calculate Your Lead Time"
+            title="How to use this calculator"
             steps={[
-                {
-                    title: "Manufacturing Time",
-                    description: "Enter the number of days your supplier takes for production and processing.",
-                    icon: Factory
-                },
-                {
-                    title: "Transit & Buffer",
-                    description: "Input estimated shipping days and an optional buffer for potential delays.",
-                    icon: Truck
-                },
-                {
-                    title: "Delivery Forecast",
-                    description: "Fill in the production and shipping details to see your total lead time and estimated arrival date.",
-                    icon: CalendarCheck
-                }
+                { title: "Type the supplier time", description: "The days from your order to the goods leaving the factory, including any queue before production starts.", icon: Clock },
+                { title: "Type the shipping time", description: "Days in transit, including customs and the last leg to your warehouse or fulfilment centre.", icon: Truck },
+                { title: "Add a safety buffer", description: "Extra days for the things that go wrong: a holiday, a port delay, a quality check. A week is a common starting point.", icon: AlertTriangle },
+                { title: "Read the results", description: "Total lead time is the main number, with the arrival date and the share each part takes.", icon: Table },
             ]}
         />
     )

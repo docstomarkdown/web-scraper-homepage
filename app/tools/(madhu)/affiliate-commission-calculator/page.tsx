@@ -1,4 +1,5 @@
-import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
+import { Lightbulb } from "lucide-react"
+import { FadeIn, ToolFAQ, ToolPageTitle, ToolSectionHeader } from "@/app/tools/_shared/components"
 import { AffiliateCommissionCalculator } from "./_components/AffiliateCommissionCalculator"
 import { AffiliateOverview } from "./_components/AffiliateOverview"
 import { AffiliateHowToUse } from "./_components/AffiliateHowToUse"
@@ -6,8 +7,8 @@ import { AffiliateGuide } from "./_components/AffiliateGuide"
 import { CTA } from "@/components/sections/CTA"
 import { Metadata } from "next"
 export const metadata: Metadata = {
-    title: "Affiliate Commission Calculator - Free Payout & Profit Tool",
-    description: "Calculate affiliate commission payouts, net revenue, break-even rates, and profitability at different commission structures. Free tool for e-commerce sellers and affiliate program managers.",
+    title: "Affiliate Commission Calculator: Free Payout and Profit",
+    description: "Work out what you'll pay affiliates and what you keep: clicks, conversion rate, order value and commission rate in, payout, revenue and net profit out.",
     alternates: { canonical: "/tools/affiliate-commission-calculator" },
 }
 export default function AffiliateCommissionCalculatorPage() {
@@ -20,6 +21,7 @@ export default function AffiliateCommissionCalculatorPage() {
                 </div>
                 <div className="max-w-4xl mx-auto space-y-16">
                     <FadeIn delay={0.2}>
+                        <ToolSectionHeader title="What this calculator does" icon={Lightbulb} />
                         <AffiliateOverview />
                     </FadeIn>
                     <FadeIn delay={0.3}>
@@ -32,25 +34,25 @@ export default function AffiliateCommissionCalculatorPage() {
                         <ToolFAQ
                             faqs={[
                                 {
-                                    question: "What are typical commission rates?",
-                                    answer: "Typical rates vary by industry: Physical goods range from <strong>5% to 15%</strong>, SaaS and digital products from <strong>20% to 50%</strong>. Test a few different rates in the calculator to see how they uniquely affect your profit margins before setting a firm policy."
+                                    question: "How is affiliate commission calculated?",
+                                    answer: "Commission is the order revenue multiplied by the commission rate. The calculator first works out revenue from clicks, conversion rate and average order value, then applies the rate.",
                                 },
                                 {
-                                    question: "Why is Affiliate Payout the primary result?",
-                                    answer: "The main purpose of this tool is to estimate how much you will pay affiliates at a given commission rate. That's why <strong>Affiliate Payout</strong> is highlighted as the primary metric, with <strong>Revenue</strong>, <strong>Sales</strong>, and <strong>Net Profit</strong> shown as supporting context."
+                                    question: "What is a typical affiliate commission rate?",
+                                    answer: "Physical products usually pay 5% to 15%; software and digital products pay 20% to 50%. Try a few rates here and read the net profit line before you decide.",
                                 },
                                 {
-                                    question: "How is Affiliate Payout calculated?",
-                                    answer: "<strong>Affiliate Payout</strong> = <strong>Total Revenue</strong> × <strong>Commission %</strong>. Total Revenue itself is calculated as <strong>Estimated Sales</strong> × <strong>Average Order Value</strong>, where Estimated Sales = <strong>Clicks</strong> × <strong>Conversion Rate</strong>. This gives you the total commission you'll pay across all affiliate-driven sales."
+                                    question: "What does the product cost field do?",
+                                    answer: "It's optional. Enter your cost of goods as a percentage of revenue and the calculator subtracts it, along with the payout, to show net profit.",
                                 },
                                 {
-                                    question: "What does the Product Cost (% of Revenue) field do?",
-                                    answer: "This optional field represents your cost to produce or source the product as a percentage of revenue. It has no default — leave it blank if you only care about payout. Fill it in to see your <strong>Net Profit</strong> after deducting both affiliate commissions and product costs."
+                                    question: "Why is the conversion rate set to 2.5%?",
+                                    answer: "It's a common starting point for affiliate traffic. Replace it with the rate your own platform reports; a small change here moves every result.",
                                 },
                                 {
-                                    question: "How is Net Profit calculated?",
-                                    answer: "<strong>Net Profit</strong> = <strong>Total Revenue</strong> − <strong>Affiliate Payout</strong> − <strong>Product Cost</strong>. Product Cost is expressed as a percentage of revenue and has no default value. Filling it in shows you what you actually keep after paying affiliates and covering your fulfillment costs."
-                                }
+                                    question: "Does it include refunds and fees?",
+                                    answer: "No. Returns, chargebacks and payment processing fees aren't in the formula, so the real profit is a little lower than the estimate.",
+                                },
                             ]}
                         />
                     </FadeIn>

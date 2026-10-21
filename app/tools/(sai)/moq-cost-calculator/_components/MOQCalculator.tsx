@@ -33,7 +33,7 @@ export function MOQCalculator() {
         level: "good" | "bad" | "neutral";
         text: string;
         color: string;
-    }>({ level: "neutral", text: "Enter details", color: "text-slate-400 dark:text-slate-500" });
+    }>({ level: "neutral", text: "Enter details", color: "text-slate-600 dark:text-slate-300" });
 
     useEffect(() => {
         const p = val(unitPrice);
@@ -60,13 +60,13 @@ export function MOQCalculator() {
             if (months <= 3) {
                 setRiskAssessment({ level: "good", text: "Low Risk", color: "text-blue-500 dark:text-blue-400" });
             } else if (months <= 6) {
-                setRiskAssessment({ level: "neutral", text: "Moderate Risk", color: "text-amber-500 dark:text-amber-400" });
+                setRiskAssessment({ level: "neutral", text: "Moderate Risk", color: "text-amber-700 dark:text-amber-300" });
             } else {
-                setRiskAssessment({ level: "bad", text: "High Risk", color: "text-rose-500 dark:text-rose-400" });
+                setRiskAssessment({ level: "bad", text: "High Risk", color: "text-rose-700 dark:text-rose-300" });
             }
         } else {
             setMonthsInventory(0);
-            setRiskAssessment({ level: "neutral", text: "Enter Sales", color: "text-slate-400 dark:text-slate-500" });
+            setRiskAssessment({ level: "neutral", text: "Enter Sales", color: "text-slate-600 dark:text-slate-300" });
         }
     }, [unitPrice, moq, shippingCost, miscCost, monthlySales]);
 
@@ -182,11 +182,11 @@ export function MOQCalculator() {
                         <FadeIn delay={0.1}>
                             <div className="bg-white p-5 rounded-xl border border-slate-200/80 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] space-y-3 mt-4 dark:bg-slate-900 dark:border-slate-800">
                                 <div className="flex items-start gap-3">
-                                    <AlertTriangle className={`w-5 h-5 mt-0.5 ${riskAssessment.level === "bad" ? "text-rose-500" : riskAssessment.level === "good" ? "text-blue-500" : "text-amber-500"}`} />
+                                    <AlertTriangle className={`w-5 h-5 mt-0.5 ${riskAssessment.level === "bad" ? "text-rose-700 dark:text-rose-300" : riskAssessment.level === "good" ? "text-blue-500" : "text-amber-700 dark:text-amber-300"}`} />
                                     <div>
-                                        <h4 className="font-semibold text-slate-800 mb-1 dark:text-slate-100">
+                                        <h2 className="font-semibold text-slate-800 mb-1 dark:text-slate-100">
                                             Investment Insight
-                                        </h4>
+                                        </h2>
                                         <p className="text-sm text-slate-600 leading-relaxed dark:text-slate-300">
                                             {isCalculated && val(monthlySales) > 0 ? (
                                                 riskAssessment.level === "bad"

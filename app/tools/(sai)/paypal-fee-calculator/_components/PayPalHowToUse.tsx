@@ -1,26 +1,28 @@
-"use client";
-import { ToolSteps } from "@/app/tools/_shared/components";
-import { Calculator, Globe, Heart } from "lucide-react";
+"use client"
+import { ToolSteps } from "@/app/tools/_shared/components"
+import { CircleDollarSign, Globe, Receipt } from "lucide-react"
+
 export function PayPalHowToUse() {
     return (
         <ToolSteps
+            title="How to use this tool"
             steps={[
                 {
-                    title: "Sale Target",
-                    description: "Enter the specific monetary checkout charge currently being digitally processed via gateway.",
-                    icon: Calculator
+                    title: "Enter the amount",
+                    description: "Type the amount the buyer pays.",
+                    icon: CircleDollarSign,
                 },
                 {
-                    title: "Route Rules",
-                    description: "Select tightly enforced domestic, international transfer, or digital micro-transaction sets.",
-                    icon: Globe
+                    title: "Pick the rate",
+                    description: "Choose standard, international, micropayment or nonprofit. Each has its own percentage and fixed fee.",
+                    icon: Globe,
                 },
                 {
-                    title: "Check Yield",
-                    description: "Instantly map overall required exact PayPal network deductions and your real raw payout.",
-                    icon: Heart
-                }
+                    title: "Read the fee and the payout",
+                    description: "The calculator shows the fee, what lands in your account, and the amount to ask for if you want to receive the full figure.",
+                    icon: Receipt,
+                },
             ]}
         />
-    );
-}
+    )
+}

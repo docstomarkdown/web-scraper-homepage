@@ -1,45 +1,41 @@
 "use client"
-import { ToolGuide } from "@/app/tools/_shared/components/ToolGuide"
-import { BarChart2, DollarSign, MousePointerClick, TrendingUp } from "lucide-react"
+import { ToolGuide } from "@/app/tools/_shared/components"
+import { BarChart3, BookOpen, Calculator, Target, TrendingUp } from "lucide-react"
 
 export function PPCBidGuide() {
     return (
         <ToolGuide
-            title="Understanding PPC Bid Strategy"
-            icon={BarChart2}
+            title="How the bids are calculated"
+            icon={BookOpen}
             items={[
                 {
-                    title: "How PPC Bidding Works",
-                    description: "Your PPC bid is the maximum amount you're willing to pay for a single click on your ad. It directly controls ad placement and spend velocity—bid too low and you lose impressions, bid too high and your margins shrink fast.",
-                    icon: DollarSign,
+                    title: "The formulas",
+                    description: "Break-even bid = price × conversion rate × profit margin. Recommended bid = price × conversion rate × target ACoS. With no target, ACoS is set to 75% of the margin.",
+                    icon: Calculator,
                     iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                    iconColor: "text-blue-500 dark:text-blue-400",
-                    stat: "Max CPC",
-                    statColor: "text-blue-600 dark:text-blue-400",
-                    statLabel: "Your bid ceiling",
-                    tooltip: "Controls cost per click and overall ad visibility."
+                    iconColor: "text-blue-700 dark:text-blue-300",
                 },
                 {
-                    title: "The Bid Formula",
-                    description: "The optimal bid is Product Price × Conversion Rate × Target ACoS. If you don't have a specific target, using 75% of your profit margin provides a safe, conservative bidding baseline.",
-                    icon: MousePointerClick,
-                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                    iconColor: "text-blue-500 dark:text-blue-400",
-                    stat: "Data-Driven",
-                    statColor: "text-blue-600 dark:text-blue-400",
-                    statLabel: "Math over guesswork",
-                    tooltip: "Formula-based bidding eliminates arbitrary decisions."
-                },
-                {
-                    title: "Profitability & Scale",
-                    description: "Know your break-even point: Price × Conversion Rate × Profit Margin. Bidding above this ceiling will erode your profit and potentially lead to a loss on every sale generated from ads.",
-                    icon: TrendingUp,
+                    title: "What ACoS means",
+                    description: "ACoS is ad spend divided by the sales those ads produce. A 20% ACoS means $20 of ads for every $100 of sales. If your ACoS is above your margin, the ads lose money.",
+                    icon: Target,
                     iconBg: "bg-amber-50 dark:bg-amber-950/40",
-                    iconColor: "text-amber-500 dark:text-amber-400",
-                    stat: "ROAS+",
-                    statColor: "text-amber-600 dark:text-amber-400",
-                    statLabel: "Profit-first approach",
-                }
+                    iconColor: "text-amber-700 dark:text-amber-300",
+                },
+                {
+                    title: "Where the inputs come from",
+                    description: "Price is your listing price. Conversion rate is orders ÷ clicks from your ad reports. Margin is profit before ads as a share of price.",
+                    icon: BarChart3,
+                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
+                    iconColor: "text-emerald-700 dark:text-emerald-300",
+                },
+                {
+                    title: "A worked example",
+                    description: "A $50 product converting at 10% with a 30% margin has a break-even bid of $1.50. With a 20% target ACoS the recommended bid is $1.00; with no target it is $1.13.",
+                    icon: TrendingUp,
+                    iconBg: "bg-violet-50 dark:bg-violet-950/40",
+                    iconColor: "text-violet-700 dark:text-violet-300",
+                },
             ]}
         />
     )

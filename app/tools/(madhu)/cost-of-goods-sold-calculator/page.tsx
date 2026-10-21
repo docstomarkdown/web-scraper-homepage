@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import { FadeIn, ToolFAQ, ToolSectionHeader } from "@/app/tools/_shared/components"
+import { FadeIn, ToolFAQ, ToolSectionHeader, ToolPageTitle } from "@/app/tools/_shared/components"
 import { COGSCalculator } from "./_components/COGSCalculator"
 import { COGSOverview } from "./_components/COGSOverview"
 import { COGSHowToUse } from "./_components/COGSHowToUse"
@@ -8,8 +8,8 @@ import { CTA } from "@/components/sections/CTA"
 import { Lightbulb } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: 'COGS Calculator - Calculate Cost of Goods Sold & Fulfillment',
-    description: 'Free Cost of Goods Sold (COGS) calculator for e-commerce. Calculate true product cost including manufacturing, freight, customs, packaging, and fulfillment fees.',
+    title: "COGS Calculator: Free Cost of Goods Sold per Unit",
+    description: "Add product, shipping, packaging and fulfilment costs to get the cost of goods sold per unit and for a whole order quantity.",
     alternates: { canonical: "/tools/cost-of-goods-sold-calculator" },
 }
 
@@ -17,20 +17,14 @@ export default function COGSCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-12">
-                    <FadeIn>
-                        <h1 className="text-4xl md:text-[42px] font-bold text-slate-900 mb-4 tracking-tight dark:text-white">
-                            Cost of Goods Sold (COGS) Calculator
-                        </h1>
-                    </FadeIn>
-                </div>
+                <ToolPageTitle title="Cost of Goods Sold (COGS) Calculator" />
                 <div className="mb-20">
                     <COGSCalculator />
                 </div>
                 <div className="max-w-4xl mx-auto space-y-16">
                     <FadeIn delay={0.1}>
                         <ToolSectionHeader 
-                            title="Tool Essential"
+                            title="What this calculator does"
                             icon={Lightbulb}
                         />
                         <COGSOverview />
@@ -45,21 +39,25 @@ export default function COGSCalculatorPage() {
                         <ToolFAQ
                             faqs={[
                                 {
-                                    question: "What is Cost of Goods Sold (COGS)?",
-                                    answer: "Cost of Goods Sold (COGS) refers to the direct costs attributable to the production or acquisition of the goods sold by your company. This includes the product cost, shipping, and packaging."
+                                    question: "How do you calculate cost of goods sold per unit?",
+                                    answer: "Add what you pay for the unit, its share of inbound shipping, its packaging and the fee to fulfil it. That sum is the per-unit COGS; multiply by the quantity for the order.",
                                 },
                                 {
-                                    question: "Why do you include Shipping and Fulfillment in COGS?",
-                                    answer: "In e-commerce, fulfillment and shipping are direct variable costs incurred to deliver a product safely to a customer. Factoring these into your COGS provides a transparent and actionable view for your pricing strategy."
+                                    question: "Does COGS include Amazon or marketplace fees?",
+                                    answer: "No. Referral and advertising fees are selling costs. Keep them out of COGS and take them off later when you work out net profit.",
                                 },
                                 {
-                                    question: "Are advertising costs (ROAS) included in COGS?",
-                                    answer: "No. This calculator focuses strictly on determining your direct per-unit variable costs. Advertising spend, software subscriptions, and general fixed overhead should remain separate from your Cost of Goods Sold."
+                                    question: "How do I turn a freight invoice into a per-unit shipping cost?",
+                                    answer: "Divide the invoice total by the number of units in the shipment. If a shipment carries several products, split the cost by volume or weight first.",
                                 },
                                 {
-                                    question: "How does the Cost Breakdown help?",
-                                    answer: "The Cost Breakdown splits your Total COGS across your input quantity, revealing exactly how much capital is tied up in product, logistics, packaging, and fulfillment individually. This illuminates areas where you can optimize costs."
-                                }
+                                    question: "What if I don't know the fulfilment cost yet?",
+                                    answer: "Leave it at zero and add it when you have the rate card. The per-unit figure will rise by that amount.",
+                                },
+                                {
+                                    question: "Why does the total matter?",
+                                    answer: "It's the cash you spend before a single unit sells. It tells you how much an order ties up and for how long.",
+                                },
                             ]}
                         />
                     </FadeIn>

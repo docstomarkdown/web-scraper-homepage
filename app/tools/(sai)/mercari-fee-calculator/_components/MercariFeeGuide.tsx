@@ -1,43 +1,42 @@
-"use client";
-import React from "react";
-import { ToolGuide } from "@/app/tools/_shared/components/ToolGuide";
-import { DollarSign, Truck, TrendingUp } from "lucide-react";
+"use client"
+import { ToolGuide } from "@/app/tools/_shared/components"
+import { BookOpen, Calculator, Package, Receipt, TrendingUp } from "lucide-react"
 
 export function MercariFeeGuide() {
-    const guideItems = [
-        {
-            title: "Mercari's Two-Part Fee Structure",
-            description: "Every Mercari sale incurs two automatic fees. First, a flat 10% selling fee on the final sale price. Second, a payment processing fee of 2.9% + $0.50 applied to the total charged to the buyer (item + shipping). Both are deducted before you receive your payout — this calculator shows both, separately.",
-            icon: DollarSign,
-            iconBg: "bg-blue-50 dark:bg-blue-950/40",
-            iconColor: "text-blue-600 dark:text-blue-400",
-            stat: "12.9%+",
-            statLabel: "True Fee Range"
-        },
-        {
-            title: "Shipping: Who Pays Makes All the Difference",
-            description: "Mercari offers two shipping modes. If you offer 'Free Shipping', the shipping label cost comes out of your payout — raise your list price by $5–$12 to compensate. If you select 'Buyer Pays Shipping', the buyer pays the label and you keep your full payout. This single decision can determine whether a low-priced listing is profitable.",
-            icon: Truck,
-            iconBg: "bg-slate-50 dark:bg-slate-800/60",
-            iconColor: "text-slate-600 dark:text-slate-300",
-            stat: "$5–$12",
-            statLabel: "Avg. Label Cost"
-        },
-        {
-            title: "Setting a Price That Actually Profits",
-            description: "Work backwards from your desired profit. Add your item cost + shipping cost, then estimate Mercari's combined ~13% fee on top of your target sale price. A useful rule of thumb: divide your total expenses by 0.87 to find the minimum list price that covers all fees. Use this calculator's breakdown to verify each scenario before committing.",
-            icon: TrendingUp,
-            iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
-            iconColor: "text-emerald-600 dark:text-emerald-400",
-            stat: "÷ 0.87",
-            statLabel: "Min. Price Formula"
-        },
-    ];
-
     return (
         <ToolGuide
-            title="Selling on Mercari: The Complete Profitability Guide"
-            items={guideItems}
+            title="How Mercari fees work"
+            icon={BookOpen}
+            items={[
+                {
+                    title: "Two fees on every sale",
+                    description: "Mercari takes a 10% selling fee on the sale price, then a payment fee of 2.9% plus $0.50. Together they come to about 13% of the price on a typical item.",
+                    icon: Receipt,
+                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-700 dark:text-blue-300",
+                },
+                {
+                    title: "Who pays shipping",
+                    description: "If you offer free shipping, the label comes out of your payout. If the buyer pays shipping, leave the shipping cost blank. Labels for small items usually cost $5 to $12.",
+                    icon: Package,
+                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
+                    iconColor: "text-amber-700 dark:text-amber-300",
+                },
+                {
+                    title: "Pricing to a target profit",
+                    description: "List price = (item cost + shipping + other costs + profit you want) ÷ 0.869. The 0.869 accounts for the combined fees; add the $0.50 fixed part separately for low-priced items.",
+                    icon: Calculator,
+                    iconBg: "bg-violet-50 dark:bg-violet-950/40",
+                    iconColor: "text-violet-700 dark:text-violet-300",
+                },
+                {
+                    title: "A worked example",
+                    description: "A $50 sale with a $20 item cost and no shipping: selling fee $5.00, payment fee $1.95, net profit $23.05, a 46.1% margin. Ten of them is $230.50.",
+                    icon: TrendingUp,
+                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
+                    iconColor: "text-emerald-700 dark:text-emerald-300",
+                },
+            ]}
         />
-    );
+    )
 }

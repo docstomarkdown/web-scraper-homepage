@@ -1,48 +1,52 @@
-import { Metadata } from "next";
-import { PayPalFeeCalculator } from "./_components/PayPalFeeCalculator";
-import { PayPalHowToUse } from "./_components/PayPalHowToUse";
-import { PayPalGuide } from "./_components/PayPalGuide";
-import { FadeIn, ToolFAQ } from "@/app/tools/_shared/components";
-import { CTA } from "@/components/sections/CTA";
+import { Metadata } from "next"
+import { PayPalFeeCalculator } from "./_components/PayPalFeeCalculator"
+import { PayPalHowToUse } from "./_components/PayPalHowToUse"
+import { PayPalGuide } from "./_components/PayPalGuide"
+import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
+import { CTA } from "@/components/sections/CTA"
+
 export const metadata: Metadata = {
-    title: "PayPal Fee Calculator - Calculate Transaction Fees",
-    description: "Instantly calculate PayPal merchant fees for domestic and international transactions. Find out exactly how much you'll receive.",
+    title: "PayPal Fee Calculator: Free Fee and Payout Check",
+    description: "See the PayPal fee on a payment, what you receive after it, and what to charge to receive a set amount, at standard, international, micro and nonprofit rates.",
     alternates: { canonical: "/tools/paypal-fee-calculator" },
-};
-export default function PayPalCalculatorPage() {
+}
+
+const faqs = [
+    {
+        question: "How much does PayPal charge?",
+        answer: "For a standard US commercial payment, 2.9% of the amount plus $0.30. International, micropayment and nonprofit rates differ; the calculator has each.",
+    },
+    {
+        question: "What is the friends and family rate?",
+        answer: "Personal payments funded from a bank or balance carry no fee, but PayPal's rules don't allow them for sales, and they have no buyer protection.",
+    },
+    {
+        question: "How do I receive exactly $100?",
+        answer: "Ask for ($100 + $0.30) ÷ 0.971, which is $103.40 at the standard rate. The calculator's \"ask for\" figure does this for any amount.",
+    },
+    {
+        question: "Did PayPal's fees change recently?",
+        answer: "PayPal revises its schedule periodically. The rates here are the published US rates at the time of writing; confirm them in your account.",
+    },
+]
+
+export default function PaypalFeeCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-10">
-                    <FadeIn direction="down" duration={0.6}>
-                        <h1 className="text-4xl font-bold tracking-tight text-slate-900 md:text-[42px] mb-4 dark:text-white">
-                            PayPal Fee Calculator
-                        </h1>
-                    </FadeIn>
+                <ToolPageTitle title="PayPal Fee Calculator" direction="down" duration={0.6} />
+                <div className="mb-20">
+                    <PayPalFeeCalculator />
                 </div>
-                <PayPalFeeCalculator />
-                <div className="max-w-4xl mx-auto mt-20 space-y-16">
-                    <div id="how-to-use">
-                        <FadeIn delay={0.1}>
-                            <PayPalHowToUse />
-                        </FadeIn>
-                    </div>
+                <div className="max-w-5xl mx-auto space-y-16">
+                    <FadeIn delay={0.2}>
+                        <PayPalHowToUse />
+                    </FadeIn>
                     <FadeIn delay={0.2}>
                         <PayPalGuide />
                     </FadeIn>
                     <FadeIn delay={0.2}>
-                        <ToolFAQ
-                            faqs={[
-                                {
-                                    question: "Did PayPal fees change in 2024?",
-                                    answer: "PayPal updates fees periodically. Standard domestic rate remains around 2.9% + fixed fee, but check their official site for the latest policy updates."
-                                },
-                                {
-                                    question: "What is the 'Friends & Family' rate?",
-                                    answer: "Personal transfers using 'Friends & Family' are usually free if funded by bank/balance, but cannot be used for selling goods or services (no buyer protection)."
-                                }
-                            ]}
-                        />
+                        <ToolFAQ title="Questions, answered" faqs={faqs} />
                     </FadeIn>
                     <FadeIn delay={0.2}>
                         <CTA />
@@ -50,5 +54,5 @@ export default function PayPalCalculatorPage() {
                 </div>
             </div>
         </div>
-    );
+    )
 }

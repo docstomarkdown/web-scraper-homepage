@@ -1,4 +1,5 @@
-import { FadeIn, ToolFAQ } from "@/app/tools/_shared/components"
+import { Lightbulb } from "lucide-react"
+import { FadeIn, ToolFAQ, ToolPageTitle, ToolSectionHeader } from "@/app/tools/_shared/components"
 import { LeadTimeCalculator } from "./_components/LeadTimeCalculator"
 import { LeadTimeHowToUse } from "./_components/LeadTimeHowToUse"
 import { LeadTimeGuide } from "./_components/LeadTimeGuide"
@@ -6,26 +7,21 @@ import { LeadTimeOverview } from "./_components/LeadTimeOverview"
 import { CTA } from "@/components/sections/CTA"
 import { Metadata } from "next"
 export const metadata: Metadata = {
-    title: "Lead Time Calculator - Production to Delivery Estimator",
-    description: "Calculate total inventory lead time including production, shipping, customs, and buffers.",
+    title: "Lead Time Calculator: Free Order to Delivery Days",
+    description: "Add supplier time, shipping time and a safety buffer to get the total lead time and the date stock arrives if you order today.",
     alternates: { canonical: "/tools/lead-time-calculator" },
 }
 export default function LeadTimeCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-12">
-                    <FadeIn>
-                        <h1 className="text-4xl md:text-[42px] font-bold text-slate-900 mb-4 tracking-tight dark:text-white">
-                            Lead Time Calculator
-                        </h1>
-                    </FadeIn>
-                </div>
+                <ToolPageTitle title="Lead Time Calculator" />
                 <div className="mb-20">
                     <LeadTimeCalculator />
                 </div>
                 <div className="max-w-4xl mx-auto space-y-16">
                     <FadeIn delay={0.15}>
+                        <ToolSectionHeader title="What this calculator does" icon={Lightbulb} />
                         <LeadTimeOverview />
                     </FadeIn>
                     <FadeIn delay={0.2}>
@@ -38,25 +34,25 @@ export default function LeadTimeCalculatorPage() {
                         <ToolFAQ
                             faqs={[
                                 {
-                                    question: "Why does my actual lead time often differ from what my supplier promises?",
-                                    answer: "Suppliers often give you the 'best-case' production time. Real lead time includes your own order processing time, shipping transit, customs clearance, and local delivery. We recommend tracking your last 3 shipments to find your true average."
+                                    question: "How do you calculate lead time?",
+                                    answer: "Add the supplier's production time, the shipping time and a safety buffer. 14 + 7 + 3 is a 24-day lead time.",
                                 },
                                 {
-                                    question: "What should I include in 'Supplier Time'?",
-                                    answer: "Include the total time from purchase order submission to the moment goods are ready for pickup. This should account for raw material sourcing, manufacturing, and factory-level quality inspections."
+                                    question: "Why is my real lead time longer than the supplier's quote?",
+                                    answer: "The quote is usually production only. Add order processing, transit, customs and the last leg, and a buffer for delays.",
                                 },
                                 {
-                                    question: "How much 'Safety Buffer' is recommended?",
-                                    answer: "Most supply chain experts recommend a 15-20% buffer. If your total production and shipping time is 50 days, adding a 10-day buffer helps account for port congestion or customs delays."
+                                    question: "How big should the safety buffer be?",
+                                    answer: "Look at your last few orders and take the biggest overrun. A week covers most holiday and port delays on sea freight.",
                                 },
                                 {
-                                    question: "Does this account for national holidays?",
-                                    answer: "This calculator uses total calendar days. When planning, you should manually increase your 'Safety Buffer' if your timeline overlaps with major events like Chinese New Year or peak holiday seasons."
+                                    question: "Does lead time include my own processing time?",
+                                    answer: "Add it to the supplier time if your purchase orders take days to approve. The calculator counts whatever you put in.",
                                 },
                                 {
-                                    question: "How can I reduce my lead time?",
-                                    answer: "Common strategies include sourcing from local suppliers to reduce transit time, consolidating shipments, automating order processing, and choosing faster shipping modes like air freight over ocean freight for urgent stock."
-                                }
+                                    question: "How does lead time affect my reorder point?",
+                                    answer: "The reorder point is daily sales multiplied by lead time, plus safety stock. A longer lead time means ordering earlier.",
+                                },
                             ]}
                         />
                     </FadeIn>

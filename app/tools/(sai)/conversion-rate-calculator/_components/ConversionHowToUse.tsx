@@ -1,26 +1,16 @@
 "use client"
 import { ToolSteps } from "@/app/tools/_shared/components"
-import { Users, MousePointerClick, TrendingUp } from "lucide-react"
+import { Users, ShoppingCart, Percent } from "lucide-react"
+
+/** The three things a reader does, in order, with the calculator's own field names. */
 export function ConversionHowToUse() {
     return (
         <ToolSteps
             steps={[
-                {
-                    title: "Total Traffic",
-                    description: "Enter exact site unique visitors or page impressions during your period.",
-                    icon: Users
-                },
-                {
-                    title: "Total Actions",
-                    description: "Input the number of totally successful sales or captured digital leads.",
-                    icon: MousePointerClick
-                },
-                {
-                    title: "Check Rate",
-                    description: "Instantly calculate your raw conversion percentage to gauge site health.",
-                    icon: TrendingUp
-                }
+                { title: "Enter your Total Visitors (Sessions)", description: "Sessions for the period from Google Analytics, Shopify or your store's own report. Use sessions, not page views.", icon: Users },
+                { title: "Enter your Total Conversions", description: "Orders, sign-ups or whatever you count as a conversion, for the same period.", icon: ShoppingCart },
+                { title: "Read the conversion rate", description: "Conversions divided by visitors, as a percentage. Compare it with last month and with the benchmark band the result shows.", icon: Percent }
             ]}
         />
     )
-}
+}

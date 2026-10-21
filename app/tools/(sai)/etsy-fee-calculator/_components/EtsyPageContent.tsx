@@ -1,11 +1,10 @@
 "use client"
 import React from "react"
-import { BookOpen, MessageCircleQuestion } from "lucide-react"
 import { EtsyFeeCalculator } from "./EtsyFeeCalculator"
 import { EtsyFeeGuide } from "./EtsyFeeGuide"
 import { EtsyFeeHowToUse } from "./EtsyFeeHowToUse"
 import { EtsyOverview } from "./EtsyOverview"
-import { FadeIn, ToolPageTitle, ToolSectionHeader, ToolFAQ } from "@/app/tools/_shared/components"
+import { FadeIn, ToolPageTitle, ToolFAQ } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export default function EtsyPageContent() {
@@ -19,10 +18,6 @@ export default function EtsyPageContent() {
 
             <div className="max-w-5xl mx-auto space-y-16" id="etsy-fee-guide">
                 <FadeIn delay={0.2}>
-                    <ToolSectionHeader
-                        title="Tool Essential"
-                        icon={BookOpen}
-                    />
                     <EtsyOverview />
                 </FadeIn>
 
@@ -38,24 +33,30 @@ export default function EtsyPageContent() {
                     <div className="pt-10">
                         <div className="mt-8 space-y-4">
                             <ToolFAQ
-                                title="Frequently Asked Questions"
-                                icon={MessageCircleQuestion}
                                 faqs={[
                                     {
-                                        question: "How has the Etsy transaction fee changed recently?",
-                                        answer: "In early 2022, Etsy increased its transaction fee from 5% to 6.5%. This fee is applied to the total sale price, which includes both the item price and the shipping amount you charge to the customer."
+                                        question: "How much does Etsy charge per sale?",
+                                        answer: "A $0.20 listing fee, a 6.5% transaction fee on the price plus shipping, payment processing of 3% plus $0.25 in the US, and 12% or 15% offsite ads when an ad brought the buyer. On a $45 order with no ad that's $4.73."
                                     },
                                     {
-                                        question: "What exactly is the Etsy Offsite Ad fee?",
-                                        answer: "If a buyer clicks an Etsy Offsite Ad (advertising on Google, Facebook, etc.) and purchases from your shop within 30 days, you pay a commission. If you made less than $10,000 USD in sales over the last 365 days, the fee is 15% (and you can opt-out). If you made over $10,000, it's 12% and opt-out is not available."
+                                        question: "Is the Etsy transaction fee charged on shipping?",
+                                        answer: "Yes. Since 2022 the 6.5% applies to the item price and the shipping you charge, which is why the calculator adds them."
                                     },
                                     {
-                                        question: "Are listing fees separate from transaction fees?",
-                                        answer: "Yes. Listing fees are a flat $0.20 charged upfront when you create or renew a listing. Transaction fees (6.5%) are only charged once a sale is actually completed."
+                                        question: "What is the Etsy offsite ads fee?",
+                                        answer: "A 15% fee on orders that come from Etsy's ads on Google, Facebook and other sites within 30 days of the click, 12% for shops that sold over $10,000 in the past year. Shops under that threshold can opt out."
                                     },
                                     {
-                                        question: "What is the difference between Etsy Payments and PayPal fees?",
-                                        answer: "If you use Etsy Payments, you pay Etsy's processing fee (e.g., 3% + $0.25 in the US). If a buyer uses PayPal in a country where Etsy Payments isn't available, you pay PayPal's standard processing rate instead."
+                                        question: "When is the listing fee charged?",
+                                        answer: "When you list or renew an item, every four months, and again automatically after each sale of a multi-quantity listing. It's charged whether or not the item sells."
+                                    },
+                                    {
+                                        question: "Are payment processing fees the same everywhere?",
+                                        answer: "No. 3% plus $0.25 is the US rate; other countries have their own percentage and fixed fee. Change the two payment fields to match your country."
+                                    },
+                                    {
+                                        question: "Is this calculator free?",
+                                        answer: "Yes. It runs in your browser, needs no sign-up and stores nothing you type."
                                     }
                                 ]}
                             />

@@ -1,31 +1,19 @@
 "use client"
-import React from "react"
-import { ToolOverview } from "@/app/tools/_shared/components/ToolOverview"
+import { ToolOverview } from "@/app/tools/_shared/components"
 
-
+/** One paragraph on what the calculator is for, and three plain facts about it. */
 export function EtsyOverview() {
     return (
         <ToolOverview
-            heading="What is the Etsy Fee & Profit Calculator?"
-            headingAccent="Etsy Fee & Profit Calculator"
-            definition="The most intuitive way for Etsy sellers to master their marketplace math. Whether you're a side-hustler launching your first listing or a pro-shop owner scaling production, our tool gives you instant clarity on your bottom line. Stop guessing your margins—simply enter your item price, and our profit-first engine handles the 6.5% transaction fees, listing costs, and Offsite Ads in real-time. Designed to help you price your products with total confidence, so you focus on creating while we handle the calculations."
+            heading="What does Etsy take from a sale?"
+            headingAccent="Etsy take"
+            definition="Etsy charges four fees on a sale: a listing fee, a transaction fee on the price and shipping, a payment processing fee, and an offsite ads fee when an ad brought the buyer. This calculator applies them to one sale, subtracts your costs and shows the profit and margin."
             facts={[
-                {
-                    label: "Profit Transparency",
-                    stat: "Instant",
-                    detail: "See your exact net earnings after all Etsy fees are subtracted automatically."
-                },
-                {
-                    label: "Margin Analysis",
-                    stat: "Real-time",
-                    detail: "Watch your profit margin react instantly as you test different price points."
-                },
-                {
-                    label: "Fee Breakdown",
-                    stat: "Dynamic",
-                    detail: "Unlock deep-dive accounting of listing, transaction, and processing fees."
-                }
+                { stat: "4 fees", label: "What Etsy charges", detail: "Listing $0.20, transaction 6.5%, payment 3% + $0.25, offsite ads 12% or 15% when it applies." },
+                { stat: "Price + shipping", label: "What's charged on", detail: "The transaction and payment fees apply to the whole amount the buyer pays." },
+                { stat: "Profit and margin", label: "What you get", detail: "What's left after fees, product and shipping costs, and as a share of revenue." }
             ]}
+            accent="amber"
         />
     )
 }

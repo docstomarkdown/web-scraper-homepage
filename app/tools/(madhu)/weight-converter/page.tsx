@@ -1,13 +1,14 @@
+import { Lightbulb } from "lucide-react"
 import { Metadata } from "next"
-import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
+import { FadeIn, ToolFAQ, ToolPageTitle, ToolSectionHeader } from "@/app/tools/_shared/components"
 import { WeightConverter } from "./_components/WeightConverter"
 import { WeightConverterInfo } from "./_components/WeightConverterInfo"
 import { WeightConverterHowToUse } from "./_components/WeightConverterHowToUse"
 import { WeightConverterGuide } from "./_components/WeightConverterGuide"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
-    title: "Product Weight Converter - Optimize E-Commerce Shipping Cost",
-    description: "Convert e-commerce product weight to lbs, oz, kg, grams. Instantly calculate shipping tier impact, packaging dead weight, and carrier thresholds to cut fulfillment costs.",
+    title: "Product Weight Converter: Free lb, oz, kg and g for Shipping",
+    description: "Convert a product's weight between pounds, ounces, kilograms and grams, see its carrier price band, and how much room is left before the next one.",
     alternates: { canonical: "/tools/weight-converter" },
 }
 export default function WeightConverterPage() {
@@ -20,6 +21,7 @@ export default function WeightConverterPage() {
                 </div>
                 <div className="max-w-4xl mx-auto space-y-16">
                     <FadeIn delay={0.15}>
+                        <ToolSectionHeader title="What this converter does" icon={Lightbulb} />
                         <WeightConverterInfo />
                     </FadeIn>
                     <FadeIn delay={0.2}>
@@ -32,25 +34,25 @@ export default function WeightConverterPage() {
                         <ToolFAQ
                             faqs={[
                                 {
-                                    question: "Which shipping carriers are supported?",
-                                    answer: "The tool includes tier estimates for <strong>7+ global carriers</strong>: USPS, FedEx, UPS, and DHL for US and global shipping, plus Royal Mail (UK), Canada Post, and Australia Post for regional shipping. Each carrier has its own set of weight tiers with realistic cost range estimates."
+                                    question: "How do I convert ounces to pounds?",
+                                    answer: "Divide by 16. 12 ounces is 0.75 pounds. The converter shows kilograms and grams at the same time.",
                                 },
                                 {
-                                    question: "What is the Shipping Speed option?",
-                                    answer: "If you haven't decided on a carrier yet, switch to <strong>Shipping Speed mode</strong> (Standard / Express / Next Day) to get generic cross-carrier cost estimates based on delivery speed. This is useful for early-stage pricing research before committing to a specific carrier."
+                                    question: "Which carriers are included?",
+                                    answer: "The main US and international carriers, each with their standard and faster service levels. Pick the pair you ship with.",
                                 },
                                 {
-                                    question: "How accurate are the shipping cost estimates?",
-                                    answer: "Estimates are based on publicly published carrier weight tiers and represent <strong>typical retail rate ranges</strong>. Actual costs will vary based on origin/destination distance, package dimensions, negotiated business rates, and surcharges. Use these figures as a baseline to identify which tier your product falls into — not as a final invoiced amount."
+                                    question: "How accurate are the shipping bands?",
+                                    answer: "They follow published rate cards at the time the converter was built. Carriers update them yearly, so confirm with the carrier before quoting.",
                                 },
                                 {
-                                    question: "What does the Cost Breakdown expand to?",
-                                    answer: "Clicking <strong>\"View Cost Breakdown\"</strong> reveals every weight tier for the selected carrier in a scrollable list. Your current tier is highlighted with a colored border and badge. This lets you see exactly how many lbs/oz stand between you and a cheaper or more expensive shipping band — critical for packaging weight optimisation."
+                                    question: "What does the cost breakdown show?",
+                                    answer: "The band your item sits in, the bands above and below, and the weight you can add before the price steps up.",
                                 },
                                 {
-                                    question: "Why did my product fall into a 'Contact carrier' or 'Freight' tier?",
-                                    answer: "When a package exceeds a carrier's standard parcel weight limit (typically 70–150 lbs depending on the carrier), it moves out of standard parcel delivery into <strong>freight forwarding</strong>. Freight pricing requires a custom quote based on pallet dimensions, weight, density, and shipping lane — these can't be estimated generically."
-                                }
+                                    question: "Why does it say contact carrier or freight?",
+                                    answer: "The weight is above the carrier's parcel limit, usually 70 pounds. Those shipments are priced as freight.",
+                                },
                             ]}
                         />
                     </FadeIn>

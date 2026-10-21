@@ -176,6 +176,14 @@ guides and the jobs they belong to, site pages list every guide that names them,
 the category breadcrumb points at the hub's anchored section (14 links were 404s). Crawl: 0 broken links, 1
 orphan (Terms, linked from the footer). Titles: four competing guide titles renamed; every title ≤ 60.
 
+**Blog posts and calculators (same day).** The nine posts got search-first titles (all ≤ 60), plain meanings for every
+term the cold reader flagged, worked examples and takeaways; 1,400–1,700 words each. The calculator section (C2, A3):
+listing rewritten in the site's voice with an honest sentence per tool; shared components fixed (named icon buttons,
+labelled inputs, h1/h2/h3 order, native FAQ, one step list, reduced motion, site ink and blue); all 60 tool pages
+rewritten (real how-to steps, a guide with the formula in words and a worked example that matches the code, honest
+FAQs, metadata ≤ 60/160). Audit of the 70 pages: violations from 5,500 nodes to under a dozen (Radix tab ids on two
+pages remain); heading skips 0; unnamed controls 0.
+
 ## 6. Rerunning the audit
 
 ```bash

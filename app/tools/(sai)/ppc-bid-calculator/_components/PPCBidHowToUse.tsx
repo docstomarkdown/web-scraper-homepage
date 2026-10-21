@@ -1,26 +1,27 @@
 "use client"
 import { ToolSteps } from "@/app/tools/_shared/components"
-import { DollarSign, Target, MousePointerClick } from "lucide-react"
+import { Tag, Target, TrendingUp } from "lucide-react"
 
 export function PPCBidHowToUse() {
     return (
         <ToolSteps
+            title="How to use this tool"
             steps={[
                 {
-                    title: "Enter Product Data",
-                    description: "Input your selling price, conversion rate, and profit margin to define your profitability limits.",
-                    icon: DollarSign
+                    title: "Enter the product numbers",
+                    description: "Type the selling price, the conversion rate of your listing, and the profit margin before ad spend.",
+                    icon: Tag,
                 },
                 {
-                    title: "Define Campaign Goals",
-                    description: "Add an optional Target ACoS to refine your bid recommendations based on specific ad spend targets.",
-                    icon: Target
+                    title: "Set a target ACoS if you have one",
+                    description: "Enter the share of sales you are willing to spend on ads. Leave it blank and the calculator uses 75% of your margin.",
+                    icon: Target,
                 },
                 {
-                    title: "Receive Recommended Bid",
-                    description: "Instantly see your maximum recommended cost-per-click and the exact point where you'll break even.",
-                    icon: MousePointerClick
-                }
+                    title: "Read the two bids",
+                    description: "The break-even bid is where a click earns nothing. The recommended bid keeps your target ACoS and leaves profit.",
+                    icon: TrendingUp,
+                },
             ]}
         />
     )

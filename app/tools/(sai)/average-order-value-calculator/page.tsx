@@ -3,37 +3,23 @@ import { AOVCalculator } from "./_components/AOVCalculator"
 import { AOVGuide } from "./_components/AOVGuide"
 import { AOVHowToUse } from "./_components/AOVHowToUse"
 import { AOVOverview } from "./_components/AOVOverview"
-import { FadeIn, ToolFAQ, ToolSectionHeader } from "@/app/tools/_shared/components"
+import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
-import { BookOpen } from "lucide-react"
 export const metadata: Metadata = {
-    title: 'Average Order Value (AOV) Calculator',
-    description: 'Calculate your Average Order Value (AOV) to understand customer spending habits and improve your pricing strategy.',
+    title: "Average Order Value Calculator: Free AOV from Two Numbers",
+    description: "Divide revenue by orders to get average order value, and see the three ways stores raise it: bundles, a free shipping threshold and add-ons.",
     alternates: { canonical: "/tools/average-order-value-calculator" },
 }
 export default function AOVCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-10">
-                    <FadeIn direction="down" duration={0.6}>
-                        <h1 className="text-4xl font-bold tracking-tight text-gray-800 md:text-[42px] mb-4 dark:text-slate-100">
-                            Average Order Value (AOV) Calculator
-                        </h1>
-                        <p className="text-lg text-slate-600 max-w-2xl mx-auto dark:text-slate-300">
-                            Determine the average amount spent every time a customer places an order.
-                        </p>
-                    </FadeIn>
-                </div>
+                <ToolPageTitle title="Average Order Value Calculator" direction="down" duration={0.6} />
                 <div className="mb-20">
                     <AOVCalculator />
                 </div>
                 <div className="max-w-5xl mx-auto space-y-16" id="aov-guide">
                     <FadeIn delay={0.2}>
-                        <ToolSectionHeader
-                            title="Tool Essential"
-                            icon={BookOpen}
-                        />
                         <AOVOverview />
                     </FadeIn>
                     <FadeIn delay={0.2}>
@@ -46,23 +32,31 @@ export default function AOVCalculatorPage() {
                     <FadeIn delay={0.2}>
                         <ToolFAQ
                             faqs={[
-                                {
-                                    question: "What is AOV and why does it matter?",
-                                    answer: "Average Order Value (AOV) is the average amount of money a customer spends per transaction in your store. It matters because increasing your AOV is one of the fastest and cheapest ways to grow revenue—you’re extracting more value from the traffic you already have without spending more on marketing."
-                                },
-                                {
-                                    question: "How do I calculate AOV?",
-                                    answer: "AOV is calculated by dividing your total revenue by the total number of orders placed over a specific time period. For example, if your store generated $50,000 in sales from 1,000 orders last month, your AOV is $50 ($50,000 ÷ 1,000)."
-                                },
-                                {
-                                    question: "What is considered a good AOV?",
-                                    answer: "There is no universal 'good' AOV, as it depends heavily on your industry and product pricing. For a low-ticket apparel store, an AOV of $60 might be excellent. For high-ticket electronics, $500 could be standard. The best benchmark is your own historical data—a 'good' AOV is one that consistently grows over time and comfortably covers your customer acquisition costs (CAC)."
-                                },
-                                {
-                                    question: "How can I increase my AOV?",
-                                    answer: "The most effective strategies include creating product bundles, setting free shipping thresholds (e.g., 'Spend $20 more for free shipping'), adding low-cost impulse upsells directly in the checkout cart, and offering volume discounts (e.g., 'Buy 2, Get 10% Off')."
-                                }
-                            ]}
+                                    {
+                                        question: "How do I calculate average order value?",
+                                        answer: "Divide total revenue by the number of orders in the same period. $50,000 of sales from 1,250 orders is a $40 average order value."
+                                    },
+                                    {
+                                        question: "What is a good average order value?",
+                                        answer: "Whatever is higher than last month's. AOV depends on what you sell: $40 can be strong for consumables and weak for furniture, so compare against your own history and your margin."
+                                    },
+                                    {
+                                        question: "How can I increase average order value?",
+                                        answer: "Bundle products that go together, set a free shipping threshold a little above today's AOV, and offer an add-on at checkout. Each raises the value of orders you already get."
+                                    },
+                                    {
+                                        question: "Should I count refunds and discounts?",
+                                        answer: "Use the figure that matches your question. Net revenue after discounts and refunds tells you what orders are really worth; gross revenue tells you what customers intended to spend."
+                                    },
+                                    {
+                                        question: "Is average order value the same as revenue per customer?",
+                                        answer: "No. A customer who orders three times in a month contributes three orders. Revenue per customer is usually higher than AOV and matters more for lifetime value."
+                                    },
+                                    {
+                                        question: "Is this calculator free?",
+                                        answer: "Yes. It runs in your browser, needs no sign-up and stores nothing you type."
+                                    }
+                                ]}
                         />
                     </FadeIn>
                     {/* CTA Section */}

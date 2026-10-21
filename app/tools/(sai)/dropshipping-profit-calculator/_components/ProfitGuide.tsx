@@ -1,128 +1,19 @@
 "use client"
-import { BookOpen, AlertTriangle, CircleDollarSign, Calculator, Info } from "lucide-react"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-const DrawingTrendingDown = () => (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-    >
-        <polyline points="23 18 13.5 8.5 8.5 13.5 1 6" />
-        <polyline points="17 18 23 18 23 12" />
-    </svg>
-)
-const insights = [
-    {
-        icon: DrawingTrendingDown,
-        iconBg: "bg-rose-50 dark:bg-rose-950/40",
-        iconColor: "text-rose-500 dark:text-rose-400",
-        statColor: "text-rose-600 dark:text-rose-400",
-        title: "The Margin Illusion",
-        stat: "30–40%",
-        statLabel: "Profit lost to hidden costs",
-        description: "Gross margins can be misleading. Hidden costs like shipping variances, transaction fees, and taxes often eat up 30-40% of your expected profit. Always calculate your NET profit to see the real picture."
-    },
-    {
-        icon: AlertTriangle,
-        iconBg: "bg-amber-50 dark:bg-amber-950/40",
-        iconColor: "text-amber-500 dark:text-amber-400",
-        statColor: "text-amber-600 dark:text-amber-400",
-        title: "The RTO Problem",
-        stat: "2×",
-        statLabel: "Shipping cost per return",
-        description: "Returns are a double hit: you pay for shipping both ways, plus you lose your ad spend. In Cash on Delivery (COD) markets, RTO rates can hit 15-30%, making this a critical factor to track.",
-        tooltip: "RTO (Return to Origin): When a customer rejects a delivery. You pay for shipping to them AND back to you, plus the ad money is wasted."
-    },
-    {
-        icon: CircleDollarSign,
-        iconBg: "bg-blue-50 dark:bg-blue-950/40",
-        iconColor: "text-blue-500 dark:text-blue-400",
-        statColor: "text-blue-600 dark:text-blue-400",
-        title: "ROAS Reality Check",
-        stat: "4×+",
-        statLabel: "Target ROAS (not 3.5×)",
-        description: "A 3.5× ROAS might look good, but after deducting product and shipping costs, your actual profit could be thin. Aim for higher ROAS to cover all operational expenses and returns.",
-        tooltip: "ROAS (Return on Ad Spend): Revenue earned for every $1 spent on ads. A high ROAS doesn't always guarantee profit if your margins are low."
-    },
-    {
-        icon: Calculator,
-        iconBg: "bg-blue-50 dark:bg-blue-950/40",
-        iconColor: "text-blue-500 dark:text-blue-400",
-        statColor: "text-blue-600 dark:text-blue-400",
-        title: "Break-Even CPA",
-        stat: "Know It",
-        statLabel: "Your max cost per acquisition",
-        description: "This is your profitability line in the sand. It's the maximum you can spend to acquire a customer without losing money. Keep your actual CPA below this number to stay profitable.",
-        tooltip: "CPA (Cost Per Acquisition): The average cost to get one paying customer. If your CPA is lower than your break-even point, you make money."
-    }
-]
+import { ToolGuide } from "@/app/tools/_shared/components"
+import { Calculator, Undo2, Megaphone, AlertTriangle } from "lucide-react"
+
+/** What the calculator computes, the formula in words, where the inputs come from, and one worked example. */
 export function ProfitGuide() {
     return (
-        <section id="profit-guide">
-            <div className="flex items-center gap-3 mb-10 pb-4 border-b border-slate-100 dark:border-slate-800">
-                <div className="p-2 bg-blue-50 rounded-xl text-blue-600 dark:bg-blue-950/40 dark:text-blue-400">
-                    <BookOpen className="h-6 w-6" />
-                </div>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white">The Hidden Truth About Dropshipping Profitability</h2>
-            </div>
-            <div className="space-y-6">
-                {insights.map((insight, index) => {
-                    const Icon = insight.icon
-                    return (
-                        <div
-                            key={index}
-                            className="bg-white rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden dark:bg-slate-900 dark:border-slate-800"
-                        >
-                            <div className="flex flex-col md:flex-row">
-                                {/* Left: Content */}
-                                <div className="flex-1 p-6 order-2 md:order-1">
-                                    <div className="flex items-center gap-3 mb-4">
-                                        <div className={`w-9 h-9 rounded-xl ${insight.iconBg} ${insight.iconColor} flex items-center justify-center border border-slate-100/50 dark:border-slate-800`}>
-                                            <Icon className="w-4.5 h-4.5" />
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <h3 className="text-base font-bold text-slate-900 dark:text-white">{insight.title}</h3>
-                                            {'tooltip' in insight && (
-                                                <TooltipProvider delayDuration={100}>
-                                                    <Tooltip>
-                                                        <TooltipTrigger asChild>
-                                                            <button type="button" className="text-slate-400 hover:text-blue-600 transition-colors dark:text-slate-500 dark:hover:text-blue-400">
-                                                                <Info className="h-3.5 w-3.5" />
-                                                            </button>
-                                                        </TooltipTrigger>
-                                                        <TooltipContent side="top" className="max-w-xs text-xs bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
-                                                            {insight.tooltip}
-                                                        </TooltipContent>
-                                                    </Tooltip>
-                                                </TooltipProvider>
-                                            )}
-                                        </div>
-                                    </div>
-                                    <p className="text-sm text-slate-600 leading-relaxed dark:text-slate-300">
-                                        {insight.description}
-                                    </p>
-                                </div>
-                                {/* Right: Takeaway Stat Panel (Neutral Background) */}
-                                <div className="flex md:flex-col items-center justify-center gap-1.5 p-6 md:w-48 bg-slate-50/50 border-b md:border-b-0 md:border-l border-slate-100 order-1 md:order-2 dark:bg-slate-800/60 dark:border-slate-800">
-                                    <div className={`text-3xl font-bold ${insight.statColor} tracking-tight`}>{insight.stat}</div>
-                                    <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 bg-slate-100/50 px-2 py-0.5 rounded-full dark:text-slate-500 dark:bg-slate-800">
-                                        Takeaway
-                                    </div>
-                                    <div className="text-[11px] font-medium text-slate-500 text-center leading-tight mt-1 max-w-[120px] dark:text-slate-400">
-                                        {insight.statLabel}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )
-                })}
-            </div>
-        </section>
+        <ToolGuide
+            title="How net profit is worked out"
+            icon={Calculator}
+            items={[
+                { title: "The formula in words", description: "RTO orders equal orders received times the RTO percentage, rounded down. Delivered orders equal orders received minus cancelled minus RTO. Revenue equals delivered orders times the selling price. Expenses equal delivered orders times the purchase price, plus every order's ad and other costs, plus shipping on delivered orders, plus shipping again on RTO orders. Net profit is revenue minus expenses.", icon: Calculator, iconBg: "bg-blue-50 dark:bg-blue-950/40", iconColor: "text-blue-700 dark:text-blue-300" },
+                { title: "A worked example", description: "Purchase $300, selling $800, 100 orders, 10 cancelled, 20% RTO, $60 shipping, $150 ads and $20 other costs per order. 20 orders return and 70 deliver: revenue $56,000. Expenses are $21,000 of goods, $15,000 of ads, $2,000 of other costs, $4,200 of shipping and $1,200 of return shipping, $43,400 in all. Net profit is $12,600.", icon: Undo2, iconBg: "bg-amber-50 dark:bg-amber-950/40", iconColor: "text-amber-700 dark:text-amber-300" },
+                { title: "Why RTO hurts twice", description: "A returned parcel costs the shipping out and the shipping back, and the ad money that produced the order is gone. In the example the 20 returns cost $1,200 in extra shipping and carried $3,000 of ad spend that brought no sale.", icon: Megaphone, iconBg: "bg-emerald-50 dark:bg-emerald-950/40", iconColor: "text-emerald-700 dark:text-emerald-300" },
+                { title: "What it doesn't include", description: "Payment gateway fees, packaging, taxes and the time it takes to get refunds from the supplier. Put a share of them into Other Cost per Product to see the full picture.", icon: AlertTriangle, iconBg: "bg-violet-50 dark:bg-violet-950/40", iconColor: "text-violet-700 dark:text-violet-300" }
+            ]}
+        />
     )
 }

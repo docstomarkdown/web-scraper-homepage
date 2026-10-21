@@ -1,30 +1,20 @@
 "use client"
-import { ToolOverview } from "@/app/tools/_shared/components/ToolOverview"
+import { ToolOverview } from "@/app/tools/_shared/components"
 
+/** What this calculator does, in plain words. Copy rules: docs/writing-style.md. */
 export function PalletOverview() {
     return (
-        <ToolOverview
-            heading="Why Use the Pallet"
-            headingAccent="Configuration Calculator?"
-            definition="The primary purpose of the Pallet Configuration Calculator is to help warehouse managers, eCommerce sellers, and logistics teams instantly find the optimal way to load boxes onto a pallet — maximizing units per pallet while staying within height and weight limits. Simply enter your box dimensions and pallet type (Standard US, Euro, or Custom), and the tool automatically tests 6 box orientations to show you the best arrangement, total boxes, layers, space efficiency, and a live visual preview. Even a small improvement in pallet utilization can save thousands in annual freight costs."
-            facts={[
-                {
-                    stat: "Live",
-                    label: "Instant Results",
-                    detail: "Get your optimal pallet layout the moment you enter box length and width — no button clicks needed."
-                },
-                {
-                    stat: "6×",
-                    label: "Orientation Testing",
-                    detail: "Automatically tests 6 box orientations (Standard, Rotated, On Side, On End) to find the maximum fit."
-                },
-                {
-                    stat: "Pallet",
-                    label: "Visual Preview",
-                    detail: "See a live isometric pallet visualization that updates in real time as you adjust dimensions."
-                }
-            ]}
-            accent="blue"
-        />
+        <div id="overview">
+            <ToolOverview
+                heading="What the Pallet Configuration Calculator tells you"
+                headingAccent="Pallet Configuration Calculator"
+                definition="Type a carton's size, pick a pallet and set the stack height your carrier or warehouse allows, and the calculator finds the arrangement that fits the most cartons per layer, how many layers stack, and the total. Add the carton weight to keep the load under the pallet's limit."
+                facts={[
+                    { stat: "Per layer", label: "best orientation", detail: "Cartons are tried both ways round; the arrangement with more per layer wins." },
+                    { stat: "Layers", label: "within the height", detail: "The stack height minus the pallet's own 5.5 inches, divided by the carton height." },
+                    { stat: "Total", label: "capped by weight", detail: "Per layer times layers, reduced if the weight limit is reached first." },
+                ]}
+            />
+        </div>
     )
 }

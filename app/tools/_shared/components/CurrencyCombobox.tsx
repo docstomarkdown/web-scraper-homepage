@@ -267,6 +267,7 @@ export function CurrencyCombobox({ value, onValueChange, className }: CurrencyCo
                     ref={buttonRef}
                     variant="outline"
                     role="combobox"
+                    aria-label="Currency"
                     aria-expanded={open}
                     className={cn(
                         'w-full flex items-center gap-2 h-10 text-sm font-bold border border-slate-200 bg-white shadow-sm px-3 transition-all duration-200 rounded-xl hover:shadow-md hover:border-slate-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/5 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700',
@@ -288,8 +289,8 @@ export function CurrencyCombobox({ value, onValueChange, className }: CurrencyCo
                     ) : (
                         <span className="text-left">Select currency</span>
                     )}
-                    <ChevronDown className={cn(
-                        "h-3 w-3 shrink-0 opacity-40 transition-transform duration-200",
+                    <ChevronDown aria-hidden="true" className={cn(
+                        "h-3 w-3 shrink-0 opacity-60 transition-transform duration-200",
                         open && "rotate-180"
                     )} />
                 </Button>
@@ -321,8 +322,8 @@ export function CurrencyCombobox({ value, onValueChange, className }: CurrencyCo
                                             className="object-contain"
                                         />
                                         <span>{currency.code}</span>
-                                        <span className="text-muted-foreground text-xs">({currency.symbol})</span>
-                                        <span className="text-muted-foreground text-xs ml-auto truncate max-w-[80px]">{currency.name}</span>
+                                        <span className="text-slate-700 dark:text-slate-200 text-sm">({currency.symbol})</span>
+                                        <span className="text-slate-700 dark:text-slate-200 text-sm ml-auto truncate max-w-[80px]">{currency.name}</span>
                                     </div>
                                     <Check
                                         className={cn(

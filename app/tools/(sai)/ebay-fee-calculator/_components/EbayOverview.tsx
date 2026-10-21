@@ -1,29 +1,19 @@
 "use client"
 import { ToolOverview } from "@/app/tools/_shared/components"
 
+/** One paragraph on what the calculator is for, and three plain facts about it. */
 export function EbayOverview() {
     return (
         <ToolOverview
-            heading="What is the eBay Fee Calculator?"
-            headingAccent="eBay Fee Calculator"
-            definition="Designed to compute the net payout of every sale on eBay's global marketplace, this eBay Fee Calculator is used by online sellers, dropshippers, and small business owners to accurately estimate take-home profit after platform overheads. It provides a real-time, visual breakdown of category-specific final value fees, ad spend, and fulfillment costs, enabling you to set competitive prices and protect your margins before you even list an item."
+            heading="What does eBay take from a sale?"
+            headingAccent="eBay take"
+            definition="eBay charges a final value fee on the item price and the shipping you charge, plus a fixed amount per order and an optional promoted listings fee. This calculator applies the rates you enter to a sale, subtracts your own costs and shows the fees, the profit and the margin."
             facts={[
-                {
-                    stat: "13.25%",
-                    label: "Standard FVF",
-                    detail: "Uses the specific Final Value Fee tiers for your product category to ensure surgical margin accuracy."
-                },
-                {
-                    stat: "$0.30",
-                    label: "Fixed Fee",
-                    detail: "Factors in the standard per-order transaction fee, essential for tracking profitability on low-ticket items."
-                },
-                {
-                    stat: "100%",
-                    label: "Accurate Profit",
-                    detail: "Breaks down all hidden costs—including Promoted Listings and shipping—to reveal your exact net profit margin before you list."
-                }
+                { stat: "Price + shipping", label: "What's charged on", detail: "The final value fee applies to the whole amount the buyer pays." },
+                { stat: "13.25% + $0.30", label: "The common rate", detail: "Most categories, before store discounts; enter your own." },
+                { stat: "Profit and margin", label: "What you get", detail: "What's left after fees, product and shipping costs, and as a share of revenue." }
             ]}
+            accent="blue"
         />
     )
 }

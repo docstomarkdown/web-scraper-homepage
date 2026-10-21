@@ -1,30 +1,20 @@
 "use client"
-import { ToolOverview } from "@/app/tools/_shared/components/ToolOverview"
+import { ToolOverview } from "@/app/tools/_shared/components"
 
+/** What this calculator does, in plain words. Copy rules: docs/writing-style.md. */
 export function GrossMarginOverview() {
     return (
-        <ToolOverview
-            heading="Why Use Gross Margin Calculator?"
-            headingAccent="Gross Margin Calculator"
-            definition="The primary purpose of the Gross Margin Calculator is to protect your profitability by identifying exactly how much money you keep from every sale. Built for e-commerce sellers and brand owners, this tool calculates the critical percentage left over after covering your product costs (COGS). Whether you are setting new prices, negotiating with suppliers, or auditing your current margins—this tool ensures you never list a product that doesn't hit your profit goals."
-            facts={[
-                {
-                    stat: "Profit Protection",
-                    label: "Know Your Margin",
-                    detail: "The tool's most important job is showing you your 'Real Profit' per unit, so you know exactly how many dollars you have left to cover overhead."
-                },
-                {
-                    stat: "Reverse Pricing",
-                    label: "Target Profits",
-                    detail: "Don't guess your prices. Set your target margin and product cost to instantly see the exact selling price you need to charge."
-                },
-                {
-                    stat: "COGS Ceiling",
-                    label: "Supplier Limits",
-                    detail: "Know your limit. Calculate the maximum you can afford to pay a supplier while still hitting your required profit margin."
-                }
-            ]}
-            accent="blue"
-        />
+        <div id="overview">
+            <ToolOverview
+                heading="What the Gross Margin Calculator tells you"
+                headingAccent="Gross Margin Calculator"
+                definition="Gross margin is the share of each sale left after the cost of the goods. Type revenue and cost to get the margin, or set a target margin to find the revenue you need or the most you can pay for the goods. Three modes, one formula."
+                facts={[
+                    { stat: "Find margin", label: "from revenue and cost", detail: "Gross profit divided by revenue, as a percentage." },
+                    { stat: "Find revenue", label: "for a target margin", detail: "The price you need to charge to keep the margin you want." },
+                    { stat: "Find COGS", label: "for a target margin", detail: "The most the goods can cost at your price and target margin." },
+                ]}
+            />
+        </div>
     )
 }

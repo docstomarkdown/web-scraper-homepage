@@ -1,47 +1,18 @@
 "use client"
-import { ToolGuide } from "@/app/tools/_shared/components/ToolGuide"
-import { Store, CreditCard, Megaphone, Tag } from "lucide-react"
+import { ToolGuide } from "@/app/tools/_shared/components"
+import { Store, Calculator, Percent, Megaphone, AlertTriangle } from "lucide-react"
 
+/** What the calculator computes, the formula in words, where the inputs come from, and one worked example. */
 export function EtsyFeeGuide() {
     return (
         <ToolGuide
-            title="Understanding Etsy Fees"
+            title="How Etsy fees are worked out"
             icon={Store}
             items={[
-                {
-                    title: "Listing Fee ($0.20)",
-                    description: "Every time you publish or renew a listing on Etsy, you are charged a flat $0.20. This fee is paid upfront regardless of whether the item sells, and it renews automatically every four months.",
-                    icon: Tag,
-                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
-                    iconColor: "text-amber-500 dark:text-amber-400",
-                    stat: "$0.20",
-                    statLabel: "Per Listing"
-                },
-                {
-                    title: "Transaction Fee (6.5%)",
-                    description: "Etsy charges 6.5% of the total order value — including the item price, the shipping you charge the buyer, and any gift wrapping fees. This is Etsy's primary revenue fee and is unavoidable for all sellers.",
-                    icon: Store,
-                    iconBg: "bg-orange-50 dark:bg-orange-950/40",
-                    iconColor: "text-orange-500 dark:text-orange-400",
-                    stat: "6.5%",
-                    statLabel: "Of Total Order"
-                },
-                {
-                    title: "Payment Processing",
-                    description: "Etsy Payments charges a percentage plus a small fixed fee per transaction to cover credit card and payment gateway costs. In the US the rate is 3% + $0.25. Rates vary by country.",
-                    icon: CreditCard,
-                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                    iconColor: "text-blue-500 dark:text-blue-400",
-                    stat: "3% + $0.25",
-                    statLabel: "US Standard"
-                },
-                {
-                    title: "Offsite Ads (15% or 12%)",
-                    description: "When Etsy promotes your listings on external platforms (Google, Facebook, etc.) and a sale results, an Offsite Ads fee applies. Sellers under $10k/year can opt out (15%); sellers over $10k/year cannot opt out and pay a reduced 12%.",
-                    icon: Megaphone,
-                    iconBg: "bg-purple-50 dark:bg-purple-950/40",
-                    iconColor: "text-purple-500 dark:text-purple-400",
-                }
+                { title: "The formula in words", description: "Revenue equals the item price plus shipping charged. Fees are the listing fee, plus revenue times the transaction rate, plus revenue times the payment rate plus the fixed payment fee, plus revenue times the offsite ads rate. Profit equals revenue minus your product cost, your shipping cost and the fees; margin is profit divided by revenue.", icon: Calculator, iconBg: "bg-blue-50 dark:bg-blue-950/40", iconColor: "text-blue-700 dark:text-blue-300" },
+                { title: "A worked example", description: "A $40 item with $5 shipping charged is $45 of revenue. The listing fee is $0.20, the 6.5% transaction fee $2.93, payment processing at 3% plus $0.25 is $1.60, and no offsite ad applies: $4.73 in fees. With a $12 product cost and $4 to ship, profit is $24.27, a 53.9% margin.", icon: Percent, iconBg: "bg-amber-50 dark:bg-amber-950/40", iconColor: "text-amber-700 dark:text-amber-300" },
+                { title: "Offsite ads", description: "If a buyer arrives from an Etsy offsite ad and buys within 30 days, Etsy charges 15% of the order, or 12% for shops that made over $10,000 in the past year. Enter the rate when the sale came through an ad, otherwise leave it at zero.", icon: Megaphone, iconBg: "bg-emerald-50 dark:bg-emerald-950/40", iconColor: "text-emerald-700 dark:text-emerald-300" },
+                { title: "What it doesn't include", description: "Currency conversion (2.5%), regulatory operating fees in some countries, Etsy Ads you pay per click, and the listing fee for renewals after a sale. Compare with your Etsy payment account for one real order.", icon: AlertTriangle, iconBg: "bg-violet-50 dark:bg-violet-950/40", iconColor: "text-violet-700 dark:text-violet-300" }
             ]}
         />
     )

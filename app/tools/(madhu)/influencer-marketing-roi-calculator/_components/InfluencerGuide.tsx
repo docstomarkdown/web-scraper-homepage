@@ -1,45 +1,50 @@
 "use client"
-import { ToolGuide } from "@/app/tools/_shared/components/ToolGuide"
-import { Percent, Box, Target, BookOpen } from "lucide-react"
+import { ToolGuide } from "@/app/tools/_shared/components"
+import { AlertTriangle, BookOpen, Calculator, Table } from "lucide-react"
 
+/** The formula in words, where the inputs come from, a worked example, and what the result leaves out. */
 export function InfluencerGuide() {
     return (
         <ToolGuide
-            title="Measuring Influencer Growth & ROI"
+            title="How the numbers are worked out"
             icon={BookOpen}
             items={[
                 {
-                    title: "Simple Estimates vs. Deep Analysis",
-                    description: "Using the default view is perfect for a quick ROI check. If you want to know exactly where your budget went and see a <strong>Budget Split</strong> pie chart, click 'Add Details'. This lets you separate the impact of cash fees, ad spend, and product costs.",
-                    icon: Percent,
-                    stat: "ROI Modes",
-                    statLabel: "Simple & Deep",
+                    title: "The formula, in words",
+                    description: "Cost is the influencer fee plus ad spend plus product cost plus shipping, or the total you entered. Profit is revenue minus cost. ROI is profit divided by cost, as a percentage.",
+                    icon: Calculator,
+                    stat: "4 costs",
+                    statLabel: "one revenue",
                     iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                    iconColor: "text-blue-600 dark:text-blue-400",
-                    statColor: "text-blue-700 dark:text-blue-400",
-                    tooltip: "The advanced 'Add Details' mode automatically sums your granular expenses into a total Campaign Cost."
-                },
-                {
-                    title: "The Silent Cost of Gifting",
-                    description: "If you didn't pay a cash fee but sent a <strong>Free Product</strong> instead, you must still track its value. Under 'Add Details', enter the <strong>Product Cost (COGS)</strong> of the gifted item to ensure your ROI reflects the actual replacement value, not an inflated $0 cost.",
-                    icon: Box,
-                    stat: "COGS matters",
-                    statLabel: "Gifted Limits",
-                    iconBg: "bg-green-50 dark:bg-green-950/40",
-                    iconColor: "text-green-600 dark:text-green-400",
-                    statColor: "text-green-700 dark:text-green-400",
-                    tooltip: "Tracking product costs ensures you know exactly when a 'Free' shoutout actually becomes profitable."
-                },
-                {
-                    title: "Understanding 'Good' ROI",
-                    description: "A positive ROI means you made money, while anything below 0% is a loss. However, even break-even campaigns (0% ROI) can be highly valuable if they provide you with high-quality user-generated content (UGC) for future ad creatives or massive brand awareness.",
-                    icon: Target,
-                    stat: "100%",
-                    statLabel: "Strong Target",
-                    iconBg: "bg-purple-50 dark:bg-purple-950/40",
-                    iconColor: "text-purple-600 dark:text-purple-400",
-                    statColor: "text-purple-700 dark:text-purple-400",
-                    tooltip: "Direct-response marketers typically target 100%+ ROI, but brand-builders often accept break-even for content."
+                    iconColor: "text-blue-700 dark:text-blue-300",
+                    statColor: "text-blue-700 dark:text-blue-300",
+                },                {
+                    title: "Where the inputs come from",
+                    description: "The fee is in the contract. Ad spend is in your ads manager. Product cost is the cost of goods for the units you sent. Revenue comes from the code or link you gave the influencer.",
+                    icon: BookOpen,
+                    stat: "Code or link",
+                    statLabel: "to attribute sales",
+                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
+                    iconColor: "text-emerald-700 dark:text-emerald-300",
+                    statColor: "text-emerald-700 dark:text-emerald-300",
+                },                {
+                    title: "A worked example",
+                    description: "A $1,000 fee, $500 of ads, $200 of product and $30 of shipping is $1,730 of cost. $5,000 of attributed revenue gives $3,270 of profit and a 189% ROI.",
+                    icon: Table,
+                    stat: "189%",
+                    statLabel: "ROI on $1,730",
+                    iconBg: "bg-violet-50 dark:bg-violet-950/40",
+                    iconColor: "text-violet-700 dark:text-violet-300",
+                    statColor: "text-violet-700 dark:text-violet-300",
+                },                {
+                    title: "What it leaves out",
+                    description: "Followers who buy later without the code, and the cost of goods on the orders themselves, aren't counted. For a product with a thin margin, a positive ROI here can still be a loss once you take off what the sold goods cost.",
+                    icon: AlertTriangle,
+                    stat: "Revenue",
+                    statLabel: "not margin",
+                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
+                    iconColor: "text-amber-700 dark:text-amber-300",
+                    statColor: "text-amber-700 dark:text-amber-300",
                 }
             ]}
         />

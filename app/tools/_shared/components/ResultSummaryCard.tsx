@@ -262,7 +262,7 @@ export function ResultSummaryCard({
             emerald: { bg: "bg-emerald-100/50 dark:bg-emerald-900/40", dot: "bg-emerald-500", textCol: "text-emerald-700 dark:text-emerald-400" },
             amber: { bg: "bg-amber-100/50 border-amber-200 dark:bg-amber-900/40 dark:border-amber-900/50", dot: "bg-amber-500", textCol: "text-amber-700 font-semibold dark:text-amber-400" },
             rose: { bg: "bg-rose-100/50 border-rose-200 dark:bg-rose-900/40 dark:border-rose-900/50", dot: "bg-rose-500", textCol: "text-rose-700 font-semibold dark:text-rose-400" },
-            blue: { bg: "bg-blue-100/50 border-blue-200 dark:bg-blue-900/40 dark:border-blue-900/50", dot: "bg-blue-500", textCol: "text-blue-700 font-semibold dark:text-blue-400" },
+            blue: { bg: "bg-blue-100/50 border-blue-200 dark:bg-blue-900/40 dark:border-blue-900/50", dot: "bg-blue-500", textCol: "text-[#1f5ec2] dark:text-[#7aa7ff] font-semibold dark:text-blue-400" },
             slate: { bg: "bg-slate-100/50 border-slate-200 dark:bg-slate-800 dark:border-slate-800", dot: "bg-slate-500", textCol: "text-slate-700 font-semibold dark:text-slate-200" },
         }
         return {
@@ -317,16 +317,16 @@ export function ResultSummaryCard({
         >
             <Card className={cn(
                 "relative overflow-hidden border border-slate-200/60 shadow-sm rounded-2xl dark:border-slate-800",
-                "bg-[#F5F8FD]",
+                "bg-[#F5F8FD] dark:bg-slate-900",
                 className
             )}>
                 {/* ── Static Header ── */}
                 <div className="flex justify-between items-center gap-4 px-6 pt-5 pb-1">
                     <div className="flex items-center gap-2.5">
                         <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-100/50 shadow-sm shadow-blue-500/5 dark:border-blue-900/50">
-                            <ClipboardList className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                            <ClipboardList className="w-4 h-4 text-[#1f5ec2] dark:text-[#7aa7ff]" />
                         </div>
-                        <span className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none dark:text-blue-400">
+                        <span className="text-base font-bold text-[#1f5ec2] dark:text-[#7aa7ff] leading-none dark:text-blue-400">
                             Result Panel
                         </span>
                     </div>
@@ -342,7 +342,7 @@ export function ResultSummaryCard({
                                     transition={{ duration: 0.4, ease: "easeOut" }}
                                     className="bg-slate-50 border border-slate-100 px-3 py-1.5 rounded-full flex items-center gap-2.5 shadow-sm dark:bg-slate-800/60 dark:border-slate-800"
                                 >
-                                    <span className="text-[10px] font-black text-blue-600 dark:text-blue-400">{completedCount}/{totalCount}</span>
+                                    <span className="text-sm font-bold text-[#1f5ec2] dark:text-[#7aa7ff]">{completedCount}/{totalCount}</span>
                                     <div className="w-16 h-1.5 bg-blue-100/80 rounded-full overflow-hidden dark:bg-blue-900/40">
                                         <motion.div
                                             className="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full"
@@ -362,7 +362,7 @@ export function ResultSummaryCard({
                                     exit={{ opacity: 0 }}
                                     transition={{ duration: 0.4, ease: "easeInOut" }}
                                     className={cn(
-                                        "flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[10.5px] font-bold tracking-wide shrink-0",
+                                        "flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-sm font-bold tracking-wide shrink-0",
                                         badge.bg, badge.textCol,
                                         "border-slate-200/50 dark:border-slate-800"
                                     )}
@@ -401,16 +401,16 @@ export function ResultSummaryCard({
                                             </div>
                                         </div>
                                         <div className="flex flex-col items-center gap-1.5">
-                                            <div className="flex items-center gap-3 text-blue-500/70">
+                                            <div className="flex items-center gap-3 text-blue-500/70" aria-hidden="true">
                                                 <svg className="w-5 h-3 shrink-0" viewBox="0 0 40 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                     <path d="M9 19l-7-7 7-7" />
                                                     <path d="M2 12h36" />
                                                 </svg>
-                                                <p className="text-[12.5px] text-slate-500 font-semibold leading-snug whitespace-nowrap z-10 dark:text-slate-400">
+                                                <p className="text-sm text-slate-700 dark:text-slate-200 font-semibold leading-snug whitespace-nowrap z-10">
                                                     Fill in the inputs to see your
                                                 </p>
                                             </div>
-                                            <span className="inline-flex items-center px-3 py-1 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100/80 text-[11.5px] font-extrabold text-blue-600/90 tracking-wide shadow-sm shadow-blue-100/50 dark:from-blue-950/30 dark:to-blue-900/30">
+                                            <span className="inline-flex items-center px-3 py-1 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100/80 text-sm font-bold text-[#1f5ec2] dark:text-[#7aa7ff]/90 tracking-wide shadow-sm shadow-blue-100/50 dark:from-blue-950/30 dark:to-blue-900/30">
                                                 {emptyLabel}
                                             </span>
                                         </div>
@@ -463,7 +463,7 @@ export function ResultSummaryCard({
                                         initial={{ opacity: 0, y: 3 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.3, delay: 0.12 }}
-                                        className="text-[10px] sm:text-[11px] font-black text-slate-400 uppercase tracking-[0.18em] leading-none mb-2 dark:text-slate-500"
+                                        className="text-sm font-bold text-slate-700 dark:text-slate-200  tracking-[0.18em] leading-none mb-2 dark:text-slate-500"
                                     >
                                         {displayLabel}
                                     </motion.span>
@@ -475,7 +475,7 @@ export function ResultSummaryCard({
                                     transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
                                     className="flex items-baseline justify-center"
                                 >
-                                    <span className="text-[3.25rem] font-black text-blue-600 tracking-tighter leading-none dark:text-blue-400">
+                                    <span className="text-[3.25rem] font-bold text-[#1f5ec2] dark:text-[#7aa7ff] tracking-tighter leading-none dark:text-blue-400">
                                         {formatValueWithUnit(displayValue, primaryResult.unit, primaryResult.isCurrency)}
                                     </span>
                                 </motion.div>
@@ -485,7 +485,7 @@ export function ResultSummaryCard({
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
                                         transition={{ duration: 0.3, delay: 0.22 }}
-                                        className="text-[11.5px] text-slate-500 font-medium mt-2 max-w-[280px] mx-auto leading-relaxed dark:text-slate-400"
+                                        className="text-sm text-slate-700 dark:text-slate-200 font-medium mt-2 max-w-[280px] mx-auto leading-relaxed dark:text-slate-400"
                                     >
                                         {displayDescription}
                                     </motion.p>
@@ -518,24 +518,24 @@ export function ResultSummaryCard({
                                                 ) : (
                                                     <span className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-slate-300 dark:bg-slate-600" />
                                                 )}
-                                                <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 dark:text-slate-400">
+                                                <span className="text-sm font-bold text-slate-700 dark:text-slate-200">
                                                     {autoAdjustText(result.label)}
                                                 </span>
                                                 {result.tooltip && (
                                                     <Tooltip>
                                                         <TooltipTrigger asChild>
-                                                            <button type="button" tabIndex={-1} className="text-slate-300 hover:text-blue-500 transition-colors cursor-help shrink-0 dark:text-slate-600 dark:hover:text-blue-400">
+                                                            <button type="button" tabIndex={-1} aria-label="About this value" className="text-slate-500 hover:text-[#1f5ec2] transition-colors cursor-help shrink-0 dark:text-slate-400 dark:hover:text-[#7aa7ff]">
                                                                 <Info className="w-3 h-3" />
                                                             </button>
                                                         </TooltipTrigger>
-                                                        <TooltipContent sideOffset={6} className="bg-slate-900 border-slate-800 text-white text-xs max-w-xs p-3 shadow-xl rounded-xl font-medium z-[110] dark:bg-slate-800 dark:border-slate-700">
+                                                        <TooltipContent sideOffset={6} className="bg-slate-900 border-slate-800 text-white text-sm max-w-xs p-3 shadow-xl rounded-xl font-medium z-[110] dark:bg-slate-800 dark:border-slate-700">
                                                             {result.tooltip}
                                                         </TooltipContent>
                                                     </Tooltip>
                                                 )}
                                             </div>
                                             {result.badge && (
-                                                <span className="text-[10px] font-extrabold px-2 py-0.5 rounded bg-blue-100/80 text-blue-700 dark:bg-blue-900/40 dark:text-blue-400">
+                                                <span className="text-sm font-bold px-2 py-0.5 rounded bg-[#2772ED]/10 text-[#1f5ec2] dark:bg-[#2772ED]/20 dark:text-[#7aa7ff]">
                                                     {result.badge}
                                                 </span>
                                             )}

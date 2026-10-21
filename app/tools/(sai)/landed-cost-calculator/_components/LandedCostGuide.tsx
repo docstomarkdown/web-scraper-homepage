@@ -1,58 +1,42 @@
-"use client";
-import { ToolGuide } from "@/app/tools/_shared/components/ToolGuide";
-import { BookOpen, CircleDollarSign, ShieldCheck, Ship, TrendingDown } from "lucide-react";
+"use client"
+import { ToolGuide } from "@/app/tools/_shared/components"
+import { BookOpen, CircleDollarSign, ShieldCheck, Ship, TrendingDown } from "lucide-react"
 
 export function LandedCostGuide() {
     return (
         <ToolGuide
-            title="Understanding Landed Cost"
+            title="How landed cost is calculated"
             icon={BookOpen}
             items={[
                 {
-                    title: "Product Cost: Your Starting Point",
-                    description: "The ex-works (EXW) or FOB price from your supplier is the foundation of your landed cost. This is the raw unit price before any logistics are added. Negotiating this number down is your primary lever for improving profit margins.",
+                    title: "What goes in",
+                    description: "Landed cost = product cost + shipping + duty + insurance + other fees. Duty is a percentage of the product cost; everything else is a flat amount for the shipment.",
                     icon: CircleDollarSign,
                     iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                    iconColor: "text-blue-500 dark:text-blue-400",
-                    stat: "Base",
-                    statColor: "text-blue-600 dark:text-blue-400",
-                    statLabel: "Your starting unit price",
-                    tooltip: "The price your supplier charges per unit, before any logistics."
+                    iconColor: "text-blue-700 dark:text-blue-300",
                 },
                 {
-                    title: "Customs & Duties Add Up Fast",
-                    description: "Import duties are taxes charged by the destination country on your goods. The rate is based on your product's HS (Harmonized System) code. On high-value shipments, even a 5% duty rate can significantly inflate your per-unit cost — always check your rate before placing an order.",
+                    title: "Where to find your duty rate",
+                    description: "Look up your product's HS code on your country's customs website, or ask your freight forwarder or customs broker. The rate changes by product category and origin.",
                     icon: ShieldCheck,
                     iconBg: "bg-amber-50 dark:bg-amber-950/40",
-                    iconColor: "text-amber-500 dark:text-amber-400",
-                    stat: "Duty",
-                    statColor: "text-amber-600 dark:text-amber-400",
-                    statLabel: "Import tariff on goods",
-                    tooltip: "Calculated as a percentage of your total product value."
+                    iconColor: "text-amber-700 dark:text-amber-300",
                 },
                 {
-                    title: "Freight Method Changes Everything",
-                    description: "Sea freight is typically 4–8x cheaper than air freight but takes 3–6 weeks. Air freight is fast (3–7 days) but expensive. Choosing the wrong mode can either destroy your margins or leave you out of stock. Always model both options before committing.",
+                    title: "Sea or air",
+                    description: "Sea freight costs far less per unit but takes weeks; air takes days and costs more. Run the calculator once for each quote to compare the landed cost, not the freight bill.",
                     icon: Ship,
-                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                    iconColor: "text-blue-500 dark:text-blue-400",
-                    stat: "Freight",
-                    statColor: "text-blue-600 dark:text-blue-400",
-                    statLabel: "Getting goods to your door",
-                    tooltip: "Sea vs. air: cost vs. speed trade-off."
+                    iconBg: "bg-violet-50 dark:bg-violet-950/40",
+                    iconColor: "text-violet-700 dark:text-violet-300",
                 },
                 {
-                    title: "Landed Cost Per Unit Is the Only Price That Matters",
-                    description: "The landed cost per unit is the true price you pay to get one item into your warehouse. It is the only number you should use when calculating margins, setting your selling price, or comparing suppliers. Ignoring it is the most common reason e-commerce sellers unknowingly lose money on imports.",
+                    title: "A worked example",
+                    description: "100 units at $25 is $2,500. Add $150 shipping, 5% duty ($125), $50 insurance and $25 fees: $2,850 in total. That is $28.50 per unit, 14% above the supplier's price.",
                     icon: TrendingDown,
-                    iconBg: "bg-violet-50 dark:bg-violet-950/40",
-                    iconColor: "text-violet-500 dark:text-violet-400",
-                    stat: "Total",
-                    statColor: "text-violet-600 dark:text-violet-400",
-                    statLabel: "True cost to your warehouse",
-                    tooltip: "Product cost + shipping + duties + fees ÷ units ordered."
-                }
+                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
+                    iconColor: "text-emerald-700 dark:text-emerald-300",
+                },
             ]}
         />
-    );
+    )
 }

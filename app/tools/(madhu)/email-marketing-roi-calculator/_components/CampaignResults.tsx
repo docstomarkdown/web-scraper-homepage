@@ -28,10 +28,10 @@ export function CampaignResults({
 }: CampaignResultsProps) {
     return (
         <Card className="bg-white border-slate-200 shadow-sm rounded-2xl overflow-hidden p-4 dark:bg-slate-900 dark:border-slate-800">
-            <h4 className="text-sm font-bold text-slate-700 mb-3 flex items-center gap-2 dark:text-slate-200">
+            <h3 className="text-sm font-bold text-slate-700 mb-3 flex items-center gap-2 dark:text-slate-200">
                 <BarChart3 className="w-4 h-4 text-blue-500 dark:text-blue-400" />
                 Campaign Results
-            </h4>
+            </h3>
             {/* Funnel: Opens → Clicks → Conversions */}
             <div className="grid grid-cols-3 gap-2 mb-3">
                 {/* Opens */}
@@ -40,12 +40,12 @@ export function CampaignResults({
                         <div className="p-1.5 bg-blue-100 text-blue-600 rounded-lg dark:bg-blue-900/40 dark:text-blue-400">
                             <Mail className="w-3.5 h-3.5" />
                         </div>
-                        <span className="text-[10px] font-bold text-blue-600 bg-blue-100/60 px-1.5 py-0.5 rounded-full dark:text-blue-400 dark:bg-blue-900/40">
+                        <span className="text-xs font-bold text-blue-800 bg-blue-100/60 dark:text-blue-200 dark:bg-blue-900/40 px-1.5 py-0.5 rounded-full dark:text-blue-400">
                             {openPct}%
                         </span>
                     </div>
                     <div>
-                        <p className="text-[10px] font-medium text-slate-500 mb-0.5 dark:text-slate-400">Emails Opened</p>
+                        <p className="text-xs font-medium text-slate-600 dark:text-slate-300 mb-0.5">Emails Opened</p>
                         <p className="text-sm font-bold text-blue-500 dark:text-blue-400">
                             <Counter value={opens} formatter={formatNumber} />
                         </p>
@@ -62,12 +62,12 @@ export function CampaignResults({
                         <div className="p-1.5 bg-purple-100 text-purple-600 rounded-lg dark:bg-purple-900/40 dark:text-purple-400">
                             <MousePointer className="w-3.5 h-3.5" />
                         </div>
-                        <span className="text-[10px] font-bold text-purple-600 bg-purple-100/60 px-1.5 py-0.5 rounded-full dark:text-purple-400 dark:bg-purple-900/40">
+                        <span className="text-xs font-bold text-purple-600 bg-purple-100/60 px-1.5 py-0.5 rounded-full dark:text-purple-400 dark:bg-purple-900/40">
                             {ctrPct}%
                         </span>
                     </div>
                     <div>
-                        <p className="text-[10px] font-medium text-slate-500 mb-0.5 dark:text-slate-400">Total Clicks</p>
+                        <p className="text-xs font-medium text-slate-600 dark:text-slate-300 mb-0.5">Total Clicks</p>
                         <p className="text-sm font-bold text-purple-500 dark:text-purple-400">
                             <Counter value={clicks} formatter={formatNumber} />
                         </p>
@@ -84,12 +84,12 @@ export function CampaignResults({
                         <div className="p-1.5 bg-emerald-100 text-emerald-600 rounded-lg dark:bg-emerald-900/40 dark:text-emerald-400">
                             <Target className="w-3.5 h-3.5" />
                         </div>
-                        <span className="text-[10px] font-bold text-emerald-600 bg-emerald-100/60 px-1.5 py-0.5 rounded-full dark:text-emerald-400 dark:bg-emerald-900/40">
+                        <span className="text-xs font-bold text-emerald-800 bg-emerald-100/60 dark:text-emerald-200 dark:bg-emerald-900/40 px-1.5 py-0.5 rounded-full dark:text-emerald-400">
                             {convPct}%
                         </span>
                     </div>
                     <div>
-                        <p className="text-[10px] font-medium text-slate-500 mb-0.5 dark:text-slate-400">Total Sales Conversions</p>
+                        <p className="text-xs font-medium text-slate-600 dark:text-slate-300 mb-0.5">Total Sales Conversions</p>
                         <p className="text-sm font-bold text-emerald-500 dark:text-emerald-400">
                             <Counter value={conversions} formatter={formatNumber} />
                         </p>
@@ -99,10 +99,10 @@ export function CampaignResults({
             {/* Total Revenue Summary Row */}
             <div className="flex items-center justify-between bg-slate-50 rounded-xl px-4 py-3 border border-slate-100 dark:bg-slate-800/60 dark:border-slate-800">
                 <div className="flex items-center gap-1.5">
-                    <span className="text-xs font-bold text-slate-400 tracking-wide dark:text-slate-500">Total Revenue</span>
+                    <span className="text-xs font-bold text-slate-600 dark:text-slate-300 tracking-wide">Total Revenue</span>
                     <Tooltip>
                         <TooltipTrigger asChild>
-                            <button type="button" tabIndex={-1} className="text-slate-400 hover:text-slate-500 transition-colors dark:text-slate-500 dark:hover:text-slate-400">
+                            <button type="button" tabIndex={-1} aria-label="More about this field" className="text-slate-600 dark:text-slate-300 hover:text-slate-500 transition-colors dark:hover:text-slate-400">
                                 <Info className="h-3 w-3" />
                             </button>
                         </TooltipTrigger>

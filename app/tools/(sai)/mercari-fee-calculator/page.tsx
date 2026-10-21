@@ -1,78 +1,54 @@
-import { Metadata } from "next";
-import { MercariFeeCalculator } from "./_components/MercariFeeCalculator";
-import { MercariFeeHowToUse } from "./_components/MercariFeeHowToUse";
-import { MercariFeeGuide } from "./_components/MercariFeeGuide";
-import { MercariFeeOverview } from "./_components/MercariFeeOverview";
-import { FadeIn, ToolFAQ, ToolPageTitle, ToolSectionHeader } from "@/app/tools/_shared/components";
-import { BookOpen } from "lucide-react";
-import { CTA } from "@/components/sections/CTA";
+import { Metadata } from "next"
+import { MercariFeeCalculator } from "./_components/MercariFeeCalculator"
+import { MercariFeeHowToUse } from "./_components/MercariFeeHowToUse"
+import { MercariFeeGuide } from "./_components/MercariFeeGuide"
+import { MercariFeeOverview } from "./_components/MercariFeeOverview"
+import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
+import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "Mercari Fee Calculator - Calculate Your True Profit After Fees",
-    description: "Calculate your exact Mercari profit after the 10% selling fee and 2.9% + $0.50 payment processing fee. Plan pricing and avoid hidden losses before you list.",
+    title: "Mercari Fee Calculator: Free Profit After Fees",
+    description: "See what you keep from a Mercari sale after the 10% selling fee and the 2.9% + $0.50 payment fee, with your item cost and shipping taken out.",
     alternates: { canonical: "/tools/mercari-fee-calculator" },
-};
+}
 
 const faqs = [
-    // ── Getting Started ──
     {
-        question: "What do I need to enter to calculate my profit?",
-        answer: "At minimum, enter your Sale Price and Item Cost. The calculator will instantly show your net profit after Mercari's 10% selling fee and the 2.9% + $0.50 payment processing fee. Adding shipping costs makes the result even more accurate."
+        question: "What do I need to enter?",
+        answer: "At least the sale price and the item cost. Add shipping and packaging for an exact figure. Items sold multiplies the result for a batch of identical items.",
     },
     {
         question: "Does Mercari charge a listing fee?",
-        answer: "No. Listing items on Mercari is completely free. You only pay fees after your item successfully sells. There are no upfront charges for creating a listing."
+        answer: "No. Listing is free; you pay fees only when an item sells.",
     },
     {
         question: "What is Mercari's payment processing fee?",
-        answer: "Mercari charges 2.9% + $0.50 on the total amount the buyer pays (item price + any buyer-paid shipping). This is separate from the 10% selling fee. Both are automatically calculated in this tool."
-    },
-
-    // ── Fees & Costs ──
-    {
-        question: "Should I include shipping in my cost inputs?",
-        answer: "Yes — but only if you (the seller) are paying for the shipping label. If you select 'Buyer Pays Shipping' in your Mercari listing, the buyer covers the label cost and you should leave the Shipping Cost field blank."
+        answer: "2.9% plus $0.50 on the amount the buyer pays, charged on top of the 10% selling fee. The calculator applies both.",
     },
     {
-        question: "What counts as 'Other Expenses'?",
-        answer: "Anything you spend to fulfill the sale beyond the item purchase and shipping: packaging tape, bubble wrap, boxes, poly mailers, or other supplies. These are real costs that reduce your margin."
+        question: "Should I include shipping?",
+        answer: "Only if you pay the label. When the listing is buyer-pays shipping, leave the field blank.",
     },
     {
-        question: "Are there fees to withdraw my earnings?",
-        answer: "Standard Direct Deposit to your bank is free for balances over $10, with a 1–3 business day processing time. Instant Pay (same-day transfer) costs $3 per transfer."
-    },
-
-    // ── Pricing & Strategy ──
-    {
-        question: "How do I price an item to hit a specific profit target?",
-        answer: "Work backwards using this formula: Minimum List Price = (Item Cost + Shipping + Other Costs + Desired Profit) ÷ 0.869. The 0.869 divisor accounts for the ~13.1% combined fee. Enter the result as your Sale Price and verify in the calculator."
+        question: "What is a good margin on Mercari?",
+        answer: "After fees of roughly 13%, many resellers aim for a 20% to 40% net margin on the sale price. Below 15%, check whether the listing is worth the time.",
     },
     {
-        question: "What is a good profit margin on Mercari?",
-        answer: "After covering all fees (roughly 12–14% of the sale price combined), most flippers aim for a 20–40% net margin on the listing price. Below 15% net margin, consider whether the listing volume justifies the effort."
+        question: "Are these fees exact?",
+        answer: "They follow Mercari's published rates for US sellers at the time of writing. Check Mercari's fee page before you rely on a figure, because rates change.",
     },
-    {
-        question: "Does the Batch Profit feature help with bulk selling?",
-        answer: "Yes. Enter the Items Sold quantity to instantly see total batch profit across multiple identical units. This is useful for resellers pricing bundles or identical inventory lots."
-    },
-];
+]
 
 export default function MercariFeeCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
                 <ToolPageTitle title="Mercari Fee Calculator" direction="down" duration={0.6} />
-
                 <div className="mb-20">
                     <MercariFeeCalculator />
                 </div>
-
-                <div className="max-w-5xl mx-auto space-y-16" id="tool-guide">
+                <div className="max-w-5xl mx-auto space-y-16">
                     <FadeIn delay={0.2}>
-                        <ToolSectionHeader
-                            title="Tool Essential"
-                            icon={BookOpen}
-                        />
                         <MercariFeeOverview />
                     </FadeIn>
                     <FadeIn delay={0.2}>
@@ -82,7 +58,7 @@ export default function MercariFeeCalculatorPage() {
                         <MercariFeeGuide />
                     </FadeIn>
                     <FadeIn delay={0.2}>
-                        <ToolFAQ faqs={faqs} />
+                        <ToolFAQ title="Questions, answered" faqs={faqs} />
                     </FadeIn>
                     <FadeIn delay={0.2}>
                         <CTA />
@@ -90,5 +66,5 @@ export default function MercariFeeCalculatorPage() {
                 </div>
             </div>
         </div>
-    );
+    )
 }

@@ -115,12 +115,12 @@ export function CACCalculator() {
                         <div className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl transition-all duration-200 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] hover:border-slate-300 overflow-hidden dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700">
                             <div className="flex items-center gap-2 p-4">
                                 <Target className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
-                                <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 tracking-tight dark:text-slate-400">
+                                <span className="text-xs sm:text-[14px] font-bold text-slate-500 tracking-tight dark:text-slate-400">
                                     Industry Benchmark
                                 </span>
                             </div>
                             <div className="px-4 pb-4 pt-0 border-t border-slate-100 dark:border-slate-800">
-                                <p className="text-[13px] text-slate-500 leading-relaxed pt-3 pl-[24px] dark:text-slate-400">
+                                <p className="text-xs text-slate-500 leading-relaxed pt-3 pl-[24px] dark:text-slate-400">
                                     A good CAC depends on your industry and LTV (Lifetime Value). A healthy business model typically aims for an <strong className="text-slate-700 font-semibold dark:text-slate-200">LTV:CAC ratio of 3:1</strong> or higher.
                                 </p>
                             </div>

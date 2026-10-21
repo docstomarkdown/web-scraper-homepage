@@ -1,59 +1,42 @@
-"use client";
-import { ToolGuide } from "@/app/tools/_shared/components/ToolGuide";
-import { BookOpen, Hash, Search, Zap, ListChecks } from "lucide-react";
+"use client"
+import { ToolGuide } from "@/app/tools/_shared/components"
+import { BookOpen, Hash, Info, Layers, ShieldCheck } from "lucide-react"
+
 export function SKUGuide() {
     return (
-        <div id="sku-guide">
-            <ToolGuide
-                title="Understanding SKUs & Best Practices"
-                icon={BookOpen}
-                items={[
-                    {
-                        title: "What is a SKU?",
-                        description: "A Stock Keeping Unit (SKU) is a unique internal code used to track inventory. Unlike UPCs, SKUs are custom-designed by you to prioritize the information your team needs most.",
-                        icon: Hash,
-                        iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                        iconColor: "text-blue-500 dark:text-blue-400",
-                        stat: "Unique",
-                        statColor: "text-blue-600 dark:text-blue-400",
-                        statLabel: "Internal ID",
-                        tooltip: "Your store's DNA."
-                    },
-                    {
-                        title: "Internal Hierarchy",
-                        description: "Organize SKU components from broad to narrow: [Brand] > [Category] > [Model] > [Attribute]. This makes sorting and filtering much easier in your warehouse or store.",
-                        icon: ListChecks,
-                        iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                        iconColor: "text-blue-500 dark:text-blue-400",
-                        stat: "Logic",
-                        statColor: "text-blue-600 dark:text-blue-400",
-                        statLabel: "Hierarchy",
-                        tooltip: "Sort from broad to narrow."
-                    },
-                    {
-                        title: "Keep it Simple",
-                        description: "Avoid 'meaningless' numbers or overly long descriptions. A good SKU should be 'readable' by a human at a glance without looking up a manual.",
-                        icon: Zap,
-                        iconBg: "bg-amber-50 dark:bg-amber-950/40",
-                        iconColor: "text-amber-500 dark:text-amber-400",
-                        stat: "Readable",
-                        statColor: "text-amber-600 dark:text-amber-400",
-                        statLabel: "Human First",
-                        tooltip: "Don't overcomplicate it."
-                    },
-                    {
-                        title: "Universal Uniqueness",
-                        description: "Ensure no two products share a SKU. Even if a product is discontinued, its SKU should never be reused to avoid historical data conflicts in your sales reports.",
-                        icon: Search,
-                        iconBg: "bg-purple-50 dark:bg-purple-950/40",
-                        iconColor: "text-purple-500 dark:text-purple-400",
-                        stat: "Conflict",
-                        statColor: "text-purple-600 dark:text-purple-400",
-                        statLabel: "Risk Free",
-                        tooltip: "One code, one product."
-                    }
-                ]}
-            />
-        </div>
-    );
-}
+        <ToolGuide
+            title="What makes a good SKU"
+            icon={BookOpen}
+            items={[
+                {
+                    title: "What a SKU is",
+                    description: "A stock keeping unit is your own code for one product variant. Unlike a UPC or barcode, you choose the format, so it can carry meaning.",
+                    icon: Hash,
+                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-700 dark:text-blue-300",
+                },
+                {
+                    title: "Go from broad to narrow",
+                    description: "Brand, then category, then product, then attributes: NIKE-SHO-AF1-WHT-10-001. Sorting a list of SKUs then groups related items together.",
+                    icon: Layers,
+                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
+                    iconColor: "text-amber-700 dark:text-amber-300",
+                },
+                {
+                    title: "Keep it readable",
+                    description: "Eight to sixteen characters, letters and numbers only, no spaces or symbols. A person should be able to read what it is at a glance.",
+                    icon: ShieldCheck,
+                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
+                    iconColor: "text-emerald-700 dark:text-emerald-300",
+                },
+                {
+                    title: "Never reuse a code",
+                    description: "When a product is discontinued, retire its SKU. Reusing one mixes old and new sales in every report that references it.",
+                    icon: Info,
+                    iconBg: "bg-violet-50 dark:bg-violet-950/40",
+                    iconColor: "text-violet-700 dark:text-violet-300",
+                },
+            ]}
+        />
+    )
+}

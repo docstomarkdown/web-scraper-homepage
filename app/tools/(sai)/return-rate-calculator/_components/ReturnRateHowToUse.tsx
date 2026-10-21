@@ -1,26 +1,28 @@
-"use client";
-import { ToolSteps } from "@/app/tools/_shared/components";
-import { PackageCheck, RotateCcw, Activity } from "lucide-react";
+"use client"
+import { ToolSteps } from "@/app/tools/_shared/components"
+import { BarChart3, CircleDollarSign, Package } from "lucide-react"
+
 export function ReturnRateHowToUse() {
-  return (
-    <ToolSteps
-      steps={[
+    return (
+        <ToolSteps
+            title="How to use this tool"
+            steps={[
                 {
-                    title: "Sold Total",
-                    description: "Enter complete universal exact transaction volume count pushed across chosen distinct time evaluation frames.",
-                    icon: PackageCheck
+                    title: "Enter units sold and returned",
+                    description: "Type how many units you sold in the period and how many came back.",
+                    icon: Package,
                 },
                 {
-                    title: "Lost Units",
-                    description: "Input accurate absolute numeric totals confirming those exact distributed goods were shipped successfully back.",
-                    icon: RotateCcw
+                    title: "Add the price and the cost of a return",
+                    description: "Enter the selling price, which is refunded, and what each return costs you in shipping, handling and repackaging.",
+                    icon: CircleDollarSign,
                 },
                 {
-                    title: "Check Rate",
-                    description: "Instantly derive tight final percentage metrics assessing hard physical catalog product durability baseline benchmarks.",
-                    icon: Activity
-                }
+                    title: "Read the rate and the money",
+                    description: "The calculator shows the return rate, the revenue refunded, the return handling cost, and the two together as profit leakage.",
+                    icon: BarChart3,
+                },
             ]}
-    />
-  );
-}
+        />
+    )
+}

@@ -1,46 +1,42 @@
-"use client";
-import { ToolGuide } from "@/app/tools/_shared/components/ToolGuide";
-import { BookOpen, AlertTriangle, Crosshair, TrendingUp } from "lucide-react";
+"use client"
+import { ToolGuide } from "@/app/tools/_shared/components"
+import { BookOpen, Calculator, LineChart, ShieldAlert, TrendingUp } from "lucide-react"
+
 export function SalesVelocityGuide() {
     return (
         <ToolGuide
-            title="Why True Velocity Matters"
+            title="Raw velocity and true velocity"
             icon={BookOpen}
             items={[
                 {
-                    title: "The Flaw of Averages",
-                    description: "If you sell 300 units in 30 days, your average is 10/day. But if you were out of stock for 15 days, your TRUE speed is actually 20/day. Using the average would lead to massive under-ordering.",
-                    icon: AlertTriangle,
-                    iconBg: "bg-red-50 dark:bg-red-950/40",
-                    iconColor: "text-red-500 dark:text-red-400",
-                    stat: "Misleading",
-                    statColor: "text-red-600 dark:text-red-400",
-                    statLabel: "Raw Average",
-                    tooltip: "Don't count days with 0 inventory!"
-                },
-                {
-                    title: "Forecasting Precision",
-                    description: "Inventory planning requires knowing how fast you sell when you actually HAVE stock. Adjusted velocity is the only safe number to use for reorder points.",
-                    icon: Crosshair,
+                    title: "The formulas",
+                    description: "Raw velocity = units sold ÷ days in the period. True velocity = units sold ÷ (days − days out of stock). Monthly run rate = true velocity × 30.",
+                    icon: Calculator,
                     iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                    iconColor: "text-blue-500 dark:text-blue-400",
-                    stat: "Accuracy",
-                    statColor: "text-blue-600 dark:text-blue-400",
-                    statLabel: "Better Data",
-                    tooltip: "Prevents future stockouts."
+                    iconColor: "text-blue-700 dark:text-blue-300",
                 },
                 {
-                    title: "Revenue Run Rate",
-                    description: "Multiplying your true daily velocity by 30 gives you your potential annual revenue. This helps justify cash flow for larger inventory orders.",
+                    title: "Why the raw number misleads",
+                    description: "If you were out of stock for part of the period, the raw average is too low and your next order will be too small. Use the true rate to reorder.",
+                    icon: ShieldAlert,
+                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
+                    iconColor: "text-amber-700 dark:text-amber-300",
+                },
+                {
+                    title: "Revenue run rate",
+                    description: "True velocity × 30 × price is the revenue you could make in a month with stock all month. Compare it against the raw figure to see what stockouts cost.",
+                    icon: LineChart,
+                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
+                    iconColor: "text-emerald-700 dark:text-emerald-300",
+                },
+                {
+                    title: "A worked example",
+                    description: "300 units in 30 days with 5 days out of stock: raw velocity 10 a day, true velocity 12 a day. At $25 a unit the monthly run rate is 360 units and $9,000.",
                     icon: TrendingUp,
-                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                    iconColor: "text-blue-500 dark:text-blue-400",
-                    stat: "Growth",
-                    statColor: "text-blue-600 dark:text-blue-400",
-                    statLabel: "Potential",
-                    tooltip: "See your real potential."
-                }
+                    iconBg: "bg-violet-50 dark:bg-violet-950/40",
+                    iconColor: "text-violet-700 dark:text-violet-300",
+                },
             ]}
         />
-    );
-}
+    )
+}

@@ -7,9 +7,8 @@ import { CTA } from "@/components/sections/CTA"
 import { Metadata } from "next"
 import { BookOpen } from "lucide-react"
 export const metadata: Metadata = {
-    title: "Email Marketing ROI Calculator",
-    description:
-        "Calculate the ROI of your email marketing campaigns. Optimize your open rates, click-through rates, and conversion rates to maximize profit.",
+    title: "Email Marketing ROI Calculator: Free Campaign Return",
+    description: "From list size, open rate, click rate, conversion rate and order value to revenue, profit and return on investment for one email campaign.",
     alternates: { canonical: "/tools/email-marketing-roi-calculator" },
 }
 export default function EmailROICalculatorPage() {
@@ -26,7 +25,7 @@ export default function EmailROICalculatorPage() {
                 <div className="max-w-4xl mx-auto space-y-16">
                     <FadeIn delay={0.1}>
                         <ToolSectionHeader 
-                            title="Tool Essential"
+                            title="What this calculator does"
                             icon={BookOpen}
                         />
                         <EmailROIOverview />
@@ -41,29 +40,24 @@ export default function EmailROICalculatorPage() {
                         <ToolFAQ
                             faqs={[
                                 {
-                                    question: "Why is the Click Rate based on Opens rather than total sent?",
-                                    answer:
-                                        "This is known as the Click-to-Open Rate (CTOR). It's a much more accurate measure of your email's content quality, because it only tracks engagement from the people who actually saw what was inside the email.",
+                                    question: "How do you calculate email marketing ROI?",
+                                    answer: "Profit divided by campaign cost, as a percentage. Profit is the revenue from orders the email produced minus what the campaign cost.",
                                 },
                                 {
-                                    question: "What are realistic industry benchmarks for email?",
-                                    answer:
-                                        "Typical benchmarks are an <strong>Open Rate of 20–25%</strong>, a <strong>Click Rate of 2–3%</strong>, and a <strong>Sales Conversion Rate of 2–5%</strong>. Our tool comes pre-filled with these averages so you can instantly gauge your potential.",
+                                    question: "What is a good open rate?",
+                                    answer: "Around 20% is typical across industries; a clean, engaged list can see 30% or more. Use your own last few campaigns rather than an average.",
                                 },
                                 {
-                                    question: "How is 'Total Revenue' calculated?",
-                                    answer:
-                                        "Total Revenue multiplies your final <strong>Total Sales Conversions</strong> by your <strong>Average Order Value</strong>. It follows the precise drop-off logic: Subscribers → Emails Opened → Total Clicks → Conversions.",
+                                    question: "Why is the conversion rate so important?",
+                                    answer: "It's applied last, to the smallest number. Moving it from 2% to 3% raises orders by half without touching the list.",
                                 },
                                 {
-                                    question: "What if my Total Campaign Cost is zero?",
-                                    answer:
-                                        "If you're using a free email provider and aren't tracking your time expenses, you can simply leave the Campaign Cost at 0. The tool will calculate your Total Revenue purely as Net Profit without requiring an investment figure.",
+                                    question: "What should I include in the campaign cost?",
+                                    answer: "Platform fees for the send, time spent writing and designing, and any discount or gift the email offers.",
                                 },
                                 {
-                                    question: "Should I include my own time in 'Campaign Cost'?",
-                                    answer:
-                                        "Yes, if you want a true ROI. Assigning a dollar value to the hours you spent writing, designing, and setting up the campaign gives you the most accurate reflection of your profitability.",
+                                    question: "Why can ROI be negative?",
+                                    answer: "When revenue is below cost. Small lists with average rates often lose money on a single send; the calculator shows the list size where that changes.",
                                 },
                             ]}
                         />

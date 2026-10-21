@@ -1,57 +1,19 @@
 "use client"
 import { ToolGuide } from "@/app/tools/_shared/components"
-import { MousePointerClick, Users, TrendingUp, Target } from "lucide-react"
+import { Percent, Calculator, BarChart2, TrendingUp, AlertTriangle } from "lucide-react"
 
+/** What the calculator computes, the formula in words, where the inputs come from, and one worked example. */
 export function ConversionGuide() {
     return (
         <ToolGuide
-            title="Understanding Your Conversion Data"
+            title="What the rate tells you"
+            icon={Percent}
             items={[
-                {
-                    title: "Understand the Core Formula",
-                    icon: MousePointerClick,
-                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                    iconColor: "text-blue-500 dark:text-blue-400",
-                    stat: "Rate",
-                    statColor: "text-blue-600 dark:text-blue-400",
-                    statLabel: "Action per session",
-                    tooltip: "Formula: (Conversions ÷ Visitors) × 100",
-                    description: "Your conversion rate calculates the exact percentage of your raw traffic that successfully completed your desired, primary objective (like sales, leads, or signups)."
-                },
-                {
-                    title: "Clean Your Traffic Data",
-                    icon: Users,
-                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
-                    iconColor: "text-amber-500 dark:text-amber-400",
-                    stat: "Accuracy",
-                    statColor: "text-amber-600 dark:text-amber-400",
-                    statLabel: "Clean traffic data",
-                    tooltip: "For accurate rates, ensure bot and spam traffic are excluded.",
-                    description: "For the most precise calculation, exclude bot traffic, internal visits, and known spam from your Total Visitors input. Inflated traffic metrics artificially suppress your real conversion rate."
-                },
-                {
-                    title: "Separate Macro and Micro Goals",
-                    icon: Target,
-                    iconBg: "bg-purple-50 dark:bg-purple-950/40",
-                    iconColor: "text-purple-500 dark:text-purple-400",
-                    stat: "Goals",
-                    statColor: "text-purple-600 dark:text-purple-400",
-                    statLabel: "Macro vs Micro",
-                    tooltip: "Track different rates for different transaction types.",
-                    description: "Not all traffic intends to buy on the first visit. It's recommended to calculate separate conversion rates against multiple goal types: from high-friction macro events (checkouts) to low-friction micro events (newsletter signups)."
-                },
-                {
-                    title: "Prioritize Conversions Over Traffic",
-                    icon: TrendingUp,
-                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
-                    iconColor: "text-emerald-500 dark:text-emerald-400",
-                    stat: "Growth",
-                    statColor: "text-emerald-600 dark:text-emerald-400",
-                    statLabel: "Scaling revenue",
-                    tooltip: "Improving conversion rates actively lowers your cost-per-acquisition.",
-                    description: "Even a 1% lift in your conversion rate can sustainably multiply your revenue without requiring you to increase your ad spend. Focus strongly on your calls-to-action (CTAs), page speed, and value clarity."
-                }
+                { title: "The formula in words", description: "Conversion rate equals conversions divided by visitors, times 100. A conversion is whatever you define it as, usually an order for a store or a sign-up for a service.", icon: Calculator, iconBg: "bg-blue-50 dark:bg-blue-950/40", iconColor: "text-blue-700 dark:text-blue-300" },
+                { title: "A worked example", description: "10,000 sessions and 250 orders give a 2.5% conversion rate. Raising it to 3% at the same traffic adds 50 orders a month; at a $40 average order that's $2,000 of revenue without spending more on ads.", icon: BarChart2, iconBg: "bg-amber-50 dark:bg-amber-950/40", iconColor: "text-amber-700 dark:text-amber-300" },
+                { title: "Typical rates", description: "Online stores mostly convert between 1% and 3% of sessions; returning visitors and email traffic convert several times better than cold ad traffic. Rates by channel and by device tell you more than one overall number.", icon: TrendingUp, iconBg: "bg-emerald-50 dark:bg-emerald-950/40", iconColor: "text-emerald-700 dark:text-emerald-300" },
+                { title: "What it doesn't tell you", description: "The rate hides who the visitors were. A campaign that brings many curious visitors lowers the rate while adding orders, so read it alongside the order count and the revenue.", icon: AlertTriangle, iconBg: "bg-violet-50 dark:bg-violet-950/40", iconColor: "text-violet-700 dark:text-violet-300" }
             ]}
         />
     )
-}
+}

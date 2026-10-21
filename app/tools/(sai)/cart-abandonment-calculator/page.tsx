@@ -3,12 +3,12 @@ import { AbandonmentCalculator } from "./_components/AbandonmentCalculator"
 import { AbandonmentGuide } from "./_components/AbandonmentGuide"
 import { AbandonmentHowToUse } from "./_components/AbandonmentHowToUse"
 import { AbandonmentOverview } from "./_components/AbandonmentOverview"
-import { FadeIn, ToolFAQ, ToolPageTitle, ToolSectionHeader } from "@/app/tools/_shared/components"
+import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 import { Lightbulb } from "lucide-react"
 export const metadata: Metadata = {
-    title: 'Cart Abandonment Rate Calculator',
-    description: 'Calculate your Cart Abandonment Rate to identify lost revenue opportunities and optimize your checkout flow.',
+    title: "Cart Abandonment Rate Calculator: Free Checkout Drop-off",
+    description: "Enter the carts created and the orders completed in the same period to get your cart abandonment rate, with the benchmarks and the fixes that bring it down.",
     alternates: { canonical: "/tools/cart-abandonment-calculator" },
 }
 export default function CartAbandonmentCalculatorPage() {
@@ -28,10 +28,6 @@ export default function CartAbandonmentCalculatorPage() {
                 </div>
                 <div className="max-w-4xl mx-auto space-y-16" id="abandonment-guide">
                     <FadeIn delay={0.2}>
-                        <ToolSectionHeader 
-                            title="Tool Essential"
-                            icon={Lightbulb}
-                        />
                         <div className="mt-8">
                             <AbandonmentOverview />
                         </div>
@@ -46,31 +42,31 @@ export default function CartAbandonmentCalculatorPage() {
                     <FadeIn delay={0.2}>
                         <ToolFAQ
                             faqs={[
-                                {
-                                    question: "Where do I find my 'Carts Created' and 'Successful Checkouts' in Shopify/WooCommerce?",
-                                    answer: "In Shopify, check <strong>Analytics > Reports</strong> for 'Added to Cart' (carts created) and 'Total Orders'. In WooCommerce, use <strong>WooCommerce Analytics > Orders</strong> or use Google Analytics Enhanced Ecommerce tracking."
-                                },
-                                {
-                                    question: "What is considered a good cart abandonment rate?",
-                                    answer: "A good rate is <strong>under 60%</strong>, though the global e-commerce average is around <strong>70%</strong>. If your rate falls above 75%, your checkout flow needs immediate optimization."
-                                },
-                                {
-                                    question: "What causes high cart abandonment?",
-                                    answer: "The #1 cause is <strong>unexpected shipping costs or taxes</strong> at checkout. Other major factors include forced account creation, long checkout forms, a lack of preferred payment options (like PayPal/Apple Pay), and slow mobile page speeds."
-                                },
-                                {
-                                    question: "How can I reduce my cart abandonment rate?",
-                                    answer: "Offer a simple <strong>Guest Checkout</strong> option, show shipping costs upfront unconditionally, minimize mandatory form fields, display prominent trust badges, and ensure your mobile checkout loads instantly."
-                                },
-                                {
-                                    question: "What’s the difference between cart abandonment and checkout abandonment?",
-                                    answer: "<strong>Cart abandonment</strong> is when a shopper adds an item but never starts the checkout process. <strong>Checkout abandonment</strong> is when they start entering their details (like email or address) but leave before actually paying."
-                                },
-                                {
-                                    question: "What tools or methods can I use to recover abandoned carts?",
-                                    answer: "Set up automated <strong>email recovery flows</strong> using tools like Klaviyo or Mailchimp. You can also use automated SMS reminders, browser push notifications, and retargeting ads on Meta/Google to win back those lost sales."
-                                }
-                            ]}
+                                    {
+                                        question: "How do I calculate cart abandonment rate?",
+                                        answer: "Divide completed orders by carts created, subtract from one and multiply by 100. 150 orders from 500 carts is a 70% abandonment rate."
+                                    },
+                                    {
+                                        question: "What is a good cart abandonment rate?",
+                                        answer: "Below 65% is better than most stores; the average across published studies sits around 70%. The useful comparison is your own rate last month."
+                                    },
+                                    {
+                                        question: "Why do people abandon carts?",
+                                        answer: "Costs that appear late, being made to create an account, long or confusing checkouts, missing payment methods and slow delivery. Showing shipping and taxes early removes the largest cause."
+                                    },
+                                    {
+                                        question: "Where do I find carts created?",
+                                        answer: "Shopify: Analytics reports, sessions with cart additions. WooCommerce: an analytics plugin or Google Analytics add-to-cart events. Amazon doesn't share cart data with sellers."
+                                    },
+                                    {
+                                        question: "Does a lower rate always mean more sales?",
+                                        answer: "Not on its own. Fewer carts can lower the rate without adding orders. Track orders and the rate together."
+                                    },
+                                    {
+                                        question: "Is this calculator free?",
+                                        answer: "Yes. It runs in your browser, needs no sign-up and stores nothing you type."
+                                    }
+                                ]}
                         />
                     </FadeIn>
                     {/* CTA Section */}

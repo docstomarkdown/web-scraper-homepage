@@ -179,9 +179,9 @@ export function ABDurationCalculator() {
                             >
                                 <div className="flex items-center gap-2 flex-1">
                                     <Settings className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
-                                    <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 group-hover:text-slate-600 transition-colors flex-1 text-left tracking-tight dark:text-slate-400 dark:group-hover:text-slate-300">
+                                    <span className="text-xs sm:text-[14px] font-bold text-slate-500 group-hover:text-slate-600 transition-colors flex-1 text-left tracking-tight dark:text-slate-400 dark:group-hover:text-slate-300">
                                         Test Settings
-                                        <span className="ml-1.5 font-normal italic text-[12px] text-slate-400 lowercase tracking-normal group-hover:text-blue-400/80 transition-colors dark:text-slate-500">(optional)</span>
+                                        <span className="ml-1.5 font-normal italic text-xs text-slate-600 dark:text-slate-300 lowercase tracking-normal group-hover:text-blue-400/80 transition-colors dark:text-slate-500">(optional)</span>
                                     </span>
                                 </div>
                                 {settingsOpen
@@ -198,12 +198,12 @@ export function ABDurationCalculator() {
                                     <TooltipProvider delayDuration={100}>
                                         <div className="flex justify-between items-center py-3 border-b border-slate-100 group/item dark:border-slate-800">
                                             <div className="flex items-center gap-1.5">
-                                                <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 dark:text-slate-400">Confidence Level</span>
+                                                <span className="text-xs sm:text-[14px] font-bold text-slate-500 dark:text-slate-400">Confidence Level</span>
                                                 <Tooltip>
                                                     <TooltipTrigger asChild>
                                                         <Info className="w-3.5 h-3.5 text-slate-400 cursor-help dark:text-slate-500" />
                                                     </TooltipTrigger>
-                                                    <TooltipContent side="top" className="max-w-xs text-[11px] bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
+                                                    <TooltipContent side="top" className="max-w-xs text-xs bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
                                                         Higher confidence means more reliable results but needs more time (default: 95%).
                                                     </TooltipContent>
                                                 </Tooltip>
@@ -212,12 +212,12 @@ export function ABDurationCalculator() {
                                         </div>
                                         <div className="flex justify-between items-center py-3 group/item">
                                             <div className="flex items-center gap-1.5">
-                                                <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 dark:text-slate-400">Statistical Power</span>
+                                                <span className="text-xs sm:text-[14px] font-bold text-slate-500 dark:text-slate-400">Statistical Power</span>
                                                 <Tooltip>
                                                     <TooltipTrigger asChild>
                                                         <Info className="w-3.5 h-3.5 text-slate-400 cursor-help dark:text-slate-500" />
                                                     </TooltipTrigger>
-                                                    <TooltipContent side="top" className="max-w-xs text-[11px] bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
+                                                    <TooltipContent side="top" className="max-w-xs text-xs bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
                                                         Power determines how likely your test is to detect a real difference (default: 80%).
                                                     </TooltipContent>
                                                 </Tooltip>
@@ -226,7 +226,7 @@ export function ABDurationCalculator() {
                                         </div>
                                     </TooltipProvider>
                                     <p className="text-[11.5px] text-slate-400 leading-relaxed pt-2 dark:text-slate-500">
-                                        These are standard settings to ensure accurate and reliable test results. You don't need to change them.
+                                        These are standard settings to ensure accurate and reliable test results. You don&apos;t need to change them.
                                     </p>
                                 </div>
                             </div>

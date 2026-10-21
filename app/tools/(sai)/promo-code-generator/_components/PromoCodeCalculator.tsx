@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useCallback } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { RefreshCw, Copy, Check, Ticket, Settings2, ChevronDown, ChevronUp, Type, Binary, Hash } from "lucide-react"
 import { Label } from "@/components/ui/label"
@@ -99,13 +99,13 @@ export function PromoCodeCalculator() {
                                         </div>
                                         <div className="text-left">
                                             <p className="text-sm font-bold text-slate-800 dark:text-slate-100">Advanced Settings</p>
-                                            <p className="text-[10px] text-slate-500 font-medium dark:text-slate-400">Prefix, Suffix, and Character Rules</p>
+                                            <p className="text-xs text-slate-600 dark:text-slate-300 font-medium">Prefix, Suffix, and Character Rules</p>
                                         </div>
                                     </div>
                                     {showAdvanced ? (
                                         <ChevronUp className="w-5 h-5 text-blue-500 dark:text-blue-400" />
                                     ) : (
-                                        <ChevronDown className="w-5 h-5 text-slate-400 group-hover:text-slate-600 dark:text-slate-500 dark:group-hover:text-slate-300" />
+                                        <ChevronDown className="w-5 h-5 text-slate-600 dark:text-slate-300 group-hover:text-slate-600 dark:group-hover:text-slate-300" />
                                     )}
                                 </button>
                                 <AnimatePresence>
@@ -139,7 +139,7 @@ export function PromoCodeCalculator() {
                                                 </div>
                                                 {/* Character Selection Chips */}
                                                 <div className="space-y-3">
-                                                    <label className="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Include Characters</label>
+                                                    <label className="text-xs font-bold tracking-wider text-slate-600 dark:text-slate-300">Include Characters</label>
                                                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                                                         <CharacterChip
                                                             label="Uppercase"
@@ -182,7 +182,7 @@ export function PromoCodeCalculator() {
                     {generatedCodes.length > 0 && (
                         <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden dark:border-slate-800 dark:bg-slate-900">
                             <CardHeader className="pb-3 border-b border-slate-50 flex flex-row items-center justify-between">
-                                <CardTitle className="text-lg font-bold text-slate-800 dark:text-slate-100">Generated Codes</CardTitle>
+                                <h2 className="text-lg font-bold text-slate-800 dark:text-slate-100">Generated Codes</h2>
                                 <Button variant="outline" size="sm" onClick={copyAll} className="text-slate-600 dark:text-slate-300">
                                     <Copy className="w-4 h-4 mr-2" />
                                     Copy All
@@ -227,7 +227,7 @@ export function PromoCodeCalculator() {
                             {
                                 label: "Avg Length",
                                 value: `${(prefix.length + (length === "" ? 0 : length) + suffix.length)} chars`,
-                                color: "text-slate-500 dark:text-slate-400"
+                                color: "text-slate-600 dark:text-slate-300"
                             },
                             {
                                 label: "Complexity",
@@ -261,7 +261,7 @@ function CharacterChip({ label, sub, icon: Icon, checked, onChange }: { label: s
             </div>
             <div>
                 <p className="text-xs font-bold leading-none mb-1">{label}</p>
-                <p className={cn("text-[10px] font-medium opacity-80", checked ? "text-white" : "text-slate-400 dark:text-slate-500")}>{sub}</p>
+                <p className={cn("text-xs font-medium opacity-80", checked ? "text-white" : "text-slate-600 dark:text-slate-300")}>{sub}</p>
             </div>
         </button>
     )

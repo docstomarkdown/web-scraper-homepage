@@ -1,27 +1,28 @@
-"use client";
-import { ToolSteps } from "@/app/tools/_shared/components";
-import { DollarSign, BarChart3, Percent } from "lucide-react";
+"use client"
+import { ToolSteps } from "@/app/tools/_shared/components"
+import { BarChart3, Coins, TrendingUp } from "lucide-react"
+
 export function TACoSHowToUse() {
     return (
         <ToolSteps
-            title="How to Calculate TACoS"
+            title="How to use this tool"
             steps={[
                 {
-                    title: "Add Total Revenue",
-                    description: "Enter your total sales for the period. Make sure to include both the sales generated from ads AND your free organic sales.",
-                    icon: BarChart3
+                    title: "Enter total revenue",
+                    description: "Type all your sales for the period, including organic sales that didn't come from ads.",
+                    icon: BarChart3,
                 },
                 {
-                    title: "Add Spend & Margins",
-                    description: "Enter the total amount of money you spent on advertising, along with your product's base profit margin.",
-                    icon: DollarSign
+                    title: "Enter ad spend and gross margin",
+                    description: "Type what you spent on ads and your gross margin before ads, as a percentage.",
+                    icon: Coins,
                 },
                 {
-                    title: "Check Your Health",
-                    description: "Instantly see your TACoS percentage and use the visual health meter to ensure your ads aren't silently eating all your profits.",
-                    icon: Percent
-                }
+                    title: "Read TACoS and the margin after ads",
+                    description: "The calculator shows TACoS and your net margin after ad spend, with a health meter against your margin.",
+                    icon: TrendingUp,
+                },
             ]}
         />
-    );
+    )
 }

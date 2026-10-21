@@ -1,26 +1,16 @@
 "use client"
 import { ToolSteps } from "@/app/tools/_shared/components"
-import { DollarSign, ShoppingBag, Calculator } from "lucide-react"
+import { Banknote, ShoppingCart, Calculator } from "lucide-react"
+
+/** The three things a reader does, in order, with the calculator's own field names. */
 export function AOVHowToUse() {
     return (
         <ToolSteps
             steps={[
-                {
-                    title: "Select Currency",
-                    description: "Start by choosing your preferred local currency from the global dropdown menu located in the card header.",
-                    icon: DollarSign
-                },
-                {
-                    title: "Input Sales Metrics",
-                    description: "Enter your total gross revenue alongside the exact number of transactions your store recorded during the period.",
-                    icon: ShoppingBag
-                },
-                {
-                    title: "Analyze Dashboard",
-                    description: "Instantly review your true Average Order Value, complete with dynamic performance badges and side-by-side metric breakdowns.",
-                    icon: Calculator
-                }
+                { title: "Enter your Total Revenue", description: "Use the sales for one period, such as last month, before refunds. Shopify, WooCommerce and Amazon all show it on the sales report.", icon: Banknote },
+                { title: "Enter your Total Orders", description: "The number of orders in the same period, not the number of items. One order with three items counts once.", icon: ShoppingCart },
+                { title: "Read the average order value", description: "AOV is revenue divided by orders. Compare it month to month, and use it to set a free shipping threshold a little above it.", icon: Calculator }
             ]}
         />
     )
-}
+}

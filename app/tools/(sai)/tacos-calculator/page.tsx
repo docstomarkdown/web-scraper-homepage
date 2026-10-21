@@ -1,62 +1,60 @@
-import { Metadata } from "next";
-import { TACoSCalculator } from "./_components/TACoSCalculator";
-import { TACoSHowToUse } from "./_components/TACoSHowToUse";
-import { TACoSGuide } from "./_components/TACoSGuide";
-import { TACoSOverview } from "./_components/TACoSOverview";
-import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components";
-import { CTA } from "@/components/sections/CTA";
+import { Metadata } from "next"
+import { TACoSCalculator } from "./_components/TACoSCalculator"
+import { TACoSHowToUse } from "./_components/TACoSHowToUse"
+import { TACoSGuide } from "./_components/TACoSGuide"
+import { TACoSOverview } from "./_components/TACoSOverview"
+import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
+import { CTA } from "@/components/sections/CTA"
+
 export const metadata: Metadata = {
-    title: "Total Advertising Cost of Sales (TACoS) Calculator",
-    description: "Calculate your Total Advertising Cost of Sales (TACoS) to measure the long-term health of your e-commerce brand.",
+    title: "TACoS Calculator: Free Ad Spend to Total Sales",
+    description: "Divide your ad spend by all your sales, organic and paid, to get TACoS, and see the margin left after ads from your gross margin.",
     alternates: { canonical: "/tools/tacos-calculator" },
-};
-export default function TACoSPage() {
+}
+
+const faqs = [
+    {
+        question: "What is TACoS?",
+        answer: "Total advertising cost of sales: ad spend as a share of all your revenue, paid and organic. It shows how dependent the whole business is on ads.",
+    },
+    {
+        question: "What is a good TACoS?",
+        answer: "It depends on your margin. A TACoS below 30% of your gross margin leaves most of the profit; many established brands run 5% to 15%.",
+    },
+    {
+        question: "How does TACoS differ from ACoS?",
+        answer: "ACoS measures one campaign's efficiency against the sales it produced. TACoS measures ad spend against everything you sold.",
+    },
+    {
+        question: "Why is my TACoS rising?",
+        answer: "Either ad spend grew faster than sales, or organic sales fell. Check the two separately before cutting the budget.",
+    },
+    {
+        question: "How often should I check it?",
+        answer: "Monthly, and after any big change in ad budget or ranking. Day-to-day swings say little.",
+    },
+]
+
+export default function TacosCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle 
-                    title="Total Advertising Cost of Sales Calculator"
-                    direction="down"
-                    duration={0.6}
-                />
-                <TACoSCalculator />
-                <div className="max-w-4xl mx-auto mt-20 space-y-16">
-                    <FadeIn delay={0.1}>
+                <ToolPageTitle title="Total Advertising Cost of Sales (TACoS) Calculator" direction="down" duration={0.6} />
+                <div className="mb-20">
+                    <TACoSCalculator />
+                </div>
+                <div className="max-w-5xl mx-auto space-y-16">
+                    <FadeIn delay={0.2}>
                         <TACoSOverview />
                     </FadeIn>
-                    <div id="how-to-use">
-                        <FadeIn delay={0.1}>
-                            <TACoSHowToUse />
-                        </FadeIn>
-                    </div>
+                    <FadeIn delay={0.2}>
+                        <TACoSHowToUse />
+                    </FadeIn>
                     <FadeIn delay={0.2}>
                         <TACoSGuide />
                     </FadeIn>
                     <FadeIn delay={0.2}>
-                        <ToolFAQ
-                            faqs={[
-                                {
-                                    question: "What exactly is Total Advertising Cost of Sales (TACoS)?",
-                                    answer: "TACoS measures the relationship between your total ad spend and your total overall revenue (both organic and paid). It tracks your brand's ad-dependency and overall profitability."
-                                },
-                                {
-                                    question: "What is considered a 'good' TACoS?",
-                                    answer: "Healthy TACoS depends heavily on your business stage. For established brands, <strong>10-15%</strong> is often considered a healthy baseline. For aggressive new product launches, it might temporarily spike to <strong>20-30%</strong> as you heavily invest in gaining market share."
-                                },
-                                {
-                                    question: "How does TACoS differ from ACoS?",
-                                    answer: "ACoS only measures the efficiency of your paid ad campaigns (Ad Spend ÷ Ad Revenue). TACoS measures the health of your entire business (Ad Spend ÷ Total Revenue) and accounts for the organic sales generated by increased brand visibility."
-                                },
-                                {
-                                    question: "Why is my TACoS rapidly rising?",
-                                    answer: "A rising TACoS means your ad investments are growing faster than your overall revenue. This typically points to ads becoming more expensive or less effective, or a sudden drop in your organic search traffic and sales."
-                                },
-                                {
-                                    question: "How frequently should I check my TACoS?",
-                                    answer: "Weekly and monthly monitoring is best to establish a trendline. Daily fluctuations are completely normal in retail and usually do not reflect the true long-term impact of your advertising strategy."
-                                }
-                            ]}
-                        />
+                        <ToolFAQ title="Questions, answered" faqs={faqs} />
                     </FadeIn>
                     <FadeIn delay={0.2}>
                         <CTA />
@@ -64,5 +62,5 @@ export default function TACoSPage() {
                 </div>
             </div>
         </div>
-    );
+    )
 }

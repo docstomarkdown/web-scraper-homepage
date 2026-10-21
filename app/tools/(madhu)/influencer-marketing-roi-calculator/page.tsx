@@ -9,8 +9,8 @@ import { Lightbulb } from "lucide-react"
 
 
 export const metadata: Metadata = {
-    title: "Influencer Marketing ROI Calculator - Track Campaign Performance",
-    description: "Calculate the true return on investment for your influencer marketing campaigns. Enter campaign cost and revenue to instantly see your ROI and profit.",
+    title: "Influencer Marketing ROI Calculator: Free Campaign Return",
+    description: "Put the influencer fee, ad spend, product and shipping costs against the revenue a campaign brought, and get profit and return on investment.",
     alternates: { canonical: "/tools/influencer-marketing-roi-calculator" },
 }
 
@@ -25,7 +25,7 @@ export default function InfluencerROICalculatorPage() {
                 <div className="max-w-4xl mx-auto space-y-16">
                     <FadeIn delay={0.1}>
                         <ToolSectionHeader 
-                            title="Tool Essential"
+                            title="What this calculator does"
                             icon={Lightbulb}
                         />
                         <InfluencerOverview />
@@ -40,21 +40,25 @@ export default function InfluencerROICalculatorPage() {
                         <ToolFAQ
                             faqs={[
                                 {
-                                    question: "Should I use the simple mode or 'Add Details'?",
-                                    answer: "If you just want a fast answer, use the default simple mode by entering your total <strong>Campaign Cost</strong> and <strong>Revenue</strong>. If you want to see exactly how your budget is split across Influencer Fees, Ads, and Products, click <strong>'Add Details'</strong>. The tool will auto-calculate your total cost from those details."
+                                    question: "How do you calculate influencer marketing ROI?",
+                                    answer: "Profit divided by cost, as a percentage, where profit is attributed revenue minus every cost of the campaign.",
                                 },
                                 {
-                                    question: "What exactly should I include in my 'Campaign Cost'?",
-                                    answer: "Enter the <strong>total money you spent</strong> on the campaign. This includes the direct influencer fee, any performance bonuses, paid ad spend boosting the campaign, and out-of-pocket costs for shipping or product replacements."
+                                    question: "What counts as campaign cost?",
+                                    answer: "The influencer's fee, any ads you run on the content, the products you send and their shipping. Enter them separately or as one total.",
                                 },
                                 {
-                                    question: "How do I account for products I gifted to the influencer?",
-                                    answer: "If you sent a free product instead of paying cash, enter the <strong>Product Cost (COGS)</strong> of that gift under 'Add Details'. This ensures your ROI calculation accounts for the actual capital you invested in the partnership, preventing an artificially inflated 0-cost ROI."
+                                    question: "How do I attribute revenue to an influencer?",
+                                    answer: "Give them a unique discount code or tracked link and read the sales against it in your store's reports.",
                                 },
                                 {
-                                    question: "What is considered a 'Good' ROI for Influencer Marketing?",
-                                    answer: "For direct-response sales, an ROI of <strong>100% (2x return)</strong> is typically a strong benchmark. However, influencer campaigns provide immense value through <strong>user-generated content (UGC)</strong> and <strong>brand awareness</strong>. A campaign that simply breaks even (0% ROI) is often a huge win because you get free, high-quality creatives to reuse in your paid ads."
-                                }
+                                    question: "What is a good influencer ROI?",
+                                    answer: "Many brands aim for at least 100%, meaning the campaign returns twice its cost. Awareness campaigns often accept less.",
+                                },
+                                {
+                                    question: "Should I use revenue or profit for the revenue field?",
+                                    answer: "Use revenue, which is what the calculator expects. If you want ROI on margin, enter revenue minus the cost of the goods sold instead.",
+                                },
                             ]}
                         />
                     </FadeIn>

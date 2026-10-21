@@ -1,27 +1,28 @@
-"use client";
-import { ToolSteps } from "@/app/tools/_shared/components";
-import { ClipboardList, CalendarOff, LineChart } from "lucide-react";
+"use client"
+import { ToolSteps } from "@/app/tools/_shared/components"
+import { ClipboardList, Clock, TrendingUp } from "lucide-react"
 
 export function SalesVelocityHowToUse() {
     return (
         <ToolSteps
+            title="How to use this tool"
             steps={[
                 {
-                    title: "Enter Sales Data",
-                    description: "Input your total units sold over a specific period of time (e.g., 300 units over 30 days).",
-                    icon: ClipboardList
+                    title: "Enter the sales and the period",
+                    description: "Type the units sold and the number of days in the period, for example 300 units in 30 days.",
+                    icon: ClipboardList,
                 },
                 {
-                    title: "Log Stockouts",
-                    description: "Record any days your product was out of stock. The calculator will remove these from the average.",
-                    icon: CalendarOff
+                    title: "Enter the days out of stock",
+                    description: "Type how many of those days the product couldn't be bought. They are removed from the average.",
+                    icon: Clock,
                 },
                 {
-                    title: "Get True Velocity",
-                    description: "See exactly how fast your product sells when it's available, so you can reorder with precision.",
-                    icon: LineChart
-                }
+                    title: "Read the true velocity",
+                    description: "The calculator shows raw and true units per day, the sales lost to the stockout, and the monthly run rate in units and revenue.",
+                    icon: TrendingUp,
+                },
             ]}
         />
-    );
+    )
 }

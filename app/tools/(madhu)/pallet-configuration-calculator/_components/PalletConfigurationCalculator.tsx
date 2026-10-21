@@ -247,10 +247,10 @@ export function PalletConfigurationCalculator() {
                                                             }
                                                         }}
                                                         className={cn(
-                                                            "px-3 h-full rounded-md text-[11px] font-bold transition-all",
+                                                            "px-3 h-full rounded-md text-xs font-bold transition-all",
                                                             unit === u
                                                                 ? "bg-white text-blue-600 shadow-sm border border-blue-200 dark:bg-slate-900 dark:text-blue-400 dark:border-blue-900/50"
-                                                                : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+                                                                : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
                                                         )}
                                                     >
                                                         {u}
@@ -317,10 +317,10 @@ export function PalletConfigurationCalculator() {
                                                                 key={p}
                                                                 onClick={() => handlePresetChange(p)}
                                                                 className={cn(
-                                                                    "flex-1 h-full rounded-md text-[10.5px] font-bold transition-all whitespace-nowrap",
+                                                                    "flex-1 h-full rounded-md text-xs font-bold transition-all whitespace-nowrap",
                                                                     palletPreset === p
                                                                         ? "bg-white text-blue-600 shadow-sm border border-blue-200 dark:bg-slate-900 dark:text-blue-400 dark:border-blue-900/50"
-                                                                        : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+                                                                        : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
                                                                 )}
                                                             >
                                                                 {p === "standard" ? "Standard" : p === "euro" ? "Euro" : "Custom"}
@@ -334,7 +334,7 @@ export function PalletConfigurationCalculator() {
                                             {palletPreset !== "custom" && (
                                                 <div className="flex items-center gap-3 w-full relative z-10 mb-1">
                                                     <div className="flex items-center flex-1 min-w-0">
-                                                        <Label className="text-[13px] font-medium text-slate-400 dark:text-slate-500">
+                                                        <Label className="text-sm font-medium text-slate-600 dark:text-slate-300">
                                                             {palletPreset === "standard" ? "Standard (48 × 40 in)" : "Euro (120 × 80 cm)"}
                                                         </Label>
                                                     </div>
@@ -401,15 +401,15 @@ export function PalletConfigurationCalculator() {
                                             className="flex items-center gap-2 w-full group -ml-[33px] relative z-10"
                                         >
                                             <div className="w-7 h-7 rounded-lg bg-white ring-[6px] ring-white border border-slate-200 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-50 group-hover:border-blue-200 transition-all duration-200 shadow-sm dark:bg-slate-900 dark:ring-slate-900 dark:border-slate-800 dark:group-hover:bg-blue-950/40 dark:group-hover:border-blue-900/50">
-                                                <Settings2 className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-500 transition-colors dark:text-slate-500 dark:group-hover:text-blue-400" />
+                                                <Settings2 className="w-3.5 h-3.5 text-slate-600 dark:text-slate-300 group-hover:text-blue-500 transition-colors dark:group-hover:text-blue-400" />
                                             </div>
                                             <span className="text-[15px] font-bold text-slate-600 group-hover:text-blue-600 transition-colors flex-1 text-left tracking-tight dark:text-slate-300 dark:group-hover:text-blue-400">
                                                 Advanced Settings
-                                                <span className="ml-1.5 font-normal italic text-[12px] text-slate-400 lowercase tracking-normal group-hover:text-blue-400/80 transition-colors dark:text-slate-500">(optional)</span>
+                                                <span className="ml-1.5 font-normal italic text-[12px] text-slate-600 dark:text-slate-300 lowercase tracking-normal group-hover:text-blue-400/80 transition-colors">(optional)</span>
                                             </span>
                                             {showAdvanced
-                                                ? <ChevronUp className="w-4 h-4 text-slate-400 dark:text-slate-500" />
-                                                : <ChevronDown className="w-4 h-4 text-slate-400 dark:text-slate-500" />
+                                                ? <ChevronUp className="w-4 h-4 text-slate-600 dark:text-slate-300" />
+                                                : <ChevronDown className="w-4 h-4 text-slate-600 dark:text-slate-300" />
                                             }
                                         </button>
                                     </div>
@@ -446,12 +446,13 @@ export function PalletConfigurationCalculator() {
                                                                         <button
                                                                             type="button"
                                                                             tabIndex={-1}
-                                                                            className="text-slate-400 hover:text-blue-600 transition-colors cursor-help shrink-0 dark:text-slate-500 dark:hover:text-blue-400"
+                                                                            aria-label="More about this field"
+                                                                            className="text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors cursor-help shrink-0 dark:hover:text-blue-400"
                                                                         >
                                                                             <Info className="h-3.5 w-3.5" />
                                                                         </button>
                                                                     </TooltipTrigger>
-                                                                    <TooltipContent side="top" className="max-w-xs text-[13px] font-normal bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
+                                                                    <TooltipContent side="top" className="max-w-xs text-sm font-normal bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
                                                                         Determine if boxes can be rotated to find a better fit on the pallet.
                                                                     </TooltipContent>
                                                                 </Tooltip>
@@ -464,10 +465,10 @@ export function PalletConfigurationCalculator() {
                                                                         key={v.toString()}
                                                                         onClick={() => setAllowRotation(v)}
                                                                         className={cn(
-                                                                            "flex-1 h-full rounded-md text-[11px] font-bold transition-all",
+                                                                            "flex-1 h-full rounded-md text-xs font-bold transition-all",
                                                                             allowRotation === v
                                                                                 ? "bg-white text-blue-600 shadow-sm border border-blue-200 dark:bg-slate-900 dark:text-blue-400 dark:border-blue-900/50"
-                                                                                : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+                                                                                : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
                                                                         )}
                                                                     >
                                                                         {v ? "Yes" : "No"}
@@ -577,7 +578,7 @@ export function PalletConfigurationCalculator() {
                                 <div className="w-7 h-7 rounded-lg bg-blue-50 ring-[6px] ring-white flex items-center justify-center flex-shrink-0 z-10 dark:bg-blue-950/40 dark:ring-slate-900">
                                     <Grid3x3 className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                                 </div>
-                                <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 z-10 tracking-tight dark:text-slate-400">
+                                <span className="text-sm sm:text-[14px] font-bold text-slate-600 dark:text-slate-300 z-10 tracking-tight">
                                     Pallet Layout — Top View
                                 </span>
                             </div>
@@ -634,12 +635,12 @@ function PalletTopView({ results }: TopViewProps) {
                 {/* Ghost Overlay for Dummy State */}
                 {isDummy && (
                     <div className="absolute inset-0 z-20 flex items-center justify-center bg-white/40 backdrop-blur-[1px] dark:bg-slate-900/40">
-                        <div className="bg-white px-5 py-3 rounded-2xl shadow-[0_8px_30px_rgba(59,130,246,0.08)] border border-blue-50 text-[13px] font-semibold flex flex-col items-center gap-2 group/badge transition-all duration-300 hover:scale-105 dark:bg-slate-900">
+                        <div className="bg-white px-5 py-3 rounded-2xl shadow-[0_8px_30px_rgba(59,130,246,0.08)] border border-blue-50 text-sm font-semibold flex flex-col items-center gap-2 group/badge transition-all duration-300 hover:scale-105 dark:bg-slate-900">
                             <div className="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center text-blue-500 mb-1 border border-blue-100/50 shadow-sm dark:bg-blue-950/40 dark:text-blue-400 dark:border-blue-900/50">
                                 <Box className="w-5 h-5 animate-pulse" />
                             </div>
                             <div className="flex flex-col items-center">
-                                <span className="text-slate-400 text-[11px] font-bold uppercase tracking-wider mb-0.5 dark:text-slate-500">Ready to design</span>
+                                <span className="text-slate-600 dark:text-slate-300 text-xs font-bold uppercase tracking-wider mb-0.5">Ready to design</span>
                                 <span className="text-slate-600 dark:text-slate-300">Enter box dimensions to preview</span>
                             </div>
                         </div>
@@ -721,23 +722,23 @@ function PalletTopView({ results }: TopViewProps) {
                 </div>
                 
                 {/* Bottom Legend */}
-                <div className="absolute bottom-3 left-0 right-0 px-6 flex justify-between items-center text-slate-400 dark:text-slate-500">
+                <div className="absolute bottom-3 left-0 right-0 px-6 flex justify-between items-center text-slate-600 dark:text-slate-300">
                     <div className="flex flex-col gap-0">
-                        <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 leading-tight dark:text-slate-400">Arrangement</span>
+                        <span className="text-sm sm:text-[14px] font-bold text-slate-600 dark:text-slate-300 leading-tight">Arrangement</span>
                         <span className={cn("text-[16px] sm:text-[17px] font-bold tracking-tight block", isDummy ? "text-blue-400" : "text-slate-700 dark:text-slate-200")}>
                             {displayResults.unitsAlongLength} × {displayResults.unitsAlongWidth} Grid
                         </span>
                     </div>
                     <div className="h-6 w-px bg-slate-200 mx-1 dark:bg-slate-700" />
                     <div className="flex flex-col items-center gap-0">
-                        <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 leading-tight dark:text-slate-400">Total stack</span>
+                        <span className="text-sm sm:text-[14px] font-bold text-slate-600 dark:text-slate-300 leading-tight">Total stack</span>
                         <span className={cn("text-[16px] sm:text-[17px] font-bold tracking-tight block", isDummy ? "text-blue-400" : "text-blue-600 dark:text-blue-400")}>
                             {displayResults.layers} {displayResults.layers === 1 ? 'Layer' : 'Layers'}
                         </span>
                     </div>
                     <div className="h-6 w-px bg-slate-200 mx-1 dark:bg-slate-700" />
                     <div className="flex flex-col items-end gap-0 text-right">
-                        <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 leading-tight dark:text-slate-400">Fill Rate</span>
+                        <span className="text-sm sm:text-[14px] font-bold text-slate-600 dark:text-slate-300 leading-tight">Fill Rate</span>
                         <span className={cn("text-[16px] sm:text-[17px] font-bold tracking-tight block", isDummy ? "text-blue-400" : "text-slate-700 dark:text-slate-200")}>
                             {isDummy ? "—" : `${displayResults.areaEfficiency.toFixed(0)}%`}
                         </span>
@@ -749,7 +750,7 @@ function PalletTopView({ results }: TopViewProps) {
             {!isDummy && results!.warnings.length > 0 && (
                 <div className="space-y-1.5 mt-2.5">
                     {results!.warnings.map((warning, i) => (
-                        <div key={i} className="flex gap-2 bg-amber-50/50 px-2 py-1.5 rounded-lg border border-amber-100 text-amber-800 text-[10px] font-bold items-center dark:bg-amber-950/40 dark:border-amber-900/50 dark:text-amber-400">
+                        <div key={i} className="flex gap-2 bg-amber-50/50 px-2 py-1.5 rounded-lg border border-amber-100 text-amber-800 text-xs font-bold items-center dark:bg-amber-950/40 dark:border-amber-900/50 dark:text-amber-400">
                             <AlertTriangle className="w-3 h-3 shrink-0 text-amber-500 dark:text-amber-400" />
                             <span>{warning}</span>
                         </div>

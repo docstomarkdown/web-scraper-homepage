@@ -1,56 +1,18 @@
 "use client"
 import { ToolGuide } from "@/app/tools/_shared/components"
-import { ShoppingCart, Ban, CreditCard, Mail } from "lucide-react"
+import { ShoppingCart, Calculator, BarChart2, Truck, AlertTriangle } from "lucide-react"
 
+/** What the calculator computes, the formula in words, where the inputs come from, and one worked example. */
 export function AbandonmentGuide() {
     return (
         <ToolGuide
-            title="Understanding Your Abandonment Data"
+            title="What the rate tells you"
+            icon={ShoppingCart}
             items={[
-                {
-                    title: "Understand the Core Concept",
-                    icon: ShoppingCart,
-                    iconBg: "bg-orange-50 dark:bg-orange-950/40",
-                    iconColor: "text-orange-500 dark:text-orange-400",
-                    stat: "Lost",
-                    statColor: "text-orange-600 dark:text-orange-400",
-                    statLabel: "Interested but left",
-                    tooltip: "Formula: 100 - (Transactions ÷ Carts × 100)",
-                    description: "Cart abandonment occurs when a highly-interested customer adds items to a shopping cart to checkout, but leaves your site before successfully processing their payment."
-                },
-                {
-                    title: "Identify Conversion Killers",
-                    icon: Ban,
-                    iconBg: "bg-red-50 dark:bg-red-950/40",
-                    iconColor: "text-red-500 dark:text-red-400",
-                    stat: "Costs",
-                    statColor: "text-red-600 dark:text-red-400",
-                    statLabel: "Unexpected fees",
-                    tooltip: "The highest cause of abandonment is hidden costs at shipping.",
-                    description: "The primary killers of checkout flows are: unexpected shipping and tax costs, requiring users to create accounts instead of allowing guest checkout, and complicated or buggy form validations."
-                },
-                {
-                    title: "Know the Industry Benchmarks",
-                    icon: CreditCard,
-                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                    iconColor: "text-blue-500 dark:text-blue-400",
-                    stat: "70%",
-                    statColor: "text-blue-600 dark:text-blue-400",
-                    statLabel: "Global Average",
-                    tooltip: "It is normal for cart abandonment to be high.",
-                    description: "If your abandonment rate is under 60%, your checkout is performing highly efficiently. Rates between 65% and 75% are standard across the ecommerce industry. Anything above 75% requires urgent optimization."
-                },
-                {
-                    title: "Automate Sales Recovery",
-                    icon: Mail,
-                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
-                    iconColor: "text-emerald-500 dark:text-emerald-400",
-                    stat: "Emails",
-                    statColor: "text-emerald-600 dark:text-emerald-400",
-                    statLabel: "Recovery Campaigns",
-                    tooltip: "A strategic, automated email sequence can win back lost sales.",
-                    description: "Cart recovery automations are a must. Send a gentle reminder 1 hour after abandonment, a follow-up offering help 24 hours later, and a final small discount incentive at the 72-hour mark."
-                }
+                { title: "The formula in words", description: "Abandonment rate equals one minus completed transactions divided by carts created, times 100. It's the share of started carts that didn't finish.", icon: Calculator, iconBg: "bg-blue-50 dark:bg-blue-950/40", iconColor: "text-blue-700 dark:text-blue-300" },
+                { title: "A worked example", description: "500 carts and 150 completed orders: 150 ÷ 500 is 0.30, so the abandonment rate is 70%. Winning back one in ten of the lost carts would add 35 orders a period.", icon: BarChart2, iconBg: "bg-amber-50 dark:bg-amber-950/40", iconColor: "text-amber-700 dark:text-amber-300" },
+                { title: "Why carts are abandoned", description: "Surveys of shoppers put unexpected costs first (shipping, taxes and fees shown late), then forced account creation, a long checkout, no trusted payment method and slow delivery. Showing the full cost early fixes the biggest one.", icon: Truck, iconBg: "bg-emerald-50 dark:bg-emerald-950/40", iconColor: "text-emerald-700 dark:text-emerald-300" },
+                { title: "What it doesn't tell you", description: "The rate counts people who were only comparing or saving items too, so it never reaches zero. Watch the trend and the drop-off per checkout step rather than chasing a single target.", icon: AlertTriangle, iconBg: "bg-violet-50 dark:bg-violet-950/40", iconColor: "text-violet-700 dark:text-violet-300" }
             ]}
         />
     )

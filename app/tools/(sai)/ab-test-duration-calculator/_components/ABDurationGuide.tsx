@@ -1,56 +1,19 @@
 "use client"
 import { ToolGuide } from "@/app/tools/_shared/components"
-import { Clock, BarChart2, Split, Search } from "lucide-react"
+import { Split, Calculator, Percent, Clock, Timer } from "lucide-react"
+
+/** What the calculator computes, the formula in words, where the inputs come from, and one worked example. */
 export function ABDurationGuide() {
     return (
         <ToolGuide
-            title="Understanding A/B Testing"
+            title="How the duration is worked out"
+            icon={Split}
             items={[
-                {
-                    title: "Calculate Duration Before Testing",
-                    icon: Clock,
-                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                    iconColor: "text-blue-500 dark:text-blue-400",
-                    stat: "Time",
-                    statColor: "text-blue-600 dark:text-blue-400",
-                    statLabel: "Avoid early stopping",
-                    tooltip: "Stopping a test too early leads to false positives.",
-                    description: "Calculating duration beforehand prevents 'peeking'—stopping a statistically significant test too early, which often results in false positives. Stick to the calculated sample size."
-                },
-                {
-                    title: "Expected Improvement (MDE)",
-                    icon: Search,
-                    iconBg: "bg-purple-50 dark:bg-purple-950/40",
-                    iconColor: "text-purple-500 dark:text-purple-400",
-                    stat: "Uplift",
-                    statColor: "text-purple-600 dark:text-purple-400",
-                    statLabel: "Sensitivity",
-                    tooltip: "The minimum improvement you aim to detect.",
-                    description: "Also known as Minimum Detectable Effect (MDE), this is the target improvement you expect to see. Smaller improvements require much larger sample sizes and run times. If your expected improvement is large, you can test faster."
-                },
-                {
-                    title: "Statistical Significance",
-                    icon: BarChart2,
-                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                    iconColor: "text-blue-500 dark:text-blue-400",
-                    stat: "95%",
-                    statColor: "text-blue-600 dark:text-blue-400",
-                    statLabel: "Confidence Level",
-                    tooltip: "Standard significance level is 95%.",
-                    description: "This calculator assumes a 95% confidence level, meaning there's only a 5% chance that a 'winning' result is actually due to random chance."
-                },
-                {
-                    title: "Business Cycles",
-                    icon: Split,
-                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
-                    iconColor: "text-amber-500 dark:text-amber-400",
-                    stat: "7 Days",
-                    statColor: "text-amber-600 dark:text-amber-400",
-                    statLabel: "Minimum run time",
-                    tooltip: "Always capture at least one full business cycle (week).",
-                    description: "Even if the calculator says 2 days, you should run a test for at least one full week to account for differences in user behavior between weekdays and weekends."
-                }
+                { title: "What the calculator computes", description: "It finds how many visitors each variant needs so that a real difference shows up as significant, then divides by your daily traffic to get days. It uses a 95% confidence level and 80% power, the usual settings for website tests.", icon: Calculator, iconBg: "bg-blue-50 dark:bg-blue-950/40", iconColor: "text-blue-700 dark:text-blue-300" },
+                { title: "The formula in words", description: "Sample size per variant equals (1.96 + 0.84) squared, times the sum of each rate times one minus itself, divided by the squared difference between the two rates. The new rate is your current rate raised by the expected improvement. Days equal the sample size divided by the visitors the smaller variant gets per day.", icon: Percent, iconBg: "bg-amber-50 dark:bg-amber-950/40", iconColor: "text-amber-700 dark:text-amber-300" },
+                { title: "A worked example", description: "Current rate 5%, expected improvement 10% (so the new rate is 5.5%), 2,000 daily visitors, 50/50 split. Each variant needs 31,196 visitors, 62,392 in total, which is 32 days at 1,000 visitors per variant per day.", icon: Clock, iconBg: "bg-emerald-50 dark:bg-emerald-950/40", iconColor: "text-emerald-700 dark:text-emerald-300" },
+                { title: "What it doesn't do", description: "It assumes visitors are split evenly over the period and that nothing else changes mid-test. Weekends, campaigns and holidays shift conversion rates, so run at least one full week even when the maths says fewer days.", icon: Timer, iconBg: "bg-violet-50 dark:bg-violet-950/40", iconColor: "text-violet-700 dark:text-violet-300" }
             ]}
         />
     )
-}
+}

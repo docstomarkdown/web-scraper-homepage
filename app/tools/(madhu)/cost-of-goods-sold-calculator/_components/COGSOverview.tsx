@@ -1,30 +1,20 @@
 "use client"
-import { ToolOverview } from "@/app/tools/_shared/components/ToolOverview"
+import { ToolOverview } from "@/app/tools/_shared/components"
 
+/** What this calculator does, in plain words. Copy rules: docs/writing-style.md. */
 export function COGSOverview() {
     return (
-        <ToolOverview
-            heading="Why Use COGS Calculator?"
-            headingAccent="COGS Calculator"
-            definition="The primary purpose of the COGS (Cost of Goods Sold) Calculator is to pinpoint the exact cost of a single unit before you ever set a price. Built for Amazon sellers and product brands, this tool consolidates multiple expenses—product cost, freight, packaging, and fulfillment—into one clear number. It is your most important tool for ensuring that your pricing strategy is grounded in factual costs, not guesses, protecting your gross margin from the start."
-            facts={[
-                {
-                    stat: "Full Cost",
-                    label: "True Unit Cost",
-                    detail: "Consolidates every hidden expense (freight, packaging, fees) into one single 'True Cost' per unit, providing the foundation for all your pricing decisions."
-                },
-                {
-                    stat: "Protect Profit",
-                    label: "Accurate Margins",
-                    detail: "Calculate every single expense upfront so you know exactly how much profit you'll make on every sale, without any unexpected surprises."
-                },
-                {
-                    stat: "Detailed Breakdown",
-                    label: "Track All Expenses",
-                    detail: "Easily see exactly where your money is going by breaking down your costs between manufacturing, shipping, packaging, and extra fees."
-                }
-            ]}
-            accent="blue"
-        />
+        <div id="overview">
+            <ToolOverview
+                heading="What the COGS Calculator tells you"
+                headingAccent="COGS Calculator"
+                definition="Cost of goods sold is everything it costs to get one sellable unit into a customer's hands. Type the product cost, the inbound shipping, the packaging and the fulfilment fee, and the calculator gives the cost per unit and the total for the quantity you order."
+                facts={[
+                    { stat: "Per unit", label: "all-in cost", detail: "Product, shipping, packaging and fulfilment added up for one unit." },
+                    { stat: "Total", label: "for the order", detail: "The per-unit cost multiplied by the quantity, which is the cash the order ties up." },
+                    { stat: "Price check", label: "before you list", detail: "Compare the per-unit cost with your selling price to see the gross margin you'd keep." },
+                ]}
+            />
+        </div>
     )
 }

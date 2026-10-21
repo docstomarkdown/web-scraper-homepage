@@ -1,44 +1,42 @@
-"use client";
-import { ToolGuide } from "@/app/tools/_shared/components/ToolGuide";
-import { BookOpen, TrendingDown, Target, LineChart } from "lucide-react";
+"use client"
+import { ToolGuide } from "@/app/tools/_shared/components"
+import { BookOpen, Calculator, Scale, Target, TrendingUp } from "lucide-react"
+
 export function TACoSGuide() {
     return (
         <ToolGuide
-            title="Understanding Total Advertising Cost of Sales (TACoS)"
+            title="How to read TACoS"
             icon={BookOpen}
             items={[
                 {
-                    title: "What is TACoS?",
-                    description: "Total Advertising Cost of Sales (TACoS) measures how much of your total gross revenue is consumed by advertising costs. It’s the ultimate metric for measuring ad-dependency.",
-                    icon: Target,
+                    title: "The formula",
+                    description: "TACoS = ad spend ÷ total revenue × 100. Net margin after ads = gross margin − TACoS.",
+                    icon: Calculator,
                     iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                    iconColor: "text-blue-500 dark:text-blue-400",
-                    tooltip: "Formula: (Total Ad Spend ÷ Total Revenue) × 100",
-                    stat: "8-15%",
-                    statColor: "text-blue-600 dark:text-blue-400",
-                    statLabel: "Ideal Target"
+                    iconColor: "text-blue-700 dark:text-blue-300",
                 },
                 {
-                    title: "Brand Vitality",
-                    description: "A decreasing TACoS while sales grow indicates your organic brand visibility is improving and you rely less on paid ads.",
-                    icon: TrendingDown,
+                    title: "TACoS and ACoS",
+                    description: "ACoS divides ad spend by the sales the ads produced; TACoS divides it by all sales. TACoS falling while sales grow means organic sales are carrying more of the business.",
+                    icon: Scale,
+                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
+                    iconColor: "text-amber-700 dark:text-amber-300",
+                },
+                {
+                    title: "What a healthy figure looks like",
+                    description: "The meter compares TACoS with your gross margin. Under 30% of the margin is healthy, under 60% needs watching, and above that the ads are eating most of the profit.",
+                    icon: Target,
                     iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
-                    iconColor: "text-emerald-500 dark:text-emerald-400",
-                    stat: "Vitals",
-                    statColor: "text-emerald-600 dark:text-emerald-400",
-                    statLabel: "Organic Growth"
+                    iconColor: "text-emerald-700 dark:text-emerald-300",
                 },
                 {
-                    title: "TACoS vs. ACoS",
-                    description: "ACoS measures campaign efficiency (Ad Spend ÷ Ad Revenue). TACoS measures total business health (Ad Spend ÷ Total Revenue). A low TACoS is the goal for profitability.",
-                    icon: LineChart,
-                    iconBg: "bg-purple-50 dark:bg-purple-950/40",
-                    iconColor: "text-purple-500 dark:text-purple-400",
-                    stat: "Health",
-                    statColor: "text-purple-600 dark:text-purple-400",
-                    statLabel: "Profit Factor"
+                    title: "A worked example",
+                    description: "$50,000 of revenue, $5,000 of ads and a 40% gross margin: TACoS is 10% and the margin after ads is 30%. TACoS sits at a quarter of the margin, in the healthy range.",
+                    icon: TrendingUp,
+                    iconBg: "bg-violet-50 dark:bg-violet-950/40",
+                    iconColor: "text-violet-700 dark:text-violet-300",
                 },
             ]}
         />
-    );
-}
+    )
+}

@@ -1,47 +1,40 @@
 import { Metadata } from "next"
-import { FadeIn, ToolFAQ } from "@/app/tools/_shared/components"
-import { CTA } from "@/components/sections/CTA"
 import { PromoCodeCalculator } from "./_components/PromoCodeCalculator"
 import { PromoCodeHowToUse } from "./_components/PromoCodeHowToUse"
 import { PromoCodeGuide } from "./_components/PromoCodeGuide"
+import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
+import { CTA } from "@/components/sections/CTA"
+
 export const metadata: Metadata = {
-    title: "Promo Code Generator | Create Professional Discount Codes",
-    description: "Quickly generate professional, randomized promo codes for your e-commerce store. Support for custom prefixes, suffixes, and character selection.",
+    title: "Promo Code Generator: Free Random Discount Codes",
+    description: "Make a batch of random discount codes with your own prefix or suffix, a length you choose, and letters, numbers or symbols, ready to paste into your store.",
     alternates: { canonical: "/tools/promo-code-generator" },
-    keywords: ["promo code generator", "discount code generator", "coupon code generator", "amazon promo codes", "shopify discounts"],
 }
-const promoCodeFaqs = [
+
+const faqs = [
     {
-        question: "How many codes can I generate at once?",
-        answer: "You can generate up to 50 unique promo codes in a single batch. If you need more, simply click 'Generate' again to create a fresh set of codes.",
+        question: "How many codes can I make at once?",
+        answer: "Up to 50 per batch. Run it again for more; each batch is random.",
     },
     {
-        question: "Where can I use these promo codes?",
-        answer: "These codes are universal and can be used on any platform that supports custom discount codes, including Shopify, Amazon, WooCommerce, Magento, and custom-built e-commerce sites.",
+        question: "Where can I use the codes?",
+        answer: "In any store that accepts custom discount codes: Shopify, WooCommerce, Etsy, Amazon and most others. Paste them into the store's discount or coupon settings.",
     },
     {
-        question: "Do prefixes and suffixes affect the randomness?",
-        answer: "No. The randomized part of the code is generated independently. Prefixes and suffixes are static strings added to the start and end of each code for branding or tracking purposes.",
+        question: "Do the prefix and suffix affect the randomness?",
+        answer: "No. The random part stays random; the prefix and suffix are added around it unchanged.",
     },
     {
-        question: "Are the generated codes unique?",
-        answer: "The generator uses high-entropy randomization to ensure each batch of codes is unique. For very large batches (thousands), we recommend cross-checking for duplicates before importing to your store.",
+        question: "Are the codes unique?",
+        answer: "With eight or more random characters, repeats within a batch are very unlikely. Your store will reject a duplicate if one ever appears.",
     },
 ]
+
 export default function PromoCodeGeneratorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <div className="max-w-4xl mx-auto text-center mb-12">
-                    <FadeIn>
-                        <h1 className="text-4xl md:text-[42px] font-bold text-slate-900 mb-4 tracking-tight dark:text-white">
-                            Promo Code <span className="text-blue-600 dark:text-blue-400">Generator</span>
-                        </h1>
-                        <p className="text-lg text-slate-600 dark:text-slate-300">
-                            Create professional, randomized discount codes for your e-commerce campaigns in seconds.
-                        </p>
-                    </FadeIn>
-                </div>
+                <ToolPageTitle title="Promo Code Generator" direction="down" duration={0.6} />
                 <div className="mb-20">
                     <PromoCodeCalculator />
                 </div>
@@ -49,13 +42,13 @@ export default function PromoCodeGeneratorPage() {
                     <FadeIn delay={0.2}>
                         <PromoCodeHowToUse />
                     </FadeIn>
-                    <FadeIn delay={0.3}>
+                    <FadeIn delay={0.2}>
                         <PromoCodeGuide />
                     </FadeIn>
-                    <FadeIn delay={0.4}>
-                        <ToolFAQ faqs={promoCodeFaqs} />
+                    <FadeIn delay={0.2}>
+                        <ToolFAQ title="Questions, answered" faqs={faqs} />
                     </FadeIn>
-                    <FadeIn delay={0.5}>
+                    <FadeIn delay={0.2}>
                         <CTA />
                     </FadeIn>
                 </div>

@@ -153,13 +153,13 @@ export function DaysOfInventoryCalculator() {
                                         <TooltipProvider delayDuration={100}>
                                             <Tooltip>
                                                 <TooltipTrigger asChild>
-                                                    <button type="button" tabIndex={-1} className="text-slate-400 hover:text-blue-600 transition-colors cursor-help shrink-0 dark:text-slate-500 dark:hover:text-blue-400">
+                                                    <button type="button" tabIndex={-1} aria-label="More about this field" className="text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors cursor-help shrink-0 dark:hover:text-blue-400">
                                                         <Info className="h-3.5 w-3.5" />
                                                     </button>
                                                 </TooltipTrigger>
-                                                <TooltipContent side="top" className="max-w-[220px] text-[13px] font-normal bg-slate-900 text-white border-slate-800 p-3 rounded-lg dark:bg-slate-800 dark:border-slate-700">
+                                                <TooltipContent side="top" className="max-w-[220px] text-sm font-normal bg-slate-900 text-white border-slate-800 p-3 rounded-lg dark:bg-slate-800 dark:border-slate-700">
                                                     <p className="font-semibold mb-1.5">Select your sales tracking period:</p>
-                                                    <div className="text-slate-300 text-[11px] leading-relaxed space-y-1 dark:text-slate-600">
+                                                    <div className="text-slate-300 text-xs leading-relaxed space-y-1 dark:text-slate-300">
                                                         <p><span className="text-blue-400 font-semibold">Daily</span> if you track sales every day</p>
                                                         <p><span className="text-blue-400 font-semibold">Weekly</span> for weekly reports</p>
                                                         <p><span className="text-blue-400 font-semibold">Monthly</span> for monthly data</p>

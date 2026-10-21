@@ -1,26 +1,16 @@
 "use client"
 import { ToolSteps } from "@/app/tools/_shared/components"
-import { DollarSign, PieChart, Calculator } from "lucide-react"
+import { ClipboardList, Coins, Percent, Table } from "lucide-react"
+
 export function NetProfitHowToUse() {
     return (
         <ToolSteps
-            title="How to Use This Tool"
+            title="How to use this calculator"
             steps={[
-                {
-                    title: "Enter Revenue",
-                    description: "Input your <strong>Total Revenue</strong> and <strong>COGS</strong> in the sticky left panel to instantly populate your dashboard baseline.",
-                    icon: DollarSign
-                },
-                {
-                    title: "Add Expenses",
-                    description: "Log your marketing spend, overhead, and tax percentage to calculate what it truly costs to run your ongoing business operations.",
-                    icon: Calculator
-                },
-                {
-                    title: "View Results",
-                    description: "Analyze your <strong>Net Profit</strong> immediately, then click the new <strong>View Income & Expense Breakdown</strong> dropdown in the result card to natively visualize every detailed expense block.",
-                    icon: PieChart
-                }
+                { title: "Type the revenue and the cost of goods", description: "Revenue is the period's sales. Cost of goods sold is what those goods cost you, including inbound shipping and packaging.", icon: Coins },
+                { title: "Type advertising and overheads", description: "Advertising is ad spend for the period. Overheads are rent, software, salaries and fees that don't change with each sale.", icon: ClipboardList },
+                { title: "Set the tax rate", description: "Your effective rate on profit, as a percentage. Leave it at the placeholder if you don't know it yet.", icon: Percent },
+                { title: "Read the results", description: "Net profit and net margin are the main numbers, with gross and operating profit above them and a bar showing where the revenue went.", icon: Table },
             ]}
         />
     )

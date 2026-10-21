@@ -3,13 +3,12 @@ import { FBARemovalCalculator } from "./_components/FBARemovalCalculator"
 import { FBARemovalGuide } from "./_components/FBARemovalGuide"
 import { FBARemovalHowToUse } from "./_components/FBARemovalHowToUse"
 import { FBARemovalOverview } from "./_components/FBARemovalOverview"
-import { FadeIn, ToolFAQ, ToolPageTitle, ToolSectionHeader } from "@/app/tools/_shared/components"
+import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
-import { BookOpen } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: "FBA Removal vs Disposal Calculator",
-    description: "Compare Amazon FBA removal and disposal fees. Calculate potential profit, net difference, and identify whether to remove, dispose, or hold your stranded inventory.",
+    title: "FBA Removal vs Disposal Calculator: Free Stock Check",
+    description: "Compare removing stranded Amazon stock with disposing of it: units, per-unit fees, resale price and costs show which option loses less or earns more.",
     alternates: { canonical: "/tools/fba-removal-order-calculator" },
 }
 
@@ -25,10 +24,6 @@ export default function FBARemovalOrderPage() {
 
                 <div className="max-w-5xl mx-auto space-y-16" id="fba-removal-guide">
                     <FadeIn delay={0.2}>
-                        <ToolSectionHeader
-                            title="Tool Essential"
-                            icon={BookOpen}
-                        />
                         <FBARemovalOverview />
                     </FadeIn>
 
@@ -43,27 +38,31 @@ export default function FBARemovalOrderPage() {
                     <FadeIn delay={0.2}>
                         <ToolFAQ
                             faqs={[
-                                {
-                                    question: "When are removal fees charged?",
-                                    answer: "Removal fees are charged when the removal order is placed and confirmed. The fee rate is determined by your product's size tier (Standard or Large/Bulky) and its shipping weight — the greater of actual or dimensional weight."
-                                },
-                                {
-                                    question: "Are disposal fees cheaper than removal fees?",
-                                    answer: "No. In 2025, Amazon charges the same per-unit fee for both removal (return to seller) and disposal orders. The choice should be based on whether you can profitably resell the inventory, not on fee differences."
-                                },
-                                {
-                                    question: "How is dimensional weight calculated?",
-                                    answer: "Dimensional weight = (Length × Width × Height) ÷ 139, where all measurements are in inches and the result is in pounds. Amazon uses the greater of your product's actual unit weight or this dimensional weight as the billing weight."
-                                },
-                                {
-                                    question: "What is the Standard vs. Large/Bulky size threshold?",
-                                    answer: "A product qualifies as Standard size if it is ≤ 18 inches long, ≤ 14 inches wide, ≤ 8 inches tall, AND ≤ 20 lbs in weight. Any product exceeding any one of these limits is classified as Large/Bulky, which carries higher removal fees."
-                                },
-                                {
-                                    question: "Is FBA Liquidation a better option than removal?",
-                                    answer: "It depends. With FBA Liquidations, Amazon sells your inventory to liquidators and returns 5–10% of the estimated sale price to you. This eliminates the removal fee cost entirely. If the recovered amount exceeds what you'd net after a removal + resale, liquidation is the smarter choice."
-                                }
-                            ]}
+                                    {
+                                        question: "When are Amazon removal fees charged?",
+                                        answer: "When you place a removal order and Amazon ships the units back to you. The fee per unit depends on the size tier and shipping weight; the current table is in Seller Central under FBA fees."
+                                    },
+                                    {
+                                        question: "Are disposal fees cheaper than removal fees?",
+                                        answer: "Not in the current US schedule; the per-unit fee is the same. The choice comes down to whether you can sell the returned units for more than the fee and the cost of selling them."
+                                    },
+                                    {
+                                        question: "What should I enter as the expected selling price?",
+                                        answer: "What a returned unit will really fetch on another channel after discounts: your own site, eBay, a wholesale buyer. Be conservative; stock that didn't sell on Amazon rarely sells at full price elsewhere."
+                                    },
+                                    {
+                                        question: "What goes into other costs?",
+                                        answer: "Shipping from your location to the buyer, packaging, relisting fees and your time. Enter them per unit."
+                                    },
+                                    {
+                                        question: "Is FBA liquidation better than removal?",
+                                        answer: "Sometimes. Liquidation pays a small share of the estimated value with no removal fee, which beats disposal and can beat removal when resale is slow or costly."
+                                    },
+                                    {
+                                        question: "Is this calculator free?",
+                                        answer: "Yes. It runs in your browser, needs no sign-up and stores nothing you type."
+                                    }
+                                ]}
                         />
                     </FadeIn>
 

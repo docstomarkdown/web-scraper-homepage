@@ -2,24 +2,18 @@ import { Metadata } from "next"
 import { DiscountCalculator } from "./_components/DiscountCalculator"
 import { DiscountGuide } from "./_components/DiscountGuide"
 import { DiscountHowToUse } from "./_components/DiscountHowToUse"
-import { FadeIn, ToolFAQ } from "@/app/tools/_shared/components"
+import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
-    title: 'Discount Percentage Calculator - Calculate Savings & Final Price',
-    description: 'Free discount percentage calculator to instantly calculate final price, discount amount, and savings. Essential for shoppers and retailers.',
+    title: "Discount Calculator: Free Final Price and Percentage Off",
+    description: "Find the final price and saving from a price and a percentage off, or the percentage off from two prices, for one item or several.",
     alternates: { canonical: "/tools/discount-percentage-calculator" },
 }
 export default function DiscountCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-10">
-                    <FadeIn direction="down" duration={0.6}>
-                        <h1 className="text-4xl font-bold tracking-tight text-gray-800 md:text-[42px] mb-4 dark:text-slate-100">
-                            Discount Percentage Calculator
-                        </h1>
-                    </FadeIn>
-                </div>
+                <ToolPageTitle title="Discount Percentage Calculator" direction="down" duration={0.6} />
                 <div className="mb-20">
                     <DiscountCalculator />
                 </div>
@@ -34,19 +28,31 @@ export default function DiscountCalculatorPage() {
                     <FadeIn delay={0.2}>
                         <ToolFAQ
                             faqs={[
-                                {
-                                    question: "How do I calculate a discount?",
-                                    answer: "To calculate a discount, multiply the original price by the discount percentage (as a decimal). For example, to find 20% off $50: 50 * 0.20 = $10 savings. Then subtract savings from original price: 50 - 10 = $40 final price."
-                                },
-                                {
-                                    question: "How do I find the percentage off?",
-                                    answer: "If you know the original price and the sale price, subtract the sale price from the original price to get the savings. Then divide the savings by the original price and multiply by 100."
-                                },
-                                {
-                                    question: "What is the formula for discount percentage?",
-                                    answer: "Discount % = ((Original Price - Final Price) / Original Price) * 100."
-                                }
-                            ]}
+                                    {
+                                        question: "How do I calculate a discount?",
+                                        answer: "Multiply the original price by the percentage off and divide by 100 for the saving, then subtract it from the price. 25% off $80 saves $20 and costs $60."
+                                    },
+                                    {
+                                        question: "How do I find the percentage off from two prices?",
+                                        answer: "Subtract the sale price from the original, divide by the original and multiply by 100. $80 down to $60 is a 25% discount."
+                                    },
+                                    {
+                                        question: "Do two discounts add up?",
+                                        answer: "No. Each applies to what's left after the previous one, so 20% then 10% is 28% off in total, not 30%."
+                                    },
+                                    {
+                                        question: "How do I work out a discount for several items?",
+                                        answer: "Enter the quantity and the calculator multiplies the per-item saving. Three $80 items at 25% off save $60."
+                                    },
+                                    {
+                                        question: "What's the difference between a discount and a markdown?",
+                                        answer: "Nothing in the maths. Shops say markdown for a permanent price cut and discount for a temporary one or a coupon."
+                                    },
+                                    {
+                                        question: "Is this calculator free?",
+                                        answer: "Yes. It runs in your browser, needs no sign-up and stores nothing you type."
+                                    }
+                                ]}
                         />
                     </FadeIn>
                     {/* CTA Section */}

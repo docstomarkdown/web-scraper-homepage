@@ -1,46 +1,52 @@
-import { Metadata } from "next";
-import { TimeZonePlanner } from "./_components/TimeZonePlanner";
-import { MeetingPlannerHowToUse } from "./_components/MeetingPlannerHowToUse";
-import { MeetingPlannerGuide } from "./_components/MeetingPlannerGuide";
-import { FadeIn, ToolFAQ } from "@/app/tools/_shared/components";
-import { CTA } from "@/components/sections/CTA";
+import { Metadata } from "next"
+import { TimeZonePlanner } from "./_components/TimeZonePlanner"
+import { MeetingPlannerHowToUse } from "./_components/MeetingPlannerHowToUse"
+import { MeetingPlannerGuide } from "./_components/MeetingPlannerGuide"
+import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
+import { CTA } from "@/components/sections/CTA"
+
 export const metadata: Metadata = {
-    title: "Time Zone Meeting Planner - E-commerce Logistics",
-    description: "Coordinate meetings with international suppliers, VAs, and teams. Find the perfect overlap time between EST, CST (Beijing), GMT, and more.",
+    title: "Time Zone Meeting Planner: Free Overlap Finder",
+    description: "Pick your city and the cities of your suppliers or team, and see which hours fall inside everyone's working day before you set a call time.",
     alternates: { canonical: "/tools/time-zone-meeting-planner" },
-};
-export default function TimeZonePlannerPage() {
+}
+
+const faqs = [
+    {
+        question: "Does the planner adjust for daylight saving?",
+        answer: "Yes. It uses each time zone's current offset from your browser, so it follows daylight saving automatically.",
+    },
+    {
+        question: "Which time zone is CST?",
+        answer: "The abbreviation is used for both US Central and China Standard Time. Pick the city rather than the abbreviation to avoid the mix-up.",
+    },
+    {
+        question: "Can I add more than three cities?",
+        answer: "Yes. Add as many as you need; each one shows its local time and whether it is in business hours.",
+    },
+    {
+        question: "What counts as business hours?",
+        answer: "9 am to 5 pm in each city's local time. Adjust for your own contacts if they work different hours.",
+    },
+]
+
+export default function TimeZoneMeetingPlannerPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-10">
-                    <FadeIn direction="down" duration={0.6}>
-                        <h1 className="text-4xl font-bold tracking-tight text-slate-900 md:text-[42px] mb-4 dark:text-white">
-                            Time Zone Meeting Planner
-                        </h1>
-                    </FadeIn>
+                <ToolPageTitle title="Time Zone Meeting Planner" direction="down" duration={0.6} />
+                <div className="mb-20">
+                    <TimeZonePlanner />
                 </div>
-                <TimeZonePlanner />
-                <div className="max-w-4xl mx-auto mt-20 space-y-16">
-                    <FadeIn delay={0.1}>
+                <div className="max-w-5xl mx-auto space-y-16">
+                    <FadeIn delay={0.2}>
                         <MeetingPlannerHowToUse />
                     </FadeIn>
                     <FadeIn delay={0.2}>
                         <MeetingPlannerGuide />
                     </FadeIn>
                     <FadeIn delay={0.2}>
-                        <ToolFAQ
-                            faqs={[
-                                {
-                                    question: "Does this adjust for Daylight Savings?",
-                                    answer: "This tool uses standard offsets. For critical recurring meetings, always double-check local daylight savings changes, as dates vary by country."
-                                },
-                                {
-                                    question: "What is CST?",
-                                    answer: "In e-commerce context, CST often refers to 'China Standard Time' (UTC+8), not to be confused with US Central Standard Time."
-                                }
-                            ]}
-                        />
+                        <ToolFAQ title="Questions, answered" faqs={faqs} />
                     </FadeIn>
                     <FadeIn delay={0.2}>
                         <CTA />
@@ -48,5 +54,5 @@ export default function TimeZonePlannerPage() {
                 </div>
             </div>
         </div>
-    );
+    )
 }

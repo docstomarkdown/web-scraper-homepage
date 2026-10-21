@@ -7,8 +7,8 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: 'A/B Test Duration Calculator',
-    description: 'Calculate how long to run your A/B test for statistical significance. Avoid common testing mistakes.',
+    title: "A/B Test Duration Calculator: Free Sample Size and Days",
+    description: "Enter your conversion rate, the lift you want to detect and your daily visitors to see how many visitors each variant needs and how many days the test runs.",
     alternates: { canonical: "/tools/ab-test-duration-calculator" },
 }
 
@@ -28,7 +28,7 @@ export default function ABDurationCalculatorPage() {
 
                 <div className="max-w-5xl mx-auto space-y-20" id="ab-guide">
 
-                    {/* Tool Overview — ABDurationOverview has its own ToolSectionHeader */}
+                    {/* Tool overview */}
                     <FadeIn delay={0.2}>
                         <ABDurationOverview />
                     </FadeIn>
@@ -47,27 +47,31 @@ export default function ABDurationCalculatorPage() {
                     <FadeIn delay={0.2}>
                         <ToolFAQ
                             faqs={[
-                                {
-                                    question: "How long should my A/B test run?",
-                                    answer: "Your test should run until it reaches the calculated sample size and duration. However, as a strategic rule of thumb, always run for at least 7 to 14 days. This ensures you account for fluctuations in user behavior across different days of the week (e.g., weekend vs. weekday traffic patterns)."
-                                },
-                                {
-                                    question: "Can I stop the test early if one version looks like a winner?",
-                                    answer: "No. Stopping a test early just because it looks like a winner (known as 'peeking') is a major mistake. Results often swing back and forth before data stabilize. You must commit to the full calculated sample size to ensure your result is statistically significant and not just a temporary data spike."
-                                },
-                                {
-                                    question: "Why does low traffic increase my test duration?",
-                                    answer: "Statistical significance requires a specific amount of data (sample size). If fewer people visit your page each day, it takes longer to collect enough conversions to confidently say that one version is truly better than the other. More data leads to more certain results."
-                                },
-                                {
-                                    question: "What expected improvement should I enter?",
-                                    answer: "This depends on the boldness of your change. If you're testing minor adjustments (like a button color), expect a small uplift (1-3%). For high-impact changes (like a new offer or headline), you might expect 10-20%. Note: Smaller expected improvements require much larger sample sizes and more time to detect."
-                                },
-                                {
-                                    question: "Why can't I run my test for just 1–2 days?",
-                                    answer: "Short tests are highly prone to 'false positives' because they don't capture a full cycle of user behavior. Sunday shoppers often behave differently than Tuesday buyers. A 7-day minimum run is the industry standard to ensure your winner holds true across any given day of the week."
-                                }
-                            ]}
+                                    {
+                                        question: "How long should an A/B test run?",
+                                        answer: "Until each variant has the sample size the calculator shows, and for at least one full week so weekday and weekend behaviour are both in the data. Stopping early because one version is ahead is the most common way to get a false winner."
+                                    },
+                                    {
+                                        question: "What is a minimum detectable effect?",
+                                        answer: "The smallest improvement you want the test to be able to prove, as a percentage of today's rate. A 10% improvement on a 5% conversion rate means the new rate must reach 5.5%. Halving the effect roughly quadruples the sample size."
+                                    },
+                                    {
+                                        question: "Why does a small improvement need so many visitors?",
+                                        answer: "The difference between the two rates is squared in the denominator of the formula, so a smaller difference makes the required sample much larger. Proving a 2% lift takes about 25 times the visitors of proving a 10% lift."
+                                    },
+                                    {
+                                        question: "Can I run more than two variants?",
+                                        answer: "The calculator works out one variant against one control. For three or more variants, each extra variant needs the same sample size, so the total visitors and days go up in proportion."
+                                    },
+                                    {
+                                        question: "Does the traffic split change the duration?",
+                                        answer: "Yes. The days are driven by the variant that gets the least traffic. A 50/50 split finishes fastest; a 90/10 split takes about five times as long for the same sample size."
+                                    },
+                                    {
+                                        question: "Is this calculator free?",
+                                        answer: "Yes. It runs in your browser, needs no sign-up and stores nothing you type."
+                                    }
+                                ]}
                         />
                     </FadeIn>
 

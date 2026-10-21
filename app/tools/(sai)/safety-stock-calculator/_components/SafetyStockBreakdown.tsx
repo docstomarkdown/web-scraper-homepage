@@ -66,7 +66,7 @@ export function SafetyStockBreakdown({
                 <div className="flex items-center justify-center w-6 h-6 rounded-md bg-blue-600/10 border border-blue-500/20">
                     <PieChart className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                 </div>
-                <h2 className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none dark:text-blue-400">
+                <h2 className="text-base sm:text-[16px] font-bold text-blue-800 leading-none dark:text-blue-200">
                     Stock Breakdown
                 </h2>
             </div>
@@ -94,19 +94,19 @@ export function SafetyStockBreakdown({
                             </RechartsPie>
                         </ResponsiveContainer>
                     ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-center p-3 text-slate-400 text-[10.5px] leading-tight font-medium border-2 border-dashed border-slate-200/70 rounded-full bg-slate-50/40 dark:text-slate-500 dark:border-slate-800 dark:bg-slate-800/60">
+                        <div className="absolute inset-0 flex items-center justify-center text-center p-3 text-slate-600 dark:text-slate-300 text-xs leading-tight font-medium border-2 border-dashed border-slate-200/70 rounded-full bg-slate-50/40 dark:border-slate-800 dark:bg-slate-800/60">
                             Add data to view
                         </div>
                     )}
                     {pieTotal > 0 && (
                         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                            <span className="text-[10px] sm:text-[11px] font-medium text-slate-400 text-center leading-tight mb-0.5 mt-0.5 dark:text-slate-500">
+                            <span className="text-xs sm:text-xs font-medium text-slate-600 dark:text-slate-300 text-center leading-tight mb-0.5 mt-0.5">
                                 Max Demand
                             </span>
-                            <span className="text-[11px] sm:text-[13px] font-bold text-slate-900 tracking-tight dark:text-white">
+                            <span className="text-xs sm:text-sm font-bold text-slate-900 tracking-tight dark:text-white">
                                 {pieTotal}
                             </span>
-                            <span className="text-[9px] font-medium text-slate-400 dark:text-slate-500">units</span>
+                            <span className="text-xs font-medium text-slate-600 dark:text-slate-300">units</span>
                         </div>
                     )}
                 </div>
@@ -119,7 +119,7 @@ export function SafetyStockBreakdown({
                         return (
                             <div
                                 key={item.label}
-                                className="flex items-center justify-between text-[11px] px-3 bg-white border border-slate-100 rounded-lg py-1.5 shadow-sm dark:bg-slate-900 dark:border-slate-800"
+                                className="flex items-center justify-between text-xs px-3 bg-white border border-slate-100 rounded-lg py-1.5 shadow-sm dark:bg-slate-900 dark:border-slate-800"
                             >
                                 <div className="flex items-center gap-2 shrink-0">
                                     <div
@@ -131,7 +131,7 @@ export function SafetyStockBreakdown({
                                     </span>
                                 </div>
                                 <div className="flex items-center gap-3 shrink-0 ml-4">
-                                    <span className="text-slate-500 font-semibold tabular-nums w-[76px] sm:w-[86px] text-right dark:text-slate-400">
+                                    <span className="text-slate-600 dark:text-slate-300 font-semibold tabular-nums w-[76px] sm:w-[86px] text-right">
                                         {item.value} units
                                     </span>
                                     <span className="font-extrabold text-slate-900 tabular-nums w-[32px] sm:w-[40px] text-right dark:text-white">

@@ -1,26 +1,28 @@
 "use client"
 import { ToolSteps } from "@/app/tools/_shared/components"
-import { Settings, Sparkles, Copy } from "lucide-react"
+import { Hash, Tag, Ticket } from "lucide-react"
+
 export function PromoCodeHowToUse() {
     return (
         <ToolSteps
+            title="How to use this tool"
             steps={[
                 {
-                    title: "Code Specs",
-                    description: "Enter short branding text strings, numerical limits, and explicit desired output string sizing constraints.",
-                    icon: Settings
+                    title: "Choose the length and how many",
+                    description: "Type how many random characters each code should have (8 is a good default) and how many codes you need, up to 50.",
+                    icon: Hash,
                 },
                 {
-                    title: "Set Format",
-                    description: "Choose randomized combinations, structured readable phrases, and uppercase syntax preferences strictly.",
-                    icon: Sparkles
+                    title: "Add a prefix or suffix",
+                    description: "Open the advanced options to add text such as SAVE- at the start or -2026 at the end, and choose whether to include numbers or symbols.",
+                    icon: Tag,
                 },
                 {
-                    title: "Get Output",
-                    description: "Instantly build out endless hundreds of absolutely unique compliance valid discount codes ready for export.",
-                    icon: Copy
-                }
+                    title: "Copy the codes",
+                    description: "Click Generate, then copy one code or the whole list and paste it into your store's discount settings.",
+                    icon: Ticket,
+                },
             ]}
         />
     )
-}
+}

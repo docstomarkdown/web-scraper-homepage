@@ -102,7 +102,7 @@ export function DiscountCalculator() {
                                         onClick={() => { setMode("find-price"); handleReset(); }}
                                         className={cn(
                                             "relative z-10 px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 w-32",
-                                            mode === "find-price" ? "text-blue-600 dark:text-blue-400" : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+                                            mode === "find-price" ? "text-blue-600 dark:text-blue-400" : "text-slate-600 hover:text-slate-800 dark:text-slate-300 dark:hover:text-slate-100"
                                         )}
                                     >
                                         Find Final Price
@@ -112,7 +112,7 @@ export function DiscountCalculator() {
                                         onClick={() => { setMode("find-discount"); handleReset(); }}
                                         className={cn(
                                             "relative z-10 px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 w-32",
-                                            mode === "find-discount" ? "text-blue-600 dark:text-blue-400" : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+                                            mode === "find-discount" ? "text-blue-600 dark:text-blue-400" : "text-slate-600 hover:text-slate-800 dark:text-slate-300 dark:hover:text-slate-100"
                                         )}
                                     >
                                         Find Discount %
@@ -255,11 +255,11 @@ export function DiscountCalculator() {
                         </motion.div>
                     ) : (
                         <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center dark:bg-slate-900 dark:border-slate-800">
-                            <p className="text-sm text-slate-400 dark:text-slate-500">Enter values to see the price breakdown.</p>
+                            <p className="text-sm text-slate-600 dark:text-slate-300">Enter values to see the price breakdown.</p>
                         </div>
                     )}
                 </div>
             </div>
         </FadeIn>
     )
-}
+}

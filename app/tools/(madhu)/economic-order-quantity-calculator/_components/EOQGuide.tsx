@@ -1,45 +1,50 @@
 "use client"
-import { ToolGuide } from "@/app/tools/_shared/components/ToolGuide"
-import { AlertTriangle, TrendingDown, RefreshCw, Lightbulb } from "lucide-react"
+import { ToolGuide } from "@/app/tools/_shared/components"
+import { AlertTriangle, BookOpen, Calculator, Table } from "lucide-react"
 
+/** The formula in words, where the inputs come from, a worked example, and what the result leaves out. */
 export function EOQGuide() {
     return (
         <ToolGuide
-            title="What Most Inventory Buyers Get Wrong"
-            icon={Lightbulb}
+            title="How the numbers are worked out"
+            icon={BookOpen}
             items={[
                 {
-                    title: "Demand Changes — Recalculate Seasonally",
-                    description: "EOQ assumes steady annual demand, but your best-sellers spike during peak season. Recalculate with your Q4 or holiday demand separately to avoid stockouts right when sales are highest.",
-                    icon: RefreshCw,
-                    stat: "Recalculate",
-                    statLabel: "Seasonally",
+                    title: "The formula, in words",
+                    description: "EOQ is the square root of two times annual demand times the cost per order, divided by the holding cost per unit. Orders a year is demand divided by EOQ. Annual ordering cost is orders times cost per order; annual holding cost is half the EOQ times the holding cost per unit.",
+                    icon: Calculator,
+                    stat: "√(2DS/H)",
+                    statLabel: "the classic formula",
                     iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                    iconColor: "text-blue-600 dark:text-blue-400",
-                    statColor: "text-blue-600 dark:text-blue-400",
-                    tooltip: "Run EOQ with seasonal demand figures, not just annual averages."
-                },
-                {
-                    title: "Holding Cost is Often Underestimated",
-                    description: "Most buyers only count warehouse rent. But holding cost also includes insurance, product depreciation, the risk of it going unsold, and the cash tied up that could be invested elsewhere. The true rate is typically 20–30% of unit value per year.",
-                    icon: TrendingDown,
-                    stat: "20–30%",
-                    statLabel: "True Hold Rate",
-                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
-                    iconColor: "text-amber-600 dark:text-amber-400",
-                    statColor: "text-amber-600 dark:text-amber-400",
-                    tooltip: "Underestimating holding cost skews your EOQ and inflates order sizes."
-                },
-                {
-                    title: "EOQ is a Floor, Not a Ceiling",
-                    description: "The EOQ result is the minimum-cost quantity — not a hard rule. If your supplier has a better price at a slightly larger MOQ, use this tool to compare the two costs. The difference is often smaller than the discount gained.",
+                    iconColor: "text-blue-700 dark:text-blue-300",
+                    statColor: "text-blue-700 dark:text-blue-300",
+                },                {
+                    title: "Where the inputs come from",
+                    description: "Demand is in your sales report. Cost per order comes from adding up what one purchase order costs your team and your forwarder. Holding cost per unit is your storage rate plus a share of insurance and capital cost.",
+                    icon: BookOpen,
+                    stat: "3 inputs",
+                    statLabel: "sales, ops, finance",
+                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
+                    iconColor: "text-emerald-700 dark:text-emerald-300",
+                    statColor: "text-emerald-700 dark:text-emerald-300",
+                },                {
+                    title: "A worked example",
+                    description: "10,000 units a year, $50 an order and $2.50 a unit to hold gives an EOQ of 632 units. That's about 16 orders a year, one every 23 days, with ordering and holding costs of about $791 each, $1,581 in total.",
+                    icon: Table,
+                    stat: "632",
+                    statLabel: "units per order",
+                    iconBg: "bg-violet-50 dark:bg-violet-950/40",
+                    iconColor: "text-violet-700 dark:text-violet-300",
+                    statColor: "text-violet-700 dark:text-violet-300",
+                },                {
+                    title: "What it leaves out",
+                    description: "The formula assumes steady demand, a fixed price and instant delivery. Volume discounts, minimum order quantities and seasonal peaks all pull the right order size away from the EOQ. Use it as the starting point, then adjust.",
                     icon: AlertTriangle,
-                    stat: "Compare",
-                    statLabel: "With MOQ Deals",
-                    iconBg: "bg-red-50 dark:bg-red-950/40",
-                    iconColor: "text-red-600 dark:text-red-400",
-                    statColor: "text-red-600 dark:text-red-400",
-                    tooltip: "Supplier discounts at higher quantities can beat your calculated EOQ."
+                    stat: "Steady",
+                    statLabel: "demand assumed",
+                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
+                    iconColor: "text-amber-700 dark:text-amber-300",
+                    statColor: "text-amber-700 dark:text-amber-300",
                 }
             ]}
         />

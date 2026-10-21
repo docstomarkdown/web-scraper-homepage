@@ -95,7 +95,7 @@ export function ReorderCalculator() {
                             {
                                 label: "Lead Time Demand",
                                 value: <><Counter value={leadTimeDemand} /> Units</>,
-                                color: "text-slate-400 dark:text-slate-500"
+                                color: "text-slate-600 dark:text-slate-300"
                             },
                             {
                                 label: "Safety Stock",
@@ -108,7 +108,7 @@ export function ReorderCalculator() {
                     {sales > 0 || lead > 0 || safetyDays > 0 || stock > 0 ? (
                         <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500 dark:bg-slate-900 dark:border-slate-800">
                             <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800">
-                                <p className="text-xs font-bold text-slate-600 uppercase tracking-wider dark:text-slate-300">Reorder Calculation</p>
+                                <p className="text-xs font-bold text-slate-600 tracking-wider dark:text-slate-300">Reorder Calculation</p>
                             </div>
                             <div className="divide-y divide-slate-100 dark:divide-slate-800">
                                 <div className="flex justify-between items-center px-5 py-3.5">
@@ -121,26 +121,26 @@ export function ReorderCalculator() {
                                 </div>
                                 <div className="flex justify-between items-center px-5 py-3.5 bg-blue-50/20 dark:bg-blue-950/40">
                                     <span className="text-sm font-bold text-slate-900 dark:text-white">Reorder Point</span>
-                                    <span className="text-base font-bold text-blue-600 dark:text-blue-400">{reorderPoint.toLocaleString()} units</span>
+                                    <span className="text-base font-bold text-blue-700 dark:text-blue-300">{reorderPoint.toLocaleString()} units</span>
                                 </div>
                             </div>
                         </div>
                     ) : (
                         <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center dark:bg-slate-900 dark:border-slate-800">
-                            <p className="text-sm text-slate-400 dark:text-slate-500">Enter sales and lead times to see reorder calculation.</p>
+                            <p className="text-sm text-slate-600 dark:text-slate-300">Enter sales and lead times to see reorder calculation.</p>
                         </div>
                     )}
                     {/* Analysis Card */}
                     <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-3 dark:bg-slate-900 dark:border-slate-800">
                         <div className="flex items-start gap-3">
                             {isReorderNeeded ?
-                                <AlertTriangle className="w-5 h-5 text-red-500 mt-0.5 dark:text-red-400" /> :
-                                <CheckCircle2 className="w-5 h-5 text-blue-500 mt-0.5 dark:text-blue-400" />
+                                <AlertTriangle className="w-5 h-5 text-red-700 dark:text-red-300 mt-0.5 dark:text-red-400" /> :
+                                <CheckCircle2 className="w-5 h-5 text-blue-700 dark:text-blue-300 mt-0.5 dark:text-blue-400" />
                             }
                             <div>
-                                <h4 className="font-semibold text-slate-800 mb-1 dark:text-slate-100">
+                                <h2 className="font-semibold text-slate-800 mb-1 dark:text-slate-100">
                                     {isReorderNeeded ? "Reorder Action Needed" : "Inventory Healthy"}
-                                </h4>
+                                </h2>
                                 <p className="text-sm text-slate-600 leading-relaxed dark:text-slate-300">
                                     {isReorderNeeded ? (
                                         <>
@@ -160,4 +160,4 @@ export function ReorderCalculator() {
             </div>
         </FadeIn>
     )
-}
+}

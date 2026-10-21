@@ -369,15 +369,15 @@ export function FBACalculator() {
                                                 <span className={cn("text-sm font-semibold transition-colors", showAdvanced ? "text-emerald-700 dark:text-emerald-400" : "text-slate-700 dark:text-slate-200")}>
                                                     Advanced Settings
                                                 </span>
-                                                <span className="text-[11px] text-slate-400 font-medium dark:text-slate-500">
+                                                <span className="text-xs text-slate-600 font-medium dark:text-slate-300">
                                                     Category & Storage details
                                                 </span>
                                             </div>
                                         </div>
                                         <div className="flex items-center gap-3">
                                             <span className={cn(
-                                                "text-[10px] px-2 py-0.5 rounded-full font-bold tracking-wide uppercase transition-colors",
-                                                showAdvanced ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400" : "bg-slate-200 text-slate-500 dark:bg-slate-700 dark:text-slate-400"
+                                                "text-xs px-2 py-0.5 rounded-full font-bold tracking-wide uppercase transition-colors",
+                                                showAdvanced ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400" : "bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-200"
                                             )}>
                                                 Optional
                                             </span>
@@ -389,14 +389,14 @@ export function FBACalculator() {
                                         <FadeIn className="pt-4 space-y-5 max-w-[520px] mx-auto w-full px-1">
                                             <div className="flex items-center gap-3 w-full relative z-10">
                                                 <div className="flex items-center gap-2 flex-1 min-w-0 text-left">
-                                                    <label className="text-[14.5px] font-medium text-slate-600/90 cursor-pointer py-1 dark:text-slate-300">Product Category</label>
+                                                    <label className="text-sm font-medium text-slate-600/90 cursor-pointer py-1 dark:text-slate-300">Product Category</label>
                                                     <Tooltip>
                                                         <TooltipTrigger asChild>
-                                                            <button type="button" className="text-slate-400 hover:text-emerald-600 transition-colors cursor-help dark:text-slate-500 dark:hover:text-emerald-400">
+                                                            <button type="button" aria-label="About this field" className="text-slate-500 hover:text-emerald-600 transition-colors cursor-help dark:text-slate-500 dark:hover:text-emerald-400">
                                                                 <Info className="h-3.5 w-3.5" />
                                                             </button>
                                                         </TooltipTrigger>
-                                                        <TooltipContent className="bg-slate-900 text-white border-slate-800 text-[13px] dark:bg-slate-800 dark:border-slate-700">
+                                                        <TooltipContent className="bg-slate-900 text-white border-slate-800 text-xs dark:bg-slate-800 dark:border-slate-700">
                                                             Amazon Referral fees vary by product category. Use this to ensure accuracy.
                                                         </TooltipContent>
                                                     </Tooltip>

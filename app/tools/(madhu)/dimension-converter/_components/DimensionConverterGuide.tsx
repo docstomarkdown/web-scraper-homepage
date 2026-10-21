@@ -1,55 +1,50 @@
 "use client"
-import { ToolGuide } from "@/app/tools/_shared/components/ToolGuide"
-import { ArrowRightLeft, Box, Globe, Calculator, BookOpen } from "lucide-react"
+import { ToolGuide } from "@/app/tools/_shared/components"
+import { AlertTriangle, BookOpen, Boxes, Calculator, Table } from "lucide-react"
+
+/** The formula in words, where the inputs come from, a worked example, and what the result leaves out. */
 export function DimensionConverterGuide() {
     return (
         <ToolGuide
-            title="About Dimension Converter"
+            title="How the numbers are worked out"
             icon={BookOpen}
             items={[
                 {
-                    title: "Bidirectional Unit Conversion",
-                    description: "Convert dimensions seamlessly between Inches (in) and Centimeters (cm). Enter measurements in either unit and instantly see the converted values. Perfect for international shipping, product specifications, and design work where unit precision matters.",
-                    icon: ArrowRightLeft,
-                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                    iconColor: "text-blue-600 dark:text-blue-400",
-                    stat: "2 Units",
-                    statLabel: "in ↔ cm",
-                    statColor: "text-blue-700 dark:text-blue-400",
-                    tooltip: "Convert between Inches and Centimeters with precision"
-                },
-                {
-                    title: "Three-Dimension Conversion",
-                    description: "Enter Length, Width, and Height simultaneously. The converter processes all three dimensions at once, showing converted values for each axis. Results update in real-time as you type, making it easy to verify measurements across different unit systems.",
-                    icon: Box,
-                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
-                    iconColor: "text-emerald-600 dark:text-emerald-400",
-                    stat: "3 Axes",
-                    statLabel: "L × W × H",
-                    statColor: "text-emerald-700 dark:text-emerald-400",
-                    tooltip: "Convert Length, Width, and Height dimensions together"
-                },
-                {
-                    title: "International Standards Support",
-                    description: "Essential for e-commerce sellers, manufacturers, and logistics professionals working with global markets. US-based sellers often need 'cm' conversions for international listings, while international sellers need 'in' conversions for US marketplaces. This tool bridges the gap instantly.",
-                    icon: Globe,
-                    iconBg: "bg-purple-50 dark:bg-purple-950/40",
-                    iconColor: "text-purple-600 dark:text-purple-400",
-                    stat: "Worldwide",
-                    statLabel: "Compatible",
-                    statColor: "text-purple-700 dark:text-purple-400",
-                    tooltip: "Perfect for international e-commerce and shipping"
-                },
-                {
-                    title: "Precise Conversion Formula",
-                    description: "Uses the standard conversion factor: 1 inch = 2.54 centimeters. All calculations maintain decimal precision, ensuring accurate conversions for product dimensions, packaging specifications, and shipping requirements. Results display with appropriate decimal places for clarity.",
+                    title: "The conversion factors",
+                    description: "One inch is 2.54 centimetres exactly. One foot is 12 inches, one metre is 100 centimetres. The converter turns your sizes into inches first and then into each other unit, so every result comes from the same base.",
                     icon: Calculator,
-                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
-                    iconColor: "text-amber-600 dark:text-amber-400",
                     stat: "2.54",
-                    statLabel: "IN to CM factor",
-                    statColor: "text-amber-700 dark:text-amber-400",
-                    tooltip: "Accurate conversion using standard 1 inch = 2.54 cm formula"
+                    statLabel: "cm per inch",
+                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-700 dark:text-blue-300",
+                    statColor: "text-blue-700 dark:text-blue-300",
+                },                {
+                    title: "Volume in each unit",
+                    description: "Volume is length multiplied by width multiplied by height. The converter shows it in cubic inches, cubic centimetres, cubic feet and cubic metres, which freight and storage forms ask for.",
+                    icon: Boxes,
+                    stat: "L × W × H",
+                    statLabel: "in every unit",
+                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
+                    iconColor: "text-emerald-700 dark:text-emerald-300",
+                    statColor: "text-emerald-700 dark:text-emerald-300",
+                },                {
+                    title: "A worked example",
+                    description: "A box 12 by 10 by 8 inches is 30.48 by 25.4 by 20.32 cm, 1 by 0.83 by 0.67 feet, and 0.3 by 0.25 by 0.2 metres. Its volume is 960 cubic inches, or 0.556 cubic feet.",
+                    icon: Table,
+                    stat: "960 in³",
+                    statLabel: "from 12 × 10 × 8",
+                    iconBg: "bg-violet-50 dark:bg-violet-950/40",
+                    iconColor: "text-violet-700 dark:text-violet-300",
+                    statColor: "text-violet-700 dark:text-violet-300",
+                },                {
+                    title: "Measure the packed size",
+                    description: "Carriers and marketplaces use the outside of the packed carton, longest side first. Measure after packing, and round up to the next whole unit if the form asks for whole numbers.",
+                    icon: AlertTriangle,
+                    stat: "Packed",
+                    statLabel: "outside edges",
+                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
+                    iconColor: "text-amber-700 dark:text-amber-300",
+                    statColor: "text-amber-700 dark:text-amber-300",
                 }
             ]}
         />

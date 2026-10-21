@@ -1,42 +1,50 @@
 "use client"
-import { ToolGuide } from "@/app/tools/_shared/components/ToolGuide"
-import { ShieldCheck, Clock, Bell, BookOpen } from "lucide-react"
+import { ToolGuide } from "@/app/tools/_shared/components"
+import { AlertTriangle, BookOpen, Calculator, Table } from "lucide-react"
+
+/** The formula in words, where the inputs come from, a worked example, and what the result leaves out. */
 export function DaysOfInventoryGuide() {
     return (
         <ToolGuide
-            title="Understanding Your Inventory Runway"
+            title="How the numbers are worked out"
             icon={BookOpen}
             items={[
                 {
-                    title: "What is Safety Stock?",
-                    description: "Safety stock acts as an emergency buffer against unexpected shipping delays or sudden spikes in demand. It ensures you never run completely out of product unexpectedly.",
-                    icon: ShieldCheck,
-                    stat: "Buffer",
-                    statLabel: "Emergency Units",
-                    iconBg: "bg-purple-50 dark:bg-purple-950/40",
-                    iconColor: "text-purple-600 dark:text-purple-400",
-                    statColor: "text-purple-600 dark:text-purple-400",
-                    tooltip: "Your baseline stock kept purely for emergencies."
-                },
-                {
-                    title: "Choosing the Right Timeframe",
-                    description: "While monthly data provides a good high-level overview, tracking your average sales speed on a daily or weekly basis captures sudden fluctuations earlier and more accurately.",
-                    icon: Clock,
-                    stat: "Daily",
-                    statLabel: "Best Precision",
-                    iconBg: "bg-orange-50 dark:bg-orange-950/40",
-                    iconColor: "text-orange-600 dark:text-orange-400",
-                    statColor: "text-orange-600 dark:text-orange-400"
-                },
-                {
-                    title: "Timing Your Reorders",
-                    description: "Your Actionable Stock Runway tells you exactly how many days of inventory you have left before hitting your safety buffer. Aim to reorder right before this number hits zero!",
-                    icon: Bell,
-                    stat: "Actionable",
-                    statLabel: "Remaining Days",
+                    title: "The formula, in words",
+                    description: "Days of inventory is stock divided by daily sales, rounded down. Usable days is stock minus the safety buffer, divided by daily sales.",
+                    icon: Calculator,
+                    stat: "÷ daily",
+                    statLabel: "rounded down",
                     iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                    iconColor: "text-blue-600 dark:text-blue-400",
-                    statColor: "text-blue-600 dark:text-blue-400"
+                    iconColor: "text-blue-700 dark:text-blue-300",
+                    statColor: "text-blue-700 dark:text-blue-300",
+                },                {
+                    title: "Where the inputs come from",
+                    description: "Stock is in your inventory report. Daily sales is units sold over a period divided by the days in it; the last 30 days is a sensible default unless you're in a seasonal peak.",
+                    icon: BookOpen,
+                    stat: "30 days",
+                    statLabel: "of sales history",
+                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
+                    iconColor: "text-emerald-700 dark:text-emerald-300",
+                    statColor: "text-emerald-700 dark:text-emerald-300",
+                },                {
+                    title: "A worked example",
+                    description: "5,000 units in stock at 150 a day is 33 days of inventory. With a 500-unit buffer, the usable runway is 30 days. If the supplier needs 21 days, you should order within the next 9.",
+                    icon: Table,
+                    stat: "33 days",
+                    statLabel: "of stock",
+                    iconBg: "bg-violet-50 dark:bg-violet-950/40",
+                    iconColor: "text-violet-700 dark:text-violet-300",
+                    statColor: "text-violet-700 dark:text-violet-300",
+                },                {
+                    title: "What it leaves out",
+                    description: "Sales aren't flat; promotions and seasons change the daily rate. Rerun the calculator with the rate you expect for the next few weeks, not the average of the last year.",
+                    icon: AlertTriangle,
+                    stat: "Flat rate",
+                    statLabel: "assumed",
+                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
+                    iconColor: "text-amber-700 dark:text-amber-300",
+                    statColor: "text-amber-700 dark:text-amber-300",
                 }
             ]}
         />

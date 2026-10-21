@@ -1,52 +1,50 @@
 "use client"
 import { ToolGuide } from "@/app/tools/_shared/components"
-import { MousePointerClick, Handshake, ShoppingCart, BookOpen, TrendingUp } from "lucide-react"
+import { AlertTriangle, BookOpen, Calculator, Table } from "lucide-react"
+
+/** The formula in words, where the inputs come from, a worked example, and what the result leaves out. */
 export function AffiliateGuide() {
     return (
         <ToolGuide
-            title="How to Plan Your Affiliate Strategy"
+            title="How the numbers are worked out"
             icon={BookOpen}
             items={[
                 {
-                    title: "Start With 3 Core Metrics",
-                    description: "You only need three inputs to get a complete payout estimate: <strong>Affiliate Clicks</strong>, <strong>Average Order Value</strong>, and <strong>Commission Rate</strong>. By starting here, you establish your <strong>baseline revenue</strong> and your <strong>total commission liability</strong> instantly.",
-                    icon: MousePointerClick,
-                    stat: "Instant",
-                    statLabel: "Payout Estimate",
-                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
-                    iconColor: "text-emerald-600 dark:text-emerald-400",
-                    statColor: "text-emerald-600 dark:text-emerald-400",
-                    tooltip: "Your core metrics power the Affiliate Payout, Total Revenue, and Estimated Sales outputs."
-                },
-                {
-                    title: "Test Different Commission Scenarios",
-                    description: "Since <strong>Commission Rate</strong> is a mandatory input with no default, we recommend testing a few different structures. See how a change from <strong>10%</strong> to <strong>15%</strong> immediately inflates your payout overhead vs your expected total revenue.",
-                    icon: Handshake,
-                    stat: "Compare",
-                    statLabel: "Scenarios",
+                    title: "The formula, in words",
+                    description: "Estimated sales are clicks multiplied by the conversion rate. Revenue is sales multiplied by the average order value. Payout is revenue multiplied by the commission rate. Net profit is revenue minus payout minus product cost.",
+                    icon: Calculator,
+                    stat: "4 steps",
+                    statLabel: "one after another",
                     iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                    iconColor: "text-blue-600 dark:text-blue-400",
-                    statColor: "text-blue-600 dark:text-blue-400"
-                },
-                {
-                    title: "Understand Product Cost Impact",
-                    description: "The optional <strong>Product Cost</strong> field is your key to calculating <strong>Net Profit</strong>. Without it, you only see top-line revenue and affiliate costs. Adding your cost margin instantly reveals if your program is actually financially sustainable.",
-                    icon: ShoppingCart,
-                    stat: "Margins",
-                    statLabel: "Matter",
-                    iconBg: "bg-orange-50 dark:bg-orange-950/40",
-                    iconColor: "text-orange-600 dark:text-orange-400",
-                    statColor: "text-orange-600 dark:text-orange-400"
-                },
-                {
-                    title: "Conversion Rate is Your Lever",
-                    description: "A small change in <strong>conversion rate</strong> has a massive impact on total sales and payout. It is pre-filled at the <strong>2.5%</strong> industry standard, but improving your landing pages to hit <strong>4%</strong> can nearly double your estimated sales and affiliate costs.",
-                    icon: TrendingUp,
-                    stat: "Scalable",
-                    statLabel: "Growth",
-                    iconBg: "bg-purple-50 dark:bg-purple-950/40",
-                    iconColor: "text-purple-600 dark:text-purple-400",
-                    statColor: "text-purple-600 dark:text-purple-400"
+                    iconColor: "text-blue-700 dark:text-blue-300",
+                    statColor: "text-blue-700 dark:text-blue-300",
+                },                {
+                    title: "Where the inputs come from",
+                    description: "Clicks and conversion rate are in your affiliate platform's report. Average order value is in your store's sales report. Product cost as a share of revenue comes from your cost of goods divided by sales.",
+                    icon: BookOpen,
+                    stat: "3 reports",
+                    statLabel: "store and affiliate",
+                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
+                    iconColor: "text-emerald-700 dark:text-emerald-300",
+                    statColor: "text-emerald-700 dark:text-emerald-300",
+                },                {
+                    title: "A worked example",
+                    description: "10,000 clicks at 2.5% give 250 sales. At $75 an order that's $18,750 of revenue. A 10% commission is $1,875. With product cost at 40% ($7,500), net profit is $9,375.",
+                    icon: Table,
+                    stat: "$1,875",
+                    statLabel: "payout on $18,750",
+                    iconBg: "bg-violet-50 dark:bg-violet-950/40",
+                    iconColor: "text-violet-700 dark:text-violet-300",
+                    statColor: "text-violet-700 dark:text-violet-300",
+                },                {
+                    title: "What it leaves out",
+                    description: "Returns, refunds, payment fees and your own time aren't in the formula. Treat the result as the top of the range, and keep a margin for them when you set the rate.",
+                    icon: AlertTriangle,
+                    stat: "Estimate",
+                    statLabel: "not a forecast",
+                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
+                    iconColor: "text-amber-700 dark:text-amber-300",
+                    statColor: "text-amber-700 dark:text-amber-300",
                 }
             ]}
         />

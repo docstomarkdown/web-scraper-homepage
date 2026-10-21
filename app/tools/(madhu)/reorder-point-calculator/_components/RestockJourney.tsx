@@ -43,8 +43,8 @@ export function RestockJourney({ hasInputs, reorderPoint, leadTime }: RestockJou
                                 !hasInputs ? "border-slate-300 shadow-sm dark:border-slate-700" : "border-slate-200 dark:border-slate-800"
                             )}>
                                 <div className="absolute top-7 left-0 -translate-x-1/2 flex flex-col items-center">
-                                    <span className="text-[10px] font-bold text-slate-300 tracking-tighter whitespace-nowrap dark:text-slate-600">Order sent</span>
-                                    <span className="text-[8px] font-medium text-slate-500 whitespace-nowrap dark:text-slate-400">Day 0</span>
+                                    <span className="text-xs font-bold text-slate-300 tracking-tighter whitespace-nowrap dark:text-slate-300">Order sent</span>
+                                    <span className="text-[8px] font-medium text-slate-600 dark:text-slate-300 whitespace-nowrap">Day 0</span>
                                 </div>
                             </div>
                             {/* Reorder Point Hub */}
@@ -59,7 +59,7 @@ export function RestockJourney({ hasInputs, reorderPoint, leadTime }: RestockJou
                                 <div className="absolute -top-10 left-1/2 -translate-x-1/2 flex flex-col items-center">
                                     <div className={cn(
                                         "px-2 py-0.5 rounded text-[9px] font-black whitespace-nowrap mb-1 transition-all duration-500",
-                                        !hasInputs ? "bg-slate-100 text-slate-400 border border-slate-200 dark:bg-slate-800 dark:text-slate-500 dark:border-slate-800" : "bg-blue-600 text-white"
+                                        !hasInputs ? "bg-slate-100 text-slate-600 dark:text-slate-300 border border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-800" : "bg-blue-600 text-white"
                                     )}>
                                         {hasInputs ? `${reorderPoint} Units` : "Restock Point"}
                                     </div>
@@ -67,7 +67,7 @@ export function RestockJourney({ hasInputs, reorderPoint, leadTime }: RestockJou
                                 </div>
                                 <div className="absolute top-7 left-1/2 -translate-x-1/2 flex flex-col items-center">
                                     <span className={cn(
-                                        "text-[10px] font-bold tracking-tighter whitespace-nowrap transition-colors",
+                                        "text-xs font-bold tracking-tighter whitespace-nowrap transition-colors",
                                         !hasInputs ? "text-blue-400" : "text-blue-600 dark:text-blue-400"
                                     )}>Order point</span>
                                 </div>
@@ -78,8 +78,8 @@ export function RestockJourney({ hasInputs, reorderPoint, leadTime }: RestockJou
                                 !hasInputs ? "border-slate-300 shadow-sm dark:border-slate-700" : "border-slate-200 dark:border-slate-800"
                             )}>
                                 <div className="absolute top-7 right-0 translate-x-1/2 flex flex-col items-center">
-                                    <span className="text-[10px] font-bold text-slate-300 tracking-tighter whitespace-nowrap dark:text-slate-600">Delivery</span>
-                                    <span className="text-[8px] font-medium text-slate-500 whitespace-nowrap dark:text-slate-400">Day {hasInputs ? leadTime : "—"}</span>
+                                    <span className="text-xs font-bold text-slate-300 tracking-tighter whitespace-nowrap dark:text-slate-300">Delivery</span>
+                                    <span className="text-[8px] font-medium text-slate-600 dark:text-slate-300 whitespace-nowrap">Day {hasInputs ? leadTime : "—"}</span>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +88,7 @@ export function RestockJourney({ hasInputs, reorderPoint, leadTime }: RestockJou
                 {/* Floating Overlay for Empty State - Transparent Background */}
                 {!hasInputs && (
                     <div className="absolute inset-0 z-20 flex items-start justify-end p-7 pointer-events-none">
-                        <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest bg-white shadow-xl shadow-blue-500/10 px-3 py-1.5 rounded-full border border-blue-100 animate-in fade-in zoom-in duration-500 pointer-events-auto dark:text-blue-400 dark:bg-slate-900 dark:border-blue-900/50">
+                        <span className="text-xs font-black text-blue-600 uppercase tracking-widest bg-white shadow-xl shadow-blue-500/10 px-3 py-1.5 rounded-full border border-blue-100 animate-in fade-in zoom-in duration-500 pointer-events-auto dark:text-blue-400 dark:bg-slate-900 dark:border-blue-900/50">
                             Awaiting Data
                         </span>
                     </div>

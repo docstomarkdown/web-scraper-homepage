@@ -1,13 +1,14 @@
+import { Lightbulb } from "lucide-react"
 import { Metadata } from "next"
 import { Validator } from "./_components/Validator"
 import { ValidatorGuide } from "./_components/ValidatorGuide"
 import { ValidatorHowToUse } from "./_components/ValidatorHowToUse"
 import { ValidatorInfo } from "./_components/ValidatorInfo"
-import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
+import { FadeIn, ToolFAQ, ToolPageTitle, ToolSectionHeader } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
-    title: "UPC/EAN Validator - Check Digit Calculator & Format Checker",
-    description: "Free tool to validate UPC-A, EAN-13, and EAN-8 barcodes. Calculate check digits, verify formats, and fix errors instantly.",
+    title: "UPC and EAN Validator: Free Check Digit Checker",
+    description: "Check whether a UPC or EAN barcode number is valid, see the check digit calculation step by step, and validate a whole CSV of codes at once.",
     alternates: { canonical: "/tools/upc-ean-validator" },
 }
 export default function UPCEANValidatorPage() {
@@ -20,6 +21,7 @@ export default function UPCEANValidatorPage() {
                 </div>
                 <div className="max-w-4xl mx-auto space-y-16">
                     <FadeIn delay={0.15}>
+                        <ToolSectionHeader title="What this validator does" icon={Lightbulb} />
                         <ValidatorInfo />
                     </FadeIn>
                     <FadeIn delay={0.2}>
@@ -32,25 +34,29 @@ export default function UPCEANValidatorPage() {
                         <ToolFAQ
                             faqs={[
                                 {
-                                    question: "What barcode formats does this validator support?",
-                                    answer: "We support <b>UPC-A</b> (12 digits, standard in North America), <b>EAN-13</b> (13 digits, global standard), and <b>EAN-8</b> (8 digits for small packages). All formats use the same Modulo 10 check digit algorithm."
+                                    question: "What barcode formats does the validator support?",
+                                    answer: "UPC-A, EAN-13, EAN-8 and GTIN-14: 8, 12, 13 or 14 digits. All use the same check-digit rule.",
                                 },
                                 {
-                                    question: "What is a check digit and why does it matter?",
-                                    answer: "The check digit is the last digit of a barcode, calculated using the GS1 Modulo 10 algorithm. It verifies the integrity of all previous digits. If incorrect, the barcode won't scan at point-of-sale terminals, causing checkout failures and inventory issues."
+                                    question: "What is a check digit?",
+                                    answer: "The last digit of a barcode number, calculated from the others. It lets a scanner or a marketplace catch a mistyped or misread number.",
                                 },
                                 {
-                                    question: "Why is my barcode showing as invalid?",
-                                    answer: "Common reasons include: incorrect number of digits (length error—must be exactly 8, 12, or 13 digits) or a typo in the last digit (check digit error). Our tool calculates the expected check digit and shows you the correct value to fix the error."
+                                    question: "Why does my barcode show as invalid?",
+                                    answer: "The last digit doesn't match the calculation. Compare the number with the label; a swapped or mistyped digit is the usual cause.",
                                 },
                                 {
-                                    question: "Can I upload a barcode image instead of typing it?",
-                                    answer: "Yes! You can click the upload section or drag and drop an image file. The tool will automatically extract the barcode number and validate it, showing you the check digit calculation."
+                                    question: "Can I upload a barcode image instead of typing?",
+                                    answer: "Yes. Scan or photograph the label and the digits are read and checked.",
                                 },
                                 {
-                                    question: "Does this tool support bulk barcode validation?",
-                                    answer: "Yes, you can upload a CSV, TXT, or text file containing multiple barcodes (one per line or comma-separated). The validator will process them all instantly and provide a summary of valid and invalid codes."
-                                }
+                                    question: "Does it validate a whole spreadsheet?",
+                                    answer: "Yes. Upload a CSV with one code per row and download it back with a result column. A sample CSV shows the layout.",
+                                },
+                                {
+                                    question: "Does valid mean the barcode belongs to my product?",
+                                    answer: "No. It means the number is well formed. Registration is checked against GS1 by the marketplace, not here.",
+                                },
                             ]}
                         />
                     </FadeIn>

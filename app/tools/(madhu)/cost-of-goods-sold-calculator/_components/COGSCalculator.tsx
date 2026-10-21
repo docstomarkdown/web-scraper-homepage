@@ -164,14 +164,14 @@ export function COGSCalculator() {
                         transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                         className="flex flex-col gap-3"
                     >
-                        <Card className="relative overflow-hidden border border-slate-200/60 shadow-sm rounded-2xl bg-[#F5F8FD] flex flex-col dark:border-slate-800">
+                        <Card className="relative overflow-hidden border border-slate-200/60 shadow-sm rounded-2xl bg-[#F5F8FD] dark:bg-slate-900 flex flex-col dark:border-slate-800">
                             {/* Header */}
                             <div className="flex justify-between items-center gap-4 px-6 pt-5 pb-1">
                                 <div className="flex items-center gap-2.5">
                                     <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-100/50 dark:border-blue-900/50">
                                         <ClipboardList className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                                     </div>
-                                    <span className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none dark:text-blue-400">
+                                    <span className="text-[15px] sm:text-[16px] font-bold text-blue-800 leading-none dark:text-blue-200">
                                         Results Panel
                                     </span>
                                 </div>
@@ -180,7 +180,7 @@ export function COGSCalculator() {
                                         <motion.div
                                             key="live"
                                             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-slate-200/50 bg-emerald-100/50 text-[10.5px] font-bold text-emerald-700 dark:border-slate-800 dark:bg-emerald-900/40 dark:text-emerald-400"
+                                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-slate-200/50 bg-emerald-100/50 text-xs font-bold text-emerald-700 dark:border-slate-800 dark:bg-emerald-900/40 dark:text-emerald-400"
                                         >
                                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse inline-block" />
                                             Live
@@ -189,7 +189,7 @@ export function COGSCalculator() {
                                         <motion.div
                                             key="idle"
                                             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                                            className="text-[10.5px] font-bold text-slate-400 px-2 dark:text-slate-500"
+                                            className="text-xs font-bold text-slate-600 dark:text-slate-300 px-2"
                                         >
                                             Awaiting input
                                         </motion.div>
@@ -224,7 +224,7 @@ export function COGSCalculator() {
                                                                 <path d="M9 19l-7-7 7-7" />
                                                                 <path d="M2 12h36" />
                                                             </svg>
-                                                            <p className="text-[12.5px] text-slate-500 font-semibold leading-snug whitespace-nowrap z-10 dark:text-slate-400">
+                                                            <p className="text-[12.5px] text-slate-600 dark:text-slate-300 font-semibold leading-snug whitespace-nowrap z-10">
                                                                 Fill in the inputs to see your
                                                             </p>
                                                         </div>
@@ -272,11 +272,11 @@ export function COGSCalculator() {
                                             transition={{ duration: 0.4, delay: 0.05 }}
                                             className="relative flex flex-col items-center text-center py-6 px-4 bg-transparent"
                                         >
-                                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.18em] leading-none mb-2 dark:text-slate-500">Total COGS</span>
+                                            <span className="text-xs font-black text-slate-600 dark:text-slate-300 uppercase tracking-[0.18em] leading-none mb-2">Total COGS</span>
                                             <span className="text-[3.25rem] font-black text-blue-600 tracking-tighter leading-none dark:text-blue-400">
                                                 {formatCurrencyValue(results.totalCogs, currency)}
                                             </span>
-                                            <p className="text-[11.5px] text-slate-500 font-medium mt-3 dark:text-slate-400">
+                                            <p className="text-[11.5px] text-slate-600 dark:text-slate-300 font-medium mt-3">
                                                 Your comprehensive total Cost of Goods Sold.
                                             </p>
                                         </motion.div>
@@ -291,7 +291,7 @@ export function COGSCalculator() {
                                             >
                                                 <div className="flex items-center gap-2 mb-2">
                                                     <DollarSign className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
-                                                    <span className="text-[13px] font-bold text-slate-500 dark:text-slate-400">COGS per Unit</span>
+                                                    <span className="text-sm font-bold text-slate-600 dark:text-slate-300">COGS per Unit</span>
                                                 </div>
                                                 <div className="pl-6 pt-0.5">
                                                     <span className="font-bold tracking-tight block text-[16px] sm:text-[17px] text-slate-700 dark:text-slate-200">
@@ -308,7 +308,7 @@ export function COGSCalculator() {
                                             >
                                                 <div className="flex items-center gap-2 mb-2">
                                                     <Package className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
-                                                    <span className="text-[13px] font-bold text-slate-500 dark:text-slate-400">Quantity</span>
+                                                    <span className="text-sm font-bold text-slate-600 dark:text-slate-300">Quantity</span>
                                                 </div>
                                                 <div className="pl-6 pt-0.5">
                                                     <span className="font-bold tracking-tight block text-[16px] sm:text-[17px] text-slate-700 dark:text-slate-200">
@@ -331,13 +331,13 @@ export function COGSCalculator() {
                                             >
                                                 <div className="flex items-center gap-2">
                                                     <PieChart className="w-4 h-4 text-blue-500 dark:text-blue-400" />
-                                                    <span className="text-[13px] font-bold text-slate-500 dark:text-slate-400">View Cost Breakdown</span>
+                                                    <span className="text-sm font-bold text-slate-600 dark:text-slate-300">View Cost Breakdown</span>
                                                 </div>
                                                 <motion.span
                                                     animate={{ rotate: showBreakdown ? 180 : 0 }}
                                                     transition={{ duration: 0.2 }}
                                                 >
-                                                    <ChevronDown className="w-4 h-4 text-slate-400 dark:text-slate-500" />
+                                                    <ChevronDown className="w-4 h-4 text-slate-600 dark:text-slate-300" />
                                                 </motion.span>
                                             </button>
                                             <AnimatePresence>
@@ -355,7 +355,7 @@ export function COGSCalculator() {
                                                                     <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
                                                                     <span className="text-[12px] font-semibold text-slate-600 dark:text-slate-300">Product Cost</span>
                                                                 </div>
-                                                                <span className="text-[13px] font-bold tracking-tight text-slate-700 dark:text-slate-200">
+                                                                <span className="text-sm font-bold tracking-tight text-slate-700 dark:text-slate-200">
                                                                     {formatCurrencyValue(results.breakdown.productTotal, currency)}
                                                                 </span>
                                                             </div>
@@ -365,7 +365,7 @@ export function COGSCalculator() {
                                                                     <div className="w-1.5 h-1.5 rounded-full bg-amber-400" />
                                                                     <span className="text-[12px] font-semibold text-slate-600 dark:text-slate-300">Shipping Cost</span>
                                                                 </div>
-                                                                <span className="text-[13px] font-bold tracking-tight text-slate-700 dark:text-slate-200">
+                                                                <span className="text-sm font-bold tracking-tight text-slate-700 dark:text-slate-200">
                                                                     {formatCurrencyValue(results.breakdown.shippingTotal, currency)}
                                                                 </span>
                                                             </div>
@@ -375,7 +375,7 @@ export function COGSCalculator() {
                                                                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                                                                     <span className="text-[12px] font-semibold text-slate-600 dark:text-slate-300">Packaging</span>
                                                                 </div>
-                                                                <span className="text-[13px] font-bold tracking-tight text-slate-700 dark:text-slate-200">
+                                                                <span className="text-sm font-bold tracking-tight text-slate-700 dark:text-slate-200">
                                                                     {formatCurrencyValue(results.breakdown.packagingTotal, currency)}
                                                                 </span>
                                                             </div>
@@ -385,13 +385,13 @@ export function COGSCalculator() {
                                                                     <div className="w-1.5 h-1.5 rounded-full bg-orange-400" />
                                                                     <span className="text-[12px] font-semibold text-slate-600 dark:text-slate-300">Fulfillment</span>
                                                                 </div>
-                                                                <span className="text-[13px] font-bold tracking-tight text-slate-700 dark:text-slate-200">
+                                                                <span className="text-sm font-bold tracking-tight text-slate-700 dark:text-slate-200">
                                                                     {formatCurrencyValue(results.breakdown.fulfillmentTotal, currency)}
                                                                 </span>
                                                             </div>
 
                                                             <div className="flex justify-between items-center px-3 pt-2">
-                                                                <span className="text-[12px] font-bold text-slate-500 uppercase tracking-widest dark:text-slate-400">Total</span>
+                                                                <span className="text-[12px] font-bold text-slate-600 dark:text-slate-300 uppercase tracking-widest">Total</span>
                                                                 <span className="text-[14px] font-black tracking-tight text-blue-600 dark:text-blue-400">
                                                                     {formatCurrencyValue(results.totalCogs, currency)}
                                                                 </span>

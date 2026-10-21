@@ -1,56 +1,42 @@
 "use client"
 import { ToolGuide } from "@/app/tools/_shared/components"
-import { CircleDollarSign, Percent, Calculator, Info } from "lucide-react"
+import { BookOpen, Calculator, CircleDollarSign, Info, Percent } from "lucide-react"
+
 export function MarginGuide() {
     return (
         <ToolGuide
-            title="Understanding Profit Margins"
+            title="Margin, markup and profit"
+            icon={BookOpen}
             items={[
                 {
-                    title: "Gross Margin",
+                    title: "Gross margin",
+                    description: "Margin = (price − cost) ÷ price. It is the share of each sale you keep after the cost of the item. A higher margin leaves more for overheads and profit.",
                     icon: CircleDollarSign,
                     iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                    iconColor: "text-blue-500 dark:text-blue-400",
-                    stat: "Keep %",
-                    statColor: "text-blue-600 dark:text-blue-400",
-                    statLabel: "Percentage of revenue you keep",
-                    tooltip: "Gross Margin %: (Revenue - Cost) / Revenue. Shows how much of your sales revenue is actually profit.",
-                    description: "Your Gross Margin is the percentage of every dollar of sales that is profit after subtracting the cost of goods sold. A higher margin means more money left for other expenses."
+                    iconColor: "text-blue-700 dark:text-blue-300",
                 },
                 {
                     title: "Markup",
+                    description: "Markup = (price − cost) ÷ cost. It is the share you add to the cost to reach the price. A 100% markup doubles the cost.",
                     icon: Percent,
-                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                    iconColor: "text-blue-500 dark:text-blue-400",
-                    stat: "Add %",
-                    statColor: "text-blue-600 dark:text-blue-400",
-                    statLabel: "Percentage added to cost",
-                    tooltip: "Markup %: (Revenue - Cost) / Cost. The percentage increase over your cost price.",
-                    description: "Markup is the percentage amount you add to the cost price to determine your selling price. For example, a 100% markup means you double your cost."
-                },
-                {
-                    title: "Profit per Unit",
-                    icon: Calculator,
                     iconBg: "bg-amber-50 dark:bg-amber-950/40",
-                    iconColor: "text-amber-500 dark:text-amber-400",
-                    stat: "Cash",
-                    statColor: "text-amber-600 dark:text-amber-400",
-                    statLabel: "Actual cash earned per sale",
-                    tooltip: "Profit per Unit: Selling Price - Cost Price. The actual cash profit per item sold.",
-                    description: "This is the simple dollar amount you earn from selling a single item. It is calculated by subtracting your unit cost from your unit selling price."
+                    iconColor: "text-amber-700 dark:text-amber-300",
                 },
                 {
-                    title: "Margin vs. Markup",
+                    title: "Profit per unit",
+                    description: "Price − cost, in money. It is the figure to multiply by units sold to see what a product earns.",
+                    icon: Calculator,
+                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
+                    iconColor: "text-emerald-700 dark:text-emerald-300",
+                },
+                {
+                    title: "A worked example",
+                    description: "You buy for $50 and sell for $100. Profit per unit is $50, markup is 100%, and margin is 50%. The same $50 is a different percentage depending on whether you divide by cost or by price.",
                     icon: Info,
                     iconBg: "bg-violet-50 dark:bg-violet-950/40",
-                    iconColor: "text-violet-500 dark:text-violet-400",
-                    stat: "≠",
-                    statColor: "text-violet-600 dark:text-violet-400",
-                    statLabel: "They are not the same",
-                    tooltip: "Margin is based on revenue (selling price), while markup is based on cost. The same profit gives different percentages depending on which base you use.",
-                    description: "A common mistake is treating margin and markup as interchangeable. A 50% markup does not equal a 50% margin. For example, if your cost is $50 and you add a 100% markup, your selling price is $100 — but your margin is only 50%. Always know which metric you are using when setting prices."
-                }
+                    iconColor: "text-violet-700 dark:text-violet-300",
+                },
             ]}
         />
     )
-}
+}

@@ -7,8 +7,8 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: 'Break-Even Calculator - Calculate Break-Even Point in Units & Revenue',
-    description: 'Free Break-Even Calculator for e-commerce and business. Calculate the number of units you need to sell to cover fixed costs and start making profit. Essential for pricing strategy.',
+    title: "Break-Even Calculator: Free Units and Revenue to Break Even",
+    description: "Enter fixed costs, price per unit and variable cost per unit to see how many units you must sell, and the revenue that is, before any profit.",
     alternates: { canonical: "/tools/break-even-calculator" },
 }
 
@@ -42,27 +42,31 @@ export default function BreakEvenCalculatorPage() {
                     <FadeIn delay={0.2}>
                         <ToolFAQ
                             faqs={[
-                                {
-                                    question: "How can I lower my break-even point?",
-                                    answer: "You can reach profitability faster by: 1) Increasing your selling price, 2) Securing cheaper materials or shipping to lower variable costs, or 3) Reducing fixed overhead costs like rent or software."
-                                },
-                                {
-                                    question: "What happens to my break-even point if I run a discount?",
-                                    answer: "Lowering your price reduces your Profit per Unit. This means you will need to sell significantly more units just to break even. Always test pricing scenarios in the calculator before running a sale."
-                                },
-                                {
-                                    question: "Should I focus on cutting fixed costs or variable costs?",
-                                    answer: "Lowering variable costs (like product or packaging costs) is often more powerful for high-volume sellers because you save money on every single unit sold. Fixed costs are static, so they become less of a burden as you sell more."
-                                },
-                                {
-                                    question: "Is break-even revenue the same as profit?",
-                                    answer: "No. Break-even revenue is the amount of total sales money you need to bring in to hit exactly $0 profit (no loss, no gain). Any sales made after reaching this point convert directly to profit."
-                                },
-                                {
-                                    question: "How often should I recalculate my break-even point?",
-                                    answer: "You should run this analysis whenever your business expenses change. For example: if a supplier raises prices, if you move to a more expensive warehouse, or if you are considering whether to raise or lower your product's selling price."
-                                }
-                            ]}
+                                    {
+                                        question: "How do I calculate the break-even point?",
+                                        answer: "Subtract the variable cost per unit from the price to get the contribution margin, then divide fixed costs by it. $10,000 of fixed costs with a $20 margin is 500 units; at $50 each that's $25,000 of revenue."
+                                    },
+                                    {
+                                        question: "What counts as a fixed cost?",
+                                        answer: "Anything you pay regardless of sales in the period: rent, salaries, software subscriptions, insurance, loan payments. Pick a period, usually a month, and use the costs for that period."
+                                    },
+                                    {
+                                        question: "What counts as a variable cost?",
+                                        answer: "What one more unit costs you: the product or materials, packaging, payment processing, shipping you pay and any per-unit marketplace fee."
+                                    },
+                                    {
+                                        question: "Why is the result rounded up?",
+                                        answer: "You can't sell part of a unit, so the calculator rounds the units up. The revenue figure uses the rounded units."
+                                    },
+                                    {
+                                        question: "How do I lower my break-even point?",
+                                        answer: "Raise the price, lower the variable cost or cut fixed costs. Because fixed costs are divided by the margin, a small margin gain often does more than a big cut in overheads."
+                                    },
+                                    {
+                                        question: "Is this calculator free?",
+                                        answer: "Yes. It runs in your browser, needs no sign-up and stores nothing you type."
+                                    }
+                                ]}
                         />
                     </FadeIn>
                     {/* CTA Section */}

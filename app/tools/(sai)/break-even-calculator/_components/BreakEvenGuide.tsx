@@ -1,57 +1,18 @@
 "use client"
 import { ToolGuide } from "@/app/tools/_shared/components"
-import { BookOpen, DollarSign, Scale, TrendingUp, Info } from "lucide-react"
+import { Scale, Calculator, Percent, TrendingUp, AlertTriangle } from "lucide-react"
 
+/** What the calculator computes, the formula in words, where the inputs come from, and one worked example. */
 export function BreakEvenGuide() {
     return (
         <ToolGuide
-            title="Understanding Break-Even Analysis"
-            icon={BookOpen}
+            title="How break-even is worked out"
+            icon={Scale}
             items={[
-                {
-                    title: "Fixed Costs",
-                    description: "Expenses that remain constant regardless of your sales volume. Examples include rent, insurance, salaries, and software subscriptions.",
-                    icon: DollarSign,
-                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                    iconColor: "text-blue-500 dark:text-blue-400",
-                    stat: "Overhead",
-                    statColor: "text-blue-600 dark:text-blue-400",
-                    statLabel: "Costs that don't change",
-                    tooltip: "Costs you pay even if you sell nothing."
-                },
-                {
-                    title: "Variable Costs",
-                    description: "Costs that increase with every unit you sell. This includes materials, shipping, packaging, and transaction fees.",
-                    icon: Scale,
-                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                    iconColor: "text-blue-500 dark:text-blue-400",
-                    stat: "Per Unit",
-                    statColor: "text-blue-600 dark:text-blue-400",
-                    statLabel: "Costs linked to sales",
-                    tooltip: "Costs incurred only when a sale is made."
-                },
-                {
-                    title: "Profit per Unit",
-                    description: "The amount of money left from each sale after covering variable costs. This amount is used to pay off your fixed costs.",
-                    icon: TrendingUp,
-                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
-                    iconColor: "text-amber-500 dark:text-amber-400",
-                    stat: "Unit Profit",
-                    statColor: "text-amber-600 dark:text-amber-400",
-                    statLabel: "Revenue after variable costs",
-                    tooltip: "Price - Variable Cost = Profit per Unit."
-                },
-                {
-                    title: "Break-Even Point",
-                    description: "The exact number of units you need to sell to cover all your costs (Fixed + Variable). Sales beyond this point generate pure profit.",
-                    icon: Info,
-                    iconBg: "bg-violet-50 dark:bg-violet-950/40",
-                    iconColor: "text-violet-500 dark:text-violet-400",
-                    stat: "Zero Profit",
-                    statColor: "text-violet-600 dark:text-violet-400",
-                    statLabel: "Where you start making profit",
-                    tooltip: "Sales needed to reach $0 profit (no loss)."
-                }
+                { title: "The formula in words", description: "Contribution margin per unit equals the price minus the variable cost per unit. Break-even units equal fixed costs divided by the contribution margin, rounded up to a whole unit. Break-even revenue equals those units times the price.", icon: Calculator, iconBg: "bg-blue-50 dark:bg-blue-950/40", iconColor: "text-blue-700 dark:text-blue-300" },
+                { title: "A worked example", description: "Fixed costs $10,000, price $50, variable cost $30. The contribution margin is $20, so you break even at 500 units, which is $25,000 of revenue. The 501st unit is the first $20 of profit.", icon: Percent, iconBg: "bg-amber-50 dark:bg-amber-950/40", iconColor: "text-amber-700 dark:text-amber-300" },
+                { title: "What moves the number", description: "Raising the price or cutting the variable cost widens the margin and lowers the units; cutting fixed costs lowers them directly. A $5 price rise in the example cuts break-even from 500 to 400 units.", icon: TrendingUp, iconBg: "bg-emerald-50 dark:bg-emerald-950/40", iconColor: "text-emerald-700 dark:text-emerald-300" },
+                { title: "What it doesn't do", description: "It assumes one price and one variable cost for every unit. If you sell several products or give volume discounts, run it per product or use a weighted average, and treat the result as a planning figure.", icon: AlertTriangle, iconBg: "bg-violet-50 dark:bg-violet-950/40", iconColor: "text-violet-700 dark:text-violet-300" }
             ]}
         />
     )

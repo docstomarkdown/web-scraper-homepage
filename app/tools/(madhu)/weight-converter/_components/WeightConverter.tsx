@@ -282,12 +282,12 @@ export function WeightConverter() {
                                                 <label className="text-[14.5px] font-medium text-slate-600/90 cursor-pointer py-1 dark:text-slate-300">Weight Unit</label>
                                                 <Tooltip>
                                                     <TooltipTrigger asChild>
-                                                        <button type="button" tabIndex={-1} className="text-slate-400 hover:text-blue-500 transition-colors cursor-help shrink-0 dark:text-slate-500 dark:hover:text-blue-400">
+                                                        <button type="button" tabIndex={-1} aria-label="More about this field" className="text-slate-600 dark:text-slate-300 hover:text-blue-500 transition-colors cursor-help shrink-0 dark:hover:text-blue-400">
                                                             <Info className="w-3.5 h-3.5" />
                                                         </button>
                                                     </TooltipTrigger>
-                                                    <TooltipContent side="top" className="max-w-xs text-[13px] font-normal bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
-                                                        Select the unit of measurement for the weight value you're entering.
+                                                    <TooltipContent side="top" className="max-w-xs text-sm font-normal bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
+                                                        Select the unit of measurement for the weight value you&apos;re entering.
                                                     </TooltipContent>
                                                 </Tooltip>
                                             </div>
@@ -297,10 +297,10 @@ export function WeightConverter() {
                                                         key={u}
                                                         onClick={() => setInputUnit(u)}
                                                         className={cn(
-                                                            "px-3 h-full rounded-md text-[13px] font-bold transition-all flex-1 flex items-center justify-center",
+                                                            "px-3 h-full rounded-md text-sm font-bold transition-all flex-1 flex items-center justify-center",
                                                             inputUnit === u
                                                                 ? "bg-white text-blue-600 shadow-sm border border-blue-200 dark:bg-slate-900 dark:text-blue-400 dark:border-blue-900/50"
-                                                                : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+                                                                : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
                                                         )}
                                                     >{u}</button>
                                                 ))}
@@ -326,11 +326,11 @@ export function WeightConverter() {
                                                     <label className="text-[14.5px] font-medium text-slate-600/90 cursor-pointer py-1 dark:text-slate-300">Target Unit</label>
                                                     <Tooltip>
                                                         <TooltipTrigger asChild>
-                                                            <button type="button" tabIndex={-1} className="text-slate-400 hover:text-blue-500 transition-colors cursor-help shrink-0 dark:text-slate-500 dark:hover:text-blue-400">
+                                                            <button type="button" tabIndex={-1} aria-label="More about this field" className="text-slate-600 dark:text-slate-300 hover:text-blue-500 transition-colors cursor-help shrink-0 dark:hover:text-blue-400">
                                                                 <Info className="w-3.5 h-3.5" />
                                                             </button>
                                                         </TooltipTrigger>
-                                                        <TooltipContent side="top" className="max-w-xs text-[13px] font-normal bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
+                                                        <TooltipContent side="top" className="max-w-xs text-sm font-normal bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
                                                             Select the unit you want to convert your weight to.
                                                         </TooltipContent>
                                                     </Tooltip>
@@ -342,10 +342,10 @@ export function WeightConverter() {
                                                             onClick={() => setTargetUnit(u)}
                                                             disabled={inputUnit === u}
                                                             className={cn(
-                                                                "px-3 h-full rounded-md text-[13px] font-bold transition-all flex-1 flex items-center justify-center",
+                                                                "px-3 h-full rounded-md text-sm font-bold transition-all flex-1 flex items-center justify-center",
                                                                 targetUnit === u
                                                                     ? "bg-white text-blue-600 shadow-sm border border-blue-200 dark:bg-slate-900 dark:text-blue-400 dark:border-blue-900/50"
-                                                                    : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white",
+                                                                    : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white",
                                                                 inputUnit === u && "opacity-30 cursor-not-allowed"
                                                             )}
                                                         >{u}</button>
@@ -378,11 +378,11 @@ export function WeightConverter() {
                                                     </label>
                                                     <Tooltip>
                                                         <TooltipTrigger asChild>
-                                                            <button type="button" tabIndex={-1} className="text-slate-400 hover:text-blue-500 transition-colors cursor-help shrink-0 dark:text-slate-500 dark:hover:text-blue-400">
+                                                            <button type="button" tabIndex={-1} aria-label="More about this field" className="text-slate-600 dark:text-slate-300 hover:text-blue-500 transition-colors cursor-help shrink-0 dark:hover:text-blue-400">
                                                                 <Info className="w-3.5 h-3.5" />
                                                             </button>
                                                         </TooltipTrigger>
-                                                        <TooltipContent side="top" className="max-w-xs text-[13px] font-normal bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
+                                                        <TooltipContent side="top" className="max-w-xs text-sm font-normal bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
                                                             Select your shipping carrier to see estimated rates.
                                                         </TooltipContent>
                                                     </Tooltip>
@@ -395,7 +395,7 @@ export function WeightConverter() {
                                                             setShippingMode("carrier")
                                                         }}
                                                     >
-                                                        <SelectTrigger className="h-11 text-[13px] border border-slate-200 font-semibold transition-all px-3 bg-white text-slate-700 focus:ring-0 focus:ring-offset-0 focus:outline-none hover:border-slate-300 shadow-sm rounded-xl dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-slate-700">
+                                                        <SelectTrigger aria-label="Carrier" className="h-11 text-sm border border-slate-200 font-semibold transition-all px-3 bg-white text-slate-700 focus:ring-0 focus:ring-offset-0 focus:outline-none hover:border-slate-300 shadow-sm rounded-xl dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-slate-700">
                                                             <SelectValue placeholder="Select..." />
                                                         </SelectTrigger>
                                                         <SelectContent align="end" className="max-h-[300px] border-slate-200 shadow-xl rounded-xl z-[1001] dark:border-slate-800">
@@ -407,7 +407,7 @@ export function WeightConverter() {
                                                                 }, {} as Record<string, {key: string, label: string}[]>)
                                                             ).map(([group, carriers]) => (
                                                                 <SelectGroup key={group}>
-                                                                    <SelectLabel className="text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.13em] px-2 py-1.5 bg-slate-50/80 mb-1 dark:text-slate-500 dark:bg-slate-800/60">{group}</SelectLabel>
+                                                                    <SelectLabel className="text-xs font-extrabold text-slate-600 dark:text-slate-300 uppercase tracking-[0.13em] px-2 py-1.5 bg-slate-50/80 mb-1 dark:bg-slate-800/60">{group}</SelectLabel>
                                                                     {carriers.map(c => (
                                                                         <SelectItem key={c.key} value={c.key} className="text-[12px] font-medium leading-tight py-1.5 cursor-pointer">{c.label}</SelectItem>
                                                                     ))}
@@ -426,11 +426,11 @@ export function WeightConverter() {
                                                     </label>
                                                     <Tooltip>
                                                         <TooltipTrigger asChild>
-                                                            <button type="button" tabIndex={-1} className="text-slate-400 hover:text-blue-500 transition-colors cursor-help shrink-0 dark:text-slate-500 dark:hover:text-blue-400">
+                                                            <button type="button" tabIndex={-1} aria-label="More about this field" className="text-slate-600 dark:text-slate-300 hover:text-blue-500 transition-colors cursor-help shrink-0 dark:hover:text-blue-400">
                                                                 <Info className="w-3.5 h-3.5" />
                                                             </button>
                                                         </TooltipTrigger>
-                                                        <TooltipContent side="top" className="max-w-xs text-[13px] font-normal bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
+                                                        <TooltipContent side="top" className="max-w-xs text-sm font-normal bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
                                                             Select general shipping speed for estimates.
                                                         </TooltipContent>
                                                     </Tooltip>
@@ -443,12 +443,12 @@ export function WeightConverter() {
                                                             setShippingMode("class")
                                                         }}
                                                     >
-                                                        <SelectTrigger className="h-11 text-[13px] border border-slate-200 font-semibold transition-all px-3 bg-white text-slate-700 focus:ring-0 focus:ring-offset-0 focus:outline-none hover:border-slate-300 shadow-sm rounded-xl dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-slate-700">
+                                                        <SelectTrigger aria-label="Shipping speed" className="h-11 text-sm border border-slate-200 font-semibold transition-all px-3 bg-white text-slate-700 focus:ring-0 focus:ring-offset-0 focus:outline-none hover:border-slate-300 shadow-sm rounded-xl dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-slate-700">
                                                             <SelectValue placeholder="Select..." />
                                                         </SelectTrigger>
                                                         <SelectContent align="end" className="max-h-[300px] border-slate-200 shadow-xl rounded-xl z-[1001] dark:border-slate-800">
                                                             <SelectGroup>
-                                                                <SelectLabel className="text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.13em] px-2 py-1.5 bg-slate-50/80 mb-1 dark:text-slate-500 dark:bg-slate-800/60">Speed Types</SelectLabel>
+                                                                <SelectLabel className="text-xs font-extrabold text-slate-600 dark:text-slate-300 uppercase tracking-[0.13em] px-2 py-1.5 bg-slate-50/80 mb-1 dark:bg-slate-800/60">Speed Types</SelectLabel>
                                                                 {Object.entries(SHIPPING_CLASSES).map(([key, val]) => (
                                                                     <SelectItem key={key} value={key} className="text-[12px] font-medium leading-tight py-1.5 cursor-pointer">{val.label}</SelectItem>
                                                                 ))}
@@ -474,14 +474,14 @@ export function WeightConverter() {
                         transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                         className="flex flex-col gap-3"
                     >
-                        <Card className="relative overflow-hidden border border-slate-200/60 shadow-sm rounded-2xl bg-[#F5F8FD] flex flex-col dark:border-slate-800">
+                        <Card className="relative overflow-hidden border border-slate-200/60 shadow-sm rounded-2xl bg-[#F5F8FD] dark:bg-slate-900 flex flex-col dark:border-slate-800">
                             {/* Header */}
                             <div className="flex justify-between items-center gap-4 px-6 pt-5 pb-1">
                                 <div className="flex items-center gap-2.5">
                                     <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-100/50 dark:border-blue-900/50">
                                         <Scale className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                                     </div>
-                                    <span className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none dark:text-blue-400">
+                                    <span className="text-[15px] sm:text-[16px] font-bold text-blue-800 leading-none dark:text-blue-200">
                                         Results Panel
                                     </span>
                                 </div>
@@ -491,7 +491,7 @@ export function WeightConverter() {
                                             key="live"
                                             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                                             className={cn(
-                                                "flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[10.5px] font-bold",
+                                                "flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-bold",
                                                 activeTier?.color === "emerald" ? "bg-emerald-100/50 text-emerald-700 border-emerald-200/50 dark:bg-emerald-900/40 dark:text-emerald-400 dark:border-emerald-900/50" :
                                                 activeTier?.color === "amber" || activeTier?.color === "orange" ? "bg-amber-100/50 text-amber-700 border-amber-200/50 dark:bg-amber-900/40 dark:text-amber-400 dark:border-amber-900/50" :
                                                 "bg-blue-100/50 text-blue-700 border-blue-200/50 dark:bg-blue-900/40 dark:text-blue-400 dark:border-blue-900/50"
@@ -509,7 +509,7 @@ export function WeightConverter() {
                                         <motion.div
                                             key="idle"
                                             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                                            className="text-[10.5px] font-bold text-slate-400 px-2 dark:text-slate-500"
+                                            className="text-xs font-bold text-slate-600 dark:text-slate-300 px-2"
                                         >
                                             Awaiting input
                                         </motion.div>
@@ -547,7 +547,7 @@ export function WeightConverter() {
                                                                 <path d="M9 19l-7-7 7-7" />
                                                                 <path d="M2 12h36" />
                                                             </svg>
-                                                            <p className="text-[12.5px] text-slate-500 font-semibold leading-snug whitespace-nowrap z-10 dark:text-slate-400">
+                                                            <p className="text-[12.5px] text-slate-600 dark:text-slate-300 font-semibold leading-snug whitespace-nowrap z-10">
                                                                 Fill in the inputs to see your
                                                             </p>
                                                         </div>
@@ -597,7 +597,7 @@ export function WeightConverter() {
                                             transition={{ duration: 0.4, delay: 0.05 }}
                                             className="relative flex flex-col items-center text-center py-6 px-4 bg-transparent"
                                         >
-                                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.18em] leading-none mb-2 dark:text-slate-500">Target Conversion</span>
+                                            <span className="text-xs font-black text-slate-600 dark:text-slate-300 uppercase tracking-[0.18em] leading-none mb-2">Target Conversion</span>
                                             <motion.span
                                                 key={`${conversions[targetUnit]}-${targetUnit}`}
                                                 initial={{ opacity: 0, y: 4 }}
@@ -608,7 +608,7 @@ export function WeightConverter() {
                                                 {formatCompact(conversions[targetUnit], 4)}
                                             </motion.span>
                                             <span className="text-[1rem] font-bold text-slate-700 mt-1 dark:text-slate-200">{UNIT_NAMES[targetUnit]}</span>
-                                            <p className="text-[11.5px] text-slate-500 font-medium mt-2 dark:text-slate-400">
+                                            <p className="text-[11.5px] text-slate-600 dark:text-slate-300 font-medium mt-2">
                                                 from {inputValue} {UNIT_NAMES[inputUnit]}
                                             </p>
                                         </motion.div>
@@ -624,7 +624,7 @@ export function WeightConverter() {
                                         >
                                             <div className="flex items-center gap-2 mb-3">
                                                 <RefreshCw className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
-                                                <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 dark:text-slate-400">Other Units</span>
+                                                <span className="text-sm sm:text-[14px] font-bold text-slate-600 dark:text-slate-300">Other Units</span>
                                             </div>
                                             <div className="pl-7 space-y-2">
                                                 {secondaryUnits.map((unit) => (
@@ -638,7 +638,7 @@ export function WeightConverter() {
                                                 ))}
                                                 <div className="flex items-center justify-between pt-2 border-t border-slate-100 mt-2 dark:border-slate-800">
                                                     <span className="text-xs text-slate-600 font-medium dark:text-slate-300">
-                                                        {UNIT_NAMES[inputUnit]} <span className="text-blue-400 text-[10px] ml-1">(input)</span>
+                                                        {UNIT_NAMES[inputUnit]} <span className="text-blue-400 text-xs ml-1">(input)</span>
                                                     </span>
                                                     <span className="font-bold tracking-tight text-[16px] sm:text-[17px] text-slate-700 flex items-baseline dark:text-slate-200">
                                                         {formatCompact(conversions[inputUnit], 4)}
@@ -659,11 +659,11 @@ export function WeightConverter() {
                                                 <div className="flex items-center justify-between mb-3">
                                                     <div className="flex items-center gap-2">
                                                         <Truck className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
-                                                        <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 dark:text-slate-400">
+                                                        <span className="text-sm sm:text-[14px] font-bold text-slate-600 dark:text-slate-300">
                                                             {selectedShippingData.label} Estimate
                                                         </span>
                                                     </div>
-                                                    <span className="text-[10px] font-extrabold px-2 py-0.5 rounded bg-blue-100/80 text-blue-700 flex-shrink-0 dark:bg-blue-900/40 dark:text-blue-400">
+                                                    <span className="text-xs font-extrabold px-2 py-0.5 rounded bg-blue-100/80 text-blue-700 flex-shrink-0 dark:bg-blue-900/40 dark:text-blue-400">
                                                         {activeTier.cost}
                                                     </span>
                                                 </div>
@@ -671,7 +671,7 @@ export function WeightConverter() {
                                                     <span className="font-bold tracking-tight block text-[16px] sm:text-[17px] text-slate-700 dark:text-slate-200">
                                                         {activeTier.label}
                                                     </span>
-                                                    <p className="text-[11px] font-medium text-slate-500 mt-1 flex items-baseline dark:text-slate-400">
+                                                    <p className="text-xs font-medium text-slate-600 dark:text-slate-300 mt-1 flex items-baseline">
                                                         {formatCompact(weightInLbs, 3)}<span className="ml-1 text-[0.8em]">lb</span>
                                                     </p>
                                                 </div>
@@ -691,13 +691,13 @@ export function WeightConverter() {
                                             >
                                                 <div className="flex items-center gap-2">
                                                     <Package className="w-4 h-4 text-blue-500 dark:text-blue-400" />
-                                                    <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 dark:text-slate-400">View Cost Breakdown</span>
+                                                    <span className="text-sm sm:text-[14px] font-bold text-slate-600 dark:text-slate-300">View Cost Breakdown</span>
                                                 </div>
                                                 <motion.span
                                                     animate={{ rotate: showBreakdown ? 180 : 0 }}
                                                     transition={{ duration: 0.2 }}
                                                 >
-                                                    <ChevronDown className="w-4 h-4 text-slate-400 dark:text-slate-500" />
+                                                    <ChevronDown className="w-4 h-4 text-slate-600 dark:text-slate-300" />
                                                 </motion.span>
                                             </button>
                                             <AnimatePresence>
@@ -724,17 +724,17 @@ export function WeightConverter() {
                                                                         <div className="flex items-center gap-2 min-w-0">
                                                                             <span className={cn("w-1.5 h-1.5 rounded-full shrink-0", isActive ? colors.dot : "bg-slate-300 dark:bg-slate-600")} />
                                                                             <div className="min-w-0">
-                                                                                <p className={cn("text-[11px] font-semibold truncate", isActive ? colors.text : "text-slate-600 dark:text-slate-300")}>
+                                                                                <p className={cn("text-xs font-semibold truncate", isActive ? colors.text : "text-slate-600 dark:text-slate-300")}>
                                                                                     {tier.label}
                                                                                 </p>
-                                                                                <p className="text-[10px] text-slate-400 dark:text-slate-500">
+                                                                                <p className="text-xs text-slate-600 dark:text-slate-300">
                                                                                     up to {tier.max === Infinity ? "∞" : `${tier.max} lb`}
                                                                                 </p>
                                                                             </div>
                                                                         </div>
                                                                         <span className={cn(
-                                                                            "text-[10.5px] font-bold shrink-0 ml-2",
-                                                                            isActive ? cn("px-2 py-0.5 rounded-md", colors.badge) : "text-slate-400 dark:text-slate-500"
+                                                                            "text-xs font-bold shrink-0 ml-2",
+                                                                            isActive ? cn("px-2 py-0.5 rounded-md", colors.badge) : "text-slate-600 dark:text-slate-300"
                                                                         )}>
                                                                             {tier.cost}
                                                                         </span>

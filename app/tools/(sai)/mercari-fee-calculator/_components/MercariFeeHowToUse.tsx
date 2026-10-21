@@ -1,25 +1,28 @@
-"use client";
-import React from "react";
-import { ToolSteps } from "@/app/tools/_shared/components/ToolSteps";
-import { Tag, Package, TrendingUp } from "lucide-react";
+"use client"
+import { ToolSteps } from "@/app/tools/_shared/components"
+import { Package, Tag, TrendingUp } from "lucide-react"
 
 export function MercariFeeHowToUse() {
-    const steps = [
-        {
-            title: "Enter Your Sale Price",
-            description: "Type the price you plan to list your item for. This is the core number that drives all fee and profit calculations.",
-            icon: Tag,
-        },
-        {
-            title: "Add Item & Shipping Costs",
-            description: "Enter what you paid to acquire the item and any shipping label costs you are covering. Leave shipping blank if the buyer pays.",
-            icon: Package,
-        },
-        {
-            title: "Review Your True Net Profit",
-            description: "See your exact take-home profit after Mercari's 10% fee and payment processing are automatically deducted from your revenue.",
-            icon: TrendingUp,
-        },
-    ];
-    return <ToolSteps steps={steps} title="How to Use This Calculator" />;
+    return (
+        <ToolSteps
+            title="How to use this tool"
+            steps={[
+                {
+                    title: "Enter the sale price",
+                    description: "Type the price you plan to list at. Every fee is worked out from this number.",
+                    icon: Tag,
+                },
+                {
+                    title: "Add your costs",
+                    description: "Enter what you paid for the item, the shipping label if you pay it, and any packaging. Leave shipping blank when the buyer pays.",
+                    icon: Package,
+                },
+                {
+                    title: "Read your profit",
+                    description: "The calculator takes off Mercari's two fees and your costs and shows net profit, margin, and the total for several identical items.",
+                    icon: TrendingUp,
+                },
+            ]}
+        />
+    )
 }

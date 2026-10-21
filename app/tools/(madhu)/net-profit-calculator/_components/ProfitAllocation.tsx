@@ -78,16 +78,16 @@ export function ProfitAllocation({
             >
                 <div className="flex items-center gap-2">
                     <Wallet className="w-4 h-4 text-blue-500 dark:text-blue-400" />
-                    <span className="text-[13px] font-bold text-slate-500 dark:text-slate-400">View Income & Expense Breakdown</span>
+                    <span className="text-sm font-bold text-slate-600 dark:text-slate-300">View Income & Expense Breakdown</span>
                 </div>
                 <div className="flex items-center gap-3">
                     {netProfit < 0 && (
-                        <span className="text-[10px] font-black bg-red-50 text-red-600 px-2 py-0.5 rounded-full animate-pulse dark:bg-red-950/40 dark:text-red-400">
+                        <span className="text-xs font-black bg-red-50 text-red-600 px-2 py-0.5 rounded-full animate-pulse dark:bg-red-950/40 dark:text-red-400">
                             Negative Margin
                         </span>
                     )}
                     <motion.span animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
-                        <ChevronDown className="w-4 h-4 text-slate-400 dark:text-slate-500" />
+                        <ChevronDown className="w-4 h-4 text-slate-600 dark:text-slate-300" />
                     </motion.span>
                 </div>
             </button>
@@ -123,15 +123,15 @@ export function ProfitAllocation({
                             </RechartsPie>
                         </ResponsiveContainer>
                     ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-slate-300 text-[10px] font-bold border-2 border-dashed border-slate-100 rounded-full text-center p-4 dark:text-slate-600 dark:border-slate-800">
+                        <div className="absolute inset-0 flex items-center justify-center text-slate-300 text-xs font-bold border-2 border-dashed border-slate-100 rounded-full text-center p-4 dark:text-slate-300 dark:border-slate-800">
                             Complete Inputs to Visualize Breakdown
                         </div>
                     )}
                     {/* Center Label */}
                     {revenue > 0 && (
                         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none p-2">
-                            <span className="text-[9px] font-bold text-slate-400 uppercase tracking-tighter dark:text-slate-500">Total</span>
-                            <span className={`text-center font-black leading-tight ${netProfit >= 0 ? 'text-slate-900' : 'text-red-600'} ${Math.abs(revenue) > 1000000000 ? 'text-[8px]' : 'text-[11px]'}`}>
+                            <span className="text-[9px] font-bold text-slate-600 dark:text-slate-300 uppercase tracking-tighter">Total</span>
+                            <span className={`text-center font-black leading-tight ${netProfit >= 0 ? 'text-slate-900' : 'text-red-600'} ${Math.abs(revenue) > 1000000000 ? 'text-[8px]' : 'text-xs'}`}>
                                 {formatCompact(revenue)}
                             </span>
                         </div>
@@ -182,7 +182,7 @@ function LegendItem({
     formatCurrency: (v: number) => string
 }) {
     return (
-        <div className="flex items-center justify-between text-[10px] px-2 bg-slate-50 rounded-lg py-1.5 border border-slate-100/50 dark:bg-slate-800/60 dark:border-slate-800">
+        <div className="flex items-center justify-between text-xs px-2 bg-slate-50 rounded-lg py-1.5 border border-slate-100/50 dark:bg-slate-800/60 dark:border-slate-800">
             <div className="flex items-center gap-1.5 truncate">
                 <div className={cn(
                     "w-2 h-2 rounded-full shrink-0",
@@ -194,7 +194,7 @@ function LegendItem({
             </div>
 
             <div className="flex items-center gap-2">
-                <span className="font-bold text-slate-400 dark:text-slate-500">
+                <span className="font-bold text-slate-600 dark:text-slate-300">
                     {formatCurrency(value)}
                 </span>
                 <span className="font-bold w-10 text-right text-slate-700 dark:text-slate-200">

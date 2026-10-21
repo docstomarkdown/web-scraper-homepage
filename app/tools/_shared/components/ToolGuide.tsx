@@ -4,27 +4,6 @@ import { ReactNode } from "react"
 import { ToolSectionHeader } from "./ToolSectionHeader"
 import { cn } from "@/lib/utils"
 
-const accentBarMap: Record<string, string> = {
-    blue: "from-blue-400 to-blue-200",
-    indigo: "from-indigo-400 to-indigo-200",
-    purple: "from-purple-400 to-purple-200",
-    violet: "from-violet-400 to-violet-200",
-    emerald: "from-emerald-400 to-emerald-200",
-    green: "from-green-400 to-green-200",
-    amber: "from-amber-400 to-amber-200",
-    orange: "from-orange-400 to-orange-200",
-    red: "from-red-400 to-red-200",
-    rose: "from-rose-400 to-rose-200",
-    cyan: "from-cyan-400 to-cyan-200",
-    slate: "from-slate-400 to-slate-200",
-}
-
-function getAccentGradient(iconBg: string): string {
-    const match = iconBg.match(/bg-(\w+)-/)
-    const color = match?.[1] || "blue"
-    return accentBarMap[color] || accentBarMap.blue
-}
-
 export interface GuideItem {
     title: string
     description: string | ReactNode
@@ -41,53 +20,37 @@ interface ToolGuideProps {
     icon?: LucideIcon
     items: GuideItem[]
 }
+/** The explainer cards under a calculator: one h3 and a short body each. */
 export function ToolGuide({ title, icon = BookOpen, items }: ToolGuideProps) {
+    if (!items?.length) return null
+    const bodyCls = "text-base text-slate-700 leading-[1.65] [&_em]:not-italic [&_em]:font-semibold [&_a]:text-[#1f5ec2] [&_a]:underline dark:text-slate-200 dark:[&_a]:text-[#7aa7ff]"
     return (
         <section id="tool-guide" className="space-y-6">
             <ToolSectionHeader icon={icon} title={title} />
-            <div className="space-y-4">
+            <ul className="space-y-4">
                 {items.map((item, index) => {
                     const Icon = item.icon
-                    const accentGradient = getAccentGradient(item.iconBg)
                     return (
-                        <div
-                            key={index}
-                            className="bg-white rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-md transition-all duration-300 group overflow-hidden dark:bg-slate-900 dark:border-slate-800"
-                        >
-                            {/* Accent bar on hover — color matches item icon */}
-                            <div className={`h-[3px] bg-gradient-to-r ${accentGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+                        <li key={index} className="bg-white rounded-2xl border border-slate-200 dark:bg-slate-900 dark:border-slate-800">
                             <div className="px-6 sm:px-8 py-5 sm:py-6">
-                            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                                {/* Icon */}
-                                <div className={cn(
-                                    "flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110",
-                                    item.iconBg,
-                                    item.iconColor
-                                )}>
-                                    <Icon className="w-6 h-6" />
-                                </div>
-                                {/* Content */}
-                                <div className="flex-1 min-w-0">
-                                    <h3 className="text-[16px] font-bold text-slate-600 mb-1 leading-snug transition-colors dark:text-slate-300">
-                                        {item.title}
-                                    </h3>
-                                    {typeof item.description === 'string' ? (
-                                        <div
-                                            className="text-[14.5px] text-slate-500 leading-relaxed font-medium [&_em]:not-italic [&_em]:font-semibold [&_em]:text-slate-500 dark:text-slate-400"
-                                            dangerouslySetInnerHTML={{ __html: item.description.replace(/<strong>(.*?)<\/strong>/gi, '$1') }}
-                                        />
-                                    ) : (
-                                        <div className="text-[14.5px] text-slate-500 leading-relaxed font-medium [&_em]:not-italic [&_em]:font-semibold [&_em]:text-slate-500 dark:text-slate-400">
-                                            {item.description}
-                                        </div>
-                                    )}
+                                <div className="flex flex-col sm:flex-row sm:items-start gap-4">
+                                    <div className={cn("flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center", item.iconBg, item.iconColor)} aria-hidden="true">
+                                        <Icon className="w-6 h-6" />
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                        <h3 className="text-lg font-semibold text-slate-800 mb-1 leading-snug dark:text-white">{item.title}</h3>
+                                        {typeof item.description === "string" ? (
+                                            <div className={bodyCls} dangerouslySetInnerHTML={{ __html: item.description.replace(/<strong>(.*?)<\/strong>/gi, "$1") }} />
+                                        ) : (
+                                            <div className={bodyCls}>{item.description}</div>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
-                            </div>
-                        </div>
+                        </li>
                     )
                 })}
-            </div>
+            </ul>
         </section>
     )
 }

@@ -77,7 +77,7 @@ function ConvertedDimensionsCard(props: ConvertedDimensionsCardProps) {
                     <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-100/50 shadow-sm shadow-blue-500/5 dark:border-blue-900/50">
                         <ClipboardList className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                     </div>
-                    <span className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none dark:text-blue-400">
+                    <span className="text-[15px] sm:text-[16px] font-bold text-blue-800 leading-none dark:text-blue-200">
                         Results Panel
                     </span>
                 </div>
@@ -91,7 +91,7 @@ function ConvertedDimensionsCard(props: ConvertedDimensionsCardProps) {
                             transition={{ duration: 0.4, ease: "easeOut" }}
                             className="bg-slate-50 border border-slate-100 px-3 py-1.5 rounded-full flex items-center gap-2.5 shadow-sm dark:bg-slate-800/60 dark:border-slate-800"
                         >
-                            <span className="text-[10px] font-black text-blue-600 dark:text-blue-400">{completedCount}/{totalCount}</span>
+                            <span className="text-xs font-black text-blue-600 dark:text-blue-400">{completedCount}/{totalCount}</span>
                             <div className="w-16 h-1.5 bg-blue-100/80 rounded-full overflow-hidden dark:bg-blue-900/40">
                                 <motion.div
                                     className="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full"
@@ -108,7 +108,7 @@ function ConvertedDimensionsCard(props: ConvertedDimensionsCardProps) {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.4, ease: "easeInOut" }}
-                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border bg-blue-50/80 border-blue-200/50 text-[10.5px] font-bold tracking-wide text-blue-600 shrink-0 dark:bg-blue-950/40 dark:border-blue-900/50 dark:text-blue-400"
+                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border bg-blue-50/80 border-blue-200/50 text-xs font-bold tracking-wide text-blue-600 shrink-0 dark:bg-blue-950/40 dark:border-blue-900/50 dark:text-blue-400"
                         >
                             {fromUnit} → {toUnit}
                         </motion.div>
@@ -145,7 +145,7 @@ function ConvertedDimensionsCard(props: ConvertedDimensionsCardProps) {
                                                 <path d="M9 19l-7-7 7-7" />
                                                 <path d="M2 12h36" />
                                             </svg>
-                                            <p className="text-[12.5px] text-slate-500 font-semibold leading-snug whitespace-nowrap z-10 dark:text-slate-400">
+                                            <p className="text-[12.5px] text-slate-600 dark:text-slate-300 font-semibold leading-snug whitespace-nowrap z-10">
                                                 Fill in the inputs to see your
                                             </p>
                                         </div>
@@ -196,32 +196,32 @@ function ConvertedDimensionsCard(props: ConvertedDimensionsCardProps) {
                                         className="group flex items-center gap-3 p-3 sm:p-3.5 rounded-xl bg-slate-50/70 border border-slate-100/80 hover:border-blue-200/60 hover:bg-blue-50/30 transition-all duration-200 dark:bg-slate-800/60 dark:border-slate-800 dark:hover:border-blue-900/50 dark:hover:bg-blue-950/40"
                                     >
                                         <div className="flex items-center gap-2.5 flex-1 min-w-0">
-                                            <div className="flex items-center justify-center w-7 h-7 rounded-lg bg-slate-200/60 text-[11px] font-black text-slate-500 shrink-0 dark:bg-slate-700/60 dark:text-slate-400">
+                                            <div className="flex items-center justify-center w-7 h-7 rounded-lg bg-slate-200/60 text-xs font-black text-slate-600 dark:text-slate-300 shrink-0 dark:bg-slate-700/60">
                                                 {axis.label}
                                             </div>
                                             <div className="min-w-0">
-                                                <span className="text-[14px] font-bold text-slate-500 block leading-none mb-1 dark:text-slate-400">
+                                                <span className="text-[14px] font-bold text-slate-600 dark:text-slate-300 block leading-none mb-1">
                                                     {axis.full}
                                                 </span>
                                                 <span className="text-[16px] sm:text-[17px] font-bold text-slate-700 tabular-nums dark:text-slate-200">
                                                     {givenVal}
-                                                    <span className="text-[11px] font-semibold text-slate-400 ml-1 dark:text-slate-500">{fromUnit}</span>
+                                                    <span className="text-xs font-semibold text-slate-600 dark:text-slate-300 ml-1">{fromUnit}</span>
                                                 </span>
                                             </div>
                                         </div>
 
-                                        <ArrowRight className="w-3.5 h-3.5 text-slate-300 shrink-0 group-hover:text-blue-400 transition-colors dark:text-slate-600" />
+                                        <ArrowRight className="w-3.5 h-3.5 text-slate-300 shrink-0 group-hover:text-blue-400 transition-colors dark:text-slate-300" />
 
                                         <div className="flex-1 min-w-0 text-right">
                                             {isFirst && (
-                                                <span className="text-[13px] sm:text-[14px] font-bold text-blue-500/70 block leading-none mb-1">
+                                                <span className="text-sm sm:text-[14px] font-bold text-blue-500/70 block leading-none mb-1">
                                                     Result
                                                 </span>
                                             )}
                                             {!isFirst && <div className="h-2.5" />}
                                             <span className="text-[16px] sm:text-[17px] font-bold text-blue-600 tabular-nums tracking-tight dark:text-blue-400">
                                                 {convertedVal}
-                                                <span className="text-[11px] font-semibold text-blue-400 ml-1">{toUnit}</span>
+                                                <span className="text-xs font-semibold text-blue-400 ml-1">{toUnit}</span>
                                             </span>
                                         </div>
                                     </motion.div>
@@ -314,10 +314,10 @@ export function DimensionConverterContent() {
                                                         key={u}
                                                         onClick={() => setUnit(u)}
                                                         className={cn(
-                                                            "px-3 h-full rounded-md text-[11px] font-bold transition-all flex-1 flex items-center justify-center",
+                                                            "px-3 h-full rounded-md text-xs font-bold transition-all flex-1 flex items-center justify-center",
                                                             unit === u
                                                                 ? "bg-white text-blue-600 shadow-sm border border-blue-200 dark:bg-slate-900 dark:text-blue-400 dark:border-blue-900/50"
-                                                                : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+                                                                : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
                                                         )}
                                                     >
                                                         {u}

@@ -1,31 +1,21 @@
-"use client";
-import React from "react";
-import { ToolOverview } from "@/app/tools/_shared/components/ToolOverview";
+"use client"
+import { Info } from "lucide-react"
+import { ToolOverview, ToolSectionHeader } from "@/app/tools/_shared/components"
 
 export function MercariFeeOverview() {
     return (
-        <ToolOverview
-            heading="What is the Mercari Fee Calculator?"
-            headingAccent="Mercari Fee Calculator"
-            definition="The Mercari Fee Calculator is a free tool that shows how much money you will actually earn when selling an item on Mercari, a popular online marketplace for buying and selling new or used products.The tool calculates your total fees, shipping costs, expenses, and final profit, so you instantly know your real earnings before listing an item.It is used by individual sellers, resellers, side-hustlers, and small businesses who want a quick and accurate profit estimate. This tool is helpful for anyone selling online, even if they have never used Mercari before."
-            accent="blue"
-            facts={[
-                {
-                    stat: "10%",
-                    label: "Selling Fee",
-                    detail: "Mercari's flat selling fee is applied to every transaction. It's deducted automatically from your payout after the item sells."
-                },
-                {
-                    stat: "2.9% + $0.50",
-                    label: "Processing Fee",
-                    detail: "A separate payment processing fee charged on the total amount the buyer pays, covering card and transaction costs."
-                },
-                {
-                    stat: "Revealed",
-                    label: "Hidden Costs",
-                    detail: "Shipping, packaging, and processing fees stack up invisibly. This tool calculates all of them to show your accurate take-home profit."
-                }
-            ]}
-        />
-    );
+        <div className="w-full">
+            <ToolSectionHeader icon={Info} title="About this calculator" />
+            <ToolOverview
+                heading="What the Mercari fee calculator does"
+                definition="It takes Mercari's two fees and your own costs off a sale price and shows the profit you keep, the margin, and the total for several identical items."
+                accent="blue"
+                facts={[
+                    { stat: "10%", label: "Selling fee", detail: "Charged on the sale price of every item that sells. Listing is free." },
+                    { stat: "2.9% + $0.50", label: "Payment fee", detail: "Charged on the amount the buyer pays, on top of the selling fee. Together the two come to about 13%." },
+                    { stat: "Your costs", label: "Item, shipping, packaging", detail: "Enter what you paid and the label if you cover it, and the result is your real profit." },
+                ]}
+            />
+        </div>
+    )
 }

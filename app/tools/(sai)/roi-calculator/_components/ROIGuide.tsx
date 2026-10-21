@@ -1,109 +1,42 @@
 "use client"
-import { BookOpen, CircleDollarSign, TrendingUp, Percent, Info } from "lucide-react"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { ToolSectionHeader } from "@/app/tools/_shared/components"
-const insights = [
-    {
-        icon: CircleDollarSign,
-        iconBg: "bg-blue-50 dark:bg-blue-950/40",
-        iconColor: "text-blue-500 dark:text-blue-400",
-        statColor: "text-blue-600 dark:text-blue-400",
-        title: "Investment Cost",
-        stat: "Cost",
-        statLabel: "Your total money put in",
-        description: "The total amount of money spent on a product or project. This includes product cost, shipping fees, advertising spend, platform fees, and any other associated expenses.",
-        tooltip: "Everything you spent to source, ship, and sell the product."
-    },
-    {
-        icon: TrendingUp,
-        iconBg: "bg-blue-50 dark:bg-blue-950/40",
-        iconColor: "text-blue-500 dark:text-blue-400",
-        statColor: "text-blue-600 dark:text-blue-400",
-        title: "Revenue Earned",
-        stat: "Sales",
-        statLabel: "Total money coming in",
-        description: "The total income generated from selling the product. This is your gross revenue before subtracting any costs or expenses.",
-        tooltip: "The total dollar amount received from customers."
-    },
-    {
-        icon: Percent,
-        iconBg: "bg-amber-50 dark:bg-amber-950/40",
-        iconColor: "text-amber-500 dark:text-amber-400",
-        statColor: "text-amber-600 dark:text-amber-400",
-        title: "Return on Investment (ROI) Percentage",
-        stat: "ROI %",
-        statLabel: "The key profitability metric",
-        description: "Return on Investment (ROI) expressed as a percentage. Calculated as: ((Revenue - Investment) / Investment) × 100. A positive Return on Investment (ROI) means you made money; a negative Return on Investment (ROI) means you lost money.",
-        tooltip: "How much profit you made relative to what you invested."
-    },
-    {
-        icon: Info,
-        iconBg: "bg-violet-50 dark:bg-violet-950/40",
-        iconColor: "text-violet-500 dark:text-violet-400",
-        statColor: "text-violet-600 dark:text-violet-400",
-        title: "Net Profit",
-        stat: "Profit",
-        statLabel: "Your bottom line earnings",
-        description: "The actual amount of money earned after subtracting all investment costs from total revenue. Calculated as: Revenue - Investment Cost.",
-        tooltip: "The real money you take home after all costs."
-    }
-]
+import { ToolGuide } from "@/app/tools/_shared/components"
+import { BookOpen, Calculator, Clock, Receipt, TrendingUp } from "lucide-react"
+
 export function ROIGuide() {
     return (
-        <section id="roi-guide">
-            <ToolSectionHeader icon={BookOpen} title="Understanding Return on Investment (ROI)" />
-            <div className="space-y-6">
-                {insights.map((insight, index) => {
-                    const Icon = insight.icon
-                    return (
-                        <div
-                            key={index}
-                            className="bg-white rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden dark:bg-slate-900 dark:border-slate-800"
-                        >
-                            <div className="flex flex-col md:flex-row">
-                                {/* Left: Content */}
-                                <div className="flex-1 p-6 order-2 md:order-1">
-                                    <div className="flex items-center gap-3 mb-4">
-                                        <div className={`w-9 h-9 rounded-xl ${insight.iconBg} ${insight.iconColor} flex items-center justify-center border border-slate-100/50 dark:border-slate-800`}>
-                                            <Icon className="w-4.5 h-4.5" />
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <h3 className="text-base font-bold text-slate-900 dark:text-white">{insight.title}</h3>
-                                            {'tooltip' in insight && (
-                                                <TooltipProvider delayDuration={100}>
-                                                    <Tooltip>
-                                                        <TooltipTrigger asChild>
-                                                            <button type="button" className="text-slate-400 hover:text-blue-600 transition-colors dark:text-slate-500 dark:hover:text-blue-400">
-                                                                <Info className="h-3.5 w-3.5" />
-                                                            </button>
-                                                        </TooltipTrigger>
-                                                        <TooltipContent side="top" className="max-w-xs text-xs bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
-                                                            {insight.tooltip}
-                                                        </TooltipContent>
-                                                    </Tooltip>
-                                                </TooltipProvider>
-                                            )}
-                                        </div>
-                                    </div>
-                                    <p className="text-sm text-slate-600 leading-relaxed dark:text-slate-300">
-                                        {insight.description}
-                                    </p>
-                                </div>
-                                {/* Right: Takeaway Stat Panel */}
-                                <div className="flex md:flex-col items-center justify-center gap-1.5 p-6 md:w-48 bg-slate-50/50 border-b md:border-b-0 md:border-l border-slate-100 order-1 md:order-2 dark:bg-slate-800/60 dark:border-slate-800">
-                                    <div className={`text-3xl font-bold ${insight.statColor} tracking-tight`}>{insight.stat}</div>
-                                    <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 bg-slate-100/50 px-2 py-0.5 rounded-full dark:text-slate-500 dark:bg-slate-800">
-                                        Takeaway
-                                    </div>
-                                    <div className="text-[11px] font-medium text-slate-500 text-center leading-tight mt-1 max-w-[120px] dark:text-slate-400">
-                                        {insight.statLabel}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )
-                })}
-            </div>
-        </section>
+        <ToolGuide
+            title="How ROI is calculated"
+            icon={BookOpen}
+            items={[
+                {
+                    title: "Total ROI",
+                    description: "ROI = (amount returned − amount invested) ÷ amount invested × 100. Investing $1,000 and getting back $2,000 is a 100% return.",
+                    icon: Calculator,
+                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-700 dark:text-blue-300",
+                },
+                {
+                    title: "Annualised ROI",
+                    description: "Annualised ROI = (returned ÷ invested) ^ (1 ÷ years) − 1. It lets you compare a return earned in three months with one earned over two years.",
+                    icon: Clock,
+                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
+                    iconColor: "text-amber-700 dark:text-amber-300",
+                },
+                {
+                    title: "What to count as invested",
+                    description: "Product cost, inbound shipping, packaging, marketplace and payment fees, ads, and tools you bought for the project. Leaving costs out inflates the result.",
+                    icon: Receipt,
+                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
+                    iconColor: "text-emerald-700 dark:text-emerald-300",
+                },
+                {
+                    title: "A worked example",
+                    description: "$1,000 invested, $2,000 returned over one year: net profit $1,000, ROI 100%, annualised 100%. Over two years the same return annualises to 41.4% a year.",
+                    icon: TrendingUp,
+                    iconBg: "bg-violet-50 dark:bg-violet-950/40",
+                    iconColor: "text-violet-700 dark:text-violet-300",
+                },
+            ]}
+        />
     )
 }

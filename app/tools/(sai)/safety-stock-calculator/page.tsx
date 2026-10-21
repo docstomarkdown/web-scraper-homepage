@@ -1,40 +1,39 @@
-import { Metadata } from "next";
-import { SafetyStockCalculator } from "./_components/SafetyStockCalculator";
-import { SafetyStockGuide } from "./_components/SafetyStockGuide";
-import { SafetyStockHowToUse } from "./_components/SafetyStockHowToUse";
-import { SafetyStockOverview } from "./_components/SafetyStockOverview";
-import { FadeIn, ToolFAQ } from "@/app/tools/_shared/components";
-import { ToolPageTitle } from "@/app/tools/_shared/components/ToolPageTitle";
-import { CTA } from "@/components/sections/CTA";
+import { Metadata } from "next"
+import { SafetyStockCalculator } from "./_components/SafetyStockCalculator"
+import { SafetyStockHowToUse } from "./_components/SafetyStockHowToUse"
+import { SafetyStockGuide } from "./_components/SafetyStockGuide"
+import { SafetyStockOverview } from "./_components/SafetyStockOverview"
+import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
+import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "Safety Stock Calculator",
-    description: "Calculate the optimal safety stock to prevent stockouts. Handle demand and lead time variability with confidence using the standard buffer formula.",
+    title: "Safety Stock Calculator: Free Buffer Stock Formula",
+    description: "Work out how many extra units to hold so a late supplier or a strong week doesn't leave you out of stock, from your worst-case and average sales and lead times.",
     alternates: { canonical: "/tools/safety-stock-calculator" },
-};
+}
 
 const faqs = [
     {
-        question: "How do I use safety stock to calculate my reorder point?",
-        answer: "Your reorder point is the exact inventory level at which you must place a new order. It is calculated by taking your normal demand (Average Daily Sales × Average Lead Time) and simply adding your safety stock buffer on top. This ensures fresh inventory hits your warehouse exactly when your regular stock pipeline runs out, leaving your safety buffer untouched."
+        question: "How do I use safety stock in my reorder point?",
+        answer: "Add it to average daily sales × average lead time. With the example above, the reorder point is 140 + 280 = 420 units.",
     },
     {
-        question: "Where do I look to find accurate 'worst-case' data?",
-        answer: "To find your Max Daily Sales, review your historical platform data and identify the single highest sales spike you've had in the past 12 months (e.g., Prime Day, Black Friday, or a viral campaign). For Max Lead Time, examine your logistics records to find the absolute longest delay you've experienced due to factory stalls, customs, or freight issues."
+        question: "Where do I find the worst-case numbers?",
+        answer: "Your best sales day and your slowest delivery in the last year. Use peak-season figures if you are ordering for a peak.",
     },
     {
-        question: "How often should I recalculate my safety buffer?",
-        answer: "You should recalibrate your safety stock at least once a quarter, or immediately after a major business shift. This includes launching new ad campaigns, entering peak seasons like Q4, switching to a new supplier, or changing from air freight to sea freight."
+        question: "How often should I recalculate?",
+        answer: "Every quarter, and after any change in supplier, lead time or sales pattern.",
     },
     {
-        question: "Does safety stock differ between standard and seasonal products?",
-        answer: "Yes, significantly. For highly seasonal goods, using an annual average will either leave you deeply understocked in peak months or severely overstocked off-season. Always recalculate your safety buffer using the specific historical max and average data isolated to the upcoming seasonal window."
+        question: "Is safety stock different for seasonal products?",
+        answer: "Yes. Use the season's own maximum and average sales, not the yearly figures, or the buffer will be too small when it matters.",
     },
     {
-        question: "What happens if a supplier delay lasts longer than my buffer?",
-        answer: "Safety stock is designed to mitigate standard logistical variances, but extreme supply chain halts (like sudden port strikes or prolonged factory closures) may exhaust it. In high-risk situations, diversify your supplier base, split air and sea freight, or temporarily reduce daily ad spend to proactively slow your sales velocity."
-    }
-];
+        question: "What if a delay lasts longer than my buffer?",
+        answer: "You run out. A buffer covers the worst case you entered, not a worse one; keep a second supplier for items you can't afford to lose.",
+    },
+]
 
 export default function SafetyStockCalculatorPage() {
     return (
@@ -44,7 +43,7 @@ export default function SafetyStockCalculatorPage() {
                 <div className="mb-20">
                     <SafetyStockCalculator />
                 </div>
-                <div className="max-w-5xl mx-auto space-y-16" id="how-to-use">
+                <div className="max-w-5xl mx-auto space-y-16">
                     <FadeIn delay={0.2}>
                         <SafetyStockOverview />
                     </FadeIn>
@@ -55,7 +54,7 @@ export default function SafetyStockCalculatorPage() {
                         <SafetyStockGuide />
                     </FadeIn>
                     <FadeIn delay={0.2}>
-                        <ToolFAQ faqs={faqs} />
+                        <ToolFAQ title="Questions, answered" faqs={faqs} />
                     </FadeIn>
                     <FadeIn delay={0.2}>
                         <CTA />
@@ -63,5 +62,5 @@ export default function SafetyStockCalculatorPage() {
                 </div>
             </div>
         </div>
-    );
+    )
 }

@@ -148,11 +148,11 @@ export function LeadTimeCalculator() {
                                 <div className="space-y-4 pt-1">
                                     <div className="grid grid-cols-2 gap-4">
                                         <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 dark:bg-slate-800/60 dark:border-slate-800">
-                                            <p className="text-[11px] font-bold text-slate-400 mb-1 uppercase tracking-wider dark:text-slate-500">Supplier Time</p>
+                                            <p className="text-xs font-bold text-slate-600 dark:text-slate-300 mb-1 uppercase tracking-wider">Supplier Time</p>
                                             <p className="text-xl font-bold text-blue-600 dark:text-blue-400">{hasInputs ? Math.round(totals.pct.supplier) : 0}%</p>
                                         </div>
                                         <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 dark:bg-slate-800/60 dark:border-slate-800">
-                                            <p className="text-[11px] font-bold text-slate-400 mb-1 uppercase tracking-wider dark:text-slate-500">Shipping Time</p>
+                                            <p className="text-xs font-bold text-slate-600 dark:text-slate-300 mb-1 uppercase tracking-wider">Shipping Time</p>
                                             <p className="text-xl font-bold text-blue-600 dark:text-blue-400">{hasInputs ? Math.round(totals.pct.shipping) : 0}%</p>
                                         </div>
                                     </div>

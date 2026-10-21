@@ -1,8 +1,8 @@
 "use client"
 import React from "react"
-import { CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { CardHeader } from "@/components/ui/card"
 import { HelpCircle, RotateCw, LucideIcon } from "lucide-react"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { CurrencyCombobox } from "./CurrencyCombobox"
 
 interface CalculatorCardHeaderProps {
@@ -16,6 +16,7 @@ interface CalculatorCardHeaderProps {
     onReset?: () => void
 }
 
+/** The calculator card's heading (an h2, since the page title is the h1), its one-line description, currency and reset. */
 export function CalculatorCardHeader({
     title,
     titleIcon: TitleIcon,
@@ -31,50 +32,47 @@ export function CalculatorCardHeader({
         if (element) {
             const offset = 100
             const elementPosition = element.getBoundingClientRect().top + window.scrollY
-            const offsetPosition = elementPosition - offset
-            window.scrollTo({ top: offsetPosition, behavior: "smooth" })
+            window.scrollTo({ top: elementPosition - offset, behavior: "smooth" })
         }
     }
 
     return (
-        <CardHeader className="px-6 py-5 border-b border-slate-100/80 bg-white/40 dark:border-slate-800 dark:bg-slate-900/40">
+        <CardHeader className="px-6 py-5 border-b border-slate-100 bg-white/40 dark:border-slate-800 dark:bg-slate-900/40">
             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-                {/* Title + description */}
                 <div className="flex-1 min-w-0 space-y-1">
                     <div className="flex items-center gap-2">
                         {TitleIcon && (
-                            <div className="flex-shrink-0 w-5 h-5 rounded-lg bg-blue-50 flex items-center justify-center dark:bg-blue-950/40">
-                                <TitleIcon className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400" />
+                            <div className="flex-shrink-0 w-6 h-6 rounded-lg bg-[#2772ED]/10 flex items-center justify-center dark:bg-[#2772ED]/20" aria-hidden="true">
+                                <TitleIcon className="h-3.5 w-3.5 text-[#1f5ec2] dark:text-[#7aa7ff]" />
                             </div>
                         )}
-                        <CardTitle className="text-xl font-bold text-blue-600 tracking-tight leading-none dark:text-blue-400">
-                            {title}
-                        </CardTitle>
+                        {title?.trim() && (
+                            <h2 className="text-xl font-semibold text-slate-800 tracking-tight leading-none dark:text-white">{title}</h2>
+                        )}
                         <Tooltip>
                             <TooltipTrigger asChild>
                                 <button
                                     type="button"
-                                    tabIndex={-1}
                                     onClick={scrollToGuide}
-                                    className="text-slate-400 hover:text-blue-500 transition-colors flex-shrink-0 mt-0.5 dark:text-slate-500 dark:hover:text-blue-400"
+                                    aria-label="How to use this calculator"
+                                    className="text-slate-600 hover:text-[#1f5ec2] transition-colors flex-shrink-0 mt-0.5 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1f5ec2] dark:text-slate-300 dark:hover:text-[#7aa7ff]"
                                 >
-                                    <HelpCircle className="h-4 w-4" />
+                                    <HelpCircle className="h-4 w-4" aria-hidden="true" />
                                 </button>
                             </TooltipTrigger>
-                            <TooltipContent side="top" className="text-xs bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
-                                {tooltip || "How to use this tool"}
+                            <TooltipContent side="top" className="text-sm bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
+                                {tooltip || "How to use this calculator"}
                             </TooltipContent>
                         </Tooltip>
                     </div>
-                    <CardDescription className="text-[13px] text-slate-400 font-medium leading-relaxed whitespace-pre-wrap dark:text-slate-500">
-                        {description}
-                    </CardDescription>
+                    {description?.trim() && (
+                        <p className="text-base text-slate-700 leading-relaxed whitespace-pre-wrap dark:text-slate-200">{description}</p>
+                    )}
                 </div>
 
-                {/* Controls: Currency + Reset */}
                 <div className="flex items-center gap-2 flex-shrink-0">
                     {currency && onCurrencyChange && (
-                        <div className="w-[138px]">
+                        <div className="w-[150px]">
                             <CurrencyCombobox value={currency} onValueChange={onCurrencyChange} />
                         </div>
                     )}
@@ -82,10 +80,10 @@ export function CalculatorCardHeader({
                         <button
                             type="button"
                             onClick={onReset}
-                            className="group flex items-center justify-center h-9 w-9 text-slate-400 hover:text-blue-600 bg-white border border-slate-200 hover:border-blue-200 shadow-sm hover:shadow-md rounded-xl transition-all duration-250 active:scale-90 dark:text-slate-500 dark:hover:text-blue-400 dark:bg-slate-900 dark:border-slate-800 dark:hover:border-blue-900/50"
-                            aria-label="Reset Calculator"
+                            className="flex items-center justify-center h-10 w-10 text-slate-700 hover:text-[#1f5ec2] bg-white border border-slate-300 hover:border-[#1f5ec2] rounded-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1f5ec2] dark:text-slate-200 dark:hover:text-[#7aa7ff] dark:bg-slate-900 dark:border-slate-700"
+                            aria-label="Reset the calculator"
                         >
-                            <RotateCw className="h-3.5 w-3.5" />
+                            <RotateCw className="h-4 w-4" aria-hidden="true" />
                         </button>
                     )}
                 </div>

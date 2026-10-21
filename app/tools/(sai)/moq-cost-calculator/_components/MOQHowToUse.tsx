@@ -1,27 +1,28 @@
-"use client";
-import { ToolSteps } from "@/app/tools/_shared/components/ToolSteps";
-import { Tag, Truck, ShieldAlert } from "lucide-react";
+"use client"
+import { ToolSteps } from "@/app/tools/_shared/components"
+import { ShieldAlert, Tag, Truck } from "lucide-react"
 
 export function MOQHowToUse() {
     return (
         <ToolSteps
+            title="How to use this tool"
             steps={[
                 {
-                    title: "Enter Supplier Details",
-                    description: "Input the cost per unit and the Minimum Order Quantity required by the manufacturer.",
-                    icon: Tag
+                    title: "Enter the supplier's terms",
+                    description: "Type the cost per unit and the minimum order quantity the supplier requires.",
+                    icon: Tag,
                 },
                 {
-                    title: "Add Logistics Costs",
-                    description: "Include shipping cost, duties, and any other costs for an accurate landed cost.",
-                    icon: Truck
+                    title: "Add shipping and other costs",
+                    description: "Enter the shipping for the whole order and any other costs, such as duties, inspection or bank charges.",
+                    icon: Truck,
                 },
                 {
-                    title: "Review Investment Risk",
-                    description: "Analyze your total upfront investment and inventory coverage duration based on expected sales.",
-                    icon: ShieldAlert
-                }
+                    title: "Check the investment and the risk",
+                    description: "Enter your expected monthly sales. The calculator shows the total cash needed, the landed cost per unit and how many months the order will last.",
+                    icon: ShieldAlert,
+                },
             ]}
         />
-    );
+    )
 }

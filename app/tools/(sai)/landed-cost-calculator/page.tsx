@@ -1,40 +1,39 @@
-import { Metadata } from "next";
-import { LandedCostCalculator } from "./_components/LandedCostCalculator";
-import { LandedCostGuide } from "./_components/LandedCostGuide";
-import { LandedCostHowToUse } from "./_components/LandedCostHowToUse";
-import { LandedCostOverview } from "./_components/LandedCostOverview";
-import { FadeIn, ToolFAQ } from "@/app/tools/_shared/components";
-import { ToolPageTitle } from "@/app/tools/_shared/components/ToolPageTitle";
-import { CTA } from "@/components/sections/CTA";
+import { Metadata } from "next"
+import { LandedCostCalculator } from "./_components/LandedCostCalculator"
+import { LandedCostHowToUse } from "./_components/LandedCostHowToUse"
+import { LandedCostGuide } from "./_components/LandedCostGuide"
+import { LandedCostOverview } from "./_components/LandedCostOverview"
+import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
+import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "Landed Cost Calculator - Calculate True Import Cost Per Unit",
-    description: "Calculate the true all-in cost of importing products. Includes product cost, shipping, customs duties, insurance, and fees. Essential for e-commerce importers.",
+    title: "Landed Cost Calculator: Free Import Cost per Unit",
+    description: "Add shipping, import duty, insurance and fees to your supplier's price and see what one unit really costs once it reaches your warehouse.",
     alternates: { canonical: "/tools/landed-cost-calculator" },
-};
+}
 
 const faqs = [
     {
-        question: "What is a landed cost and why is it important?",
-        answer: "Landed cost is the actual total price of getting a product from your supplier into your warehouse. It includes the raw product price plus international shipping, import duties, insurance, and handling fees. It is strictly important because setting your retail price based only on the supplier's initial quote will drastically erode or eliminate your profit margins."
+        question: "What is landed cost?",
+        answer: "Landed cost is the full price of getting a product from your supplier to your warehouse: the product itself, shipping, duty, insurance and fees. Pricing from the supplier's quote alone overstates your margin.",
     },
     {
-        question: "How do I find my import duty percentage?",
-        answer: "To find your import duty rate, you need to look up your product's HS (Harmonized System) code on your official country's customs authority website. You can also ask your freight forwarder or customs broker to confirm the exact duty rate for your specific product category."
+        question: "How do I find my import duty rate?",
+        answer: "Search your product's HS (Harmonized System) code on your customs authority's website, or ask your freight forwarder. Enter the rate as a percentage.",
     },
     {
-        question: "What does the 'Cost Increase' percentage mean?",
-        answer: "The Cost Increase percentage shows how much extra cost is added beyond your original product price. For instance, a 30% increase means a product quoted at $10 actually costs you $13 landed. Tracking this metric helps you monitor shipping efficiency over time."
+        question: "What does the cost increase percentage show?",
+        answer: "How much the landed cost per unit is above the supplier's unit price. A 30% increase means a $10 product costs $13 by the time it arrives.",
     },
     {
-        question: "How can I effectively lower my landed cost?",
-        answer: "You can lower your landed cost by negotiating better unit prices with your supplier, consolidating shipments to use cost-effective sea freight instead of expensive air freight, and ordering in higher quantities so flat-rate logistics fees are spread across more units."
+        question: "How do I lower my landed cost?",
+        answer: "Negotiate the unit price, ship by sea instead of air when time allows, and order enough units that flat fees are spread thinly. Compare quotes by landed cost per unit, not by freight alone.",
     },
     {
         question: "What is the difference between FOB and EXW?",
-        answer: "These are shipping terms that impact your calculation. FOB (Free on Board) means your supplier covers the cost of getting the goods to the export port. EXW (Ex Works) means you are responsible for paying all freight costs from the moment it leaves their factory door. Knowing this ensures you don't miss hidden origin costs."
-    }
-];
+        answer: "FOB means the supplier pays to get the goods to the export port; EXW means you pay everything from the factory door. With EXW, add the origin charges to shipping.",
+    },
+]
 
 export default function LandedCostCalculatorPage() {
     return (
@@ -44,7 +43,7 @@ export default function LandedCostCalculatorPage() {
                 <div className="mb-20">
                     <LandedCostCalculator />
                 </div>
-                <div className="max-w-5xl mx-auto space-y-16" id="how-to-use">
+                <div className="max-w-5xl mx-auto space-y-16">
                     <FadeIn delay={0.2}>
                         <LandedCostOverview />
                     </FadeIn>
@@ -55,7 +54,7 @@ export default function LandedCostCalculatorPage() {
                         <LandedCostGuide />
                     </FadeIn>
                     <FadeIn delay={0.2}>
-                        <ToolFAQ faqs={faqs} />
+                        <ToolFAQ title="Questions, answered" faqs={faqs} />
                     </FadeIn>
                     <FadeIn delay={0.2}>
                         <CTA />
@@ -63,5 +62,5 @@ export default function LandedCostCalculatorPage() {
                 </div>
             </div>
         </div>
-    );
+    )
 }

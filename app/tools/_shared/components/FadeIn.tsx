@@ -1,6 +1,6 @@
 "use client"
 import React from "react"
-import { motion } from "motion/react"
+import { motion, useReducedMotion } from "motion/react"
 import { cn } from "@/lib/utils"
 interface FadeInProps extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode
@@ -9,6 +9,7 @@ interface FadeInProps extends React.HTMLAttributes<HTMLDivElement> {
     duration?: number
     direction?: "up" | "down" | "left" | "right" | "none"
 }
+/** Fades a block in once when it scrolls into view. Renders statically for reduced-motion users. */
 export function FadeIn({
     children,
     className,
@@ -16,6 +17,8 @@ export function FadeIn({
     duration = 0.5,
     direction = "up",
 }: FadeInProps) {
+    const reduceMotion = useReducedMotion()
+    if (reduceMotion) return <div className={cn("w-full", className)}>{children}</div>
     const variants = {
         hidden: {
             opacity: 0,
@@ -44,4 +47,4 @@ export function FadeIn({
             {children}
         </motion.div>
     )
-}
+}

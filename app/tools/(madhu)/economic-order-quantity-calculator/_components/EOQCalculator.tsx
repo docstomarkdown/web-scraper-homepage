@@ -160,14 +160,14 @@ export function EOQCalculator() {
                         transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                         className="flex flex-col gap-3"
                     >
-                        <Card className="relative overflow-hidden border border-slate-200/60 shadow-sm rounded-2xl bg-[#F5F8FD] flex flex-col dark:border-slate-800">
+                        <Card className="relative overflow-hidden border border-slate-200/60 shadow-sm rounded-2xl bg-[#F5F8FD] dark:bg-slate-900 flex flex-col dark:border-slate-800">
                             {/* Header */}
                             <div className="flex justify-between items-center gap-4 px-6 pt-5 pb-1">
                                 <div className="flex items-center gap-2.5">
                                     <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-100/50 dark:border-blue-900/50">
                                         <Calculator className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                                     </div>
-                                    <span className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none dark:text-blue-400">
+                                    <span className="text-[15px] sm:text-[16px] font-bold text-blue-800 leading-none dark:text-blue-200">
                                         Results Panel
                                     </span>
                                 </div>
@@ -176,7 +176,7 @@ export function EOQCalculator() {
                                         <motion.div
                                             key="live"
                                             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-slate-200/50 bg-emerald-100/50 text-[10.5px] font-bold text-emerald-700 dark:border-slate-800 dark:bg-emerald-900/40 dark:text-emerald-400"
+                                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-slate-200/50 bg-emerald-100/50 text-xs font-bold text-emerald-700 dark:border-slate-800 dark:bg-emerald-900/40 dark:text-emerald-400"
                                         >
                                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse inline-block" />
                                             Live
@@ -185,7 +185,7 @@ export function EOQCalculator() {
                                         <motion.div
                                             key="idle"
                                             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                                            className="text-[10.5px] font-bold text-slate-400 px-2 dark:text-slate-500"
+                                            className="text-xs font-bold text-slate-600 dark:text-slate-300 px-2"
                                         >
                                             Awaiting input
                                         </motion.div>
@@ -223,7 +223,7 @@ export function EOQCalculator() {
                                                                 <path d="M9 19l-7-7 7-7" />
                                                                 <path d="M2 12h36" />
                                                             </svg>
-                                                            <p className="text-[12.5px] text-slate-500 font-semibold leading-snug whitespace-nowrap z-10 dark:text-slate-400">
+                                                            <p className="text-[12.5px] text-slate-600 dark:text-slate-300 font-semibold leading-snug whitespace-nowrap z-10">
                                                                 Fill in the inputs to see your
                                                             </p>
                                                         </div>
@@ -273,7 +273,7 @@ export function EOQCalculator() {
                                             transition={{ duration: 0.4, delay: 0.05 }}
                                             className="relative flex flex-col items-center text-center py-6 px-4 bg-transparent"
                                         >
-                                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.18em] leading-none mb-2 dark:text-slate-500">Optimal Order Quantity</span>
+                                            <span className="text-xs font-black text-slate-600 dark:text-slate-300 uppercase tracking-[0.18em] leading-none mb-2">Optimal Order Quantity</span>
                                             <motion.span
                                                 key={results.eoq}
                                                 initial={{ opacity: 0, y: 4 }}
@@ -284,7 +284,7 @@ export function EOQCalculator() {
                                                 {formatCompact(results.eoq, 0)}
                                             </motion.span>
                                             <span className="text-[1rem] font-bold text-slate-700 mt-1 dark:text-slate-200">Units to order each time</span>
-                                            <p className="text-[11.5px] text-slate-500 font-medium mt-2 dark:text-slate-400">
+                                            <p className="text-[11.5px] text-slate-600 dark:text-slate-300 font-medium mt-2">
                                                 Based on your current costs and demand.
                                             </p>
                                         </motion.div>
@@ -299,10 +299,10 @@ export function EOQCalculator() {
                                             <div className="flex items-center justify-between">
                                                 <div className="flex items-center gap-2">
                                                     <Repeat className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
-                                                    <span className="text-[13px] font-bold text-slate-500 dark:text-slate-400">Orders Per Year</span>
+                                                    <span className="text-sm font-bold text-slate-600 dark:text-slate-300">Orders Per Year</span>
                                                     <Tooltip>
                                                         <TooltipTrigger asChild>
-                                                            <button type="button" tabIndex={-1} className="text-slate-300 hover:text-blue-500 transition-colors cursor-help shrink-0 dark:text-slate-600 dark:hover:text-blue-400">
+                                                            <button type="button" tabIndex={-1} className="text-slate-300 hover:text-blue-500 transition-colors cursor-help shrink-0 dark:text-slate-300 dark:hover:text-blue-400">
                                                                 <Info className="w-3.5 h-3.5" />
                                                             </button>
                                                         </TooltipTrigger>
@@ -329,10 +329,10 @@ export function EOQCalculator() {
                                             <div className="flex items-center justify-between">
                                                 <div className="flex items-center gap-2">
                                                     <CalendarDays className="w-4 h-4 text-emerald-500 flex-shrink-0 dark:text-emerald-400" />
-                                                    <span className="text-[13px] font-bold text-slate-500 dark:text-slate-400">Order Frequency (Days Between Orders)</span>
+                                                    <span className="text-sm font-bold text-slate-600 dark:text-slate-300">Order Frequency (Days Between Orders)</span>
                                                     <Tooltip>
                                                         <TooltipTrigger asChild>
-                                                            <button type="button" tabIndex={-1} className="text-slate-300 hover:text-blue-500 transition-colors cursor-help shrink-0 dark:text-slate-600 dark:hover:text-blue-400">
+                                                            <button type="button" tabIndex={-1} className="text-slate-300 hover:text-blue-500 transition-colors cursor-help shrink-0 dark:text-slate-300 dark:hover:text-blue-400">
                                                                 <Info className="w-3.5 h-3.5" />
                                                             </button>
                                                         </TooltipTrigger>
@@ -359,12 +359,12 @@ export function EOQCalculator() {
                                             <div className="flex items-center justify-between mb-3">
                                                 <div className="flex items-center gap-2">
                                                     <Wallet className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
-                                                    <span className="text-[13px] font-bold text-slate-500 dark:text-slate-400">
+                                                    <span className="text-sm font-bold text-slate-600 dark:text-slate-300">
                                                         Total Inventory Cost
                                                     </span>
                                                     <Tooltip>
                                                         <TooltipTrigger asChild>
-                                                            <button type="button" tabIndex={-1} className="text-slate-300 hover:text-blue-500 transition-colors cursor-help shrink-0 dark:text-slate-600 dark:hover:text-blue-400">
+                                                            <button type="button" tabIndex={-1} className="text-slate-300 hover:text-blue-500 transition-colors cursor-help shrink-0 dark:text-slate-300 dark:hover:text-blue-400">
                                                                 <Info className="w-3.5 h-3.5" />
                                                             </button>
                                                         </TooltipTrigger>
@@ -381,7 +381,7 @@ export function EOQCalculator() {
                                             <div className="pl-6 space-y-2 mt-1">
                                                 {/* Ordering Cost Sub-item */}
                                                 <div className="flex items-center justify-between mt-1">
-                                                    <span className="text-[13px] text-slate-600 font-medium dark:text-slate-300">Ordering Cost</span>
+                                                    <span className="text-sm text-slate-600 font-medium dark:text-slate-300">Ordering Cost</span>
                                                     <span className="text-[14px] font-bold text-slate-600 font-mono dark:text-slate-300">
                                                         {formatCurrency(results.annualOrderCost)}
                                                     </span>
@@ -389,7 +389,7 @@ export function EOQCalculator() {
 
                                                 {/* Holding Cost Sub-item */}
                                                 <div className="flex items-center justify-between mt-1">
-                                                    <span className="text-[13px] text-slate-600 font-medium dark:text-slate-300">Holding Cost</span>
+                                                    <span className="text-sm text-slate-600 font-medium dark:text-slate-300">Holding Cost</span>
                                                     <span className="text-[14px] font-bold text-slate-600 font-mono dark:text-slate-300">
                                                         {formatCurrency(results.annualHoldingCost)}
                                                     </span>

@@ -154,7 +154,7 @@ export function PPCBidCalculator() {
                                 <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-100/50 shadow-sm shadow-blue-500/5 dark:border-blue-900/50">
                                     <TrendingUp className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                                 </div>
-                                <span className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none dark:text-blue-400">
+                                <span className="text-base sm:text-[16px] font-bold text-blue-800 leading-none dark:text-blue-200">
                                     Profitability Insight
                                 </span>
                             </div>
@@ -166,7 +166,7 @@ export function PPCBidCalculator() {
                                         animate={{ opacity: 1, scale: 1 }}
                                         exit={{ opacity: 0, scale: 0.9 }}
                                         className={cn(
-                                            "flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[10.5px] font-semibold tracking-wide shrink-0",
+                                            "flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-semibold tracking-wide shrink-0",
                                             Number(targetACoS || (Number(profitMargin) * 0.75)) > Number(profitMargin)
                                                 ? "bg-rose-100/80 text-rose-700 border-rose-200/50 dark:bg-rose-900/40 dark:text-rose-400 dark:border-rose-900/50"
                                                 : "bg-blue-100/50 text-blue-700 border-blue-200/50 dark:bg-blue-900/40 dark:text-blue-400 dark:border-blue-900/50"
@@ -179,8 +179,8 @@ export function PPCBidCalculator() {
                         </div>
 
                         <div className="px-6 pb-6 pt-2">
-                            <div className="flex items-center justify-between mb-3 text-xs font-bold uppercase tracking-widest">
-                                <p className="text-slate-500 italic lowercase first-letter:uppercase dark:text-slate-400">Aggressiveness Scale</p>
+                            <div className="flex items-center justify-between mb-3 text-xs font-bold tracking-widest">
+                                <p className="text-slate-600 dark:text-slate-300 italic lowercase first-letter:uppercase">Aggressiveness Scale</p>
                                 {isCalculated && (
                                     <span className={cn(
                                         "px-2 py-0.5 rounded-md border",
@@ -214,17 +214,17 @@ export function PPCBidCalculator() {
                                     />
                                 )}
                             </div>
-                            <div className="flex justify-between mt-2 text-[10px] font-bold text-slate-400 uppercase tracking-tight dark:text-slate-500">
+                            <div className="flex justify-between mt-2 text-xs font-bold text-slate-600 dark:text-slate-300 tracking-tight">
                                 <span>Conservative</span>
                                 <span>Balanced</span>
                                 <span className={cn(
-                                    Number(targetACoS || (Number(profitMargin) * 0.75)) > Number(profitMargin) && "text-rose-500 dark:text-rose-400"
+                                    Number(targetACoS || (Number(profitMargin) * 0.75)) > Number(profitMargin) && "text-rose-700 dark:text-rose-300"
                                 )}>
                                     {Number(targetACoS || (Number(profitMargin) * 0.75)) > Number(profitMargin) ? "Loss-Making" : "Aggressive"}
                                 </span>
                             </div>
                             {isCalculated && Number(targetACoS) > Number(profitMargin) && (
-                                <p className="mt-4 text-[11px] text-rose-600 font-medium leading-normal bg-white border border-rose-100 p-3 rounded-xl shadow-sm dark:text-rose-400 dark:bg-slate-900 dark:border-rose-900/50">
+                                <p className="mt-4 text-xs text-rose-600 font-medium leading-normal bg-white border border-rose-100 p-3 rounded-xl shadow-sm dark:text-rose-400 dark:bg-slate-900 dark:border-rose-900/50">
                                     <strong className="block mb-1">Caution: Unprofitable Bid</strong>
                                     Your target ACoS is higher than your profit margin, which means you are spending more on ads than you earn on the product.
                                 </p>

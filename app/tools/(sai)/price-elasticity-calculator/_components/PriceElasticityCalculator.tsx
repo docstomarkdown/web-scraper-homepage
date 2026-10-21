@@ -50,7 +50,7 @@ export function PriceElasticityCalculator() {
         elasticityDescription = "Demand is relatively stable despite price changes."
     } else if (absolutePed === 0 && (p1 > 0 || q1 > 0)) {
         elasticityType = "Perfectly Inelastic"
-        elasticityColor = "text-slate-400 dark:text-slate-500"
+        elasticityColor = "text-slate-600 dark:text-slate-300"
         elasticityBg = "bg-slate-500/10"
         elasticityDescription = "Demand does not change with price."
     }
@@ -71,10 +71,10 @@ export function PriceElasticityCalculator() {
                         <CardContent className="space-y-3 pt-6">
                             {/* Group 1: Starting Position */}
                             <div className="space-y-3">
-                                <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2 dark:text-white">
-                                    <span className="w-6 h-6 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center text-xs font-bold dark:bg-slate-800 dark:text-slate-400">1</span>
+                                <h2 className="text-sm font-semibold text-slate-900 flex items-center gap-2 dark:text-white">
+                                    <span className="w-6 h-6 rounded-full bg-slate-100 text-slate-600 dark:text-slate-300 flex items-center justify-center text-xs font-bold dark:bg-slate-800">1</span>
                                     Starting Position
-                                </h3>
+                                </h2>
                                 <div className="space-y-3">
                                     <CalculatorInput
                                         label="Initial Price"
@@ -95,10 +95,10 @@ export function PriceElasticityCalculator() {
                             <Separator className="my-2" />
                             {/* Group 2: New Scenario */}
                             <div className="space-y-3">
-                                <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2 dark:text-white">
+                                <h2 className="text-sm font-semibold text-slate-900 flex items-center gap-2 dark:text-white">
                                     <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs font-bold dark:bg-blue-900/40 dark:text-blue-400">2</span>
                                     New Scenario
-                                </h3>
+                                </h2>
                                 <div className="space-y-3">
                                     <CalculatorInput
                                         label="Final Price"
@@ -120,7 +120,7 @@ export function PriceElasticityCalculator() {
                             {/* Quick Stats */}
                             <div className="grid grid-cols-2 gap-4 pt-2">
                                 <div className="bg-slate-50 p-3 rounded-lg border border-slate-100 dark:bg-slate-800/60 dark:border-slate-800">
-                                    <div className="text-xs text-slate-500 font-medium mb-1 dark:text-slate-400">Initial Revenue</div>
+                                    <div className="text-xs text-slate-600 dark:text-slate-300 font-medium mb-1">Initial Revenue</div>
                                     <div className="text-lg font-bold text-slate-700 dark:text-slate-200">{formatCurrency(initialRevenue)}</div>
                                 </div>
                                 <div className="bg-blue-50/50 p-3 rounded-lg border border-blue-100 dark:bg-blue-950/40 dark:border-blue-900/50">
@@ -160,7 +160,7 @@ export function PriceElasticityCalculator() {
                             {
                                 label: "Price Change",
                                 value: `${percentChangePrice >= 0 ? "+" : ""}${(percentChangePrice * 100).toFixed(1)}%`,
-                                color: percentChangePrice > 0 ? "text-slate-400 dark:text-slate-500" : "text-blue-400"
+                                color: percentChangePrice > 0 ? "text-slate-600 dark:text-slate-300" : "text-blue-400"
                             },
                             {
                                 label: "Quantity Change",
@@ -172,7 +172,7 @@ export function PriceElasticityCalculator() {
                     {/* Breakdown Card */}
                     <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500 dark:bg-slate-900 dark:border-slate-800">
                         <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800">
-                            <p className="text-xs font-bold text-slate-600 uppercase tracking-wider dark:text-slate-300">Elasticity Analysis</p>
+                            <p className="text-xs font-bold text-slate-600 tracking-wider dark:text-slate-300">Elasticity Analysis</p>
                         </div>
                         <div className="divide-y divide-slate-100 dark:divide-slate-800">
                             <div className="flex justify-between items-center px-5 py-3.5">
@@ -183,13 +183,13 @@ export function PriceElasticityCalculator() {
                             </div>
                             <div className="flex justify-between items-center px-5 py-3.5">
                                 <span className="text-sm text-slate-600 dark:text-slate-300">% Change in Demand</span>
-                                <span className={cn("text-sm font-semibold", percentChangeQuantity >= 0 ? "text-blue-600 dark:text-blue-400" : "text-red-600 dark:text-red-400")}>
+                                <span className={cn("text-sm font-semibold", percentChangeQuantity >= 0 ? "text-blue-600 dark:text-blue-400" : "text-red-700 dark:text-red-300")}>
                                     {percentChangeQuantity > 0 ? "+" : ""}{(percentChangeQuantity * 100).toFixed(1)}%
                                 </span>
                             </div>
                             <div className="flex justify-between items-center px-5 py-3.5 bg-blue-50/20 dark:bg-blue-950/40">
                                 <span className="text-sm font-bold text-slate-900 dark:text-white">Revenue Impact</span>
-                                <span className={cn("text-base font-bold", revenueChange >= 0 ? "text-blue-600 dark:text-blue-400" : "text-red-600 dark:text-red-400")}>
+                                <span className={cn("text-base font-bold", revenueChange >= 0 ? "text-blue-600 dark:text-blue-400" : "text-red-700 dark:text-red-300")}>
                                     {revenueChange >= 0 ? "+" : ""}{formatCurrency(revenueChange)}
                                 </span>
                             </div>
@@ -199,7 +199,7 @@ export function PriceElasticityCalculator() {
                     <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden dark:bg-slate-900 dark:border-slate-800">
                         {/* Elasticity Visual Scale */}
                         <div className="p-6 pb-2">
-                            <div className="flex items-center justify-between text-xs font-semibold text-slate-400 mb-2 dark:text-slate-500">
+                            <div className="flex items-center justify-between text-xs font-semibold text-slate-600 dark:text-slate-300 mb-2">
                                 <span>Inelastic</span>
                                 <span>Unitary</span>
                                 <span>Elastic</span>
@@ -213,7 +213,7 @@ export function PriceElasticityCalculator() {
                                     }}
                                 />
                             </div>
-                            <div className="flex justify-between text-[10px] text-slate-300 mt-1 font-mono dark:text-slate-600">
+                            <div className="flex justify-between text-xs text-slate-300 mt-1 font-mono dark:text-slate-600">
                                 <span>0</span>
                                 <span>1</span>
                                 <span>3+</span>
@@ -229,7 +229,7 @@ export function PriceElasticityCalculator() {
                                     )}
                                 </div>
                                 <div className="flex-1">
-                                    <h4 className="font-semibold text-slate-800 mb-1 dark:text-slate-100">Interpretation</h4>
+                                    <h2 className="font-semibold text-slate-800 mb-1 dark:text-slate-100">Interpretation</h2>
                                     <p className="text-sm text-slate-600 leading-relaxed mb-4 dark:text-slate-300">
                                         {elasticityDescription}
                                     </p>
@@ -257,8 +257,8 @@ export function PriceElasticityCalculator() {
 function ReadOnlyField({ label, value, color = "text-slate-700 dark:text-slate-200" }: { label: string, value: string, color?: string }) {
     return (
         <div className="flex items-center justify-between gap-4 py-1">
-            <span className="text-sm font-medium text-slate-500 dark:text-slate-400">{label}</span>
+            <span className="text-sm font-medium text-slate-600 dark:text-slate-300">{label}</span>
             <span className={`text-lg font-bold ${color}`}>{value}</span>
         </div>
     )
-}
+}

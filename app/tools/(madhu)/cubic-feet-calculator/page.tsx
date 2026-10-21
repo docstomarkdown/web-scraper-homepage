@@ -1,13 +1,14 @@
+import { Lightbulb } from "lucide-react"
 import { Metadata } from "next"
-import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
+import { FadeIn, ToolFAQ, ToolPageTitle, ToolSectionHeader } from "@/app/tools/_shared/components"
 import { CubicFeetCalculator } from "./_components/CubicFeetCalculator"
 import { CubicFeetInfo } from "./_components/CubicFeetInfo"
 import { CubicFeetHowToUse } from "./_components/CubicFeetHowToUse"
 import { CubicFeetGuide } from "./_components/CubicFeetGuide"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
-    title: "Cubic Feet Calculator - Freight & Storage Cost Estimator",
-    description: "Calculate cubic feet (CFT) from dimensions for freight and storage cost estimation. Support for Inches, Feet, CM, and Meters with instant shipping volume calculations.",
+    title: "Cubic Feet Calculator: Free Volume for Freight and Storage",
+    description: "Turn length, width and height into cubic feet, cubic metres and cubic inches, for one unit or a batch, with an optional cost per cubic foot.",
     alternates: { canonical: "/tools/cubic-feet-calculator" },
 }
 export default function CubicFeetCalculatorPage() {
@@ -20,6 +21,7 @@ export default function CubicFeetCalculatorPage() {
                 </div>
                 <div className="max-w-4xl mx-auto space-y-16">
                     <FadeIn delay={0.15}>
+                        <ToolSectionHeader title="What this calculator does" icon={Lightbulb} />
                         <CubicFeetInfo />
                     </FadeIn>
                     <FadeIn delay={0.2}>
@@ -32,29 +34,29 @@ export default function CubicFeetCalculatorPage() {
                         <ToolFAQ
                             faqs={[
                                 {
-                                    question: "What units can I use to enter dimensions?",
-                                    answer: "You can enter dimensions in <strong>4 units</strong>: Feet (default), Inches, Centimeters, or Meters. Select your unit from the tab row at the top of the input panel — all three dimension fields switch together. The results always show Cubic Feet, Cubic Meters, and Cubic Inches simultaneously."
+                                    question: "How do I calculate cubic feet from inches?",
+                                    answer: "Multiply length, width and height in inches, then divide by 1,728. A 12 by 10 by 8 inch box is 960 cubic inches, or 0.556 cubic feet.",
                                 },
                                 {
-                                    question: "How does the Quantity field work?",
-                                    answer: "The <strong>Number of Units</strong> field (optional, under the Quantity section) lets you calculate total volume for multiple identical items. When a quantity greater than 1 is entered, the Results Panel shows both the single-unit volume as the hero figure <em>and</em> a \"Total Volume\" card with the combined volume for the entire batch."
+                                    question: "What's the difference between cubic feet, CBM and cubic inches?",
+                                    answer: "They measure the same volume in different units. One cubic metre (CBM) is about 35.3 cubic feet, and one cubic foot is 1,728 cubic inches.",
                                 },
                                 {
-                                    question: "How do I get an Estimated Total Cost?",
-                                    answer: "Open the <strong>Cost</strong> section (optional) at the bottom of the input panel. Select your currency from the currency picker — 50+ currencies are supported with correct symbols — then enter your cost per cubic foot. The results panel will show an Estimated Total Cost card with the correct currency formatting automatically applied."
+                                    question: "How does the quantity field work?",
+                                    answer: "It multiplies the single-item volume. 1 is the default; enter the number of identical cartons for a batch total.",
                                 },
                                 {
-                                    question: "What's the difference between CFT, CBM, and Cubic Inches?",
-                                    answer: "<strong>Cubic Feet (CFT)</strong> is the primary result and the standard unit for US warehouse storage and Amazon FBA fees. <strong>Cubic Meters (CBM)</strong> is used by international sea freight carriers. <strong>Cubic Inches</strong> is useful for precise small-item calculations. All three are displayed at the same time so you always have the right figure for the right platform."
+                                    question: "How do I get a cost estimate?",
+                                    answer: "Enter your provider's rate per cubic foot. The calculator multiplies it by the total cubic feet.",
                                 },
                                 {
-                                    question: "Why does the hero value show a compact format like 518.15K?",
-                                    answer: "The large hero number uses a <strong>compact notation</strong> (K for thousands, M for millions, B for billions) to fit neatly in the display without truncation. The Other Units card below it always shows the full precise number — for example, 44,016.7292 m³ — so you never lose accuracy."
+                                    question: "Why does a large result show as 518.15K?",
+                                    answer: "Results over 100,000 are shortened to keep the number readable. Hover or copy for the full figure.",
                                 },
                                 {
-                                    question: "How precise are the calculations?",
-                                    answer: "The tool outputs up to <strong>4 decimal places for Cubic Meters</strong> (CBM) and <strong>2 decimal places for Cubic Feet and Cubic Inches</strong>. This level of precision matches what Amazon FBA and LTL freight carriers require to price storage and shipping correctly."
-                                }
+                                    question: "How precise is the result?",
+                                    answer: "To two decimal places. Providers usually round up, so expect their bill to be a little higher.",
+                                },
                             ]}
                         />
                     </FadeIn>

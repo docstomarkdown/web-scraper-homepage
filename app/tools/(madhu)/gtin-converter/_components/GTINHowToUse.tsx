@@ -1,26 +1,15 @@
 "use client"
 import { ToolSteps } from "@/app/tools/_shared/components"
-import { Scan, SearchCheck, RefreshCw } from "lucide-react"
+import { Barcode, CheckCircle2, Table } from "lucide-react"
+
 export function GTINHowToUse() {
     return (
         <ToolSteps
-            title="How to Use the GTIN Converter"
+            title="How to use this converter"
             steps={[
-                {
-                    title: "Enter or Scan",
-                    description: "Manually type your numeric barcode (8, 12, 13, or 14 digits) or simply upload an image of the barcode label for instant Conversion.",
-                    icon: Scan
-                },
-                {
-                    title: "Validate Digit",
-                    description: "Our tool automatically verifies the GS1 Modulo 10 check digit. If it's invalid, we'll flag it immediately to ensure your data is listing-ready.",
-                    icon: SearchCheck
-                },
-                {
-                    title: "Format Output",
-                    description: "Instantly view your barcode converted across all standard formats, including GTIN-8, GTIN-12 (UPC), GTIN-13 (EAN), and GTIN-14 for logistics.",
-                    icon: RefreshCw
-                }
+                { title: "Type or scan the number", description: "Enter 8, 12, 13 or 14 digits without spaces, or upload an image of the barcode label.", icon: Barcode },
+                { title: "Read the check", description: "The converter recalculates the last digit. Valid means the number is well formed; invalid shows the digit it expected.", icon: CheckCircle2 },
+                { title: "Copy the form you need", description: "Each format has a copy button. Amazon and most marketplaces take GTIN-12 or GTIN-13; cases and pallets use GTIN-14.", icon: Table },
             ]}
         />
     )

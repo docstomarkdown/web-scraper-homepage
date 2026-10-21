@@ -8,8 +8,8 @@ import { CTA } from "@/components/sections/CTA"
 import { BookOpen } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: "Dimension Converter - Unit Conversion & Volume Calculator",
-    description: "Convert product dimensions between Inches and Centimeters. Calculate cubic volume, DIM weight, and verify oversized shipping surcharges instantly.",
+    title: "Dimension Converter: Free Inches, cm, Feet and Metres",
+    description: "Convert a product's length, width and height between inches, centimetres, feet and metres in one go, with the volume for each unit.",
     alternates: { canonical: "/tools/dimension-converter" },
 }
 
@@ -22,7 +22,7 @@ export default function DimensionConverterPage() {
                 <div className="max-w-4xl mx-auto space-y-16">
                     <FadeIn delay={0.1}>
                         <ToolSectionHeader
-                            title="Tool Essential"
+                            title="What this converter does"
                             icon={BookOpen}
                         />
                         <DimensionConverterOverview />
@@ -37,21 +37,25 @@ export default function DimensionConverterPage() {
                         <ToolFAQ
                             faqs={[
                                 {
-                                    question: "Why is converting dimensions critical for international selling?",
-                                    answer: "Most global marketplaces like Amazon UK/EU or Walmart require Metric (CM), while US listings use Imperial (IN). Accurate conversion ensures your customers (and the warehouse) get the exact product size they expect, reducing returns and shipping errors."
+                                    question: "How do I convert inches to centimetres?",
+                                    answer: "Multiply by 2.54. 12 inches is 30.48 centimetres. The converter does all three sizes at once.",
                                 },
                                 {
-                                    question: "How does this tool help avoid 'unmeasured' shipping fees?",
-                                    answer: "Carriers use the larger of actual weight vs 'Dimensional Weight'. By having your exact L x W x H in both systems, you can cross-calculate your DIM weight and ensure your packaging stays within the cheapest possible shipping tier."
+                                    question: "Which side is the length?",
+                                    answer: "Carriers take the longest side as length, then width, then height. Enter them in that order if a form checks for it.",
                                 },
                                 {
-                                    question: "Can I use these converted dimensions for box and pallet planning?",
-                                    answer: "Yes! Once you have your accurate 'Metric' or 'Imperial' dimensions, you can use them in our <b>Container Load Calculator</b> or pallet planning tools to figure out exactly how many units will fit in your next shipment."
+                                    question: "Why do I need all three sizes?",
+                                    answer: "Because the volume needs all three, and most forms ask for the set. The converter waits until all three are in.",
                                 },
                                 {
-                                    question: "Does this converter handle high precision for manufacturing spec sheets?",
-                                    answer: "Absolutely. The tool uses the industry-standard 1 inch = 2.54 cm formula with precise decimal support, making it reliable for everything from rough product mockups to final manufacturer technical specifications."
-                                }
+                                    question: "Does it convert weight too?",
+                                    answer: "No. Use the weight converter for pounds, ounces, kilograms and grams.",
+                                },
+                                {
+                                    question: "How precise is it?",
+                                    answer: "Two decimal places from exact factors. If a form wants whole numbers, round up.",
+                                },
                             ]}
                         />
                     </FadeIn>

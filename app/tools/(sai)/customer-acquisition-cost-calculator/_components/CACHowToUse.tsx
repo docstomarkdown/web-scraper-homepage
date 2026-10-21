@@ -1,26 +1,15 @@
 "use client"
 import { ToolSteps } from "@/app/tools/_shared/components"
-import { DollarSign, Users, BarChart3 } from "lucide-react"
+import { Banknote, Users, Calculator } from "lucide-react"
 
+/** The three things a reader does, in order, with the calculator's own field names. */
 export function CACHowToUse() {
     return (
         <ToolSteps
             steps={[
-                {
-                    title: "Enter Your Spend",
-                    description: "Input your total fully loaded sales and marketing costs — including ad spend, salaries, commissions, tools, and overhead for the period.",
-                    icon: DollarSign
-                },
-                {
-                    title: "Add New Customers",
-                    description: "Enter only the number of new customers acquired during that same period. Do not include returning or repeat buyers.",
-                    icon: Users
-                },
-                {
-                    title: "Review Your CAC",
-                    description: "Instantly see your cost per customer with a dynamic performance badge, and compare it against the recommended 3:1 LTV:CAC benchmark.",
-                    icon: BarChart3
-                }
+                { title: "Enter your Total Sales & Marketing Costs", description: "Everything spent to win customers in the period: ad spend, agency and tool fees, sales salaries and commissions, content and promotions.", icon: Banknote },
+                { title: "Enter the New Customers Acquired", description: "First-time customers in the same period, not all orders. Returning customers were acquired earlier.", icon: Users },
+                { title: "Read the customer acquisition cost", description: "What one new customer cost you. Compare it with the profit a customer brings over their lifetime; the customer lifetime value calculator on this site gives that figure.", icon: Calculator }
             ]}
         />
     )

@@ -34,7 +34,7 @@ export function AdBudgetBreakdown({
                     <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-100/50 shadow-sm shadow-blue-500/5 dark:border-blue-900/50">
                         <Filter className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                     </div>
-                    <span className="text-[15px] sm:text-[16px] font-bold text-slate-800 leading-none dark:text-slate-100">
+                    <span className="text-base sm:text-[16px] font-bold text-slate-800 leading-none dark:text-slate-100">
                         Campaign Funnel Breakdown
                     </span>
                 </div>
@@ -58,7 +58,7 @@ export function AdBudgetBreakdown({
                                 </div>
                             </div>
                             <p className="text-[14px] font-bold text-slate-600 mb-1 dark:text-slate-300">Awaiting Data...</p>
-                            <p className="text-[12px] text-slate-500 max-w-[220px] leading-relaxed dark:text-slate-400">
+                            <p className="text-xs text-slate-500 max-w-[220px] leading-relaxed dark:text-slate-400">
                                 Enter your revenue goals and metrics to visualize your campaign funnel.
                             </p>
                         </motion.div>
@@ -83,7 +83,7 @@ export function AdBudgetBreakdown({
                                     </span>
                                     <div className="text-right">
                                         <div className="text-[16px] font-black text-slate-800 dark:text-slate-100">{Math.round(estClicks).toLocaleString()}</div>
-                                        <div className="text-[11px] text-slate-400 uppercase font-extrabold tracking-wider mt-0.5 dark:text-slate-500" style={{ opacity: estClicks > 0 ? 1 : 0}}>@ {formatCurrency(cpc)} CPC</div>
+                                        <div className="text-xs text-slate-400 uppercase font-extrabold tracking-wider mt-0.5 dark:text-slate-500" style={{ opacity: estClicks > 0 ? 1 : 0}}>@ {formatCurrency(cpc)} CPC</div>
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +94,7 @@ export function AdBudgetBreakdown({
                                 </span>
                                 <div className="text-right">
                                     <div className="text-[18px] font-black text-blue-700 dark:text-blue-400">{Math.round(estOrders).toLocaleString()}</div>
-                                    <div className="text-[11px] text-blue-500/80 uppercase font-extrabold tracking-wider mt-0.5" style={{ opacity: estOrders > 0 ? 1 : 0}}>@ {conversionRate}% CR</div>
+                                    <div className="text-xs text-blue-500/80 uppercase font-extrabold tracking-wider mt-0.5" style={{ opacity: estOrders > 0 ? 1 : 0}}>@ {conversionRate}% CR</div>
                                 </div>
                             </div>
                         </motion.div>

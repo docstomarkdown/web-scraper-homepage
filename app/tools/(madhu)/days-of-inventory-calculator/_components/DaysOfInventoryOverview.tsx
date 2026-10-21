@@ -1,29 +1,20 @@
 "use client"
 import { ToolOverview } from "@/app/tools/_shared/components"
 
+/** What this calculator does, in plain words. Copy rules: docs/writing-style.md. */
 export function DaysOfInventoryOverview() {
     return (
-        <ToolOverview
-            heading="Days of Inventory"
-            headingAccent="Remaining Calculator"
-            definition="Designed to accurately forecast stock runway and prevent costly stockouts, this calculator is an essential tool for eCommerce brands, inventory managers, and retail operators. Simply enter your current stock levels and sales velocity, and the tool will automatically calculate your exact zero-out date—giving you the perfect timeline to reorder without overextending your cash flow."
-            facts={[
-                {
-                    stat: "Actionable Timeline",
-                    label: "Stock Runway",
-                    detail: "Know exactly how many days of stock you have left before hitting 0.",
-                },
-                {
-                    stat: "Prevent Stockouts",
-                    label: "Smart Forecasting",
-                    detail: "Accurately predict your zero-out date so you can reorder proactively.",
-                },
-                {
-                    stat: "Optimize Cash Flow",
-                    label: "Avoid Overstock",
-                    detail: "Identify items that are sitting on shelves too long and tying up capital.",
-                }
-            ]}
-        />
+        <div id="overview">
+            <ToolOverview
+                heading="What the Days of Inventory Calculator tells you"
+                headingAccent="Days of Inventory Calculator"
+                definition="Type the units in stock and the units you sell a day, and the calculator tells you how many days until you run out. Add a safety buffer to see the days you can sell before you touch it. Use the number to time your next order."
+                facts={[
+                    { stat: "Days left", label: "at today's pace", detail: "Stock on hand divided by daily sales, as whole days." },
+                    { stat: "Usable days", label: "above the buffer", detail: "The same figure after the safety stock is set aside." },
+                    { stat: "Order timing", label: "when to reorder", detail: "Compare the days left with your supplier's lead time; if lead time is longer, order now." },
+                ]}
+            />
+        </div>
     )
 }

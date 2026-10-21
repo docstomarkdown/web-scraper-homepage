@@ -123,7 +123,7 @@ export function ROICalculator() {
                                         onClick={() => setMode("dates")}
                                         className={cn(
                                             "relative z-10 px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 w-28",
-                                            mode === "dates" ? "text-blue-600 dark:text-blue-400" : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+                                            mode === "dates" ? "text-blue-600 dark:text-blue-400" : "text-slate-600 dark:text-slate-300 hover:text-slate-700 dark:hover:text-slate-200"
                                         )}
                                     >
                                         Use Dates
@@ -133,7 +133,7 @@ export function ROICalculator() {
                                         onClick={() => setMode("length")}
                                         className={cn(
                                             "relative z-10 px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 w-28",
-                                            mode === "length" ? "text-blue-600 dark:text-blue-400" : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+                                            mode === "length" ? "text-blue-600 dark:text-blue-400" : "text-slate-600 dark:text-slate-300 hover:text-slate-700 dark:hover:text-slate-200"
                                         )}
                                     >
                                         Use Length
@@ -149,8 +149,8 @@ export function ROICalculator() {
                                     {mode === "dates" ? (
                                         <div className="space-y-3">
                                             <div className="flex items-center justify-between gap-4 group">
-                                                <label className="text-base font-semibold text-slate-700 group-hover:text-blue-600 transition-colors dark:text-slate-200 dark:group-hover:text-blue-400">From Date</label>
-                                                <input
+                                                <label className="text-base font-semibold text-slate-700 group-hover:text-blue-600 transition-colors dark:text-slate-200 dark:group-hover:text-blue-400" htmlFor="roi-from-date">From Date</label>
+                                                <input id="roi-from-date"
                                                     type="date"
                                                     value={fromDate}
                                                     onChange={(e) => setFromDate(e.target.value)}
@@ -159,8 +159,8 @@ export function ROICalculator() {
                                                 />
                                             </div>
                                             <div className="flex items-center justify-between gap-4 group">
-                                                <label className="text-base font-semibold text-slate-700 group-hover:text-blue-600 transition-colors dark:text-slate-200 dark:group-hover:text-blue-400">To Date</label>
-                                                <input
+                                                <label className="text-base font-semibold text-slate-700 group-hover:text-blue-600 transition-colors dark:text-slate-200 dark:group-hover:text-blue-400" htmlFor="roi-to-date">To Date</label>
+                                                <input id="roi-to-date"
                                                     type="date"
                                                     value={toDate}
                                                     onChange={(e) => setToDate(e.target.value)}
@@ -171,16 +171,16 @@ export function ROICalculator() {
                                         </div>
                                     ) : (
                                         <div className="flex items-center justify-between gap-4 group">
-                                            <label className="text-base font-semibold text-slate-700 group-hover:text-blue-600 transition-colors dark:text-slate-200 dark:group-hover:text-blue-400">Duration</label>
+                                            <label className="text-base font-semibold text-slate-700 group-hover:text-blue-600 transition-colors dark:text-slate-200 dark:group-hover:text-blue-400" htmlFor="roi-duration">Duration</label>
                                             <div className="flex gap-2 items-center">
-                                                <input
+                                                <input id="roi-duration"
                                                     type="number"
                                                     value={lengthValue}
                                                     onChange={(e) => setLengthValue(e.target.value === "" ? "" : Number(e.target.value))}
                                                     placeholder="Ex: 1"
                                                     className="h-10 px-3 rounded-md border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium bg-white w-20 text-right hover:border-blue-300 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-blue-800"
                                                 />
-                                                <select
+                                                <select aria-label="Duration unit"
                                                     value={lengthUnit}
                                                     onChange={(e) => setLengthUnit(e.target.value as any)}
                                                     className="h-10 px-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-bold bg-white cursor-pointer hover:border-blue-400 shadow-sm appearance-none pr-8 relative dark:border-slate-800 dark:bg-slate-900"
@@ -239,7 +239,7 @@ export function ROICalculator() {
                             className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500 dark:bg-slate-900 dark:border-slate-800"
                         >
                             <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800">
-                                <p className="text-xs font-bold text-slate-600 uppercase tracking-wider dark:text-slate-300">Investment Breakdown</p>
+                                <p className="text-xs font-bold text-slate-600 tracking-wider dark:text-slate-300">Investment Breakdown</p>
                             </div>
                             <div className="divide-y divide-slate-100 dark:divide-slate-800">
                                 <div className="flex justify-between items-center px-5 py-3.5">
@@ -274,11 +274,11 @@ export function ROICalculator() {
                         </motion.div>
                     ) : (
                         <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center dark:bg-slate-900 dark:border-slate-800">
-                            <p className="text-sm text-slate-400 dark:text-slate-500">Enter values to see the investment breakdown.</p>
+                            <p className="text-sm text-slate-600 dark:text-slate-300">Enter values to see the investment breakdown.</p>
                         </div>
                     )}
                 </div>
             </div>
         </FadeIn>
     )
-}
+}

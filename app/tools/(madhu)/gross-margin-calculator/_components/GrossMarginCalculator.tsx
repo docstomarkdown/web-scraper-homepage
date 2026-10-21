@@ -167,7 +167,7 @@ export function GrossMarginCalculator() {
                     <Card className="border border-slate-200 shadow-xl shadow-slate-200/40 bg-white rounded-3xl overflow-hidden dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Margin Calculator"
-                            description="Choose a mode and enter your values to calculate instantly."
+                            description="Choose what to find, then enter the two numbers you know."
                             currency={currency}
                             onCurrencyChange={setCurrency}
                             onReset={handleReset}
@@ -238,11 +238,11 @@ function ModeButton({ active, onClick, icon: Icon, label }: { active: boolean; o
                 "flex flex-col items-center justify-center gap-1.5 p-2 rounded-xl transition-all duration-300 border",
                 active
                     ? "bg-white border-blue-200 shadow-sm text-blue-600 ring-2 ring-blue-100 dark:bg-slate-900 dark:border-blue-900/50 dark:text-blue-400"
-                    : "border-transparent text-slate-500 hover:bg-white hover:text-slate-700 hover:shadow-sm dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-slate-200"
+                    : "border-transparent text-slate-600 dark:text-slate-300 hover:bg-white hover:text-slate-700 hover:shadow-sm dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-slate-200"
             )}
         >
             <Icon className={cn("w-4 h-4", active ? "stroke-[2.5px]" : "stroke-2")} />
-            <span className="text-[11px] font-bold tracking-tight">{label}</span>
+            <span className="text-xs font-bold tracking-tight">{label}</span>
         </button>
     )
 }

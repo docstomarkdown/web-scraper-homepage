@@ -1,4 +1,5 @@
-import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
+import { Lightbulb } from "lucide-react"
+import { FadeIn, ToolFAQ, ToolPageTitle, ToolSectionHeader } from "@/app/tools/_shared/components"
 import { InventoryTurnoverCalculator } from "./_components/InventoryTurnoverCalculator"
 import { InventoryTurnoverOverview } from "./_components/InventoryTurnoverOverview"
 import { InventoryTurnoverHowToUse } from "./_components/InventoryTurnoverHowToUse"
@@ -7,8 +8,8 @@ import { CTA } from "@/components/sections/CTA"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-    title: "Inventory Turnover Calculator | Measure Inventory Efficiency",
-    description: "Calculate your inventory turnover ratio and Days to Sell Inventory. Optimize your stock levels, improve cash flow, and analyze operational efficiency with our professional calculator.",
+    title: "Inventory Turnover Calculator: Free Turnover Ratio and DSI",
+    description: "Divide cost of goods sold by average inventory to get the turnover ratio, and the days it takes to sell through stock, for any period.",
     alternates: { canonical: "/tools/inventory-turnover-calculator" },
 }
 
@@ -24,6 +25,7 @@ export default function InventoryTurnoverCalculatorPage() {
                 </div>
                 <div className="max-w-4xl mx-auto space-y-16">
                     <FadeIn delay={0.15}>
+                        <ToolSectionHeader title="What this calculator does" icon={Lightbulb} />
                         <InventoryTurnoverOverview />
                     </FadeIn>
                     <FadeIn delay={0.2}>
@@ -36,25 +38,25 @@ export default function InventoryTurnoverCalculatorPage() {
                         <ToolFAQ
                             faqs={[
                                 {
-                                    question: "What does the Inventory Turnover Ratio actually tell me?",
-                                    answer: "It measures how many times your business has sold and replaced its inventory during a specific period. A higher ratio generally means you're selling goods quickly and managing your stock efficiently without overstocking."
+                                    question: "How do you calculate inventory turnover?",
+                                    answer: "Cost of goods sold divided by average inventory, where average inventory is opening plus closing divided by two.",
                                 },
                                 {
-                                    question: "Is a higher turnover ratio always better?",
-                                    answer: "Usually, yes, but there's a limit. An extremely high ratio might mean you're keeping too little stock, which can lead to 'stockouts' (running out of items) and losing potential sales because you can't meet demand."
+                                    question: "What is a good inventory turnover ratio?",
+                                    answer: "It depends on the category. Fast-moving goods turn 10 times or more a year; slow, high-value goods may turn 2 to 4. Watch your own trend.",
                                 },
                                 {
-                                    question: "What is the difference between Turnover Ratio and Days to Sell Inventory?",
-                                    answer: "They are two sides of the same coin. The <b>Turnover Ratio</b> tells you how many times you sold your stock, while <b>Days to Sell Inventory</b> tells you exactly how many days on average it takes to turn your stock into a sale."
+                                    question: "What is days sales of inventory?",
+                                    answer: "The average days it takes to sell your stock: the period's days divided by the turnover ratio.",
                                 },
                                 {
-                                    question: "Why does the tool ask for an Analysis Period?",
-                                    answer: "Inventory metrics are heavily dependent on time. While 365 days (a full year) is the standard for annual turnover, you can change this to 90 days for a quarterly review or 30 days for monthly tracking."
+                                    question: "Should I use sales or cost of goods sold?",
+                                    answer: "Cost of goods sold, because inventory is valued at cost. Using sales inflates the ratio.",
                                 },
                                 {
-                                    question: "What is Opening and Closing Inventory?",
-                                    answer: "<b>Opening Inventory</b> is the value of your stock at the beginning of your chosen analysis period, while <b>Closing Inventory</b> is its value at the end. The calculator uses these to find your Average Inventory Value."
-                                }
+                                    question: "Why is my ratio lower than last quarter?",
+                                    answer: "Either sales slowed or stock grew. Check closing inventory first; a big purchase near the end of the period lowers the ratio.",
+                                },
                             ]}
                         />
                     </FadeIn>

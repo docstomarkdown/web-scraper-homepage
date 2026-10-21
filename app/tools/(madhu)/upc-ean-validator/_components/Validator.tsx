@@ -330,7 +330,7 @@ export function Validator() {
                                 {/* ── Divider ── */}
                                 <div className="relative flex items-center justify-center">
                                     <div className="w-full border-t border-slate-200/80 dark:border-slate-800"></div>
-                                    <span className="absolute px-3 bg-white text-[10.5px] font-bold text-slate-400 uppercase tracking-widest dark:bg-slate-900 dark:text-slate-500">
+                                    <span className="absolute px-3 bg-white text-xs font-bold text-slate-600 dark:text-slate-300 uppercase tracking-widest dark:bg-slate-900">
                                         Or
                                     </span>
                                 </div>
@@ -350,15 +350,15 @@ export function Validator() {
                                                     <CheckCircle2 className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                                                 </div>
                                                 <div className="flex-1 min-w-0">
-                                                    <p className="text-[13px] font-bold text-blue-700 dark:text-blue-400">
+                                                    <p className="text-sm font-bold text-blue-700 dark:text-blue-400">
                                                         {bulkResults.length} barcode{bulkResults.length !== 1 ? 's' : ''} loaded
                                                     </p>
-                                                    <p className="text-[11px] text-blue-600/70 truncate">
+                                                    <p className="text-xs text-blue-600/70 truncate">
                                                         from <span className="font-semibold">{bulkFileName}</span>
                                                     </p>
                                                 </div>
                                                 <button
-                                                    className="text-[11px] font-semibold text-blue-600 hover:text-blue-800 bg-blue-100 hover:bg-blue-200 px-3 py-1.5 rounded-lg transition-colors flex-shrink-0 dark:text-blue-400 dark:hover:text-blue-400 dark:bg-blue-900/40"
+                                                    className="text-xs font-semibold text-blue-600 hover:text-blue-800 bg-blue-100 hover:bg-blue-200 px-3 py-1.5 rounded-lg transition-colors flex-shrink-0 dark:text-blue-400 dark:hover:text-blue-400 dark:bg-blue-900/40"
                                                     onClick={() => { setBulkResults([]); setBulkFileName("") }}
                                                 >
                                                     Clear
@@ -390,7 +390,7 @@ export function Validator() {
                                                 <div className="flex flex-col items-center gap-3">
                                                     <div className={cn(
                                                         "w-11 h-11 rounded-xl flex items-center justify-center transition-colors",
-                                                        isDragOver ? "bg-blue-100 text-blue-600 dark:bg-blue-900/40 dark:text-blue-400" : "bg-slate-100 text-slate-400 dark:bg-slate-800 dark:text-slate-500"
+                                                        isDragOver ? "bg-blue-100 text-blue-600 dark:bg-blue-900/40 dark:text-blue-400" : "bg-slate-100 text-slate-400 dark:bg-slate-800 dark:text-slate-300"
                                                     )}>
                                                         <Upload className="w-5 h-5" />
                                                     </div>
@@ -398,17 +398,17 @@ export function Validator() {
                                                         <p className="text-[13.5px] font-semibold text-slate-700 leading-snug dark:text-slate-200">
                                                             Drop file here or <span className="text-blue-600 hover:text-blue-700 transition-colors dark:text-blue-400 dark:hover:text-blue-400">browse</span>
                                                         </p>
-                                                        <p className="text-[11.5px] text-slate-500 leading-relaxed dark:text-slate-400">
+                                                        <p className="text-[11.5px] text-slate-600 dark:text-slate-300 leading-relaxed">
                                                             Supports barcode images, CSV, or TXT files
                                                         </p>
                                                         <div className="flex items-center justify-center gap-2 pt-1">
                                                             <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100 dark:bg-blue-950/40 dark:border-blue-900/50">
                                                                 <ImageIcon className="w-3 h-3 text-blue-600 dark:text-blue-400" />
-                                                                <span className="text-[10px] font-semibold text-blue-700 dark:text-blue-400">Image</span>
+                                                                <span className="text-xs font-semibold text-blue-700 dark:text-blue-400">Image</span>
                                                             </div>
                                                             <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100 dark:bg-blue-950/40 dark:border-blue-900/50">
                                                                 <FileUp className="w-3 h-3 text-blue-600 dark:text-blue-400" />
-                                                                <span className="text-[10px] font-semibold text-blue-700 dark:text-blue-400">Bulk CSV/TXT</span>
+                                                                <span className="text-xs font-semibold text-blue-700 dark:text-blue-400">Bulk CSV/TXT</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -431,24 +431,24 @@ export function Validator() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                             >
-                                <Card className="relative overflow-hidden border border-slate-200/60 shadow-sm rounded-2xl bg-[#F5F8FD] dark:border-slate-800">
+                                <Card className="relative overflow-hidden border border-slate-200/60 shadow-sm rounded-2xl bg-[#F5F8FD] dark:bg-slate-900 dark:border-slate-800">
                                     {/* ── Header ── */}
                                     <div className="flex justify-between items-center gap-4 px-6 pt-5 pb-1">
                                         <div className="flex items-center gap-2.5">
                                             <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-100/50 shadow-sm shadow-blue-500/5 dark:border-blue-900/50">
                                                 <ClipboardList className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                                             </div>
-                                            <span className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none dark:text-blue-400">
+                                            <span className="text-[15px] sm:text-[16px] font-bold text-blue-800 leading-none dark:text-blue-200">
                                                 Results Panel
                                             </span>
                                         </div>
                                         {/* Badge: single valid/invalid OR bulk summary */}
                                         {bulkResults.length > 0 ? (
                                             <div className="flex items-center gap-1.5">
-                                                <span className="text-[10.5px] font-bold text-emerald-700 bg-emerald-100/80 px-2.5 py-1.5 rounded-full dark:text-emerald-400 dark:bg-emerald-900/40">
+                                                <span className="text-xs font-bold text-emerald-700 bg-emerald-100/80 px-2.5 py-1.5 rounded-full dark:text-emerald-400 dark:bg-emerald-900/40">
                                                     {bulkResults.filter(r => r.result.isValid).length} Valid
                                                 </span>
-                                                <span className="text-[10.5px] font-bold text-red-700 bg-red-100/80 px-2.5 py-1.5 rounded-full dark:text-red-400 dark:bg-red-900/40">
+                                                <span className="text-xs font-bold text-red-700 bg-red-100/80 px-2.5 py-1.5 rounded-full dark:text-red-400 dark:bg-red-900/40">
                                                     {bulkResults.filter(r => !r.result.isValid).length} Invalid
                                                 </span>
                                             </div>
@@ -499,14 +499,14 @@ export function Validator() {
                                                             }
                                                             <div className="min-w-0">
                                                                 <p className="text-sm font-bold text-slate-800 font-mono truncate dark:text-slate-100">{item.code}</p>
-                                                                <p className="text-[10px] text-slate-500 dark:text-slate-400">
+                                                                <p className="text-xs text-slate-600 dark:text-slate-300">
                                                                     {item.result.format !== "Unknown" ? item.result.format : "Unknown format"}
                                                                     {item.result.isValid && ` · Check Digit: ${item.result.checkDigit}`}
                                                                 </p>
                                                             </div>
                                                         </div>
                                                         <span className={cn(
-                                                            "text-[10px] font-bold px-2.5 py-1 rounded-full flex-shrink-0",
+                                                            "text-xs font-bold px-2.5 py-1 rounded-full flex-shrink-0",
                                                             item.result.isValid
                                                                 ? "text-emerald-700 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-950/40"
                                                                 : "text-red-700 bg-red-50 dark:text-red-400 dark:bg-red-950/40"
@@ -546,7 +546,7 @@ export function Validator() {
                                                                         <path d="M9 19l-7-7 7-7" />
                                                                         <path d="M2 12h36" />
                                                                     </svg>
-                                                                    <p className="text-[12.5px] text-slate-500 font-semibold leading-snug whitespace-nowrap z-10 dark:text-slate-400">
+                                                                    <p className="text-[12.5px] text-slate-600 dark:text-slate-300 font-semibold leading-snug whitespace-nowrap z-10">
                                                                         Fill in the inputs to see your
                                                                     </p>
                                                                 </div>
@@ -619,7 +619,7 @@ export function Validator() {
                                                             initial={{ opacity: 0 }}
                                                             animate={{ opacity: 1 }}
                                                             transition={{ duration: 0.3, delay: 0.2 }}
-                                                            className="text-[12px] text-slate-500 font-medium max-w-[280px] mx-auto leading-relaxed mt-2.5 dark:text-slate-400"
+                                                            className="text-[12px] text-slate-600 dark:text-slate-300 font-medium max-w-[280px] mx-auto leading-relaxed mt-2.5"
                                                         >
                                                             {result.isValid
                                                                 ? (
@@ -646,7 +646,7 @@ export function Validator() {
                                                                 ? <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 dark:text-emerald-400" />
                                                                 : <XCircle className="w-4 h-4 text-red-500 flex-shrink-0 dark:text-red-400" />
                                                             }
-                                                            <span className="text-[13px] font-bold text-slate-500 dark:text-slate-400">Barcode type</span>
+                                                            <span className="text-sm font-bold text-slate-600 dark:text-slate-300">Barcode type</span>
                                                         </div>
                                                         <div className="pl-7 space-y-1.5">
                                                             {result.format !== "Unknown" ? (
@@ -680,7 +680,7 @@ export function Validator() {
                                                                     ? <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 dark:text-emerald-400" />
                                                                     : <XCircle className="w-4 h-4 text-red-500 flex-shrink-0 dark:text-red-400" />
                                                                 }
-                                                                <span className="text-[13px] font-bold text-slate-500 dark:text-slate-400">Check Digit Analysis</span>
+                                                                <span className="text-sm font-bold text-slate-600 dark:text-slate-300">Check Digit Analysis</span>
                                                             </div>
                                                             <div className="pl-7 space-y-1.5">
                                                                 {result.isValid ? (
@@ -718,13 +718,13 @@ export function Validator() {
                                                                     >
                                                                         <span className="flex items-center gap-2">
                                                                             <Calculator className="w-4 h-4 text-blue-500 dark:text-blue-400" />
-                                                                            <span className="text-[13px] font-bold text-slate-500 dark:text-slate-400">View Calculation Breakdown</span>
+                                                                            <span className="text-sm font-bold text-slate-600 dark:text-slate-300">View Calculation Breakdown</span>
                                                                             <TooltipProvider delayDuration={0}>
                                                                                 <Tooltip>
                                                                                     <TooltipTrigger asChild>
                                                                                         <span
                                                                                             onClick={(e) => e.stopPropagation()}
-                                                                                            className="flex-shrink-0 text-slate-400 hover:text-blue-600 transition-colors cursor-help dark:text-slate-500 dark:hover:text-blue-400"
+                                                                                            className="flex-shrink-0 text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors cursor-help dark:hover:text-blue-400"
                                                                                             aria-label="Calculation breakdown info"
                                                                                         >
                                                                                             <Info className="w-3.5 h-3.5" />
@@ -736,7 +736,7 @@ export function Validator() {
                                                                                 </Tooltip>
                                                                             </TooltipProvider>
                                                                         </span>
-                                                                        <Maximize2 className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
+                                                                        <Maximize2 className="w-3.5 h-3.5 text-slate-600 dark:text-slate-300" />
                                                                     </Button>
                                                                 </DialogTrigger>
                                                                 <DialogContent className="max-w-md bg-white text-slate-900 border-slate-200 dark:bg-slate-900 dark:text-white dark:border-slate-800">
@@ -745,7 +745,7 @@ export function Validator() {
                                                                             <Calculator className="w-5 h-5 text-blue-500 dark:text-blue-400" />
                                                                             Calculation Breakdown
                                                                         </DialogTitle>
-                                                                        <DialogDescription className="text-slate-500 dark:text-slate-400">
+                                                                        <DialogDescription className="text-slate-600 dark:text-slate-300">
                                                                             {inputCode
                                                                                 ? <>Step-by-step verification regarding <span className="font-mono font-bold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded text-xs dark:text-slate-200 dark:bg-slate-800">{inputCode}</span></>
                                                                                 : "Enter a barcode to see the step-by-step validation logic."
@@ -794,7 +794,7 @@ export function Validator() {
                                                                             <p className="text-xs text-blue-700 font-medium dark:text-blue-400">
                                                                                 Note: Standard Modulo 10 Algorithm
                                                                             </p>
-                                                                            <p className="text-[10px] text-blue-600 mt-1 dark:text-blue-400">
+                                                                            <p className="text-xs text-blue-600 mt-1 dark:text-blue-400">
                                                                                 This calculation is used universally for GTIN barcodes (UPC, EAN) to detect common data entry errors.
                                                                             </p>
                                                                         </div>

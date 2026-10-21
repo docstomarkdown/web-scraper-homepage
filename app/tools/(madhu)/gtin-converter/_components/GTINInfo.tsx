@@ -1,46 +1,18 @@
 "use client"
 import { ToolOverview } from "@/app/tools/_shared/components"
-import { Lightbulb } from "lucide-react"
 
+/** What this converter does, in plain words. Copy rules: docs/writing-style.md. */
 export function GTINInfo() {
     return (
-        <div className="space-y-8">
-            {/* Section Header */}
-            <div className="px-1">
-                <div className="flex items-center gap-3.5 sm:gap-4">
-                    <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100/80 shadow-[0_2px_8px_-4px_rgba(59,130,246,0.2)] dark:from-blue-950/30 dark:to-indigo-950/30 dark:border-blue-900/50">
-                        <Lightbulb className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600 dark:text-blue-400" />
-                    </div>
-                    <div>
-                        <h2 className="text-[22px] sm:text-[28px] font-bold text-slate-700 tracking-tight leading-tight dark:text-slate-200">
-                            Tool Essential
-                        </h2>
-                    </div>
-                </div>
-                
-            </div>
-
-            {/* Tool Overview */}
+        <div id="overview">
             <ToolOverview
-                heading="What is a GTIN?"
-                headingAccent="GTIN"
-                definition="A Global Trade Item Number (GTIN) is a unique numeric identifier assigned to products by GS1. It is the universal key that links a physical product to its digital record — used in supply chains, retail checkout, and every major online marketplace."
+                heading="What the GTIN Converter does"
+                headingAccent="GTIN Converter"
+                definition="Every retail barcode is a Global Trade Item Number. The same product number can be written with 8, 12, 13 or 14 digits depending on where it's used, and marketplaces ask for one form while suppliers send another. Type the number you have, or scan the label, and the converter checks it and shows every form."
                 facts={[
-                    {
-                        stat: "4 Formats",
-                        label: "Supported",
-                        detail: "GTIN-12 (UPC-A), GTIN-13 (EAN-13), GTIN-8 (EAN-8), and GTIN-14 (case/pallet level) — all interconvertible.",
-                    },
-                    {
-                        stat: "Instant",
-                        label: "Conversion",
-                        detail: "Enter any UPC, EAN, or GTIN and get all equivalent formats in one click — no manual padding or check-digit math required.",
-                    },
-                    {
-                        stat: "GS1",
-                        label: "Compliant",
-                        detail: "Every conversion follows GS1 Modulo 10 check-digit rules — the same standard Amazon, Walmart, and global retailers require.",
-                    },
+                    { stat: "Check digit", label: "verified", detail: "The last digit is recalculated from the others; a mismatch means a typo or a bad scan." },
+                    { stat: "4 forms", label: "shown", detail: "GTIN-8, GTIN-12 (UPC-A), GTIN-13 (EAN-13) and GTIN-14, where the number allows." },
+                    { stat: "Scan", label: "or type", detail: "Upload a photo of the barcode and the digits are read for you." },
                 ]}
             />
         </div>

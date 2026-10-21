@@ -12,71 +12,39 @@ interface ToolStepsProps {
     icon?: LucideIcon
     goal?: StepItem
 }
-export function ToolSteps({ steps, title = "How to Use This Calculator", icon = HelpCircle, goal }: ToolStepsProps) {
+/** The how-to steps as one numbered list: cards side by side on wide screens, stacked on phones. */
+export function ToolSteps({ steps, title = "How to use this calculator", icon = HelpCircle, goal }: ToolStepsProps) {
     const allSteps = goal ? [...steps, goal] : steps
+    if (allSteps.length === 0) return null
     return (
         <section id="how-to-use" className="relative">
             <ToolSectionHeader icon={icon} title={title} />
-            {/* ── Desktop: Horizontal Timeline Cards ── */}
-            <div className="hidden md:block w-full py-4">
-                <div className="relative">
-                    <div className="grid gap-8 lg:gap-12 relative z-10" style={{ gridTemplateColumns: `repeat(${allSteps.length}, minmax(0, 1fr))` }}>
-                        {allSteps.map((step, index) => {
-                            const Icon = step.icon
-                            return (
-                                <div key={index} className="relative w-full group">
-                                    {/* Filled blue step number badge overlapping card top */}
-                                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[34px] h-[34px] rounded-full bg-blue-500 shadow-sm flex items-center justify-center z-30 transition-all duration-300 group-hover:scale-110 ring-4 ring-white dark:ring-slate-900">
-                                        <span className="text-sm font-black text-white leading-none">
-                                            {index + 1}
-                                        </span>
-                                    </div>
-                                    {/* Card Content */}
-                                    <div className="bg-white rounded-2xl border border-slate-200/60 shadow-[0_2px_8px_-4px_rgba(0,0,0,0.05)] group-hover:shadow-xl group-hover:-translate-y-1 transition-all duration-300 p-6 pt-10 pb-8 w-full h-full flex flex-col text-left font-sans overflow-hidden dark:bg-slate-900 dark:border-slate-800">
-                                        {/* Icon box */}
-                                        <div className="w-10 h-10 bg-gradient-to-br from-blue-50 to-indigo-50/80 ring-1 ring-inset ring-blue-500/10 rounded-xl flex items-center justify-center text-blue-600 mb-4 transition-transform duration-300 group-hover:scale-110 origin-center dark:from-blue-950/30 dark:to-indigo-950/30 dark:text-blue-400">
-                                            <Icon className="w-5 h-5" />
-                                        </div>
-                                        <h3 className="text-[14.5px] lg:text-[16px] font-bold text-slate-600 mb-2 leading-tight tracking-tight transition-colors duration-300 min-h-0 md:min-h-[2.25rem] flex items-center dark:text-slate-300">
-                                            <span>Step {index + 1}: {step.title}</span>
-                                        </h3>
-                                        <p
-                                            className="text-[14.5px] text-slate-500 leading-relaxed font-medium [&_em]:not-italic [&_em]:font-semibold [&_em]:text-slate-500 dark:text-slate-400"
-                                            dangerouslySetInnerHTML={{ __html: step.description.replace(/<strong>(.*?)<\/strong>/gi, '$1') }}
-                                        />
-                                    </div>
-                                </div>
-                            )
-                        })}
-                    </div>
-                </div>
-            </div>
-            {/* ── Mobile: Vertical Stacked Timeline ── */}
-            <div className="md:hidden space-y-5 pt-3">
+            <ol className="grid gap-5 md:gap-8 pt-4 md:[grid-template-columns:repeat(var(--steps),minmax(0,1fr))]" style={{ "--steps": allSteps.length } as React.CSSProperties}>
                 {allSteps.map((step, index) => {
                     const Icon = step.icon
                     return (
-                        <div key={index} className="relative flex items-start gap-4 group cursor-default">
-                            {/* Mobile filled step circle */}
-                            <div className="relative z-10 flex-shrink-0 w-9 h-9 rounded-full bg-blue-500 shadow-sm flex items-center justify-center mt-1 ring-[3px] ring-white transition-all duration-300 group-hover:scale-110 dark:ring-slate-900">
-                                <span className="text-sm font-black text-white leading-none">{index + 1}</span>
-                            </div>
-                            {/* Card */}
-                            <div className="flex-1 bg-white rounded-2xl border border-slate-200/60 p-5 shadow-[0_2px_8px_-4px_rgba(0,0,0,0.05)] group-hover:shadow-md transition-all duration-300 dark:bg-slate-900 dark:border-slate-800">
+                        <li key={index} className="relative flex md:block items-start gap-4">
+                            <span className="relative z-10 flex-shrink-0 w-9 h-9 md:absolute md:top-0 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 rounded-full bg-[#1f5ec2] flex items-center justify-center mt-1 md:mt-0 ring-4 ring-white dark:ring-slate-900" aria-hidden="true">
+                                <span className="text-sm font-bold text-white leading-none">{index + 1}</span>
+                            </span>
+                            <div className="flex-1 bg-white rounded-2xl border border-slate-200 p-5 md:p-6 md:pt-9 h-full dark:bg-slate-900 dark:border-slate-800">
                                 <div className="flex items-center gap-3 mb-2.5">
-                                    <div className="w-8 h-8 bg-gradient-to-br from-blue-50 to-indigo-50/80 ring-1 ring-inset ring-blue-500/10 flex items-center justify-center text-blue-600 rounded-xl flex-shrink-0 transition-transform duration-300 group-hover:scale-110 origin-center dark:from-blue-950/30 dark:to-indigo-950/30 dark:text-blue-400">
+                                    <span className="w-8 h-8 bg-[#2772ED]/10 flex items-center justify-center text-[#1f5ec2] rounded-xl flex-shrink-0 dark:bg-[#2772ED]/20 dark:text-[#7aa7ff]" aria-hidden="true">
                                         <Icon className="w-4 h-4" />
-                                    </div>
-                                    <h3 className="text-[16px] font-bold text-slate-600 leading-snug transition-colors duration-300 dark:text-slate-300">
-                                        Step {index + 1}: {step.title}
+                                    </span>
+                                    <h3 className="text-lg font-semibold text-slate-800 leading-snug dark:text-white">
+                                        <span className="sr-only">Step {index + 1}: </span>{step.title}
                                     </h3>
                                 </div>
-                                <p className="text-[14.5px] text-slate-500 leading-relaxed font-medium pl-11 [&_em]:not-italic [&_em]:font-semibold [&_em]:text-slate-500 dark:text-slate-400" dangerouslySetInnerHTML={{ __html: step.description.replace(/<strong>(.*?)<\/strong>/gi, '$1') }} />
+                                <p
+                                    className="text-base text-slate-700 leading-[1.65] [&_em]:not-italic [&_em]:font-semibold dark:text-slate-200"
+                                    dangerouslySetInnerHTML={{ __html: step.description.replace(/<strong>(.*?)<\/strong>/gi, "$1") }}
+                                />
                             </div>
-                        </div>
+                        </li>
                     )
                 })}
-            </div>
+            </ol>
         </section>
     )
 }

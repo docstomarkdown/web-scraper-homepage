@@ -1,56 +1,50 @@
 "use client"
-import { ToolGuide } from "@/app/tools/_shared/components/ToolGuide"
-import { Globe, DollarSign, Layers, TrendingUp, BookOpen } from "lucide-react"
+import { ToolGuide } from "@/app/tools/_shared/components"
+import { AlertTriangle, BookOpen, Calculator, Table } from "lucide-react"
 
+/** The formula in words, where the inputs come from, a worked example, and what the result leaves out. */
 export function CubicFeetGuide() {
     return (
         <ToolGuide
-            title="Why Accurate Volume Calculation Matters"
+            title="How the numbers are worked out"
             icon={BookOpen}
             items={[
                 {
-                    title: "4 Input Units, 3 Output Formats",
-                    description: "Enter dimensions in Feet, Inches, Centimeters, or Meters — whatever your source data uses. The Results Panel always outputs Cubic Feet (CFT), Cubic Meters (CBM), and Cubic Inches simultaneously, so you have the right number for every platform: Amazon FBA, sea freight, or local storage.",
-                    icon: Globe,
-                    stat: "4 → 3",
-                    statLabel: "Units in, formats out",
+                    title: "The formula, in words",
+                    description: "Volume is length multiplied by width multiplied by height. The calculator converts the three sizes to inches first, multiplies them, and divides by 1,728 for cubic feet. Cubic metres is cubic feet multiplied by 0.0283.",
+                    icon: Calculator,
+                    stat: "÷ 1,728",
+                    statLabel: "inches to feet",
                     iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                    iconColor: "text-blue-600 dark:text-blue-400",
-                    statColor: "text-blue-700 dark:text-blue-400",
-                    tooltip: "Feet, Inches, CM, Meters in — CFT, CBM, cubic inches out."
-                },
-                {
-                    title: "Multi-Currency Cost Estimation",
-                    description: "Select any currency (USD, GBP, EUR, INR, and 50+ more) and enter a cost-per-ft³ rate. The tool calculates your Estimated Total Cost instantly, complete with the correct currency symbol — essential for freight quoting and storage fee budgeting across regions.",
-                    icon: DollarSign,
-                    stat: "50+",
-                    statLabel: "Currencies supported",
+                    iconColor: "text-blue-700 dark:text-blue-300",
+                    statColor: "text-blue-700 dark:text-blue-300",
+                },                {
+                    title: "Where the inputs come from",
+                    description: "Measure the outside of the packed carton, not the product. Storage providers and freight forwarders charge on the packed size, including any protruding lid or strap.",
+                    icon: BookOpen,
+                    stat: "Packed size",
+                    statLabel: "outside edges",
                     iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
-                    iconColor: "text-emerald-600 dark:text-emerald-400",
-                    statColor: "text-emerald-700 dark:text-emerald-400",
-                    tooltip: "Currency symbols are fetched from the shared currency list — always accurate."
-                },
-                {
-                    title: "Batch Volume with Quantity Multiplier",
-                    description: "Enter dimensions once and specify how many identical units you have. The \"Total Volume\" card shows the combined volume for the entire batch, while the hero still shows the single-unit figure — giving you both at the same time without extra math.",
-                    icon: Layers,
-                    stat: "Bulk",
-                    statLabel: "Quantity support",
-                    iconBg: "bg-purple-50 dark:bg-purple-950/40",
-                    iconColor: "text-purple-600 dark:text-purple-400",
-                    statColor: "text-purple-700 dark:text-purple-400",
-                    tooltip: "Multiply volume for any quantity of identical items in one calculation."
-                },
-                {
-                    title: "Precision Prevents Costly Errors",
-                    description: "Even a 0.5 inch measurement error, compounded across 1,000 units, can mean hundreds of dollars in incorrect storage fees or freight charges. Our calculator outputs up to 4 decimal places for CBM and 2 decimal places for CFT — the precision Amazon FBA and freight carriers actually need.",
-                    icon: TrendingUp,
-                    stat: "0.5″",
-                    statLabel: "Error = $100s lost",
+                    iconColor: "text-emerald-700 dark:text-emerald-300",
+                    statColor: "text-emerald-700 dark:text-emerald-300",
+                },                {
+                    title: "A worked example",
+                    description: "A carton 12 by 10 by 8 inches is 960 cubic inches, which is 0.556 cubic feet. 100 of them take 55.6 cubic feet. At $2.50 per cubic foot a month, storage is about $139.",
+                    icon: Table,
+                    stat: "0.556 ft³",
+                    statLabel: "per carton",
+                    iconBg: "bg-violet-50 dark:bg-violet-950/40",
+                    iconColor: "text-violet-700 dark:text-violet-300",
+                    statColor: "text-violet-700 dark:text-violet-300",
+                },                {
+                    title: "What it leaves out",
+                    description: "Providers round up to the next unit or bill a minimum, and freight may use dimensional weight instead. Use the result to compare options, then check the provider's own rules.",
+                    icon: AlertTriangle,
+                    stat: "Rounding",
+                    statLabel: "varies by provider",
                     iconBg: "bg-amber-50 dark:bg-amber-950/40",
-                    iconColor: "text-amber-600 dark:text-amber-400",
-                    statColor: "text-amber-700 dark:text-amber-400",
-                    tooltip: "Decimal precision avoids billing errors in FBA fees and LTL/FTL freight quotes."
+                    iconColor: "text-amber-700 dark:text-amber-300",
+                    statColor: "text-amber-700 dark:text-amber-300",
                 }
             ]}
         />

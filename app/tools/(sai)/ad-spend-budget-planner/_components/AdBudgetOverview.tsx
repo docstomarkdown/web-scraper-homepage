@@ -1,31 +1,19 @@
-"use client";
+"use client"
+import { ToolOverview } from "@/app/tools/_shared/components"
 
-import { ToolOverview } from "@/app/tools/_shared/components/ToolOverview";
-
+/** One paragraph on what the calculator is for, and three plain facts about it. */
 export function AdBudgetOverview() {
     return (
         <ToolOverview
-            heading="Why Use the Ad Spend Planner?"
-            headingAccent="Ad Spend Planner?"
-            definition="The Ad Spend Budget Planner is a free tool that calculates the exact advertising budget you need to hit your monthly or quarterly revenue goals. Enter your revenue target and desired ROAS, and it instantly returns your required ad spend, estimated clicks, orders, and daily budget.Designed for eCommerce sellers, marketers, and business owners, it delivers accurate PPC planning for Amazon, Google, Meta, and other ad platforms—removing guesswork and preventing overspending"
-            accent="blue"
+            heading="How much should you spend on ads?"
+            headingAccent="spend on ads"
+            definition="This planner works backwards from a revenue goal. Enter the sales you want in a month and the return you need from each unit of ad spend, and it gives the monthly and daily budget, then estimates the clicks and orders that budget buys at your cost per click and conversion rate."
             facts={[
-                {
-                    stat: "Required Budget",
-                    label: "Target",
-                    detail: "Identify exactly how much capital you need to risk to reach your monthly revenue objective."
-                },
-                {
-                    stat: "Hidden Costs",
-                    label: "Calculated",
-                    detail: "Accurately calculate hidden performance requirements like CPC and conversion rates to hit your final targets."
-                },
-                {
-                    stat: "Daily Pacing",
-                    label: "Strategy",
-                    detail: "Dividing your monthly budget into a strict daily spend threshold prevents premature budget exhaustion."
-                }
+                { stat: "4 inputs", label: "What you enter", detail: "Revenue goal, target ROAS, average cost per click and conversion rate." },
+                { stat: "Goal ÷ ROAS", label: "The budget", detail: "A $20,000 goal at a 4× ROAS needs $5,000 of ads." },
+                { stat: "Clicks → orders", label: "The check", detail: "Budget ÷ CPC gives clicks; clicks × conversion rate gives orders." }
             ]}
+            accent="indigo"
         />
-    );
+    )
 }

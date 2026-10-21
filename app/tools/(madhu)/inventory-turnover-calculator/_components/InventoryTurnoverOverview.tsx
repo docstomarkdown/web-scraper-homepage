@@ -1,46 +1,18 @@
 "use client"
 import { ToolOverview } from "@/app/tools/_shared/components"
-import { Lightbulb } from "lucide-react"
 
+/** What this calculator does, in plain words. Copy rules: docs/writing-style.md. */
 export function InventoryTurnoverOverview() {
     return (
-        <div className="space-y-8">
-            {/* Section Header */}
-            <div className="px-1">
-                <div className="flex items-center gap-3.5 sm:gap-4">
-                    <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100/80 shadow-[0_2px_8px_-4px_rgba(59,130,246,0.2)] dark:from-blue-950/30 dark:to-indigo-950/30 dark:border-blue-900/50">
-                        <Lightbulb className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600 dark:text-blue-400" />
-                    </div>
-                    <div>
-                        <h2 className="text-[22px] sm:text-[28px] font-bold text-slate-700 tracking-tight leading-tight dark:text-slate-200">
-                            Tool Essential
-                        </h2>
-                    </div>
-                </div>
-                
-            </div>
-
-            {/* Tool Overview */}
+        <div id="overview">
             <ToolOverview
-                heading="Why Use Inventory Turnover Calculator?"
+                heading="What the Inventory Turnover Calculator tells you"
                 headingAccent="Inventory Turnover Calculator"
-                definition="The primary purpose of the Inventory Turnover Calculator is to measure how efficiently your business is selling and replenishing its inventory. Built for warehouse managers, Amazon sellers, and e-commerce brands, this tool eliminates guesswork by instantly calculating your turnover ratio and exactly how many days your capital is tied up in unsold stock. It is your essential tool for preventing slow-moving stock, optimizing cash flow, and making smarter purchasing decisions."
+                definition="Inventory turnover is how many times you sell and replace your stock in a period. Type the cost of goods sold, the opening and closing inventory values and the period in days, and the calculator gives the ratio and the days sales of inventory. A higher ratio means stock moves faster and ties up less cash."
                 facts={[
-                    {
-                        stat: "Turnover",
-                        label: "Ratio",
-                        detail: "A higher ratio means your stock is selling fast. A low ratio signals overstocking or slow-moving products that need attention."
-                    },
-                    {
-                        stat: "Days",
-                        label: "to Sell",
-                        detail: "See the exact number of days your cash is locked inside inventory before it converts to a completed sale."
-                    },
-                    {
-                        stat: "Avg",
-                        label: "Inventory",
-                        detail: "Calculates the average stock value you carried during your selected period, helping you assess capital exposure."
-                    }
+                    { stat: "Turnover", label: "times per period", detail: "Cost of goods sold divided by average inventory." },
+                    { stat: "Days", label: "to sell through", detail: "The period's days divided by the turnover, so a ratio of 5 over a year is 73 days." },
+                    { stat: "Trend", label: "to watch", detail: "Run it each quarter; a falling ratio means stock is building up." },
                 ]}
             />
         </div>

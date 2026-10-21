@@ -1,25 +1,40 @@
 import { Metadata } from "next"
-import { FadeIn, ToolFAQ } from "@/app/tools/_shared/components"
 import { SKUGenerator } from "./_components/SKUGenerator"
 import { SKUHowToUse } from "./_components/SKUHowToUse"
 import { SKUGuide } from "./_components/SKUGuide"
+import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
+
 export const metadata: Metadata = {
-    title: "E-commerce SKU Generator | Create Professional Product Codes",
-    description: "Generate consistent, professional SKU codes for your e-commerce inventory. Customize brand, category, and attributes with real-time preview.",
+    title: "SKU Generator: Free Product Code Builder",
+    description: "Build consistent SKU codes from a brand prefix, category, product name and attributes such as colour and size, with a running number and a CSV export.",
     alternates: { canonical: "/tools/sku-generator" },
 }
-export default function SKUGeneratorPage() {
+
+const faqs = [
+    {
+        question: "How long should a SKU be?",
+        answer: "Eight to sixteen characters. Long enough to carry brand, category and variant, short enough to type and read.",
+    },
+    {
+        question: "Should I use letters or only numbers?",
+        answer: "Both. Letters make the code readable; numbers give you a running sequence for variants.",
+    },
+    {
+        question: "Why avoid symbols?",
+        answer: "Many inventory systems, marketplaces and barcode tools reject or mangle characters such as @, # and /. A hyphen is the safe separator.",
+    },
+    {
+        question: "Can I use the UPC as my SKU?",
+        answer: "You can, but a UPC says nothing about the product. A SKU you design tells you the brand, category and variant without looking it up.",
+    },
+]
+
+export default function SkuGeneratorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-12">
-                    <FadeIn>
-                        <h1 className="text-4xl md:text-[42px] font-bold text-slate-900 mb-4 tracking-tight dark:text-white">
-                            SKU Generator
-                        </h1>
-                    </FadeIn>
-                </div>
+                <ToolPageTitle title="E-commerce SKU Generator" direction="down" duration={0.6} />
                 <div className="mb-20">
                     <SKUGenerator />
                 </div>
@@ -27,32 +42,13 @@ export default function SKUGeneratorPage() {
                     <FadeIn delay={0.2}>
                         <SKUHowToUse />
                     </FadeIn>
-                    <FadeIn delay={0.3}>
+                    <FadeIn delay={0.2}>
                         <SKUGuide />
                     </FadeIn>
-                    <FadeIn delay={0.4}>
-                        <ToolFAQ
-                            faqs={[
-                                {
-                                    question: "What is the ideal length for a SKU?",
-                                    answer: "Most experts recommend keeping SKUs between 8 to 12 characters. This is long enough to include meaningful data but short enough to be readable and fit on most barcode labels."
-                                },
-                                {
-                                    question: "Should I use letters or just numbers?",
-                                    answer: "Alphanumeric SKUs (using both letters and numbers) are generally better. Letters can represent categories or brands (e.g., 'SH' for Shirt), making the code human-readable."
-                                },
-                                {
-                                    question: "Why avoid special characters like @, #, or *?",
-                                    answer: "Special characters can cause issues when exporting data to CSVs or importing them into different marketplace platforms (like Amazon or eBay) which may have strict character requirements."
-                                },
-                                {
-                                    question: "Is it okay to use the product's UPC as the SKU?",
-                                    answer: "While possible, it's not recommended. UPCs are universal and don't tell you anything about the product's attributes or brand at a glance. SKUs should be internal and meaningful."
-                                }
-                            ]}
-                        />
+                    <FadeIn delay={0.2}>
+                        <ToolFAQ title="Questions, answered" faqs={faqs} />
                     </FadeIn>
-                    <FadeIn delay={0.5}>
+                    <FadeIn delay={0.2}>
                         <CTA />
                     </FadeIn>
                 </div>

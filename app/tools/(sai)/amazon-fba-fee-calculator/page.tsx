@@ -5,8 +5,8 @@ import { FBAHowToUse } from "./_components/FBAHowToUse"
 import { ToolPageTitle, FadeIn, ToolFAQ } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
-    title: "Amazon FBA Fee Calculator - Estimate Fees & Profit",
-    description: "Free tool to estimate Amazon FBA fees, referral fees, and net profit based on product size, weight, and price.",
+    title: "Amazon FBA Fee Calculator: Free Fee and Profit Estimate",
+    description: "Estimate Amazon's FBA fulfilment and referral fees from price, weight, size and category in the US, UK, EU, Canada and India, and see what's left.",
     alternates: { canonical: "/tools/amazon-fba-fee-calculator" },
 }
 export default function FbaCalculatorPage() {
@@ -26,23 +26,31 @@ export default function FbaCalculatorPage() {
                     <FadeIn delay={0.2}>
                         <ToolFAQ
                             faqs={[
-                                {
-                                    question: "Are these Fulfillment by Amazon (FBA) fees exact?",
-                                    answer: "These are estimates based on standard 2024 rate cards. Actual fees may vary slightly due to dimensional weight calculations, dangerous goods classification, or apparel surcharges."
-                                },
-                                {
-                                    question: "What is Dimensional Weight?",
-                                    answer: "Amazon calculates fee weight based on package volume. If your product is light but large, you will be charged for the space it takes up, not just its actual weight."
-                                },
-                                {
-                                    question: "How is the Referral Fee calculated?",
-                                    answer: "It is a percentage of the total sales price (usually 15% for most categories). For example, on a $100 item, Amazon takes $15."
-                                },
-                                {
-                                    question: "Does this include storage fees?",
-                                    answer: "No, this calculator focuses on fulfillment and referral fees. Monthly storage fees depend on how long your inventory sits in the warehouse."
-                                }
-                            ]}
+                                    {
+                                        question: "Are these Amazon FBA fees exact?",
+                                        answer: "No. They're estimates from simplified rate cards for the main size tiers and categories. Amazon's own fee preview in Seller Central is the figure to rely on; use this to compare products and prices quickly."
+                                    },
+                                    {
+                                        question: "What is the Amazon referral fee?",
+                                        answer: "Amazon's commission on each sale: a percentage of the price that depends on the category, 15% for most, with a small minimum. It applies whether or not you use FBA."
+                                    },
+                                    {
+                                        question: "What is dimensional weight?",
+                                        answer: "A weight worked out from the box's volume. For bulky, light items Amazon charges the fulfilment fee on the dimensional weight when it's higher than the real weight."
+                                    },
+                                    {
+                                        question: "Does this include storage fees?",
+                                        answer: "No. Monthly storage depends on how long inventory sits in the warehouse; the Amazon storage fee calculator on this site estimates it."
+                                    },
+                                    {
+                                        question: "Which marketplaces does it cover?",
+                                        answer: "US, UK, EU (a pan-EU average), Canada and India, each with its own units and rate card. Pick the marketplace from the currency control."
+                                    },
+                                    {
+                                        question: "Is this calculator free?",
+                                        answer: "Yes. It runs in your browser, needs no sign-up and stores nothing you type."
+                                    }
+                                ]}
                         />
                     </FadeIn>
                 </div>

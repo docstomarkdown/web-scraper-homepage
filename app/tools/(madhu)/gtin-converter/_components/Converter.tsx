@@ -93,7 +93,7 @@ export function Converter() {
                 <div className="space-y-1 mt-1">
                     <p>Invalid length: {clean.length} digits entered.</p>
                     <p className="font-semibold text-xs opacity-90 mt-2">GTIN must contain exactly:</p>
-                    <ul className="list-disc list-inside space-y-0.5 text-[11px] opacity-80 pl-1">
+                    <ul className="list-disc list-inside space-y-0.5 text-xs opacity-80 pl-1">
                         <li>8 digits (GTIN-8)</li>
                         <li>12 digits (UPC-A)</li>
                         <li>13 digits (EAN-13)</li>
@@ -199,7 +199,7 @@ export function Converter() {
 
                                     <div className="relative flex items-center justify-center">
                                         <div className="w-full border-t border-slate-200/80 dark:border-slate-800"></div>
-                                        <span className="absolute px-3 bg-white text-[10.5px] font-bold text-slate-400 uppercase tracking-widest dark:bg-slate-900 dark:text-slate-500">
+                                        <span className="absolute px-3 bg-white text-xs font-bold text-slate-600 dark:text-slate-300 uppercase tracking-widest dark:bg-slate-900">
                                             Or
                                         </span>
                                     </div>
@@ -224,13 +224,13 @@ export function Converter() {
                 <div className="lg:col-span-6">
                     <FadeIn delay={0.4} direction="left" className="h-full">
                         <div className="space-y-3 flex flex-col h-full">
-                            <Card className="relative overflow-hidden border border-slate-200/60 shadow-sm rounded-2xl bg-[#F5F8FD] dark:border-slate-800">
+                            <Card className="relative overflow-hidden border border-slate-200/60 shadow-sm rounded-2xl bg-[#F5F8FD] dark:bg-slate-900 dark:border-slate-800">
                                 <div className="flex justify-between items-center gap-4 px-6 pt-5 pb-1">
                                     <div className="flex items-center gap-2.5">
                                         <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-100/50 shadow-sm shadow-blue-500/5 dark:border-blue-900/50">
                                             <Activity className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                                         </div>
-                                        <span className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none dark:text-blue-400">
+                                        <span className="text-[15px] sm:text-[16px] font-bold text-blue-800 leading-none dark:text-blue-200">
                                             Results Panel
                                         </span>
                                     </div>
@@ -286,7 +286,7 @@ export function Converter() {
                                                                     <path d="M9 19l-7-7 7-7" />
                                                                     <path d="M2 12h36" />
                                                                 </svg>
-                                                                <p className="text-[12.5px] text-slate-500 font-semibold leading-snug whitespace-nowrap z-10 dark:text-slate-400">
+                                                                <p className="text-[12.5px] text-slate-600 dark:text-slate-300 font-semibold leading-snug whitespace-nowrap z-10">
                                                                     Fill in the inputs to see your
                                                                 </p>
                                                             </div>
@@ -341,7 +341,7 @@ export function Converter() {
                                                                 transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
                                                                 className="relative flex flex-col items-center text-center py-5 px-4 mb-2"
                                                             >
-                                                                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1.5 dark:text-slate-500">
+                                                                <span className="text-xs font-bold text-slate-600 dark:text-slate-300 uppercase tracking-widest mb-1.5">
                                                                     Detected Format
                                                                 </span>
                                                                 <div className="flex items-baseline justify-center">
@@ -367,7 +367,7 @@ export function Converter() {
                                                                     >
                                                                         <div className="flex items-center gap-2 mb-1.5">
                                                                             <item.icon className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
-                                                                            <span className="text-[13px] font-bold text-slate-500 dark:text-slate-400">{item.label}</span>
+                                                                            <span className="text-sm font-bold text-slate-600 dark:text-slate-300">{item.label}</span>
                                                                         </div>
                                                                         <div className="pl-6 flex items-center justify-between gap-3">
                                                                             <span className="text-[15px] font-mono font-bold text-slate-700 break-all dark:text-slate-200">{item.value}</span>
@@ -375,7 +375,7 @@ export function Converter() {
                                                                                 onClick={() => {
                                                                                     navigator.clipboard.writeText(item.value)
                                                                                 }}
-                                                                                className="text-slate-400 hover:text-blue-600 transition-colors p-1 rounded-md hover:bg-blue-50/80 active:bg-blue-100 flex-shrink-0 dark:text-slate-500 dark:hover:text-blue-400 dark:hover:bg-blue-950/40 dark:active:bg-blue-900/40"
+                                                                                className="text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors p-1 rounded-md hover:bg-blue-50/80 active:bg-blue-100 flex-shrink-0 dark:hover:text-blue-400 dark:hover:bg-blue-950/40 dark:active:bg-blue-900/40"
                                                                                 title="Copy to clipboard"
                                                                             >
                                                                                 <Copy className="w-3.5 h-3.5" />
@@ -394,10 +394,10 @@ export function Converter() {
                                                         >
                                                             <div className="flex items-center gap-2 mb-2">
                                                                 <XCircle className="w-4 h-4 text-rose-500 flex-shrink-0 dark:text-rose-400" />
-                                                                <span className="text-[13px] font-bold text-slate-500 dark:text-slate-400">{status.format}</span>
+                                                                <span className="text-sm font-bold text-slate-600 dark:text-slate-300">{status.format}</span>
                                                             </div>
                                                             <div className="pl-6 pt-1">
-                                                                <div className="text-[13px] font-medium text-slate-700 dark:text-slate-200">{status.message}</div>
+                                                                <div className="text-sm font-medium text-slate-700 dark:text-slate-200">{status.message}</div>
                                                             </div>
                                                         </motion.div>
                                                     )}

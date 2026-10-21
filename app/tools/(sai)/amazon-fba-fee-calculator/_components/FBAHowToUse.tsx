@@ -1,26 +1,16 @@
 "use client"
 import { ToolSteps } from "@/app/tools/_shared/components"
-import { Scale, Package, Banknote } from "lucide-react"
+import { Scale, Banknote, Package } from "lucide-react"
+
+/** The three things a reader does, in order, with the calculator's own field names. */
 export function FBAHowToUse() {
     return (
         <ToolSteps
             steps={[
-                {
-                    title: "Item Setup",
-                    description: "Enter physical product weight, box dimensions, and base retail price.",
-                    icon: Scale
-                },
-                {
-                    title: "Set Category",
-                    description: "Choose the accurate Amazon storefront category to parse referral rules.",
-                    icon: Banknote
-                },
-                {
-                    title: "Check Fees",
-                    description: "Instantly reveal your pick rates, referral costs, and final net profit.",
-                    icon: Package
-                }
+                { title: "Enter the Selling Price, Packaged Weight and the box's Length, Width and Height", description: "Use the packaged weight and dimensions, not the bare product. The marketplace you pick sets the units: pounds and inches for the US, kilograms and centimetres elsewhere.", icon: Scale },
+                { title: "Pick the Product Category", description: "The referral fee is a percentage of the price that depends on the category, 15% for most. Open the advanced options to change it from General.", icon: Banknote },
+                { title: "Read the fees and what's left", description: "The result shows the FBA fulfilment fee, the referral fee and the total Amazon takes. What's left is the price minus those fees, before your own product and shipping costs.", icon: Package }
             ]}
         />
     )
-}
+}

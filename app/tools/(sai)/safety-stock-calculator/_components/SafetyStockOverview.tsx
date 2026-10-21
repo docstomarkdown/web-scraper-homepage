@@ -1,40 +1,21 @@
-import { Info } from "lucide-react";
-import { ToolOverview, ToolSectionHeader } from "@/app/tools/_shared/components";
+"use client"
+import { Info } from "lucide-react"
+import { ToolOverview, ToolSectionHeader } from "@/app/tools/_shared/components"
 
 export function SafetyStockOverview() {
     return (
-        <div className="w-full mb-16">
-            <ToolSectionHeader
-                icon={Info}
-                title="Tool Essential"
-            />
+        <div className="w-full">
+            <ToolSectionHeader icon={Info} title="About this calculator" />
             <ToolOverview
-                heading="What is the "
-                headingAccent="Safety Stock Calculator?"
-                definition={
-                    <>
-                        The Safety Stock Calculator is a free tool that helps you find how much extra inventory you need to avoid stockouts during demand spikes or supplier delays. Enter your daily sales and lead-time data, and it instantly calculates your ideal safety buffer and demand estimates. Used by eCommerce sellers, inventory planners, and supply-chain teams, it helps you maintain healthy stock levels, set accurate reorder points, and keep operations running without interruption.
-                    </>
-                }
-                facts={[
-                    {
-                        stat: "Zero Stockouts",
-                        label: "Never Miss a Sale",
-                        detail: "Protect your top-selling products from suddenly selling out during holidays, ad promotions, or unexpected viral demand spikes."
-                    },
-                    {
-                        stat: "Cash Flow",
-                        label: "Avoid Overstocking",
-                        detail: "Holding too much emergency stock ties up your cash unnecessarily. This tool calculates the exact minimum buffer you need to stay lean."
-                    },
-                    {
-                        stat: "Delay Defense",
-                        label: "Beat Supply Delays",
-                        detail: "Supplier backlogs and shipping delays happen frequently. A proper safety buffer ensures your store stays open even when incoming inventory is late."
-                    }
-                ]}
+                heading="What the safety stock calculator does"
+                definition="It subtracts your normal demand over a normal lead time from your worst-case demand over your longest lead time. The difference is the buffer to hold so a bad week or a late supplier doesn't empty the shelf."
                 accent="blue"
+                facts={[
+                    { stat: "Worst case", label: "Max sales × max lead time", detail: "The most units you could sell while the slowest delivery is on its way." },
+                    { stat: "Normal case", label: "Average sales × average lead time", detail: "What usually happens. The reorder point already covers this." },
+                    { stat: "Buffer", label: "Worst case − normal case", detail: "The extra units to hold at all times. Recalculate each quarter and before a peak season." },
+                ]}
             />
         </div>
-    );
+    )
 }

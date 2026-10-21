@@ -8,8 +8,8 @@ import { CTA } from "@/components/sections/CTA"
 import { Lightbulb } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: "Gross Margin Calculator - Calculate Margin, Revenue & COGS",
-    description: "Free advanced Gross Margin Calculator. Calculate Gross Margin Percentage from Revenue and COGS. Optimize pricing strategies and protect your bottom line.",
+    title: "Gross Margin Calculator: Free Margin, Revenue or COGS",
+    description: "Enter any two of revenue, cost of goods sold and gross margin, and get the third, with the gross profit in money.",
     alternates: { canonical: "/tools/gross-margin-calculator" },
 }
 
@@ -24,7 +24,7 @@ export default function GrossMarginCalculatorPage() {
                 <div className="max-w-4xl mx-auto space-y-16">
                     <FadeIn delay={0.2}>
                         <ToolSectionHeader 
-                            title="Tool Essential"
+                            title="What this calculator does"
                             icon={Lightbulb}
                         />
                         <GrossMarginOverview />
@@ -39,25 +39,25 @@ export default function GrossMarginCalculatorPage() {
                         <ToolFAQ
                             faqs={[
                                 {
-                                    question: "Can I use this to set my product prices?",
-                                    answer: "Yes. Switch to 'Find Revenue' mode, enter your production cost (COGS), and your target margin. The calculator will tell you the exact minimum price you need to charge to hit that profit goal."
+                                    question: "How do you calculate gross margin?",
+                                    answer: "Revenue minus cost of goods sold, divided by revenue. $10,000 of sales on $6,000 of cost is a 40% margin.",
                                 },
                                 {
-                                    question: "What is a healthy Gross Margin for a business?",
-                                    answer: "While it varies by industry, a <strong>Gross Margin of 30% to 50%</strong> is often considered healthy for many businesses. This provides enough room to cover overhead, marketing, and taxes while still leaving a net profit at the bottom line."
+                                    question: "What's the difference between gross margin and markup?",
+                                    answer: "Margin is profit as a share of the selling price; markup is profit as a share of the cost. A 40% margin is a 67% markup.",
                                 },
                                 {
-                                    question: "What should I include in my COGS?",
-                                    answer: "Cost of Goods Sold (COGS) should include every direct expense to get the product to your door: wholesale price, manufacturing costs, shipping to your warehouse, and packaging."
+                                    question: "What is a good gross margin for an online store?",
+                                    answer: "It varies by category. Many retailers work between 30% and 50%; handmade and digital goods can be higher, electronics lower.",
                                 },
                                 {
-                                    question: "How can I use 'Find COGS' mode?",
-                                    answer: "If you know your market's top price point and your required margin, this mode tells you the maximum you can afford to spend on making or buying the product while still staying profitable."
+                                    question: "How do I price for a target margin?",
+                                    answer: "Choose Find Revenue, enter the cost and the margin you want, and the calculator gives the price.",
                                 },
                                 {
-                                    question: "How does the sticky panel help me?",
-                                    answer: "The sticky left panel keeps your input controls locked in place while you scroll through your financial results on the right. This allows you to rapidly adjust your target margins or costs without constantly scrolling up and down, saving you time and keeping your focus on the numbers."
-                                }
+                                    question: "Does gross margin include shipping and fees?",
+                                    answer: "Only costs that are part of the goods. Marketplace fees, advertising and overheads come out later, in net profit.",
+                                },
                             ]}
                         />
                     </FadeIn>

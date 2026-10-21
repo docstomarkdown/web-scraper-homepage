@@ -78,11 +78,11 @@ export function ResultFeedbackCard({
                 <>
                     <div className={cn(
                         "absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none opacity-20",
-                        variant === "warning" ? "bg-red-500" : "bg-blue-500"
+                        variant === "warning" ? "bg-red-600" : "bg-[#1f5ec2]"
                     )} />
                     <div className={cn(
                         "absolute bottom-0 left-0 w-48 h-48 rounded-full blur-3xl -ml-16 -mb-16 pointer-events-none opacity-10",
-                        variant === "warning" ? "bg-orange-500" : "bg-blue-500"
+                        variant === "warning" ? "bg-orange-600" : "bg-[#1f5ec2]"
                     )} />
                 </>
             )}
@@ -93,7 +93,7 @@ export function ResultFeedbackCard({
             )}>
                 <div className={cn(
                     "text-sm font-medium tracking-wider flex justify-between items-center gap-2",
-                    variant === "compact" ? "text-slate-500 dark:text-slate-400" : "text-slate-300/80 dark:text-slate-600"
+                    "text-slate-700 dark:text-slate-200"
                 )}>
                     <div className="flex items-center gap-2">
                         {TitleIcon && (
@@ -103,7 +103,7 @@ export function ResultFeedbackCard({
                             )}>
                                 <TitleIcon className={cn(
                                     "h-2.5 w-2.5",
-                                    variant === "compact" ? "text-blue-600 dark:text-blue-400" : "text-white"
+                                    variant === "compact" ? "text-[#1f5ec2] dark:text-[#7aa7ff]" : "text-white"
                                 )} />
                             </div>
                         )}
@@ -112,14 +112,14 @@ export function ResultFeedbackCard({
                             <TooltipProvider delayDuration={100}>
                                 <Tooltip>
                                     <TooltipTrigger asChild>
-                                        <button type="button" className={cn(
+                                        <button type="button" aria-label="About this result" className={cn(
                                             "transition-colors",
-                                            variant === "compact" ? "text-slate-400 hover:text-blue-600 dark:text-slate-500 dark:hover:text-blue-400" : "text-slate-500 hover:text-white dark:text-slate-400"
+                                            variant === "compact" ? "text-slate-700 dark:text-slate-200 hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]" : "text-slate-700 dark:text-slate-200 hover:text-white dark:text-slate-400"
                                         )}>
                                             <Info className="h-3.5 w-3.5" />
                                         </button>
                                     </TooltipTrigger>
-                                    <TooltipContent side="top" className="max-w-xs text-xs bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
+                                    <TooltipContent side="top" className="max-w-xs text-sm bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
                                         {tooltip}
                                     </TooltipContent>
                                 </Tooltip>
@@ -127,7 +127,7 @@ export function ResultFeedbackCard({
                         )}
                     </div>
                     {titleLabel && (
-                        <span className={cn("text-xs font-bold px-2 py-0.5 rounded-full", getLabelStyles())}>
+                        <span className={cn("text-sm font-bold px-2 py-0.5 rounded-full", getLabelStyles())}>
                             {titleLabel}
                         </span>
                     )}
@@ -159,7 +159,7 @@ export function ResultFeedbackCard({
                         {/* Primary Supporting Metric (Full Width) */}
                         {mainMetricLabel && (
                             <div className={cn("pb-3", variant === "compact" ? "border-b border-slate-100 dark:border-slate-800" : "border-b border-white/5 dark:border-slate-800")}>
-                                <p className={cn("text-xs mb-1", variant === "compact" ? "text-slate-500 dark:text-slate-400" : "text-slate-300 dark:text-slate-600")}>{mainMetricLabel}</p>
+                                <p className={cn("text-sm mb-1", variant === "compact" ? "text-slate-700 dark:text-slate-200" : "text-inherit opacity-90")}>{mainMetricLabel}</p>
                                 <div className={cn("text-2xl font-bold break-words", mainMetricColor)}>
                                     {mainMetricValue}
                                 </div>
@@ -171,26 +171,26 @@ export function ResultFeedbackCard({
                                 {secondaryMetrics.map((metric, index) => (
                                     <div key={index}>
                                         <div className="flex items-center gap-1.5 mb-1">
-                                            <p className={cn("text-sm", variant === "compact" ? "text-slate-500 dark:text-slate-400" : "text-slate-400 dark:text-slate-500")}>{metric.label}</p>
+                                            <p className={cn("text-sm", variant === "compact" ? "text-slate-700 dark:text-slate-200" : "text-inherit opacity-90")}>{metric.label}</p>
                                             {metric.tooltip && (
                                                 <TooltipProvider delayDuration={100}>
                                                     <Tooltip>
                                                         <TooltipTrigger asChild>
-                                                            <button type="button" className={cn(
+                                                            <button type="button" aria-label="About this value" className={cn(
                                                                 "transition-colors",
-                                                                variant === "compact" ? "text-slate-400 hover:text-blue-600 dark:text-slate-500 dark:hover:text-blue-400" : "text-slate-500 hover:text-white dark:text-slate-400"
+                                                                variant === "compact" ? "text-slate-700 dark:text-slate-200 hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]" : "text-slate-700 dark:text-slate-200 hover:text-white dark:text-slate-400"
                                                             )}>
                                                                 <Info className="h-3 w-3" />
                                                             </button>
                                                         </TooltipTrigger>
-                                                        <TooltipContent side="top" className="max-w-xs text-[11px] bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
+                                                        <TooltipContent side="top" className="max-w-xs text-sm bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
                                                             {metric.tooltip}
                                                         </TooltipContent>
                                                     </Tooltip>
                                                 </TooltipProvider>
                                             )}
                                         </div>
-                                        <div className={cn("text-2xl font-bold break-all", metric.color || "text-blue-400")}>
+                                        <div className={cn("text-2xl font-bold break-all", metric.color || "text-[#1f5ec2] dark:text-[#7aa7ff]")}>
                                             {metric.value}
                                         </div>
                                     </div>

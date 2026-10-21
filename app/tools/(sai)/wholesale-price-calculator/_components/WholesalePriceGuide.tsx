@@ -1,40 +1,41 @@
 "use client"
-import { Tag, Percent, TrendingUp, Info } from "lucide-react"
-import { ToolGuide } from "@/app/tools/_shared/components/ToolGuide"
+import { ToolGuide } from "@/app/tools/_shared/components"
+import { BookOpen, Calculator, Percent, Scale, Tag } from "lucide-react"
 
 export function WholesalePriceGuide() {
     return (
         <ToolGuide
-            title="Understanding Wholesale Pricing"
+            title="How the wholesale price is calculated"
+            icon={BookOpen}
             items={[
                 {
-                    title: "Wholesale Price",
-                    description: "The price at which you sell goods in bulk to retailers or distributors. It must cover your full cost base and target profit margin while leaving enough room for retailers to apply their own markup.",
-                    icon: Tag,
+                    title: "The formula",
+                    description: "Effective cost = cost per unit × (1 + tax rate). Wholesale price = effective cost ÷ (1 − margin). Profit per unit = price − effective cost.",
+                    icon: Calculator,
                     iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                    iconColor: "text-blue-500 dark:text-blue-400"
+                    iconColor: "text-blue-700 dark:text-blue-300",
                 },
                 {
-                    title: "Profit Margin vs. Markup",
-                    description: "Margin is based on the final selling price: (Price − Cost) ÷ Price. Markup is based on cost: (Price − Cost) ÷ Cost. A 50% margin requires a 100% markup—always use margin when setting wholesale prices to avoid underpricing.",
+                    title: "Margin and markup",
+                    description: "Margin is profit ÷ price; markup is profit ÷ cost. A 40% margin is a 66.7% markup. Retailers usually talk in margin, suppliers in markup.",
                     icon: Percent,
-                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                    iconColor: "text-blue-500 dark:text-blue-400"
-                },
-                {
-                    title: "Effective Cost",
-                    description: "Your effective cost includes the original Cost per Unit plus any taxes, import duties, or inbound fees applied via the Tax/Duty Rate field. Always calculate from your effective cost, not just your unit cost, to avoid margin erosion.",
-                    icon: TrendingUp,
                     iconBg: "bg-amber-50 dark:bg-amber-950/40",
-                    iconColor: "text-amber-500 dark:text-amber-400"
+                    iconColor: "text-amber-700 dark:text-amber-300",
                 },
                 {
-                    title: "Standard Wholesale Margins",
-                    description: "Standard wholesale profit margins typically range from 30% to 50% depending on the industry and product category. This gives retailers enough room to apply their standard 2–2.5× markup and reach a competitive retail price.",
-                    icon: Info,
+                    title: "Typical wholesale margins",
+                    description: "30% to 50% is common, leaving the retailer room to roughly double the wholesale price. If your price lands above what the market pays, the cost side has to move.",
+                    icon: Scale,
+                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
+                    iconColor: "text-emerald-700 dark:text-emerald-300",
+                },
+                {
+                    title: "A worked example",
+                    description: "A $10 cost with no tax and a 40% margin: wholesale price $16.67, profit per unit $6.67, markup 66.7%. With 5% duty, the effective cost is $10.50 and the price $17.50.",
+                    icon: Tag,
                     iconBg: "bg-violet-50 dark:bg-violet-950/40",
-                    iconColor: "text-violet-500 dark:text-violet-400"
-                }
+                    iconColor: "text-violet-700 dark:text-violet-300",
+                },
             ]}
         />
     )

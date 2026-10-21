@@ -1,30 +1,20 @@
 "use client"
-import { ToolOverview } from "@/app/tools/_shared/components/ToolOverview"
+import { ToolOverview } from "@/app/tools/_shared/components"
 
+/** What this calculator does, in plain words. Copy rules: docs/writing-style.md. */
 export function ContainerLoadOverview() {
     return (
-        <ToolOverview
-            heading="Why Use Container Load Calculator?"
-            headingAccent="Container Load Calculator"
-            definition="The primary purpose of the Container Load Calculator is to find the most efficient way to fit your cargo inside standard sea containers. Built for exporters and freight managers, this tool eliminates shipping guesswork by instantly calculating exactly how many boxes will fit—whether loose-loaded or on pallets. It is your essential tool for maximizing space, reducing costs per unit, and planning your cargo before booking a shipment."
-            facts={[
-                {
-                    stat: "7 Types",
-                    label: "Container Sizes",
-                    detail: "From 20ft Standard to 45ft High Cube Reefers — all pre-loaded with accurate interior dimensions and payload limits."
-                },
-                {
-                    stat: "2 Modes",
-                    label: "Loose & Pallet Loading",
-                    detail: "Switch between direct loose loading and palletized loading to compare space efficiency and choose the smarter packing strategy."
-                },
-                {
-                    stat: "Instant",
-                    label: "Arrangement & Utilization",
-                    detail: "See exactly how boxes are arranged (e.g. 14L × 4W × 6H) and what % of container volume is actually being used — live as you type."
-                }
-            ]}
-            accent="blue"
-        />
+        <div id="overview">
+            <ToolOverview
+                heading="What the Container Load Calculator tells you"
+                headingAccent="Container Load Calculator"
+                definition="Pick a container, type your carton size and weight, and the calculator counts how many fit, which way round they stack best, and what share of the space they fill. Switch to pallet loading to count cartons per pallet and pallets per container instead."
+                facts={[
+                    { stat: "Units", label: "that fit", detail: "The largest count of cartons the container holds by size, cut back if the weight limit is reached first." },
+                    { stat: "Stacking", label: "best orientation", detail: "Cartons are tried both ways round on the floor; the arrangement with more units wins." },
+                    { stat: "Space used", label: "as a percentage", detail: "Total carton volume divided by the container's volume, so you can see how much is left." },
+                ]}
+            />
+        </div>
     )
 }

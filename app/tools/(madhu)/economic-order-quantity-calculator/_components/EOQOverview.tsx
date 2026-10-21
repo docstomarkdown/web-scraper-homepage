@@ -1,30 +1,20 @@
 "use client"
 import { ToolOverview } from "@/app/tools/_shared/components"
 
+/** What this calculator does, in plain words. Copy rules: docs/writing-style.md. */
 export function EOQOverview() {
     return (
-        <ToolOverview
-            heading="Why Use EOQ Calculator?"
-            headingAccent="EOQ Calculator"
-            definition="The primary purpose of the EOQ Calculator is to find the mathematically perfect balance between your ordering costs and storage costs. Used by e-commerce brands and inventory planners, this tool identifies the exact order size that minimizes your total annual spending. Instead of guessing, you get a data-driven strategy to stop overstocking, reduce shipping frequency, and keep your cash flow healthy."
-            facts={[
-                {
-                    stat: "Cost Balance",
-                    label: "Minimize Spending",
-                    detail: "The tool's most important job is finding the 'sweet spot' where your combined shipping fees and storage rent are at their lowest."
-                },
-                {
-                    stat: "Actionable Data",
-                    label: "Order Frequency",
-                    detail: "Instantly know exactly how many times a year to reorder and the precise number of days to wait between every shipment."
-                },
-                {
-                    stat: "Cash Efficiency",
-                    label: "Inventory ROI",
-                    detail: "Stop tying up thousands in excess stock. Use these calculations to keep your inventory lean while ensuring you never miss a sale."
-                }
-            ]}
-            accent="indigo"
-        />
+        <div id="overview">
+            <ToolOverview
+                heading="What the EOQ Calculator tells you"
+                headingAccent="EOQ Calculator"
+                definition="Every order costs something to place, and every unit in stock costs something to hold. Type your annual demand, the cost of placing an order and the yearly holding cost per unit, and the calculator finds the order size where the two costs add up to the least. It also shows the orders a year and the days between them."
+                facts={[
+                    { stat: "EOQ", label: "units per order", detail: "The order size with the lowest total of ordering and holding cost." },
+                    { stat: "Orders", label: "a year", detail: "Annual demand divided by the EOQ, with the days between orders." },
+                    { stat: "Total cost", label: "at the EOQ", detail: "Ordering cost plus holding cost for the year, so you can compare against what you do now." },
+                ]}
+            />
+        </div>
     )
 }

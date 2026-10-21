@@ -1,40 +1,21 @@
-import { Info } from "lucide-react";
-import { ToolOverview, ToolSectionHeader } from "@/app/tools/_shared/components";
+"use client"
+import { Info } from "lucide-react"
+import { ToolOverview, ToolSectionHeader } from "@/app/tools/_shared/components"
 
 export function LandedCostOverview() {
     return (
-        <div className="w-full mb-16">
-            <ToolSectionHeader
-                icon={Info}
-                title="Tool Essential"
-            />
+        <div className="w-full">
+            <ToolSectionHeader icon={Info} title="About this calculator" />
             <ToolOverview
-                heading="What is the "
-                headingAccent="Landed Cost Calculator?"
-                definition={
-                    <>
-                        The Landed Cost Calculator is a free tool that helps you find the real cost of a product after adding all extra expenses like shipping, import duties, taxes, and fees. Instead of relying only on the supplier price, it shows the actual cost per unit and total investment required to get your products ready for sale. Used by eCommerce sellers, importers, and small business owners, it helps you plan purchases, set accurate selling prices, and avoid unexpected costs—so you can make better buying decisions before placing an order.
-                    </>
-                }
-                facts={[
-                    {
-                        stat: "Full Visibility",
-                        label: "Find Hidden Fees",
-                        detail: "Supplier quotes don't include shipping or import taxes. This tool reveals your actual costs so you never lose money on unexpected charges."
-                    },
-                    {
-                        stat: "Margin Protection",
-                        label: "Protect Your Profits",
-                        detail: "If you sell products without calculating customs and handling, your profit disappears. Use your landed cost to set retail prices that actually make money."
-                    },
-                    {
-                        stat: "Smart Sourcing",
-                        label: "Compare Suppliers",
-                        detail: "Easily compare different factory quotes or shipping methods (like sea vs. air freight) to find the most cost-effective option for your business."
-                    }
-                ]}
+                heading="What the landed cost calculator does"
+                definition="It adds shipping, duty, insurance and fees to the supplier's price and divides by the units, so you see what one item costs once it is in your warehouse. That is the number to price from."
                 accent="blue"
+                facts={[
+                    { stat: "5 costs", label: "In one figure", detail: "Product, shipping, duty, insurance and other fees. Duty is a percentage of the product value; the rest are flat amounts for the shipment." },
+                    { stat: "Per unit", label: "The price to margin from", detail: "Total landed cost ÷ units. Supplier quotes leave out a third or more of what you'll pay." },
+                    { stat: "Compare quotes", label: "Sea against air, supplier against supplier", detail: "Run each quote through and compare the landed cost per unit, not the freight bill." },
+                ]}
             />
         </div>
-    );
+    )
 }

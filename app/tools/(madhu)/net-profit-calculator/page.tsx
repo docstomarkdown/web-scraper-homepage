@@ -8,8 +8,8 @@ import { CTA } from "@/components/sections/CTA"
 import { Lightbulb } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: "Net Profit Calculator - Calculate True Business Profit",
-    description: "Calculate your net profit after expenses, ads, overhead, and taxes. Get a clear view of your business bottom line with our free calculator.",
+    title: "Net Profit Calculator: Free Profit After Costs and Tax",
+    description: "From revenue, cost of goods, advertising, overheads and a tax rate to gross profit, operating profit, net profit and the margins.",
     alternates: { canonical: "/tools/net-profit-calculator" },
 }
 
@@ -24,7 +24,7 @@ export default function NetProfitCalculatorPage() {
                 <div className="max-w-4xl mx-auto space-y-16">
                     <FadeIn delay={0.2}>
                         <ToolSectionHeader 
-                            title="Tool Essential"
+                            title="What this calculator does"
                             icon={Lightbulb}
                         />
                         <NetProfitOverview />
@@ -39,25 +39,25 @@ export default function NetProfitCalculatorPage() {
                         <ToolFAQ
                             faqs={[
                                 {
-                                    question: "What is the difference between Gross Profit and Net Profit?",
-                                    answer: "<strong>Gross Profit</strong> is only your Revenue minus COGS (what it costs to make the product). <strong>Net Profit</strong> is the 'True Bottom Line'—it's what remains after subtracting everything else, including ads, rent, software, payroll, and taxes. It is your actual take-home pay."
+                                    question: "How do you calculate net profit?",
+                                    answer: "Revenue minus cost of goods sold, minus advertising and overheads, minus tax on what's left. The calculator shows each step.",
                                 },
                                 {
-                                    question: "Should I include my own salary in the overhead costs?",
-                                    answer: "Yes, you should. If you don't account for a fair market wage for yourself, your business profit is artificially inflated. Tracking your salary as an expense helps you see if the business is truly profitable as an independent entity."
+                                    question: "What's the difference between gross, operating and net profit?",
+                                    answer: "Gross takes off the goods, operating takes off the running costs, net takes off tax. Each is a smaller number than the last.",
                                 },
                                 {
-                                    question: "What is a 'Healthy' net profit margin for e-commerce?",
-                                    answer: "While it varies by industry, a <strong>Net Profit Margin of 10% to 20%</strong> is generally considered healthy for established e-commerce brands. Brands focus on high-volume, low-margin goods might operate at 5%, while luxury goods can often reach 30% or higher."
+                                    question: "What is a good net profit margin for an online store?",
+                                    answer: "Many stores land between 5% and 20%. The number depends on the category and how much advertising the sales need.",
                                 },
                                 {
-                                    question: "Why does the tool subtract taxes from the net profit?",
-                                    answer: "Many business owners make the mistake of spending 'Operational Profit' before taxes are paid. By subtracting your estimated tax rate, this tool gives you a realistic view of the actual cash you can safely withdraw or reinvest back into the business."
+                                    question: "Where do Amazon or Shopify fees go?",
+                                    answer: "Put referral and payment fees in cost of goods if they vary per sale, or in overheads if they're fixed. Either way, don't leave them out.",
                                 },
                                 {
-                                    question: "How do I use the new Income & Expense Breakdown?",
-                                    answer: "After your net profit is calculated, look for the 'View Income & Expense Breakdown' dropdown near the bottom of the Results Panel. Clicking it will expand an interactive chart and categorized list showing exactly what percentage of your revenue is consumed by each distinct cost block."
-                                }
+                                    question: "Why is tax zero?",
+                                    answer: "Tax only applies when operating profit is positive. A loss produces no tax in this calculator.",
+                                },
                             ]}
                         />
                     </FadeIn>

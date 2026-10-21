@@ -1,27 +1,28 @@
-"use client";
-import { ToolSteps } from "@/app/tools/_shared/components/ToolSteps";
-import { Package, Ship, TrendingDown } from "lucide-react";
+"use client"
+import { ToolSteps } from "@/app/tools/_shared/components"
+import { Package, Ship, TrendingDown } from "lucide-react"
 
 export function LandedCostHowToUse() {
     return (
         <ToolSteps
+            title="How to use this tool"
             steps={[
                 {
-                    title: "Enter Order Details",
-                    description: "Input your supplier's cost per unit and the total number of units in your shipment. These two values form the base of the calculation.",
-                    icon: Package
+                    title: "Enter the order",
+                    description: "Type the supplier's cost per unit and the number of units in the shipment.",
+                    icon: Package,
                 },
                 {
-                    title: "Add Shipping Costs",
-                    description: "Include international freight, cargo insurance, your customs duty rate, and any extra fees like brokerage or port handling. Every cost counts.",
-                    icon: Ship
+                    title: "Add what it costs to bring it in",
+                    description: "Enter the shipping cost, your import duty rate, insurance, and any other fees such as brokerage or port handling.",
+                    icon: Ship,
                 },
                 {
-                    title: "Review True Cost",
-                    description: "The calculator divides all costs evenly across your order to show the real landed cost per unit — the only price to use when setting margins.",
-                    icon: TrendingDown
-                }
+                    title: "Read the landed cost per unit",
+                    description: "The calculator spreads every cost across the units and shows the price to use when you set your margins.",
+                    icon: TrendingDown,
+                },
             ]}
         />
-    );
+    )
 }

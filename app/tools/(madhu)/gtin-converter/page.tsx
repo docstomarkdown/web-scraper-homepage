@@ -1,13 +1,14 @@
+import { Lightbulb } from "lucide-react"
 import { Metadata } from "next"
-import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
+import { FadeIn, ToolFAQ, ToolPageTitle, ToolSectionHeader } from "@/app/tools/_shared/components"
 import { Converter } from "./_components/Converter"
 import { GTINInfo } from "./_components/GTINInfo"
 import { GTINHowToUse } from "./_components/GTINHowToUse"
 import { GTINGuide } from "./_components/GTINGuide"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
-    title: "Global Trade Item Number (GTIN) Converter - UPC, EAN, GTIN-12, GTIN-13, GTIN-14",
-    description: "Convert between UPC-A, EAN-13, GTIN-12, GTIN-13, and GTIN-14 formats. Calculate check digits and validate barcode structures instantly.",
+    title: "GTIN Converter: Free UPC, EAN and GTIN-14 Formats",
+    description: "Check a barcode number's check digit and see it in GTIN-8, GTIN-12 (UPC), GTIN-13 (EAN) and GTIN-14 form, by typing it or scanning the label.",
     alternates: { canonical: "/tools/gtin-converter" },
 }
 export default function GTINConverterPage() {
@@ -20,6 +21,7 @@ export default function GTINConverterPage() {
                 </div>
                 <div className="max-w-4xl mx-auto space-y-16">
                     <FadeIn delay={0.1}>
+                        <ToolSectionHeader title="What this converter does" icon={Lightbulb} />
                         <GTINInfo />
                     </FadeIn>
                     <FadeIn delay={0.2}>
@@ -32,25 +34,25 @@ export default function GTINConverterPage() {
                         <ToolFAQ
                             faqs={[
                                 {
-                                    question: "What is a GTIN (Global Trade Item Number)?",
-                                    answer: "A GTIN is a unique, internationally recognized identifier used to look up product information in global databases. It is the actual number printed beneath a barcode (such as a UPC or EAN). GTINs ensure that products are uniformly identified across all e-commerce platforms, retail checkout systems, and supply chains."
+                                    question: "What is a GTIN?",
+                                    answer: "A Global Trade Item Number, the number behind every retail barcode. UPC and EAN codes are GTINs of different lengths.",
                                 },
                                 {
-                                    question: "What are the different types of GTINs?",
-                                    answer: "There are four primary lengths of GTINs: <strong>GTIN-8</strong> (an 8-digit code for very small items), <strong>GTIN-12</strong> (a 12-digit code predominantly used in North America), <strong>GTIN-13</strong> (a 13-digit code used heavily in Europe and internationally), and <strong>GTIN-14</strong> (a 14-digit code used exclusively for wholesale shipping and bulk pallet logistics)."
+                                    question: "What's the difference between UPC, EAN and GTIN?",
+                                    answer: "UPC is the 12-digit form used in North America, EAN the 13-digit form used elsewhere, and GTIN the family name for both plus the 8- and 14-digit forms.",
                                 },
                                 {
-                                    question: "What is the difference between UPC, EAN, and GTIN?",
-                                    answer: "\"GTIN\" is the overarching umbrella term for the underlying numerical data. \"UPC\" (Universal Product Code) and \"EAN\" (European Article Number) are simply the barcode graphics that hold that data. A UPC-A barcode contains a 12-digit GTIN (GTIN-12), while an EAN-13 barcode contains a 13-digit GTIN (GTIN-13)."
+                                    question: "How do I convert a UPC to an EAN?",
+                                    answer: "Add a zero at the front. The converter does it and recomputes nothing else, because the check digit stays the same.",
                                 },
                                 {
-                                    question: "Why do I need to convert between different GTIN formats?",
-                                    answer: "Different marketplaces and retail systems require specific data lengths. For instance, Amazon often requires a 14-digit padded format for bulk inventory, or a European supplier might require your American 12-digit code converted into a 13-digit EAN. Conversion standardizes your number by adding necessary padding and recalculating the check digit so retail systems accept it globally."
+                                    question: "Why does it say my number is invalid?",
+                                    answer: "The last digit doesn't match the other digits. Check for a typo or a misread scan; the converter shows the digit it expected.",
                                 },
                                 {
-                                    question: "How does this GTIN Converter tool work?",
-                                    answer: "Simply type your GTIN manually or upload a photo of a barcode label. Our tool automatically reads the code, validates the Modulo 10 check digit to ensure it was printed correctly, and instantly converts your item across all four major formats (GTIN-8, GTIN-12, GTIN-13, and GTIN-14) simultaneously."
-                                }
+                                    question: "Does a valid number mean I can list the product?",
+                                    answer: "No. Validity only means the number is well formed. Marketplaces check it against the GS1 registry, which this tool can't see.",
+                                },
                             ]}
                         />
                     </FadeIn>

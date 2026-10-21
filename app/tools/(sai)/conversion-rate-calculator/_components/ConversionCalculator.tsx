@@ -114,12 +114,12 @@ export function ConversionCalculator() {
                         <div className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl transition-all duration-200 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] hover:border-slate-300 overflow-hidden dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700">
                             <div className="flex items-center gap-2 p-4">
                                 <TrendingUp className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
-                                <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 tracking-tight dark:text-slate-400">
+                                <span className="text-xs sm:text-[14px] font-bold text-slate-500 tracking-tight dark:text-slate-400">
                                     Industry Benchmark
                                 </span>
                             </div>
                             <div className="px-4 pb-4 pt-0 border-t border-slate-100 dark:border-slate-800">
-                                <p className="text-[13px] text-slate-500 leading-relaxed pt-3 pl-[24px] dark:text-slate-400">
+                                <p className="text-xs text-slate-500 leading-relaxed pt-3 pl-[24px] dark:text-slate-400">
                                     E-commerce conversion rates typically range from <strong className="text-slate-700 font-semibold dark:text-slate-200">1% to 3%</strong>. A rate above <strong className="text-slate-700 font-semibold dark:text-slate-200">3%</strong> is generally considered excellent, though this varies by industry and traffic quality.
                                 </p>
                             </div>

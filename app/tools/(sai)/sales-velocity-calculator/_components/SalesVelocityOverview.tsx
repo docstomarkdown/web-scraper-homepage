@@ -1,39 +1,20 @@
+"use client"
 import { Info } from "lucide-react"
 import { ToolOverview, ToolSectionHeader } from "@/app/tools/_shared/components"
 
 export function SalesVelocityOverview() {
     return (
-        <div className="w-full mb-16">
-            <ToolSectionHeader
-                icon={Info}
-                title="Tool Essential"
-            />
+        <div className="w-full">
+            <ToolSectionHeader icon={Info} title="About this calculator" />
             <ToolOverview
-                heading="What is the "
-                headingAccent="Sales Velocity Calculator?"
-                definition={
-                    <>
-                        The Sales Velocity Calculator is a quick, user-friendly tool that shows how fast your product sells each day. Simply enter your total units sold, time period, and any stockout days, and the tool instantly provides your true sales velocity, daily average, monthly run rate, and projected revenue. Designed for online sellers, Amazon/Flipkart merchants, D2C brands, small businesses, and inventory teams, it offers an easy way to track product performance and prevent stockouts. It helps you understand your real selling speed, identify demand trends, and make smarter restocking decisions — all through a clean and intuitive interface.
-                    </>
-                }
-                facts={[
-                    {
-                        stat: "True",
-                        label: "Selling Speed",
-                        detail: "Get an accurate daily sales rate that adjusts for stockouts, so you instantly understand how fast your product is really moving."
-                    },
-                    {
-                        stat: "Future",
-                        label: "Sales",
-                        detail: "See your weekly velocity, monthly run rate, and projected revenue to plan inventory and avoid running out of stock."
-                    },
-                    {
-                        stat: "Smarter",
-                        label: "Decisions",
-                        detail: "Spot demand trends, prevent stockouts, and restock at the right time — all with one quick, easy-to-use calculation."
-                    }
-                ]}
+                heading="What the sales velocity calculator does"
+                definition="It divides units sold by the days you were in stock, so stockout days don't drag the average down, and shows the monthly units and revenue that rate implies."
                 accent="blue"
+                facts={[
+                    { stat: "Raw velocity", label: "Units ÷ all days", detail: "Too low if you ran out during the period, so a reorder based on it is too small." },
+                    { stat: "True velocity", label: "Units ÷ days in stock", detail: "The rate at which the product sells when it can be bought. Use it to reorder." },
+                    { stat: "Run rate", label: "True velocity × 30", detail: "Monthly units, and revenue when you add a price. The gap from the raw figure is what stockouts cost." },
+                ]}
             />
         </div>
     )

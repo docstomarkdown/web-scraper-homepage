@@ -120,17 +120,18 @@ export function BundleProfitCalculator() {
                             {products.map((product, index) => (
                                 <div key={product.id} className="relative group p-4 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-slate-50 transition-colors dark:border-slate-800 dark:bg-slate-800/60 dark:hover:bg-slate-800/60">
                                     <div className="flex items-center justify-between mb-3">
-                                        <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2 dark:text-white">
+                                        <p className="text-sm font-semibold text-slate-900 flex items-center gap-2 dark:text-white">
                                             <span className={cn("w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold", getBadgeColor(index))}>
                                                 {String.fromCharCode(65 + index)}
                                             </span>
                                             {index < 2 ? product.name : `Product ${String.fromCharCode(65 + index)}`}
-                                        </h3>
+                                        </p>
                                         {products.length > 1 && (
                                             <Button
                                                 variant="ghost"
                                                 size="sm"
                                                 onClick={() => removeProduct(product.id)}
+                                                aria-label="Remove this product"
                                                 className="h-8 w-8 p-0 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:text-slate-500 dark:hover:text-red-400 dark:hover:bg-red-950/40"
                                             >
                                                 <Trash2 className="w-4 h-4" />
@@ -260,7 +261,7 @@ export function BundleProfitCalculator() {
                                 margin > 0 ? "bg-yellow-50 border-yellow-200 text-yellow-700 dark:bg-yellow-950/40 dark:border-yellow-900/50 dark:text-yellow-400" :
                                     "bg-red-50 border-red-200 text-red-700 dark:bg-red-950/40 dark:border-red-900/50 dark:text-red-400"
                         )}>
-                            {margin >= 20 ? "🚀 Highly Profitable Bundle" : margin > 0 ? "⚠️ Low Margin Bundle" : "🛑 Unprofitable Bundle"}
+                            {margin >= 20 ? "Highly profitable bundle" : margin > 0 ? "Low-margin bundle" : "Unprofitable Bundle"}
                         </div>
                     )}
                     {/* Breakdown Card */}
@@ -296,11 +297,11 @@ export function BundleProfitCalculator() {
                         </div>
                     ) : (
                         <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center dark:bg-slate-900 dark:border-slate-800">
-                            <p className="text-sm text-slate-400 dark:text-slate-500">Enter product details to calculate profit.</p>
+                            <p className="text-sm text-slate-600 dark:text-slate-300">Enter product details to calculate profit.</p>
                         </div>
                     )}
                 </div>
             </div>
         </FadeIn>
     )
-}
+}

@@ -1,26 +1,28 @@
 "use client"
 import { ToolSteps } from "@/app/tools/_shared/components"
-import { DollarSign, BarChart3, TrendingUp } from "lucide-react"
+import { LineChart, Tag, TrendingUp } from "lucide-react"
+
 export function PriceElasticityHowToUse() {
     return (
         <ToolSteps
+            title="How to use this tool"
             steps={[
                 {
-                    title: "Old Data",
-                    description: "Enter specific past original market listed prices alongside known rigid exact sales history.",
-                    icon: DollarSign
+                    title: "Enter the old price and sales",
+                    description: "Type the price you charged before the change and the units you sold at it over a period.",
+                    icon: Tag,
                 },
                 {
-                    title: "New Data",
-                    description: "Input actively tested modern replacement pricing parameters paired with related sales count.",
-                    icon: BarChart3
+                    title: "Enter the new price and sales",
+                    description: "Type the price after the change and the units sold over a period of the same length.",
+                    icon: TrendingUp,
                 },
                 {
-                    title: "Check Curve",
-                    description: "Instantly measure exactly if demand is totally elastic and how rate changes manipulate growth.",
-                    icon: TrendingUp
-                }
+                    title: "Read the elasticity",
+                    description: "The calculator shows the elasticity number and whether demand is elastic, inelastic or unitary, with what that means for revenue.",
+                    icon: LineChart,
+                },
             ]}
         />
     )
-}
+}

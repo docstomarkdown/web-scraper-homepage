@@ -34,7 +34,7 @@ export function MadhuSubHeader({ title, icon: Icon, className, withDot = false }
     return (
         <label className={cn("text-sm font-medium text-slate-700 flex items-center gap-2 mb-4 dark:text-slate-200", className)}>
             {withDot && <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />}
-            {Icon && <Icon className="w-4 h-4 text-slate-400 dark:text-slate-500" />}
+            {Icon && <Icon className="w-4 h-4 text-slate-600 dark:text-slate-300" />}
             {title}
         </label>
     )
@@ -77,8 +77,10 @@ export function InputCardHeader({ title, subtitle, icon: Icon, onHelpClick, scro
                                 <Tooltip>
                                     <TooltipTrigger asChild>
                                         <button
+                                            type="button"
                                             onClick={handleHelp}
-                                            className="text-slate-400 hover:text-blue-600 transition-colors dark:text-slate-500 dark:hover:text-blue-400"
+                                            aria-label="How to use this calculator"
+                                            className="text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors dark:hover:text-blue-400"
                                         >
                                             <HelpCircle className="h-5 w-5" />
                                         </button>
@@ -90,7 +92,7 @@ export function InputCardHeader({ title, subtitle, icon: Icon, onHelpClick, scro
                             </TooltipProvider>
                         )}
                     </div>
-                    {subtitle && <p className="text-sm text-slate-500 font-medium dark:text-slate-400">{subtitle}</p>}
+                    {subtitle && <p className="text-sm text-slate-600 dark:text-slate-300 font-medium">{subtitle}</p>}
                 </div>
             </div>
             <div className="flex items-center gap-2 pr-1">
@@ -101,7 +103,7 @@ export function InputCardHeader({ title, subtitle, icon: Icon, onHelpClick, scro
                                 <button
                                     type="button"
                                     onClick={onReset}
-                                    className="group flex items-center justify-center h-10 w-10 text-slate-400 bg-white border border-slate-200 shadow-sm rounded-xl transition-all duration-200 active:scale-90 dark:text-slate-500 dark:bg-slate-900 dark:border-slate-800"
+                                    className="group flex items-center justify-center h-10 w-10 text-slate-600 dark:text-slate-300 bg-white border border-slate-200 shadow-sm rounded-xl transition-all duration-200 active:scale-90 dark:bg-slate-900 dark:border-slate-800"
                                     aria-label="Reset Calculator"
                                 >
                                     <RotateCcw className="h-4 w-4 transition-transform duration-500 group-active:rotate-[-180deg]" />
@@ -130,7 +132,7 @@ export function ActionButtons({ onReset, onCopy, copyDisabled, isCopied, classNa
             <Button
                 variant="outline"
                 className={cn(
-                    "group h-11 border-dashed border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-slate-900 transition-all font-medium rounded-xl dark:border-slate-800 dark:hover:bg-slate-800/60 dark:text-slate-400 dark:hover:text-white",
+                    "group h-11 border-dashed border-slate-200 hover:bg-slate-50 text-slate-600 dark:text-slate-300 hover:text-slate-900 transition-all font-medium rounded-xl dark:border-slate-800 dark:hover:bg-slate-800/60 dark:text-slate-400 dark:hover:text-white",
                     onCopy ? "flex-[2]" : "w-full"
                 )}
                 onClick={onReset}
@@ -243,7 +245,7 @@ export function MadhuToolTemplate({
                                                 </div>
                                                 <div className="flex-1">
                                                     <div className="mb-1">
-                                                        <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full uppercase tracking-wider dark:text-blue-400 dark:bg-blue-950/40">
+                                                        <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full uppercase tracking-wider dark:text-blue-400 dark:bg-blue-950/40">
                                                             Step {stepNumber}
                                                         </span>
                                                     </div>
@@ -265,7 +267,7 @@ export function MadhuToolTemplate({
                                         </div>
                                         <div className="flex-1">
                                             <div className="flex items-center gap-2 mb-3">
-                                                <span className="text-[10px] font-bold text-white bg-blue-600 px-3 py-1 rounded-full uppercase tracking-wider shadow-md">The Goal</span>
+                                                <span className="text-xs font-bold text-white bg-blue-600 px-3 py-1 rounded-full uppercase tracking-wider shadow-md">The Goal</span>
                                             </div>
                                             <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2 leading-tight dark:text-white">{howToUseGoal.title}</h3>
                                             <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-medium opacity-90 dark:text-slate-300" dangerouslySetInnerHTML={{ __html: howToUseGoal.description }} />
@@ -305,7 +307,7 @@ export function MadhuToolTemplate({
                                                                 <TooltipProvider delayDuration={100}>
                                                                     <Tooltip>
                                                                         <TooltipTrigger asChild>
-                                                                            <button type="button" className="text-slate-400 hover:text-blue-600 transition-colors dark:text-slate-500 dark:hover:text-blue-400">
+                                                                            <button type="button" aria-label="More about this point" className="text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors dark:hover:text-blue-400">
                                                                                 <Info className="h-3.5 w-3.5" />
                                                                             </button>
                                                                         </TooltipTrigger>
@@ -324,10 +326,10 @@ export function MadhuToolTemplate({
                                                 {/* Right: Takeaway Stat Panel */}
                                                 <div className="flex md:flex-col items-center justify-center gap-1.5 p-6 md:w-48 bg-slate-50/50 border-b md:border-b-0 md:border-l border-slate-100 order-1 md:order-2 dark:bg-slate-800/60 dark:border-slate-800">
                                                     <div className={`text-3xl font-bold ${insight.statColor} tracking-tight`}>{insight.stat}</div>
-                                                    <div className="text-[10px] font-bold uppercase tracking-widest text-slate-300 bg-slate-100/50 px-2 py-0.5 rounded-full dark:text-slate-600 dark:bg-slate-800">
+                                                    <div className="text-xs font-bold uppercase tracking-widest text-slate-600 bg-slate-100/50 px-2 py-0.5 rounded-full dark:text-slate-300 dark:bg-slate-800">
                                                         Takeaway
                                                     </div>
-                                                    <div className="text-[11px] font-medium text-slate-500 text-center leading-tight mt-1 max-w-[120px] dark:text-slate-400">
+                                                    <div className="text-xs font-medium text-slate-600 dark:text-slate-300 text-center leading-tight mt-1 max-w-[120px]">
                                                         {insight.statLabel}
                                                     </div>
                                                 </div>

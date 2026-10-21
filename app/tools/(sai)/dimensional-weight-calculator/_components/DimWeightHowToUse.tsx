@@ -1,23 +1,16 @@
-"use client";
-import { ToolSteps } from "@/app/tools/_shared/components/ToolSteps";
-import { Box, Scale, Calculator } from "lucide-react";
+"use client"
+import { ToolSteps } from "@/app/tools/_shared/components"
+import { Ruler, Scale, Calculator } from "lucide-react"
+
+/** The three things a reader does, in order, with the calculator's own field names. */
 export function DimWeightHowToUse() {
-    const steps = [
-        {
-            title: "Measure Package",
-            description: "Measure the length, width, and height of your package in inches. Always round up to the nearest whole inch.",
-            icon: Box,
-        },
-        {
-            title: "Select Divisor",
-            description: "Choose the appropriate DIM divisor. Use 139 for UPS/FedEx daily rates, or 166 for retail rates if unsure.",
-            icon: Scale,
-        },
-        {
-            title: "Calculate Billable Weight",
-            description: "Enter the dimensions to see the dimensional weight. Carriers charge the greater of the actual vs. dimensional weight.",
-            icon: Calculator,
-        },
-    ];
-    return <ToolSteps steps={steps} />;
-}
+    return (
+        <ToolSteps
+            steps={[
+                { title: "Enter the parcel's Length, Width and Height", description: "Measure the outside of the box at its longest points, in inches or centimetres; switch the unit next to the fields.", icon: Ruler },
+                { title: "Enter the Actual Weight and pick the divisor", description: "The actual weight is the parcel on a scale. The divisor is the carrier's: 139 for UPS and FedEx daily rates in the US, 166 for USPS, 5,000 for most metric carriers.", icon: Scale },
+                { title: "Read the dimensional and billable weight", description: "Dimensional weight is the volume divided by the divisor, rounded up. Billable weight is the higher of dimensional and actual weight, which is what the carrier charges on.", icon: Calculator }
+            ]}
+        />
+    )
+}

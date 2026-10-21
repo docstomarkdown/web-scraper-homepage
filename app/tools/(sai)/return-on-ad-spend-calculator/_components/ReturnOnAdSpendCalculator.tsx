@@ -49,7 +49,7 @@ export function ReturnOnAdSpendCalculator() {
     // Determine ROAS health (shared logic)
     const getROASHealth = (roasValue: number, hasInput: boolean) => {
         if (!hasInput) {
-            return { color: "text-slate-400 dark:text-slate-500", bg: "bg-slate-800 dark:bg-slate-700", label: "---" }
+            return { color: "text-slate-600 dark:text-slate-300", bg: "bg-slate-800 dark:bg-slate-700", label: "---" }
         }
         let label = "High Performance"
         if (roasValue < 1) label = "Loss Making"
@@ -83,14 +83,6 @@ export function ReturnOnAdSpendCalculator() {
                                 max={1000000}
                                 tooltip="The total amount spent on advertising campaigns."
                             />
-                            {/* Simplified Input Mode Selection via Tabs or just stacked inputs? 
-                                User asked to "Simplify revenue input". The previous toggle was "Do you know your revenue? Yes/No".
-                                "Yes" -> Show Revenue Input. "No" -> Show Target ROAS Input.
-                                I will replace the bulky toggle with a cleaner interaction or just label the section better. 
-                                Actually, the user might want a simple calculator where you just enter Revenue. 
-                                But the tool has two distinct modes: "Calculate ROAS" (backward looking) and "Calculate Revenue Needed" (forward looking).
-                                I will switch to a Tabs-like approach or a simple dropdown for "Goal", which is cleaner than a "Do you know...?" question.
-                            */}
                             <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-3 dark:bg-slate-800/60 dark:border-slate-800">
                                 <label className="text-sm font-medium text-slate-700 block dark:text-slate-200">I want to calculate:</label>
                                 <div className="grid grid-cols-2 gap-2">
@@ -98,7 +90,7 @@ export function ReturnOnAdSpendCalculator() {
                                         onClick={() => setMode("calculate-roas")}
                                         className={`py-2.5 px-3 rounded-lg text-sm font-medium transition-all duration-200 border ${mode === "calculate-roas"
                                             ? "bg-white border-blue-200 text-blue-700 shadow-sm ring-1 ring-blue-100"
-                                            : "bg-transparent border-transparent text-slate-500 hover:bg-slate-100"
+                                            : "bg-transparent border-transparent text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
                                             }`}
                                     >
                                         My Current ROAS
@@ -107,7 +99,7 @@ export function ReturnOnAdSpendCalculator() {
                                         onClick={() => setMode("calculate-revenue")}
                                         className={`py-2.5 px-3 rounded-lg text-sm font-medium transition-all duration-200 border ${mode === "calculate-revenue"
                                             ? "bg-white border-blue-200 text-blue-700 shadow-sm ring-1 ring-blue-100"
-                                            : "bg-transparent border-transparent text-slate-500 hover:bg-slate-100"
+                                            : "bg-transparent border-transparent text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
                                             }`}
                                     >
                                         Revenue Goal
@@ -172,7 +164,7 @@ export function ReturnOnAdSpendCalculator() {
                     {spend > 0 ? (
                         <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500 dark:bg-slate-900 dark:border-slate-800">
                             <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800">
-                                <p className="text-xs font-bold text-slate-600 uppercase tracking-wider dark:text-slate-300">Performance Breakdown</p>
+                                <p className="text-xs font-bold text-slate-600 tracking-wider dark:text-slate-300">Performance Breakdown</p>
                             </div>
                             <div className="divide-y divide-slate-100 dark:divide-slate-800">
                                 <div className="flex justify-between items-center px-5 py-3.5">
@@ -185,7 +177,7 @@ export function ReturnOnAdSpendCalculator() {
                                 </div>
                                 <div className="flex justify-between items-center px-5 py-4 bg-slate-50 dark:bg-slate-800/60">
                                     <span className="text-sm font-bold text-blue-600 dark:text-blue-400">Net Profit (Ads)</span>
-                                    <span className={cn("text-base font-bold", (mode === "calculate-roas" ? profit : plannedProfit) >= 0 ? "text-blue-600 dark:text-blue-400" : "text-red-500 dark:text-red-400")}>
+                                    <span className={cn("text-base font-bold", (mode === "calculate-roas" ? profit : plannedProfit) >= 0 ? "text-blue-600 dark:text-blue-400" : "text-red-700 dark:text-red-300")}>
                                         {formatCurrency(mode === "calculate-roas" ? profit : plannedProfit)}
                                     </span>
                                 </div>
@@ -193,11 +185,11 @@ export function ReturnOnAdSpendCalculator() {
                         </div>
                     ) : (
                         <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center dark:bg-slate-900 dark:border-slate-800">
-                            <p className="text-sm text-slate-400 dark:text-slate-500">Enter ad spend details to calculate performance.</p>
+                            <p className="text-sm text-slate-600 dark:text-slate-300">Enter ad spend details to calculate performance.</p>
                         </div>
                     )}
                 </div>
             </div>
         </FadeIn>
     )
-}
+}

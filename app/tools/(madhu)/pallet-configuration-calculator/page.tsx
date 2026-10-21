@@ -8,8 +8,8 @@ import { CTA } from "@/components/sections/CTA"
 import { Lightbulb } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: "Pallet Configuration Calculator - Optimize Product Loading & Shipping",
-    description: "Calculate optimal product configuration per pallet based on box dimensions. Maximize pallet efficiency, reduce shipping costs, and optimize warehouse space utilization.",
+    title: "Pallet Configuration Calculator: Free Cartons per Pallet",
+    description: "Find how many cartons fit on a standard or custom pallet, how many per layer and how many layers, within a height and weight limit.",
     alternates: { canonical: "/tools/pallet-configuration-calculator" },
 }
 
@@ -24,7 +24,7 @@ export default function PalletConfigurationCalculatorPage() {
                 <div className="max-w-4xl mx-auto space-y-16">
                     <FadeIn delay={0.1}>
                         <ToolSectionHeader 
-                            title="Tool Essential"
+                            title="What this calculator does"
                             icon={Lightbulb}
                         />
                         <PalletOverview />
@@ -39,29 +39,25 @@ export default function PalletConfigurationCalculatorPage() {
                         <ToolFAQ
                             faqs={[
                                 {
-                                    question: "Why is the calculator showing 0 units for my configuration?",
-                                    answer: "This typically happens if a single <strong>box dimension</strong> is larger than your pallet length/width, or if your box height exceeds the <strong>Max Stack Height</strong>. Ensure your units (in/cm) are correct and that you haven't set a Max Pallet Weight lower than a single box's weight."
+                                    question: "How many cartons fit on a pallet?",
+                                    answer: "Divide the pallet's length and width by the carton's, keep whole numbers and multiply for cartons per layer, then multiply by the layers that fit under the height limit. A 12 by 8 by 6 inch carton on a 48 by 40 pallet at 72 inches is 220.",
                                 },
                                 {
-                                    question: "What's the difference between Standard, Euro, and Custom pallets?",
-                                    answer: "<strong>Standard</strong> is the common North American GMA pallet (48 × 40 in). <strong>Euro</strong> is the standard European size (120 × 80 cm). Use <strong>Custom</strong> to enter any specific dimensions for overseas shipments or specialized rack systems."
+                                    question: "What is the standard pallet size?",
+                                    answer: "48 by 40 inches in North America (GMA). Europe uses 1200 by 800 mm (EUR) and 1200 by 1000 mm. The calculator has presets for each.",
                                 },
                                 {
-                                    question: "Does the 'Used Height' result include the pallet's base height?",
-                                    answer: "Yes. The calculator accounts for a standard <strong>5.5-inch wooden pallet base</strong>. The 'Used Height' represents the total distance from the floor to the top of your stack, ensuring you stay compliant with the 72-inch LTL and Amazon FBA limits."
+                                    question: "Why is 5.5 inches taken off the height?",
+                                    answer: "That's the pallet's own thickness. The stack limit your carrier gives usually includes it.",
                                 },
                                 {
-                                    question: "How much does 'Allow Rotation' improve my pallet efficiency?",
-                                    answer: "By testing <strong>6 different box orientations</strong> (upright, end-to-end, side-by-side, etc.), the tool finds the maximum possible fit. Turning this on can often fit 10-20% more units, directly reducing your <strong>total shipping cost per unit</strong>."
+                                    question: "What does area efficiency mean?",
+                                    answer: "The share of the pallet's top surface the bottom layer covers. Under 85% means a different carton size or orientation might fit more.",
                                 },
                                 {
-                                    question: "Can I use this for Amazon FBA or standard LTL freight?",
-                                    answer: "Absolutely. The default <strong>72-inch stack height</strong> and optimization logic are designed to meet Amazon FBA and common carrier requirements. It helps you maximize warehouse space while avoiding the surcharges associated with unstable or oversized loads."
+                                    question: "Does it handle a weight limit?",
+                                    answer: "Yes. Enter the carton weight and the pallet limit, and the total cartons and layers are reduced to stay under it.",
                                 },
-                                {
-                                    question: "How do weight limits affect the final layout?",
-                                    answer: "If you enter a <strong>Max Pallet Weight</strong> under Advanced Settings, the tool will automatically reduce the number of layers to ensure the pallet is safe for transport, even if there is still vertical space available. This prevents structural pallet failure and carrier rejections."
-                                }
                             ]}
                         />
                     </FadeIn>

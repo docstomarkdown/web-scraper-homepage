@@ -1,55 +1,61 @@
 import { Metadata } from "next"
 import { ReorderCalculator } from "./_components/ReorderCalculator"
-import { ReorderGuide } from "./_components/ReorderGuide"
 import { ReorderHowToUse } from "./_components/ReorderHowToUse"
-import { FadeIn, ToolFAQ } from "@/app/tools/_shared/components"
+import { ReorderGuide } from "./_components/ReorderGuide"
+import { ReorderOverview } from "./_components/ReorderOverview"
+import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
+
 export const metadata: Metadata = {
-    title: 'Inventory Reorder Point Calculator',
-    description: 'Calculate exactly when to reorder stock. Prevent stockouts and overstocking with our scientific Reorder Point calculator.',
+    title: "Reorder Point Calculator: Free Restock Trigger",
+    description: "Work out the stock level at which to reorder, from your daily sales, supplier lead time and safety buffer, and see how many days you have left.",
     alternates: { canonical: "/tools/inventory-reorder-calculator" },
 }
-export default function ReorderCalculatorPage() {
+
+const faqs = [
+    {
+        question: "What is a reorder point?",
+        answer: "The reorder point is the stock level at which you place a new order so the shipment arrives before you run out. It covers the units you sell during the supplier's lead time, plus a safety buffer.",
+    },
+    {
+        question: "How many days of safety stock should I hold?",
+        answer: "Hold more when your supplier is late often or your sales swing. Seven to fourteen days is a common range for a steady seller; use the Safety Stock Calculator for a figure based on your worst-case numbers.",
+    },
+    {
+        question: "What do I enter as daily sales?",
+        answer: "Your average units sold per day over the last 30 to 90 days. For a seasonal product, use the average for the season you're ordering for.",
+    },
+    {
+        question: "What does Days until reorder mean?",
+        answer: "It is (current stock − reorder point) ÷ daily sales. Zero or a negative number means you should order today.",
+    },
+    {
+        question: "Does the calculator work for every product?",
+        answer: "Yes, for any physical product with a lead time. It assumes sales stay close to the average you enter, so recheck the numbers after a promotion or a price change.",
+    },
+]
+
+export default function InventoryReorderCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-10">
-                    <FadeIn direction="down" duration={0.6}>
-                        <h1 className="text-4xl font-bold tracking-tight text-gray-800 md:text-[42px] mb-4 dark:text-slate-100">
-                            Inventory Reorder Point Calculator
-                        </h1>
-                    </FadeIn>
-                </div>
+                <ToolPageTitle title="Inventory Reorder Point Calculator" direction="down" duration={0.6} />
                 <div className="mb-20">
                     <ReorderCalculator />
                 </div>
-                <div className="max-w-5xl mx-auto space-y-16" id="how-to-use">
+                <div className="max-w-5xl mx-auto space-y-16">
+                    <FadeIn delay={0.2}>
+                        <ReorderOverview />
+                    </FadeIn>
                     <FadeIn delay={0.2}>
                         <ReorderHowToUse />
                     </FadeIn>
                     <FadeIn delay={0.2}>
                         <ReorderGuide />
                     </FadeIn>
-                    {/* FAQ Section */}
                     <FadeIn delay={0.2}>
-                        <ToolFAQ
-                            faqs={[
-                                {
-                                    question: "What is a Reorder Point (ROP)?",
-                                    answer: "The Reorder Point is the specific level of inventory at which a new order must be placed to replenish stock before it runs out. It accounts for the time it takes for the order to arrive (Lead Time)."
-                                },
-                                {
-                                    question: "How much Safety Stock do I need?",
-                                    answer: "This depends on the variability of your sales and supply chain reliability. A common rule of thumb is to hold 7-14 days of safety stock for best-sellers to weather unexpected delays."
-                                },
-                                {
-                                    question: "Does this work for all products?",
-                                    answer: "Yes, this formula works for any physical product. However, for seasonal items, you should adjust your 'Average Daily Sales' to reflect the anticipated seasonal demand."
-                                }
-                            ]}
-                        />
+                        <ToolFAQ title="Questions, answered" faqs={faqs} />
                     </FadeIn>
-                    {/* CTA Section */}
                     <FadeIn delay={0.2}>
                         <CTA />
                     </FadeIn>

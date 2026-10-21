@@ -1,27 +1,15 @@
 "use client"
 import { ToolSteps } from "@/app/tools/_shared/components"
-import { Target, Users, BarChart2 } from "lucide-react"
+import { Users, Percent, Clock } from "lucide-react"
 
+/** The three things a reader does, in order, with the calculator's own field names. */
 export function ABDurationHowToUse() {
     return (
         <ToolSteps
-            title="How to Use This Calculator"
             steps={[
-                {
-                    title: "Enter Your Baseline & Goal",
-                    description: "Input your current conversion rate (e.g. 5%) and the expected improvement for Version B (e.g. 10%). The smaller the improvement you want to detect, the longer your test needs to run.",
-                    icon: Target
-                },
-                {
-                    title: "Set Your Traffic Details",
-                    description: "Enter your average daily visitors and choose your traffic split between A & B (default: 50/50). Unequal splits increase test duration since one variant gets less exposure.",
-                    icon: Users
-                },
-                {
-                    title: "Read Your Results",
-                    description: "Instantly get the required test duration in days, visitors needed per variant, total visitors needed, and your estimated end date — everything you need to plan a statistically sound A/B test.",
-                    icon: BarChart2
-                }
+                { title: "Enter your daily visitors and current conversion rate", description: "Daily Visitors is the number of people who reach the page you're testing each day. Current Conversion Rate (%) is the share of them who do the thing you measure today, such as buying or signing up.", icon: Users },
+                { title: "Set the improvement you want to detect", description: "Expected Improvement (%) is how much better the new version must be before you'd call it a win, relative to today's rate. Smaller improvements take longer to prove.", icon: Percent },
+                { title: "Read the sample size and the days", description: "The result shows visitors per variant, total visitors and the number of days at your traffic split. Run the test for the whole period before you read the winner.", icon: Clock }
             ]}
         />
     )

@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect } from "react"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -30,7 +30,7 @@ export function SKUGenerator() {
     const [sequentialStart, setSequentialStart] = useState("001")
     const [charLimit, setCharLimit] = useState("3")
     const [separator, setSeparator] = useState("-")
-    const [caseType, setCaseType] = useState("uppercase")
+    const [caseType, setCaseType] = useState("")
     const [generatedSKU, setGeneratedSKU] = useState("")
     const [copied, setCopied] = useState(false)
     const [isAdvancedOpen, setIsAdvancedOpen] = useState(false)
@@ -46,7 +46,7 @@ export function SKUGenerator() {
         }
         const sep = separator === "none" ? "" : separator
         let sku = parts.join(sep)
-        if (caseType === "uppercase") {
+        if (caseType === "") {
             sku = sku.toUpperCase()
         } else if (caseType === "lowercase") {
             sku = sku.toLowerCase()
@@ -68,7 +68,7 @@ export function SKUGenerator() {
         setAttribute2("")
         setSequentialStart("001")
         setSeparator("-")
-        setCaseType("uppercase")
+        setCaseType("")
         setCharLimit("3")
     }
     const addItemToList = (retain: boolean = false) => {
@@ -193,13 +193,13 @@ export function SKUGenerator() {
                                         </div>
                                         <div className="text-left">
                                             <p className="text-sm font-bold text-slate-800 dark:text-slate-100">Advanced Settings</p>
-                                            <p className="text-[10px] text-slate-500 font-medium dark:text-slate-400">Extra attributes & formatting</p>
+                                            <p className="text-xs text-slate-600 dark:text-slate-300 font-medium">Extra attributes & formatting</p>
                                         </div>
                                     </div>
                                     {isAdvancedOpen ? (
                                         <ChevronUp className="w-5 h-5 text-blue-500 dark:text-blue-400" />
                                     ) : (
-                                        <ChevronDown className="w-5 h-5 text-slate-400 group-hover:text-slate-600 dark:text-slate-500 dark:group-hover:text-slate-300" />
+                                        <ChevronDown className="w-5 h-5 text-slate-600 dark:text-slate-300 group-hover:text-slate-600 dark:group-hover:text-slate-300" />
                                     )}
                                 </button>
                             </div>
@@ -275,7 +275,7 @@ export function SKUGenerator() {
                                                             <SelectValue placeholder="Select" />
                                                         </SelectTrigger>
                                                         <SelectContent>
-                                                            <SelectItem value="uppercase">UPPER</SelectItem>
+                                                            <SelectItem value="">UPPER</SelectItem>
                                                             <SelectItem value="lowercase">lower</SelectItem>
                                                             <SelectItem value="original">Original</SelectItem>
                                                         </SelectContent>
@@ -324,10 +324,10 @@ export function SKUGenerator() {
                     <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden dark:border-slate-800 dark:bg-slate-900">
                         <CardHeader className="pb-4 border-b border-slate-50 flex flex-row items-center justify-between space-y-0">
                             <div className="space-y-1">
-                                <CardTitle className="text-lg font-bold flex items-center gap-2">
+                                <h2 className="text-lg font-bold flex items-center gap-2 text-slate-800 dark:text-slate-100">
                                     <List className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                                     Live Preview ({entries.length})
-                                </CardTitle>
+                                </h2>
                                 <CardDescription>Your generated SKU list.</CardDescription>
                             </div>
                             {entries.length > 0 && (
@@ -344,7 +344,7 @@ export function SKUGenerator() {
                         <CardContent className="p-0">
                             <div className="overflow-x-auto">
                                 <table className="w-full text-sm text-left">
-                                    <thead className="text-xs uppercase bg-slate-50 text-slate-500 font-bold border-b border-slate-100 dark:bg-slate-800/60 dark:text-slate-400 dark:border-slate-800">
+                                    <thead className="text-xs bg-slate-50 text-slate-600 dark:text-slate-300 font-bold border-b border-slate-100 dark:bg-slate-800/60 dark:border-slate-800">
                                         <tr>
                                             <th className="px-4 py-3">Item</th>
                                             <th className="px-4 py-3">SKU</th>
@@ -354,7 +354,7 @@ export function SKUGenerator() {
                                     <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                                         {entries.length === 0 ? (
                                             <tr>
-                                                <td colSpan={3} className="px-4 py-8 text-center text-slate-400 italic dark:text-slate-500">
+                                                <td colSpan={3} className="px-4 py-8 text-center text-slate-600 dark:text-slate-300 italic">
                                                     No items added yet. Fill the form to add items.
                                                 </td>
                                             </tr>
@@ -363,11 +363,11 @@ export function SKUGenerator() {
                                                 <tr key={entry.id} className="hover:bg-slate-50 transition-colors dark:hover:bg-slate-800/60">
                                                     <td className="px-4 py-3">
                                                         <div className="font-medium text-slate-800 dark:text-slate-100">{entry.productName}</div>
-                                                        <div className="text-[10px] text-slate-400 truncate max-w-[100px] dark:text-slate-500">
+                                                        <div className="text-xs text-slate-600 dark:text-slate-300 truncate max-w-[100px]">
                                                             {entry.brand}/{entry.category}
                                                         </div>
                                                     </td>
-                                                    <td className="px-4 py-3 font-mono font-bold text-blue-600 uppercase dark:text-blue-400">
+                                                    <td className="px-4 py-3 font-mono font-bold text-blue-600 dark:text-blue-400">
                                                         {entry.sku}
                                                     </td>
                                                     <td className="px-4 py-3 text-right">
@@ -410,8 +410,8 @@ function SKUInput({ label, value, onChange, placeholder, icon: Icon, tooltip }: 
                     <TooltipProvider delayDuration={100}>
                         <Tooltip>
                             <TooltipTrigger asChild>
-                                <button type="button" className="text-slate-400 hover:text-blue-600 transition-colors dark:text-slate-500 dark:hover:text-blue-400">
-                                    <HelpCircle className="h-3.5 w-3.5" />
+                                <button type="button" aria-label="What this field means" className="text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors dark:hover:text-blue-400">
+                                    <HelpCircle className="h-3.5 w-3.5" aria-hidden="true" />
                                 </button>
                             </TooltipTrigger>
                             <TooltipContent side="top" className="max-w-xs text-xs bg-slate-900 text-white p-2 rounded-lg dark:bg-slate-800">
@@ -422,14 +422,14 @@ function SKUInput({ label, value, onChange, placeholder, icon: Icon, tooltip }: 
                 )}
             </div>
             <div className="relative w-40 sm:w-48">
-                <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500">
+                <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-600 dark:text-slate-300">
                     <Icon className="w-3.5 h-3.5" />
                 </div>
                 <Input
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
                     placeholder={placeholder}
-                    className="pl-9 h-10 bg-white border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/5 transition-all uppercase text-right font-medium placeholder:italic placeholder:text-slate-300 dark:bg-slate-900 dark:border-slate-800 dark:placeholder:text-slate-600"
+                    className="pl-9 h-10 bg-white border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/5 transition-all text-right font-medium placeholder:italic placeholder:text-slate-300 dark:bg-slate-900 dark:border-slate-800 dark:placeholder:text-slate-600"
                 />
             </div>
         </div>

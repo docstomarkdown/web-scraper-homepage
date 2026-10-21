@@ -1,26 +1,27 @@
 "use client"
 import { ToolSteps } from "@/app/tools/_shared/components"
-import { Tag, Calculator, Percent } from "lucide-react"
+import { Package, Receipt, Tag } from "lucide-react"
 
 export function PODProfitHowToUse() {
     return (
         <ToolSteps
+            title="How to use this tool"
             steps={[
                 {
-                    title: "Enter Revenue & Costs",
-                    description: "Input your item's selling price and the base manufacturing and shipping costs from your POD supplier (e.g., Printful).",
-                    icon: Tag
+                    title: "Enter the sale",
+                    description: "Type the item price and any shipping you charge the customer.",
+                    icon: Tag,
                 },
                 {
-                    title: "Add Marketplace Fees",
-                    description: "Input transaction percentages and fixed processing fees for your selling platform or payment gateway.",
-                    icon: Percent
+                    title: "Add the supplier's costs",
+                    description: "Enter the base product cost and the shipping your print provider charges you.",
+                    icon: Package,
                 },
                 {
-                    title: "Review True Margins",
-                    description: "Instantly see your exact net profit, total costs, and fully calculated profit margins per item sold.",
-                    icon: Calculator
-                }
+                    title: "Add the fees",
+                    description: "Enter the marketplace transaction fee, payment processing percentage and fixed fee, and any platform or offsite-ads fee. The calculator shows net profit and margin.",
+                    icon: Receipt,
+                },
             ]}
         />
     )

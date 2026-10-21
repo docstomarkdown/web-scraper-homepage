@@ -7,10 +7,33 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "Wholesale Price Calculator — Set Profitable Selling Prices",
-    description: "Free wholesale price calculator. Determine the correct wholesale selling price from your cost per unit and desired profit margin. Instantly see markup, profit per unit, and the true cost breakdown.",
+    title: "Wholesale Price Calculator: Free Price from Margin",
+    description: "Enter your cost per unit, any tax or duty, and the margin you need, and get the wholesale price, the markup it implies and the profit per unit.",
     alternates: { canonical: "/tools/wholesale-price-calculator" },
 }
+
+const faqs = [
+    {
+        question: "How is the wholesale price calculated?",
+        answer: "Effective cost ÷ (1 − margin). A $10 cost and a 40% margin give $16.67.",
+    },
+    {
+        question: "Should I include shipping in the cost per unit?",
+        answer: "Yes, include inbound shipping and anything else you pay to have the unit ready to sell. Use the landed cost if you import.",
+    },
+    {
+        question: "How much lower should wholesale be than retail?",
+        answer: "Retailers usually mark wholesale up by 80% to 120%, so a $16.67 wholesale price supports a retail price around $30 to $35.",
+    },
+    {
+        question: "What if the price comes out too high?",
+        answer: "Lower the cost, accept a smaller margin, or sell in larger quantities so fixed costs are spread thinner. The calculator shows the effect of each.",
+    },
+    {
+        question: "Do I charge sales tax on wholesale sales?",
+        answer: "Usually not when the buyer provides a resale certificate, but rules differ by state and country. Check with your accountant.",
+    },
+]
 
 export default function WholesalePriceCalculatorPage() {
     return (
@@ -21,42 +44,19 @@ export default function WholesalePriceCalculatorPage() {
                     <WholesalePriceCalculator />
                 </div>
                 <div className="max-w-5xl mx-auto space-y-16">
-                    <FadeIn delay={0.1}>
+                    <FadeIn delay={0.2}>
                         <WholesalePriceOverview />
                     </FadeIn>
                     <FadeIn delay={0.2}>
                         <WholesalePriceHowToUse />
                     </FadeIn>
-                    <FadeIn delay={0.3}>
+                    <FadeIn delay={0.2}>
                         <WholesalePriceGuide />
                     </FadeIn>
-                    <FadeIn delay={0.4}>
-                        <ToolFAQ
-                            faqs={[
-                                {
-                                    question: "How is the Wholesale Price calculated?",
-                                    answer: "The calculator uses the margin-based formula: Price = Effective Cost ÷ (1 − Margin%). For example, if your cost is $10 and you want a 40% margin, the wholesale price is $10 ÷ 0.60 = $16.67. This ensures profit is always calculated as a percentage of the final price."
-                                },
-                                {
-                                    question: "Should I include shipping in my Cost per Unit?",
-                                    answer: "Yes. If you pay inbound shipping or freight to receive your products, this should be included in your Cost per Unit so the wholesale price fully covers all expenses. Alternatively, treat it as a tax/duty input."
-                                },
-                                {
-                                    question: "How much lower should a wholesale price be than the retail price?",
-                                    answer: "Typically, a wholesale price should be exactly 50% of your retail price. This is known in the industry as 'keystone pricing.' It guarantees the retailer a 50% gross margin, which they need to cover their store overhead. If your product retails for $50, your target wholesale price should be $25."
-                                },
-                                {
-                                    question: "What if my calculated wholesale price is too high for the market?",
-                                    answer: "If retailers reject your wholesale price, you have two viable options: reduce your Cost per Unit (by securing volume discounts from suppliers or optimizing packaging) or accept a lower profit margin. Never randomly lower your price without recalculating to ensure you aren't selling at a loss."
-                                },
-                                {
-                                    question: "Do I charge sales tax on wholesale transactions?",
-                                    answer: "No. You generally do not collect sales tax on wholesale or B2B orders. Because the retailer is buying the goods to resell them, they are responsible for collecting sales tax from the end consumer. Always require buyers to provide a valid reseller permit or tax exemption certificate."
-                                }
-                            ]}
-                        />
+                    <FadeIn delay={0.2}>
+                        <ToolFAQ title="Questions, answered" faqs={faqs} />
                     </FadeIn>
-                    <FadeIn delay={0.5}>
+                    <FadeIn delay={0.2}>
                         <CTA />
                     </FadeIn>
                 </div>

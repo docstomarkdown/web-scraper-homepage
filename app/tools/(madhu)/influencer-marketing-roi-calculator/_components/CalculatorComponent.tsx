@@ -104,7 +104,7 @@ export function InfluencerROICalculator() {
                     <Card className="border border-slate-200 shadow-xl shadow-slate-200/40 bg-white rounded-3xl overflow-hidden dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Campaign Details"
-                            description="Enter your campaign cost and revenue to see your ROI instantly."
+                            description="Enter the campaign cost and the revenue it brought to see the return."
                             currency={currency}
                             onCurrencyChange={setCurrency}
                             onReset={handleReset}
@@ -135,11 +135,11 @@ export function InfluencerROICalculator() {
                                     </div>
                                     <div className="flex items-center justify-between w-full opacity-50 pointer-events-none select-none">
                                         <div className="flex items-center gap-1.5">
-                                            <Lock className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
-                                            <span className="text-[14.5px] font-medium text-slate-400 dark:text-slate-500">Total Campaign Cost</span>
+                                            <Lock className="w-3.5 h-3.5 text-slate-600 dark:text-slate-300" />
+                                            <span className="text-[14.5px] font-medium text-slate-600 dark:text-slate-300">Total Campaign Cost</span>
                                         </div>
                                         <div className="flex items-center gap-2 h-11 px-4 rounded-xl border-2 border-dashed border-slate-200 bg-slate-50 w-36 sm:w-44 justify-end dark:border-slate-800 dark:bg-slate-800/60">
-                                            <span className="text-[13px] text-slate-400 italic dark:text-slate-500">Auto‑calculated</span>
+                                            <span className="text-sm text-slate-600 dark:text-slate-300 italic">Auto‑calculated</span>
                                         </div>
                                     </div>
                                     <p className="text-[11.5px] text-blue-500 mt-1.5 font-medium dark:text-blue-400">
@@ -165,15 +165,15 @@ export function InfluencerROICalculator() {
                                     className="flex items-center gap-2 w-full group -ml-[33px] relative z-10"
                                 >
                                     <div className="w-7 h-7 rounded-lg bg-white ring-[6px] ring-white border border-slate-200 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-50 group-hover:border-blue-200 transition-all duration-200 shadow-sm dark:bg-slate-900 dark:ring-slate-900 dark:border-slate-800 dark:group-hover:bg-blue-950/40 dark:group-hover:border-blue-900/50">
-                                        <PlusCircle className={cn("w-3.5 h-3.5 transition-colors", showDetails ? "text-blue-500 dark:text-blue-400" : "text-slate-400 group-hover:text-blue-500 dark:text-slate-500 dark:group-hover:text-blue-400")} />
+                                        <PlusCircle className={cn("w-3.5 h-3.5 transition-colors", showDetails ? "text-blue-500 dark:text-blue-400" : "text-slate-600 dark:text-slate-300 group-hover:text-blue-500 dark:text-slate-300 dark:group-hover:text-blue-400")} />
                                     </div>
                                     <span className="text-[15px] font-bold text-slate-600 group-hover:text-blue-600 transition-colors flex-1 text-left tracking-tight dark:text-slate-300 dark:group-hover:text-blue-400">
                                         Advanced Settings
-                                        <span className="ml-1.5 font-normal italic text-[12px] text-slate-400 lowercase tracking-normal group-hover:text-blue-400/80 transition-colors dark:text-slate-500">(optional)</span>
+                                        <span className="ml-1.5 font-normal italic text-[12px] text-slate-600 dark:text-slate-300 lowercase tracking-normal group-hover:text-blue-400/80 transition-colors">(optional)</span>
                                     </span>
                                     {showDetails
-                                        ? <ChevronUp className="w-4 h-4 text-slate-400 group-hover:text-blue-400 transition-colors dark:text-slate-500" />
-                                        : <ChevronUp className="w-4 h-4 text-slate-400 group-hover:text-blue-400 transition-colors rotate-180 dark:text-slate-500" />
+                                        ? <ChevronUp className="w-4 h-4 text-slate-600 dark:text-slate-300 group-hover:text-blue-400 transition-colors" />
+                                        : <ChevronUp className="w-4 h-4 text-slate-600 dark:text-slate-300 group-hover:text-blue-400 transition-colors rotate-180" />
                                     }
                                 </button>
                             </div>
