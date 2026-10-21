@@ -52,19 +52,36 @@ export const shopifyScraper: FeaturePageContent = {
         items: [
             {
                 title: "Open the store",
+                points: ["No card? The store isn't on Shopify or hides its product data. The List tab still collects the page's own list."],
                 body: "Go to any page of a public Shopify store. In the side panel's List tab, a Shopify store card appears with the store's product count.",
             },
             {
                 title: "Choose what to collect",
+                points: ["All products or one collection. One row per product or One row per variant.", "Include barcodes and image descriptions (slower) when an import needs them. Name images by product handle for files named after the product."],
                 body: "Pick All products or one collection, then One row per product or One row per variant. Click Collect products. Stop at any time and keep what it has.",
             },
             {
                 title: "Download",
+                points: ["Download Shopify import CSV gives Shopify's 48-column import file. Download images saves the photos as ZIP files of up to 5,000 each.", "Export as gives Excel, CSV, JSON or Google Sheets for analysis."],
                 body: "Export the table to Excel, CSV, JSON or Google Sheets. Click Download Shopify import CSV for the import file, and Download images for a ZIP of every product image.",
             },
         ],
     },
     sections: [
+        {
+            id: "settings",
+            eyebrow: "Settings that change the result",
+            heading: "Three switches decide how a store is read",
+            paragraphs: ["Two sit on the store card, one in Settings → Shopify stores."],
+            points: ["Use store product data: on. The catalog comes from the store's own product feed, which is why a thousand products take a minute. Turn it off to collect what the page shows instead.", "Include barcodes and image descriptions (slower): off. Reads each product in more detail for imports that need barcodes.", "Name images by product handle: off. Names downloaded image files after the product instead of the store's file names."],
+        },
+        {
+            id: "pushback",
+            eyebrow: "When a store pushes back",
+            heading: "Stores that can't be read, and imports that need a second look",
+            paragraphs: ["Most public Shopify stores read cleanly. Two kinds don't, and one step needs care."],
+            points: ["A password-protected store can't be read at all.", "A store that has turned off its public product data falls back to the page's own list, which is only what's on screen.", "Shopify's import has rules the source store may not follow. Import into a test store first and check the products before a live one."],
+        },
         {
             id: "import",
             eyebrow: "Moving a catalog",
@@ -121,6 +138,14 @@ export const shopifyScraper: FeaturePageContent = {
         {
             q: "Is Shopify export included in the plan?",
             a: "Yes. It's part of the one plan, Pro, like every other feature.",
+        },
+        {
+            q: "A store gave me only a few products. Why?",
+            a: "Either the store hides its product data, so the extension fell back to the page's own list, or Use store product data is off in Settings → Shopify stores. Turn it on and collect again.",
+        },
+        {
+            q: "Does it collect prices in the store's currency?",
+            a: "Yes, as the store publishes them. Compare At Price is the struck-through price when the store sets one.",
         },
     ],
     related: ["product-scraper", "list-scraper", "image-downloader", "export-to-google-sheets", "ai-chat"],

@@ -50,20 +50,37 @@ export const emailExtractor: FeaturePageContent = {
         items: [
             {
                 title: "Open the website",
+                points: ["The Contact page is the best place to start, but any page works. One linked Contact or About page is read as well."],
                 body: "Go to the company's site in Chrome, ideally its Contact or About page. Open the Web Scraper Pro side panel.",
             },
             {
                 title: "Click Collect contacts",
+                points: ["Or type in the Chat tab: Find contact emails on this site.", "One site takes a few seconds."],
                 screenshot: "ext/properties-collect-contacts",
                 body: "On the Properties tab, click Collect contacts. Or in the Chat tab, type \"find contact emails on this site\". The deep scan also reads one linked Contact or About page, where emails are usually listed.",
             },
             {
                 title: "Export",
+                points: ["One row per website: Website, Email count, Emails, Phone count, Phones, Faxes, Social count, then one column per social network found.", "Several values in one cell show the first with a +N more button; the file joins them with a bar."],
                 body: "The results page shows one row for the site. Export it to Excel, CSV, JSON or Google Sheets, or keep collecting sites and export them together from History.",
             },
         ],
     },
     sections: [
+        {
+            id: "settings",
+            eyebrow: "Settings that change the result",
+            heading: "Where contact collection is switched on and off",
+            paragraphs: ["Contact collection runs in three places, and each has its own switch."],
+            points: ["Maps searches: Settings → Results → Add emails from their websites, on by default. Adds a few seconds per business.", "Bulk runs: on the Configure step, Email addresses, Phone numbers and Social media links are ticked per site; untick what you don't need. One linked Contact or About page is always read.", "A saved table: the Add contact details button on its results page runs with everything on. It reads Update contact details when the table already has them."],
+        },
+        {
+            id: "pushback",
+            eyebrow: "When a site gives nothing back",
+            heading: "Why a row can come back with a phone but no email",
+            paragraphs: ["The extension reads what a website publishes as text. Some sites publish their email in a way that can't be read, and many small businesses publish none."],
+            points: ["An email shown as an image, or hidden behind a contact form, isn't read.", "A website that is a social profile or a directory page isn't read as a source.", "Many small businesses list a phone and no email. Those rows keep the phone and website.", "Bulk runs read one site at a time with pauses, so a long list takes a while; the tab needs to stay open."],
+        },
         {
             id: "many-sites",
             screenshot: "ext/bulk-contacts-config",
@@ -97,7 +114,7 @@ export const emailExtractor: FeaturePageContent = {
     useCases: {
         heading: "What people use it for",
         items: [
-            { title: "Outreach lists", body: "Turn a list of company websites into a sheet with an email and phone for each, ready for a mail merge or CRM import." },
+            { title: "Outreach lists", body: "Turn a list of company websites into a sheet with an email and phone for each, ready for your email tool or sales tool." },
             { title: "Local business leads", body: "Collect businesses from Maps or a directory, then get each one's email and social links from its own site." },
             { title: "Partner and supplier research", body: "Find the right contact on dozens of supplier sites without opening each one." },
             { title: "Keeping records current", body: "Re-run the same list later and compare which contacts changed." },
@@ -135,6 +152,14 @@ export const emailExtractor: FeaturePageContent = {
         {
             q: "Is it an online tool or an extension?",
             a: "A Chrome extension. The pages are read in your own browser and nothing is uploaded, which is also why it works on pages you're signed in to.",
+        },
+        {
+            q: "Why did it find a phone number but no email?",
+            a: "The site publishes a phone as text and either no email or one it hides behind a form or an image. The extension never guesses an address; a row with no email is a business that doesn't publish one.",
+        },
+        {
+            q: "Is there a limit on how many sites I can read?",
+            a: "No credit or per-row limit. Sites are read one at a time, so a list of 200 websites takes a few minutes; keep the tab open while it runs.",
         },
     ],
     related: ["maps-leads", "bulk-scraper", "list-scraper", "export-to-google-sheets", "ai-chat"],

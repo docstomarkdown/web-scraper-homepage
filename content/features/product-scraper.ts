@@ -46,19 +46,36 @@ export const productScraper: FeaturePageContent = {
         items: [
             {
                 title: "Open the product page",
+                points: ["Amazon, Flipkart, Myntra, Walmart and other big stores have built-in profiles. Other stores are read from the page's own labels."],
                 body: "Go to the product in Chrome and open the side panel's Properties tab.",
             },
             {
                 title: "Click Collect details on this page",
+                points: ["View product data opens the fields. If one is wrong or missing, click Fix or add a field and click the right spot on the page; the fix is remembered for that site.", "Or type in the Chat tab: Collect this product."],
                 body: "The fields fill in from the page. Click View product data to see them. If a field is wrong or missing, click Fix or add a field and click the right spot on the page; the fix is saved for that site.",
             },
             {
                 title: "Collect the reviews, then export",
+                points: ["View all reviews pages through the reviews, by scrolling or by the button you point at once.", "Reviews land in their own table: rating, title, text, author, date."],
                 body: "Click View all reviews to collect the reviews across their pages, by scrolling or by the button you point at. Export the product and its reviews to Excel, CSV, JSON or Google Sheets.",
             },
         ],
     },
     sections: [
+        {
+            id: "settings",
+            eyebrow: "Settings that change the result",
+            heading: "Two settings touch product pages",
+            paragraphs: ["Both sit under Settings → Results."],
+            points: ["Save prices, ratings and counts as numbers: on. The current price, list price and rating become numbers a spreadsheet can compare.", "Suggested format: the export format shown first. The last one used by default."],
+        },
+        {
+            id: "pushback",
+            eyebrow: "When a product page pushes back",
+            heading: "Reviews behind a button, and pages that need a sign-in",
+            paragraphs: ["A product page is read as you see it, so the two things that stop it are a hidden review list and a page you can't see."],
+            points: ["A store that shows reviews only after a See more or Load more click asks you to point at that button once; then it pages through on its own.", "A page that needs a sign-in to show prices or reviews shows them to the extension only once you're signed in.", "If a store shows a verification page, complete it in the tab and collect again."],
+        },
         {
             id: "stores",
             eyebrow: "Stores",
@@ -109,6 +126,18 @@ export const productScraper: FeaturePageContent = {
         {
             q: "Is this included in the plan?",
             a: "Yes. Product details and reviews are part of the one plan, Pro.",
+        },
+        {
+            q: "Can I collect many product pages at once?",
+            a: "Yes. Paste the product addresses into Bulk scrape; each page's details are collected in turn and merged into one table. Reviews are collected one product at a time.",
+        },
+        {
+            q: "Does it get every variant's price?",
+            a: "It reads the variant selected on the page. Pick another size or colour on the page and collect again; each collection is saved in History.",
+        },
+        {
+            q: "How many reviews can it collect?",
+            a: "As many as the page lists, across every review page, until you stop it. Stores that cap how many reviews they show cap the collection too.",
         },
     ],
     related: ["list-scraper", "shopify-scraper", "image-downloader", "export-to-google-sheets", "ai-chat"],

@@ -28,7 +28,8 @@ export interface FeaturePageContent {
     /** `eyebrow` defaults to "What you get". */
     fields: { eyebrow?: string; heading: string; intro?: string; items: { name: string; description: string; /** A prompt or input that shows the item in use; renders items as cards. */ example?: string }[] };
     /** Each step can name a capture id; it renders under the step once captured (placeholder in local dev). */
-    steps: { heading: string; intro?: string; items: { title: string; body: string; screenshot?: string }[] };
+    /** `points` are the specifics under a step: an example to type, a number, a thing to watch for. */
+    steps: { heading: string; intro?: string; items: { title: string; body: string; points?: string[]; screenshot?: string }[] };
     /** Extra sections that are specific to this feature (e.g. "Add emails to your list"). */
     sections?: { id: string; eyebrow: string; heading: string; paragraphs: string[]; points?: string[]; screenshot?: string }[];
     limits: { heading: string; items: string[] };
@@ -167,6 +168,13 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                                     </span>
                                     <h3 className="mt-4 text-lg font-semibold text-slate-900 dark:text-white">{s.title}</h3>
                                     <p className="mt-2 text-base text-slate-700 dark:text-slate-200 leading-[1.65]">{s.body}</p>
+                                    {s.points && s.points.length > 0 && (
+                                        <ul className="mt-3 space-y-1.5 text-base text-slate-700 dark:text-slate-200 leading-[1.6]">
+                                            {s.points.map((pt) => (
+                                                <li key={pt} className="flex gap-2.5"><span className="mt-[0.65em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#2772ED]" aria-hidden="true" /><span>{pt}</span></li>
+                                            ))}
+                                        </ul>
+                                    )}
                                     {s.screenshot && <Screenshot id={s.screenshot} className="my-5" />}
                                 </li>
                             </Reveal>

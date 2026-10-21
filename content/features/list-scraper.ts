@@ -48,24 +48,41 @@ export const listScraper: FeaturePageContent = {
     },
     steps: {
         heading: "Three clicks, no setup",
-        intro: "It runs in your own Chrome window, on the page you have open. There's nothing to configure first.",
+        intro: "It runs in your own Chrome window, on the page you have open. There's nothing to set up first.",
         items: [
             {
                 title: "Open the page and the List tab",
+                points: ["Hover a list card and the list it means is outlined on the page.", "Wrong list? Click Choose an item on the page, then click one entry. Every similar entry is picked with it."],
                 body: "Go to the page that shows the list. Open the Web Scraper Pro side panel and the List tab. Under Choose from lists we found, it shows the lists it detected, with how many items each has.",
             },
             {
                 title: "Pick the list and click Collect",
+                points: ["This page only: click Collect N items.", "More pages: choose Collect more pages, confirm Next page, Load more or Auto scroll, set Stop after (5 pages by default), and click Collect from N pages.", "Keep the tab in front; paging slows down in a background tab."],
                 screenshot: "ext/list-tab-more-pages",
                 body: "Choose the list you want. For this page only, click Collect N items. For the whole list, choose Collect more pages, confirm how the page moves on (Next page, Load more or Auto scroll), set Stop after, and click Collect from N pages.",
             },
             {
                 title: "Review and export",
+                points: ["Mostly empty columns are hidden on their own; click Columns to show them.", "Example to type in the chat with the results tab in front: Only name, price and rating, sorted by price."],
                 body: "The rows open on the results page, where you can rename or remove columns and filter rows. Export to Excel, CSV, JSON or Google Sheets. Every collection is saved in History.",
             },
         ],
     },
     sections: [
+        {
+            id: "settings",
+            eyebrow: "Settings that change the result",
+            heading: "Five settings shape every list you collect",
+            paragraphs: ["They sit under Settings → Results in the side panel. Each can also be changed for one run on the List tab or the results page."],
+            points: ["Pages to go through: 5 by default. The Stop after control on the List tab overrides it for one run.", "Hide mostly empty columns: on. A column filled in for fewer than a third of the rows is hidden, never deleted; the Columns button shows it again.", "Remove duplicates: on. An item that appears on two pages or in a carousel is kept once.", "Save prices, ratings and counts as numbers: on. $19.99 is saved as 19.99 so a spreadsheet can sort and add. Turn it off to keep values exactly as the site shows them.", "Skip sponsored products: off. Sponsored rows stay in, marked Sponsored, so you can filter them later."],
+        },
+        {
+            id: "pushback",
+            eyebrow: "When a site pushes back",
+            heading: "What happens when a site slows down, asks a question or changes",
+            paragraphs: ["Because the extension reads the page in your own browser, a site sees you browsing. Most sites allow that; a few have limits for anyone who loads many pages fast."],
+            points: ["A verification page stops the run. Complete the check in the tab, click Rescan in the List tab, and collect again.", "A site that rate-limits shows fewer results or an error page. Collect in smaller runs and come back later; History keeps each run.", "A page you're signed in to is read as you see it. The extension never signs in for you.", "When a site changes its layout, the list is found again on the next visit. Column names may change; rename them once on the results page."],
+        },
         {
             id: "pick-it-yourself",
             screenshot: "ext/list-tab-pick-item",
@@ -104,7 +121,7 @@ export const listScraper: FeaturePageContent = {
             "It collects what the page shows you. On a site you've signed in to, it sees what you see; it doesn't sign in for you.",
             "Paging goes through 5 pages unless you change it (Settings → Results, or Stop after on the List tab). Keep the tab in front while it works; paging slows down in a background tab.",
             "Sites that detect automated browsing can slow down or ask you to verify. Collect in smaller runs and take breaks between them.",
-            "Social networks that need a login, such as LinkedIn, Instagram and Facebook, aren't supported.",
+            "Social networks that need a sign-in, such as LinkedIn, Instagram and Facebook, aren't supported.",
             "Some site rules limit what you may collect and reuse. Check the terms of the site and the law where you are, especially for personal details.",
         ],
     },
@@ -120,7 +137,7 @@ export const listScraper: FeaturePageContent = {
     faqs: [
         {
             q: "Does it work on any website?",
-            a: "On most pages that show a list. Sites with a ready-made setup return fixed, named columns. On other sites the list is detected automatically and the columns are named from the page. The only hard limits are sites that need a login to see anything, such as LinkedIn, and pages that load no list at all.",
+            a: "On most pages that show a list. Sites with a ready-made setup return fixed, named columns. On other sites the list is detected automatically and the columns are named from the page. The only hard limits are sites that need a sign-in to see anything, such as LinkedIn, and pages that load no list at all.",
         },
         {
             q: "How does it get the other pages?",
@@ -143,12 +160,20 @@ export const listScraper: FeaturePageContent = {
             a: "Yes. There's one plan, Pro, and it includes lists from any website, every page of results, bulk runs and every export format.",
         },
         {
-            q: "How do I use it on a page with pagination?",
+            q: "How do I use it on a page with pagination (more pages of results)?",
             a: "Pick the list, choose Collect more pages, confirm how the page moves on (Next page, Load more or Auto scroll), set Stop after, and click Collect from N pages. The guide How To Collect Every Page of Results walks through it.",
         },
         {
             q: "Is there a tutorial?",
             a: "Yes: How To Scrape Data from Any Website to Excel, with a screenshot for every step, and How To Collect Every Page of Results for lists that continue over pages.",
+        },
+        {
+            q: "What if the page loads more as I scroll instead of having pages?",
+            a: "Choose Collect more pages and then Auto scroll. The run scrolls until nothing new loads, or until you stop it.",
+        },
+        {
+            q: "Why are some columns hidden?",
+            a: "Columns filled in for fewer than a third of the rows are hidden to keep the table readable. Click Columns to see them and show any you need; nothing is deleted.",
         },
     ],
     related: ["ai-chat", "bulk-scraper", "export-to-google-sheets", "product-scraper", "maps-leads"],

@@ -35,20 +35,32 @@ export const imageDownloader: FeaturePageContent = {
         items: [
             {
                 title: "Open the page",
+                points: ["Scroll to the bottom once so images that load as you scroll are on the page, then scroll back up."],
                 screenshot: "ext/images-tab",
                 body: "Go to the page with the images and open the side panel's Images tab.",
             },
             {
                 title: "Click Collect images from this page",
+                points: ["Groups are by exact size, such as 800 × 800, largest first, each with a count. Show N more opens the rest of a group.", "Icons, logos, sprites and tracking pixels are left out. An image that appears several times is kept once."],
                 screenshot: "ext/images-tab-groups",
                 body: "The images appear grouped by size, with a count for each group.",
             },
             {
                 title: "Download",
+                points: ["The ZIP is named after the site, such as store.example-images.zip. More than 5,000 files split into parts.", "Scrolled further and more images loaded? Click Rescan."],
                 body: "Click Download all for everything, or Download on one group. The ZIP file saves to your Downloads folder.",
             },
         ],
     },
+    sections: [
+        {
+            id: "pushback",
+            eyebrow: "When the images aren't there",
+            heading: "Why a page gives small images, or fewer than you expected",
+            paragraphs: ["The extension saves each image at the size the page serves it, and only the images the page has loaded."],
+            points: ["A listing page often serves a small version and the product page the full one. Collect on the product page when size matters.", "Images that load as you scroll aren't on the page until you've scrolled there. Scroll, then Rescan.", "Images drawn as backgrounds by CSS, or inside embedded players, aren't part of the page's image list."],
+        },
+    ],
     limits: {
         heading: "Good to know",
         items: [
@@ -78,6 +90,14 @@ export const imageDownloader: FeaturePageContent = {
         {
             q: "Is this included in the plan?",
             a: "Yes. The image downloader is part of the one plan, Pro.",
+        },
+        {
+            q: "Where do the files go?",
+            a: "To your browser's Downloads folder, as one ZIP named after the site. Chrome may ask once for permission to save several files.",
+        },
+        {
+            q: "Why are some images small?",
+            a: "They're saved at the size the page serves them. Open the page that shows the full-size version, usually the product page, and collect there.",
         },
     ],
     related: ["product-scraper", "shopify-scraper", "list-scraper"],

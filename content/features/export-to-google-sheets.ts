@@ -42,20 +42,37 @@ export const exportToGoogleSheets: FeaturePageContent = {
         items: [
             {
                 title: "Open the results",
+                points: ["History keeps every collection with its date and type. Pin the ones you reuse."],
                 body: "A collection opens on its results page when it finishes. For an earlier one, open the History tab and click View results.",
             },
             {
                 title: "Tidy it",
+                points: ["Hover a column header: the pencil renames it, the trash icon deletes it. Drag headers to reorder. Filter rows keeps rows by a value.", "Example to type in the chat with the results tab in front: Only name and phone, sorted by rating."],
                 screenshot: "ext/results-rename-column",
                 body: "Rename or remove columns, sort, filter and fix what needs fixing. Or tell the Chat tab what you want: \"only name and phone, sorted by rating\".",
             },
             {
                 title: "Export as",
+                points: ["Google Sheets · Microsoft Excel · CSV · JSON, and Microsoft Word for page text. The format you used last comes first.", "The file holds exactly the rows and columns shown, with your edits."],
                 body: "Click Export as and choose Excel, CSV, JSON or Google Sheets. The format you used last is offered first.",
             },
         ],
     },
     sections: [
+        {
+            id: "settings",
+            eyebrow: "Settings that change the result",
+            heading: "Four settings shape every table and file",
+            paragraphs: ["They sit under Settings → Results in the side panel."],
+            points: ["Suggested format: the export format shown first. The last one used by default.", "Save prices, ratings and counts as numbers: on. $19.99 becomes 19.99 and 1,234 becomes 1234, so sums and sorting work. Phone numbers stay as written.", "Hide mostly empty columns: on. Columns filled in for fewer than a third of the rows are hidden, never deleted.", "Remove duplicates: on. The same result that appears twice is kept once."],
+        },
+        {
+            id: "pushback",
+            eyebrow: "Big tables and sign-ins",
+            heading: "What to know about large collections and Google Sheets",
+            paragraphs: ["Two practical limits, neither a surprise if you know them."],
+            points: ["Collections over 500 rows show a page at a time. Click Load all before a sort or a filter so it covers every row.", "Google Sheets export signs in with your Google account once and opens a new sheet in a tab. Excel, CSV and JSON need no sign-in.", "Text that looks like a spreadsheet formula is written as text, never run, so a scraped cell can't execute anything in your sheet."],
+        },
         {
             id: "sheets",
             eyebrow: "Google Sheets",
@@ -86,7 +103,7 @@ export const exportToGoogleSheets: FeaturePageContent = {
         heading: "What people use it for",
         items: [
             { title: "Client-ready sheets", body: "Rename the columns the way the client expects, drop the rest, and send an Excel file." },
-            { title: "CRM imports", body: "Keep only the columns the CRM wants and export CSV." },
+            { title: "Imports into a sales tool", body: "Keep only the columns your sales or email tool wants and export CSV." },
             { title: "Shared research", body: "A Google Sheet the whole team can open, created straight from the results page." },
             { title: "Repeat exports", body: "The same collection exported again next week, in a different format, from History." },
         ],
@@ -123,6 +140,14 @@ export const exportToGoogleSheets: FeaturePageContent = {
         {
             q: "Can it update the sheet automatically?",
             a: "Not yet. Each run creates a new sheet, and every collection stays in History to export again. Scheduled runs are coming with the cloud.",
+        },
+        {
+            q: "How long are collections kept?",
+            a: "Until you delete them. They live in your browser's storage, so export anything you need to keep for the long term, and don't clear the browser's site data for the extension.",
+        },
+        {
+            q: "Can I fix a wrong cell?",
+            a: "Yes. Click a cell on the results page to edit it; the change is saved to the collection and included in the export.",
         },
     ],
     related: ["ai-chat", "list-scraper", "maps-leads", "bulk-scraper"],

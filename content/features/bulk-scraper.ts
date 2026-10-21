@@ -50,26 +50,44 @@ export const bulkScraper: FeaturePageContent = {
         items: [
             {
                 title: "Add the addresses",
+                points: ["One address per line, pasted or in a CSV or TXT file.", "Use saved data takes the addresses from a column of a table you collected earlier, such as the Website column of a Maps list."],
                 screenshot: "ext/bulk-upload",
                 body: "Click the Bulk scrape icon at the top of the side panel and choose Bulk scrape, Collect contacts or Collect page text. Upload a CSV or TXT file with one address per line, paste them in, or reuse a column from a table you collected earlier.",
             },
             {
                 title: "Check what it found",
+                points: ["Drag the sites into order and remove any you don't want.", "Pages from the same site share one setup."],
                 body: "The Detect step groups the addresses by site and says what each one is: a list page, a Maps search, a Scholar search, or a plain page. Drag the sites into the order you want.",
             },
             {
                 title: "Set up each site",
+                points: ["Lists: confirm the list, then Next page, Load more or Auto scroll with a page limit.", "Contacts: Email addresses, Phone numbers and Social media links, on for every site unless you untick them.", "Page text: clean text, page details or both."],
                 screenshot: "ext/bulk-contacts-config",
                 body: "For a list site, confirm the list or pick an area on the page, and choose Next page, Load more or Auto scroll if the pages go on. For contacts, choose emails, phones and social links. For text, choose clean text, page details or both.",
             },
             {
                 title: "Start collecting",
+                points: ["Sites load one after another in the embedded browser on the right while the cards count rows.", "Stop keeps everything collected so far. If a site asks you to verify, the run pauses with Waiting for you."],
                 screenshot: "ext/bulk-run",
                 body: "Sites run one after another in an embedded browser frame, so you can watch progress and stop at any time; what's collected is kept. When it finishes, the Collection results page shows every site's table and merges them into one.",
             },
         ],
     },
     sections: [
+        {
+            id: "settings",
+            eyebrow: "Settings that change the result",
+            heading: "The Results settings apply to every site in the run",
+            paragraphs: ["A bulk run uses the same settings as a single collection, so set them once under Settings → Results."],
+            points: ["Pages to go through sets the page limit each list site starts with; change it per site on the Configure step.", "Remove duplicates, Hide mostly empty columns and Save prices as numbers apply to every site's table and to the merged one.", "For Maps searches in a bulk run, Add emails from their websites decides whether contact details are read during the run."],
+        },
+        {
+            id: "pushback",
+            eyebrow: "When a site pushes back",
+            heading: "What the run does when a site asks a question or stops answering",
+            paragraphs: ["Sites run one at a time on purpose, so each one sees an ordinary visitor and the load stays light."],
+            points: ["A verification page pauses the run with Waiting for you. Complete the check in the embedded browser and it carries on.", "A site that stops answering is skipped after its pages time out; its rows so far are kept and the run moves to the next site.", "A long list needs the tab open. A run doesn't send a notification when it finishes; check the panel or History."],
+        },
         {
             id: "from-chat",
             eyebrow: "From chat",
@@ -125,6 +143,14 @@ export const bulkScraper: FeaturePageContent = {
         {
             q: "Is this included in the plan?",
             a: "Yes. Bulk runs are part of the one plan, Pro, with every other feature.",
+        },
+        {
+            q: "Can I run a bulk job overnight?",
+            a: "Only while the browser tab stays open. The run happens in your browser; scheduled runs that work without you are coming with the cloud.",
+        },
+        {
+            q: "Can I use a list I already collected as the input?",
+            a: "Yes. On the Upload step, choose Use saved data and pick the table and its address column, such as the Website column of a Maps list.",
         },
     ],
     related: ["email-extractor", "maps-leads", "list-scraper", "page-text", "export-to-google-sheets"],

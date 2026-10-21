@@ -45,14 +45,31 @@ export const aiChat: FeaturePageContent = {
         heading: "Three steps, no commands",
         items: [
             { title: "Type your request",
+            points: ["Examples: Find dentists in Austin · Collect the products on this page · Find contact emails on this site.", "On a Maps search, a card asks how many businesses to collect: 20, 50, 100 or 200. It remembers your answer."],
                 screenshot: "ext/panel-chat-empty", body: "Open the side panel and type, or click one of the idea cards for the page you're on." },
             { title: "Watch it collect",
+            points: ["The run line above the message box counts rows; the Send button becomes a Stop button, and Esc stops too.", "When a list continues on more pages, a What next card offers Collect every page."],
                 screenshot: "ext/chat-maps-progress", body: "Chat runs the job in your browser and shows how many rows it found." },
             { title: "Ask for the file",
+            points: ["Example: Only name and phone, as CSV.", "Download buttons for Sheets, Excel, CSV and JSON sit under the result card, and View results opens the table."],
                 screenshot: "ext/chat-maps-result-card", body: "Say the format and columns you want. Every result is also saved in History." },
         ],
     },
     sections: [
+        {
+            id: "settings",
+            eyebrow: "Settings that change the result",
+            heading: "Three settings chat follows",
+            paragraphs: ["They sit under Settings → Results, and words in your request override them for one run."],
+            points: ["Businesses per chat search: the count the card remembered. Say a number in the request to change it for one search.", "Add emails from their websites: on. Say \"no emails\" in a Maps request to skip them once.", "Suggested format: the download format shown first under a result card."],
+        },
+        {
+            id: "pushback",
+            eyebrow: "When something stops the run",
+            heading: "Limits, verifications and offline",
+            paragraphs: ["Chat needs an internet connection to understand a request; the collecting still happens in your browser."],
+            points: ["Chat has a daily message limit. When it's reached, the List and Properties tabs still collect without chat.", "If a site shows a verification page during a run, the run stops. Complete the check in the tab and ask again; what was collected is kept.", "If chat picks the wrong list, say which one (\"the main results, not the sidebar\"), or use Choose an item on the page in the List tab."],
+        },
         {
             id: "one-chat-per-tab",
             eyebrow: "Several jobs at once",
@@ -112,6 +129,14 @@ export const aiChat: FeaturePageContent = {
         {
             q: "Does it work with ChatGPT or Claude?",
             a: "Chat is built into the extension, so you don't need either. Connecting Claude and other MCP clients to collect through your browser is coming soon.",
+        },
+        {
+            q: "Can I use chat on a page I'm signed in to?",
+            a: "Yes. Chat collects the page as you see it in your browser, including pages behind your own sign-in. It never signs in for you.",
+        },
+        {
+            q: "What happens when I reach the daily message limit?",
+            a: "Chat answers again the next day. Until then, the List tab, the Properties tab and Bulk scrape work without chat.",
         },
     ],
     related: ["maps-leads", "shopify-scraper", "list-scraper", "export-to-google-sheets", "mcp"],

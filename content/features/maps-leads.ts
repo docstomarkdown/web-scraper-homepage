@@ -55,20 +55,37 @@ export const mapsLeads: FeaturePageContent = {
         items: [
             {
                 title: "Search Maps",
+                points: ["Example: dentists in Austin.", "Or type it in the Chat tab: Find dentists in Austin. A card asks how many to collect: 20, 50, 100 or 200."],
                 body: "Open Maps in Chrome and search for a type of business in a place, such as \"plumbers in Springfield\". Then open the Web Scraper Pro side panel.",
             },
             {
                 title: "Click Collect places from this map",
+                points: ["Keep the tab in front. The tab's title counts the businesses as they come in.", "With emails on, 50 businesses take about four minutes and 200 about fifteen. Without emails it's a minute or two."],
                 body: "The extension scrolls through the results and opens each place to read its phone number, website, address and hours. Leave \"Also collect contact details from each business's website\" ticked and it reads each website too, adding emails, phone numbers and social links to the same row. The table fills in as it goes; click Stop at any time to keep what it has so far. In chat, type \"Find plumbers in Springfield\" instead: a card asks how many to collect and whether to add contact details.",
             },
             {
                 title: "Export your list",
+                points: ["Example to type in the chat with the results tab in front: Only name, phone, website and rating, sorted by rating."],
                 screenshot: "ext/results-export-menu",
                 body: "Your list is saved in History. Open it in the Data Viewer to hide columns or remove rows, then export to Google Sheets, Excel, CSV or JSON.",
             },
         ],
     },
     sections: [
+        {
+            id: "settings",
+            eyebrow: "Settings that change the result",
+            heading: "Four settings decide what a Maps run gives you",
+            paragraphs: ["All of them sit under Settings → Results → Finding businesses in the side panel. The defaults suit a lead list; change them when the job is different."],
+            points: ["Add emails from their websites: on. Each business's website and one linked Contact or About page are read during the run. Turn it off for a quick list of names and phones.", "Businesses per chat search: the number the card remembered. Change it here when you want a different default.", "Sort businesses: Best rated first, which counts how many reviews back the stars, so 4.8 from 1,200 reviews comes before 5.0 from 3. Or Most reviewed.", "Skip businesses you can't reach: leaves out rows with no phone, email or website. Off by default, so you decide on the results page.", "Remove duplicates: on. A business that appears twice in the results is kept once."],
+        },
+        {
+            id: "pushback",
+            eyebrow: "When Maps pushes back",
+            heading: "What happens when Maps slows down or asks a question",
+            paragraphs: ["A Maps run opens each business in turn and paces itself unevenly, like a person browsing. When Maps stops answering, the run slows down rather than being cut off."],
+            points: ["If Maps shows a verification page, the run stops and the panel says so. Complete the check in the tab and start the search again; what was collected is kept.", "One search returns at most 200 businesses. For a big city, search by neighbourhood or zip code and let chat combine the searches into one table.", "Businesses without a website keep their phone and address; the email columns stay empty for them."],
+        },
         {
             id: "add-emails",
             screenshot: "ext/results-add-contacts",
@@ -109,7 +126,7 @@ export const mapsLeads: FeaturePageContent = {
         items: [
             {
                 title: "Prospect lists for sales and agencies",
-                body: "Build a list of businesses by niche and city, with phone numbers and websites, ready to import into a CRM or a calling sheet.",
+                body: "Build a list of businesses by type and city, with phone numbers and websites, ready for your sales tool or a calling sheet.",
             },
             {
                 title: "Finding businesses to help",
@@ -149,6 +166,14 @@ export const mapsLeads: FeaturePageContent = {
         {
             q: "Is Maps leads part of the plan?",
             a: "Yes. There's one plan, Pro, and it includes every feature, including Maps leads, contact details, bulk runs and every export format.",
+        },
+        {
+            q: "Why does the run slow down near the end?",
+            a: "Maps answers more slowly after many businesses are opened in a row, and the run slows with it instead of being blocked. A 200-business run with emails takes about fifteen minutes.",
+        },
+        {
+            q: "Can I find businesses that have no website?",
+            a: "Yes. On the results page, click Filter rows and keep rows where Website is empty. For an agency that builds websites, that filter is the lead list.",
         },
     ],
     related: ["ai-chat", "email-extractor", "bulk-scraper", "export-to-google-sheets", "list-scraper"],

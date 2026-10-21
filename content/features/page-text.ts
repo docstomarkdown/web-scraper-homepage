@@ -43,19 +43,36 @@ export const pageText: FeaturePageContent = {
         items: [
             {
                 title: "Open the page",
+                points: ["Articles, help pages, documentation, news stories and reports all work."],
                 body: "Go to the article, guide or documentation page in Chrome and open the side panel's Properties tab.",
             },
             {
                 title: "Click Collect page text",
+                points: ["Or type in the Chat tab: Collect the page text.", "Columns: Source URL, Page title, Description, Page text, Word count, Author, Publish date."],
                 body: "Or type \"collect the page text\" in the Chat tab. The results page opens in Document layout, where you can read it or click Copy text.",
             },
             {
                 title: "Export",
+                points: ["Microsoft Word for a document. Copy text for the clipboard. CSV or JSON for a pipeline."],
                 body: "Save it as a Word document, or as CSV or JSON for a tool. The collection stays in History.",
             },
         ],
     },
     sections: [
+        {
+            id: "kept",
+            eyebrow: "What's kept and what's left out",
+            heading: "The text a reader would read, nothing else",
+            paragraphs: ["The main text of the page is kept in reading order. Everything around it is left out."],
+            points: ["Left out: navigation menus, ads, cookie banners, sidebars, comments, footers.", "Kept: headings, paragraphs, lists and the text of tables, in order.", "Author and date are filled when the page states them in a form the extension recognises; some pages leave them blank."],
+        },
+        {
+            id: "pushback",
+            eyebrow: "When a page pushes back",
+            heading: "Paywalls, sign-ins and pages that load as you scroll",
+            paragraphs: ["The extension collects the text the page shows you."],
+            points: ["Text behind a paywall or a sign-in is read only once you can see it.", "A page that loads more text as you scroll is read as far as it has loaded; scroll to the end first.", "A page that shows a verification instead of its content gives nothing; complete the check and collect again."],
+        },
         {
             id: "many-pages",
             eyebrow: "A reading list",
@@ -68,7 +85,7 @@ export const pageText: FeaturePageContent = {
     limits: {
         heading: "Good to know",
         items: [
-            "It collects the text the page shows you. Content behind a paywall or a login is read only if you can see it.",
+            "It collects the text the page shows you. Content behind a paywall or a sign-in is read only if you can see it.",
             "Author and date are filled when the page states them in a form it recognises; some pages leave them blank.",
             "The text belongs to its publisher. Keep collected text for your own reading, notes and analysis, and check the site's terms before republishing any of it.",
         ],
@@ -98,6 +115,14 @@ export const pageText: FeaturePageContent = {
         {
             q: "Is this included in the plan?",
             a: "Yes. Page text is part of the one plan, Pro.",
+        },
+        {
+            q: "Can I collect a page I'm reading behind a sign-in?",
+            a: "Yes, once you're signed in and can see it. The extension reads the page in your browser; it doesn't sign in for you.",
+        },
+        {
+            q: "Can I collect the text of a whole website?",
+            a: "Give Bulk scrape → Collect page text a list of the site's page addresses and each one's text is collected in turn into one table.",
         },
     ],
     related: ["bulk-scraper", "list-scraper", "export-to-google-sheets", "ai-chat"],
