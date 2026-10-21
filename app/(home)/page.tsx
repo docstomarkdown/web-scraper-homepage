@@ -14,7 +14,7 @@ export const metadata = {
     title: { absolute: "Web Scraper Pro: turn any web page into a spreadsheet" },
     alternates: { canonical: "/" },
     description:
-        "Turn any web page into a spreadsheet. Collect Maps leads, Amazon products, and Zillow listings in one click, then export to Google Sheets, Excel, or CSV. A Chrome extension.",
+        "Turn any web page into a spreadsheet. Collect Google Maps leads, Amazon products, and Zillow listings in one click, then export to Google Sheets, Excel, or CSV. A Chrome extension.",
 };
 
 export default function Home() {

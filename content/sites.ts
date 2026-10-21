@@ -15,8 +15,8 @@ export interface ReadyMadeSite {
 }
 
 export const readyMadeSites: ReadyMadeSite[] = [
-    // Maps and directories
-    { name: "Maps", category: "maps-and-directories", page: "maps" },
+    // Google Maps and directories
+    { name: "Google Maps", category: "maps-and-directories", page: "maps" },
     { name: "Yellow Pages", category: "maps-and-directories", page: "yellow-pages" },
     { name: "Justdial", category: "maps-and-directories", page: "justdial" },
     { name: "BBB", category: "maps-and-directories", page: "bbb" },

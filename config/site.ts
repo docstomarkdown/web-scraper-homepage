@@ -10,7 +10,7 @@ export const siteConfig = {
     twitter: "https://x.com/vikramaruchamy",
     linkedin: "https://www.linkedin.com/in/vikramaruchamy/",
   },
-  keywords: ["web scraper", "web scraping", "chrome extension", "data extraction", "no code", "Maps leads", "email extractor"],
+  keywords: ["web scraper", "web scraping", "chrome extension", "data extraction", "no code", "Google Maps leads", "email extractor"],
 }
 
 // Tools groups configuration (exported separately for tools page)

@@ -58,7 +58,7 @@ Template: **feature page**. It covers:
 | Page | URL | Feature (extension) | Status |
 |---|---|---|---|
 | Lists from any website | `/list-scraper` | Auto-detects lists; collects every page of results, load-more, infinite scroll | 🟢 |
-| Maps leads | `/maps-leads` | Collects places from Maps and Bing Maps, up to a chosen count | ✅ |
+| Google Maps leads | `/maps-leads` | Collects places from Google Maps and Bing Maps, up to a chosen count | ✅ |
 | Emails and contacts | `/email-extractor` | Emails, phones and social links from a page or many sites; optional deep scan of the Contact/About page | 🟢 |
 | Bulk URLs | `/bulk-scraper` | Paste or upload URLs, or reuse a saved table; list, maps, contacts or text mode per site | 🟢 |
 | Product details and reviews | `/product-scraper` | One product page's details, variants, images and videos; all reviews across pages | 🟢 |
@@ -85,11 +85,11 @@ Each page's persona is from `docs/personas.md`.
 
 | Page | URL | Persona | Features involved | Status |
 |---|---|---|---|---|
-| Lead generation | `/use-cases/lead-generation` | Arjun | Maps leads, then contacts on those websites, bulk runs, directories (Yelp, YellowPages, BBB, Manta, Clutch…) | 🟡 drafted 2026-10-21 |
+| Lead generation | `/use-cases/lead-generation` | Arjun | Google Maps leads, then contacts on those websites, bulk runs, directories (Yelp, YellowPages, BBB, Manta, Clutch…) | 🟡 drafted 2026-10-21 |
 | Real estate | `/use-cases/real-estate` | Maria | Listings from Zillow, Redfin, Realtor, Rightmove, Zoopla, Property Finder | 🟡 drafted 2026-10-21 |
 | E-commerce and price research | `/use-cases/ecommerce` | Priya | Marketplace lists, product details, reviews, bulk | 🟡 drafted 2026-10-21 (no scheduled price checks until cloud) |
 | Freelance data work | `/use-cases/freelance-data-work` | Rina | Lists from any website, contacts, bulk runs, column clean-up, exports | 🟡 drafted 2026-10-21 |
-| Reviews and reputation | `/use-cases/reviews` | Priya, Wei | Dropped 2026-10-21: Maps returns no review text, G2's review flow is unverified, and product reviews are covered on the product details page. Revisit when a review site has a verified run. | ⬜ dropped |
+| Reviews and reputation | `/use-cases/reviews` | Priya, Wei | Dropped 2026-10-21: Google Maps returns no review text, G2's review flow is unverified, and product reviews are covered on the product details page. Revisit when a review site has a verified run. | ⬜ dropped |
 | Job postings | `/use-cases/job-postings` | Sam | Dropped 2026-10-21: Monster's pack is generic and no job board has a verified setup, so the page would say nothing site-specific. Revisit with a verified board. | ⬜ dropped |
 | Research and AI datasets | `/use-cases/research` | Wei | Scholar, page text, any list | 🟡 drafted 2026-10-21 |
 | Travel and hospitality | `/use-cases/travel` | — | Booking, Hotels, Tripadvisor | 🟡 drafted 2026-10-21 |
@@ -121,7 +121,7 @@ The hub at `/use-cases` lists them all.
 
 | Section | URL | What | Status |
 |---|---|---|---|
-| Guides | `/guides/<slug>` | DigitalOcean-style tutorials, one per task ("How To Build a Lead List of Plumbers from Maps"). Each feature and use-case page links to at least one. | 🟢 |
+| Guides | `/guides/<slug>` | DigitalOcean-style tutorials, one per task ("How To Build a Lead List of Plumbers from Google Maps"). Each feature and use-case page links to at least one. | 🟢 |
 | Blog | `/blog/<slug>` | News, explainers, comparisons. Posts live under `/blog/<slug>`; the first post (1.3.0 release) is up. | ✅ 2026-10-21 |
 | Compare | `/compare/<slug>` | One page per competitor ("Web Scraper Pro vs X"), fair and dated. The list of competitors lives outside this repo. First page: webscraper.io. | ✅ 2026-10-21 |
 | Free tools | `/tools` | The existing e-commerce calculators. Add scraping-related tools over time. | ✅ |
@@ -141,7 +141,7 @@ The hub at `/use-cases` lists them all.
 
 ## 7. Build order
 
-1. Nav and footer for the new menus, plus the **feature page template**, starting with Maps leads.
+1. Nav and footer for the new menus, plus the **feature page template**, starting with Google Maps leads.
 2. The other 🟢 feature pages.
 3. The use-case template and the 🟢 use-case pages.
 4. The `/scrapers` hub, a shared sites data file, and the first per-site pages.

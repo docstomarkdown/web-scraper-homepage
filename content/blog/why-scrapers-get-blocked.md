@@ -39,12 +39,12 @@ The challenge you'll have seen is the verification page: a box to tick, a puzzle
 
 Because there is a person there.
 
-A tool like Web Scraper Pro doesn't send its own requests. It reads the page your browser already loaded, in your Chrome window, with your cookies, your screen and your pace. To the site, the Maps search you collected looks like you searching Maps, because it was. The extension adds the reading, not the traffic.
+A tool like Web Scraper Pro doesn't send its own requests. It reads the page your browser already loaded, in your Chrome window, with your cookies, your screen and your pace. To the site, the Google Maps search you collected looks like you searching Google Maps, because it was. The extension adds the reading, not the traffic.
 
 Three things follow from that:
 
 - **It works where scripts don't.** JavaScript-drawn pages, pages you're signed in to, sites that refuse data-centre traffic: your browser can see them, so the extension can read them.
-- **It goes at a person's pace.** A Maps run opens each business in turn and slows down when Maps stops answering, instead of hammering the site until it's blocked. Bulk runs load one site after another in an embedded browser, not fifty at once.
+- **It goes at a person's pace.** A Google Maps run opens each business in turn and slows down when Google Maps stops answering, instead of hammering the site until it's blocked. Bulk runs load one site after another in an embedded browser, not fifty at once.
 - **It stops at a verification.** When a site shows a check, the extension stops and asks you to complete it in the tab. It never solves one for you, and it never pretends to be a different visitor.
 
 ## The honest limits
@@ -72,7 +72,7 @@ A concrete case: collecting 20 pages of a Zillow zip-code search. Around page 12
 
 Total cost of the block: one click and about a minute. The alternative, a script that solves the check or switches address, is what Zillow's terms and the law object to; the [legal guide](/web-scraping-legal) explains why.
 
-For scale, a Maps run with emails reads one business's website roughly every five seconds: 50 businesses in about four minutes, 200 in about fifteen. That pace is deliberate, and it's why those runs rarely see a check at all.
+For scale, a Google Maps run with emails reads one business's website roughly every five seconds: 50 businesses in about four minutes, 200 in about fifteen. That pace is deliberate, and it's why those runs rarely see a check at all.
 
 ## What to do when you are blocked
 
@@ -90,4 +90,4 @@ The point of running in your own browser is that you behave like a visitor, and 
 
 - Robots Exclusion Protocol, RFC 9309 (2022): [rfc-editor.org](https://www.rfc-editor.org/rfc/rfc9309)
 - *hiQ Labs v. LinkedIn*, 9th Cir. 2022, on scraping public pages: [ca9.uscourts.gov](https://cdn.ca9.uscourts.gov/datastore/opinions/2022/04/18/17-16783.pdf)
-- Web Scraper Pro's own behaviour on verifications and pacing: the [Maps leads](/maps-leads) and [bulk runs](/bulk-scraper) pages, checked against release 1.3.0.
+- Web Scraper Pro's own behaviour on verifications and pacing: the [Google Maps leads](/maps-leads) and [bulk runs](/bulk-scraper) pages, checked against release 1.3.0.

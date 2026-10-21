@@ -26,11 +26,11 @@ Each buys the same thing: rows with a name, a phone, a website and, where it exi
 
 A business type plus a place is a search; a search is a list.
 
-"Dentists in Austin" is a product. "Companies that might need marketing" is not. Start with niches that are visible on Maps and in directories: trades, clinics, restaurants, gyms, salons, agencies, schools, property managers. A good first niche has several hundred businesses per city, buyers who already pay for leads, and public websites, because that's where the emails come from.
+"Dentists in Austin" is a product. "Companies that might need marketing" is not. Start with niches that are visible on Google Maps and in directories: trades, clinics, restaurants, gyms, salons, agencies, schools, property managers. A good first niche has several hundred businesses per city, buyers who already pay for leads, and public websites, because that's where the emails come from.
 
 ## Step 2: build the first list
 
-One Maps search with contact details on gives you the list with emails in the same run.
+One Google Maps search with contact details on gives you the list with emails in the same run.
 
 In Web Scraper Pro's Chat tab, type `Find dentists in Austin`, choose how many (up to 200 per run), and click Start. The extension collects every business with its phone, website, rating and address, and reads each business's own website for emails, website phone numbers and social links while it runs. Fifty businesses with emails take about four minutes; the [guide](/guides/get-maps-leads-with-emails) shows each step.
 
@@ -54,7 +54,7 @@ Common shapes for a first service:
 |---|---|---|
 | One-off list | One niche, one area, up to a few hundred rows with contact details | One or two runs, cleaned, same day |
 | Multi-city pack | The same niche across five to ten cities | A run per city, combined into one sheet |
-| Monthly refresh | The list rerun each month with new businesses flagged | Rerun the searches; compare on website or Maps link |
+| Monthly refresh | The list rerun each month with new businesses flagged | Rerun the searches; compare on website or Google Maps link |
 | Enrichment only | The client's own list of websites, with emails and social links added | Bulk scrape → Collect contacts on their sheet |
 
 Set a floor that covers your time with a margin, then raise it as the delivery proves clean. Freelance marketplaces are full of data-collection orders; the ones that win repeat work promise a format and a date and hit both.
@@ -86,7 +86,7 @@ The delivery note, which you'll reuse for every order:
 
 ```
 Dentists in Austin, Dallas and Houston: 294 businesses.
-Collected on 21 October 2026 from Maps listings and each business's own website.
+Collected on 21 October 2026 from Google Maps listings and each business's own website.
 Columns: Business Name, Phone, Email, Website, City.
 Emails are the ones the businesses publish; 61% of rows have one.
 Please honour unsubscribes and the anti-spam rules where you send.

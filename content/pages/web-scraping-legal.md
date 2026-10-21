@@ -70,7 +70,7 @@ The robots.txt file (standardised in [RFC 9309](https://www.rfc-editor.org/rfc/r
 
 Stay on public pages, keep business data for business use, don't republish what you didn't write, and read the terms of any site you sign in to.
 
-- A Maps search for dentists in a city, exported for your own outreach, collects published business data. Keep it to the outreach, honour unsubscribes, and you're within the usual rules.
+- A Google Maps search for dentists in a city, exported for your own outreach, collects published business data. Keep it to the outreach, honour unsubscribes, and you're within the usual rules.
 - A list of products and prices from a store, for a price comparison, is facts for analysis. Don't republish the store's photos or descriptions.
 - A job board's postings are about jobs, not people. The extension doesn't collect candidate profiles, and you shouldn't try to.
 - Pages you can only see when signed in come with that account's terms. Export only what those terms let an ordinary user export.

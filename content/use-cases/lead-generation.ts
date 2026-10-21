@@ -2,15 +2,15 @@ import type { UseCasePageContent } from "@/components/pages/UseCasePage";
 import { getPage } from "@/config/pages";
 
 // Persona: Arjun, lead-generation agency owner (docs/personas.md), written so a first-time, non-technical reader can
-// follow it too. Facts checked against release 1.3.0 on 2026-10-21: Maps run with contact details (DECISIONS.md D-022,
-// D-026), Bulk Maps and contacts (D-023), Add contact details on a saved table (D-024), results page filters and exports
+// follow it too. Facts checked against release 1.3.0 on 2026-10-21: Google Maps run with contact details (DECISIONS.md D-022,
+// D-026), Bulk Google Maps and contacts (D-023), Add contact details on a saved table (D-024), results page filters and exports
 // (lib/tools/arrangeResults.ts, lib/tools/exportDataset.ts). Draft until the workflow screenshots exist.
 
 export const leadGeneration: UseCasePageContent = {
     page: getPage("lead-generation", "use-case"),
     meta: {
         title: "Lead Generation: Local Business Lists with Emails and Phones",
-        description: "Build a list of local businesses by type and city, with phone, website, email and social links, from Maps and business directories. Ready for your email tool or a spreadsheet.",
+        description: "Build a list of local businesses by type and city, with phone, website, email and social links, from Google Maps and business directories. Ready for your email tool or a spreadsheet.",
     },
     h1: "Get a list of local businesses, with phone numbers and emails",
     intro: "Type the kind of business and the city. In a few minutes you have a spreadsheet: one business per row, with the phone number, the website and the email from the business's own site.",
@@ -19,8 +19,8 @@ export const leadGeneration: UseCasePageContent = {
     job: {
         heading: "The list you'd otherwise copy by hand",
         paragraphs: [
-            "You need every dentist in Austin, or every plumber in Denver, with a way to reach each one. The names and phone numbers are on Maps. The emails are on each business's own website. Copying them one by one takes a day.",
-            "Web Scraper Pro does it for you, inside your Chrome browser. It collects the businesses from Maps, visits each business's website for the email, and puts everything in one table you can save as an Excel file.",
+            "You need every dentist in Austin, or every plumber in Denver, with a way to reach each one. The names and phone numbers are on Google Maps. The emails are on each business's own website. Copying them one by one takes a day.",
+            "Web Scraper Pro does it for you, inside your Chrome browser. It collects the businesses from Google Maps, visits each business's website for the email, and puts everything in one table you can save as an Excel file.",
             "You don't need to know anything technical. You type what you want in plain words, and you watch the rows appear.",
         ],
     },
@@ -37,7 +37,7 @@ export const leadGeneration: UseCasePageContent = {
             },
             {
                 title: "Watch the businesses and emails arrive",
-                body: "Maps opens in a new tab and the extension works through the results on its own. For each business it also opens the business's website and reads the contact page. You can stop at any time and keep what it has found.",
+                body: "Google Maps opens in a new tab and the extension works through the results on its own. For each business it also opens the business's website and reads the contact page. You can stop at any time and keep what it has found.",
                 points: ["The panel counts the businesses as they come in, and how many have an email.", "Fifty businesses take about four minutes. Two hundred take about fifteen.", "Some businesses never publish an email. Those rows still have the phone number and the website."],
                 feature: "email-extractor",
                 screenshot: "ext/chat-maps-progress",
@@ -51,7 +51,7 @@ export const leadGeneration: UseCasePageContent = {
             },
             {
                 title: "Do the same for more cities",
-                body: "Searched Austin and want Dallas and Houston too? Run a search for each city. Chat offers to combine the searches into one table. For ten or more cities, paste the Maps search links into Bulk scrape and they run one after another.",
+                body: "Searched Austin and want Dallas and Houston too? Run a search for each city. Chat offers to combine the searches into one table. For ten or more cities, paste the Google Maps search links into Bulk scrape and they run one after another.",
                 feature: "bulk-scraper",
             },
             {
@@ -71,7 +71,7 @@ export const leadGeneration: UseCasePageContent = {
             ["Northside Orthodontics", "(555) 010-7782", "northside.example", "info@northside.example"],
         ],
     },
-    sites: [{ name: "Maps", page: "maps" }, { name: "Yellow Pages", page: "yellow-pages" }, { name: "Justdial", page: "justdial" }, { name: "BBB", page: "bbb" }, { name: "Any business directory" }],
+    sites: [{ name: "Google Maps", page: "maps" }, { name: "Yellow Pages", page: "yellow-pages" }, { name: "Justdial", page: "justdial" }, { name: "BBB", page: "bbb" }, { name: "Any business directory" }],
     cantDo: {
         heading: "What it won't do",
         items: [

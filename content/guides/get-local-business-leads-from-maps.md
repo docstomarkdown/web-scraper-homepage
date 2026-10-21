@@ -1,6 +1,6 @@
 ---
-title: "How To Get Business Leads from Maps with Web Scraper Pro"
-description: "Collect every business from a Maps search into a spreadsheet, with phone, website, rating and address, in one run."
+title: "How To Get Business Leads from Google Maps with Web Scraper Pro"
+description: "Collect every business from a Google Maps search into a spreadsheet, with phone, website, rating and address, in one run."
 status: draft
 date: 2026-10-20
 updated: 2026-10-20
@@ -20,10 +20,10 @@ faq:
   - q: "Can I get the business listings without code?"
     a: "Yes. Everything here is a sentence in the Chat tab or a click in the side panel. There's no API key, no script and no selector to set up."
   - q: "Can I collect reviews as well?"
-    a: "Not from a Maps search. The run collects each business's details and contact details; review text isn't part of it."
+    a: "Not from a Google Maps search. The run collects each business's details and contact details; review text isn't part of it."
 ---
 
-Collect every business from a Maps search into a spreadsheet, with phone, website, rating and address, in one run. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
+Collect every business from a Google Maps search into a spreadsheet, with phone, website, rating and address, in one run. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
 ## Prerequisites
 
@@ -44,7 +44,7 @@ Type `Find dentists in Austin` and press Enter. A card asks how many businesses 
 
 ## Step 3 — Watching the run
 
-Maps opens in a new tab and the extension scrolls the results, opening each place for its phone, website, address and hours. The progress line in the panel counts the businesses collected and how many have an email. Click the round Stop button, or press Esc, at any time to keep what it has.
+Google Maps opens in a new tab and the extension scrolls the results, opening each place for its phone, website, address and hours. The progress line in the panel counts the businesses collected and how many have an email. Click the round Stop button, or press Esc, at any time to keep what it has.
 
 ![](visual:ext/chat-maps-progress)
 
@@ -70,12 +70,12 @@ Click **Export as** and choose **Microsoft Excel**. The file opens with one row 
 
 **The count card never appeared.** It shows only until a count is remembered. Say the number in the request, such as `Find dentists in Austin, 100`, or change Businesses per chat search in Settings → Results.
 
-**The run stopped part way.** Maps asked for a verification, or the tab went to the background. Complete the check in the Maps tab, keep that tab in front, and run the search again; the businesses already collected are in History.
+**The run stopped part way.** Google Maps asked for a verification, or the tab went to the background. Complete the check in the Google Maps tab, keep that tab in front, and run the search again; the businesses already collected are in History.
 
-**Most rows have no email.** Maps never lists emails; they come from each business's website, and many small businesses publish none. Check the Website column: rows without a website can't have an email.
+**Most rows have no email.** Google Maps never lists emails; they come from each business's website, and many small businesses publish none. Check the Website column: rows without a website can't have an email.
 
-**The table has fewer businesses than Maps shows.** Maps itself lists only so many results per search, usually around 120, whatever the count on screen. Search by neighbourhood or zip code and let chat combine the searches.
+**The table has fewer businesses than Google Maps shows.** Google Maps itself lists only so many results per search, usually around 120, whatever the count on screen. Search by neighbourhood or zip code and let chat combine the searches.
 
 ## Conclusion
 
-You collected a Maps search into a spreadsheet with contact details in one run. To repeat it for several cities at once, see the bulk runs guide; to get emails for a list you collected earlier, see How To Get Maps Leads with Emails.
+You collected a Google Maps search into a spreadsheet with contact details in one run. To repeat it for several cities at once, see the bulk runs guide; to get emails for a list you collected earlier, see How To Get Google Maps Leads with Emails.

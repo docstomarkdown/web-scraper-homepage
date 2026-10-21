@@ -12,7 +12,7 @@ const GROUPS = [
         faqs: [
             {
                 q: "Is it free?",
-                a: "Yes. Web Scraper Pro is free to install and use today, with every feature included: chat, ready-made sites, Maps leads and contact details, Shopify catalog export, bulk runs and every export format. There are no credits to count and no account to create. Cloud runs are coming soon.",
+                a: "Yes. Web Scraper Pro is free to install and use today, with every feature included: chat, ready-made sites, Google Maps leads and contact details, Shopify catalog export, bulk runs and every export format. There are no credits to count and no account to create. Cloud runs are coming soon.",
             },
             {
                 q: "Do I need an account?",
@@ -24,7 +24,7 @@ const GROUPS = [
             },
             {
                 q: "Which websites does it work on?",
-                a: "Popular sites such as Amazon, Zillow and Maps have ready-made settings. On other sites, including independent online stores and directories, it detects the lists on the page automatically, and you can point it at a specific area if you need to.",
+                a: "Popular sites such as Amazon, Zillow and Google Maps have ready-made settings. On other sites, including independent online stores and directories, it detects the lists on the page automatically, and you can point it at a specific area if you need to.",
             },
         ],
     },
@@ -32,8 +32,8 @@ const GROUPS = [
         title: "Collecting data",
         faqs: [
             {
-                q: "Can I get emails for businesses I find on Maps?",
-                a: "Yes, in the same run. Maps doesn't list emails, so Web Scraper Pro reads each business's own website while it collects and adds the emails, phone numbers and social links it finds to that business's row. Businesses that don't publish an email still come back with their phone and website.",
+                q: "Can I get emails for businesses I find on Google Maps?",
+                a: "Yes, in the same run. Google Maps doesn't list emails, so Web Scraper Pro reads each business's own website while it collects and adds the emails, phone numbers and social links it finds to that business's row. Businesses that don't publish an email still come back with their phone and website.",
             },
             {
                 q: "Can I use it on sites I log in to, like an MLS or a member directory?",

@@ -64,7 +64,7 @@ export const pages: SitePage[] = [
     // Product: one page per feature
     connect(["ai-chat", "AI chat", "Ask for the data you want in plain words, and it collects and exports it for you.", "live", "message"]),
     { ...connect(["mcp", "MCP and AI agents", "Connect Claude or another AI agent to collect data through your browser.", "soon", "bot"]), comingSoon: true },
-    collect(["maps-leads", "Maps leads", "Every business from a Maps search, with phone, website, address and rating.", "live", "map-pin"]),
+    collect(["maps-leads", "Google Maps leads", "Every business from a Google Maps search, with phone, website, address and rating.", "live", "map-pin"]),
     collect(["list-scraper", "Lists from any website", "Directories, search results and catalogs on other sites, with named columns and every page of results.", "live", "list"]),
     collect(["shopify-scraper", "Shopify store export", "Every product in a public store, with variants, images and an import CSV.", "live", "store"]),
     collect(["product-scraper", "Product details and reviews", "A product's full details, variants and images, plus its customer reviews.", "live", "shopping-bag"]),
@@ -87,7 +87,7 @@ export const pages: SitePage[] = [
     // Scrapers: categories that group the ready-made sites on the /scrapers hub. They are groupings, not menu items:
     // the Sites menu lists per-site pages (content/scrapers/), and a category URL only renders in local preview.
     // Summaries list only sites from the verified "ready-made sites" list (components/landing/Sites.tsx).
-    scraper(["maps-and-directories", "Maps and directories", "Maps, Yellow Pages, Justdial, BBB", "planned", "map-pin"]),
+    scraper(["maps-and-directories", "Google Maps and directories", "Google Maps, Yellow Pages, Justdial, BBB", "planned", "map-pin"]),
     scraper(["online-stores", "Online stores", "Amazon, eBay, Walmart, Etsy, Target, Costco, Wayfair and more", "planned", "shopping-bag"]),
     scraper(["real-estate", "Real estate", "Zillow, Rightmove", "planned", "home"]),
     scraper(["travel", "Travel", "Booking.com, Hotels.com, Tripadvisor", "planned", "plane"]),

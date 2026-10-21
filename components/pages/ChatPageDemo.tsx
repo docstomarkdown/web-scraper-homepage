@@ -4,16 +4,16 @@ import React, { useRef, useState } from "react";
 import { MapPin, ShoppingBag, Store } from "lucide-react";
 import ChatDemo, { type Scenario } from "@/components/landing/ChatDemo";
 
-// Only what chat really does (see content/features/ai-chat.ts): a Maps search, a whole Shopify
+// Only what chat really does (see content/features/ai-chat.ts): a Google Maps search, a whole Shopify
 // catalog, and the list on the open page (one page, not every page). Sample data only.
 const CHAT_SCENARIOS: Scenario[] = [
     {
         id: "local",
-        chip: "Maps search",
+        chip: "Google Maps search",
         icon: MapPin,
-        source: "Maps · plumbers in Denver",
+        source: "Google Maps · plumbers in Denver",
         prompt: "Find plumbers in Denver",
-        working: "Searching Maps for plumbers in Denver…",
+        working: "Searching Google Maps for plumbers in Denver…",
         found: "Found 50 businesses · reading details…",
         total: "50",
         columns: ["Name", "Phone", "Website"],

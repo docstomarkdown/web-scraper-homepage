@@ -1,6 +1,6 @@
 ---
 title: "How To Build a Lead List Without Buying Data"
-description: "You don't need a data vendor for a local or niche lead list. Maps, business directories, association member lists and careers pages hold the businesses; a browser extension turns them into a sheet with phones, websites and emails. Where to look, what each source gives you, and what it won't."
+description: "You don't need a data vendor for a local or niche lead list. Google Maps, business directories, association member lists and careers pages hold the businesses; a browser extension turns them into a sheet with phones, websites and emails. Where to look, what each source gives you, and what it won't."
 status: draft
 date: 2026-10-21
 updated: 2026-10-21
@@ -9,7 +9,7 @@ category: Playbooks
 tags: [lead generation, maps leads, directories, no code]
 ---
 
-The businesses you want to reach are already listed in public places: Maps, business directories, trade association member lists, review sites and their own websites. A lead list is those listings turned into rows with a phone, a website and an email, and a browser extension does the turning in minutes. You trade a vendor's invoice for an hour of your time and a list that's as fresh as today. Here's where to look, what each source gives you, and the honest gaps.
+The businesses you want to reach are already listed in public places: Google Maps, business directories, trade association member lists, review sites and their own websites. A lead list is those listings turned into rows with a phone, a website and an email, and a browser extension does the turning in minutes. You trade a vendor's invoice for an hour of your time and a list that's as fresh as today. Here's where to look, what each source gives you, and the honest gaps.
 
 ## Why build instead of buy
 
@@ -17,27 +17,27 @@ Fresher rows, your exact niche, and no per-record cost.
 
 Vendor lists are broad and age from the day they're compiled; a third of a year-old list is stale. A list you build is today's listings for exactly the niche and area you sell to, and you can rebuild it next month for free. The gaps are real too: a vendor may hold a decision-maker's name or a direct line that no public page shows. For local and small-business outreach, that rarely matters; the business's phone and email are the contact.
 
-## Source 1: Maps
+## Source 1: Google Maps
 
 The richest source for local businesses, with contact details read from each business's website in the same run.
 
-A search such as `dentists in Austin` lists every dentist with a Maps presence: name, category, rating, review count, address, hours, phone and website. Maps doesn't show emails, so Web Scraper Pro reads each business's own website and its Contact page during the run and adds Emails, Website phones and social links to the row. One run returns up to 200 businesses; a city needs a run per neighbourhood or zip code.
+A search such as `dentists in Austin` lists every dentist with a Google Maps presence: name, category, rating, review count, address, hours, phone and website. Google Maps doesn't show emails, so Web Scraper Pro reads each business's own website and its Contact page during the run and adds Emails, Website phones and social links to the row. One run returns up to 200 businesses; a city needs a run per neighbourhood or zip code.
 
 What you get: a complete local list with phones and most websites, and emails for the businesses that publish one. What you won't: an email for every business, because many never publish one.
 
 ## Source 2: business directories
 
-Yellow Pages, Justdial, BBB and their regional equivalents, strongest where Maps coverage is thin.
+Yellow Pages, Justdial, BBB and their regional equivalents, strongest where Google Maps coverage is thin.
 
 Directories list businesses by category and place with phone, address and website, and some add years in business or accreditation. Web Scraper Pro has ready-made columns for [Yellow Pages](/scrapers/yellow-pages), [Justdial](/scrapers/justdial) and [BBB](/scrapers/bbb); any other directory with a list is detected on the page. Collect every page of a category, then run **Bulk scrape → Collect contacts** over the websites to add emails.
 
-What you get: a second list to compare with Maps, often with businesses that never claimed a Maps listing. What you won't: Maps-style ratings, and some directories pad categories with sponsored rows, which the extension labels so you can filter them.
+What you get: a second list to compare with Google Maps, often with businesses that never claimed a Google Maps listing. What you won't: Maps-style ratings, and some directories pad categories with sponsored rows, which the extension labels so you can filter them.
 
 ## Source 3: association and chamber member lists
 
 The best lists for a profession, published by the bodies that represent it.
 
-Trade associations, licensing boards, chambers of commerce and franchise locators publish member directories: name, firm, city, often a website. They're narrower than Maps and far more precise about who belongs to the profession. Most are a list on a page, which the List tab collects across every page; a few need a sign-in, and those come with terms you should read first.
+Trade associations, licensing boards, chambers of commerce and franchise locators publish member directories: name, firm, city, often a website. They're narrower than Google Maps and far more precise about who belongs to the profession. Most are a list on a page, which the List tab collects across every page; a few need a sign-in, and those come with terms you should read first.
 
 What you get: the right people, verified by the body. What you won't: phones and emails on many of them, which the website pass adds.
 
@@ -59,7 +59,7 @@ Say the target is plumbers in Denver. The sources above, in order, and what each
 
 | Source | What you type or open | Rows | What the rows carry |
 |---|---|---|---|
-| Maps | `Find plumbers in Denver`, pick 200 | up to 200 per search | name, phone, website, rating, address, plus emails and social links read from each site |
+| Google Maps | `Find plumbers in Denver`, pick 200 | up to 200 per search | name, phone, website, rating, address, plus emails and social links read from each site |
 | Yellow Pages | the plumbers category for Denver, 5 pages | 30 per page | name, phone, address, website, years in business |
 | The plumbers' trade association | its member directory page | one page per letter or city | firm, city, website |
 | Careers pages | a plumbing company's jobs page | one per company | roles, which tells you who's growing |
@@ -86,4 +86,4 @@ Public listings name the business, not the owner; for that you'll read the About
 
 Your niche, your city, this afternoon.
 
-Open Chrome, open the side panel, type the niche and the city, and look at the rows before deciding whether a vendor's list was ever the right buy. The [Maps leads guide](/guides/get-local-business-leads-from-maps) takes you from the first search to the Excel file.
+Open Chrome, open the side panel, type the niche and the city, and look at the rows before deciding whether a vendor's list was ever the right buy. The [Google Maps leads guide](/guides/get-local-business-leads-from-maps) takes you from the first search to the Excel file.

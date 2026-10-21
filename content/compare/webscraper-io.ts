@@ -23,7 +23,7 @@ export const webscraperIo: ComparePageContent = {
     rows: [
         { area: "How you tell it what to collect", ours: "Type a request in the Chat tab (\"find dentists in Austin\", \"collect the products on this page\"), or pick a list the List tab found. No selectors.", theirs: "Build a sitemap: a tree of selectors (text, link, image, element, pagination) per site, by clicking elements in DevTools. An AI-assisted setup is offered on the extension page." },
         { area: "Ready-made sites", ours: "Named columns for popular sites (Amazon, Zillow, Yellow Pages, Booking.com and more), detected automatically on everything else.", theirs: "A marketplace of about 96 prebuilt scrapers for named sites, run in the cloud; the free extension needs a sitemap you build or import." },
-        { area: "Maps leads with emails", ours: "A Maps search collects every business with phone, website, rating and address, and reads each business's website for emails and social links in the same run.", theirs: "No Maps-specific feature on the public pages; a Maps sitemap would be built like any other." },
+        { area: "Google Maps leads with emails", ours: "A Google Maps search collects every business with phone, website, rating and address, and reads each business's website for emails and social links in the same run.", theirs: "No Maps-specific feature on the public pages; a Google Maps sitemap would be built like any other." },
         { area: "Every page of results", ours: "Next page, Load more and endless scroll, detected on the page; set how many pages.", theirs: "Pagination and scroll selectors you add to the sitemap; the documentation covers each type." },
         { area: "Product pages and reviews", ours: "Fifteen standard fields from a product page plus the reviews across their pages, from the Properties tab.", theirs: "Product-page scrapers exist for named sites in the marketplace; otherwise an element selector tree." },
         { area: "Shopify stores", ours: "The whole catalog from the store's own product data, one row per product or variant, with a Shopify import CSV and the images.", theirs: "Not a listed feature; a store would be scraped as a generic site." },
@@ -45,7 +45,7 @@ export const webscraperIo: ComparePageContent = {
         {
             heading: "Lead lists, specifically",
             paragraphs: [
-                "If the job is a lead list, the gap is widest. A Maps search in Web Scraper Pro returns every business with its phone, website, rating and address, then reads each business's website for emails, website phone numbers and social links, in the same run, and can add the same details to any saved table with a Website column. Web Scraper's public pages describe no Maps or email feature; you'd build the sitemap and handle the websites separately.",
+                "If the job is a lead list, the gap is widest. A Google Maps search in Web Scraper Pro returns every business with its phone, website, rating and address, then reads each business's website for emails, website phone numbers and social links, in the same run, and can add the same details to any saved table with a Website column. Web Scraper's public pages describe no Google Maps or email feature; you'd build the sitemap and handle the websites separately.",
             ],
         },
         {

@@ -194,7 +194,7 @@ Linking out to good sources builds trust. It doesn't leak rank.
 These repeat the `AGENTS.md` rules because they're content rules too:
 - No invented proof: no user counts, ratings, testimonials or logos unless they're real and sourced.
 - Sample data is clearly fake and labelled "Sample data".
-- Write "Maps", never "Google Maps".
+- Write "Google Maps" (the plain name of the site; no logo, nothing implying affiliation).
 - Never market collecting candidate or personal profiles (see `personas.md`).
 - If something is planned, say "coming soon". Never describe it as available.
 

@@ -47,8 +47,9 @@ Build every section so a later SEO pass only has to tune it, not restructure it:
 - Review new or changed copy by walking the page as each persona in `docs/personas.md`, and keep copy
   consistent with the product facts listed there.
 
-- Write "Maps" / "Maps leads", never "Google Maps" (trademark). That includes mock address bars in
-  demos.
+- Write "Google Maps" as the plain name of the site, the way a how-to names it (owner decision
+  2026-10-21; it was "Maps" before). No Google logo, nothing implying affiliation. The extension UI
+  and the store listing are a different repo and keep their own wording.
 - No invented proof: no user counts, star ratings, testimonials, or logos unless they are real and
   sourced.
 - Demo/sample data must be clearly fake (555 phone numbers, generic names) and labelled "Sample data".

@@ -15,7 +15,7 @@ AI web scraping is any setup where a language model helps collect data from web 
 
 You type what you want; the AI reads the request, and the extension reads the page.
 
-This is how Web Scraper Pro's Chat tab works. Type `find dentists in Austin` or `collect the products on this page`, and the model decides which job to run: a Maps search, a list on the page, a product's details, contact details, page text. The collecting is done by the extension, from the page in your Chrome window, so every value is copied from the page rather than generated.
+This is how Web Scraper Pro's Chat tab works. Type `find dentists in Austin` or `collect the products on this page`, and the model decides which job to run: a Google Maps search, a list on the page, a product's details, contact details, page text. The collecting is done by the extension, from the page in your Chrome window, so every value is copied from the page rather than generated.
 
 What the AI sees: your typed words and the kind of page you're on, not the page's content. That matters for privacy and for accuracy; a model that never sees the rows can't mistype them.
 
@@ -33,7 +33,7 @@ What the AI sees: everything on the page, every step, including whatever persona
 
 The assistant stays in its own window and calls a scraper as a tool; the scraper returns rows.
 
-The Model Context Protocol (MCP) is the open standard that lets Claude and other assistants call outside tools. A scraping MCP server exposes jobs such as "collect these URLs" or "search Maps for X"; the assistant calls them and gets structured rows back, which it can then summarise, filter or hand to another tool.
+The Model Context Protocol (MCP) is the open standard that lets Claude and other assistants call outside tools. A scraping MCP server exposes jobs such as "collect these URLs" or "search Google Maps for X"; the assistant calls them and gets structured rows back, which it can then summarise, filter or hand to another tool.
 
 What the AI sees: the rows the tool returns, inside your conversation. Good for: people who already work in an assistant and want data to arrive there, and for chaining steps ("collect the catalog, then flag products under $20"). Web Scraper Pro's MCP connection and Browser Relay are coming soon; the [MCP page](/mcp) describes what's planned.
 
@@ -51,11 +51,11 @@ Fifty dentists in Austin with their emails, in the chat extension:
 
 1. Open a new tab, click the Web Scraper Pro icon, and open the **Chat** tab.
 2. Type `Find dentists in Austin` and press Enter. A card asks how many businesses: pick **50** and click **Start**.
-3. Maps opens in a tab and the run reads each business, then its website, for about four minutes. The run line counts: `32 of 50 · 18 with emails`.
+3. Google Maps opens in a tab and the run reads each business, then its website, for about four minutes. The run line counts: `32 of 50 · 18 with emails`.
 4. Click **View results**. The table has Business Name, Category, Rating, Review Count, Address, Operating Hours, Phone, Website and Map URL, then Emails, Website phones, Faxes and a column per social network found.
 5. Type `Only name, phone, email and website, rows with an email` and the table narrows to match. Click **Export as** → **Microsoft Excel**.
 
-What the AI saw: the two sentences you typed and the fact that you were on a normal page. What it didn't see: any of the fifty businesses. The [Maps leads with emails guide](/guides/get-maps-leads-with-emails) has a screenshot of each step.
+What the AI saw: the two sentences you typed and the fact that you were on a normal page. What it didn't see: any of the fifty businesses. The [Google Maps leads with emails guide](/guides/get-maps-leads-with-emails) has a screenshot of each step.
 
 ## The four shapes, side by side
 

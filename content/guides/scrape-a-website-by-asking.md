@@ -14,7 +14,7 @@ faq:
   - q: "Does the page's content go to an AI service?"
     a: "No. Collecting happens in your browser. To understand your request, your recent messages and the kind of page you're on go to our servers; the rows you collect stay on your device until you export them."
   - q: "What can I ask for?"
-    a: "The list on the page, every page of it, a product's details, the contact details on a site, the page's text, a Maps search, a Shopify store's catalog, and a file with the columns you name. Reviews are collected from the side panel's Collect reviews, not chat."
+    a: "The list on the page, every page of it, a product's details, the contact details on a site, the page's text, a Google Maps search, a Shopify store's catalog, and a file with the columns you name. Reviews are collected from the side panel's Collect reviews, not chat."
   - q: "Do I need an account or an API key?"
     a: "No. The first time you use chat, the extension connects to our servers on its own, using your Chrome profile's email if there is one."
   - q: "What happens when it gets the wrong list?"
@@ -49,7 +49,7 @@ Click the card, or type a request and press Enter:
 Collect the products on this page
 ```
 
-Say it the way you'd ask a colleague. Chat works out whether you mean a list, a product's details, contact details, page text or a Maps search, and runs that job. While it runs, a card in the thread shows the progress and the Send button turns into a round Stop button.
+Say it the way you'd ask a colleague. Chat works out whether you mean a list, a product's details, contact details, page text or a Google Maps search, and runs that job. While it runs, a card in the thread shows the progress and the Send button turns into a round Stop button.
 
 ![](visual:ext/chat-collect-list-result)
 
@@ -97,15 +97,15 @@ Each request runs one of these jobs. The wording is yours; these are examples.
 
 | Ask for | Example | What you get |
 |---|---|---|
-| A Maps search | `Find plumbers in Denver` | Up to 200 businesses with phone, website, rating, address, and the emails from their websites |
-| The map you're looking at | `Collect the first 20` | The Maps results already on screen |
+| A Google Maps search | `Find plumbers in Denver` | Up to 200 businesses with phone, website, rating, address, and the emails from their websites |
+| The map you're looking at | `Collect the first 20` | The Google Maps results already on screen |
 | A product's details | `Collect this product` | Everything on the product page, except reviews |
 | Contact details | `Find contact emails on this site` | Emails, phone numbers and social links from the page and its Contact page |
 | A Shopify store | `Every product, one row per size` | The whole catalog, from the store's product feed |
 | Page text | `Collect the page text` | The readable text with title, author and date |
 | Many pages at once | Paste a list of addresses | Chat opens Bulk scrape with them filled in |
 
-Each browser tab keeps its own chat, so a Maps search in one tab and a product list in another don't get mixed up.
+Each browser tab keeps its own chat, so a Google Maps search in one tab and a product list in another don't get mixed up.
 
 ## When it goes wrong
 

@@ -10,7 +10,7 @@ import { getPage } from "@/config/pages";
 // - Bulk → Collect contacts with pasted URLs, a CSV/TXT file, or a saved table's column: entrypoints/bulk/,
 //   lib/bulk/executors/contactBulkExecutor.ts
 // - "Add contact details" on any saved table with a Website column: DECISIONS.md D-024
-// - Added to Maps rows in the same run: DECISIONS.md D-022
+// - Added to Google Maps rows in the same run: DECISIONS.md D-022
 // Title and headings target what people type into Google ("extract email addresses from website",
 // "how to extract emails from any website", "email scraper from website"): youtube-research/AUTOSUGGEST.md and
 // SEARCH_QUERIES.md in the strategy repo. Owner instruction 2026-10-21: titles start with "How to".

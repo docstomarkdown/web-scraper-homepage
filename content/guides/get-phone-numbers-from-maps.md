@@ -1,6 +1,6 @@
 ---
-title: "How To Get Phone Numbers from Maps with Web Scraper Pro"
-description: "Collect the businesses in a Maps search and keep only their names and phone numbers in a clean Excel list."
+title: "How To Get Phone Numbers from Google Maps with Web Scraper Pro"
+description: "Collect the businesses in a Google Maps search and keep only their names and phone numbers in a clean Excel list."
 status: draft
 date: 2026-10-20
 updated: 2026-10-20
@@ -12,10 +12,10 @@ video: ""
 campaign: yt-b2-03-how-to-get-phone-numbers-from-google-maps-to-excel-1-click
 faq:
   - q: "Where does the Website phones column come from?"
-    a: "From each business's own website, read during the run when contact details are on. The Phone column is the number Maps lists."
+    a: "From each business's own website, read during the run when contact details are on. The Phone column is the number Google Maps lists."
 ---
 
-Collect the businesses in a Maps search and keep only their names and phone numbers in a clean Excel list. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
+Collect the businesses in a Google Maps search and keep only their names and phone numbers in a clean Excel list. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
 ## Prerequisites
 
@@ -47,12 +47,12 @@ Click **Export as** and choose Excel. The download matches what's shown.
 
 ## When it goes wrong
 
-**Phone is empty for some rows.** The listing shows no phone on Maps. Website phones, read from the business's own site, often fills the gap; keep both columns.
+**Phone is empty for some rows.** The listing shows no phone on Google Maps. Website phones, read from the business's own site, often fills the gap; keep both columns.
 
 **The chat filter hid too many rows.** `rows with a phone` keeps rows where the Phone column has a value. Say `rows with a phone or a website phone` to keep both, or click Clear filters and use Filter rows on the results page.
 
-**The run stopped at a verification page.** Complete the check in the Maps tab and run the search again. What was collected is kept in History.
+**The run stopped at a verification page.** Complete the check in the Google Maps tab and run the search again. What was collected is kept in History.
 
 ## Conclusion
 
-You have a two-column call list from a Maps search. The same filter works on any collection: name the columns and the rows you want.
+You have a two-column call list from a Google Maps search. The same filter works on any collection: name the columns and the rows you want.

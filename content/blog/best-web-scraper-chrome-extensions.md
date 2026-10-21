@@ -38,7 +38,7 @@ Templates pay off when you rerun the same site; description pays off when the si
 
 Match the tool to the job, not the feature list.
 
-- **A lead list with emails, today.** Web Scraper Pro: a Maps search returns every business with phone, website, rating and address, and reads each business's own website for emails and social links in the same run. No other extension here describes that on its public pages.
+- **A lead list with emails, today.** Web Scraper Pro: a Google Maps search returns every business with phone, website, rating and address, and reads each business's own website for emails and social links in the same run. No other extension here describes that on its public pages.
 - **A site you'll collect every week, unattended.** Web Scraper Cloud, Browse AI or Octoparse. All three sell scheduled cloud runs and an API; Browse AI adds change monitoring.
 - **A page you've never seen, in a minute.** Web Scraper Pro, Thunderbit or Chat4Data. Open the page and go.
 - **A whole Shopify catalog with an import file.** Web Scraper Pro reads the store's own product data into one row per variant, with a Shopify import CSV and the images.

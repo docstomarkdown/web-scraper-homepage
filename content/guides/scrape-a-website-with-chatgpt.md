@@ -111,7 +111,7 @@ Because it runs in your Chrome window, it reads pages you're signed in to, and a
 
 - It collects what the page shows you. A site that needs a sign-in still needs you to sign in.
 - It doesn't collect reviews from chat; use **Collect reviews** in the side panel.
-- A Maps search stops at 200 businesses per run. Split big jobs into smaller searches.
+- A Google Maps search stops at 200 businesses per run. Split big jobs into smaller searches.
 - Collecting personal data, or data a site's terms forbid, is on you, whatever tool you use.
 
 ## When it goes wrong

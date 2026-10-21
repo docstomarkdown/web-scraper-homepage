@@ -66,7 +66,7 @@ Our site allows only one H1 per page, so the introduction has no heading (Digita
 
 ### Title
 - **Name the goal, not only the tool:** "How To Build a Lead List of Local Plumbers with Web Scraper
-  Pro", not "How To Use Web Scraper Pro on Maps".
+  Pro", not "How To Use Web Scraper Pro on Google Maps".
 - Keep it under 60 characters where possible.
 - Use title case.
 
@@ -179,7 +179,7 @@ replace them. Highlight them where the component supports it. Never write "highl
 | collect, get, export | scrape, harvest, extract (in running text) | Plainer. "Scrape" is fine in titles and metadata, where people search for it. |
 | every page of results | pagination, paginate | Jargon |
 | named columns, a spreadsheet | structured data, JSON-first | Say what the reader gets |
-| Maps, Maps leads | Google Maps | Trademark |
+| Google Maps, Google Maps leads | Maps on its own, G-Maps | Name the site the way a reader searches for it (2026-10-21) |
 | Web Scraper Pro, the extension | the tool, our solution, the platform | Be specific |
 | sign in | log in, login (as a verb) | Consistency |
 | coming soon | in beta, launching (unless true) | Matches the product facts |

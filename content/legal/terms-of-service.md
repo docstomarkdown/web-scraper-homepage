@@ -9,7 +9,7 @@ These terms are the agreement between you and **Thinksolv Technologies Pvt Ltd**
 Web Scraper Pro is a Chrome extension that collects data from the web pages you open and turns it into a table you can export. It works in your own browser, on the pages you can see. Today it includes:
 
 - Collecting the lists on a page, across pages of results, and the details and reviews on a product or listing page.
-- Ready-made settings for popular sites such as Maps, Amazon and Zillow, and automatic list detection everywhere else.
+- Ready-made settings for popular sites such as Google Maps, Amazon and Zillow, and automatic list detection everywhere else.
 - Contact details (emails, phone numbers and social links) from a website, the readable text of a page, and the images on a page.
 - Shopify store catalog export, and bulk runs over a list of addresses.
 - A chat that works out what to collect from what you type.

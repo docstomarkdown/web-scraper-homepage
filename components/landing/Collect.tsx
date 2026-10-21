@@ -18,11 +18,11 @@ const TYPES: {
     {
         icon: MapPin,
         title: "Local business leads",
-        body: "Search Maps or a business directory and get every result as a row, with the emails and social links from each business's own website added in the same run.",
+        body: "Search Google Maps or a business directory and get every result as a row, with the emails and social links from each business's own website added in the same run.",
         fields: ["Name", "Category", "Address", "Phone", "Website", "Rating", "Email"],
         goodFor: "building prospect lists by city and niche, finding local partners, sizing up competitors nearby.",
         tint: "text-rose-500 bg-rose-50 dark:bg-rose-950/40",
-        link: { slug: "maps-leads", text: "Collect local business leads from Maps" },
+        link: { slug: "maps-leads", text: "Collect local business leads from Google Maps" },
     },
     {
         icon: ShoppingBag,

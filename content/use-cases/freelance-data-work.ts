@@ -32,7 +32,7 @@ export const freelanceDataWork: UseCasePageContent = {
             {
                 title: "Open the site and find the list",
                 body: "Open the page the client named and click the Web Scraper Pro icon; a panel opens on the right. In the List tab, the lists on the page appear with a count each, such as List 1, 24 items on this page. Click the one you want.",
-                points: ["On a site with a ready-made setup, such as Maps, Yellow Pages, Amazon or Zillow, the columns come out named.", "On any other site, the columns are named from the page's own labels, and you can rename them.", "Wrong list? Click Choose an item on the page, then click one entry on the page. Every similar entry is picked with it."],
+                points: ["On a site with a ready-made setup, such as Google Maps, Yellow Pages, Amazon or Zillow, the columns come out named.", "On any other site, the columns are named from the page's own labels, and you can rename them.", "Wrong list? Click Choose an item on the page, then click one entry on the page. Every similar entry is picked with it."],
                 feature: "list-scraper",
                 screenshot: "ext/list-tab-detected",
             },
@@ -74,7 +74,7 @@ export const freelanceDataWork: UseCasePageContent = {
             ["Bluebird Bakery", "Riverside", "(555) 017-7431", "orders@bluebird.example"],
         ],
     },
-    sites: [{ name: "Maps", page: "maps" }, { name: "Yellow Pages", page: "yellow-pages" }, { name: "Amazon", page: "amazon" }, { name: "Zillow", page: "zillow" }, { name: "Any directory, store or job board the client names" }],
+    sites: [{ name: "Google Maps", page: "maps" }, { name: "Yellow Pages", page: "yellow-pages" }, { name: "Amazon", page: "amazon" }, { name: "Zillow", page: "zillow" }, { name: "Any directory, store or job board the client names" }],
     cantDo: {
         heading: "What it won't do",
         items: [
@@ -89,7 +89,7 @@ export const freelanceDataWork: UseCasePageContent = {
         { q: "Does it work on a site that isn't in your list?", a: "Yes. On any site with a list, the List tab finds it and names the columns from the page's own labels; Choose an item on the page handles the rest. Ready-made sites come with better names." },
         { q: "Can I deliver in the client's column names and order?", a: "Yes. Rename, reorder and remove columns on the results page before you save, or tell the chat the columns you want. The file matches what's shown." },
         { q: "How do I avoid duplicates?", a: "Rows that repeat across pages or carousels are kept once on their own. For lists you combine from several runs, use your spreadsheet's remove-duplicates on the website or phone column." },
-        { q: "How much data can I collect in a day?", a: "There's no credit or per-row limit. A Maps search returns up to 200 businesses per run, a list runs as many pages as you set, and bulk runs cover lists of URLs. Big sites slow down anyone who loads hundreds of pages fast, so split big jobs into runs." },
+        { q: "How much data can I collect in a day?", a: "There's no credit or per-row limit. A Google Maps search returns up to 200 businesses per run, a list runs as many pages as you set, and bulk runs cover lists of URLs. Big sites slow down anyone who loads hundreds of pages fast, so split big jobs into runs." },
         { q: "Is there a per-row price?", a: "No. Web Scraper Pro is free to use today, with every feature included and no credits to count." },
     ],
 };

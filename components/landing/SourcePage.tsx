@@ -42,7 +42,7 @@ function Stars({ value, size = "w-2.5 h-2.5" }: { value: number; size?: string }
 
 const card = "rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm";
 
-/* ---------------------------------- Maps ---------------------------------- */
+/* ---------------------------------- Google Maps ---------------------------------- */
 
 const PLACES = [
     { name: "Bright Smile Dental", rating: 4.9, count: 312, addr: "Congress Ave", open: "Open · Closes 6 PM" },

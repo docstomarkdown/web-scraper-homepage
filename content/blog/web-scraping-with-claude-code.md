@@ -13,7 +13,7 @@ Claude Code is a strong way to write a web scraper: describe the page, paste its
 
 ## The job
 
-Every business from a Maps search for plumbers in Denver, with phone, website and the email from each business's site, in Excel.
+Every business from a Google Maps search for plumbers in Denver, with phone, website and the email from each business's site, in Excel.
 
 It's the most searched scraping job on YouTube, and the one where the two routes differ most.
 
@@ -24,17 +24,17 @@ A script in minutes, then the real work.
 A prompt like this gets a start:
 
 ```
-Write a Python script that takes a Maps search URL for "plumbers in Denver", collects each business's name, rating, phone and website, then visits each website and finds email addresses on it and its contact page. Save everything as an Excel file.
+Write a Python script that takes a Google Maps search URL for "plumbers in Denver", collects each business's name, rating, phone and website, then visits each website and finds email addresses on it and its contact page. Save everything as an Excel file.
 ```
 
-Claude Code will produce something sensible: a headless browser to load Maps, scrolling to load results, a selector for each card, a second pass over the websites with a regex for emails, and a spreadsheet writer. For a developer, that's a good first draft.
+Claude Code will produce something sensible: a headless browser to load Google Maps, scrolling to load results, a selector for each card, a second pass over the websites with a regex for emails, and a spreadsheet writer. For a developer, that's a good first draft.
 
 Then the loop starts:
 
-- Maps draws its results with JavaScript and shows cards only as the list scrolls, so the script needs a real browser (Playwright or Selenium) and a scroll routine. Claude Code will add it when you paste the empty output.
-- Maps rate-limits automated browsers quickly; after a few dozen businesses you'll see a verification page, and the script stops. Slowing it down helps; it doesn't make the problem go away.
+- Google Maps draws its results with JavaScript and shows cards only as the list scrolls, so the script needs a real browser (Playwright or Selenium) and a scroll routine. Claude Code will add it when you paste the empty output.
+- Google Maps rate-limits automated browsers quickly; after a few dozen businesses you'll see a verification page, and the script stops. Slowing it down helps; it doesn't make the problem go away.
 - Each business's website is different. The email regex finds obfuscated addresses, image-only addresses and none at all, and some sites block headless browsers outright.
-- Next month, a Maps layout change breaks a selector, and you're back in the loop.
+- Next month, a Google Maps layout change breaks a selector, and you're back in the loop.
 
 None of this is a mark against Claude Code. It's the cost of a script: it sees the page without a person, and the page knows.
 
@@ -48,7 +48,7 @@ Open Chrome, open the Web Scraper Pro side panel, and type:
 Find plumbers in Denver
 ```
 
-A card asks how many businesses (20, 50, 100 or 200); click **Start**. Maps opens in a tab and the extension scrolls the results and opens each place for its phone, website, address and hours. Because the run happens in your browser, Maps sees you browsing, not a script. While it collects, it reads each business's website and one linked Contact page, and adds Emails, Website phones and social links to the row. When it's done, **Export as** → **Microsoft Excel**.
+A card asks how many businesses (20, 50, 100 or 200); click **Start**. Google Maps opens in a tab and the extension scrolls the results and opens each place for its phone, website, address and hours. Because the run happens in your browser, Google Maps sees you browsing, not a script. While it collects, it reads each business's website and one linked Contact page, and adds Emails, Website phones and social links to the row. When it's done, **Export as** → **Microsoft Excel**.
 
 Fifty businesses with emails take about four minutes. The [full guide](/guides/get-maps-leads-with-emails) has a screenshot of each step.
 
@@ -60,7 +60,7 @@ Fifty businesses with emails take about four minutes. The [full guide](/guides/g
 | Sees JavaScript-drawn pages | With a headless browser added | Yes, it's your browser |
 | Rate limits and verifications | Hits them as a script; you slow it down or stop | Paces itself; stops at a verification for you to complete |
 | Emails from each website | A second pass you write and tune | Same run, built in |
-| When Maps changes its layout | Fix the selectors | Nothing to do; the setup updates on its own |
+| When Google Maps changes its layout | Fix the selectors | Nothing to do; the setup updates on its own |
 | Custom logic (score leads, merge with a CRM export) | Anything you can code | Rename, filter, sort and export; the rest in your sheet |
 | Runs unattended on a schedule | Yes, with a scheduler you set up | Coming with the cloud |
 | Who it's for | A developer who'll run this again | Anyone who needs the list today |

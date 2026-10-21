@@ -40,7 +40,7 @@ Web Scraper Pro is the third kind. It finds the list on the page, names the colu
 
 Lists that someone needs as a table: businesses, products, listings, jobs, papers, reviews.
 
-- **Lead lists.** A search on Maps for dentists in a city, turned into rows with name, phone, website and address, plus the email from each business's own site. See [lead generation](/use-cases/lead-generation).
+- **Lead lists.** A search on Google Maps for dentists in a city, turned into rows with name, phone, website and address, plus the email from each business's own site. See [lead generation](/use-cases/lead-generation).
 - **Prices and products.** A competitor's category on Amazon or an independent store, with price, rating and review count, for a comparison sheet. See [e-commerce research](/use-cases/ecommerce).
 - **Property listings.** Every home for sale in a zip code, with price, beds, baths and size, refreshed weekly. See [real estate](/use-cases/real-estate).
 - **Research.** Scholar search results into a citation table, or the clean text of thirty pages for a report. See [research and AI datasets](/use-cases/research).

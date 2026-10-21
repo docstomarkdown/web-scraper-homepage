@@ -1,6 +1,6 @@
 ---
 title: "How To Collect from a List of URLs in One Run with Web Scraper Pro"
-description: "Paste or upload a list of web pages, say what to collect from each site, and let Web Scraper Pro work through them one by one: category pages, Maps searches, contact details or page text, merged into one table."
+description: "Paste or upload a list of web pages, say what to collect from each site, and let Web Scraper Pro work through them one by one: category pages, Google Maps searches, contact details or page text, merged into one table."
 status: draft
 date: 2026-10-21
 updated: 2026-10-21
@@ -15,7 +15,7 @@ faq:
   - q: "How many addresses can I add?"
     a: "As many as the file holds; sites run one at a time, so a long list takes a while and the tab must stay open. Pages from the same site share one setup."
   - q: "Can I mix different sites in one list?"
-    a: "Yes. The Review step groups the addresses by site, and each site gets its own setup: a list, a Maps search, contact details or page text."
+    a: "Yes. The Review step groups the addresses by site, and each site gets its own setup: a list, a Google Maps search, contact details or page text."
   - q: "What happens if a site asks me to verify I'm human?"
     a: "The run pauses with Waiting for you. Complete the check in the embedded browser and the run carries on."
   - q: "Can it run while my computer is off?"
@@ -27,7 +27,7 @@ Paste or upload a list of web pages, say what to collect from each site, and let
 ## Prerequisites
 
 - Google Chrome with Web Scraper Pro installed (version 1.3.0 or later).
-- A list of page addresses: category pages of a store, several Maps searches, a client's websites, or a reading list. One per line in a CSV or TXT file, or ready to paste.
+- A list of page addresses: category pages of a store, several Google Maps searches, a client's websites, or a reading list. One per line in a CSV or TXT file, or ready to paste.
 
 ## Step 1 — Opening Bulk scrape
 
@@ -35,7 +35,7 @@ Click the Web Scraper Pro icon, then the **Bulk scrape** icon (the layers icon a
 
 | Choice | Collects, from each address |
 |---|---|
-| **Bulk scrape** | The list on the page, or a Maps or Scholar search's results |
+| **Bulk scrape** | The list on the page, or a Google Maps or Scholar search's results |
 | **Collect contacts** | Emails, phone numbers and social links from the site |
 | **Collect page text** | The readable text with title, author, date and word count |
 
@@ -45,13 +45,13 @@ A bulk page opens in a new tab. In the Chat tab, pasting several addresses offer
 
 ## Step 2 — Adding the addresses
 
-On the **Upload** step, drop a CSV or TXT file onto the page, or choose **Paste URLs** and paste the list; every address is picked up, one per row, and a chip reads **N valid URLs detected**. **Use saved data** takes the addresses from a column of a table you collected earlier, such as the Website column of a Maps list. Click **Continue →**.
+On the **Upload** step, drop a CSV or TXT file onto the page, or choose **Paste URLs** and paste the list; every address is picked up, one per row, and a chip reads **N valid URLs detected**. **Use saved data** takes the addresses from a column of a table you collected earlier, such as the Website column of a Google Maps list. Click **Continue →**.
 
 ![](visual:ext/bulk-upload)
 
 ## Step 3 — Reviewing the sites
 
-The **Review sites** step groups the addresses by site and says what each one is: a list page, a Maps search, a Scholar search, or a plain page. Drag the sites into the order you want, remove any you don't, and click **Continue to site configuration →**.
+The **Review sites** step groups the addresses by site and says what each one is: a list page, a Google Maps search, a Scholar search, or a plain page. Drag the sites into the order you want, remove any you don't, and click **Continue to site configuration →**.
 
 ![](visual:ext/bulk-detect)
 
@@ -60,7 +60,7 @@ The **Review sites** step groups the addresses by site and says what each one is
 The **Configure** step shows one card per site. Pages from the same site share the setup:
 
 - **For a list site**, confirm the list it found or pick an area on the page, and choose **Next page**, **Load more** or **Auto scroll** with a page limit if the list goes on.
-- **For a Maps search**, contact details from each business's website are read during the run, as in the side panel.
+- **For a Google Maps search**, contact details from each business's website are read during the run, as in the side panel.
 - **For contacts**, Email addresses, Phone numbers and Social media links are on; untick what you don't need. One linked Contact or About page is always read as well.
 - **For page text**, choose clean text, page details, or both.
 

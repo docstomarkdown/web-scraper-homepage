@@ -80,12 +80,12 @@ investors and analysts pulling market data.
 - **Who:** runs a small agency or sales team building lead lists for clients. Moves fast, compares
   prices closely, and learns tools from YouTube.
 - **What starts the search:** a new client or niche, or a cheap tool or gig that broke or went stale.
-- **Words he uses:** "leads", "emails", "niche + city", "Maps leads", "export to Excel/CSV",
+- **Words he uses:** "leads", "emails", "niche + city", "Google Maps leads", "export to Excel/CSV",
   "unlimited".
 - **Today:** a mix of cheap tools, freelancers and manual copying. Emails are the hard part.
 - **Success:** a CRM-ready CSV with name, category, address, phone, website, rating and email,
   deduplicated, repeatable city by city.
-- **Installs when:** he sees Maps leads and contact collection working together.
+- **Installs when:** he sees Google Maps leads and contact collection working together.
 - **Pays when:** he needs volume: bulk runs, contact collection across many sites, a flat price with
   no per-row cost.
 - **Can't serve (never imply):** LinkedIn leads, social media groups, guaranteed or verified emails,
@@ -95,7 +95,7 @@ investors and analysts pulling market data.
   price-sensitive than an agency. Searches for the task ("local business leads to Excel"), not their
   role.
 - **Second list source:** sales reps and agencies selling to other businesses also build company lists
-  from business directories and software review sites, not only Maps.
+  from business directories and software review sites, not only Google Maps.
 
 **Review questions:**
 - Is it clear that emails come from each business's own website, and that some businesses have none?
@@ -242,15 +242,15 @@ marketplaces); willingness to pay is untested.
 Verified against the code on 2026-10-20 (release 1.3.0, branch test-branch-1; check the store shows 1.3.0 before
 publishing a claim marked 1.3.0). Re-check before relying on them if much time has passed.
 
-- **Maps emails come in the same run (1.3.0).** With "contact details" on (the default), a Maps run
+- **Google Maps emails come in the same run (1.3.0).** With "contact details" on (the default), a Google Maps run
   reads each business's website and contact page in the background and adds Emails, Website phones,
-  Faxes and one column per social network to the same row. In chat, a card before the first Maps run
+  Faxes and one column per social network to the same row. In chat, a card before the first Google Maps run
   asks how many businesses (20, 50, 100, 200 or any number up to 200) and whether to add contact
   details; the side panel has the same as a checkbox. An older list with a Website column gets the
   **Add contact details** button on the results page. Many businesses list no email, so never promise
   one for every business. (`chrome-extension-source/DECISIONS.md` D-022, D-024, D-026;
   `lib/contactEnrichment/`, `lib/tools/maps.ts`)
-- **Maps limits (1.3.0).** Chat collects up to 200 businesses per search; the side panel collects until
+- **Google Maps limits (1.3.0).** Chat collects up to 200 businesses per search; the side panel collects until
   the list ends. Businesses are saved best rated first, repeated rows are left out, and prices,
   ratings and counts export as numbers (Settings → Results). (D-031, D-032, D-033)
 - **Chat follows every page (1.3.0).** After collecting a list, chat offers "Collect every page" and
@@ -258,8 +258,8 @@ publishing a claim marked 1.3.0). Re-check before relying on them if much time h
 - **Google Sheets export needs a Google sign-in.** Until the OAuth consent screen is confirmed as
   published, don't show Sheets export in a page or video; name Excel, CSV and JSON instead.
 - **The side panel's help link says "Contact founder"** (1.3.0), not "Contact support".
-- **Maps returns ratings, not reviews.** Maps leads give the star rating and review count per place,
-  not review text. Don't mention collecting Maps reviews.
+- **Google Maps returns ratings, not reviews.** Google Maps leads give the star rating and review count per place,
+  not review text. Don't mention collecting Google Maps reviews.
   (`chrome-extension-source/public/site-sitemaps/map-leads/google-maps.json`)
 - **Property listing fields on ready-made sites:** price, address, beds, baths, square footage, listing
   link, photos. Not days on market, price history or listing agent.

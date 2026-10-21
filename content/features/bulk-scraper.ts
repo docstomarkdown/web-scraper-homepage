@@ -5,9 +5,9 @@ import { getPage } from "@/config/pages";
 // - Bulk page steps Upload → Detect → Configure → Run; three entry modes (bulk, contacts, text): entrypoints/bulk/
 // - Inputs: CSV/TXT file, pasted URLs, a saved table's URL column; chat-pasted URLs open Bulk prefilled:
 //   lib/bulk/dataSourceUrls.ts, lib/tools/ (open_bulk card)
-// - Site types list / Maps / Scholar / contacts / page text, one site at a time in order, pauses for
+// - Site types list / Google Maps / Scholar / contacts / page text, one site at a time in order, pauses for
 //   verification, Stop keeps rows, "Collection results page" merge: lib/bulk/executors/, lib/bulk/useBulkRunner.ts
-// - Maps contact details during a bulk run: DECISIONS.md D-023
+// - Google Maps contact details during a bulk run: DECISIONS.md D-023
 // - Not in Bulk: Shopify catalogs; no notifications for bulk runs: change_documentation/REFACTORING_TODO.md
 // Title and headings target what people type ("how to scrape multiple pages", "web scrape multiple pages",
 // "scrape a list of urls"): youtube-research/AUTOSUGGEST.md and SEARCH_QUERIES.md, 2026-10-21.
