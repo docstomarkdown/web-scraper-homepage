@@ -25,13 +25,13 @@ Collect businesses from Maps with the emails, phone numbers and social links fro
 
 ## Step 1 — Starting a Maps search with contact details on
 
-In the **Chat** tab, type `Find plumbers in Denver`. On the card, choose **50** and leave **add contact details** on.
+In the **Chat** tab, type `Find plumbers in Denver`. On the card, choose **50** and click **Start**. Emails are on by default (Settings → Results → **Add emails from their websites**). The screenshots show dentists in Austin; use your own trade and city.
 
 ![](visual:ext/chat-maps-count-card)
 
 ## Step 2 — Reading the emails as they arrive
 
-While the businesses are collected, each one's website and its Contact or About page are read in the background. The progress line shows how many have an email so far.
+While the businesses are collected, each one's website and its Contact or About page are read in the background. The progress line shows how many have an email.
 
 ![](visual:ext/chat-maps-progress)
 
@@ -43,7 +43,7 @@ Open the results. Next to the Maps columns sit Emails, Website phones, Faxes and
 
 ## Step 4 — Adding contact details to an older list
 
-Open a Maps list you collected earlier from the **History** tab and click **Add contact details** on the results page. The same columns fill in. This works on any saved table with a Website column.
+Open a Maps list you collected earlier from the **History** tab and click **Add contact details** on the results page; it reads **Update contact details** if the table already has them. The same columns fill in. This works on any saved table with a Website column.
 
 ![](visual:ext/results-add-contacts)
 

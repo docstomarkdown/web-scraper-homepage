@@ -23,7 +23,7 @@ Collect the businesses in a Maps search and keep only their names and phone numb
 
 ## Step 1 — Searching
 
-In the **Chat** tab, type `Find HVAC contractors in Houston` and choose **100** on the card. Contact details can stay on: the Website phones column adds numbers from each business's site.
+In the **Chat** tab, type `Find HVAC contractors in Houston` and choose **50** on the card and click **Start**. Contact details stay on by default, so the Website phones column adds numbers from each business's site. The screenshots show dentists in Austin; use your own trade and city.
 
 ![](visual:ext/chat-maps-count-card)
 
@@ -35,7 +35,7 @@ Click **View results** on the result card.
 
 ## Step 3 — Keeping only the phone columns
 
-Type `Only name, phone and website phones, rows with a phone` in the chat on the results page. Rows without a phone number are hidden and the other columns disappear from view.
+With the results tab in front, type `Only name, phone and website phones, rows with a phone` in the side panel's chat. Rows without a phone number are hidden and the other columns disappear from view.
 
 ![](visual:ext/results-arranged)
 

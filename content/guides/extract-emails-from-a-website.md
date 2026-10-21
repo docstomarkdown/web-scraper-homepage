@@ -42,7 +42,7 @@ The results page shows one row for the site: Website, Email count, Emails, Phone
 
 ## Step 4 — Exporting
 
-Click **Export as** and choose Excel, CSV or JSON. Collect more sites and export them together from **History**.
+Click **Export as** and choose Excel, CSV or JSON. For many sites at once, use **Bulk scrape** → **Collect contacts**, which gives one merged table.
 
 ![](visual:ext/results-export-menu)
 

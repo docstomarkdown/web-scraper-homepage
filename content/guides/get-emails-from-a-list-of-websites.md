@@ -24,31 +24,31 @@ Turn a list of website addresses into a sheet with each site's emails, phone num
 
 ## Step 1 — Opening a bulk contacts run
 
-Open the **Bulk** menu at the top of the side panel and choose **Collect contacts**.
+Click the **Bulk scrape** icon (the layers icon at the top of the side panel) and choose **Collect contacts**.
 
 ![](visual:ext/bulk-menu)
 
 ## Step 2 — Adding the addresses
 
-Upload the CSV or TXT file, or choose **Paste URLs** and paste the list. Click **Continue**.
+Upload the CSV or TXT file, or choose **Paste URLs** and paste the list. Click **Continue →**, check the sites it found, and click **Continue to site configuration →**.
 
 ![](visual:ext/bulk-upload)
 
 ## Step 3 — Choosing what to collect
 
-For all sites at once, choose emails, phone numbers and social links, and turn on the deep scan so each site's Contact or About page is read too.
+**Email addresses**, **Phone numbers** and **Social media links** are on for every site; untick what you don't need, for all sites at once or per site. One linked Contact or About page is always read as well.
 
 ![](visual:ext/bulk-contacts-config)
 
 ## Step 4 — Running
 
-Click **Start collecting**. Sites are visited one after another in the frame, and the table fills in. **Stop** keeps what it has.
+Click **Start collecting →**. Sites load one after another in the embedded browser while the counters fill in. **Stop** keeps what it has.
 
 ![](visual:ext/bulk-run)
 
 ## Step 5 — Exporting
 
-When it finishes, open the **Collection overview** and export the merged table to Excel.
+When it finishes, the **Collection results** page lists each site. Click **View merged table**, then **Export as** → **Microsoft Excel**.
 
 ![](visual:ext/bulk-overview)
 

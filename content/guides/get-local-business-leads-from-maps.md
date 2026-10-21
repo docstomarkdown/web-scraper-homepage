@@ -26,19 +26,19 @@ Collect every business from a Maps search into a spreadsheet, with phone, websit
 
 ## Step 1 — Opening the side panel
 
-Open a new tab, click the Web Scraper Pro icon in the toolbar, and open the **Chat** tab. The panel offers suggested prompts for the page you're on.
+Open a new tab, click the Web Scraper Pro icon in the toolbar, and open the **Chat** tab. The panel opens on **What do you want to collect?** with idea cards for the page you're on.
 
 ![](visual:ext/panel-chat-empty)
 
 ## Step 2 — Asking for the businesses
 
-Type `Find dentists in Austin` and press Enter. A card asks how many businesses to collect (20, 50, 100 or 200) and whether to add contact details from each business's website. Choose **100** and keep contact details on.
+Type `Find dentists in Austin` and press Enter. A card asks how many businesses to collect: 20, 50, 100 or 200, or a number you type. Choose **50** and click **Start**. Emails and social links from each business's website are collected too, because **Add emails from their websites** is on by default in Settings → Results; add `no emails` to the request to skip them.
 
 ![](visual:ext/chat-maps-count-card)
 
 ## Step 3 — Watching the run
 
-Maps opens in a new tab and the extension scrolls the results, opening each place for its phone, website, address and hours. The progress line in the panel counts the businesses and how many have an email so far. Click **Stop** at any time to keep what it has.
+Maps opens in a new tab and the extension scrolls the results, opening each place for its phone, website, address and hours. The progress line in the panel counts the businesses collected and how many have an email. Click the round Stop button, or press Esc, at any time to keep what it has.
 
 ![](visual:ext/chat-maps-progress)
 
@@ -50,7 +50,7 @@ When the run finishes, the result card shows the row count with **View results**
 
 ## Step 5 — Keeping the columns you need
 
-On the results page, type `Only name, phone, website and rating, sorted by rating` in the chat. The table changes to match, and the download will too.
+With the results tab in front, type `Only name, phone, website and rating, sorted by rating` in the side panel's chat. The table changes to match, and the download will too.
 
 ![](visual:ext/results-arranged)
 

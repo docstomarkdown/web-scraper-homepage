@@ -29,15 +29,15 @@ Search for a category in a city on yellowpages.com and open the side panel's **L
 
 ## Step 2 — Collecting every page
 
-Choose **Collect more pages**, then **Next page**, and set how many pages under **Stop after**. Click **Collect N items**. Keep the tab in front while it pages through.
+Choose **Collect more pages**, then **Next page**, and set how many pages under **Stop after**. Click **Collect from 5 pages**. Keep the tab in front while it pages through.
 
 ![](visual:ext/list-tab-more-pages)
 
 ## Step 3 — Adding contact details
 
-On the results page, click **Add contact details** to read each business's website for emails and social links.
+Click the **Bulk scrape** icon at the top of the side panel and choose **Collect contacts**. On the upload step pick **Use saved data** and choose this Yellow Pages collection, so its Website column becomes the list of sites to read. Each business's website is read for emails, phone numbers and social links.
 
-![](visual:ext/results-add-contacts)
+![](visual:ext/bulk-menu)
 
 ## Step 4 — Exporting
 

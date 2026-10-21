@@ -38,13 +38,13 @@ If the list you want isn't the first one, pick it from the choices. If none matc
 
 ## Step 3 — Collecting every page
 
-Choose **Collect more pages** and the way the page moves on: **Next page**, **Load more** or **Auto scroll**. Set the page count, then click **Collect N items**.
+Choose **Collect more pages** and the way the page moves on: **Next page**, **Load more** or **Auto scroll**. Set **Stop after** (5 pages by default), then click **Collect from 5 pages**.
 
 ![](visual:ext/list-tab-more-pages)
 
 ## Step 4 — Cleaning the columns
 
-On the results page, hover a column header to rename it with the pencil or remove it with the trash icon. Click **Columns** to hide mostly empty ones.
+On the results page, hover a column header to rename it with the pencil or remove it with the trash icon. Mostly empty columns are hidden on their own; click **Columns** to see them and show any you need.
 
 ![](visual:ext/results-rename-column)
 
