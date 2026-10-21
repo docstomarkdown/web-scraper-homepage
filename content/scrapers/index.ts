@@ -9,6 +9,9 @@ import { rightmove } from "./rightmove";
 import { scholar } from "./scholar";
 import { hotelsCom } from "./hotels-com";
 import { youtube } from "./youtube";
+import { ebay } from "./ebay";
+import { etsy } from "./etsy";
+import { walmart } from "./walmart";
 
 // Every per-site page, by slug. Add a page here once its content file exists; content/sites.ts links the site name to it.
 export const scraperPages: Record<string, ScraperPageContent> = {
@@ -22,4 +25,7 @@ export const scraperPages: Record<string, ScraperPageContent> = {
     [scholar.slug]: scholar,
     [hotelsCom.slug]: hotelsCom,
     [youtube.slug]: youtube,
+    [ebay.slug]: ebay,
+    [etsy.slug]: etsy,
+    [walmart.slug]: walmart,
 };

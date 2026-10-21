@@ -88,7 +88,7 @@ export const pages: SitePage[] = [
     // the Sites menu lists per-site pages (content/scrapers/), and a category URL only renders in local preview.
     // Summaries list only sites from the verified "ready-made sites" list (components/landing/Sites.tsx).
     scraper(["maps-and-directories", "Maps and directories", "Maps, Yellow Pages, Justdial, BBB", "planned", "map-pin"]),
-    scraper(["online-stores", "Online stores", "Amazon, Walmart, Target, Etsy, Costco, Wayfair and more", "planned", "shopping-bag"]),
+    scraper(["online-stores", "Online stores", "Amazon, eBay, Walmart, Etsy, Target, Costco, Wayfair and more", "planned", "shopping-bag"]),
     scraper(["real-estate", "Real estate", "Zillow, Rightmove", "planned", "home"]),
     scraper(["travel", "Travel", "Booking.com, Hotels.com, Tripadvisor", "planned", "plane"]),
     scraper(["jobs-cars-software", "Jobs, cars and software", "Monster, CarGurus, Capterra, Product Hunt", "planned", "briefcase"]),
