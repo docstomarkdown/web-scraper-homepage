@@ -8,7 +8,7 @@ import type { ScraperPageContent } from "@/components/pages/ScraperPage";
 // the run and is never bypassed). Google Scholar's own cap: 10 results a page, 100 pages, 1,000 results per search.
 // Draft until a real run's screenshots are in the visuals library.
 // 2026-10-21: title targets the search phrase ("scrape google scholar"); the site is named "Google Scholar". The guide
-// owns "How To Scrape Search Results from Google Scholar"; this page owns the citation-counts phrase.
+// owns "How To Export Google Scholar Results to Excel"; this page owns the citation-counts phrase.
 // 2026-10-21 (later): deepened. Verify before publishing: the time for ten pages in the worked example (written as
 // "under a minute", from the 1.5 s page wait plus load time).
 
@@ -174,7 +174,7 @@ export const scholar: ScraperPageContent = {
     useCase: "research",
     related: [],
     faqs: [
-        { q: "Is this Google Scholar scraper free?", a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create." },
+        { q: "Is this Google Scholar scraper free?", a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create." },
         { q: "How many pages can I collect?", a: "As many as Google Scholar offers, up to its own limit of 100 pages. The panel's default is 10; choose a number or every available page." },
         { q: "Does it get the citation counts?", a: "Yes. Cited By is a number column, so the sheet sorts by it, and Cited By URL links to the citing papers." },
         { q: "Can I export Google Scholar results to a reference manager?", a: "Export as CSV and use your reference manager's CSV import, mapping Title, Authors, Publication and Year. The Document URL column gives the full-text link where there is one." },

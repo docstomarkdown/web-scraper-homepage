@@ -1,9 +1,10 @@
 ---
-title: "How To Scrape YouTube Search Results into a Spreadsheet"
+title: "How To Export YouTube Search Results to Excel"
 description: "Turn a YouTube search or a channel's Videos tab into a spreadsheet with title, channel, views, published date, duration and link, as far down as the page scrolls, with no code. Sort a whole topic by views."
 status: draft
 date: 2026-10-21
 updated: 2026-10-21
+version: "1.3.0"
 author: vikram
 feature: list-scraper
 sites: [youtube]

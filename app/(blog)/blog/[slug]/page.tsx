@@ -5,6 +5,7 @@ import { getAllPosts, getPostBySlug, getRelatedPosts, categorySlug } from "@/lib
 import { siteConfig } from "@/config/site";
 import { formatDate } from "@/lib/format-date";
 import { Markdown } from "@/components/blog/Markdown";
+import Glossary from "@/components/pages/Glossary";
 import { PostCard } from "@/components/blog/PostCard";
 import { JsonLd, breadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { ogImageUrl } from "@/lib/og";
@@ -99,6 +100,7 @@ export default async function BlogPostPage({ params }: Props) {
                     </figure>
                 ) : null}
                 <div className="mt-10">
+                    <Glossary text={post.content} className="mb-8" />
                     <Markdown content={post.content} />
                 </div>
                 <section aria-label="About the author" className="mt-14 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 p-6">

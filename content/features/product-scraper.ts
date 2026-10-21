@@ -211,7 +211,7 @@ export const productScraper: FeaturePageContent = {
     faqs: [
         {
             q: "Is this product scraper free?",
-            a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create.",
+            a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create.",
         },
         {
             q: "Which stores does it work on?",

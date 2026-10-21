@@ -164,7 +164,7 @@ export const youtube: ScraperPageContent = {
     useCase: "research",
     related: [],
     faqs: [
-        { q: "Is this YouTube scraper free?", a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create." },
+        { q: "Is this YouTube scraper free?", a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create." },
         { q: "How do I scrape a YouTube channel's full video list?", a: "Open the channel's Videos tab, pick the list in the side panel, choose Collect more pages, and let the run scroll to the end. Sort the sheet by Views or Published afterwards." },
         { q: "Can I scrape YouTube search results too?", a: "Yes. Run the search with YouTube's filters, pick the results list, and let it scroll. Search results mix videos, Shorts and playlists, so filter the Type column afterwards." },
         { q: "Does it scrape YouTube comments?", a: "Not with this setup. A video's comment list is detected like any other list, without named columns; the YouTube comments guide shows that run." },

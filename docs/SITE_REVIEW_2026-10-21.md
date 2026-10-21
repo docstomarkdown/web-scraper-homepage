@@ -165,6 +165,17 @@ with doing it by hand or with code, what it doesn't do, when it goes wrong) and 
 extension source and several claims corrected (no product-fields bulk mode; count card defaults; deep scan always on;
 image button and ZIP names; bulk stall and run caps). Site prose: 85,000 words across 76 pages.
 
+**Cold read, links and titles (same day).** Four fresh agents read all 88 content pages as Dana; notes are in
+`content/review/cold-read.json` and on `/review` (understood score, unclear words, where they stopped, one fix).
+Fixed from it: draft header comments no longer render on guides; every guide has a version; the last "one plan,
+Pro" and "delete your account" lines are gone; "free to use today" became "free, with no paid plan" on 39 files;
+"will my account be banned" FAQs on the sign-in, Google, Indeed, YouTube and Reddit guides; a folded "Words on
+this page" glossary on every content page (`components/pages/Glossary.tsx`) for side panel, tabs, Bulk scrape,
+Use saved data, CSV, JSON, URL and the rest; the chat page demo matches its text. Links: feature pages list their
+guides and the jobs they belong to, site pages list every guide that names them, guides list their site pages,
+the category breadcrumb points at the hub's anchored section (14 links were 404s). Crawl: 0 broken links, 1
+orphan (Terms, linked from the footer). Titles: four competing guide titles renamed; every title ≤ 60.
+
 ## 6. Rerunning the audit
 
 ```bash

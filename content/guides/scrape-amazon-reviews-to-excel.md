@@ -12,7 +12,7 @@ video: ""
 campaign: guide-scrape-amazon-reviews-to-excel
 faq:
   - q: "How do I scrape Amazon reviews for free?"
-    a: "Open the product page in Chrome, open the side panel's Properties tab, click Collect details on this page, then View all reviews. The reviews land in their own table and export to Excel, CSV or JSON. Web Scraper Pro is free to use today."
+    a: "Open the product page in Chrome, open the side panel's Properties tab, click Collect details on this page, then View all reviews. The reviews land in their own table and export to Excel, CSV or JSON. Web Scraper Pro is free, with no paid plan."
   - q: "Why does my Amazon review scraper return an empty page?"
     a: "Amazon shows review pages only to signed-in shoppers, so a script that fetches the page from outside a browser gets a page with no reviews. The extension reads the reviews in the browser you're signed in to, so it sees what you see."
   - q: "Can I get all the reviews, not only the first page?"

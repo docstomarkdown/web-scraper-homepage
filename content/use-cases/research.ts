@@ -155,7 +155,7 @@ export const research: UseCasePageContent = {
     },
     guides: ["export-scholar-search-results", "save-a-pages-text-as-a-document", "collect-youtube-search-results", "collect-every-page-of-results"],
     faqs: [
-        { q: "Is it free to use for research?", a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create. Install it, collect what you need, and remove it when you're done; your exports stay with you." },
+        { q: "Is it free to use for research?", a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create. Install it, collect what you need, and remove it when you're done; your exports stay with you." },
         { q: "How do I scrape Google Scholar search results?", a: "Run the search, open the panel's List tab, choose how many pages, and click Collect. You get one row per result with title, authors, publication, year, citations and links, ready for Excel or Google Sheets." },
         { q: "How many Google Scholar results can I collect?", a: "As many pages as Google Scholar offers, up to its own limit of 100 pages, or 1,000 results. The panel's default is 10 pages; choose a number or every page." },
         { q: "Is the collected text clean enough for an AI tool?", a: "It's the page's main text in reading order, without menus, ads, cookie banners, sidebars or comments. The title, description, author and date sit in their own columns. Save it as a Word document, or as CSV or JSON for a pipeline." },

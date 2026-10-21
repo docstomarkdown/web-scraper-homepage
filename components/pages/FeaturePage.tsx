@@ -10,6 +10,9 @@ import type { Metadata } from "next";
 import { relatedPages, type SitePage } from "@/config/pages";
 import { Screenshot } from "@/components/Screenshot";
 import ProseSection, { type ContentSection } from "@/components/pages/ProseSection";
+import Glossary from "@/components/pages/Glossary";
+import { getAllGuides } from "@/lib/guides";
+import { useCasePages } from "@/content/use-cases";
 import { getCapture } from "@/lib/visuals";
 
 /** Content for one product feature page. Copy rules: docs/content-standards.md and docs/writing-style.md. */
@@ -72,6 +75,9 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
     const installUrl = `${productConfig.product.ctaUrl}?utm_source=website&utm_medium=${c.page.slug}&utm_campaign=chrome_install`;
     const heroVisual = visual ?? (c.hero && getCapture(c.hero) ? <Screenshot id={c.hero} className="my-0" /> : undefined);
     const cards = c.fields.items.some((f) => f.example);
+    const guides = getAllGuides().filter((g) => g.feature === c.page.slug);
+    const jobs = Object.values(useCasePages).filter((u) => (u.status === "published" || process.env.NODE_ENV !== "production") && u.workflow.steps.some((st) => st.feature === c.page.slug));
+    const linkCls = "text-[#1f5ec2] dark:text-[#7aa7ff] underline underline-offset-2";
 
     return (
         <main id="main" className="flex-1 bg-white dark:bg-slate-950">
@@ -112,6 +118,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                         </p>
                     </Reveal>
                 </div>
+                <div className={`${reading} mt-8`}><Glossary text={JSON.stringify(c)} /></div>
                 {(heroVisual || c.sample) && (
                     <div className={`${reading} mt-10`}>
                         <Reveal delay={0.08}>{heroVisual ?? <SampleTable sample={c.sample!} />}</Reveal>
@@ -262,6 +269,33 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                     </div>
                 </div>
             </section>
+
+            {/* Guides and jobs that use this feature */}
+            {(guides.length > 0 || jobs.length > 0) && (
+                <section className="py-12 md:py-16 border-t border-slate-200 dark:border-slate-800">
+                    <div className={reading}>
+                        <Reveal>
+                            {guides.length > 0 && (
+                                <>
+                                    <h2 className={h2}>Step-by-step guides</h2>
+                                    <p className={`mt-3 ${body}`}>Each guide walks through one job with this feature, click by click, on the released extension.</p>
+                                    <ul className={`mt-5 space-y-3 ${body}`}>
+                                        {guides.map((g) => <li key={g.slug}><Link href={`/guides/${g.slug}`} className={linkCls}>{g.title}</Link></li>)}
+                                    </ul>
+                                </>
+                            )}
+                            {jobs.length > 0 && (
+                                <>
+                                    <h2 className={`${guides.length > 0 ? "mt-12 " : ""}${h2}`}>Jobs this is part of</h2>
+                                    <ul className={`mt-5 space-y-3 ${body}`}>
+                                        {jobs.map((u) => <li key={u.page.slug}><Link href={u.page.href} className={linkCls}>{u.h1}</Link></li>)}
+                                    </ul>
+                                </>
+                            )}
+                        </Reveal>
+                    </div>
+                </section>
+            )}
 
             {/* Related */}
             {related.length > 0 && (

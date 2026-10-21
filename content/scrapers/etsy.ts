@@ -177,7 +177,7 @@ export const etsy: ScraperPageContent = {
     useCase: "ecommerce",
     related: ["ebay", "walmart", "amazon"],
     faqs: [
-        { q: "Is this Etsy scraper free?", a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create." },
+        { q: "Is this Etsy scraper free?", a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create." },
         { q: "How do I scrape Etsy listings without code?", a: "Run the search, open the List tab, pick the results list, choose Collect more pages and set Stop after. The Etsy setup names the columns, so the sheet is ready to sort by price or shop." },
         { q: "Can I scrape one Etsy shop's listings?", a: "Yes. Open the shop's page; its items are a list, so pick it in the List tab and collect every page or section." },
         { q: "Does it get the number of sales for a listing?", a: "Only what the card shows. Etsy's cards show the shop's review count and badges, not per-listing sales. Open a listing and use the Properties tab for its own details." },

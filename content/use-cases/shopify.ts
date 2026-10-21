@@ -151,7 +151,7 @@ export const shopify: UseCasePageContent = {
     },
     guides: ["export-a-shopify-store-catalog", "download-all-images-on-a-page"],
     faqs: [
-        { q: "Is the Shopify export free?", a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create. There's no per-row limit; image ZIPs split above 5,000 files." },
+        { q: "Is the Shopify export free?", a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create. There's no per-row limit; image ZIPs split above 5,000 files." },
         { q: "Do I need the client's Shopify admin access?", a: "No. The public product data every Shopify store publishes is enough for the catalog, the variants and the images. Inventory counts and cost prices aren't public, so those come from the client." },
         { q: "How do I import products from one Shopify store to another?", a: "Export the source store with Download Shopify import CSV, then in the destination store go to Products → Import and choose the file. Import into a test store first and check the products before a live store." },
         { q: "How does the import CSV compare with Shopify's own export?", a: "It uses the same product import layout, so Products → Import accepts it. Fields Shopify doesn't publish, such as inventory quantity and cost, are empty and need filling in before or after the import." },

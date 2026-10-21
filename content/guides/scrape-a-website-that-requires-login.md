@@ -23,6 +23,8 @@ faq:
     a: "No. It collects the text and lists a page shows you. If you can't see the content, neither can the extension."
   - q: "Is it legal to scrape a site I'm signed in to?"
     a: "Your own account data is yours to export. For a members-only site, its terms decide what you may do with the data; read them before you share or sell anything. This isn't legal advice."
+  - q: "Will the site ban my account for this?"
+    a: "It runs in your own browser at a person's pace, reads the pages you open, and never signs in for you, so to the site it looks like you browsing. Keep runs small and stop if the site shows a verification page or asks you to slow down. The site's own terms decide what you may do with the data."
 ---
 
 <!--
@@ -113,4 +115,4 @@ After export, the sheet looks like this. The members are made up.
 
 ## Conclusion
 
-You collected a list from a page that only your signed-in browser can see, without exporting cookies or typing a password anywhere. The same steps work for your own account pages and for listing services such as an MLS. For a list that spans many pages on any site, see How To Scrape All Pages of a Website's Search Results.
+You collected a list from a page that only your signed-in browser can see, without exporting cookies or typing a password anywhere. The same steps work for your own account pages and for listing services such as an MLS. For a list that spans many pages on any site, see How To Scrape Every Page of a List, Not Only the First.

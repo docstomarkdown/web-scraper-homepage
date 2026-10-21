@@ -12,7 +12,7 @@ video: ""
 campaign: guide-scrape-yelp-business-listings
 faq:
   - q: "Is there a free Yelp scraper?"
-    a: "Web Scraper Pro is free to use today, with every feature included and no account to create. Open a Yelp search in Chrome, pick the list in the side panel, and collect every page of results."
+    a: "Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create. Open a Yelp search in Chrome, pick the list in the side panel, and collect every page of results."
   - q: "Does Yelp allow scraping?"
     a: "Yelp's terms restrict automated collection, and the extension collects only what the page shows you, at a person's pace. Collect for your own research or prospecting, keep it to public listings, and read the terms before reusing anything. See our plain-words explainer on web scraping and the law."
   - q: "How many Yelp results can I collect from one search?"

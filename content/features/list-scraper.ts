@@ -264,7 +264,7 @@ export const listScraper: FeaturePageContent = {
         },
         {
             q: "Is this free?",
-            a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create. That includes lists from any website, every page of results, bulk runs and every export format.",
+            a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create. That includes lists from any website, every page of results, bulk runs and every export format.",
         },
         {
             q: "Can it extract a table from a website?",
@@ -284,7 +284,7 @@ export const listScraper: FeaturePageContent = {
         },
         {
             q: "Is there a tutorial?",
-            a: "Yes: How To Scrape Data from Any Website into Excel, No Code, with a screenshot for every step, and How To Scrape All Pages of a Website's Search Results for lists that continue over pages.",
+            a: "Yes: How To Scrape Data from Any Website into Excel, No Code, with a screenshot for every step, and How To Scrape Every Page of a List, Not Only the First for lists that continue over pages.",
         },
     ],
     related: ["ai-chat", "bulk-scraper", "export-to-google-sheets", "product-scraper", "maps-leads"],

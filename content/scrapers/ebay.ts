@@ -185,7 +185,7 @@ export const ebay: ScraperPageContent = {
     useCase: "ecommerce",
     related: ["etsy", "walmart", "amazon"],
     faqs: [
-        { q: "Is this eBay scraper free?", a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create." },
+        { q: "Is this eBay scraper free?", a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create." },
         { q: "How do I scrape eBay listings without code?", a: "Run the search, open the List tab, pick the results list, choose Collect more pages and set Stop after. The eBay setup names the columns, so the sheet is ready to sort by Sold or Price." },
         { q: "Can I scrape eBay sold listings for pricing?", a: "Yes. Filter the search to Sold items on eBay, then collect. The Price column holds the sold prices, and Auction Ends the sale dates where shown." },
         { q: "Can I scrape a seller's whole eBay store?", a: "Yes. A seller's items page is a list like any other. Pick it in the List tab and collect every page." },

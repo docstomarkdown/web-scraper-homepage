@@ -240,7 +240,7 @@ export const exportToGoogleSheets: FeaturePageContent = {
         },
         {
             q: "Is this free?",
-            a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create. Editing and every export format are included.",
+            a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create. Editing and every export format are included.",
         },
         {
             q: "Can I combine two collections?",

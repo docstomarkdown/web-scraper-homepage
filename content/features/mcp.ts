@@ -158,7 +158,7 @@ export const mcp: FeaturePageContent = {
         },
         {
             q: "Will it be free?",
-            a: "The extension is free today, and nothing has been priced yet. This page will say so if that changes when MCP access launches.",
+            a: "The extension is free, and there's no paid plan. This page will say so if that changes when MCP access launches.",
         },
         {
             q: "When will MCP and the browser connection ship?",

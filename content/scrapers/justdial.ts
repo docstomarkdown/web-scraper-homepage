@@ -163,7 +163,7 @@ export const justdial: ScraperPageContent = {
     useCase: "lead-generation",
     related: ["maps", "yellow-pages", "bbb"],
     faqs: [
-        { q: "Is this Justdial scraper free?", a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create." },
+        { q: "Is this Justdial scraper free?", a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create." },
         { q: "Why are some phone numbers missing?", a: "Justdial shows some numbers only after a click or a sign-in. The extension collects the numbers shown on the card; it doesn't click through or sign in for you." },
         { q: "Can I get emails for the businesses?", a: "Where a listing has the business's own website, yes. Run Bulk scrape → Collect contacts with Use saved data over the table. Directory pages given as the website are skipped." },
         { q: "How many listings can I collect?", a: "As many loads as you set under Stop after. If Justdial asks you to verify, complete it in the tab and collect again; the rows so far are kept." },

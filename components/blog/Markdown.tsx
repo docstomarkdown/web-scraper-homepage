@@ -42,6 +42,8 @@ const components = {
 };
 
 export function Markdown({ content }: { content: string }) {
+    // Header comments (verify notes for the review desk) stay in the file but never on the page.
+    content = content.replace(/<!--[\s\S]*?-->/g, "");
     return (
         <ReactMarkdown remarkPlugins={[remarkGfm]} components={components} urlTransform={(url) => (url.startsWith("visual:") ? url : defaultUrlTransform(url))}>
             {content}

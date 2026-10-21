@@ -1,5 +1,5 @@
 ---
-title: "How To Copy a Table from a Website into Excel or Google Sheets"
+title: "How To Copy a Table from a Website into Google Sheets"
 description: "Copy a table from any web page into Excel or Google Sheets with the columns intact, including tables that break when pasted and tables that span pages."
 status: draft
 date: 2026-10-21

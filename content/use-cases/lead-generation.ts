@@ -155,7 +155,7 @@ export const leadGeneration: UseCasePageContent = {
     },
     guides: ["get-local-business-leads-from-maps", "get-maps-leads-with-emails", "get-emails-from-a-list-of-websites"],
     faqs: [
-        { q: "Is this free?", a: "Yes. Web Scraper Pro is free to install and use today, with every feature included and no account to create." },
+        { q: "Is this free?", a: "Yes. Web Scraper Pro is free to install and use. There's no paid plan, every feature is included, and there's no account to create." },
         { q: "Do I need to know anything technical?", a: "No. You type what you want, such as \"find dentists in Austin\", and click a few buttons. There is nothing to set up and no code." },
         { q: "How do I use web scraping for lead generation?", a: "Search a business type and a city on Google Maps or a directory, collect the results into a table, and let the extension read each business's website for its email. Export to Excel or CSV and start calling or writing." },
         { q: "How many businesses can I collect in one go?", a: "Up to 200 per search in chat. From the side panel it keeps going until Google Maps reaches the end. For more, search smaller areas or more specific business types, and combine the results." },

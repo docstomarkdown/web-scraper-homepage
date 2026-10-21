@@ -153,7 +153,7 @@ export const realEstate: UseCasePageContent = {
     },
     guides: ["export-zillow-listings-to-excel", "collect-every-page-of-results", "scrape-data-from-any-website-to-excel"],
     faqs: [
-        { q: "Is this free?", a: "Yes. Web Scraper Pro is free to install and use today, with every feature included and no account to create." },
+        { q: "Is this free?", a: "Yes. Web Scraper Pro is free to install and use. There's no paid plan, every feature is included, and there's no account to create." },
         { q: "Do I need to know anything technical?", a: "No. You search the site the way you always do, open the panel, and click Collect. There is nothing to set up and no code." },
         { q: "How do I scrape real estate data without coding?", a: "Search the area on your listing site, open the List tab, pick the results list and choose Collect more pages. One row per home comes back with price, address, beds, baths and size, and Export as saves it to Excel." },
         { q: "Which listing sites have ready-made columns?", a: "Zillow, Rightmove, Redfin, Zoopla and Property Finder. On other sites the results list is found on the page and the columns are named from its labels." },

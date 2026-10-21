@@ -66,7 +66,7 @@ You can:
 
 ## Data Retention
 
-We keep personal information only as long as we need it to provide our services and for the purposes in this policy. When you delete your account, we remove your personal data from our active systems within 30 days.
+We keep personal information only as long as we need it to provide our services and for the purposes in this policy. There's no account to delete; when you ask us to remove the information we hold about you, such as support messages and chat history, we do so within 30 days.
 
 ## Children's Privacy
 

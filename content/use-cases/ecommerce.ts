@@ -155,7 +155,7 @@ export const ecommerce: UseCasePageContent = {
     },
     guides: ["collect-amazon-search-results", "collect-store-listings-to-excel", "export-a-shopify-store-catalog", "scrape-data-from-any-website-to-excel"],
     faqs: [
-        { q: "Is this free?", a: "Yes. Web Scraper Pro is free to install and use today, with every feature included and no account to create." },
+        { q: "Is this free?", a: "Yes. Web Scraper Pro is free to install and use. There's no paid plan, every feature is included, and there's no account to create." },
         { q: "How do I track competitor prices without a tool subscription?", a: "Collect the competitor's category into a table, export it, and run the same collection when you want fresh numbers. History keeps each run with its date, so two exports side by side show what changed." },
         { q: "Does it work on small independent stores, not only Amazon?", a: "Yes. On a store without a ready-made setup, the product list is found on the page and the columns are named from the page's own labels. Shopify stores get the full catalog from their product data." },
         { q: "How many products can I collect from one search?", a: "As many as the store shows. Amazon lists 7 to 20 pages per search, Walmart 25, Etsy 250. For more, search narrower categories and combine them." },

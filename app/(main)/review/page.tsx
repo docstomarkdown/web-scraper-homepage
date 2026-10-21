@@ -23,6 +23,7 @@ import { mcp } from "@/content/features/mcp";
 import { productScraper } from "@/content/features/product-scraper";
 import { shopifyScraper } from "@/content/features/shopify-scraper";
 import type { FeaturePageContent } from "@/components/pages/FeaturePage";
+import coldRead from "@/content/review/cold-read.json";
 
 // Local-preview review desk: every draft on the site with its status, size, capture coverage, pre-read numbers
 // (lib/readability.ts) and the verify notes from its source header, so content can be read page by page with the
@@ -50,6 +51,9 @@ function mdNotes(md: string): string[] {
 /** Capture ids a content object references, anywhere in it. */
 const idsIn = (o: unknown): string[] => Array.from(new Set((JSON.stringify(o).match(/ext\/[a-z0-9-]+/g) ?? [])));
 
+type Cold = { understood: number; unclear_words: string[]; stuck_steps: string[]; open_question: string; one_fix: string };
+const cold = coldRead as Record<string, Cold>;
+
 interface Row { title: string; metaTitle: string; description: string; href: string; status: string; captures: [number, number]; updated: string; notes: string[]; read: Readability }
 
 const LIMITS = { title: 60, description: 160, grade: 8, ease: 60 };
@@ -69,7 +73,7 @@ function Table({ heading, rows, overlaps }: { heading: string; rows: Row[]; over
                     <thead>
                         <tr className="text-slate-600 dark:text-slate-300">
                             <th className={th}>Page</th><th className={th}>Status</th><th className={th}>Title</th><th className={th}>Desc.</th><th className={th}>Words</th>
-                            <th className={th}>Grade</th><th className={th}>Ease</th><th className={th}>Long sent.</th><th className={th}>Long paras</th><th className={th}>Banned</th><th className={th}>Captures</th><th className={th}>Competes with</th><th className={th}>Verify before publishing</th>
+                            <th className={th}>Grade</th><th className={th}>Ease</th><th className={th}>Long sent.</th><th className={th}>Long paras</th><th className={th}>Banned</th><th className={th}>Captures</th><th className={th}>Competes with</th><th className={th}>Cold read (Dana, 2026-10-21)</th><th className={th}>Verify before publishing</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -87,6 +91,7 @@ function Table({ heading, rows, overlaps }: { heading: string; rows: Row[]; over
                                 <td className="py-2 pr-3">{r.read.banned.length ? <Flag bad>{r.read.banned.map((b) => `${b.word} ×${b.n}`).join(", ")}</Flag> : "0"}</td>
                                 <td className="py-2 pr-3 whitespace-nowrap">{r.captures[0]} of {r.captures[1]}</td>
                                 <td className="py-2 pr-3">{(overlaps.get(r.href) ?? []).map((h) => <div key={h}><Link href={h} className="text-[#1f5ec2] dark:text-[#7aa7ff] underline underline-offset-2">{h}</Link></div>)}</td>
+                                <td className="py-2 pr-3 text-slate-600 dark:text-slate-300 min-w-[18rem]">{cold[r.href] ? (<div><div><Flag bad={cold[r.href].understood <= 3}>Understood {cold[r.href].understood}/5</Flag></div>{cold[r.href].unclear_words?.length ? <div className="mt-1"><span className="font-medium">Unclear:</span> {cold[r.href].unclear_words.join(", ")}</div> : null}{cold[r.href].stuck_steps?.length ? <div className="mt-1"><span className="font-medium">Stuck:</span> {cold[r.href].stuck_steps[0]}</div> : null}<div className="mt-1"><span className="font-medium">Fix:</span> {cold[r.href].one_fix}</div></div>) : "—"}</td>
                                 <td className="py-2 text-slate-600 dark:text-slate-300 min-w-[18rem]">{r.notes.length ? <ul className="list-disc pl-4 space-y-1">{r.notes.map((n) => <li key={n}>{n}</li>)}</ul> : "—"}</td>
                             </tr>
                         ))}

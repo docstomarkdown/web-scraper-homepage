@@ -12,7 +12,7 @@ video: ""
 campaign: guide-scrape-booking-com-hotel-prices
 faq:
   - q: "Is there a free Booking.com scraper?"
-    a: "Web Scraper Pro is free to use today, with every feature included and no account to create. Search Booking.com in Chrome with your dates, pick the list in the side panel, and collect every page of hotels."
+    a: "Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create. Search Booking.com in Chrome with your dates, pick the list in the side panel, and collect every page of hotels."
   - q: "Does Booking.com allow scraping?"
     a: "Booking.com's terms restrict automated collection, and the extension collects only what the page shows you, in your own browser. Collect for your own trip planning or research, keep it to public listings, and read the terms before reusing anything."
   - q: "Why are the prices different from what I see later?"

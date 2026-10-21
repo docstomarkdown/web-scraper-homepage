@@ -12,7 +12,7 @@ video: ""
 campaign: guide-scrape-trustpilot-reviews
 faq:
   - q: "How do I scrape Trustpilot reviews for free?"
-    a: "Open the company's Trustpilot page in Chrome, open the Web Scraper Pro side panel's List tab, pick the reviews list, choose Collect more pages, and click Collect. The extension is free to use today, with every feature included."
+    a: "Open the company's Trustpilot page in Chrome, open the Web Scraper Pro side panel's List tab, pick the reviews list, choose Collect more pages, and click Collect. The extension is free, with every feature included and no paid plan."
   - q: "Can I get all the reviews, not only the first page?"
     a: "Yes. Choose Collect more pages and set Stop after to All pages. The run clicks through the numbered pages and adds every review to one table."
   - q: "Which columns do I get?"

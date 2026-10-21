@@ -133,4 +133,4 @@ Each product is saved as its own collection in History. For every product in the
 
 ## Conclusion
 
-You collected a list and then every page it links to: the text of each article or the contact details of each site in one merged table, and a product's full details from the Properties tab. For a list of addresses you already have, see How To Scrape Data from a List of URLs in One Run. For page text on its own, see How To Save a Web Page as a Word Document with Its Text.
+You collected a list and then every page it links to: the text of each article or the contact details of each site in one merged table, and a product's full details from the Properties tab. For a list of addresses you already have, see How To Scrape Data from a List of URLs in One Run. For page text on its own, see How To Save a Web Page as a Word Document.

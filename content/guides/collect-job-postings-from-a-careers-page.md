@@ -4,6 +4,7 @@ description: "Turn a company's careers page, or a job board's search, into a spr
 status: draft
 date: 2026-10-21
 updated: 2026-10-21
+version: "1.3.0"
 author: vikram
 feature: list-scraper
 sites: []

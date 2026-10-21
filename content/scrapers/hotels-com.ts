@@ -163,7 +163,7 @@ export const hotelsCom: ScraperPageContent = {
     useCase: "travel",
     related: [],
     faqs: [
-        { q: "Is this Hotels.com scraper free?", a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create." },
+        { q: "Is this Hotels.com scraper free?", a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create." },
         { q: "How do I scrape hotel prices from Hotels.com without coding?", a: "Search the city and dates on Hotels.com, open the side panel's List tab, pick the results list, choose Collect more pages and click Collect. The columns come out named, including the total with taxes." },
         { q: "Can I compare the same hotels across two date ranges?", a: "Yes. Run the search for each date range and export both. Hotel URL is the same across runs, so a lookup in your sheet lines them up." },
         { q: "Are taxes and fees in the total?", a: "The Total Price column is the card's total including taxes and fees as Hotels.com states it. Resort fees paid at the hotel may not be in it." },

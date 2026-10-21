@@ -14,7 +14,7 @@ faq:
   - q: "Does Indeed allow scraping?"
     a: "Indeed's terms restrict automated collection, and the extension collects only what the page shows you, in your own browser. Collect the roles for your own research, keep it to public postings, and read the terms before reusing anything. Postings are about jobs, not people."
   - q: "Is there a free Indeed job scraper?"
-    a: "Web Scraper Pro is free to use today, with every feature included and no account to create. Open an Indeed search in Chrome, pick the list in the side panel, and collect every page."
+    a: "Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create. Open an Indeed search in Chrome, pick the list in the side panel, and collect every page."
   - q: "Which columns do I get from Indeed?"
     a: "Indeed has no ready-made setup yet, so the columns are named from what the results cards show: job title, company, location, salary where the posting states one, posting date and the link. A column the card doesn't show stays out."
   - q: "Can I get the full job description for each posting?"
@@ -25,6 +25,8 @@ faq:
     a: "Yes. Paste the search addresses into Bulk scrape and each is collected in turn with the same page settings; View merged table puts the rows together."
   - q: "Does it collect candidates or recruiters?"
     a: "No. It collects the roles a page lists. The extension isn't built to collect profiles, and this guide never asks you to."
+  - q: "Will Indeed ban me for this?"
+    a: "You're reading public job listings in your own browser at a person's pace, without signing in. Indeed sometimes shows a verification page; complete it in the tab and carry on. Keep runs to one search at a time."
 ---
 
 <!-- Draft from the competitor-corpus candidates (2026-10-21). Indeed has no verified run on 1.3.0, and the content plan holds it

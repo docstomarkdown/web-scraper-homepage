@@ -164,7 +164,7 @@ export const rightmove: ScraperPageContent = {
     useCase: "real-estate",
     related: ["zillow"],
     faqs: [
-        { q: "Is this Rightmove scraper free?", a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create." },
+        { q: "Is this Rightmove scraper free?", a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create." },
         { q: "How do I scrape Rightmove listings without coding?", a: "Search on Rightmove, open the side panel's List tab, pick the results list, choose Collect more pages and click Collect. The columns come out named, and Export as gives you Excel, CSV, JSON or Google Sheets." },
         { q: "Does it collect rentals as well as sales?", a: "Yes. A lettings search gives the same columns, with the monthly rent in Price." },
         { q: "Can I get the floor area and council tax band?", a: "Not from the results page; they're on each listing's own page. Open a listing and click Collect details on this page in the Properties tab, or run Bulk scrape over the Property URL column." },

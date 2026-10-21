@@ -9,6 +9,9 @@ import { siteConfig } from "@/config/site";
 import { formatDate } from "@/lib/format-date";
 import { ogImageUrl } from "@/lib/og";
 import { Markdown } from "@/components/blog/Markdown";
+import Glossary from "@/components/pages/Glossary";
+import { scraperPages } from "@/content/scrapers";
+import { isVisible as isScraperVisible } from "@/components/pages/ScraperPage";
 import { VideoEmbed } from "@/components/VideoEmbed";
 import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/components/seo/JsonLd";
 
@@ -89,6 +92,7 @@ export default async function GuidePage({ params }: Props) {
                     </p>
                     {g.video ? <VideoEmbed id={g.video} title={g.title} /> : null}
                     <div className="mt-8">
+                        <Glossary text={g.content} className="mb-8" />
                         <Markdown content={g.content} />
                     </div>
                     {g.faq.length > 0 && (
@@ -113,6 +117,16 @@ export default async function GuidePage({ params }: Props) {
                     </section>
                 </article>
                 <aside className="mt-12 lg:mt-0 lg:sticky lg:top-28 lg:self-start space-y-6">
+                    {g.sites.filter((x) => scraperPages[x] && isScraperVisible(scraperPages[x])).length > 0 && (
+                        <section className="rounded-2xl border border-slate-200 dark:border-slate-800 p-5">
+                            <h2 className="text-base font-semibold text-slate-800 dark:text-white">Site pages for this guide</h2>
+                            <ul className="mt-3 space-y-2 text-base">
+                                {g.sites.filter((x) => scraperPages[x] && isScraperVisible(scraperPages[x])).map((x) => (
+                                    <li key={x}><Link href={`/scrapers/${x}`} className="text-[#1f5ec2] dark:text-[#7aa7ff] underline underline-offset-2">{scraperPages[x].h1}</Link></li>
+                                ))}
+                            </ul>
+                        </section>
+                    )}
                     <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6">
                         <p className="text-sm font-semibold text-slate-900 dark:text-white">What this guide uses</p>
                         {feature ? (

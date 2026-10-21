@@ -31,7 +31,7 @@ export const webscraperIo: ComparePageContent = {
         { area: "Scheduled runs and API", ours: "Coming soon with the cloud. Today you run it when you need fresh data; History keeps every run.", theirs: "Yes, on the Cloud plans: scheduled jobs, an API, and exports to Dropbox, Google Drive, Google Sheets, Amazon S3 and Azure." },
         { area: "Many pages at once", ours: "Bulk scrape: paste or upload a list of addresses and each is collected in turn in an embedded browser, merged into one table.", theirs: "Cloud runs over a sitemap's start URLs, with concurrent scrapers per plan (2 to 3 on self-serve tiers)." },
         { area: "Exports", ours: "Excel, CSV, JSON and Google Sheets; Word for page text; a Shopify import CSV for catalogs.", theirs: "CSV and XLSX on all plans, JSON from the Professional plan up; the cloud integrations above." },
-        { area: "Pricing model", ours: "Free to use today, every feature included; no credits and no per-row charges. Nothing has been priced yet.", theirs: "Extension free. Cloud: Project $50/month (5,000 URL credits), Professional $100 (20,000), Scale from $200 (unlimited credits), Enterprise custom; 7-day trial. One credit is one page loaded." },
+        { area: "Pricing model", ours: "Free, every feature included; no paid plan, no credits and no per-row charges. There's no paid plan.", theirs: "Extension free. Cloud: Project $50/month (5,000 URL credits), Professional $100 (20,000), Scale from $200 (unlimited credits), Enterprise custom; 7-day trial. One credit is one page loaded." },
         { area: "Team and scale claims", ours: "A small company; one founder answers support from the side panel.", theirs: "Started in 2013; the site states 1M+ active users and enterprise positioning for the cloud product." },
     ],
     sections: [
@@ -57,7 +57,7 @@ export const webscraperIo: ComparePageContent = {
     ],
     faqs: [
         { q: "Can I import my Web Scraper sitemaps into Web Scraper Pro?", a: "No, and you don't need to. Open the site and let the List tab find the list, or describe it in chat. There's no structure to carry over." },
-        { q: "Which one is free?", a: "Web Scraper's extension is free to use locally; its cloud plans start at $50 a month. Web Scraper Pro is free to install, with one plan, Pro, for everything." },
+        { q: "Which one is free?", a: "Web Scraper's extension is free to use locally; its cloud plans start at $50 a month. Web Scraper Pro is free, with every feature included and no paid plan." },
         { q: "Does either one run without my computer on?", a: "Web Scraper Cloud does, on its paid plans. Web Scraper Pro runs in your open browser today; cloud runs are coming." },
         { q: "Which handles sites that block scrapers?", a: "Web Scraper Cloud offers residential proxies as an add-on. Web Scraper Pro reads pages in your own browser as an ordinary visit, which most sites allow, and never bypasses a verification page." },
     ],

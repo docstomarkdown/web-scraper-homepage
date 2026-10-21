@@ -157,7 +157,7 @@ export const freelanceDataWork: UseCasePageContent = {
     },
     guides: ["scrape-data-from-any-website-to-excel", "get-emails-from-a-list-of-websites", "collect-every-page-of-results", "get-local-business-leads-from-maps"],
     faqs: [
-        { q: "Is this free?", a: "Yes. Web Scraper Pro is free to install and use today, with every feature included and no account to create. There is no per-row price and no credits to count." },
+        { q: "Is this free?", a: "Yes. Web Scraper Pro is free to install and use. There's no paid plan, every feature is included, and there's no account to create. There is no per-row price and no credits to count." },
         { q: "Does it work on a site that isn't in your list?", a: "Yes. On any site with a list, the List tab finds it and names the columns from the page's own labels; Choose an item on the page handles the rest. Ready-made sites come with better names." },
         { q: "How do I deliver a web scraping job to a client in Excel?", a: "Collect the list, rename and reorder the columns on the results page to the client's headings, remove the rest, and click Export as → Excel. The file matches what's on screen." },
         { q: "Can I deliver in the client's column names and order?", a: "Yes. Rename, reorder and remove columns on the results page before you save, or tell the chat the columns you want. The file matches what's shown." },

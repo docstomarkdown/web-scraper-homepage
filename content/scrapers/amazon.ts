@@ -191,7 +191,7 @@ export const amazon: ScraperPageContent = {
     useCase: "ecommerce",
     related: [],
     faqs: [
-        { q: "Is this Amazon scraper free?", a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create." },
+        { q: "Is this Amazon scraper free?", a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create." },
         { q: "How do I scrape Amazon search results without code?", a: "Run the search, open the List tab, pick the results list, choose Collect more pages and set Stop after. The columns are named by the Amazon setup, so the sheet is ready to sort." },
         { q: "Can I scrape a product's full details and reviews?", a: "Yes. Open the product page and click Collect details on this page in the Properties tab. It reads the standard fields, such as price, list price, rating, availability, seller and variants, and View all reviews collects the reviews across their pages." },
         { q: "Can I scrape Amazon Best Sellers?", a: "Yes. Best Sellers, New Releases, Movers & Shakers and category pages are lists like any other. Pick the list in the side panel and collect." },

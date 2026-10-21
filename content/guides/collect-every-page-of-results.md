@@ -1,5 +1,5 @@
 ---
-title: "How To Scrape All Pages of a Website's Search Results"
+title: "How To Scrape Every Page of a List, Not Only the First"
 description: "Collect a whole list across numbered pages, Load more buttons or endless scrolling into one spreadsheet, with no code: pick the list, set how many pages, click once."
 status: draft
 date: 2026-10-21

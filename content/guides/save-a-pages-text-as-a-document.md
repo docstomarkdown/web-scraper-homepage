@@ -1,9 +1,10 @@
 ---
-title: "How To Save a Web Page as a Word Document with Its Text"
+title: "How To Save a Web Page as a Word Document"
 description: "Turn an article, a guide or a documentation page into clean text with its title, author and date, saved as a Word document or copied for an AI tool, in one click. Then do it for a whole reading list at once."
 status: draft
 date: 2026-10-21
 updated: 2026-10-21
+version: "1.3.0"
 author: vikram
 feature: page-text
 sites: []

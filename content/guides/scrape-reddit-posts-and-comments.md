@@ -23,6 +23,8 @@ faq:
     a: "Yes. Run the search on Reddit, sort it by New, and collect the results list. For several keywords, paste the search addresses into Bulk scrape."
   - q: "Is scraping Reddit allowed?"
     a: "Reddit's terms restrict automated collection. You collect public posts in your own browser, at a person's pace, for your own research. Read our plain-words explainer on web scraping and the law first; it isn't legal advice."
+  - q: "Will Reddit ban my account?"
+    a: "You read public pages in your own browser, at a person's pace, without posting or signing in for the run. Reddit may slow a long scroll; click Stop and keep what you have. Keep it to your own research and don't republish people's posts."
 ---
 
 <!--

@@ -179,7 +179,7 @@ export const walmart: ScraperPageContent = {
     useCase: "ecommerce",
     related: ["amazon", "ebay", "etsy"],
     faqs: [
-        { q: "Is this Walmart scraper free?", a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create." },
+        { q: "Is this Walmart scraper free?", a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create." },
         { q: "How do I scrape Walmart search results without code?", a: "Run the search, open the List tab, pick the results list, choose Collect more pages and set Stop after. The Walmart setup names the columns, so the sheet is ready to sort by price." },
         { q: "Can I compare Walmart prices with Amazon's?", a: "Yes. Collect the same search on each store and export both. Both setups name the price column Price, so a lookup on product name lines them up." },
         { q: "Does it show the seller?", a: "Not from the search card, which doesn't show it. Open a product and use the Properties tab, which reads the seller on the product page." },

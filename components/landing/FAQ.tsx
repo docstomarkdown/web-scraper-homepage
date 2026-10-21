@@ -12,7 +12,7 @@ const GROUPS = [
         faqs: [
             {
                 q: "Is it free?",
-                a: "Yes. Web Scraper Pro is free to install and use today, with every feature included: chat, ready-made sites, Google Maps leads and contact details, Shopify catalog export, bulk runs and every export format. There are no credits to count and no account to create. Cloud runs are coming soon.",
+                a: "Yes. Web Scraper Pro is free to install and use, with every feature included: chat, ready-made sites, Google Maps leads and contact details, Shopify catalog export, bulk runs and every export format. There are no credits to count and no account to create. Cloud runs are coming soon.",
             },
             {
                 q: "Do I need an account?",

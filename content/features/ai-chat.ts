@@ -237,7 +237,7 @@ export const aiChat: FeaturePageContent = {
         },
         {
             q: "Is chat free?",
-            a: "Yes. Chat is free to use today, like every other feature, with a fair-use limit so it stays available to everyone. There's no account to create.",
+            a: "Yes. Chat is free, like every other feature, with a fair-use limit so it stays available to everyone. There's no account to create.",
         },
         {
             q: "Can chat collect every page of results?",

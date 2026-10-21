@@ -168,7 +168,7 @@ export const yellowPages: ScraperPageContent = {
     useCase: "lead-generation",
     related: ["maps", "justdial", "bbb"],
     faqs: [
-        { q: "Is this Yellow Pages scraper free?", a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create." },
+        { q: "Is this Yellow Pages scraper free?", a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create." },
         { q: "Can I get emails for the businesses?", a: "Yes, in a second step. Open Bulk scrape → Collect contacts, choose Use saved data, and pick this collection. Each website is read for emails, phones and social links." },
         { q: "How many pages can I scrape at once?", a: "As many as you set under Stop after. Keep the tab in front, and click Stop if you have enough; the rows so far are kept." },
         { q: "Does it work on other countries' Yellow Pages?", a: "The ready-made setup is for yellowpages.com. Other directories are detected as lists, with columns named from the page." },

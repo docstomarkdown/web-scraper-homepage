@@ -117,4 +117,4 @@ After export, the sheet looks like this. The articles are made up.
 
 ## Conclusion
 
-You turned a news section into a sheet with one row per article, each with its text, author and date, and you can save the same run as one Word document. For a single article, see How To Save a Web Page as a Word Document with Its Text. For a reading list of addresses you already have, see How To Scrape Data from a List of URLs in One Run.
+You turned a news section into a sheet with one row per article, each with its text, author and date, and you can save the same run as one Word document. For a single article, see How To Save a Web Page as a Word Document. For a reading list of addresses you already have, see How To Scrape Data from a List of URLs in One Run.

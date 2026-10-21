@@ -1,5 +1,5 @@
 ---
-title: "How To Scrape Search Results from Google Scholar"
+title: "How To Export Google Scholar Results to Excel"
 description: "Turn a Google Scholar search into a citation spreadsheet with title, authors, publication, year, citation count and full-text link, across as many pages as you choose, with no code."
 status: draft
 date: 2026-10-21

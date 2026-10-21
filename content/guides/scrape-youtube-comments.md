@@ -23,6 +23,8 @@ faq:
     a: "No. YouTube doesn't show emails, and the extension never reads a channel's About page behind its verification."
   - q: "Is scraping YouTube comments allowed?"
     a: "YouTube's terms restrict automated collection. You collect public comments in your own browser, at a person's pace, for your own research. Read our plain-words explainer on web scraping and the law first; it isn't legal advice."
+  - q: "Will YouTube ban my channel or account?"
+    a: "The extension reads the comments on a public video in your own browser and never posts, signs in or touches your channel. YouTube may load comments more slowly after a long scroll; click Stop and keep what you have. Keep it to your own research."
 ---
 
 <!--
@@ -123,7 +125,7 @@ For the comments on many videos, paste the video addresses into **Bulk scrape**;
 
 **Replies are missing.** They stay folded until you open them on the page. Click the Replies links you want, click Rescan, and collect again.
 
-**Comments are turned off on the video.** There is nothing to collect. The video list on the channel still works; see How To Scrape YouTube Search Results into a Spreadsheet.
+**Comments are turned off on the video.** There is nothing to collect. The video list on the channel still works; see How To Export YouTube Search Results to Excel.
 
 ## Conclusion
 

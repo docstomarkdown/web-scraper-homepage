@@ -163,7 +163,7 @@ export const bbb: ScraperPageContent = {
     useCase: "lead-generation",
     related: ["maps", "yellow-pages", "justdial"],
     faqs: [
-        { q: "Is this BBB scraper free?", a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create." },
+        { q: "Is this BBB scraper free?", a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create." },
         { q: "Does Accredited mean BBB-approved?", a: "It means the business pays for BBB accreditation and meets its standards. The column is filled for accredited businesses and blank for the rest." },
         { q: "Can I get only accredited businesses?", a: "Yes. Filter to Accredited on BBB before collecting, or collect everything and keep the rows where Accredited is filled with Filter rows." },
         { q: "Can I get websites and emails?", a: "Not from the listing cards; they don't show websites. Open the business's BBB profile or its Google Maps listing for the site, then run Collect contacts over the websites." },

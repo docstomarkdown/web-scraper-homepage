@@ -20,7 +20,7 @@ export default function ScrapersHub() {
                 <SectionHeading as="h1" eyebrow="Sites" title="Ready-made for the sites you already use" intro="These sites come with a tuned setup, so the right columns show up with no configuration. Everything else with a list is detected automatically." />
                 <div className="mt-14 space-y-12">
                     {groups.map(({ category, sites }) => (
-                        <section key={category.slug}>
+                        <section key={category.slug} id={category.slug} className="scroll-mt-28">
                             <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
                                 {isPublished(category) ? <Link href={category.href} className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]">{category.label}</Link> : category.label}
                             </h2>

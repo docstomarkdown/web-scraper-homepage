@@ -23,6 +23,8 @@ faq:
     a: "The run collects the list you pick. Ads and other boxes are separate lists on the page; pick the organic results card, or collect a box on its own if you want it."
   - q: "Is scraping Google search results allowed?"
     a: "Google's terms restrict automated access to its search. You collect the page you can see, in your own browser, a few pages at a time, for your own research. Read our plain-words explainer on web scraping and the law first; it isn't legal advice."
+  - q: "Will Google block me or ban my account?"
+    a: "Google slows down or shows a verification page after many result pages in a row; it doesn't touch your Google account for browsing its results. Keep to a few pages per run, wait between runs, and complete the check in the tab if one appears."
 ---
 
 <!--

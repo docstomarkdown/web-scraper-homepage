@@ -41,7 +41,7 @@ These come up across all personas. Any page that touches them must answer them h
 4. **"Can I get out?"** Surprise renewals and hard-to-cancel plans are the angriest complaints in the
    category. Don't say "cancel anytime"; there is nothing to cancel.
 5. **"Is 'free' really free?"** A video or page that says free, followed by a paywall, destroys
-   trust. The extension is free today, so say "free to use today" and never put a plan, a price or
+   trust. The extension is free, so say "free, with no paid plan" and never put a plan, a price or
    a locked feature next to it.
 6. **"Will the site block me, or ban my account?"**
 7. **"Is it safe and legal?"** Especially: what the extension can see, and where data goes.
@@ -268,7 +268,7 @@ publishing a claim marked 1.3.0). Re-check before relying on them if much time h
   (`chrome-extension-source/public/site-sitemaps/scholar/google-scholar.json`)
 - **No account needed for the extension.** The cloud dashboard uses Google sign-in.
 - **The extension is free, with everything included, and nothing has been priced yet** (owner decision,
-  2026-10-21, replacing the 2026-09-25 "one paid plan, Pro" line). Say "free to use today"; never name a
+  2026-10-21, replacing the 2026-09-25 "one paid plan, Pro" line). Say "free, with no paid plan"; never name a
   plan, a price, credits or "cancel anytime", and don't single out a feature as paid or "Pro only". Only
   cloud features are marked "coming soon".
 - **Cloud is coming soon** (owner decision): cloud runs, scheduled runs, the cloud dashboard, and cloud

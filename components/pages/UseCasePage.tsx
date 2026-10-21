@@ -5,6 +5,7 @@ import Reveal from "@/components/landing/Reveal";
 import CTA from "@/components/landing/CTA";
 import { Screenshot } from "@/components/Screenshot";
 import ProseSection, { type ContentSection } from "@/components/pages/ProseSection";
+import Glossary from "@/components/pages/Glossary";
 import { productConfig } from "@/config/product";
 import { siteConfig } from "@/config/site";
 import { getPage, showPlannedPages, type SitePage } from "@/config/pages";
@@ -73,6 +74,7 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
                             <nav aria-label="Breadcrumb" className="text-base text-slate-600 dark:text-slate-300"><Link href="/use-cases" className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]">Use cases</Link></nav>
                             <h1 className="mt-3 text-[2rem] md:text-[2.25rem] font-semibold tracking-tight text-slate-800 dark:text-white leading-[1.15]">{c.h1}</h1>
                             <p className="mt-4 text-lg text-slate-700 dark:text-slate-200 leading-[1.6]">{c.intro}</p>
+                            <Glossary text={JSON.stringify(c)} className="mt-6" />
                             <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-3">
                                 <Link href={installUrl} target="_blank" className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#1f5ec2] hover:bg-[#1a4fa3] px-5 py-3 text-base font-semibold text-white transition-colors"><Chrome className="w-5 h-5" aria-hidden="true" />Add to Chrome</Link>
                                 <a href="#workflow" className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-5 py-3 text-base font-semibold text-slate-800 dark:text-slate-100 hover:border-[#2772ED] transition-colors">See the steps<ArrowRight className="w-4 h-4" aria-hidden="true" /></a>

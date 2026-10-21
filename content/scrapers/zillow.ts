@@ -165,7 +165,7 @@ export const zillow: ScraperPageContent = {
     useCase: "real-estate",
     related: ["rightmove"],
     faqs: [
-        { q: "Is this Zillow scraper free?", a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create." },
+        { q: "Is this Zillow scraper free?", a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create." },
         { q: "How do I scrape Zillow listings without coding?", a: "Search on Zillow, open the side panel's List tab, pick the results list, choose Collect more pages and click Collect. The columns come out named, and Export as gives you Excel, CSV, JSON or Google Sheets." },
         { q: "Can I scrape Zillow rentals as well as homes for sale?", a: "Yes. Switch the search to For rent and the same columns fill in, with the monthly rent in Price." },
         { q: "Why does my export have fewer homes than Zillow says?", a: "Zillow's count covers the map area, but the list shows at most 20 pages. Narrow the search, or collect by zip code, to get every home." },

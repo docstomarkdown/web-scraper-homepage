@@ -4,6 +4,7 @@ description: "Paste or upload a list of web pages, say what to collect from each
 status: draft
 date: 2026-10-21
 updated: 2026-10-21
+version: "1.3.0"
 author: vikram
 feature: bulk-scraper
 sites: []

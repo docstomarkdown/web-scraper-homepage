@@ -181,7 +181,7 @@ export const maps: ScraperPageContent = {
     useCase: "lead-generation",
     related: ["yellow-pages", "justdial", "bbb"],
     faqs: [
-        { q: "Is this Google Maps scraper free?", a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create." },
+        { q: "Is this Google Maps scraper free?", a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create." },
         { q: "Do I need a Google Maps API key?", a: "No. It works on the Google Maps website in your own browser." },
         { q: "Can I scrape Google Maps reviews as well?", a: "The rating and review count, yes. Review text isn't collected from Google Maps." },
         { q: "Why do some rows have no email?", a: "Google Maps never lists emails. They come from each business's own website, and many small businesses publish none. Those rows keep the phone and website from Google Maps." },

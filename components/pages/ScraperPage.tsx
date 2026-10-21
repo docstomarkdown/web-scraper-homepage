@@ -5,6 +5,8 @@ import Reveal from "@/components/landing/Reveal";
 import CTA from "@/components/landing/CTA";
 import { Screenshot } from "@/components/Screenshot";
 import ProseSection, { type ContentSection } from "@/components/pages/ProseSection";
+import Glossary from "@/components/pages/Glossary";
+import { getAllGuides } from "@/lib/guides";
 import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/components/seo/JsonLd";
 import { productConfig } from "@/config/product";
 import { siteConfig } from "@/config/site";
@@ -84,10 +86,11 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
     const base = siteConfig.url.replace(/\/$/, "");
     const href = `/scrapers/${c.slug}`;
     const installUrl = `${productConfig.product.ctaUrl}?utm_source=website&utm_medium=scraper-${c.slug}&utm_campaign=chrome_install`;
+    const guides = getAllGuides().filter((g) => g.sites.includes(c.slug) || g.slug === c.guide);
 
     return (
         <main id="main" className="flex-1 bg-white dark:bg-slate-950">
-            <JsonLd data={[breadcrumbJsonLd([{ name: "Home", href: "/" }, { name: "Sites", href: "/scrapers" }, { name: category.label, href: category.href }, { name: c.site.name, href }], base), ...(c.faqs.length > 0 ? [faqJsonLd(c.faqs)] : [])]} />
+            <JsonLd data={[breadcrumbJsonLd([{ name: "Home", href: "/" }, { name: "Sites", href: "/scrapers" }, { name: category.label, href: `/scrapers#${category.slug}` }, { name: c.site.name, href }], base), ...(c.faqs.length > 0 ? [faqJsonLd(c.faqs)] : [])]} />
 
             {/* Hero: the answer, one short intro, the two buttons, then the sample */}
             <section className="pt-28 pb-10 md:pt-32 md:pb-12">
@@ -99,7 +102,7 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
                         <nav aria-label="Breadcrumb" className="text-base text-slate-600 dark:text-slate-300">
                             <Link href="/scrapers" className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff] hover:underline">Sites</Link>
                             {" / "}
-                            <Link href={category.href} className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff] hover:underline">{category.label}</Link>
+                            <Link href={`/scrapers#${category.slug}`} className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff] hover:underline">{category.label}</Link>
                         </nav>
                         <h1 className="mt-4 text-[2rem] md:text-[2.5rem] font-semibold tracking-tight text-slate-800 dark:text-white leading-[1.2]">{c.h1}</h1>
                         <p className={`mt-5 ${body} md:text-xl`}>{c.intro}</p>
@@ -116,6 +119,7 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
                             Last run on version {c.version} on <time dateTime={c.lastVerified}>{formatDate(c.lastVerified)}</time>.
                         </p>
                     </Reveal>
+                    <Glossary text={JSON.stringify(c)} className="mt-8" />
                     <Reveal className="mt-10" delay={0.08}>
                         <figure className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden">
                             <div className="overflow-x-auto" tabIndex={0} role="group" aria-label="Sample table, scrolls sideways">
@@ -271,7 +275,7 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
                         <h2 className={h2}>Go further</h2>
                         <ul className={`mt-6 space-y-3 ${body}`}>
                             <li><Link href={feature.href} className={link}>{feature.label}</Link>: {feature.summary}</li>
-                            {c.guide && <li><Link href={`/guides/${c.guide}`} className={link}>Step-by-step guide for {c.site.name}</Link></li>}
+                            {guides.map((g) => <li key={g.slug}><Link href={`/guides/${g.slug}`} className={link}>{g.title}</Link></li>)}
                             {c.useCase && <li><Link href={`/use-cases/${c.useCase}`} className={link}>{getPage(c.useCase, "use-case").label}</Link>: the whole workflow, from search to a list you can use</li>}
                             {related.map((r) => <li key={r.slug}><Link href={`/scrapers/${r.slug}`} className={link}>Collect from {r.name}</Link></li>)}
                         </ul>

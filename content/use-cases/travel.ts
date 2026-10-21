@@ -151,7 +151,7 @@ export const travel: UseCasePageContent = {
     },
     guides: ["scrape-booking-com-hotel-prices", "collect-every-page-of-results", "scrape-data-from-any-website-to-excel"],
     faqs: [
-        { q: "Is it free to scrape hotel prices?", a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create." },
+        { q: "Is it free to scrape hotel prices?", a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create." },
         { q: "Which travel sites have ready-made columns?", a: "Booking.com, Hotels.com and Tripadvisor, for hotels, restaurants, attractions and tours. On other sites the results list is found on the page and the columns are named from its labels." },
         { q: "How do I scrape Booking.com hotel prices?", a: "Search with your dates and guests, open the panel's List tab, pick the hotels list and collect more pages. You get Hotel Name, Location, Nightly Price, Guest Rating, Rating Class and Reviews Count for every hotel in the results." },
         { q: "Are taxes and fees included in the prices?", a: "On Hotels.com the card's total including taxes and fees is its own column next to the price per night. On other sites the price is what the card shows; check whether the site displays totals before you compare." },

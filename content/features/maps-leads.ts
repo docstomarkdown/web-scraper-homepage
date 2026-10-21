@@ -254,7 +254,7 @@ export const mapsLeads: FeaturePageContent = {
     faqs: [
         {
             q: "Is this Google Maps scraper free?",
-            a: "Yes. Web Scraper Pro is free to install and use today, with every feature included and no account to create. That includes Google Maps searches, emails from websites, bulk runs and every export format.",
+            a: "Yes. Web Scraper Pro is free to install and use. There's no paid plan, every feature is included, and there's no account to create. That includes Google Maps searches, emails from websites, bulk runs and every export format.",
         },
         {
             q: "Do I need a Google Maps API key?",

@@ -124,7 +124,7 @@ export const cloud: FeaturePageContent = {
         items: [
             "Everything on this page is planned, not released. The extension does every job in your browser today.",
             "Sites that need you to be signed in will still need the extension, which works on the pages you can see.",
-            "Nothing has been priced. The extension is free today, and this page will say so if the cloud is priced when it ships.",
+            "There's no paid plan. The extension is free, and this page will say so if the cloud is priced when it ships.",
         ],
     },
     useCases: {
@@ -162,7 +162,7 @@ export const cloud: FeaturePageContent = {
         },
         {
             q: "Will it be free?",
-            a: "The extension is free today, and nothing has been priced yet. This page will say so if that changes when cloud runs launch.",
+            a: "The extension is free, and there's no paid plan. This page will say so if that changes when cloud runs launch.",
         },
         {
             q: "When will cloud runs ship?",

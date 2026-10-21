@@ -4,6 +4,7 @@ description: "Turn a search on eBay, Etsy or Walmart into a spreadsheet with pro
 status: draft
 date: 2026-10-21
 updated: 2026-10-21
+version: "1.3.0"
 author: vikram
 feature: list-scraper
 sites: [ebay, etsy, walmart]

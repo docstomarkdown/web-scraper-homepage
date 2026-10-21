@@ -206,7 +206,7 @@ export const shopifyScraper: FeaturePageContent = {
     faqs: [
         {
             q: "Is this Shopify scraper free?",
-            a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create.",
+            a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create.",
         },
         {
             q: "Does it work on every Shopify store?",
