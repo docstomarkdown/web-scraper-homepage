@@ -6,7 +6,7 @@ import { getPage } from "@/config/pages";
 // - Inputs: CSV/TXT file, pasted URLs, a saved table's URL column; chat-pasted URLs open Bulk prefilled:
 //   lib/bulk/dataSourceUrls.ts, lib/tools/ (open_bulk card)
 // - Site types list / Maps / Scholar / contacts / page text, one site at a time in order, pauses for
-//   verification, Stop keeps rows, "Collection overview" merge: lib/bulk/executors/, lib/bulk/useBulkRunner.ts
+//   verification, Stop keeps rows, "Collection results page" merge: lib/bulk/executors/, lib/bulk/useBulkRunner.ts
 // - Maps contact details during a bulk run: DECISIONS.md D-023
 // - Not in Bulk: Shopify catalogs; no notifications for bulk runs: change_documentation/REFACTORING_TODO.md
 
@@ -51,7 +51,7 @@ export const bulkScraper: FeaturePageContent = {
             {
                 title: "Add the addresses",
                 screenshot: "ext/bulk-upload",
-                body: "Open the Bulk menu at the top of the side panel and choose Bulk scrape, Collect contacts or Collect page text. Upload a CSV or TXT file with one address per line, paste them in, or reuse a column from a table you collected earlier.",
+                body: "Click the Bulk scrape icon at the top of the side panel and choose Bulk scrape, Collect contacts or Collect page text. Upload a CSV or TXT file with one address per line, paste them in, or reuse a column from a table you collected earlier.",
             },
             {
                 title: "Check what it found",
@@ -65,7 +65,7 @@ export const bulkScraper: FeaturePageContent = {
             {
                 title: "Start collecting",
                 screenshot: "ext/bulk-run",
-                body: "Sites run one after another in an embedded browser frame, so you can watch progress and stop at any time; what's collected is kept. When it finishes, the Collection overview shows every site's table and merges them into one.",
+                body: "Sites run one after another in an embedded browser frame, so you can watch progress and stop at any time; what's collected is kept. When it finishes, the Collection results page shows every site's table and merges them into one.",
             },
         ],
     },
@@ -116,7 +116,7 @@ export const bulkScraper: FeaturePageContent = {
         },
         {
             q: "Do I get one table or many?",
-            a: "Both. Each site is saved as its own collection, and the Collection overview merges them into one table with a Source URL column.",
+            a: "Both. Each site is saved as its own collection, and View merged table puts them in one table with a Source URL column.",
         },
         {
             q: "Can it run while I do something else?",

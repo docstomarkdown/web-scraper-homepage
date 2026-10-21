@@ -12,7 +12,7 @@ video: ""
 campaign: yt-b2-06-how-to-extract-phone-numbers-from-a-website-to-excel-no-code
 faq:
   - q: "Can I do this for many pages?"
-    a: "Yes. Open the **Bulk** menu, choose **Collect contacts**, and paste the page addresses. See How To Get Emails from a List of Websites."
+    a: "Yes. Click the **Bulk scrape** icon, choose **Collect contacts**, and paste the page addresses. See How To Get Emails from a List of Websites."
 ---
 
 Collect every phone number a web page publishes, with faxes in their own column, into Excel. This guide shows each step on version 1.3.0, with a screenshot of what you should see.

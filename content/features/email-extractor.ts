@@ -70,7 +70,7 @@ export const emailExtractor: FeaturePageContent = {
             eyebrow: "A list of websites",
             heading: "Hundreds of sites in one run",
             paragraphs: [
-                "Open the Bulk menu at the top of the side panel and choose Collect contacts. Paste the website addresses, one per line, or upload a CSV or TXT file. You can also pick a table you collected earlier, such as a directory list, and choose its website column.",
+                "Click the Bulk scrape icon at the top of the side panel and choose Collect contacts. Paste the website addresses, one per line, or upload a CSV or TXT file. You can also pick a table you collected earlier, such as a directory list, and choose its website column.",
                 "Choose emails, phone numbers and social links for all sites at once, turn on the deep scan, and click Start collecting. The sites are visited one after another in an embedded browser frame, and the table fills in as each one finishes. Stop keeps what it has.",
             ],
         },

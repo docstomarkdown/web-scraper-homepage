@@ -106,7 +106,7 @@ export const exportToGoogleSheets: FeaturePageContent = {
         },
         {
             q: "Can I combine two collections?",
-            a: "Yes. In chat, ask to combine the searches or lists from the conversation into one table; a bulk run also merges its sites' tables in the Collection overview.",
+            a: "Yes. In chat, ask to combine the searches or lists from the conversation into one table; a bulk run also merges its sites' tables in the Collection results page.",
         },
         {
             q: "Is this included in the plan?",

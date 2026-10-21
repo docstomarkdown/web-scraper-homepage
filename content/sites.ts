@@ -44,7 +44,7 @@ export const readyMadeSites: ReadyMadeSite[] = [
     { name: "Rightmove", category: "real-estate", page: "rightmove" },
     // Travel
     { name: "Booking.com", category: "travel" },
-    { name: "Hotels.com", category: "travel" },
+    { name: "Hotels.com", category: "travel", page: "hotels-com" },
     { name: "Tripadvisor", category: "travel" },
     // Jobs, cars and software
     { name: "Monster", category: "jobs-cars-software" },
@@ -52,7 +52,7 @@ export const readyMadeSites: ReadyMadeSite[] = [
     { name: "Capterra", category: "jobs-cars-software" },
     { name: "Product Hunt", category: "jobs-cars-software" },
     // Research
-    { name: "Scholar search results", category: "research-papers" },
+    { name: "Scholar search results", category: "research-papers", page: "scholar" },
 ];
 
 export const visibleSites = () => readyMadeSites.filter((s) => !s.hidden);

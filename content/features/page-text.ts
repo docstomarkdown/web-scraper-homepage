@@ -61,7 +61,7 @@ export const pageText: FeaturePageContent = {
             eyebrow: "A reading list",
             heading: "Hundreds of pages into one file",
             paragraphs: [
-                "Open the Bulk menu and choose Collect page text. Paste the addresses or upload a file, choose clean text, page details or both for each site, and start. Each page becomes a row, and the Collection overview merges them into one table you can export for analysis or feed to an AI tool.",
+                "Click the Bulk scrape icon at the top of the side panel and choose Collect page text. Paste the addresses or upload a file, choose clean text, page details or both for each site, and click Start collecting. Each page becomes a row, and View merged table puts them in one table to export together.",
             ],
         },
     ],
