@@ -85,15 +85,15 @@ Each page's persona is from `docs/personas.md`.
 
 | Page | URL | Persona | Features involved | Status |
 |---|---|---|---|---|
-| Lead generation | `/use-cases/lead-generation` | Arjun | Maps leads, then contacts on those websites, bulk runs, directories (Yelp, YellowPages, BBB, Manta, Clutch…) | 🟢 |
-| Real estate | `/use-cases/real-estate` | Maria | Listings from Zillow, Redfin, Realtor, Rightmove, Zoopla, Property Finder | 🟢 |
-| E-commerce and price research | `/use-cases/ecommerce` | Priya | Marketplace lists, product details, reviews, bulk | 🟢 (no scheduled price checks until cloud) |
-| Freelance data work | `/use-cases/freelance-data-work` | Rina | Lists from any website, contacts, bulk runs, column clean-up, exports | 🟢 |
-| Reviews and reputation | `/use-cases/reviews` | Priya, Wei | Trustpilot, Yelp, Tripadvisor, G2/Capterra, product reviews | 🟢 |
-| Job postings | `/use-cases/job-postings` | Sam | Job boards and careers pages; never candidate profiles | 🟢 |
-| Research and AI datasets | `/use-cases/research` | Wei | Scholar, page text, any list | 🟢 |
-| Travel and hospitality | `/use-cases/travel` | — | Booking, Hotels, Tripadvisor | 🟢 |
-| Shopify agencies and dropshipping | `/use-cases/shopify` | Kai | Shopify export, import CSV | 🟢 |
+| Lead generation | `/use-cases/lead-generation` | Arjun | Maps leads, then contacts on those websites, bulk runs, directories (Yelp, YellowPages, BBB, Manta, Clutch…) | 🟡 drafted 2026-10-21 |
+| Real estate | `/use-cases/real-estate` | Maria | Listings from Zillow, Redfin, Realtor, Rightmove, Zoopla, Property Finder | 🟡 drafted 2026-10-21 |
+| E-commerce and price research | `/use-cases/ecommerce` | Priya | Marketplace lists, product details, reviews, bulk | 🟡 drafted 2026-10-21 (no scheduled price checks until cloud) |
+| Freelance data work | `/use-cases/freelance-data-work` | Rina | Lists from any website, contacts, bulk runs, column clean-up, exports | 🟡 drafted 2026-10-21 |
+| Reviews and reputation | `/use-cases/reviews` | Priya, Wei | Dropped 2026-10-21: Maps returns no review text, G2's review flow is unverified, and product reviews are covered on the product details page. Revisit when a review site has a verified run. | ⬜ dropped |
+| Job postings | `/use-cases/job-postings` | Sam | Dropped 2026-10-21: Monster's pack is generic and no job board has a verified setup, so the page would say nothing site-specific. Revisit with a verified board. | ⬜ dropped |
+| Research and AI datasets | `/use-cases/research` | Wei | Scholar, page text, any list | 🟡 drafted 2026-10-21 |
+| Travel and hospitality | `/use-cases/travel` | — | Booking, Hotels, Tripadvisor | 🟡 drafted 2026-10-21 |
+| Shopify agencies and dropshipping | `/use-cases/shopify` | Kai | Shopify export, import CSV | 🟡 drafted 2026-10-21 |
 
 The hub at `/use-cases` lists them all.
 
@@ -127,14 +127,14 @@ The hub at `/use-cases` lists them all.
 | Free tools | `/tools` | The existing e-commerce calculators. Add scraping-related tools over time. | ✅ |
 | What's new (changelog) | `/changelog` | One entry per released feature | 🟢 |
 | Is web scraping legal? | `/web-scraping-legal` | Neutral and sourced, "not legal advice" | 🟢 |
-| Developer docs | `/docs` | MCP setup (Claude and other clients); the REST API once cloud launches | 🟢 |
+| Developer docs | `/docs` | Dropped from the registry 2026-10-21 until the cloud launch; `/mcp` and `/cloud` carry the coming-soon story. | ⬜ with cloud |
 
 ## 6. Company and trust
 
 | Page | URL | Status |
 |---|---|---|
 | Pricing | `/pricing` | ⚪ Waiting on billing. Hidden until then: no nav, footer or homepage section, and `/pricing` redirects to the homepage. |
-| Privacy and your data | `/privacy` (a plain-English page beside the legal policy) | 🟢. Must match the analytics facts. |
+| Privacy and your data | `/privacy` | Dropped 2026-10-21: the privacy policy and the "What chat sends to our servers" section on `/ai-chat` cover it; a second page would duplicate both. | ⬜ dropped |
 | About | `/about` | 🟢 |
 | Get help (support form) | `/support` | ✅ In the top bar and footer. Files a private ticket in the admin app's support inbox; the extension's Support links open it filled in. Replaced the contact page on 2026-10-01: `/contact` redirects here. |
 | Terms, Privacy policy | `/terms-of-service`, `/privacy-policy` | ✅ |

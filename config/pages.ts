@@ -81,12 +81,11 @@ export const pages: SitePage[] = [
     caseEntry(["real-estate", "Real estate", "Homes for sale or rent in any area, with price, beds, baths, size and photos.", "planned", "home"]),
     caseEntry(["shopify", "Shopify agencies and dropshipping", "Research products and move catalogs between stores.", "planned", "store"]),
     caseEntry(["freelance-data-work", "Freelance data work", "Client-ready lead lists and data exports from whatever site the client names.", "planned", "table"]),
-    caseEntry(["reviews", "Reviews and reputation", "Ratings and review text from review sites and stores.", "planned", "star"]),
-    caseEntry(["job-postings", "Job postings", "See who is hiring, from job boards and company careers pages.", "planned", "briefcase"]),
     caseEntry(["research", "Research and AI datasets", "Research papers, page text and lists, ready for analysis or AI tools.", "planned", "graduation"]),
     caseEntry(["travel", "Travel and hospitality", "Hotels, prices and ratings from travel sites.", "planned", "plane"]),
 
-    // Scrapers: categories of ready-made sites (per-site pages hang off these)
+    // Scrapers: categories that group the ready-made sites on the /scrapers hub. They are groupings, not menu items:
+    // the Sites menu lists per-site pages (content/scrapers/), and a category URL only renders in local preview.
     // Summaries list only sites from the verified "ready-made sites" list (components/landing/Sites.tsx).
     scraper(["maps-and-directories", "Maps and directories", "Maps, Yellow Pages, Justdial, BBB", "planned", "map-pin"]),
     scraper(["online-stores", "Online stores", "Amazon, Walmart, Target, Etsy, Costco, Wayfair and more", "planned", "shopping-bag"]),
@@ -98,12 +97,10 @@ export const pages: SitePage[] = [
 
     // Resources
     resource(["guides", "Guides", "Step-by-step tutorials, from first install to export.", "planned", "book"]),
-    resource(["docs", "Developer docs", "Connect Claude and other MCP clients to Web Scraper Pro.", "planned", "file-text"]),
     resource(["blog", "Blog", "News, explainers and ideas for using web data.", "planned", "newspaper"]),
     resource(["compare", "Comparisons", "How Web Scraper Pro compares with other tools.", "planned", "scale"]),
     resource(["changelog", "What's new", "Every new feature and fix, as it ships.", "planned", "history"]),
     resource(["web-scraping-legal", "Is web scraping legal?", "What the law says about collecting public data.", "planned", "gavel"]),
-    resource(["privacy", "Your data and privacy", "What stays in your browser and what reaches our servers.", "planned", "lock"]),
     resource(["tools", "Free seller calculators", "Marketplace fees, profit margins, shipping and stock.", "live", "calculator"]),
     { ...resource(["contact", "Get help", "Questions, problems, or a site you need.", "live", "mail"]), href: "/support" },
 ];

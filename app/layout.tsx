@@ -7,6 +7,7 @@ import { siteConfig } from '@/config/site'
 import { Toaster } from '@/components/ui/toaster'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import Header from '@/components/layout/header'
+import { buildMenus } from '@/lib/menus'
 import Footer from '@/components/layout/footer'
 import { ClarityProvider } from '@/components/clarity-provider'
 import { JsonLd } from '@/components/seo/JsonLd'
@@ -122,7 +123,7 @@ export default function RootLayout({
           <TooltipProvider>
             <div className="relative flex min-h-screen flex-col">
               <div className="print:hidden">
-                <Header />
+                <Header menus={buildMenus()} />
               </div>
               {children}
               <div className="print:hidden">

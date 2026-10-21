@@ -6,7 +6,8 @@ import { Menu, X, ExternalLink, ChevronDown, FileText, ShoppingCart, Package, Ca
 import { usePathname } from "next/navigation";
 import { productConfig } from "@/config/product";
 import { navigationConfig } from "@/config/site";
-import { NavMenuDesktop, NavMenuMobile, hasMenu } from "@/components/layout/nav-menu";
+import { NavMenuDesktop, NavMenuMobile } from "@/components/layout/nav-menu";
+import type { Menus, MenuId } from "@/lib/menus";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/ui/icons";
@@ -36,7 +37,7 @@ const iconMap: Record<string, any> = {
   "book": BookOpen,
 };
 
-export default function Header() {
+export default function Header({ menus }: { menus: Menus }) {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
@@ -77,7 +78,7 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1">
             {navigationConfig.mainNav.map((item: any) => {
-              if (item.menu) return hasMenu(item.menu) ? <NavMenuDesktop key={item.title} id={item.menu} /> : null;
+              if (item.menu) return menus[item.menu as MenuId]?.length ? <NavMenuDesktop key={item.title} id={item.menu} groups={menus[item.menu as MenuId]} /> : null;
               if (item.grouped && item.groups) {
                 return (
                   <DropdownMenu key={item.title}>
@@ -180,7 +181,7 @@ export default function Header() {
                     {navigationConfig.mainNav.map((item: any, i: number) => (
                       <div key={i}>
                         {item.menu ? (
-                          hasMenu(item.menu) && <NavMenuMobile id={item.menu} />
+                          menus[item.menu as MenuId]?.length ? <NavMenuMobile id={item.menu} groups={menus[item.menu as MenuId]} /> : null
                         ) : item.grouped ? (
                           <div className="space-y-4">
                             <h4 className="font-semibold text-slate-900 dark:text-white text-lg">{item.title}</h4>
