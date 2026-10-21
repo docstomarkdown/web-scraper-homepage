@@ -8,7 +8,6 @@ import { Toaster } from '@/components/ui/toaster'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
-import { ReCaptchaProvider } from '@/components/recaptcha-provider'
 import { ClarityProvider } from '@/components/clarity-provider'
 import { JsonLd } from '@/components/seo/JsonLd'
 
@@ -120,20 +119,18 @@ export default function RootLayout({
           ]}
         />
         <ThemeProvider>
-          <ReCaptchaProvider>
-            <TooltipProvider>
-              <div className="relative flex min-h-screen flex-col">
-                <div className="print:hidden">
-                  <Header />
-                </div>
-                {children}
-                <div className="print:hidden">
-                  <Footer />
-                </div>
+          <TooltipProvider>
+            <div className="relative flex min-h-screen flex-col">
+              <div className="print:hidden">
+                <Header />
               </div>
-              <Toaster />
-            </TooltipProvider>
-          </ReCaptchaProvider>
+              {children}
+              <div className="print:hidden">
+                <Footer />
+              </div>
+            </div>
+            <Toaster />
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>
