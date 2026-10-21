@@ -37,7 +37,7 @@ export function compareMetadata(c: ComparePageContent): Metadata {
     };
 }
 
-const cell = "py-3 pr-4 align-top text-[15px] leading-relaxed";
+const cell = "py-3 pr-4 align-top text-base leading-relaxed";
 
 export default function ComparePage({ content: c }: { content: ComparePageContent }) {
     const base = siteConfig.url.replace(/\/$/, "");
@@ -49,26 +49,26 @@ export default function ComparePage({ content: c }: { content: ComparePageConten
             <section className="pt-32 pb-12 md:pt-36">
                 <div className="max-w-4xl mx-auto px-6 md:px-12">
                     <Reveal>
-                        <nav aria-label="Breadcrumb" className="text-sm text-slate-500 dark:text-slate-400">
+                        <nav aria-label="Breadcrumb" className="text-sm text-slate-600 dark:text-slate-300">
                             <Link href="/compare" className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]">Comparisons</Link>
                         </nav>
                         <h1 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">{c.h1}</h1>
-                        <p className="mt-5 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">{c.intro}</p>
-                        <p className="mt-4 text-sm text-slate-500 dark:text-slate-400">
+                        <p className="mt-5 text-lg text-slate-700 dark:text-slate-200 leading-[1.65]">{c.intro}</p>
+                        <p className="mt-4 text-sm text-slate-600 dark:text-slate-300">
                             Compared on <time dateTime={c.comparedOn}>{formatDate(c.comparedOn)}</time> from <a href={c.competitor.url} rel="nofollow noopener" target="_blank" className="underline underline-offset-2">{c.competitor.short}&apos;s public pages</a>.
                         </p>
                     </Reveal>
                     <Reveal className="mt-10 grid md:grid-cols-2 gap-5">
                         <div className="rounded-2xl border border-[#2772ED]/30 bg-[#2772ED]/5 dark:bg-[#2772ED]/10 p-6">
                             <p className="text-sm font-semibold text-[#1f5ec2] dark:text-[#7aa7ff]">Choose Web Scraper Pro when</p>
-                            <p className="mt-2 text-[15px] text-slate-700 dark:text-slate-200 leading-relaxed">{c.verdict.ours}</p>
+                            <p className="mt-2 text-base text-slate-700 dark:text-slate-200 leading-relaxed">{c.verdict.ours}</p>
                         </div>
                         <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 p-6">
                             <p className="text-sm font-semibold text-slate-700 dark:text-slate-200">Choose {c.competitor.short} when</p>
-                            <p className="mt-2 text-[15px] text-slate-700 dark:text-slate-200 leading-relaxed">{c.verdict.theirs}</p>
+                            <p className="mt-2 text-base text-slate-700 dark:text-slate-200 leading-relaxed">{c.verdict.theirs}</p>
                         </div>
                     </Reveal>
-                    <p className="mt-6 text-sm text-slate-500 dark:text-slate-400">{c.disclosure}</p>
+                    <p className="mt-6 text-sm text-slate-600 dark:text-slate-300">{c.disclosure}</p>
                 </div>
             </section>
 
@@ -80,7 +80,7 @@ export default function ComparePage({ content: c }: { content: ComparePageConten
                     <Reveal className="mt-8 overflow-x-auto">
                         <table className="w-full text-left border-collapse">
                             <thead>
-                                <tr className="border-b border-slate-200 dark:border-slate-800 text-sm text-slate-500 dark:text-slate-400">
+                                <tr className="border-b border-slate-200 dark:border-slate-800 text-sm text-slate-600 dark:text-slate-300">
                                     <th className="py-3 pr-4 font-medium w-[22%]">Area</th>
                                     <th className="py-3 pr-4 font-semibold text-slate-900 dark:text-white w-[39%]">Web Scraper Pro</th>
                                     <th className="py-3 font-semibold text-slate-900 dark:text-white w-[39%]">{c.competitor.short}</th>
@@ -106,7 +106,7 @@ export default function ComparePage({ content: c }: { content: ComparePageConten
                         <Reveal>
                             <h2 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">{s.heading}</h2>
                             {s.paragraphs.map((p) => (
-                                <p key={p} className="mt-4 text-[17px] text-slate-600 dark:text-slate-300 leading-relaxed">{p}</p>
+                                <p key={p} className="mt-4 text-lg text-slate-700 dark:text-slate-200 leading-[1.65]">{p}</p>
                             ))}
                         </Reveal>
                     </div>
@@ -121,7 +121,7 @@ export default function ComparePage({ content: c }: { content: ComparePageConten
                             {c.faqs.map((f) => (
                                 <details key={f.q} className="group py-4">
                                     <summary className="cursor-pointer list-none font-semibold text-slate-900 dark:text-white [&::-webkit-details-marker]:hidden"><h3 className="inline text-base">{f.q}</h3></summary>
-                                    <p className="mt-3 text-[15px] text-slate-600 dark:text-slate-300 leading-relaxed">{f.a}</p>
+                                    <p className="mt-3 text-base text-slate-700 dark:text-slate-200 leading-[1.65]">{f.a}</p>
                                 </details>
                             ))}
                         </div>

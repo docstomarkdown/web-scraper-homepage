@@ -23,16 +23,16 @@ export default function ChangelogPage() {
                 <div className="mt-14 space-y-16">
                     {changelog.map((r) => (
                         <article key={r.version} id={`v${r.version.replace(/\./g, "-")}`} className="scroll-mt-28">
-                            <p className="text-sm text-slate-500 dark:text-slate-400">
+                            <p className="text-sm text-slate-600 dark:text-slate-300">
                                 <span className="font-semibold text-slate-900 dark:text-white">Version {r.version}</span>
                                 {" · "}
                                 <time dateTime={r.date}>{formatDate(r.date)}</time>
                             </p>
                             <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 dark:text-white">{r.title}</h2>
-                            <p className="mt-3 text-[17px] text-slate-600 dark:text-slate-300 leading-relaxed">{r.intro}</p>
+                            <p className="mt-3 text-lg text-slate-700 dark:text-slate-200 leading-[1.65]">{r.intro}</p>
                             <ul className="mt-6 space-y-3">
                                 {r.changes.map((c) => (
-                                    <li key={c.text} className="flex gap-3 text-[15px] text-slate-700 dark:text-slate-200 leading-relaxed">
+                                    <li key={c.text} className="flex gap-3 text-base text-slate-700 dark:text-slate-200 leading-relaxed">
                                         <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#2772ED]" aria-hidden="true" />
                                         <span>
                                             {c.text}
@@ -51,7 +51,7 @@ export default function ChangelogPage() {
                         </article>
                     ))}
                 </div>
-                <p className="mt-16 text-sm text-slate-500 dark:text-slate-400">
+                <p className="mt-16 text-sm text-slate-600 dark:text-slate-300">
                     The version you have is shown in Settings in the side panel. Chrome updates extensions on its own within a few hours of a release.
                 </p>
             </div>

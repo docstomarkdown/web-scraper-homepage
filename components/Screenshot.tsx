@@ -11,7 +11,7 @@ export function Screenshot({ id, caption, className }: { id: string; caption?: s
     if (!c) {
         if (!showPlannedPages) return null;
         return (
-            <div className={`my-8 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 p-6 text-sm text-slate-500 dark:text-slate-400 ${className ?? ""}`}>
+            <div className={`my-8 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 p-6 text-sm text-slate-600 dark:text-slate-300 ${className ?? ""}`}>
                 Screenshot to capture: <code className="rounded bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5">{id}</code>
             </div>
         );
@@ -28,7 +28,7 @@ export function Screenshot({ id, caption, className }: { id: string; caption?: s
                 loading="lazy"
                 className="w-full h-auto rounded-xl border border-slate-200 dark:border-slate-800 bg-white"
             />
-            {text ? <figcaption className="mt-2 text-sm text-slate-500 dark:text-slate-400">{text}</figcaption> : null}
+            {text ? <figcaption className="mt-2 text-sm text-slate-600 dark:text-slate-300">{text}</figcaption> : null}
         </figure>
     );
 }

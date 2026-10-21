@@ -91,8 +91,8 @@ export default function ChatPageDemo() {
                         }}
                         className={
                             i === index
-                                ? "inline-flex items-center gap-1.5 rounded-full border border-[#2772ED] bg-[#2772ED] px-3 py-1.5 text-[13px] font-medium text-white"
-                                : "inline-flex items-center gap-1.5 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-1.5 text-[13px] font-medium text-slate-700 dark:text-slate-200 hover:border-[#2772ED]/50"
+                                ? "inline-flex items-center gap-1.5 rounded-full border border-[#2772ED] bg-[#2772ED] px-3 py-1.5 text-sm font-medium text-white"
+                                : "inline-flex items-center gap-1.5 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-1.5 text-sm font-medium text-slate-700 dark:text-slate-200 hover:border-[#2772ED]/50"
                         }
                     >
                         <sc.icon className="w-3.5 h-3.5" aria-hidden="true" />

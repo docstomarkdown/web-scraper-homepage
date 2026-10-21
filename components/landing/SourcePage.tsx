@@ -83,17 +83,17 @@ function MapsPage({ stage, reduceMotion }: { stage: number; reduceMotion: boolea
             </div>
             {/* Results list */}
             <div className="p-2.5 space-y-2">
-                <p className="text-[10px] font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Results</p>
+                <p className="text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wide">Results</p>
                 {PLACES.map((p, idx) => (
                     <Item key={p.name} idx={idx} stage={stage} reduceMotion={reduceMotion} className={`${card} p-2`}>
-                        <p className="text-[11px] font-semibold text-slate-800 dark:text-slate-100 truncate">{p.name}</p>
-                        <p className="flex items-center gap-1 text-[10px] text-slate-600 dark:text-slate-300">
+                        <p className="text-xs font-semibold text-slate-800 dark:text-slate-100 truncate">{p.name}</p>
+                        <p className="flex items-center gap-1 text-xs text-slate-600 dark:text-slate-300">
                             {p.rating}
                             <Stars value={p.rating} />
                             <span className="text-slate-400 dark:text-slate-500">({p.count})</span>
                         </p>
-                        <p className="text-[10px] text-slate-500 dark:text-slate-400 truncate">Dentist · {p.addr}</p>
-                        <p className={`text-[10px] truncate ${p.open.startsWith("Open") ? "text-emerald-600 dark:text-emerald-400" : "text-rose-500"}`}>{p.open}</p>
+                        <p className="text-xs text-slate-600 dark:text-slate-300 truncate">Dentist · {p.addr}</p>
+                        <p className={`text-xs truncate ${p.open.startsWith("Open") ? "text-emerald-600 dark:text-emerald-400" : "text-rose-500"}`}>{p.open}</p>
                     </Item>
                 ))}
             </div>
@@ -114,8 +114,8 @@ function ProductsPage({ stage, reduceMotion }: { stage: number; reduceMotion: bo
     return (
         <div className="p-2.5">
             <div className="flex items-center justify-between mb-2">
-                <p className="text-[11px] font-semibold text-slate-800 dark:text-slate-100">Running shoes</p>
-                <p className="text-[10px] text-slate-400 dark:text-slate-500">126 results</p>
+                <p className="text-xs font-semibold text-slate-800 dark:text-slate-100">Running shoes</p>
+                <p className="text-xs text-slate-400 dark:text-slate-500">126 results</p>
             </div>
             <div className="grid grid-cols-2 gap-2">
                 {PRODUCTS.map((p, idx) => (
@@ -123,9 +123,9 @@ function ProductsPage({ stage, reduceMotion }: { stage: number; reduceMotion: bo
                         <div className={`h-14 rounded-md bg-gradient-to-br ${p.tile} flex items-center justify-center`}>
                             <Footprints className={`w-6 h-6 ${p.tint}`} strokeWidth={1.5} />
                         </div>
-                        <p className="mt-1 text-[10px] font-medium text-slate-800 dark:text-slate-100 leading-tight line-clamp-2">{p.name}</p>
+                        <p className="mt-1 text-xs font-medium text-slate-800 dark:text-slate-100 leading-tight line-clamp-2">{p.name}</p>
                         <Stars value={p.rating} />
-                        <p className="text-[11px] font-bold text-slate-900 dark:text-white">
+                        <p className="text-xs font-bold text-slate-900 dark:text-white">
                             {p.price}
                             {p.was && <span className="ml-1 text-[9px] font-normal text-slate-400 line-through">{p.was}</span>}
                         </p>
@@ -147,7 +147,7 @@ const HOMES = [
 function PropertyPage({ stage, reduceMotion }: { stage: number; reduceMotion: boolean }) {
     return (
         <div className="p-2.5 space-y-2">
-            <p className="text-[11px] font-semibold text-slate-800 dark:text-slate-100">2-bed homes · 63 listings</p>
+            <p className="text-xs font-semibold text-slate-800 dark:text-slate-100">2-bed homes · 63 listings</p>
             {HOMES.map((h, idx) => (
                 <Item key={h.addr} idx={idx} stage={stage} reduceMotion={reduceMotion} className={`${card} p-1.5 flex gap-2`}>
                     <div className={`relative w-16 h-14 shrink-0 rounded-md bg-gradient-to-br ${h.tile} flex items-center justify-center`}>
@@ -165,7 +165,7 @@ function PropertyPage({ stage, reduceMotion }: { stage: number; reduceMotion: bo
                             <span className="inline-flex items-center gap-0.5"><Bath className="w-2.5 h-2.5" />{h.baths} ba</span>
                             <span className="inline-flex items-center gap-0.5"><Maximize2 className="w-2.5 h-2.5" />{h.sqft}</span>
                         </p>
-                        <p className="text-[9px] text-slate-500 dark:text-slate-400 truncate">{h.addr}</p>
+                        <p className="text-[9px] text-slate-600 dark:text-slate-300 truncate">{h.addr}</p>
                     </div>
                 </Item>
             ))}
@@ -185,15 +185,15 @@ const JOBS = [
 function JobsPage({ stage, reduceMotion }: { stage: number; reduceMotion: boolean }) {
     return (
         <div className="p-2.5 space-y-1.5">
-            <p className="text-[11px] font-semibold text-slate-800 dark:text-slate-100">Data analyst · Remote · 85 jobs</p>
+            <p className="text-xs font-semibold text-slate-800 dark:text-slate-100">Data analyst · Remote · 85 jobs</p>
             {JOBS.map((j, idx) => (
                 <Item key={j.role} idx={idx} stage={stage} reduceMotion={reduceMotion} className={`${card} p-2 flex gap-2`}>
                     <span className={`w-6 h-6 shrink-0 rounded-md bg-gradient-to-br ${j.logo} flex items-center justify-center shadow-sm`}>
                         <j.mark className="w-3.5 h-3.5 text-white" strokeWidth={2.25} />
                     </span>
                     <div className="min-w-0 flex-1">
-                        <p className="text-[11px] font-semibold text-slate-800 dark:text-slate-100 truncate">{j.role}</p>
-                        <p className="text-[9px] text-slate-500 dark:text-slate-400 truncate">{j.co} · {j.where}</p>
+                        <p className="text-xs font-semibold text-slate-800 dark:text-slate-100 truncate">{j.role}</p>
+                        <p className="text-[9px] text-slate-600 dark:text-slate-300 truncate">{j.co} · {j.where}</p>
                         <div className="mt-0.5 flex items-center justify-between gap-1">
                             <span className="rounded bg-emerald-50 dark:bg-emerald-950/40 px-1 text-[9px] font-medium text-emerald-700 dark:text-emerald-300">{j.pay}</span>
                             <span className="inline-flex items-center gap-0.5 text-[8px] text-slate-400 dark:text-slate-500"><Clock className="w-2 h-2" />{j.age}</span>
@@ -227,7 +227,7 @@ function ReviewsPage({ stage, reduceMotion }: { stage: number; reduceMotion: boo
                 <div className="flex-1 space-y-0.5">
                     {BARS.map((pct, i) => (
                         <div key={i} className="flex items-center gap-1">
-                            <span className="text-[8px] w-2 text-slate-500 dark:text-slate-400">{5 - i}</span>
+                            <span className="text-[8px] w-2 text-slate-600 dark:text-slate-300">{5 - i}</span>
                             <div className="flex-1 h-1 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
                                 <div className="h-full rounded-full bg-amber-400" style={{ width: `${pct}%` }} />
                             </div>
@@ -241,9 +241,9 @@ function ReviewsPage({ stage, reduceMotion }: { stage: number; reduceMotion: boo
                         <Stars value={r.stars} />
                         <span className="text-[8px] text-slate-400 dark:text-slate-500">{r.date}</span>
                     </div>
-                    <p className="mt-0.5 text-[10px] font-semibold text-slate-800 dark:text-slate-100 truncate">{r.title}</p>
-                    <p className="text-[9px] text-slate-500 dark:text-slate-400 truncate">{r.body}</p>
-                    <p className="mt-0.5 flex items-center gap-1 text-[8px] text-slate-500 dark:text-slate-400">
+                    <p className="mt-0.5 text-xs font-semibold text-slate-800 dark:text-slate-100 truncate">{r.title}</p>
+                    <p className="text-[9px] text-slate-600 dark:text-slate-300 truncate">{r.body}</p>
+                    <p className="mt-0.5 flex items-center gap-1 text-[8px] text-slate-600 dark:text-slate-300">
                         {r.who}
                         <span className="inline-flex items-center gap-0.5 text-emerald-600 dark:text-emerald-400">
                             <BadgeCheck className="w-2.5 h-2.5" />
@@ -270,8 +270,8 @@ function ShopifyPage({ stage, reduceMotion }: { stage: number; reduceMotion: boo
         <div className="flex flex-col h-full">
             {/* Store header */}
             <div className="flex items-center justify-between px-2.5 py-2 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
-                <p className="text-[11px] font-bold tracking-wide text-slate-900 dark:text-white">TRAIL GEAR CO.</p>
-                <ShoppingCart className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" />
+                <p className="text-xs font-bold tracking-wide text-slate-900 dark:text-white">TRAIL GEAR CO.</p>
+                <ShoppingCart className="w-3.5 h-3.5 text-slate-600 dark:text-slate-300" />
             </div>
             <div className="flex gap-1 px-2.5 pt-2">
                 {["All", "Jackets", "Packs", "Footwear"].map((c, i) => (
@@ -289,8 +289,8 @@ function ShopifyPage({ stage, reduceMotion }: { stage: number; reduceMotion: boo
                         <div className={`h-12 rounded-md bg-gradient-to-br ${p.tile} flex items-center justify-center`}>
                             <p.icon className={`w-5 h-5 ${p.tint}`} strokeWidth={1.5} />
                         </div>
-                        <p className="mt-1 text-[10px] font-medium text-slate-800 dark:text-slate-100 leading-tight truncate">{p.name}</p>
-                        <p className="text-[11px] font-bold text-slate-900 dark:text-white">{p.price}</p>
+                        <p className="mt-1 text-xs font-medium text-slate-800 dark:text-slate-100 leading-tight truncate">{p.name}</p>
+                        <p className="text-xs font-bold text-slate-900 dark:text-white">{p.price}</p>
                         <p className="text-[9px] text-slate-400 dark:text-slate-500">{p.variants}</p>
                     </Item>
                 ))}

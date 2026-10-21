@@ -102,8 +102,8 @@ export default function Collect() {
                                     <t.icon className="w-5 h-5" />
                                 </span>
                                 <h3 className="mt-4 text-lg font-semibold text-slate-900 dark:text-white">{t.title}</h3>
-                                <p className="mt-2 text-[15px] text-slate-600 dark:text-slate-300 leading-relaxed">{t.body}</p>
-                                <p className="mt-3 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                                <p className="mt-2 text-base text-slate-700 dark:text-slate-200 leading-[1.65]">{t.body}</p>
+                                <p className="mt-3 text-sm text-slate-700 dark:text-slate-200 leading-[1.65]">
                                     <span className="font-medium text-slate-700 dark:text-slate-200">Good for:</span> {t.goodFor}
                                 </p>
                                 <ul className="mt-4 flex flex-wrap gap-1.5" aria-label={`Columns for ${t.title.toLowerCase()}`}>
@@ -143,7 +143,7 @@ export default function Collect() {
                                             m.title
                                         )}
                                     </h4>
-                                    <p className="mt-0.5 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{m.body}</p>
+                                    <p className="mt-0.5 text-sm text-slate-700 dark:text-slate-200 leading-[1.65]">{m.body}</p>
                                 </div>
                             </li>
                         ))}

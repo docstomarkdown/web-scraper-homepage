@@ -44,7 +44,7 @@ export default async function Page({ params }: Props) {
         <main className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
             <JsonLd data={breadcrumbJsonLd([{ name: "Home", href: "/" }, { name: "Sites", href: "/scrapers" }, { name: cat.label, href: cat.href }], base)} />
             <div className="max-w-6xl mx-auto px-6 md:px-12">
-                <nav aria-label="Breadcrumb" className="text-sm text-slate-500 dark:text-slate-400"><Link href="/scrapers" className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]">Sites</Link></nav>
+                <nav aria-label="Breadcrumb" className="text-sm text-slate-600 dark:text-slate-300"><Link href="/scrapers" className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]">Sites</Link></nav>
                 <div className="mt-4"><SectionHeading as="h1" eyebrow="Ready-made sites" title={cat.label} intro={`Sites with a ready-made setup, so the right columns show up with no setup: ${cat.summary}.`} align="left" /></div>
                 <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                     {sites.map((s) => {
@@ -60,7 +60,7 @@ export default async function Page({ params }: Props) {
                         );
                     })}
                 </ul>
-                <p className="mt-10 text-[15px] text-slate-600 dark:text-slate-300">
+                <p className="mt-10 text-base text-slate-600 dark:text-slate-300">
                     Not listed? Most other sites with a list are detected automatically. See <Link href={getPage("list-scraper").href} className="text-[#1f5ec2] dark:text-[#7aa7ff] hover:underline">lists from any website</Link>.
                 </p>
             </div>

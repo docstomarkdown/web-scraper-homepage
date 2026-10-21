@@ -42,12 +42,12 @@ export default function WebScrapingLegalPage() {
                 ]}
             />
             <div className="max-w-6xl mx-auto px-6 md:px-12">
-                <article className="max-w-3xl">
-                    <nav aria-label="Breadcrumb" className="text-sm text-slate-500 dark:text-slate-400">
+                <article className="max-w-[46rem]">
+                    <nav aria-label="Breadcrumb" className="text-sm text-slate-600 dark:text-slate-300">
                         <Link href="/guides" className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]">Resources</Link>
                     </nav>
                     <h1 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">{p.title}</h1>
-                    <p className="mt-5 text-sm text-slate-500 dark:text-slate-400">
+                    <p className="mt-5 text-sm text-slate-600 dark:text-slate-300">
                         By <Link href={`/blog/author/${p.author.slug}`} className="font-medium text-slate-700 dark:text-slate-200 hover:underline">{p.author.name}</Link>
                         {" · "}Updated <time dateTime={p.updated}>{formatDate(p.updated)}</time>
                     </p>
@@ -59,8 +59,8 @@ export default function WebScrapingLegalPage() {
                     </div>
                     <aside className="mt-14 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 p-6">
                         <p className="text-sm font-semibold text-slate-900 dark:text-white">{p.author.name}</p>
-                        <p className="text-sm text-slate-500 dark:text-slate-400">{p.author.role}</p>
-                        <p className="mt-2 text-[15px] text-slate-600 dark:text-slate-300">{p.author.bio}</p>
+                        <p className="text-sm text-slate-600 dark:text-slate-300">{p.author.role}</p>
+                        <p className="mt-2 text-base text-slate-600 dark:text-slate-300">{p.author.bio}</p>
                     </aside>
                 </article>
             </div>

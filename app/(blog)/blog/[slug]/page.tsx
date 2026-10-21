@@ -65,8 +65,8 @@ export default async function BlogPostPage({ params }: Props) {
                     breadcrumbJsonLd([{ name: "Home", href: "/" }, { name: "Blog", href: "/blog" }, { name: post.title, href }], base),
                 ]}
             />
-            <article className="max-w-3xl mx-auto px-6 md:px-12">
-                <nav aria-label="Breadcrumb" className="text-sm text-slate-500 dark:text-slate-400">
+            <article className="max-w-[46rem] mx-auto px-6 md:px-12">
+                <nav aria-label="Breadcrumb" className="text-sm text-slate-600 dark:text-slate-300">
                     <Link href="/blog" className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]">Blog</Link>
                     {post.category ? (
                         <>
@@ -83,8 +83,8 @@ export default async function BlogPostPage({ params }: Props) {
                     </p>
                 )}
                 <h1 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">{post.title}</h1>
-                <p className="mt-5 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">{post.description}</p>
-                <p className="mt-5 text-sm text-slate-500 dark:text-slate-400">
+                <p className="mt-5 text-lg text-slate-700 dark:text-slate-200 leading-[1.65]">{post.description}</p>
+                <p className="mt-5 text-sm text-slate-600 dark:text-slate-300">
                     By <Link href={`/blog/author/${post.author.slug}`} className="font-medium text-slate-700 dark:text-slate-200 hover:underline">{post.author.name}</Link>
                     {" · "}
                     <time dateTime={post.date}>{formatDate(post.date)}</time>
@@ -103,8 +103,8 @@ export default async function BlogPostPage({ params }: Props) {
                 </div>
                 <aside className="mt-14 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 p-6">
                     <p className="text-sm font-semibold text-slate-900 dark:text-white">{post.author.name}</p>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">{post.author.role}</p>
-                    <p className="mt-2 text-[15px] text-slate-600 dark:text-slate-300">{post.author.bio}</p>
+                    <p className="text-sm text-slate-600 dark:text-slate-300">{post.author.role}</p>
+                    <p className="mt-2 text-base text-slate-600 dark:text-slate-300">{post.author.bio}</p>
                 </aside>
             </article>
             {related.length > 0 ? (

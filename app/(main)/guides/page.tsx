@@ -33,10 +33,10 @@ export default function GuidesPage() {
                                         <li key={g.slug} className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5">
                                             <h3 className="font-semibold text-slate-900 dark:text-white leading-snug">
                                                 <Link href={`/guides/${g.slug}`} className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]">{g.title}</Link>
-                                                {g.status === "draft" && <span className="ml-2 rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-0.5 text-[11px] font-medium text-slate-500 dark:text-slate-400 align-middle">Draft</span>}
+                                                {g.status === "draft" && <span className="ml-2 rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-0.5 text-xs font-medium text-slate-600 dark:text-slate-300 align-middle">Draft</span>}
                                             </h3>
-                                            <p className="mt-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{g.description}</p>
-                                            <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">{g.readingMinutes} min read{g.video ? " · with video" : ""}</p>
+                                            <p className="mt-2 text-sm text-slate-700 dark:text-slate-200 leading-[1.65]">{g.description}</p>
+                                            <p className="mt-3 text-xs text-slate-600 dark:text-slate-300">{g.readingMinutes} min read{g.video ? " · with video" : ""}</p>
                                         </li>
                                     ))}
                                 </ul>

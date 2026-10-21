@@ -33,22 +33,22 @@ export default function PricingTeaser() {
                     <div className="rounded-3xl border-2 border-[#2772ED] bg-white dark:bg-slate-900 p-8 md:p-10 shadow-xl shadow-[#2772ED]/10">
                         <div className="flex flex-wrap items-baseline justify-between gap-3">
                             <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Pro</h3>
-                            <p className="text-sm font-medium text-slate-500 dark:text-slate-400">Everything included</p>
+                            <p className="text-sm font-medium text-slate-600 dark:text-slate-300">Everything included</p>
                         </div>
 
                         <ul className="mt-7 grid sm:grid-cols-2 gap-x-8 gap-y-3">
                             {INCLUDED.map((f) => (
-                                <li key={f} className="flex items-start gap-2.5 text-[15px] text-slate-700 dark:text-slate-200">
+                                <li key={f} className="flex items-start gap-2.5 text-base text-slate-700 dark:text-slate-200">
                                     <Check className="w-4 h-4 mt-0.5 shrink-0 text-[#2772ED]" aria-hidden="true" />
                                     {f}
                                 </li>
                             ))}
                             {COMING_SOON.map((f) => (
-                                <li key={f} className="flex items-start gap-2.5 text-[15px] text-slate-500 dark:text-slate-400">
+                                <li key={f} className="flex items-start gap-2.5 text-base text-slate-600 dark:text-slate-300">
                                     <Clock className="w-4 h-4 mt-0.5 shrink-0 text-slate-400 dark:text-slate-500" aria-hidden="true" />
                                     <span>
                                         {f}
-                                        <span className="ml-2 whitespace-nowrap rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-0.5 text-[11px] font-medium text-slate-600 dark:text-slate-300">
+                                        <span className="ml-2 whitespace-nowrap rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-0.5 text-xs font-medium text-slate-600 dark:text-slate-300">
                                             Coming soon
                                         </span>
                                     </span>

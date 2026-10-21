@@ -58,7 +58,7 @@ export default function Capabilities() {
                                 </span>
                                 <div>
                                     <h3 className="text-base font-semibold text-slate-900 dark:text-white">{item.title}</h3>
-                                    <p className="mt-1.5 text-[15px] text-slate-600 dark:text-slate-300 leading-relaxed">{item.body}</p>
+                                    <p className="mt-1.5 text-base text-slate-700 dark:text-slate-200 leading-[1.65]">{item.body}</p>
                                     {item.link && publishedHref(item.link.slug) && (
                                         <Link href={publishedHref(item.link.slug)!} className="mt-2 inline-block text-sm font-semibold text-[#1f5ec2] dark:text-[#7aa7ff] hover:underline">
                                             {item.link.text} →

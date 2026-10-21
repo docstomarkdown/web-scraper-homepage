@@ -13,7 +13,7 @@ export function VideoEmbed({ id, title }: { id: string; title: string }) {
                     allowFullScreen
                 />
             </div>
-            <figcaption className="mt-2 text-sm text-slate-500 dark:text-slate-400">{title}</figcaption>
+            <figcaption className="mt-2 text-sm text-slate-600 dark:text-slate-300">{title}</figcaption>
         </figure>
     );
 }

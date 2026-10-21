@@ -42,9 +42,9 @@ export default function HowItWorks() {
                                     <span className="relative z-10 mx-auto flex w-12 h-12 items-center justify-center rounded-2xl bg-[#2772ED] text-white shadow-lg shadow-[#2772ED]/25">
                                         <s.icon className="w-5 h-5" aria-hidden="true" />
                                     </span>
-                                    <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Step {i + 1}</p>
+                                    <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">Step {i + 1}</p>
                                     <h3 className="mt-1 text-lg font-semibold text-slate-900 dark:text-white">{s.title}</h3>
-                                    <p className="mt-2 text-[15px] text-slate-600 dark:text-slate-300 leading-relaxed max-w-xs mx-auto">{s.body}</p>
+                                    <p className="mt-2 text-base text-slate-700 dark:text-slate-200 leading-[1.65] max-w-xs mx-auto">{s.body}</p>
                                 </Reveal>
                             </li>
                         ))}

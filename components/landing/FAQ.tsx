@@ -93,12 +93,12 @@ export default function FAQ() {
                 <div className="mt-12 space-y-10">
                     {GROUPS.map((g, gi) => (
                         <Reveal key={g.title}>
-                            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">{g.title}</h3>
+                            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">{g.title}</h3>
                             <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 divide-y divide-slate-100 dark:divide-slate-800">
                                 {g.faqs.map((f, i) => (
                                     <details key={f.q} className="group px-5 md:px-6" open={gi === 0 && i === 0}>
                                         <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 rounded-lg [&::-webkit-details-marker]:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2772ED]">
-                                            <h4 className="text-base md:text-[17px] font-semibold text-slate-900 dark:text-white group-open:text-[#2772ED] dark:group-open:text-[#7aa7ff]">
+                                            <h4 className="text-base md:text-lg font-semibold text-slate-900 dark:text-white group-open:text-[#2772ED] dark:group-open:text-[#7aa7ff]">
                                                 {f.q}
                                             </h4>
                                             <ChevronDown
@@ -106,7 +106,7 @@ export default function FAQ() {
                                                 aria-hidden="true"
                                             />
                                         </summary>
-                                        <p className="pb-5 -mt-1 text-[15px] text-slate-600 dark:text-slate-300 leading-relaxed">{f.a}</p>
+                                        <p className="pb-5 -mt-1 text-base text-slate-700 dark:text-slate-200 leading-[1.65]">{f.a}</p>
                                     </details>
                                 ))}
                             </div>

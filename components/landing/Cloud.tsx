@@ -32,7 +32,7 @@ export default function Cloud() {
                             <div>
                                 <p className="text-sm font-semibold text-blue-100">
                                     Cloud
-                                    <span className="ml-2 inline-flex align-middle rounded-full bg-white/20 px-2 py-0.5 text-[11px] font-semibold text-white">
+                                    <span className="ml-2 inline-flex align-middle rounded-full bg-white/20 px-2 py-0.5 text-xs font-semibold text-white">
                                         Coming soon
                                     </span>
                                 </p>
@@ -45,7 +45,7 @@ export default function Cloud() {
                                 </p>
                                 <ul className="mt-6 space-y-3">
                                     {POINTS.map((p) => (
-                                        <li key={p} className="flex items-start gap-3 text-[15px] text-white">
+                                        <li key={p} className="flex items-start gap-3 text-base text-white">
                                             <span className="mt-0.5 flex w-5 h-5 shrink-0 items-center justify-center rounded-full bg-white/20" aria-hidden="true">
                                                 <Check className="w-3 h-3" />
                                             </span>
@@ -67,7 +67,7 @@ export default function Cloud() {
                                         <CloudUpload className="w-4 h-4 text-[#2772ED]" />
                                         Batch · 200 URLs
                                     </p>
-                                    <span className="text-xs text-slate-500 dark:text-slate-400">124 of 200 done</span>
+                                    <span className="text-xs text-slate-600 dark:text-slate-300">124 of 200 done</span>
                                 </div>
                                 <div className="mt-3 h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
                                     <div className="h-full w-[62%] rounded-full bg-gradient-to-r from-[#2772ED] to-[#5b3fd6]" />
@@ -90,7 +90,7 @@ export default function Cloud() {
                                         </li>
                                     ))}
                                 </ul>
-                                <p className="mt-3 text-[11px] text-slate-400 dark:text-slate-500">Sample data</p>
+                                <p className="mt-3 text-xs text-slate-400 dark:text-slate-500">Sample data</p>
                             </div>
                         </div>
                     </div>

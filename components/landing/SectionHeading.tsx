@@ -22,13 +22,13 @@ export default function SectionHeading({
             <p className="text-sm font-semibold text-[#2772ED] dark:text-[#7aa7ff]">
                 {eyebrow}
                 {badge && (
-                    <span className="ml-2 inline-flex align-middle rounded-full bg-gradient-to-r from-[#2772ED] to-[#7c3aed] px-2 py-0.5 text-[11px] font-semibold text-white">
+                    <span className="ml-2 inline-flex align-middle rounded-full bg-gradient-to-r from-[#2772ED] to-[#7c3aed] px-2 py-0.5 text-xs font-semibold text-white">
                         {badge}
                     </span>
                 )}
             </p>
             <Tag className="mt-3 text-3xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">{title}</Tag>
-            {intro && <p className="mt-4 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">{intro}</p>}
+            {intro && <p className="mt-4 text-lg text-slate-700 dark:text-slate-200 leading-[1.65]">{intro}</p>}
         </div>
     );
 }

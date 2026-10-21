@@ -25,7 +25,7 @@ export default function UseCasesHub() {
                             <li key={p.slug} className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5">
                                 <h2 className="font-semibold text-slate-900 dark:text-white">{linkable ? <Link href={p.href} className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]">{p.label}</Link> : p.label}</h2>
                                 <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{p.summary}</p>
-                                {!linkable && <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">Page on the way</p>}
+                                {!linkable && <p className="mt-3 text-xs text-slate-600 dark:text-slate-300">Page on the way</p>}
                             </li>
                         );
                     })}

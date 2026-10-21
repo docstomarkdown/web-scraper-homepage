@@ -70,19 +70,19 @@ export default async function GuidePage({ params }: Props) {
                 ]}
             />
             <div className="max-w-6xl mx-auto px-6 md:px-12 lg:grid lg:grid-cols-[1fr_300px] lg:gap-16">
-                <article className="max-w-3xl">
+                <article className="max-w-[46rem]">
                     {g.status === "draft" && (
                         <p className="mb-6 rounded-lg bg-amber-50 dark:bg-amber-900/20 px-4 py-2 text-sm text-amber-800 dark:text-amber-200">
                             Draft: visible in local development only. Set <code>status: published</code> once every step has been tested.
                         </p>
                     )}
-                    <nav aria-label="Breadcrumb" className="text-sm text-slate-500 dark:text-slate-400">
+                    <nav aria-label="Breadcrumb" className="text-sm text-slate-600 dark:text-slate-300">
                         <Link href="/guides" className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]">Guides</Link>
                         {feature ? <>{" / "}<Link href={feature.href} className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]">{feature.label}</Link></> : null}
                     </nav>
                     <h1 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">{g.title}</h1>
-                    <p className="mt-5 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">{g.description}</p>
-                    <p className="mt-5 text-sm text-slate-500 dark:text-slate-400">
+                    <p className="mt-5 text-lg text-slate-700 dark:text-slate-200 leading-[1.65]">{g.description}</p>
+                    <p className="mt-5 text-sm text-slate-600 dark:text-slate-300">
                         By <Link href={`/blog/author/${g.author.slug}`} className="font-medium text-slate-700 dark:text-slate-200 hover:underline">{g.author.name}</Link>
                         {" · "}Tested on version {g.version || "—"} on <time dateTime={g.updated}>{formatDate(g.updated)}</time>
                         {" · "}{g.readingMinutes} min read
@@ -100,7 +100,7 @@ export default async function GuidePage({ params }: Props) {
                                         <summary className="cursor-pointer list-none font-semibold text-slate-900 dark:text-white [&::-webkit-details-marker]:hidden">
                                             <h3 className="inline text-base">{f.q}</h3>
                                         </summary>
-                                        <p className="mt-3 text-[15px] text-slate-600 dark:text-slate-300 leading-relaxed">{f.a}</p>
+                                        <p className="mt-3 text-base text-slate-700 dark:text-slate-200 leading-[1.65]">{f.a}</p>
                                     </details>
                                 ))}
                             </div>
@@ -108,8 +108,8 @@ export default async function GuidePage({ params }: Props) {
                     )}
                     <aside className="mt-14 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 p-6">
                         <p className="text-sm font-semibold text-slate-900 dark:text-white">{g.author.name}</p>
-                        <p className="text-sm text-slate-500 dark:text-slate-400">{g.author.role}</p>
-                        <p className="mt-2 text-[15px] text-slate-600 dark:text-slate-300">{g.author.bio}</p>
+                        <p className="text-sm text-slate-600 dark:text-slate-300">{g.author.role}</p>
+                        <p className="mt-2 text-base text-slate-600 dark:text-slate-300">{g.author.bio}</p>
                     </aside>
                 </article>
                 <aside className="mt-12 lg:mt-0 lg:sticky lg:top-28 lg:self-start space-y-6">

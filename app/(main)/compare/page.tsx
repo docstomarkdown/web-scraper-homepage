@@ -21,7 +21,7 @@ export default function CompareHub() {
                         <li key={c.slug} className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5">
                             <h2 className="font-semibold text-slate-900 dark:text-white"><Link href={`/compare/${c.slug}`} className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]">{c.h1}</Link></h2>
                             <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{c.meta.description}</p>
-                            <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">Compared on {formatDate(c.comparedOn)}</p>
+                            <p className="mt-3 text-xs text-slate-600 dark:text-slate-300">Compared on {formatDate(c.comparedOn)}</p>
                         </li>
                     ))}
                 </ul>

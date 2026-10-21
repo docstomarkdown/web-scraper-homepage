@@ -65,7 +65,7 @@ export default function Hero() {
                         <span className="bg-gradient-to-r from-[#2772ED] via-[#4f46e5] to-[#7c3aed] dark:from-[#5b9bff] dark:via-[#818cf8] dark:to-[#a78bfa] bg-clip-text text-transparent">spreadsheet.</span>
                     </h1>
 
-                    <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed mt-6 max-w-md mx-auto lg:mx-0">
+                    <p className="text-xl text-slate-700 dark:text-slate-200 leading-[1.65] mt-6 max-w-md mx-auto lg:mx-0">
                         A Chrome extension. Just ask for the data you want, and get a clean table ready for Excel or Google Sheets.
                     </p>
 
@@ -88,7 +88,7 @@ export default function Hero() {
                         </Link>
                     </div>
 
-                    <p className="text-sm font-medium text-slate-700 dark:text-slate-200 mt-10 mb-3">What do you want to collect? <span className="font-normal text-slate-500 dark:text-slate-400">Pick one to see it work.</span></p>
+                    <p className="text-sm font-medium text-slate-700 dark:text-slate-200 mt-10 mb-3">What do you want to collect? <span className="font-normal text-slate-600 dark:text-slate-300">Pick one to see it work.</span></p>
                     <div className="flex flex-wrap justify-center lg:justify-start gap-2">
                         {SCENARIOS.map((sc, idx) => {
                             const active = idx === scenarioIndex;
@@ -99,7 +99,7 @@ export default function Hero() {
                                     onClick={() => pickScenario(idx)}
                                     aria-pressed={active}
                                     className={[
-                                        "inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[13px] font-medium transition-colors",
+                                        "inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium transition-colors",
                                         active
                                             ? "bg-[#2772ED] border-[#2772ED] text-white shadow-sm shadow-[#2772ED]/25"
                                             : "bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:border-[#2772ED]/50 hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]",
@@ -113,13 +113,13 @@ export default function Hero() {
                         {MORE_TYPES.map((t) => (
                             <span
                                 key={t.label}
-                                className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/60 px-3 py-1.5 text-[13px] text-slate-600 dark:text-slate-300"
+                                className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/60 px-3 py-1.5 text-sm text-slate-600 dark:text-slate-300"
                             >
                                 <t.icon className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
                                 {t.label}
                             </span>
                         ))}
-                        <span className="inline-flex items-center gap-1 rounded-full border border-dashed border-slate-300 dark:border-slate-700 px-3 py-1.5 text-[13px] text-slate-500 dark:text-slate-400">
+                        <span className="inline-flex items-center gap-1 rounded-full border border-dashed border-slate-300 dark:border-slate-700 px-3 py-1.5 text-sm text-slate-600 dark:text-slate-300">
                             <Plus className="w-3.5 h-3.5" />
                             any list
                         </span>

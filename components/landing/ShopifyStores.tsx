@@ -67,7 +67,7 @@ export default function ShopifyStores() {
                                     </span>
                                     <div>
                                         <h3 className="text-base font-semibold text-slate-900 dark:text-white">{p.title}</h3>
-                                        <p className="mt-1.5 text-[15px] text-slate-600 dark:text-slate-300 leading-relaxed">{p.body}</p>
+                                        <p className="mt-1.5 text-base text-slate-700 dark:text-slate-200 leading-[1.65]">{p.body}</p>
                                     </div>
                                 </Reveal>
                             </li>
@@ -91,7 +91,7 @@ export default function ShopifyStores() {
                                 </span>
                                 <div className="min-w-0">
                                     <p className="text-sm font-semibold text-slate-900 dark:text-white">Shopify store detected</p>
-                                    <p className="text-xs text-slate-500 dark:text-slate-400">Trail Gear Co. · 1,248 products · 12 collections</p>
+                                    <p className="text-xs text-slate-600 dark:text-slate-300">Trail Gear Co. · 1,248 products · 12 collections</p>
                                 </div>
                             </div>
 
@@ -128,7 +128,7 @@ export default function ShopifyStores() {
                                 <Download className="w-4 h-4" />
                                 Export catalog
                             </span>
-                            <p className="mt-3 text-[11px] text-slate-400 dark:text-slate-500">Sample data</p>
+                            <p className="mt-3 text-xs text-slate-400 dark:text-slate-500">Sample data</p>
                         </div>
                     </Reveal>
                 </div>

@@ -75,7 +75,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                         <p className="text-sm font-semibold text-[#2772ED] dark:text-[#7aa7ff]">
                             {c.eyebrow}
                             {comingSoon && (
-                                <span className="ml-2 inline-flex align-middle rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-0.5 text-[11px] font-semibold text-slate-600 dark:text-slate-300">
+                                <span className="ml-2 inline-flex align-middle rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-0.5 text-xs font-semibold text-slate-600 dark:text-slate-300">
                                     Coming soon
                                 </span>
                             )}
@@ -83,7 +83,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                         <h1 className="mt-3 text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
                             {c.h1}
                         </h1>
-                        <p className="mt-5 text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed">{c.intro}</p>
+                        <p className="mt-5 text-lg md:text-xl text-slate-700 dark:text-slate-200 leading-[1.65]">{c.intro}</p>
                         <div className="mt-8 flex flex-col sm:flex-row gap-3">
                             <Link
                                 href={installUrl}
@@ -100,7 +100,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                                 See how it works
                             </a>
                         </div>
-                        <p className="mt-6 text-sm text-slate-500 dark:text-slate-400">
+                        <p className="mt-6 text-sm text-slate-600 dark:text-slate-300">
                             {comingSoon ? "Planned feature; details may change before release." : <>Last updated <time dateTime={c.lastUpdated}>{formatDate(c.lastUpdated)}</time></>}
                         </p>
                     </Reveal>
@@ -132,7 +132,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                                                 {f.example}
                                             </p>
                                         )}
-                                        <p className="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{f.description}</p>
+                                        <p className="mt-3 text-sm text-slate-700 dark:text-slate-200 leading-[1.65]">{f.description}</p>
                                     </li>
                                 </Reveal>
                             ))}
@@ -143,7 +143,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                             {c.fields.items.map((f) => (
                                 <div key={f.name} className="border-t border-slate-200 dark:border-slate-800 pt-4">
                                     <dt className="font-semibold text-slate-900 dark:text-white">{f.name}</dt>
-                                    <dd className="mt-1 text-[15px] text-slate-600 dark:text-slate-300 leading-relaxed">{f.description}</dd>
+                                    <dd className="mt-1 text-base text-slate-700 dark:text-slate-200 leading-[1.65]">{f.description}</dd>
                                 </div>
                             ))}
                         </dl>
@@ -166,7 +166,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                                         {i + 1}
                                     </span>
                                     <h3 className="mt-4 text-lg font-semibold text-slate-900 dark:text-white">{s.title}</h3>
-                                    <p className="mt-2 text-[15px] text-slate-600 dark:text-slate-300 leading-relaxed">{s.body}</p>
+                                    <p className="mt-2 text-base text-slate-700 dark:text-slate-200 leading-[1.65]">{s.body}</p>
                                     {s.screenshot && <Screenshot id={s.screenshot} className="my-5" />}
                                 </li>
                             </Reveal>
@@ -189,7 +189,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                     <div className={container}>
                         <Reveal className="grid lg:grid-cols-2 gap-10">
                             <SectionHeading eyebrow={s.eyebrow} title={s.heading} align="left" />
-                            <div className="space-y-4 text-[17px] text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <div className="space-y-4 text-lg text-slate-700 dark:text-slate-200 leading-[1.65]">
                                 {s.paragraphs.map((p) => (
                                     <p key={p}>{p}</p>
                                 ))}
@@ -219,7 +219,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                             {c.useCases.items.map((u) => (
                                 <div key={u.title}>
                                     <h3 className="font-semibold text-slate-900 dark:text-white">{u.title}</h3>
-                                    <p className="mt-1 text-[15px] text-slate-600 dark:text-slate-300 leading-relaxed">{u.body}</p>
+                                    <p className="mt-1 text-base text-slate-700 dark:text-slate-200 leading-[1.65]">{u.body}</p>
                                 </div>
                             ))}
                         </div>
@@ -230,7 +230,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                                 <Info className="w-5 h-5 text-slate-400 dark:text-slate-500" aria-hidden="true" />
                                 {c.limits.heading}
                             </h2>
-                            <ul className="mt-4 space-y-3 text-[15px] text-slate-600 dark:text-slate-300 leading-relaxed list-disc pl-5">
+                            <ul className="mt-4 space-y-3 text-base text-slate-700 dark:text-slate-200 leading-[1.65] list-disc pl-5">
                                 {c.limits.items.map((l) => (
                                     <li key={l}>{l}</li>
                                 ))}
@@ -255,7 +255,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                                         +
                                     </span>
                                 </summary>
-                                <p className="mt-3 text-[15px] text-slate-600 dark:text-slate-300 leading-relaxed">{f.a}</p>
+                                <p className="mt-3 text-base text-slate-700 dark:text-slate-200 leading-[1.65]">{f.a}</p>
                             </details>
                         ))}
                     </div>
@@ -319,7 +319,7 @@ function SampleTable({ sample }: { sample: NonNullable<FeaturePageContent["sampl
                     </tbody>
                 </table>
             </div>
-            <figcaption className="border-t border-slate-100 dark:border-slate-800 px-4 py-3 text-sm text-slate-500 dark:text-slate-400">
+            <figcaption className="border-t border-slate-100 dark:border-slate-800 px-4 py-3 text-sm text-slate-600 dark:text-slate-300">
                 <span className="font-medium text-slate-700 dark:text-slate-200">{sample.label ?? "Sample data."}</span> {sample.caption}
             </figcaption>
         </figure>

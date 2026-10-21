@@ -14,7 +14,7 @@ export default function Footer() {
     const year = new Date().getFullYear();
 
     return (
-        <footer className="bg-slate-50 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800">
+        <footer className="bg-slate-50 dark:bg-slate-800/60 text-slate-600 dark:text-slate-300 border-t border-slate-200 dark:border-slate-800">
             <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-12 pb-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-12">
                     <div className="lg:col-span-4 space-y-5">
@@ -25,7 +25,7 @@ export default function Footer() {
                             </span>
                         </Link>
 
-                        <p className="text-base text-slate-500 dark:text-slate-400 leading-relaxed max-w-xs">
+                        <p className="text-base text-slate-700 dark:text-slate-200 leading-[1.65] max-w-xs">
                             Turn any web page into a spreadsheet. Ask for the data you want, or click Collect, then export to Excel, CSV or Google Sheets.
                         </p>
 
@@ -64,7 +64,7 @@ export default function Footer() {
                             {navigationConfig.footerNav.product.map((item) => (
                                 <li key={item.href}>
                                     <Link href={item.href}
-                                        className="text-[15px] text-slate-500 dark:text-slate-400 hover:text-blue-600 transition-colors hover:translate-x-0.5 inline-block">
+                                        className="text-base text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors hover:translate-x-0.5 inline-block">
                                         {item.title}
                                     </Link>
                                 </li>
@@ -78,14 +78,14 @@ export default function Footer() {
                             {popularTools.map((item) => (
                                 <li key={item.href}>
                                     <Link href={item.href}
-                                        className="text-[15px] text-slate-500 dark:text-slate-400 hover:text-blue-600 transition-colors hover:translate-x-0.5 inline-block">
+                                        className="text-base text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors hover:translate-x-0.5 inline-block">
                                         {item.title}
                                     </Link>
                                 </li>
                             ))}
                             <li>
                                 <Link href="/tools"
-                                    className="inline-flex items-center gap-1 text-[15px] text-blue-600 hover:text-blue-700 font-medium transition-colors group">
+                                    className="inline-flex items-center gap-1 text-base text-blue-600 hover:text-blue-700 font-medium transition-colors group">
                                     View all tools
                                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                                 </Link>
@@ -99,7 +99,7 @@ export default function Footer() {
                             {navigationConfig.footerNav.legal.map((item) => (
                                 <li key={item.href}>
                                     <Link href={item.href}
-                                        className="text-[15px] text-slate-500 dark:text-slate-400 hover:text-blue-600 transition-colors hover:translate-x-0.5 inline-block">
+                                        className="text-base text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors hover:translate-x-0.5 inline-block">
                                         {item.title}
                                     </Link>
                                 </li>
@@ -109,21 +109,21 @@ export default function Footer() {
                 </div>
 
                 <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-                <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500 dark:text-slate-400">
-                    <p className="text-slate-500 dark:text-slate-400">© {year} Web Scraper Pro. All rights reserved.</p>
-                    <p className="text-slate-500 dark:text-slate-400">
+                <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-600 dark:text-slate-300">
+                    <p className="text-slate-600 dark:text-slate-300">© {year} Web Scraper Pro. All rights reserved.</p>
+                    <p className="text-slate-600 dark:text-slate-300">
                         Built thoughtfully by{" "}
                         <Link
                             href="https://thinksolv.com"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-slate-500 dark:text-slate-400 hover:text-[#2772ED] transition-colors"
+                            className="text-slate-600 dark:text-slate-300 hover:text-[#2772ED] transition-colors"
                         >
                             Thinksolv Technologies
                         </Link>
                     </p>
                 </div>
-                <p className="mt-6 text-xs text-slate-500 dark:text-slate-400 leading-relaxed text-center sm:text-left">
+                <p className="mt-6 text-xs text-slate-700 dark:text-slate-200 leading-[1.65] text-center sm:text-left">
                     Amazon, Zillow, Shopify, Walmart and all other company, product and site names mentioned on this site are
                     trademarks of their respective owners. Web Scraper Pro is not affiliated with, endorsed by or sponsored by any of
                     them. Names are used only to describe the sites the extension works with.

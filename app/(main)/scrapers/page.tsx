@@ -43,7 +43,7 @@ export default function ScrapersHub() {
                         </section>
                     ))}
                 </div>
-                <p className="mt-14 text-[15px] text-slate-600 dark:text-slate-300">
+                <p className="mt-14 text-base text-slate-600 dark:text-slate-300">
                     Not listed? Most sites with a list are detected automatically. See <Link href={getPage("list-scraper").href} className="text-[#1f5ec2] dark:text-[#7aa7ff] hover:underline">lists from any website</Link>.
                 </p>
             </div>

@@ -36,7 +36,7 @@ function Table({ heading, rows }: { heading: string; rows: Row[] }) {
             <h2 className="text-xl font-semibold text-slate-900 dark:text-white">{heading} <span className="text-slate-400 font-normal">· {rows.length}</span></h2>
             <div className="mt-4 overflow-x-auto">
                 <table className="w-full text-sm text-left border-collapse">
-                    <thead><tr className="text-slate-500 dark:text-slate-400"><th className="py-2 pr-4 font-medium">Page</th><th className="py-2 pr-4 font-medium">Status</th><th className="py-2 pr-4 font-medium">Words</th><th className="py-2 pr-4 font-medium">Captures</th><th className="py-2 pr-4 font-medium">Updated</th><th className="py-2 font-medium">Check before publishing</th></tr></thead>
+                    <thead><tr className="text-slate-600 dark:text-slate-300"><th className="py-2 pr-4 font-medium">Page</th><th className="py-2 pr-4 font-medium">Status</th><th className="py-2 pr-4 font-medium">Words</th><th className="py-2 pr-4 font-medium">Captures</th><th className="py-2 pr-4 font-medium">Updated</th><th className="py-2 font-medium">Check before publishing</th></tr></thead>
                     <tbody>
                         {rows.map((r) => (
                             <tr key={r.href} className="border-t border-slate-100 dark:border-slate-800 align-top">
