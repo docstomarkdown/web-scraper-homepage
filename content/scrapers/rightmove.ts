@@ -71,7 +71,6 @@ export const rightmove: ScraperPageContent = {
         { q: "Can I get the floor area and council tax band?", a: "Not from the results page; they're on each listing's own page. Open a listing and click Collect details on this page in the Properties tab." },
         { q: "Can I run the same search every week?", a: "Yes, by running it again: every collection is saved in History with its date, so two exports side by side show what's new. Scheduled runs are coming with the cloud." },
         { q: "Does it work on Zoopla and OnTheMarket too?", a: "Zoopla has a ready-made setup; see the real-estate sites list. Other property sites are detected on the page, with columns named from the page's own labels." },
-        { q: "Does it collect rentals as well as sales?", a: "Yes. A lettings search gives the same columns, with the monthly rent in Price." },
         { q: "Can I get the floor area or council tax band?", a: "Not from the results page; they're on each listing's own page. Open one and use Collect details on this page in the Properties tab." },
     ],
 };

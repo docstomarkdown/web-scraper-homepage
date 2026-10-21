@@ -74,6 +74,5 @@ export const ebay: ScraperPageContent = {
         { q: "Why is the price a range on some rows?", a: "Listings with variations show a range on the card, and the extension keeps what the card shows. Open the listing and use the Properties tab for one variation's price." },
         { q: "Can I run several searches at once?", a: "Paste the search addresses into Bulk scrape and each is collected in turn with the same page settings." },
         { q: "Why do some rows have no bids or time left?", a: "Those listings are Buy It Now. Bids, Time Left and Auction Ends fill in for auctions only; filter on Purchase Format to separate them." },
-        { q: "Can I collect a seller's whole store?", a: "A seller's items page is a list like any other; pick it in the List tab and collect every page." },
     ],
 };

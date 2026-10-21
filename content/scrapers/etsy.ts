@@ -14,7 +14,7 @@ export const etsy: ScraperPageContent = {
         description: "Collect an Etsy search or category into a spreadsheet: product name, price, original price, discount, shop name, shop rating and review count, delivery and badges, across every page, with no code.",
     },
     h1: "Collect Etsy listings into a spreadsheet",
-    intro: "Search Etsy, pick the results in the side panel, set how many pages, and get one row per listing with price, discount, shop and shop rating as named columns. See what a niche charges, and which shops lead it, in a sheet.",
+    intro: "Search Etsy, pick the results in the side panel, set how many pages, and get one row per listing with price, discount, shop and shop rating as named columns. See what a product category charges, and which shops lead it, in a sheet.",
     status: "draft",
     lastVerified: "2026-10-21",
     version: "1.3.0",
@@ -68,7 +68,7 @@ export const etsy: ScraperPageContent = {
     faqs: [
         { q: "Can I collect a single shop's listings?", a: "Yes. Open the shop's page; its items are a list, so pick it in the List tab and collect every page or section." },
         { q: "Does it get the number of sales for a listing?", a: "Only what the card shows. Etsy's cards show the shop's review count and badges rather than per-listing sales; open a listing and use the Properties tab for its own details." },
-        { q: "Can I find the top shops in a niche?", a: "Collect the search, then sort the sheet by Shop Review Count; the shops with the most reviews lead the niche." },
+        { q: "Can I find the top shops in a niche?", a: "Collect the search, then sort the sheet by Shop Review Count; the shops with the most reviews lead the category." },
         { q: "Can I run several searches at once?", a: "Paste the search addresses into Bulk scrape and each is collected in turn with the same page settings." },
         { q: "Why do several listings share the same rating?", a: "Shop Rating and Shop Review Count belong to the shop, not the listing, so every listing from one shop shows the shop's numbers." },
         { q: "Can I collect one shop's listings?", a: "Yes. Open the shop's page; its items are a list, so pick it in the List tab and collect every page or section." },
