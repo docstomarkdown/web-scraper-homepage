@@ -72,7 +72,12 @@ export const getGuides = () => all().filter((g) => g.status === "published").sor
 /** Every guide, drafts included, for local preview. */
 export const getAllGuides = () => all().sort((a, b) => (a.updated < b.updated ? 1 : -1));
 
+/** A guide's slug is its file name: lowercase letters, digits and hyphens. The slug comes from the URL, so
+ * anything else (a dot, a slash, an encoded "../") is refused before it becomes part of a file path. */
+const SLUG_PATTERN = /^[a-z0-9-]+$/;
+
 export function getGuide(slug: string): Guide | null {
+    if (!SLUG_PATTERN.test(slug)) return null;
     for (const ext of [".md", ".mdx"]) if (fs.existsSync(path.join(dir, `${slug}${ext}`))) return read(`${slug}${ext}`);
     return null;
 }
