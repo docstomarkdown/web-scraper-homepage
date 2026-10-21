@@ -152,6 +152,12 @@ the copy on all of them was cut to short paragraphs. Audits of every feature and
 chrome extension", hero says "free" and "in plain words", demo mock-ups at 14px with readable ink): 0 violations on
 the homepage, light and dark. Left for the owner's read: posts, and the guide and hub templates' small secondary text.
 
+**Pre-read numbers on `/review` (same day).** `lib/readability.ts` gives every page a Flesch-Kincaid grade and reading
+ease, counts sentences over 25 words and paragraphs over three sentences, lists banned words, measures title and
+description length, and flags titles that share most of their words with another page's. First run over 76 pages:
+grade is fine almost everywhere (2 pages above 8), long sentences are common (one to ten per page), and most meta
+descriptions run past 160 characters, which is the one thing worth a scripted pass before the owner's read.
+
 ## 6. Rerunning the audit
 
 ```bash
