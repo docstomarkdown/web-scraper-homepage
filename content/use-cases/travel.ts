@@ -1,11 +1,11 @@
 import type { UseCasePageContent } from "@/components/pages/UseCasePage";
 import { getPage } from "@/config/pages";
 
-// Facts checked against release 1.3.0 on 2026-10-21: the booking.com (Hotel Name, Location / Address, Nightly Price, Guest
-// Rating, Rating Class, Reviews Count), hotels.com (16 columns incl. Total Price, Rooms Left, Amenities, Load more paging)
-// and tripadvisor (hotels, restaurants, attractions and tours: Name, Rating, Review Count, Ranking, Price From, Price Range,
-// Cuisine, Category, Neighborhood, Award, Next page) packs and mappings in configs-prod/ and site-column-mappings/.
-// Scheduled price tracking is not live. Draft until the screenshots exist.
+// Written so a first-time reader can follow. Facts checked against release 1.3.0 on 2026-10-21: the booking.com (Hotel Name,
+// Location / Address, Nightly Price, Guest Rating, Rating Class, Reviews Count), hotels.com (16 columns incl. Total Price,
+// Rooms Left, Amenities, Load more paging) and tripadvisor (hotels, restaurants, attractions and tours: Name, Rating, Review
+// Count, Ranking, Price From, Price Range, Cuisine, Category, Neighborhood, Award, Next page) packs and mappings. Scheduled
+// price tracking is not live. Draft until the screenshots exist.
 
 export const travel: UseCasePageContent = {
     page: getPage("travel", "use-case"),
@@ -13,34 +13,62 @@ export const travel: UseCasePageContent = {
         title: "Travel and Hospitality: Hotel Prices, Ratings and Reviews in a Sheet",
         description: "Collect every hotel for your dates from Booking.com, Hotels.com and Tripadvisor into one spreadsheet, with prices, ratings and review counts, and the restaurants and attractions around them.",
     },
-    h1: "Every hotel for your dates, in one spreadsheet",
-    intro: "Search a city on Booking.com, Hotels.com or Tripadvisor, collect every result with its price, rating and review count, and compare the whole city in a sheet. Then add the restaurants and attractions for the itinerary, or the competitor set for a rate check.",
+    h1: "Get every hotel for your dates into one spreadsheet",
+    intro: "Search a city on Booking.com, Hotels.com or Tripadvisor, click once, and get every hotel with its price, rating and review count in a sheet. Add the restaurants and attractions for the itinerary, or the competitor set for a rate check.",
     status: "draft",
     lastUpdated: "2026-10-21",
     job: {
-        heading: "The whole market for those dates, not the first twenty",
+        heading: "The whole market for those dates, not the first twenty results",
         paragraphs: [
             "A traveller comparing a city for a week, a travel agent building a shortlist for a client, or a hotel's revenue manager checking the competitor set before a weekend: each needs every hotel for the same dates with the price, the rating and the review count side by side.",
-            "Web Scraper Pro collects the search results from the big travel sites into named columns, in your browser, for the dates and filters you set. Tripadvisor's restaurants and attractions collect the same way, so the itinerary and the rate check come from the same tabs.",
+            "Web Scraper Pro collects the search results from the big travel sites into named columns, inside your Chrome browser, for the dates and filters you set. Tripadvisor's restaurants and attractions collect the same way.",
+            "You search the way you always do. The extension turns the result pages into rows.",
         ],
     },
     workflow: {
         heading: "From a search to a comparison",
+        intro: "Five steps. A city with 200 hotels takes about two minutes.",
         steps: [
-            { title: "Search with your dates and filters", body: "On Booking.com, Hotels.com or Tripadvisor, enter the city, dates and guests, then filter: price range, star rating, free cancellation. The extension collects what the list shows, so the filters do the narrowing.", feature: "list-scraper" },
-            { title: "Collect every result", body: "Open the side panel's List tab, pick the results list, and choose Collect more pages: a Load more button on Hotels.com, Next page on Tripadvisor. One row per hotel arrives with the price, rating and review count as numbers.", feature: "list-scraper", screenshot: "ext/results-hotels" },
-            { title: "Compare in a sheet", body: "Sort by price or rating on the results page, remove the columns you don't need, and Export as Google Sheets or Excel. Price per night and the total with fees sit in separate columns on Hotels.com, so the comparison is honest.", feature: "export-to-google-sheets", screenshot: "ext/results-export-menu" },
-            { title: "Add restaurants and attractions", body: "On Tripadvisor, a city's restaurants and attractions are lists too: name, rating, review count, ranking, cuisine or category, neighbourhood and price range. Collect each and export them for the itinerary.", feature: "list-scraper" },
-            { title: "Check again before the trip, or the weekend", body: "Run the same search again; each collection is saved in History with its date, and the hotel's URL lines the runs up in a lookup. Scheduled checks are coming with the cloud.", feature: "export-to-google-sheets" },
+            {
+                title: "Search with your dates and filters",
+                body: "On Booking.com, Hotels.com or Tripadvisor, enter the city, dates and guests, then filter: price range, star rating, free cancellation. The extension collects what the list shows, so the filters do the narrowing.",
+                points: ["Prices are for the dates and guests you searched. Change them and collect again to compare.", "Member prices show only when you're signed in; sign in first if you want them."],
+                feature: "list-scraper",
+            },
+            {
+                title: "Collect every result",
+                body: "Click the Web Scraper Pro icon in Chrome; a panel opens on the right. In the List tab, the hotels show as a list with a count. Click it, choose Collect more pages, and click Collect. Keep the tab in front while it runs.",
+                points: ["Hotels.com loads more with a Load more button; set how many loads. Tripadvisor has numbered pages; set Stop after.", "You get one row per hotel: Hotel Name, Location, Guest Rating, Review Count, Price Per Night and, on Hotels.com, the Total Price with taxes and fees."],
+                feature: "list-scraper",
+                screenshot: "ext/results-hotels",
+            },
+            {
+                title: "Compare in a sheet",
+                body: "Click View results. Click the Price or Rating column to sort, remove columns you don't need with the trash icon, then click Export as and choose Google Sheets or Excel. Prices and ratings are already numbers.",
+                points: ["Example to type in the panel's chat with the results tab in front: Only hotel name, guest rating and total price, sorted by total price", "On Hotels.com the price per night and the total with fees sit in separate columns, so the comparison is honest."],
+                feature: "export-to-google-sheets",
+                screenshot: "ext/results-export-menu",
+            },
+            {
+                title: "Add restaurants and attractions",
+                body: "On Tripadvisor, a city's restaurants and attractions are lists too. Open the restaurants page, pick the list in the panel, and collect every page: name, rating, review count, ranking, cuisine or category, neighbourhood and price range. Do the same for attractions and tours.",
+                feature: "list-scraper",
+            },
+            {
+                title: "Check again before the trip, or the weekend",
+                body: "Run the same search again. Each collection is saved in History with its date, and the hotel's link matches rows across runs, so a lookup shows what moved.",
+                points: ["Scheduled checks that run on their own are coming with the cloud. Today it's one click when you want fresh prices."],
+                feature: "export-to-google-sheets",
+            },
         ],
     },
     sample: {
-        caption: "Three rows of a city search on Hotels.com, after export. Hotels and prices are made up.",
-        columns: ["Hotel Name", "Location", "Guest Rating (out of 10)", "Review Count", "Price Per Night", "Total Price (incl. taxes & fees)"],
+        caption: "This is what three rows of a Hotels.com search look like.",
+        columns: ["Hotel Name", "Guest Rating", "Price Per Night", "Total Price"],
         rows: [
-            ["Harbor View Hotel", "Harborview, 0.4 mi to center", "8.8", "1,204", "149", "341"],
-            ["Northgate Inn", "Northgate, 1.2 mi to center", "8.2", "532", "109", "251"],
-            ["Bluebird Boutique Hotel", "Riverside, 0.8 mi to center", "9.1", "318", "189", "432"],
+            ["Harbor View Hotel", "8.8", "149", "341"],
+            ["Northgate Inn", "8.2", "109", "251"],
+            ["Bluebird Boutique Hotel", "9.1", "189", "432"],
         ],
     },
     sites: [{ name: "Hotels.com", page: "hotels-com" }, { name: "Booking.com" }, { name: "Tripadvisor" }, { name: "Any travel site with a results list" }],
@@ -55,9 +83,10 @@ export const travel: UseCasePageContent = {
     },
     guides: ["collect-every-page-of-results", "scrape-data-from-any-website-to-excel"],
     faqs: [
-        { q: "Which travel sites have a ready-made setup?", a: "Booking.com, Hotels.com and Tripadvisor (hotels, restaurants, attractions and tours) come with named columns. On other sites the results list is detected and the columns are named from the page's labels." },
+        { q: "Which travel sites have ready-made columns?", a: "Booking.com, Hotels.com and Tripadvisor, for hotels, restaurants, attractions and tours. On other sites the results list is found on the page and the columns are named from its labels." },
         { q: "Are taxes and fees included in the prices?", a: "On Hotels.com the card's total including taxes and fees is its own column next to the price per night. On other sites the price is what the card shows; check whether the site displays totals before you compare." },
-        { q: "Can I collect reviews of a hotel?", a: "A hotel page's review list is detected like any other list; pick it in the List tab and collect every page. Review text belongs to its authors and the site, so keep it for analysis." },
-        { q: "Can I compare the same city across several dates?", a: "Yes. Change the dates, collect again, and export both runs; History keeps each with its date, and the hotel URL matches rows across runs." },
+        { q: "Can I collect reviews of a hotel?", a: "A hotel page's review list is found like any other list; pick it in the List tab and collect every page. Review text belongs to its authors and the site, so keep it for analysis." },
+        { q: "Can I compare the same city across several dates?", a: "Yes. Change the dates, collect again, and save both; History keeps each with its date, and the hotel link matches rows across runs." },
+        { q: "Do I need to know anything technical?", a: "No. You search the site the way you always do, open the panel, and click Collect. There is nothing to set up and no code." },
     ],
 };

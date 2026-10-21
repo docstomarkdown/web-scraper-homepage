@@ -1,62 +1,94 @@
 import type { UseCasePageContent } from "@/components/pages/UseCasePage";
 import { getPage } from "@/config/pages";
 
-// Personas: Priya, online store owner, and Kai, Shopify agency or dropshipper (docs/personas.md). Facts checked against
-// release 1.3.0 on 2026-10-21: Amazon and other store packs (configs-prod/), product pages and reviews (lib/pdp/), Shopify
-// store export (lib/shopifyMode/), results page filters and exports (entrypoints/dataviewer/). Scheduled price checks are
-// not live: say "coming with the cloud", never imply alerts exist. Draft until the workflow screenshots exist.
+// Personas: Priya, online store owner, and Kai, Shopify agency or dropshipper (docs/personas.md), written so a first-time
+// reader can follow. Facts checked against release 1.3.0 on 2026-10-21: Amazon and other store packs (configs-prod/),
+// product pages and reviews (lib/pdp/), Shopify store export (lib/shopifyMode/), results page filters and exports
+// (entrypoints/dataviewer/). Scheduled price checks are not live: say "coming with the cloud", never imply alerts.
+// Draft until the workflow screenshots exist.
 
 export const ecommerce: UseCasePageContent = {
     page: getPage("ecommerce", "use-case"),
     meta: {
         title: "E-commerce Research: Competitor Prices, Bestsellers and Reviews in a Sheet",
-        description: "Collect competitor prices, bestsellers and reviews from Amazon, other marketplaces and independent stores into one spreadsheet, and export a Shopify store's whole catalog.",
+        description: "Collect a competitor's prices, bestsellers and reviews from Amazon, other marketplaces and independent stores into one spreadsheet, and export a Shopify store's whole catalog.",
     },
-    h1: "Competitor prices, bestsellers and reviews, in one sheet",
-    intro: "Collect a marketplace search or a store's category into named columns, add the reviews from the products that matter, and compare it all in Google Sheets or Excel. Run it again before a sale season.",
+    h1: "See what competitors charge, what sells, and what buyers complain about",
+    intro: "Open a store's category page, click once, and get every product with its price, rating and review count in a spreadsheet. Open a product and get its reviews too. Compare it all in Excel or Google Sheets.",
     status: "draft",
     lastUpdated: "2026-10-21",
     job: {
-        heading: "Know what the competition charges before you set a price",
+        heading: "The price check you'd otherwise do tab by tab",
         paragraphs: [
-            "A competitor undercuts you, a sale season is coming, or you want to know what sells before you stock it. The answers sit on Amazon, on the other marketplaces and on independent stores: price, list price, rating, review count, seller, and what reviewers complain about.",
-            "Web Scraper Pro collects each of those pages into the same kind of table, in your own browser, so the comparison is a spreadsheet instead of an afternoon of tabs. Big marketplaces have ready-made columns; independent stores are detected on the page.",
+            "A competitor undercuts you. A sale season is coming. You want to know what sells before you stock it. The answers are on Amazon, on the other marketplaces and on independent stores, spread over hundreds of product pages.",
+            "Web Scraper Pro collects each of those pages into the same kind of table, inside your Chrome browser. Big marketplaces come with ready-made columns. Independent stores are read from the page. You get one sheet you can sort by price, rating or review count.",
+            "There's nothing to set up. You open the page, click Collect, and watch the rows appear.",
         ],
     },
     workflow: {
-        heading: "From a search to a comparison sheet",
+        heading: "From a competitor's category to a comparison sheet",
+        intro: "Five steps. The first one takes about two minutes for a hundred products.",
         steps: [
-            { title: "Collect the competitor's category", body: "Open the search or category on Amazon, Walmart, Etsy or a store of your own kind, pick the list in the side panel's List tab, set how many pages, and click Collect. The rows come with Price, Original Price, Rating and Review Count as numbers.", feature: "list-scraper", screenshot: "ext/results-amazon" },
-            { title: "Open the products that matter", body: "For your closest competitors, open the product page and click Collect details on this page in the Properties tab: list price, discount, availability, seller, variants and images, in the same fields on every store.", feature: "product-scraper" },
-            { title: "Collect the reviews", body: "On the same page, click View all reviews to collect every review across its pages into its own table: rating, title, text, author and date. Sort by the lowest ratings to read the complaints first.", feature: "product-scraper" },
-            { title: "Export a Shopify competitor's whole catalog", body: "If the competitor runs on Shopify, the Shopify store card in the List tab collects every product and variant with prices and SKUs in one run, from the store's own product data.", feature: "shopify-scraper" },
-            { title: "Compare in one sheet", body: "Export each collection to Google Sheets or Excel and put them side by side. Every collection stays in History, so next month's run gives you the change.", feature: "export-to-google-sheets", screenshot: "ext/results-export-menu" },
+            {
+                title: "Collect a competitor's category",
+                body: "Open the search or category page on Amazon, Walmart, Etsy or a store of your own kind. Click the Web Scraper Pro icon in Chrome; a panel opens on the right. In the List tab, the products show as a list with a count. Click it.",
+                points: ["Choose Collect more pages and set how many pages. Amazon shows up to 20 per search.", "Click Collect from 5 pages (or the number you set). The tab counts the products as they arrive.", "You get one row per product: Product Name, Price, Original Price, Rating, Review Count and the link, as numbers you can sort."],
+                feature: "list-scraper",
+                screenshot: "ext/results-amazon",
+            },
+            {
+                title: "Open the products that matter most",
+                body: "For your closest competitors, open the product page itself. In the panel's Properties tab, click Collect details on this page. The same fields come back on every store, so products from different sites line up in one sheet.",
+                points: ["Fields: title, brand, current price, list price, discount, rating, review count, availability, delivery, seller, selected variant, offers and images.", "Amazon, Walmart, Flipkart and other big stores have a ready-made profile. On other stores, click Fix or add a field once and it's remembered for that site."],
+                feature: "product-scraper",
+            },
+            {
+                title: "Collect the reviews",
+                body: "On the same product page, click View all reviews. The extension pages through the reviews and puts them in their own table: rating, title, text, author and date. Sort by the lowest ratings to read the complaints first.",
+                points: ["Reviews come from the page's own review list, across every review page.", "A store that shows reviews only after a click needs that button pointed at once; the panel asks you to click it."],
+                feature: "product-scraper",
+            },
+            {
+                title: "Export a Shopify competitor's whole catalog",
+                body: "If the competitor runs on Shopify, a Shopify stores card appears in the List tab with the product count. Choose All products, pick one row per product or per variant, and click Collect products. The rows come from the store's own product data, so a thousand products take a minute or two.",
+                points: ["Columns: Title, Vendor, Type, Tags, Price, Compare At Price, Available, SKU and more.", "Password-protected stores can't be read."],
+                feature: "shopify-scraper",
+                screenshot: "ext/shopify-store-card",
+            },
+            {
+                title: "Compare in one sheet, and again next month",
+                body: "Click Export as and choose Google Sheets or Excel for each collection. Put them side by side; prices and ratings are already numbers. Every collection stays in History, so next month's run shows you what changed.",
+                points: ["Example to type in the chat with the results tab in front: Only name, price and rating, sorted by price", "Scheduled price checks that run on their own are coming with the cloud. Today you run it when you want fresh numbers."],
+                feature: "export-to-google-sheets",
+                screenshot: "ext/results-export-menu",
+            },
         ],
     },
     sample: {
-        caption: "Three rows from a category comparison. Products and numbers are made up.",
-        columns: ["Product Name", "Store", "Price", "Original Price", "Rating", "Review Count", "Seller"],
+        caption: "This is what three rows look like after you save the file.",
+        columns: ["Product Name", "Price", "Rating", "Review Count"],
         rows: [
-            ["Trail Runner 2 Men's Shoes", "Amazon", "89.00", "110.00", "4.6", "1,204", "Trail Gear Official"],
-            ["Trail Runner 2", "trailgear.example", "85.00", "110.00", "4.7", "212", "Trail Gear Co."],
-            ["Trail Runner 2 Shoes", "Walmart", "92.00", "", "4.4", "87", "Summit Outdoors"],
+            ["Trail Runner 2 Men's Shoes", "89.00", "4.6", "1,204"],
+            ["Ridge Trail Shoes, Waterproof", "129.00", "4.8", "532"],
+            ["Lightweight Trail Runners", "64.99", "4.3", "318"],
         ],
     },
-    sites: [{ name: "Amazon", page: "amazon" }, { name: "Walmart" }, { name: "Target" }, { name: "Etsy" }, { name: "Costco" }, { name: "Wayfair" }, { name: "Flipkart" }, { name: "Any Shopify store" }, { name: "Any store with a product list" }],
+    sites: [{ name: "Amazon", page: "amazon" }, { name: "eBay", page: "ebay" }, { name: "Walmart", page: "walmart" }, { name: "Etsy", page: "etsy" }, { name: "Target" }, { name: "Costco" }, { name: "Wayfair" }, { name: "Any Shopify store" }, { name: "Any store with a product list" }],
     cantDo: {
         heading: "What it won't do",
         items: [
-            "Check prices every day on its own, or alert you to a change. That's coming with cloud runs; today you run it when you need fresh numbers, and History keeps each run to compare.",
-            "Read a competitor's sales or stock levels. It collects what the page shows: prices, ratings, review counts, badges and the stock notes a listing displays.",
-            "Collect from a password-protected Shopify store, or from a page you can't open in your browser.",
-            "Give you the right to reuse product images, text or reviews. They belong to the store and its reviewers.",
+            "Check prices every day on its own, or alert you to a change. That's coming with cloud runs. Today you run it when you need fresh numbers, and History keeps each run to compare.",
+            "Show a competitor's sales or stock levels. It collects what the page shows: prices, ratings, review counts, badges and the stock notes a listing displays.",
+            "Read a password-protected Shopify store, or any page you can't open in your browser.",
+            "Give you the right to reuse product photos, descriptions or reviews. They belong to the store and its reviewers; collect them for your own analysis.",
         ],
     },
-    guides: ["collect-amazon-search-results", "export-a-shopify-store-catalog", "scrape-data-from-any-website-to-excel"],
+    guides: ["collect-amazon-search-results", "collect-store-listings-to-excel", "export-a-shopify-store-catalog", "scrape-data-from-any-website-to-excel"],
     faqs: [
-        { q: "Does it work on small independent stores, not only Amazon?", a: "Yes. On a store without a ready-made setup, the product list is detected on the page and the columns are named from the page's own labels. Shopify stores get the full catalog from their product data." },
-        { q: "Can I track a competitor's prices over time?", a: "By running the same collection again. Each run is saved in History with its date, so two exports side by side show what changed. Scheduled runs that do this on their own are coming with the cloud." },
-        { q: "Can I get the reviews into a sheet with their ratings?", a: "Yes. From a product page, View all reviews collects every review across its pages into a table with rating, title, text, author and date, exported separately from the product." },
+        { q: "Does it work on small independent stores, not only Amazon?", a: "Yes. On a store without a ready-made setup, the product list is found on the page and the columns are named from the page's own labels. Shopify stores get the full catalog from their product data." },
+        { q: "How many products can I collect from one search?", a: "As many as the store shows. Amazon lists up to 20 pages per search, Walmart 25, Etsy 250. For more, search narrower categories and combine them." },
+        { q: "Can I track a competitor's prices over time?", a: "By running the same collection again. Each run is saved in History with its date, so two exports side by side show what changed. Scheduled runs are coming with the cloud." },
+        { q: "Can I get the reviews with their star ratings?", a: "Yes. From a product page, View all reviews collects every review across its pages into a table with rating, title, text, author and date." },
         { q: "Is collecting competitor prices allowed?", a: "Prices on a public page are public information, but each marketplace's terms restrict automated collection, and images and text are theirs. Collect for your own research, and check the terms where you sell." },
     ],
 };
