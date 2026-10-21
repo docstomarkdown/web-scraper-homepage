@@ -80,7 +80,7 @@ export default async function GuidePage({ params }: Props) {
                         <Link href="/guides" className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]">Guides</Link>
                         {feature ? <>{" / "}<Link href={feature.href} className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]">{feature.label}</Link></> : null}
                     </nav>
-                    <h1 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">{g.title}</h1>
+                    <h1 className="mt-4 text-[2.125rem] md:text-[2.5rem] font-semibold tracking-tight text-slate-800 dark:text-white leading-[1.15]">{g.title}</h1>
                     <p className="mt-5 text-lg text-slate-700 dark:text-slate-200 leading-[1.65]">{g.description}</p>
                     <p className="mt-5 text-sm text-slate-600 dark:text-slate-300">
                         By <Link href={`/blog/author/${g.author.slug}`} className="font-medium text-slate-700 dark:text-slate-200 hover:underline">{g.author.name}</Link>

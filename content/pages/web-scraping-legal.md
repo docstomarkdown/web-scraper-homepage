@@ -6,11 +6,11 @@ updated: 2026-10-21
 author: vikram
 ---
 
-**Answer:** collecting data that a website shows to anyone, for your own research or business use, is lawful in the United States, the European Union and the United Kingdom in most cases. What changes the answer is whether you had to sign in or break a technical barrier, whether the data is about people, whether you agreed to terms that forbid it, and what you do with the data afterwards. This page explains each of those in plain words, with the sources. It is general information, not legal advice; for a specific plan, ask a lawyer where you operate.
+Collecting data that a website shows to anyone, for your own research or business use, is lawful in the United States, the European Union and the United Kingdom in most cases. What changes the answer is whether you had to sign in or break a technical barrier, whether the data is about people, whether you agreed to terms that forbid it, and what you do with the data afterwards. This page explains each of those in plain words, with the sources. It is general information, not legal advice; for a specific plan, ask a lawyer where you operate.
 
 ## The four questions that decide most cases
 
-**Answer:** ask whether the data is public, personal, under terms you agreed to, and how you'll use it.
+Ask whether the data is public, personal, under terms you agreed to, and how you'll use it.
 
 | Question | If yes | If no |
 |---|---|---|
@@ -21,7 +21,7 @@ author: vikram
 
 ## Public pages: the United States
 
-**Answer:** scraping public pages is not "unauthorized access" under the US computer-crime law, after two decisions in 2021 and 2022.
+Scraping public pages is not "unauthorized access" under the US computer-crime law, after two decisions in 2021 and 2022.
 
 The Computer Fraud and Abuse Act (CFAA) makes it a crime to access a computer "without authorization". For years companies argued that scraping a public site broke it. Two decisions narrowed that reading:
 
@@ -32,7 +32,7 @@ That settled the criminal-law question for public pages. It did not settle contr
 
 ## Terms of service
 
-**Answer:** a site's terms can forbid scraping, and breaking them can be a breach of contract; whether you agreed to them is the key fact.
+A site's terms can forbid scraping, and breaking them can be a breach of contract; whether you agreed to them is the key fact.
 
 Most large sites ban automated collection in their terms. When you create an account and accept those terms, you've made a contract, and scraping while signed in can break it. In the hiQ case, the court found hiQ had breached LinkedIn's terms by scraping with accounts it controlled, and the case settled in 2022.
 
@@ -42,7 +42,7 @@ Practical rule: collect from pages you can see without signing in whenever the j
 
 ## Personal data: the EU, the UK and US states
 
-**Answer:** data about identifiable people is regulated wherever those people live, and "it was public" is not a lawful basis on its own.
+Data about identifiable people is regulated wherever those people live, and "it was public" is not a lawful basis on its own.
 
 Under the EU's General Data Protection Regulation (GDPR), and the UK version of it, collecting a person's name, email or phone number is processing personal data. You need a lawful basis (Article 6), you owe the person information about what you're doing (Article 14 covers data you didn't get from them), and you must honour requests to stop. The regulation's text is at [EUR-Lex](https://eur-lex.europa.eu/eli/reg/2016/679/oj). Business contact details published for business purposes are easier to justify under "legitimate interests" than a private individual's details, but the duties still apply.
 
@@ -52,7 +52,7 @@ Practical rule: collect business listings and their published contact details fo
 
 ## Copyright and database rights
 
-**Answer:** facts aren't protected; the way they're written and photographed is.
+Facts aren't protected; the way they're written and photographed is.
 
 Prices, addresses, ratings, counts and other facts are not copyrightable. The US Supreme Court said so in *Feist Publications v. Rural Telephone* (1991), holding that a listing of facts can't be protected without original selection or arrangement ([decision](https://supreme.justia.com/cases/federal/us/499/340/)). Product descriptions, reviews, articles and photos are protected, because someone wrote or shot them.
 
@@ -60,7 +60,7 @@ So a table of prices and ratings for your own analysis is low risk. Republishing
 
 ## Technical barriers and robots.txt
 
-**Answer:** a barrier you have to defeat changes the legal picture; a robots.txt file is a request, not a law.
+A barrier you have to defeat changes the legal picture; a robots.txt file is a request, not a law.
 
 Getting around a login wall, a paywall or an anti-bot system is where "unauthorized access" arguments return, and where many sites' terms are clearest. Web Scraper Pro reads pages in your own browser as you see them and never bypasses a verification page; when a site asks you to prove you're human, you do it, or you stop.
 
@@ -68,7 +68,7 @@ The robots.txt file (standardised in [RFC 9309](https://www.rfc-editor.org/rfc/r
 
 ## What this means for a Web Scraper Pro user
 
-**Answer:** stay on public pages, keep business data for business use, don't republish what you didn't write, and read the terms of any site you sign in to.
+Stay on public pages, keep business data for business use, don't republish what you didn't write, and read the terms of any site you sign in to.
 
 - A Maps search for dentists in a city, exported for your own outreach, collects published business data. Keep it to the outreach, honour unsubscribes, and you're within the usual rules.
 - A list of products and prices from a store, for a price comparison, is facts for analysis. Don't republish the store's photos or descriptions.
@@ -78,7 +78,7 @@ The robots.txt file (standardised in [RFC 9309](https://www.rfc-editor.org/rfc/r
 
 ## Where the law is still moving
 
-**Answer:** three areas to watch: AI training data, state privacy laws, and sites' new technical and contractual defences.
+Three areas to watch: AI training data, state privacy laws, and sites' new technical and contractual defences.
 
 Courts are now deciding how copyright applies to data collected for training AI models; regulators in the EU and UK have published guidance on scraping for that purpose and are still refining it. More US states pass privacy laws each year, each with its own thresholds. And large sites keep tightening both their terms and their bot defences. This page is dated at the top; when one of those changes the answer, it gets updated.
 

@@ -9,11 +9,11 @@ category: Playbooks
 tags: [lead generation, agency, freelance, maps leads]
 ---
 
-**Answer:** a lead generation service sells lists of businesses that match a client's customer, with a way to reach each one. The product is a spreadsheet; the work is choosing the niche, collecting the businesses with their contact details, cleaning the list, and delivering it on time. A Chrome extension does the collecting in minutes, which turns the job from a day of copying into a repeatable service you can run several times a day. Here's how to set it up, from the first list to the tenth client.
+A lead generation service sells lists of businesses that match a client's customer, with a way to reach each one. The product is a spreadsheet; the work is choosing the niche, collecting the businesses with their contact details, cleaning the list, and delivering it on time. A Chrome extension does the collecting in minutes, which turns the job from a day of copying into a repeatable service you can run several times a day. Here's how to set it up, from the first list to the tenth client.
 
 ## Who buys lead lists
 
-**Answer:** businesses that sell to other local businesses, and agencies that market for them.
+Businesses that sell to other local businesses, and agencies that market for them.
 
 - A software company selling to dentists wants every dentist in the cities it covers.
 - A commercial cleaning company wants offices and clinics in its radius.
@@ -24,13 +24,13 @@ Each buys the same thing: rows with a name, a phone, a website and, where it exi
 
 ## Step 1: pick a niche you can describe in one search
 
-**Answer:** a business type plus a place is a search; a search is a list.
+A business type plus a place is a search; a search is a list.
 
 "Dentists in Austin" is a product. "Companies that might need marketing" is not. Start with niches that are visible on Maps and in directories: trades, clinics, restaurants, gyms, salons, agencies, schools, property managers. A good first niche has several hundred businesses per city, buyers who already pay for leads, and public websites, because that's where the emails come from.
 
 ## Step 2: build the first list
 
-**Answer:** one Maps search with contact details on gives you the list with emails in the same run.
+One Maps search with contact details on gives you the list with emails in the same run.
 
 In Web Scraper Pro's Chat tab, type `Find dentists in Austin`, choose how many (up to 200 per run), and click Start. The extension collects every business with its phone, website, rating and address, and reads each business's own website for emails, website phone numbers and social links while it runs. Fifty businesses with emails take about four minutes; the [guide](/guides/get-maps-leads-with-emails) shows each step.
 
@@ -38,7 +38,7 @@ For a bigger area, run a search per neighbourhood or zip code and combine them; 
 
 ## Step 3: clean it to the client's spec
 
-**Answer:** fewer columns, no repeats, and only rows the client can act on.
+Fewer columns, no repeats, and only rows the client can act on.
 
 On the results page, keep the columns the client asked for and drop the rest; rename headers to their wording. Filter to rows with a phone or an email, depending on the campaign. Repeated rows are left out on their own. Then export to Excel or a Google Sheet you can share.
 
@@ -46,7 +46,7 @@ Two things a list should state plainly: the date it was collected, and that emai
 
 ## Step 4: price the delivery
 
-**Answer:** price by the list, not by the hour, and anchor on what the client would pay a data vendor.
+Price by the list, not by the hour, and anchor on what the client would pay a data vendor.
 
 Common shapes for a first service:
 
@@ -61,7 +61,7 @@ Set a floor that covers your time with a margin, then raise it as the delivery p
 
 ## Step 5: make it repeatable
 
-**Answer:** a saved search, a template sheet, and a delivery note, reused for every order.
+A saved search, a template sheet, and a delivery note, reused for every order.
 
 - **A search list.** Niche × city combinations you've run, with the row counts you got. New orders become lookups.
 - **A template sheet.** The client's columns in the client's order, with a Collected-on column and a note on email coverage.
@@ -70,12 +70,12 @@ Set a floor that covers your time with a margin, then raise it as the delivery p
 
 ## The lines to hold
 
-**Answer:** business data for business outreach, honestly described, within the law.
+Business data for business outreach, honestly described, within the law.
 
 A lead service lives on trust. Collect businesses and their published contact details, not people's personal profiles. Tell clients the data is what businesses publish and when it was collected. Remind them that outreach has rules: anti-spam law where they send, and privacy law where the businesses are. Don't sell lists from sites that need a sign-in or forbid it in their terms. The [legal guide](/web-scraping-legal) covers what applies; it isn't legal advice, and a service that sells data should read it.
 
 ## The first week
 
-**Answer:** one niche, three cities, one sample sent to ten prospects.
+One niche, three cities, one sample sent to ten prospects.
 
 Build a sample list for a niche you understand. Send the first twenty rows free to ten businesses that sell to that niche, with a line saying the full list is ready. One reply is a client; two is a service. From there, the extension is the easy part.

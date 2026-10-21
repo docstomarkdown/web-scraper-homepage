@@ -64,11 +64,11 @@ export const leadGeneration: UseCasePageContent = {
     },
     sample: {
         caption: "This is what three rows look like after you save the file.",
-        columns: ["Business Name", "Phone", "Website", "Email", "Rating"],
+        columns: ["Business Name", "Phone", "Website", "Email"],
         rows: [
-            ["Bright Smile Dental", "(555) 010-2231", "brightsmile.example", "hello@brightsmile.example", "4.8"],
-            ["Lakeside Family Dentistry", "(555) 010-4410", "lakesidefd.example", "", "4.6"],
-            ["Northside Orthodontics", "(555) 010-7782", "northsideortho.example", "info@northsideortho.example", "4.9"],
+            ["Bright Smile Dental", "(555) 010-2231", "brightsmile.example", "hello@brightsmile.example"],
+            ["Lakeside Dentistry", "(555) 010-4410", "lakeside-dental.example", ""],
+            ["Northside Orthodontics", "(555) 010-7782", "northside.example", "info@northside.example"],
         ],
     },
     sites: [{ name: "Maps", page: "maps" }, { name: "Yellow Pages", page: "yellow-pages" }, { name: "Justdial", page: "justdial" }, { name: "BBB", page: "bbb" }, { name: "Any business directory" }],

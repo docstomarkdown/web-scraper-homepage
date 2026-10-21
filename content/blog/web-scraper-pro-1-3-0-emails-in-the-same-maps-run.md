@@ -12,7 +12,7 @@ Version 1.3.0 of Web Scraper Pro is on the Chrome Web Store. The headline change
 
 ## Emails in the same run
 
-**Answer:** search Maps as before, and the Emails column fills in while the businesses are collected, with no second step.
+Search Maps as before, and the Emails column fills in while the businesses are collected, with no second step.
 
 Maps itself never lists an email. Until now you collected the businesses, then ran a second job over their websites. In 1.3.0 the extension reads each business's website and one linked Contact or About page during the Maps run, and adds what it finds to that business's row:
 
@@ -29,7 +29,7 @@ The same reader now works on any saved table with a Website column: open it from
 
 ## Chat does more of the job
 
-**Answer:** chat now collects every page, reshapes the last collection, and merges searches, each from a card or a sentence.
+Chat now collects every page, reshapes the last collection, and merges searches, each from a card or a sentence.
 
 - **Every page.** After collecting the page you're on, a What next card offers **Collect every page**. It runs the List tab's own paging, so Next page, Load more and endless scrolling all work.
 - **Tidying.** With a results tab in front, say "only name, phone and rating, sorted by rating" and the table changes to match. The download matches what's shown.
@@ -38,7 +38,7 @@ The same reader now works on any saved table with a Website column: open it from
 
 ## Cleaner tables and files
 
-**Answer:** fewer repeats, better order, and numbers that behave in a spreadsheet.
+Fewer repeats, better order, and numbers that behave in a spreadsheet.
 
 - Repeated rows are left out by default. Sponsored rows and businesses without a website stay in unless you say otherwise.
 - Maps leads are saved best rated first, which weighs the review count too, so 4.8 from 1,200 reviews comes before 5.0 from 3. Products keep the site's order. Both are a setting.

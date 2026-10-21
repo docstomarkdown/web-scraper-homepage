@@ -82,7 +82,7 @@ export default async function BlogPostPage({ params }: Props) {
                         Draft: visible in local development only. Set <code>status: published</code> once it has been reviewed.
                     </p>
                 )}
-                <h1 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">{post.title}</h1>
+                <h1 className="mt-4 text-[2.125rem] md:text-[2.5rem] font-semibold tracking-tight text-slate-800 dark:text-white leading-[1.15]">{post.title}</h1>
                 <p className="mt-5 text-lg text-slate-700 dark:text-slate-200 leading-[1.65]">{post.description}</p>
                 <p className="mt-5 text-sm text-slate-600 dark:text-slate-300">
                     By <Link href={`/blog/author/${post.author.slug}`} className="font-medium text-slate-700 dark:text-slate-200 hover:underline">{post.author.name}</Link>

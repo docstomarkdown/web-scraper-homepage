@@ -9,11 +9,11 @@ category: Explainers
 tags: [web scraping, basics, no code]
 ---
 
-**Answer:** web scraping is collecting information from web pages into a structured form you can work with, usually a spreadsheet or a database, using software instead of copy and paste. A page shows you twenty hotels with prices; a scraper reads the page and gives you a table with a Hotel and a Price column. That's the whole idea. The rest is how, how much, and when you're allowed to.
+Web scraping is collecting information from web pages into a structured form you can work with, usually a spreadsheet or a database, using software instead of copy and paste. A page shows you twenty hotels with prices; a scraper reads the page and gives you a table with a Hotel and a Price column. That's the whole idea. The rest is how, how much, and when you're allowed to.
 
 ## How web scraping works
 
-**Answer:** a program loads a page, finds the repeating parts, reads the pieces it wants, and writes them as rows and columns.
+A program loads a page, finds the repeating parts, reads the pieces it wants, and writes them as rows and columns.
 
 Every list on the web has a structure, even when you can't see it. Each product card holds a name, a price and a link in the same places; each search result holds a title, a snippet and a link. A scraper uses that repetition:
 
@@ -26,7 +26,7 @@ The output is a table. Twenty products become twenty rows; a thousand become a t
 
 ## Three ways people scrape
 
-**Answer:** by writing code, by using a visual tool, or by using a browser extension that works on the page you're looking at.
+By writing code, by using a visual tool, or by using a browser extension that works on the page you're looking at.
 
 | Way | How it feels | Good for | The cost |
 |---|---|---|---|
@@ -38,7 +38,7 @@ Web Scraper Pro is the third kind. It finds the list on the page, names the colu
 
 ## What people scrape, with examples
 
-**Answer:** lists that someone needs as a table: businesses, products, listings, jobs, papers, reviews.
+Lists that someone needs as a table: businesses, products, listings, jobs, papers, reviews.
 
 - **Lead lists.** A search on Maps for dentists in a city, turned into rows with name, phone, website and address, plus the email from each business's own site. See [lead generation](/use-cases/lead-generation).
 - **Prices and products.** A competitor's category on Amazon or an independent store, with price, rating and review count, for a comparison sheet. See [e-commerce research](/use-cases/ecommerce).
@@ -49,7 +49,7 @@ Web Scraper Pro is the third kind. It finds the list on the page, names the colu
 
 ## What web scraping is not
 
-**Answer:** it isn't hacking, it isn't an API, and it isn't a way around a login.
+It isn't hacking, it isn't an API, and it isn't a way around a login.
 
 - **Not hacking.** Scraping reads what a page already shows to any visitor. Getting past a password, a paywall or a bot check is a different act, and the law treats it differently.
 - **Not an API.** An API is a door the site built for programs, with its own rules and limits. Scraping reads the human-facing page. When a site offers an API that returns what you need, it's usually the better route.
@@ -57,18 +57,18 @@ Web Scraper Pro is the third kind. It finds the list on the page, names the colu
 
 ## Is web scraping legal?
 
-**Answer:** collecting public data for your own use is lawful in most places; the site's terms, personal data and what you do with the data decide the rest.
+Collecting public data for your own use is lawful in most places; the site's terms, personal data and what you do with the data decide the rest.
 
 Two US decisions, *Van Buren* (2021) and *hiQ v. LinkedIn* (2022), established that reading public pages isn't a computer crime. Terms of service can still make scraping a breach of contract when you've agreed to them, privacy law applies to data about people wherever they live, and copyright protects writing and images. Our [guide to the law](/web-scraping-legal) covers each with sources; it's general information, not legal advice.
 
 ## Scraping and "data scraping": the same thing?
 
-**Answer:** mostly. "Data scraping" is the wider term; web scraping is data scraping from web pages.
+Mostly. "Data scraping" is the wider term; web scraping is data scraping from web pages.
 
 Data scraping also covers pulling text out of PDFs, reading screens of old software, or extracting values from documents. When people search "data scraping vs web scraping", the practical answer is that the web is where almost all of it happens now, and the tools above are web tools.
 
 ## Where to start
 
-**Answer:** with a page you already have open and a question you'd answer with a spreadsheet.
+With a page you already have open and a question you'd answer with a spreadsheet.
 
 Pick a real list you'd otherwise copy by hand, open it in Chrome, and try the no-code route first; the [any-website guide](/guides/scrape-data-from-any-website-to-excel) takes about five minutes. If the job turns out to need a nightly crawl or an API, you'll know what the data looks like before you build anything.

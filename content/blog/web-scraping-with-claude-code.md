@@ -9,17 +9,17 @@ category: Explainers
 tags: [claude code, ai, python, chrome extension]
 ---
 
-**Answer:** Claude Code is a strong way to write a web scraper: describe the page, paste its HTML, and you get a Python or JavaScript script in a minute, with a tight loop for fixing it. It's the right route when you're a developer and the crawl will run again with rules of your own. It's the slow route when you need a list in a spreadsheet now, because the script has to be written, run and maintained, and it can't see pages that need a browser or a sign-in. Here is what each route looks like on the same job.
+Claude Code is a strong way to write a web scraper: describe the page, paste its HTML, and you get a Python or JavaScript script in a minute, with a tight loop for fixing it. It's the right route when you're a developer and the crawl will run again with rules of your own. It's the slow route when you need a list in a spreadsheet now, because the script has to be written, run and maintained, and it can't see pages that need a browser or a sign-in. Here is what each route looks like on the same job.
 
 ## The job
 
-**Answer:** every business from a Maps search for plumbers in Denver, with phone, website and the email from each business's site, in Excel.
+Every business from a Maps search for plumbers in Denver, with phone, website and the email from each business's site, in Excel.
 
 It's the most searched scraping job on YouTube, and the one where the two routes differ most.
 
 ## Route 1: Claude Code writes the scraper
 
-**Answer:** a script in minutes, then the real work.
+A script in minutes, then the real work.
 
 A prompt like this gets a start:
 
@@ -40,7 +40,7 @@ None of this is a mark against Claude Code. It's the cost of a script: it sees t
 
 ## Route 2: the extension
 
-**Answer:** the same request as a sentence, run in your own browser, with the emails read in the same run.
+The same request as a sentence, run in your own browser, with the emails read in the same run.
 
 Open Chrome, open the Web Scraper Pro side panel, and type:
 
@@ -67,7 +67,7 @@ Fifty businesses with emails take about four minutes. The [full guide](/guides/g
 
 ## When Claude Code is the right choice
 
-**Answer:** when you're a developer, the crawl repeats, and the logic is yours.
+When you're a developer, the crawl repeats, and the logic is yours.
 
 - You'll run the same collection every week and want it on a server, not in a browser.
 - The job joins several sources, or applies rules a spreadsheet filter can't express.
@@ -78,7 +78,7 @@ In those cases, write it with Claude Code and keep it. Use an extension to look 
 
 ## The two together
 
-**Answer:** collect with the extension, process with the code.
+Collect with the extension, process with the code.
 
 A quiet pattern that works: the extension does the browsing, because browsers are what sites expect, and exports a CSV; a script Claude Code wrote does the enrichment, the scoring and the CRM upload. Each tool does the part it's good at, and neither has to fight the other's weak spot. When Web Scraper Pro's MCP connection ships, Claude will be able to call the collector directly from the conversation; the [MCP page](/mcp) says what's planned.
 

@@ -46,7 +46,7 @@ export default function WebScrapingLegalPage() {
                     <nav aria-label="Breadcrumb" className="text-sm text-slate-600 dark:text-slate-300">
                         <Link href="/guides" className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]">Resources</Link>
                     </nav>
-                    <h1 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">{p.title}</h1>
+                    <h1 className="mt-4 text-[2.125rem] md:text-[2.5rem] font-semibold tracking-tight text-slate-800 dark:text-white leading-[1.15]">{p.title}</h1>
                     <p className="mt-5 text-sm text-slate-600 dark:text-slate-300">
                         By <Link href={`/blog/author/${p.author.slug}`} className="font-medium text-slate-700 dark:text-slate-200 hover:underline">{p.author.name}</Link>
                         {" · "}Updated <time dateTime={p.updated}>{formatDate(p.updated)}</time>

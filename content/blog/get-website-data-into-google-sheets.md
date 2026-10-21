@@ -9,11 +9,11 @@ category: Explainers
 tags: [google sheets, excel, no code, importxml]
 ---
 
-**Answer:** for a plain HTML table on one public page, a Google Sheets formula does it in one cell. For a list that spans pages, loads as you scroll, or sits behind a sign-in, a formula can't see it, and you need a tool that reads the page in a browser. Here are the four routes people use, what each one handles, and the point where each one stops.
+For a plain HTML table on one public page, a Google Sheets formula does it in one cell. For a list that spans pages, loads as you scroll, or sits behind a sign-in, a formula can't see it, and you need a tool that reads the page in a browser. Here are the four routes people use, what each one handles, and the point where each one stops.
 
 ## Route 1: IMPORTHTML and IMPORTXML in Google Sheets
 
-**Answer:** the quickest route for a simple table or list on a public page, and the first to break.
+The quickest route for a simple table or list on a public page, and the first to break.
 
 Google Sheets has formulas that fetch a page and read a table or a list from it:
 
@@ -32,7 +32,7 @@ Where it breaks:
 
 ## Route 2: Power Query in Excel
 
-**Answer:** stronger than a Sheets formula for tables, with the same blind spot for JavaScript pages.
+Stronger than a Sheets formula for tables, with the same blind spot for JavaScript pages.
 
 Excel's **Get Data → From Web** fetches a page and lets you pick a table it found, then shape it in Power Query: rename, filter, split columns, and refresh later with one click. For a public page with a real HTML table, it's a good tool, and the refresh survives small changes.
 
@@ -40,7 +40,7 @@ Where it breaks: the same places. JavaScript-rendered lists come back empty, pag
 
 ## Route 3: An automation tool such as n8n or Make
 
-**Answer:** the route for a scheduled pipeline that ends in a sheet, at the cost of building and maintaining it.
+The route for a scheduled pipeline that ends in a sheet, at the cost of building and maintaining it.
 
 n8n, Make and Zapier can fetch a page with an HTTP step, pull values out with an HTML-extract step, and append rows to Google Sheets, on a schedule. People use n8n for exactly this, which is why "n8n" follows so many scraping searches.
 
@@ -48,7 +48,7 @@ Where it breaks: the fetch is still a plain request, so JavaScript pages need a 
 
 ## Route 4: A browser extension
 
-**Answer:** the route that reads the page as you see it, including JavaScript lists, every page of results, and pages you're signed in to.
+The route that reads the page as you see it, including JavaScript lists, every page of results, and pages you're signed in to.
 
 A browser extension collects from the page already open in Chrome, so what you can see, it can read. Web Scraper Pro finds the list on the page and names the columns, follows Next page, Load more and endless scrolling, and exports straight to a Google Sheet:
 
@@ -74,6 +74,6 @@ Where it breaks: it runs while your browser is open, and each run creates a new 
 
 ## Which to pick
 
-**Answer:** a formula for a public table that refreshes, an extension for everything that looks like a real list, and a pipeline only when the job must run without you.
+A formula for a public table that refreshes, an extension for everything that looks like a real list, and a pipeline only when the job must run without you.
 
 If the data is a tidy table on a public page and you want it to update itself, start with `IMPORTHTML`. If it's products, listings, businesses or results that run across pages, or anything you had to sign in to see, open the page and collect it with the extension; you'll have the sheet before the formula route finds the first page. If a team needs the same sheet refreshed every morning with nobody watching, that's a pipeline, or the cloud runs on the way.

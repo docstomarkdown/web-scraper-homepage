@@ -9,11 +9,11 @@ category: Explainers
 tags: [blocking, bot detection, browser extension]
 ---
 
-**Answer:** websites block scrapers to protect their servers, their data and their terms, and they do it by spotting traffic that doesn't look like a person: hundreds of pages a minute, requests from a data centre, no real browser behind them. A browser extension that reads the page open in your own Chrome window produces the traffic of one person browsing, which is why it mostly works where scripts get blocked. This post explains the defences, the honest limits, and the two lines no tool should cross.
+Websites block scrapers to protect their servers, their data and their terms, and they do it by spotting traffic that doesn't look like a person: hundreds of pages a minute, requests from a data centre, no real browser behind them. A browser extension that reads the page open in your own Chrome window produces the traffic of one person browsing, which is why it mostly works where scripts get blocked. This post explains the defences, the honest limits, and the two lines no tool should cross.
 
 ## What a site is protecting
 
-**Answer:** its servers, its data, and the promises it made to its users.
+Its servers, its data, and the promises it made to its users.
 
 - **Servers.** A script that loads ten pages a second costs the site real money and can slow it for everyone. Rate limits exist for this before anything else.
 - **Data.** A site's listings, prices or reviews are its product. Terms of service usually forbid automated collection, and the site enforces them technically because it can't enforce them one visitor at a time.
@@ -23,7 +23,7 @@ None of this is aimed at a person who copies twenty rows. It's aimed at volume a
 
 ## How blocking works
 
-**Answer:** five signals, from the obvious to the subtle, each on its own enough to stop a script.
+Five signals, from the obvious to the subtle, each on its own enough to stop a script.
 
 | Signal | What the site sees | What happens |
 |---|---|---|
@@ -37,7 +37,7 @@ The challenge you'll have seen is the verification page: a box to tick, a puzzle
 
 ## Why a browser extension usually passes
 
-**Answer:** because there is a person there.
+Because there is a person there.
 
 A tool like Web Scraper Pro doesn't send its own requests. It reads the page your browser already loaded, in your Chrome window, with your cookies, your screen and your pace. To the site, the Maps search you collected looks like you searching Maps, because it was. The extension adds the reading, not the traffic.
 
@@ -49,7 +49,7 @@ Three things follow from that:
 
 ## The honest limits
 
-**Answer:** fewer blocks, not zero, and no way past a wall you shouldn't be behind.
+Fewer blocks, not zero, and no way past a wall you shouldn't be behind.
 
 - **Volume still matters.** Load two hundred Scholar pages in a sitting and Scholar may ask you to verify. Collect in reasonable runs and spread big jobs over time.
 - **Some sites rate-limit everyone.** Large stores slow accounts that page through hundreds of listings quickly, whoever is doing it. Narrow the search instead of forcing through it.
@@ -58,13 +58,13 @@ Three things follow from that:
 
 ## The two lines
 
-**Answer:** don't defeat a barrier, and don't take what you had to break in to see.
+Don't defeat a barrier, and don't take what you had to break in to see.
 
 Reading a public page is lawful in most places; getting past a password, a paywall or a bot check to read it is where the law, and most sites' terms, turn against you. Our [guide to the law](/web-scraping-legal) covers the cases. A tool that offers to solve verifications, rotate identities or hide where you are is a tool for crossing those lines, and the answer to "will it get blocked?" becomes "should it?"
 
 ## What to do when you are blocked
 
-**Answer:** slow down, narrow the job, complete the check yourself, or accept the no.
+Slow down, narrow the job, complete the check yourself, or accept the no.
 
 1. **Complete the verification in the tab**, then rescan and carry on. Most checks pass once.
 2. **Narrow the search.** A zip code instead of a city; a category instead of the whole store. Fewer pages, fewer flags.
