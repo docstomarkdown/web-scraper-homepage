@@ -3,8 +3,8 @@ import { publishedPages } from "./pages"
 // Site configuration
 export const siteConfig = {
   name: "Web Scraper Pro",
-  description: "Extract data from any website without code. Simple, powerful, and designed for everyone.",
-  metaDescription: "Extract data from any website without code with Web Scraper Pro. Save time and streamline your workflow with automated data extraction.",
+  description: "Turn any web page into a spreadsheet. A free Chrome extension: collect Google Maps leads, Amazon products and Zillow listings, then export to Google Sheets, Excel or CSV.",
+  metaDescription: "Turn any web page into a spreadsheet with Web Scraper Pro, a free Chrome extension. Collect Google Maps leads, Amazon products and Zillow listings, then export to Google Sheets, Excel or CSV.",
   url: "https://www.webscraper.pro/",
   links: {
     twitter: "https://x.com/vikramaruchamy",

@@ -45,7 +45,7 @@ Every tutorial, guide and product page must be:
 ### Procedural tutorial (the default for how-tos)
 
 ```
-# How To <Accomplish a Goal> with Web Scraper Pro        ← H1 title
+# How To <what a reader types into Google>                ← H1 title (no "with Web Scraper Pro")
 Introduction (1–3 paragraphs, no heading on our site)
 ## Prerequisites
 ## Step 1 — Opening the Search Results
@@ -65,8 +65,11 @@ Title, a short introduction, optional prerequisites, the body, then a concluding
 Our site allows only one H1 per page, so the introduction has no heading (DigitalOcean gives it an H3).
 
 ### Title
-- **Name the goal, not only the tool:** "How To Build a Lead List of Local Plumbers with Web Scraper
-  Pro", not "How To Use Web Scraper Pro on Google Maps".
+- **Say what a reader types into Google, and leave the brand out:** "How To Extract Emails from
+  Google Maps", not "How To Use Web Scraper Pro on Google Maps" and not "… with Web Scraper Pro"
+  (owner decision 2026-10-21: the tab title already ends in "| Web Scraper Pro", and the brand adds
+  no search signal). Check the phrase against `youtube-research/SEARCH_QUERIES.md` and
+  `AUTOSUGGEST.md` in the strategy repo, and make sure no other page already owns it.
 - Keep it under 60 characters where possible.
 - Use title case.
 

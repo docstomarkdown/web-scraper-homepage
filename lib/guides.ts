@@ -5,7 +5,7 @@ import { getAuthor, type Author } from "@/content/authors";
 
 // Guides are tutorials: one task, done with the extension, tested on the released version. They're Markdown files in
 // content/guides/<slug>.md with YAML front matter:
-//   title            "How To <Goal> with Web Scraper Pro", under 60 characters
+//   title            "How To <what a reader types into Google>", under 60 characters; no "with Web Scraper Pro" (2026-10-21)
 //   description      one sentence for search results and cards
 //   status           "draft" (hidden from listings, the sitemap and production) or "published"
 //   date, updated    YYYY-MM-DD; `updated` is the last test on the released extension
