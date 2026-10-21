@@ -68,7 +68,7 @@ export const etsy: ScraperPageContent = {
     faqs: [
         { q: "Can I collect a single shop's listings?", a: "Yes. Open the shop's page; its items are a list, so pick it in the List tab and collect every page or section." },
         { q: "Does it get the number of sales for a listing?", a: "Only what the card shows. Etsy's cards show the shop's review count and badges rather than per-listing sales; open a listing and use the Properties tab for its own details." },
-        { q: "Can I find the top shops in a niche?", a: "Collect the search, then sort the sheet by Shop Review Count; the shops with the most reviews lead the category." },
+        { q: "Can I find the top shops in a product category?", a: "Collect the search, then sort the sheet by Shop Review Count; the shops with the most reviews lead the category." },
         { q: "Can I run several searches at once?", a: "Paste the search addresses into Bulk scrape and each is collected in turn with the same page settings." },
         { q: "Why do several listings share the same rating?", a: "Shop Rating and Shop Review Count belong to the shop, not the listing, so every listing from one shop shows the shop's numbers." },
         { q: "Can I collect one shop's listings?", a: "Yes. Open the shop's page; its items are a list, so pick it in the List tab and collect every page or section." },
