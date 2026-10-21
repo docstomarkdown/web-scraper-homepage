@@ -3,6 +3,7 @@ import { getAllPosts, getAllAuthors, getAllCategories, getPostsByAuthor, getPost
 import { siteConfig, toolsGroups } from "@/config/site";
 import { publishedPages } from "@/config/pages";
 import { getGuides } from "@/lib/guides";
+import { comparePages } from "@/content/compare";
 import { scraperPages } from "@/content/scrapers";
 import { useCasePages } from "@/content/use-cases";
 
@@ -23,6 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const group of toolsGroups) for (const t of group.items) pages.push(url(t.href, { priority: 0.5 }));
 
     for (const g of getGuides()) pages.push(url(`/guides/${g.slug}`, { lastModified: new Date(g.updated), priority: 0.7 }));
+    for (const c of Object.values(comparePages)) pages.push(url(`/compare/${c.slug}`, { lastModified: new Date(c.comparedOn), priority: 0.6 }));
     for (const c of Object.values(scraperPages)) if (c.status === "published") pages.push(url(`/scrapers/${c.slug}`, { lastModified: new Date(c.lastVerified), priority: 0.7 }));
     for (const c of Object.values(useCasePages)) if (c.status === "published") pages.push(url(c.page.href, { lastModified: new Date(c.lastUpdated), priority: 0.7 }));
 

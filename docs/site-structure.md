@@ -122,11 +122,11 @@ The hub at `/use-cases` lists them all.
 | Section | URL | What | Status |
 |---|---|---|---|
 | Guides | `/guides/<slug>` | DigitalOcean-style tutorials, one per task ("How To Build a Lead List of Plumbers from Maps"). Each feature and use-case page links to at least one. | 🟢 |
-| Blog | `/blog/<slug>` | News, explainers, comparisons. Move posts from `/<slug>` to `/blog/<slug>` before the first post, and fix `app/sitemap.ts`. | 🟢 |
-| Compare | `/compare/<slug>` | One page per competitor ("Web Scraper Pro vs X"), fair and dated. The list of competitors lives outside this repo. | 🟢 |
+| Blog | `/blog/<slug>` | News, explainers, comparisons. Posts live under `/blog/<slug>`; the first post (1.3.0 release) is up. | ✅ 2026-10-21 |
+| Compare | `/compare/<slug>` | One page per competitor ("Web Scraper Pro vs X"), fair and dated. The list of competitors lives outside this repo. First page: webscraper.io. | ✅ 2026-10-21 |
 | Free tools | `/tools` | The existing e-commerce calculators. Add scraping-related tools over time. | ✅ |
-| What's new (changelog) | `/changelog` | One entry per released feature | 🟢 |
-| Is web scraping legal? | `/web-scraping-legal` | Neutral and sourced, "not legal advice" | 🟢 |
+| What's new (changelog) | `/changelog` | One entry per release, from DECISIONS.md | ✅ 2026-10-21 |
+| Is web scraping legal? | `/web-scraping-legal` | Neutral and sourced, "not legal advice" | ✅ 2026-10-21 |
 | Developer docs | `/docs` | Dropped from the registry 2026-10-21 until the cloud launch; `/mcp` and `/cloud` carry the coming-soon story. | ⬜ with cloud |
 
 ## 6. Company and trust

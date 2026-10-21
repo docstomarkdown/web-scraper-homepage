@@ -76,6 +76,13 @@ export default function ReviewDesk() {
         const updated = src.match(/lastUpdated:\s*"([^"]+)"/)?.[1] ?? "";
         return { title: p.label, href: p.href, status: p.comingSoon ? "coming soon" : p.status, words: words(src), captures: [ids.filter((i) => have.has(i)).length, ids.length], updated, notes: notes(file) };
     });
+    const legal = fs.readFileSync(path.join(root, "content/pages/web-scraping-legal.md"), "utf8");
+    const resources: Row[] = [
+        { title: "What's new (changelog)", href: "/changelog", status: "live", words: words(fs.readFileSync(path.join(root, "content/changelog.ts"), "utf8")), captures: [0, 0], updated: "2026-10-21", notes: ["Entries come from DECISIONS.md; add one per release, newest first."] },
+        { title: "Is web scraping legal?", href: "/web-scraping-legal", status: "live", words: words(legal), captures: [0, 0], updated: legal.match(/updated:\s*(\S+)/)?.[1] ?? "", notes: ["Check each source link opens; re-read when a cited case moves."] },
+        { title: "Compare: Web Scraper (webscraper.io)", href: "/compare/webscraper-io", status: "live", words: words(fs.readFileSync(path.join(root, "content/compare/webscraper-io.ts"), "utf8")), captures: [0, 0], updated: "2026-10-21", notes: ["Their prices and limits were read on 2026-09-06; re-check before republishing."] },
+        { title: "Blog: Web Scraper Pro 1.3.0", href: "/blog/web-scraper-pro-1-3-0-emails-in-the-same-maps-run", status: "live", words: words(fs.readFileSync(path.join(root, "content/blog/web-scraper-pro-1-3-0-emails-in-the-same-maps-run.md"), "utf8")), captures: [0, 0], updated: "2026-10-21", notes: [] },
+    ];
     const total = (rows: Row[]) => rows.reduce((n, r) => n + r.words, 0);
 
     return (
@@ -90,6 +97,7 @@ export default function ReviewDesk() {
                 <Table heading="Use cases" rows={useCases} />
                 <Table heading="Site pages" rows={sites} />
                 <Table heading="Feature pages" rows={features} />
+                <Table heading="Resources" rows={resources} />
                 <section className="mt-12 text-sm text-slate-600 dark:text-slate-300">
                     <h2 className="text-xl font-semibold text-slate-900 dark:text-white">How to review a page</h2>
                     <ol className="mt-4 list-decimal pl-5 space-y-2">

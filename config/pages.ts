@@ -97,10 +97,10 @@ export const pages: SitePage[] = [
 
     // Resources
     resource(["guides", "Guides", "Step-by-step tutorials, from first install to export.", "planned", "book"]),
-    resource(["blog", "Blog", "News, explainers and ideas for using web data.", "planned", "newspaper"]),
-    resource(["compare", "Comparisons", "How Web Scraper Pro compares with other tools.", "planned", "scale"]),
-    resource(["changelog", "What's new", "Every new feature and fix, as it ships.", "planned", "history"]),
-    resource(["web-scraping-legal", "Is web scraping legal?", "What the law says about collecting public data.", "planned", "gavel"]),
+    resource(["blog", "Blog", "News, explainers and ideas for using web data.", "live", "newspaper"]),
+    resource(["compare", "Comparisons", "How Web Scraper Pro compares with other tools.", "live", "scale"]),
+    resource(["changelog", "What's new", "Every new feature and fix, as it ships.", "live", "history"]),
+    resource(["web-scraping-legal", "Is web scraping legal?", "What the law says about collecting public data.", "live", "gavel"]),
     resource(["tools", "Free seller calculators", "Marketplace fees, profit margins, shipping and stock.", "live", "calculator"]),
     { ...resource(["contact", "Get help", "Questions, problems, or a site you need.", "live", "mail"]), href: "/support" },
 ];
