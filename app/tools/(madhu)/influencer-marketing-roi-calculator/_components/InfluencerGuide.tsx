@@ -14,9 +14,9 @@ export function InfluencerGuide() {
                     icon: Percent,
                     stat: "ROI Modes",
                     statLabel: "Simple & Deep",
-                    iconBg: "bg-blue-50",
-                    iconColor: "text-blue-600",
-                    statColor: "text-blue-700",
+                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-600 dark:text-blue-400",
+                    statColor: "text-blue-700 dark:text-blue-400",
                     tooltip: "The advanced 'Add Details' mode automatically sums your granular expenses into a total Campaign Cost."
                 },
                 {
@@ -25,9 +25,9 @@ export function InfluencerGuide() {
                     icon: Box,
                     stat: "COGS matters",
                     statLabel: "Gifted Limits",
-                    iconBg: "bg-green-50",
-                    iconColor: "text-green-600",
-                    statColor: "text-green-700",
+                    iconBg: "bg-green-50 dark:bg-green-950/40",
+                    iconColor: "text-green-600 dark:text-green-400",
+                    statColor: "text-green-700 dark:text-green-400",
                     tooltip: "Tracking product costs ensures you know exactly when a 'Free' shoutout actually becomes profitable."
                 },
                 {
@@ -36,9 +36,9 @@ export function InfluencerGuide() {
                     icon: Target,
                     stat: "100%",
                     statLabel: "Strong Target",
-                    iconBg: "bg-purple-50",
-                    iconColor: "text-purple-600",
-                    statColor: "text-purple-700",
+                    iconBg: "bg-purple-50 dark:bg-purple-950/40",
+                    iconColor: "text-purple-600 dark:text-purple-400",
+                    statColor: "text-purple-700 dark:text-purple-400",
                     tooltip: "Direct-response marketers typically target 100%+ ROI, but brand-builders often accept break-even for content."
                 }
             ]}

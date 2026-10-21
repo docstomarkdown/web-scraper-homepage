@@ -52,7 +52,7 @@ export function ToolGuide({ title, icon = BookOpen, items }: ToolGuideProps) {
                     return (
                         <div
                             key={index}
-                            className="bg-white rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-md transition-all duration-300 group overflow-hidden"
+                            className="bg-white rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-md transition-all duration-300 group overflow-hidden dark:bg-slate-900 dark:border-slate-800"
                         >
                             {/* Accent bar on hover — color matches item icon */}
                             <div className={`h-[3px] bg-gradient-to-r ${accentGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
@@ -68,16 +68,16 @@ export function ToolGuide({ title, icon = BookOpen, items }: ToolGuideProps) {
                                 </div>
                                 {/* Content */}
                                 <div className="flex-1 min-w-0">
-                                    <h3 className="text-[16px] font-bold text-slate-600 mb-1 leading-snug transition-colors">
+                                    <h3 className="text-[16px] font-bold text-slate-600 mb-1 leading-snug transition-colors dark:text-slate-300">
                                         {item.title}
                                     </h3>
                                     {typeof item.description === 'string' ? (
                                         <div
-                                            className="text-[14.5px] text-slate-500 leading-relaxed font-medium [&_em]:not-italic [&_em]:font-semibold [&_em]:text-slate-500"
+                                            className="text-[14.5px] text-slate-500 leading-relaxed font-medium [&_em]:not-italic [&_em]:font-semibold [&_em]:text-slate-500 dark:text-slate-400"
                                             dangerouslySetInnerHTML={{ __html: item.description.replace(/<strong>(.*?)<\/strong>/gi, '$1') }}
                                         />
                                     ) : (
-                                        <div className="text-[14.5px] text-slate-500 leading-relaxed font-medium [&_em]:not-italic [&_em]:font-semibold [&_em]:text-slate-500">
+                                        <div className="text-[14.5px] text-slate-500 leading-relaxed font-medium [&_em]:not-italic [&_em]:font-semibold [&_em]:text-slate-500 dark:text-slate-400">
                                             {item.description}
                                         </div>
                                     )}

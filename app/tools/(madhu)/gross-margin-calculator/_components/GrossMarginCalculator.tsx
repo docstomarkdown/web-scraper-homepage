@@ -164,7 +164,7 @@ export function GrossMarginCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Left: Inputs */}
                 <div className="lg:col-span-7 space-y-3 self-start lg:sticky lg:top-28">
-                    <Card className="border border-slate-200 shadow-xl shadow-slate-200/40 bg-white rounded-3xl overflow-hidden">
+                    <Card className="border border-slate-200 shadow-xl shadow-slate-200/40 bg-white rounded-3xl overflow-hidden dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Margin Calculator"
                             description="Choose a mode and enter your values to calculate instantly."
@@ -176,7 +176,7 @@ export function GrossMarginCalculator() {
                         />
                         <CardContent className="p-6 md:p-8 pb-12 md:pb-16 space-y-8">
                             {/* Mode Selector */}
-                            <div className="grid grid-cols-3 gap-1.5 p-1 bg-slate-100 rounded-2xl border border-slate-200/60">
+                            <div className="grid grid-cols-3 gap-1.5 p-1 bg-slate-100 rounded-2xl border border-slate-200/60 dark:bg-slate-800 dark:border-slate-800">
                                 <ModeButton active={mode === "margin"} onClick={() => handleModeChange("margin")} icon={Percent} label="Find Margin" />
                                 <ModeButton active={mode === "revenue"} onClick={() => handleModeChange("revenue")} icon={Target} label="Find Revenue" />
                                 <ModeButton active={mode === "cogs"} onClick={() => handleModeChange("cogs")} icon={Wallet} label="Find COGS" />
@@ -237,8 +237,8 @@ function ModeButton({ active, onClick, icon: Icon, label }: { active: boolean; o
             className={cn(
                 "flex flex-col items-center justify-center gap-1.5 p-2 rounded-xl transition-all duration-300 border",
                 active
-                    ? "bg-white border-blue-200 shadow-sm text-blue-600 ring-2 ring-blue-100"
-                    : "border-transparent text-slate-500 hover:bg-white hover:text-slate-700 hover:shadow-sm"
+                    ? "bg-white border-blue-200 shadow-sm text-blue-600 ring-2 ring-blue-100 dark:bg-slate-900 dark:border-blue-900/50 dark:text-blue-400"
+                    : "border-transparent text-slate-500 hover:bg-white hover:text-slate-700 hover:shadow-sm dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-slate-200"
             )}
         >
             <Icon className={cn("w-4 h-4", active ? "stroke-[2.5px]" : "stroke-2")} />

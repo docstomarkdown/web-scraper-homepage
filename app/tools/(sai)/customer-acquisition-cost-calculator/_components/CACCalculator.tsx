@@ -32,7 +32,7 @@ export function CACCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Inputs Section — Sticky */}
                 <div className="lg:col-span-7 space-y-3 lg:sticky lg:top-8">
-                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden rounded-3xl">
+                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden rounded-3xl dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Acquisition Metrics"
                             description="Enter total costs and customers acquired."
@@ -112,16 +112,16 @@ export function CACCalculator() {
                         ]}
                     >
                         {/* Benchmark Inner Card */}
-                        <div className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl transition-all duration-200 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] hover:border-slate-300 overflow-hidden">
+                        <div className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl transition-all duration-200 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] hover:border-slate-300 overflow-hidden dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700">
                             <div className="flex items-center gap-2 p-4">
-                                <Target className="w-4 h-4 text-blue-500 flex-shrink-0" />
-                                <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 tracking-tight">
+                                <Target className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
+                                <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 tracking-tight dark:text-slate-400">
                                     Industry Benchmark
                                 </span>
                             </div>
-                            <div className="px-4 pb-4 pt-0 border-t border-slate-100">
-                                <p className="text-[13px] text-slate-500 leading-relaxed pt-3 pl-[24px]">
-                                    A good CAC depends on your industry and LTV (Lifetime Value). A healthy business model typically aims for an <strong className="text-slate-700 font-semibold">LTV:CAC ratio of 3:1</strong> or higher.
+                            <div className="px-4 pb-4 pt-0 border-t border-slate-100 dark:border-slate-800">
+                                <p className="text-[13px] text-slate-500 leading-relaxed pt-3 pl-[24px] dark:text-slate-400">
+                                    A good CAC depends on your industry and LTV (Lifetime Value). A healthy business model typically aims for an <strong className="text-slate-700 font-semibold dark:text-slate-200">LTV:CAC ratio of 3:1</strong> or higher.
                                 </p>
                             </div>
                         </div>

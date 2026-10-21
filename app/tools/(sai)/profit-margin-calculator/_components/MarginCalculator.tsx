@@ -64,7 +64,7 @@ export function MarginCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Inputs Section */}
                 <div className="lg:col-span-7 space-y-3">
-                    <Card className="border border-slate-200 shadow-sm bg-white">
+                    <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             description="Calculate your net profit and margin."
                             onReset={handleReset}
@@ -104,22 +104,22 @@ export function MarginCalculator() {
                                     className={cn(
                                         "flex items-center justify-between p-4 rounded-xl border cursor-pointer transition-all duration-200 group select-none",
                                         showAdvanced
-                                            ? "bg-blue-50/50 border-blue-200 shadow-sm"
-                                            : "bg-slate-50 border-slate-200 hover:border-blue-300 hover:bg-slate-100"
+                                            ? "bg-blue-50/50 border-blue-200 shadow-sm dark:bg-blue-950/40 dark:border-blue-900/50"
+                                            : "bg-slate-50 border-slate-200 hover:border-blue-300 hover:bg-slate-100 dark:bg-slate-800/60 dark:border-slate-800 dark:hover:border-blue-800 dark:hover:bg-slate-800"
                                     )}
                                 >
                                     <div className="flex items-center gap-3">
                                         <div className={cn(
                                             "w-8 h-8 rounded-full flex items-center justify-center transition-colors",
-                                            showAdvanced ? "bg-blue-100 text-blue-600" : "bg-white text-slate-400 group-hover:text-blue-500"
+                                            showAdvanced ? "bg-blue-100 text-blue-600 dark:bg-blue-900/40 dark:text-blue-400" : "bg-white text-slate-400 group-hover:text-blue-500 dark:bg-slate-900 dark:text-slate-500 dark:group-hover:text-blue-400"
                                         )}>
                                             <ChevronsUpDown className="w-4 h-4" />
                                         </div>
                                         <div className="flex flex-col">
-                                            <span className={cn("text-sm font-semibold transition-colors", showAdvanced ? "text-blue-700" : "text-slate-700")}>
+                                            <span className={cn("text-sm font-semibold transition-colors", showAdvanced ? "text-blue-700 dark:text-blue-400" : "text-slate-700 dark:text-slate-200")}>
                                                 Advanced Settings
                                             </span>
-                                            <span className="text-[11px] text-slate-400 font-medium">
+                                            <span className="text-[11px] text-slate-400 font-medium dark:text-slate-500">
                                                 Shipping, Tax, & Misc Costs
                                             </span>
                                         </div>
@@ -127,15 +127,15 @@ export function MarginCalculator() {
                                     <div className="flex items-center gap-3">
                                         <span className={cn(
                                             "text-[10px] px-2 py-0.5 rounded-full font-bold tracking-wide uppercase transition-colors",
-                                            showAdvanced ? "bg-blue-100 text-blue-700" : "bg-slate-200 text-slate-500"
+                                            showAdvanced ? "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-400" : "bg-slate-200 text-slate-500 dark:bg-slate-700 dark:text-slate-400"
                                         )}>
                                             Optional
                                         </span>
-                                        {showAdvanced ? <ChevronUp className="w-4 h-4 text-blue-500" /> : <ChevronDown className="w-4 h-4 text-slate-400" />}
+                                        {showAdvanced ? <ChevronUp className="w-4 h-4 text-blue-500 dark:text-blue-400" /> : <ChevronDown className="w-4 h-4 text-slate-400 dark:text-slate-500" />}
                                     </div>
                                 </div>
                                 {showAdvanced && (
-                                    <FadeIn className="marginTop-4 p-5 bg-slate-50/50 rounded-xl border border-slate-200/60 space-y-3 mt-4">
+                                    <FadeIn className="marginTop-4 p-5 bg-slate-50/50 rounded-xl border border-slate-200/60 space-y-3 mt-4 dark:bg-slate-800/60 dark:border-slate-800">
                                         <CalculatorInput
                                             label={`Shipping Cost per Unit (${symbol})`}
                                             value={shippingCost}
@@ -191,40 +191,40 @@ export function MarginCalculator() {
                     />
                     {/* Breakdown Card */}
                     {totalRevenue > 0 ? (
-                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500">
-                            <div className="px-5 py-3.5 border-b border-slate-100">
-                                <p className="text-xs font-bold text-slate-600 uppercase tracking-wider">Financial Breakdown</p>
+                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500 dark:bg-slate-900 dark:border-slate-800">
+                            <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800">
+                                <p className="text-xs font-bold text-slate-600 uppercase tracking-wider dark:text-slate-300">Financial Breakdown</p>
                             </div>
-                            <div className="divide-y divide-slate-100">
+                            <div className="divide-y divide-slate-100 dark:divide-slate-800">
                                 <div className="flex justify-between items-center px-5 py-3.5">
-                                    <span className="text-sm text-slate-600">Total Revenue</span>
-                                    <span className="text-sm font-semibold text-slate-800">
+                                    <span className="text-sm text-slate-600 dark:text-slate-300">Total Revenue</span>
+                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">
                                         {formatCurrency(totalRevenue)}
                                     </span>
                                 </div>
                                 <div className="flex justify-between items-center px-5 py-3.5">
-                                    <span className="text-sm text-slate-600">Total Costs</span>
-                                    <span className="text-sm font-semibold text-red-500">
+                                    <span className="text-sm text-slate-600 dark:text-slate-300">Total Costs</span>
+                                    <span className="text-sm font-semibold text-red-500 dark:text-red-400">
                                         - {formatCurrency(totalCostOfGoods)}
                                     </span>
                                 </div>
                                 <div className="flex justify-between items-center px-5 py-3.5">
-                                    <span className="text-sm text-slate-600">Gross Margin</span>
-                                    <span className="text-sm font-semibold text-slate-800">
+                                    <span className="text-sm text-slate-600 dark:text-slate-300">Gross Margin</span>
+                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">
                                         {grossMarginPercent.toFixed(2)}%
                                     </span>
                                 </div>
                                 <div className="flex justify-between items-center px-5 py-4">
-                                    <span className="text-sm font-bold text-blue-600">Markup</span>
-                                    <span className="text-base font-bold text-blue-600">
+                                    <span className="text-sm font-bold text-blue-600 dark:text-blue-400">Markup</span>
+                                    <span className="text-base font-bold text-blue-600 dark:text-blue-400">
                                         {markupPercent.toFixed(2)}%
                                     </span>
                                 </div>
                             </div>
                         </div>
                     ) : (
-                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center">
-                            <p className="text-sm text-slate-400">Enter cost and selling price to see breakdown.</p>
+                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center dark:bg-slate-900 dark:border-slate-800">
+                            <p className="text-sm text-slate-400 dark:text-slate-500">Enter cost and selling price to see breakdown.</p>
                         </div>
                     )}
                 </div>

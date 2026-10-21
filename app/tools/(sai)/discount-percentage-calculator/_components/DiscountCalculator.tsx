@@ -76,7 +76,7 @@ export function DiscountCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Inputs Section */}
                 <div className="lg:col-span-7 space-y-3">
-                    <Card className="border border-slate-200 shadow-sm bg-white">
+                    <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             description="Enter your details."
                             onReset={handleReset}
@@ -86,10 +86,10 @@ export function DiscountCalculator() {
                         />
                         <CardContent className="space-y-3 pt-6">
                             <div className="space-y-3 mb-2 pb-6 border-b border-slate-50">
-                                <label className="text-sm font-bold text-slate-600">Calculation Mode</label>
-                                <div className="relative flex bg-slate-100 p-1 rounded-xl border border-slate-200 w-full sm:w-fit">
+                                <label className="text-sm font-bold text-slate-600 dark:text-slate-300">Calculation Mode</label>
+                                <div className="relative flex bg-slate-100 p-1 rounded-xl border border-slate-200 w-full sm:w-fit dark:bg-slate-800 dark:border-slate-800">
                                     <motion.div
-                                        className="absolute bg-white rounded-lg shadow-sm border border-slate-200"
+                                        className="absolute bg-white rounded-lg shadow-sm border border-slate-200 dark:bg-slate-900 dark:border-slate-800"
                                         initial={false}
                                         animate={{
                                             x: mode === "find-price" ? 0 : "100%",
@@ -102,7 +102,7 @@ export function DiscountCalculator() {
                                         onClick={() => { setMode("find-price"); handleReset(); }}
                                         className={cn(
                                             "relative z-10 px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 w-32",
-                                            mode === "find-price" ? "text-blue-600" : "text-slate-500 hover:text-slate-700"
+                                            mode === "find-price" ? "text-blue-600 dark:text-blue-400" : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
                                         )}
                                     >
                                         Find Final Price
@@ -112,7 +112,7 @@ export function DiscountCalculator() {
                                         onClick={() => { setMode("find-discount"); handleReset(); }}
                                         className={cn(
                                             "relative z-10 px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 w-32",
-                                            mode === "find-discount" ? "text-blue-600" : "text-slate-500 hover:text-slate-700"
+                                            mode === "find-discount" ? "text-blue-600 dark:text-blue-400" : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
                                         )}
                                     >
                                         Find Discount %
@@ -189,12 +189,12 @@ export function DiscountCalculator() {
                             className={cn(
                                 "px-4 py-3 rounded-xl border text-center text-sm font-semibold",
                                 (mode === "find-price" ? val(discountValue) : calculatedDiscount) >= 40
-                                    ? "bg-blue-50 border-blue-200 text-blue-700"
+                                    ? "bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-950/40 dark:border-blue-900/50 dark:text-blue-400"
                                     : (mode === "find-price" ? val(discountValue) : calculatedDiscount) >= 20
-                                        ? "bg-blue-50 border-blue-200 text-blue-700"
+                                        ? "bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-950/40 dark:border-blue-900/50 dark:text-blue-400"
                                         : (mode === "find-price" ? val(discountValue) : calculatedDiscount) >= 10
-                                            ? "bg-amber-50 border-amber-200 text-amber-700"
-                                            : "bg-slate-50 border-slate-200 text-slate-600"
+                                            ? "bg-amber-50 border-amber-200 text-amber-700 dark:bg-amber-950/40 dark:border-amber-900/50 dark:text-amber-400"
+                                            : "bg-slate-50 border-slate-200 text-slate-600 dark:bg-slate-800/60 dark:border-slate-800 dark:text-slate-300"
                             )}
                         >
                             {(mode === "find-price" ? val(discountValue) : calculatedDiscount) >= 40
@@ -211,51 +211,51 @@ export function DiscountCalculator() {
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500"
+                            className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500 dark:bg-slate-900 dark:border-slate-800"
                         >
-                            <div className="px-5 py-3.5 border-b border-slate-100">
-                                <p className="text-xs font-bold text-slate-600 uppercase tracking-wider">Price Breakdown</p>
+                            <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800">
+                                <p className="text-xs font-bold text-slate-600 uppercase tracking-wider dark:text-slate-300">Price Breakdown</p>
                             </div>
-                            <div className="divide-y divide-slate-100">
+                            <div className="divide-y divide-slate-100 dark:divide-slate-800">
                                 <div className="flex justify-between items-center px-5 py-3.5">
-                                    <span className="text-sm text-slate-600">Original Price</span>
-                                    <span className="text-sm font-semibold text-slate-800">{formatCurrency(val(originalPrice))}</span>
+                                    <span className="text-sm text-slate-600 dark:text-slate-300">Original Price</span>
+                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{formatCurrency(val(originalPrice))}</span>
                                 </div>
                                 <div className="flex justify-between items-center px-5 py-3.5">
-                                    <span className="text-sm text-slate-600">Discount ({mode === "find-price" ? `${val(discountValue)}%` : `${calculatedDiscount.toFixed(1)}%`})</span>
-                                    <span className="text-sm font-semibold text-red-500">
+                                    <span className="text-sm text-slate-600 dark:text-slate-300">Discount ({mode === "find-price" ? `${val(discountValue)}%` : `${calculatedDiscount.toFixed(1)}%`})</span>
+                                    <span className="text-sm font-semibold text-red-500 dark:text-red-400">
                                         - {formatCurrency(savings)}
                                     </span>
                                 </div>
                                 <div className="flex justify-between items-center px-5 py-3.5">
-                                    <span className="text-sm text-slate-600">Price After Discount</span>
-                                    <span className="text-sm font-semibold text-slate-800">
+                                    <span className="text-sm text-slate-600 dark:text-slate-300">Price After Discount</span>
+                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">
                                         {formatCurrency(val(originalPrice) - savings)}
                                     </span>
                                 </div>
                                 {val(quantity) > 1 && (
                                     <>
-                                        <div className="flex justify-between items-center px-5 py-3.5 bg-slate-50/50">
-                                            <span className="text-sm text-slate-600">Quantity</span>
-                                            <span className="text-sm font-semibold text-slate-800">× {val(quantity)}</span>
+                                        <div className="flex justify-between items-center px-5 py-3.5 bg-slate-50/50 dark:bg-slate-800/60">
+                                            <span className="text-sm text-slate-600 dark:text-slate-300">Quantity</span>
+                                            <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">× {val(quantity)}</span>
                                         </div>
                                         <div className="flex justify-between items-center px-5 py-4">
-                                            <span className="text-sm font-bold text-blue-600">Grand Total</span>
-                                            <span className="text-base font-bold text-blue-600">{formatCurrency(finalPrice)}</span>
+                                            <span className="text-sm font-bold text-blue-600 dark:text-blue-400">Grand Total</span>
+                                            <span className="text-base font-bold text-blue-600 dark:text-blue-400">{formatCurrency(finalPrice)}</span>
                                         </div>
                                     </>
                                 )}
                                 {val(quantity) === 1 && (
                                     <div className="flex justify-between items-center px-5 py-4">
-                                        <span className="text-sm font-bold text-blue-600">Final Price</span>
-                                        <span className="text-base font-bold text-blue-600">{formatCurrency(finalPrice)}</span>
+                                        <span className="text-sm font-bold text-blue-600 dark:text-blue-400">Final Price</span>
+                                        <span className="text-base font-bold text-blue-600 dark:text-blue-400">{formatCurrency(finalPrice)}</span>
                                     </div>
                                 )}
                             </div>
                         </motion.div>
                     ) : (
-                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center">
-                            <p className="text-sm text-slate-400">Enter values to see the price breakdown.</p>
+                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center dark:bg-slate-900 dark:border-slate-800">
+                            <p className="text-sm text-slate-400 dark:text-slate-500">Enter values to see the price breakdown.</p>
                         </div>
                     )}
                 </div>

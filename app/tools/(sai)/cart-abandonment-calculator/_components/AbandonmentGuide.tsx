@@ -10,10 +10,10 @@ export function AbandonmentGuide() {
                 {
                     title: "Understand the Core Concept",
                     icon: ShoppingCart,
-                    iconBg: "bg-orange-50",
-                    iconColor: "text-orange-500",
+                    iconBg: "bg-orange-50 dark:bg-orange-950/40",
+                    iconColor: "text-orange-500 dark:text-orange-400",
                     stat: "Lost",
-                    statColor: "text-orange-600",
+                    statColor: "text-orange-600 dark:text-orange-400",
                     statLabel: "Interested but left",
                     tooltip: "Formula: 100 - (Transactions ÷ Carts × 100)",
                     description: "Cart abandonment occurs when a highly-interested customer adds items to a shopping cart to checkout, but leaves your site before successfully processing their payment."
@@ -21,10 +21,10 @@ export function AbandonmentGuide() {
                 {
                     title: "Identify Conversion Killers",
                     icon: Ban,
-                    iconBg: "bg-red-50",
-                    iconColor: "text-red-500",
+                    iconBg: "bg-red-50 dark:bg-red-950/40",
+                    iconColor: "text-red-500 dark:text-red-400",
                     stat: "Costs",
-                    statColor: "text-red-600",
+                    statColor: "text-red-600 dark:text-red-400",
                     statLabel: "Unexpected fees",
                     tooltip: "The highest cause of abandonment is hidden costs at shipping.",
                     description: "The primary killers of checkout flows are: unexpected shipping and tax costs, requiring users to create accounts instead of allowing guest checkout, and complicated or buggy form validations."
@@ -32,10 +32,10 @@ export function AbandonmentGuide() {
                 {
                     title: "Know the Industry Benchmarks",
                     icon: CreditCard,
-                    iconBg: "bg-blue-50",
-                    iconColor: "text-blue-500",
+                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-500 dark:text-blue-400",
                     stat: "70%",
-                    statColor: "text-blue-600",
+                    statColor: "text-blue-600 dark:text-blue-400",
                     statLabel: "Global Average",
                     tooltip: "It is normal for cart abandonment to be high.",
                     description: "If your abandonment rate is under 60%, your checkout is performing highly efficiently. Rates between 65% and 75% are standard across the ecommerce industry. Anything above 75% requires urgent optimization."
@@ -43,10 +43,10 @@ export function AbandonmentGuide() {
                 {
                     title: "Automate Sales Recovery",
                     icon: Mail,
-                    iconBg: "bg-emerald-50",
-                    iconColor: "text-emerald-500",
+                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
+                    iconColor: "text-emerald-500 dark:text-emerald-400",
                     stat: "Emails",
-                    statColor: "text-emerald-600",
+                    statColor: "text-emerald-600 dark:text-emerald-400",
                     statLabel: "Recovery Campaigns",
                     tooltip: "A strategic, automated email sequence can win back lost sales.",
                     description: "Cart recovery automations are a must. Send a gentle reminder 1 hour after abandonment, a follow-up offering help 24 hours later, and a final small discount incentive at the 72-hour mark."

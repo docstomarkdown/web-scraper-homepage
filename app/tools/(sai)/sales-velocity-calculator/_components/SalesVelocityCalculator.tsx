@@ -58,7 +58,7 @@ export function SalesVelocityCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Inputs Section */}
                 <div className="lg:col-span-7 space-y-3 lg:sticky lg:top-8">
-                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden">
+                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Sales History"
                             description="Enter sales history and stockout details."
@@ -141,12 +141,12 @@ export function SalesVelocityCalculator() {
                         {/* Information inside the card */}
                         <div className="flex flex-col gap-3">
                             {/* Forecasting Insight Card */}
-                            <div className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4">
+                            <div className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 dark:bg-slate-900 dark:border-slate-800">
                                 <div className="flex items-center gap-2 mb-2">
-                                    <TrendingUp className="w-4 h-4 text-blue-500 flex-shrink-0" />
-                                    <span className="text-[13px] sm:text-[14px] font-bold text-slate-500">Forecasting Insight</span>
+                                    <TrendingUp className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
+                                    <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 dark:text-slate-400">Forecasting Insight</span>
                                 </div>
-                                <p className="text-sm text-slate-600 leading-relaxed pl-6">
+                                <p className="text-sm text-slate-600 leading-relaxed pl-6 dark:text-slate-300">
                                     {oosDays > 0 ? (
                                         <>
                                             You were out of stock for <strong>{oosDays} days</strong>. If you had been in stock, you likely would have sold <strong>{((trueVelocity * days) - totalSold).toFixed(0)} more units</strong>. Use the <strong>{trueVelocity.toFixed(1)}/day</strong> rate for future reordering.
@@ -161,16 +161,16 @@ export function SalesVelocityCalculator() {
 
                             {/* Revenue Card */}
                             {unitPrice > 0 && (
-                                <div className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4">
+                                <div className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 dark:bg-slate-900 dark:border-slate-800">
                                     <div className="flex items-center gap-2 mb-2">
-                                        <DollarSign className="w-4 h-4 text-blue-500 flex-shrink-0" />
-                                        <span className="text-[13px] sm:text-[14px] font-bold text-slate-500">Projected Monthly Revenue</span>
+                                        <DollarSign className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
+                                        <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 dark:text-slate-400">Projected Monthly Revenue</span>
                                     </div>
                                     <div className="pl-6 flex items-baseline gap-1.5">
-                                        <span className="text-[16px] sm:text-[17px] font-bold tracking-tight text-slate-700">
+                                        <span className="text-[16px] sm:text-[17px] font-bold tracking-tight text-slate-700 dark:text-slate-200">
                                             <Counter value={revenueRunRate} formatter={formatCurrency} key={currency} />
                                         </span>
-                                        <span className="text-[0.6em] font-medium text-slate-400 ml-1">/ mo</span>
+                                        <span className="text-[0.6em] font-medium text-slate-400 ml-1 dark:text-slate-500">/ mo</span>
                                     </div>
                                 </div>
                             )}

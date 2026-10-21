@@ -12,11 +12,11 @@ export const metadata: Metadata = {
 }
 export default function LeadTimeCalculatorPage() {
     return (
-        <div className="min-h-screen bg-slate-50 pt-32 pb-12">
+        <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                     <FadeIn>
-                        <h1 className="text-4xl md:text-[42px] font-bold text-slate-900 mb-4 tracking-tight">
+                        <h1 className="text-4xl md:text-[42px] font-bold text-slate-900 mb-4 tracking-tight dark:text-white">
                             Lead Time Calculator
                         </h1>
                     </FadeIn>

@@ -14,9 +14,9 @@ export function COGSGuide() {
                     icon: Globe,
                     stat: "Logistics",
                     statLabel: "True Cost",
-                    iconBg: "bg-amber-50",
-                    iconColor: "text-amber-600",
-                    statColor: "text-amber-600",
+                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
+                    iconColor: "text-amber-600 dark:text-amber-400",
+                    statColor: "text-amber-600 dark:text-amber-400",
                     tooltip: "Consolidated freight ensures you have a single source of truth for all transit-related costs."
                 },
                 {
@@ -25,9 +25,9 @@ export function COGSGuide() {
                     icon: Box,
                     stat: "Materials",
                     statLabel: "Fixed",
-                    iconBg: "bg-blue-50",
-                    iconColor: "text-blue-600",
-                    statColor: "text-blue-600",
+                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-600 dark:text-blue-400",
+                    statColor: "text-blue-600 dark:text-blue-400",
                     tooltip: "Account for every label and insert to ensure your per-unit cost remains 100% accurate."
                 },
                 {
@@ -36,9 +36,9 @@ export function COGSGuide() {
                     icon: Warehouse,
                     stat: "Fulfillment",
                     statLabel: "Per Unit",
-                    iconBg: "bg-indigo-50",
-                    iconColor: "text-indigo-600",
-                    statColor: "text-indigo-600",
+                    iconBg: "bg-indigo-50 dark:bg-indigo-950/40",
+                    iconColor: "text-indigo-600 dark:text-indigo-400",
+                    statColor: "text-indigo-600 dark:text-indigo-400",
                     tooltip: "In e-commerce, fulfillment is often the definitive factor dictating scalable profitability."
                 }
             ]}

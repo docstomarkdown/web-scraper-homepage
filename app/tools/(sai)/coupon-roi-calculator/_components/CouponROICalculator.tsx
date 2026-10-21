@@ -86,7 +86,7 @@ export function CouponROICalculator() {
         <FadeIn className="w-full max-w-6xl mx-auto space-y-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Inputs */}
-                <Card className="lg:col-span-7 border-none shadow-lg bg-white/80 backdrop-blur-sm ring-1 ring-slate-900/5">
+                <Card className="lg:col-span-7 border-none shadow-lg bg-white/80 backdrop-blur-sm ring-1 ring-slate-900/5 dark:bg-slate-900/80">
                     <CalculatorCardHeader
                         title="Campaign Details"
                         description="Enter your coupon efficiency metrics."

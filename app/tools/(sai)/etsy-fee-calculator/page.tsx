@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function EtsyFeeCalculatorPage() {
     return (
-        <div className="min-h-screen bg-slate-50 pt-32 pb-12">
+        <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <EtsyPageContent />
         </div>
     )

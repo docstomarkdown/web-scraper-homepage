@@ -28,7 +28,7 @@ export function AbandonmentCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Inputs Section */}
                 <div className="lg:col-span-7 space-y-3 lg:sticky lg:top-8">
-                    <Card className="border border-slate-200 shadow-sm bg-white">
+                    <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Cart Drop-off Data"
                             description="Enter cart and transaction data."

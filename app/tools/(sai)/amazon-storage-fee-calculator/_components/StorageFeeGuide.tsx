@@ -13,9 +13,9 @@ export function StorageFeeGuide() {
                     icon: Box,
                     stat: "Per",
                     statLabel: "Cubic Foot",
-                    iconBg: "bg-blue-50",
-                    iconColor: "text-blue-600",
-                    statColor: "text-blue-600",
+                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-600 dark:text-blue-400",
+                    statColor: "text-blue-600 dark:text-blue-400",
                     tooltip: "Formula: (L × W × H ÷ 1728) × Units × Rate = Monthly Fee"
                 },
                 {
@@ -24,9 +24,9 @@ export function StorageFeeGuide() {
                     icon: Calendar,
                     stat: "Q4",
                     statLabel: "3× Higher",
-                    iconBg: "bg-amber-50",
-                    iconColor: "text-amber-600",
-                    statColor: "text-amber-600",
+                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
+                    iconColor: "text-amber-600 dark:text-amber-400",
+                    statColor: "text-amber-600 dark:text-amber-400",
                     tooltip: "Oct-Dec peak season rates are roughly 3× higher than Jan-Sept standard rates."
                 },
                 {
@@ -35,9 +35,9 @@ export function StorageFeeGuide() {
                     icon: AlertTriangle,
                     stat: "Auto",
                     statLabel: "Size Detection",
-                    iconBg: "bg-purple-50",
-                    iconColor: "text-purple-600",
-                    statColor: "text-purple-600",
+                    iconBg: "bg-purple-50 dark:bg-purple-950/40",
+                    iconColor: "text-purple-600 dark:text-purple-400",
+                    statColor: "text-purple-600 dark:text-purple-400",
                     tooltip: "Standard: ≤ 18×14×8 in. Oversize: Anything larger."
                 },
                 {
@@ -46,9 +46,9 @@ export function StorageFeeGuide() {
                     icon: TrendingUp,
                     stat: "6+",
                     statLabel: "Month Warning",
-                    iconBg: "bg-red-50",
-                    iconColor: "text-red-600",
-                    statColor: "text-red-600",
+                    iconBg: "bg-red-50 dark:bg-red-950/40",
+                    iconColor: "text-red-600 dark:text-red-400",
+                    statColor: "text-red-600 dark:text-red-400",
                     tooltip: "After 6 months, Amazon charges ~$1.50/cu ft per additional month."
                 }
             ]}

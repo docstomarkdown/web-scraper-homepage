@@ -200,7 +200,7 @@ export function CalculatorInput({
         >
             {/* ── Section Separator (Global) ── */}
             {groupingTitle && !hideSeparator && (
-                <div className="h-px bg-slate-100/80 w-[calc(100%+48px)] -ml-6 mb-3 mt-1" />
+                <div className="h-px bg-slate-100/80 w-[calc(100%+48px)] -ml-6 mb-3 mt-1 dark:bg-slate-800" />
             )}
 
             <div className="relative w-full">
@@ -223,14 +223,14 @@ export function CalculatorInput({
                     return (
                         <div className="flex items-center gap-2 -ml-[33px] mb-3 relative">
                             {GroupIcon && (
-                                <div className="w-7 h-7 rounded-lg bg-blue-50 ring-[6px] ring-white flex items-center justify-center flex-shrink-0 z-10">
-                                    <GroupIcon className="w-3.5 h-3.5 text-blue-600" />
+                                <div className="w-7 h-7 rounded-lg bg-blue-50 ring-[6px] ring-white flex items-center justify-center flex-shrink-0 z-10 dark:bg-blue-950/40 dark:ring-slate-900">
+                                    <GroupIcon className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                                 </div>
                             )}
-                            <span className="text-[16px] font-bold text-slate-600 capitalize z-10 tracking-tight flex-1">
+                            <span className="text-[16px] font-bold text-slate-600 capitalize z-10 tracking-tight flex-1 dark:text-slate-300">
                                 {mainTitle}
                                 {hasOptional && (
-                                    <span className="ml-1.5 text-[11px] font-normal italic text-slate-400">(optional)</span>
+                                    <span className="ml-1.5 text-[11px] font-normal italic text-slate-400 dark:text-slate-500">(optional)</span>
                                 )}
                             </span>
                             {groupingAction && (
@@ -253,7 +253,7 @@ export function CalculatorInput({
                         <Label
                             htmlFor={inputId}
                             className={cn(
-                                "text-[14.5px] font-medium text-slate-600/90 cursor-pointer py-1",
+                                "text-[14.5px] font-medium text-slate-600/90 cursor-pointer py-1 dark:text-slate-300",
                                 labelClassName
                             )}
                         >
@@ -265,18 +265,18 @@ export function CalculatorInput({
                                     <button
                                         type="button"
                                         tabIndex={-1}
-                                        className="text-slate-400 hover:text-blue-600 transition-colors cursor-help shrink-0"
+                                        className="text-slate-400 hover:text-blue-600 transition-colors cursor-help shrink-0 dark:text-slate-500 dark:hover:text-blue-400"
                                     >
                                         <Info className="h-3.5 w-3.5" />
                                     </button>
                                 </TooltipTrigger>
-                                <TooltipContent side="top" className="max-w-xs text-[13px] font-normal bg-slate-900 text-white border-slate-800">
+                                <TooltipContent side="top" className="max-w-xs text-[13px] font-normal bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
                                     {tooltip}
                                 </TooltipContent>
                             </Tooltip>
                         )}
                         {isOptional && (
-                            <span className="font-normal italic text-[12px] text-slate-400 lowercase tracking-normal">
+                            <span className="font-normal italic text-[12px] text-slate-400 lowercase tracking-normal dark:text-slate-500">
                                 (optional)
                             </span>
                         )}
@@ -286,7 +286,7 @@ export function CalculatorInput({
                             <TooltipTrigger asChild>
                                 <div className="relative">
                                     {finalPrefix && (
-                                        <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-600 text-xs font-semibold group-focus-within:text-blue-500 transition-colors pointer-events-none z-10">
+                                        <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-600 text-xs font-semibold group-focus-within:text-blue-500 transition-colors pointer-events-none z-10 dark:text-slate-300 dark:group-focus-within:text-blue-400">
                                             {finalPrefix}
                                         </div>
                                     )}
@@ -298,9 +298,9 @@ export function CalculatorInput({
                                         onChange={handleInputChange}
                                         className={cn(
                                             "calculator-input-field",
-                                            "h-11 text-[16px] font-semibold text-slate-600 border-2 border-slate-200 bg-white shadow-sm transition-all duration-200",
-                                            "placeholder:text-slate-300 placeholder:font-normal placeholder:text-[15px] rounded-xl text-right",
-                                            "hover:border-blue-300 hover:shadow-md",
+                                            "h-11 text-[16px] font-semibold text-slate-600 border-2 border-slate-200 bg-white shadow-sm transition-all duration-200 dark:text-slate-300 dark:border-slate-800 dark:bg-slate-900",
+                                            "placeholder:text-slate-300 placeholder:font-normal placeholder:text-[15px] rounded-xl text-right dark:placeholder:text-slate-600",
+                                            "hover:border-blue-300 hover:shadow-md dark:hover:border-blue-800",
                                             "focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none",
                                             "w-36 sm:w-44",
                                             isHighlighted && "border-blue-400 shadow-sm",
@@ -314,7 +314,7 @@ export function CalculatorInput({
                                         placeholder={placeholder ? (String(type) === "number" && !placeholder.startsWith("Eg:") && !placeholder.startsWith("Default:") && !placeholder.startsWith("Avg:") ? `Eg: ${placeholder}` : placeholder) : undefined}
                                     />
                                     {finalSuffix && (
-                                        <div className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-600 text-xs font-semibold group-focus-within:text-blue-500 transition-colors pointer-events-none z-10">
+                                        <div className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-600 text-xs font-semibold group-focus-within:text-blue-500 transition-colors pointer-events-none z-10 dark:text-slate-300 dark:group-focus-within:text-blue-400">
                                             {finalSuffix}
                                         </div>
                                     )}
@@ -325,7 +325,7 @@ export function CalculatorInput({
                                     side="right"
                                     sideOffset={8}
                                     align="center"
-                                    className="bg-white text-black border border-black rounded-none px-3 py-1.5 text-[13px] shadow-none animate-none font-sans z-[100] max-w-xs overflow-void font-normal text-center"
+                                    className="bg-white text-black border border-black rounded-none px-3 py-1.5 text-[13px] shadow-none animate-none font-sans z-[100] max-w-xs overflow-void font-normal text-center dark:bg-slate-900"
                                 >
                                     <TooltipArrow className="fill-white stroke-black stroke-[1px] -mt-[1px]" width={12} height={6} />
                                     {hint}

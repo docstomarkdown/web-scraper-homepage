@@ -74,7 +74,7 @@ export function ABDurationCalculator() {
 
                 {/* ── LEFT: Inputs ── */}
                 <div className="lg:col-span-7 space-y-4 self-start lg:sticky lg:top-28">
-                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden rounded-2xl">
+                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden rounded-2xl dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Test Parameters"
                             description="Enter your current conversion rate, expected improvement, and traffic details to calculate your test duration."
@@ -171,22 +171,22 @@ export function ABDurationCalculator() {
                         ]}
                     >
                         {/* ── Test Settings Dropdown inside ResultSummaryCard ── */}
-                        <div className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl transition-all duration-200 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] hover:border-slate-300 overflow-hidden">
+                        <div className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl transition-all duration-200 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] hover:border-slate-300 overflow-hidden dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700">
                             <button
                                 type="button"
                                 onClick={() => setSettingsOpen(o => !o)}
                                 className="w-full flex items-center justify-between p-4 text-left group"
                             >
                                 <div className="flex items-center gap-2 flex-1">
-                                    <Settings className="w-4 h-4 text-blue-500 flex-shrink-0" />
-                                    <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 group-hover:text-slate-600 transition-colors flex-1 text-left tracking-tight">
+                                    <Settings className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
+                                    <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 group-hover:text-slate-600 transition-colors flex-1 text-left tracking-tight dark:text-slate-400 dark:group-hover:text-slate-300">
                                         Test Settings
-                                        <span className="ml-1.5 font-normal italic text-[12px] text-slate-400 lowercase tracking-normal group-hover:text-blue-400/80 transition-colors">(optional)</span>
+                                        <span className="ml-1.5 font-normal italic text-[12px] text-slate-400 lowercase tracking-normal group-hover:text-blue-400/80 transition-colors dark:text-slate-500">(optional)</span>
                                     </span>
                                 </div>
                                 {settingsOpen
-                                    ? <ChevronUp className="w-4 h-4 text-slate-400 group-hover:text-slate-500 transition-colors" />
-                                    : <ChevronDown className="w-4 h-4 text-slate-400 group-hover:text-slate-500 transition-colors" />
+                                    ? <ChevronUp className="w-4 h-4 text-slate-400 group-hover:text-slate-500 transition-colors dark:text-slate-500 dark:group-hover:text-slate-400" />
+                                    : <ChevronDown className="w-4 h-4 text-slate-400 group-hover:text-slate-500 transition-colors dark:text-slate-500 dark:group-hover:text-slate-400" />
                                 }
                             </button>
 
@@ -194,38 +194,38 @@ export function ABDurationCalculator() {
                                 "overflow-hidden transition-all duration-300 ease-in-out",
                                 settingsOpen ? "max-h-48 opacity-100" : "max-h-0 opacity-0"
                             )}>
-                                <div className="px-4 pb-4 pt-1 space-y-0 border-t border-slate-100">
+                                <div className="px-4 pb-4 pt-1 space-y-0 border-t border-slate-100 dark:border-slate-800">
                                     <TooltipProvider delayDuration={100}>
-                                        <div className="flex justify-between items-center py-3 border-b border-slate-100 group/item">
+                                        <div className="flex justify-between items-center py-3 border-b border-slate-100 group/item dark:border-slate-800">
                                             <div className="flex items-center gap-1.5">
-                                                <span className="text-[13px] sm:text-[14px] font-bold text-slate-500">Confidence Level</span>
+                                                <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 dark:text-slate-400">Confidence Level</span>
                                                 <Tooltip>
                                                     <TooltipTrigger asChild>
-                                                        <Info className="w-3.5 h-3.5 text-slate-400 cursor-help" />
+                                                        <Info className="w-3.5 h-3.5 text-slate-400 cursor-help dark:text-slate-500" />
                                                     </TooltipTrigger>
-                                                    <TooltipContent side="top" className="max-w-xs text-[11px] bg-slate-900 text-white border-slate-800">
+                                                    <TooltipContent side="top" className="max-w-xs text-[11px] bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
                                                         Higher confidence means more reliable results but needs more time (default: 95%).
                                                     </TooltipContent>
                                                 </Tooltip>
                                             </div>
-                                            <span className="text-[16px] sm:text-[17px] font-bold tracking-tight text-slate-700">95%</span>
+                                            <span className="text-[16px] sm:text-[17px] font-bold tracking-tight text-slate-700 dark:text-slate-200">95%</span>
                                         </div>
                                         <div className="flex justify-between items-center py-3 group/item">
                                             <div className="flex items-center gap-1.5">
-                                                <span className="text-[13px] sm:text-[14px] font-bold text-slate-500">Statistical Power</span>
+                                                <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 dark:text-slate-400">Statistical Power</span>
                                                 <Tooltip>
                                                     <TooltipTrigger asChild>
-                                                        <Info className="w-3.5 h-3.5 text-slate-400 cursor-help" />
+                                                        <Info className="w-3.5 h-3.5 text-slate-400 cursor-help dark:text-slate-500" />
                                                     </TooltipTrigger>
-                                                    <TooltipContent side="top" className="max-w-xs text-[11px] bg-slate-900 text-white border-slate-800">
+                                                    <TooltipContent side="top" className="max-w-xs text-[11px] bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
                                                         Power determines how likely your test is to detect a real difference (default: 80%).
                                                     </TooltipContent>
                                                 </Tooltip>
                                             </div>
-                                            <span className="text-[16px] sm:text-[17px] font-bold tracking-tight text-slate-700">80%</span>
+                                            <span className="text-[16px] sm:text-[17px] font-bold tracking-tight text-slate-700 dark:text-slate-200">80%</span>
                                         </div>
                                     </TooltipProvider>
-                                    <p className="text-[11.5px] text-slate-400 leading-relaxed pt-2">
+                                    <p className="text-[11.5px] text-slate-400 leading-relaxed pt-2 dark:text-slate-500">
                                         These are standard settings to ensure accurate and reliable test results. You don't need to change them.
                                     </p>
                                 </div>

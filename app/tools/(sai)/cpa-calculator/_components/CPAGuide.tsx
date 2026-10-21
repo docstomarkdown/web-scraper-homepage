@@ -9,10 +9,10 @@ export function CPAGuide() {
                 {
                     title: "What is Cost Per Acquisition (CPA)?",
                     icon: Target,
-                    iconBg: "bg-blue-50",
-                    iconColor: "text-blue-500",
+                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-500 dark:text-blue-400",
                     stat: "Cost",
-                    statColor: "text-blue-600",
+                    statColor: "text-blue-600 dark:text-blue-400",
                     statLabel: "Cost to acquire a customer",
                     tooltip: "The total cost of a campaign divided by the number of conversions.",
                     description: "Cost Per Acquisition (CPA) measures the aggregate cost to acquire one paying customer. Unlike Cost Per Click (CPC) (which is just for a click), Cost Per Acquisition (CPA) tells you the actual price of a result."
@@ -20,23 +20,23 @@ export function CPAGuide() {
                 {
                     title: "How is it calculated?",
                     icon: Calculator,
-                    iconBg: "bg-blue-50",
-                    iconColor: "text-blue-500",
+                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-500 dark:text-blue-400",
                     stat: "Math",
-                    statColor: "text-blue-600",
+                    statColor: "text-blue-600 dark:text-blue-400",
                     statLabel: "Spend ÷ Conversions",
                     description: (
                         <div className="space-y-3">
                             <p>There are two main ways to calculate CPA depending on your data:</p>
                             <div>
-                                <p className="mb-1 font-medium text-slate-700 text-xs uppercase tracking-wider">Campaign Data</p>
-                                <div className="bg-slate-50 border border-slate-200/60 px-3 py-2 rounded-lg text-slate-800 font-mono text-sm inline-block">
+                                <p className="mb-1 font-medium text-slate-700 text-xs uppercase tracking-wider dark:text-slate-200">Campaign Data</p>
+                                <div className="bg-slate-50 border border-slate-200/60 px-3 py-2 rounded-lg text-slate-800 font-mono text-sm inline-block dark:bg-slate-800/60 dark:border-slate-800 dark:text-slate-100">
                                     Cost Per Acquisition (CPA) = Total Ad Spend / Conversions
                                 </div>
                             </div>
                             <div>
-                                <p className="mb-1 font-medium text-slate-700 text-xs uppercase tracking-wider">Estimation</p>
-                                <div className="bg-slate-50 border border-slate-200/60 px-3 py-2 rounded-lg text-slate-800 font-mono text-sm inline-block">
+                                <p className="mb-1 font-medium text-slate-700 text-xs uppercase tracking-wider dark:text-slate-200">Estimation</p>
+                                <div className="bg-slate-50 border border-slate-200/60 px-3 py-2 rounded-lg text-slate-800 font-mono text-sm inline-block dark:bg-slate-800/60 dark:border-slate-800 dark:text-slate-100">
                                     Cost Per Acquisition (CPA) = Cost Per Click (CPC) / (Conversion Rate / 100)
                                 </div>
                             </div>
@@ -46,10 +46,10 @@ export function CPAGuide() {
                 {
                     title: "Good vs. Bad Cost Per Acquisition (CPA)",
                     icon: TrendingDown,
-                    iconBg: "bg-violet-50",
-                    iconColor: "text-violet-500",
+                    iconBg: "bg-violet-50 dark:bg-violet-950/40",
+                    iconColor: "text-violet-500 dark:text-violet-400",
                     stat: "< LTV",
-                    statColor: "text-violet-600",
+                    statColor: "text-violet-600 dark:text-violet-400",
                     statLabel: "Target = Less than Lifetime Value",
                     tooltip: "Your Cost Per Acquisition (CPA) must be lower than your customer's value to be profitable.",
                     description: "A \"good\" Cost Per Acquisition (CPA) is simply one that is lower than your Customer Lifetime Value (LTV) or Average Order Value (AOV), leaving enough margin for profit. If your Cost Per Acquisition (CPA) is higher than your LTV, you are losing money on every customer."

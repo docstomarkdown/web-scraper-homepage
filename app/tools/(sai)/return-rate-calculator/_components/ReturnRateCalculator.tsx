@@ -54,20 +54,20 @@ export function ReturnRateCalculator() {
     };
     // Determine Status
     let status = "Calculate";
-    let statusColor = "text-slate-400";
-    let statusBg = "bg-slate-100";
+    let statusColor = "text-slate-400 dark:text-slate-500";
+    let statusBg = "bg-slate-100 dark:bg-slate-800";
     if (sold > 0) {
-        if (returnRate < 5) { status = "Excellent"; statusColor = "text-blue-600"; statusBg = "bg-blue-100"; }
-        else if (returnRate < 10) { status = "Healthy"; statusColor = "text-blue-600"; statusBg = "bg-blue-100"; }
-        else if (returnRate < 15) { status = "Warning"; statusColor = "text-amber-600"; statusBg = "bg-amber-100"; }
-        else { status = "High Risk"; statusColor = "text-red-600"; statusBg = "bg-red-100"; }
+        if (returnRate < 5) { status = "Excellent"; statusColor = "text-blue-600 dark:text-blue-400"; statusBg = "bg-blue-100 dark:bg-blue-900/40"; }
+        else if (returnRate < 10) { status = "Healthy"; statusColor = "text-blue-600 dark:text-blue-400"; statusBg = "bg-blue-100 dark:bg-blue-900/40"; }
+        else if (returnRate < 15) { status = "Warning"; statusColor = "text-amber-600 dark:text-amber-400"; statusBg = "bg-amber-100 dark:bg-amber-900/40"; }
+        else { status = "High Risk"; statusColor = "text-red-600 dark:text-red-400"; statusBg = "bg-red-100 dark:bg-red-900/40"; }
     }
     return (
         <FadeIn className="w-full max-w-6xl mx-auto py-8 px-4" duration={0.6}>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Left Column: Inputs */}
                 <div className="lg:col-span-7 space-y-3">
-                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden">
+                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             description="Enter sales, returns, and item values."
                             onReset={handleReset}
@@ -78,10 +78,10 @@ export function ReturnRateCalculator() {
                             {/* Group 1: Volume Data */}
                             <div className="space-y-3">
                                 <div className="flex items-center gap-2 mb-2">
-                                    <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
+                                    <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 dark:bg-blue-950/40 dark:text-blue-400">
                                         <Package className="w-4 h-4" />
                                     </div>
-                                    <h3 className="text-sm font-black text-slate-600 uppercase tracking-widest">Volume Data</h3>
+                                    <h3 className="text-sm font-black text-slate-600 uppercase tracking-widest dark:text-slate-300">Volume Data</h3>
                                 </div>
                                 <CalculatorInput
                                     label="Total Units Sold"
@@ -101,10 +101,10 @@ export function ReturnRateCalculator() {
                             {/* Group 2: Financial Impact */}
                             <div className="space-y-3">
                                 <div className="flex items-center gap-2 mb-2">
-                                    <div className="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center text-red-600">
+                                    <div className="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center text-red-600 dark:bg-red-950/40 dark:text-red-400">
                                         <DollarSign className="w-4 h-4" />
                                     </div>
-                                    <h3 className="text-sm font-black text-slate-600 uppercase tracking-widest">Financial Impact</h3>
+                                    <h3 className="text-sm font-black text-slate-600 uppercase tracking-widest dark:text-slate-300">Financial Impact</h3>
                                 </div>
                                 <CalculatorInput
                                     label={`Avg. Selling Price (${currency})`}
@@ -125,17 +125,17 @@ export function ReturnRateCalculator() {
                     </Card>
                     {/* Logic Highlight */}
                     <FadeIn delay={0.2}>
-                        <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 flex gap-4">
-                            <div className="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-red-600 shrink-0 shadow-sm">
+                        <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 flex gap-4 dark:bg-slate-800/60 dark:border-slate-800">
+                            <div className="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-red-600 shrink-0 shadow-sm dark:bg-slate-900 dark:border-slate-800 dark:text-red-400">
                                 <AlertTriangle className="w-6 h-6" />
                             </div>
                             <div>
-                                <h4 className="text-base font-bold text-slate-800 mb-1 leading-tight">Profit Leakage Alert</h4>
+                                <h4 className="text-base font-bold text-slate-800 mb-1 leading-tight dark:text-slate-100">Profit Leakage Alert</h4>
                                 <p className={cn(
                                     "text-[15px] leading-relaxed max-w-lg transition-colors duration-300 font-medium",
-                                    returned > 0 ? "text-slate-600" : "text-slate-400"
+                                    returned > 0 ? "text-slate-600 dark:text-slate-300" : "text-slate-400 dark:text-slate-500"
                                 )}>
-                                    Returns aren't just lost sales. Combined with processing costs, these {returned} returns have drained <span className="font-bold text-red-600">{formatCurrency(profitLeakage)}</span> from your bottom line this period.
+                                    Returns aren't just lost sales. Combined with processing costs, these {returned} returns have drained <span className="font-bold text-red-600 dark:text-red-400">{formatCurrency(profitLeakage)}</span> from your bottom line this period.
                                 </p>
                             </div>
                         </div>
@@ -152,7 +152,7 @@ export function ReturnRateCalculator() {
                                     formatter={(val) => val.toFixed(2)}
                                     className="text-5xl font-bold"
                                 />
-                                <span className="text-3xl font-bold text-slate-400">%</span>
+                                <span className="text-3xl font-bold text-slate-400 dark:text-slate-500">%</span>
                             </div>
                         }
                         secondaryMetrics={[
@@ -162,31 +162,31 @@ export function ReturnRateCalculator() {
                     />
                     {/* Breakdown Card */}
                     {sold > 0 && (
-                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-red-500">
-                            <div className="px-5 py-3.5 border-b border-slate-100">
-                                <p className="text-xs font-bold text-slate-600 uppercase tracking-wider">Financial Impact Breakdown</p>
+                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-red-500 dark:bg-slate-900 dark:border-slate-800">
+                            <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800">
+                                <p className="text-xs font-bold text-slate-600 uppercase tracking-wider dark:text-slate-300">Financial Impact Breakdown</p>
                             </div>
-                            <div className="divide-y divide-slate-100">
+                            <div className="divide-y divide-slate-100 dark:divide-slate-800">
                                 <div className="flex justify-between items-center px-5 py-3.5">
-                                    <span className="text-sm text-slate-600">Lost Revenue</span>
-                                    <span className="text-sm font-semibold text-slate-800">{formatCurrency(lostRevenue)}</span>
+                                    <span className="text-sm text-slate-600 dark:text-slate-300">Lost Revenue</span>
+                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{formatCurrency(lostRevenue)}</span>
                                 </div>
                                 <div className="flex justify-between items-center px-5 py-3.5">
-                                    <span className="text-sm text-slate-600">Processing Costs</span>
-                                    <span className="text-sm font-semibold text-slate-800">{formatCurrency(totalReturnCost)}</span>
+                                    <span className="text-sm text-slate-600 dark:text-slate-300">Processing Costs</span>
+                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{formatCurrency(totalReturnCost)}</span>
                                 </div>
-                                <div className="flex justify-between items-center px-5 py-3.5 bg-red-50/20">
-                                    <span className="text-sm font-bold text-slate-900">Total Profit Leakage</span>
-                                    <span className="text-base font-bold text-red-600">{formatCurrency(profitLeakage)}</span>
+                                <div className="flex justify-between items-center px-5 py-3.5 bg-red-50/20 dark:bg-red-950/40">
+                                    <span className="text-sm font-bold text-slate-900 dark:text-white">Total Profit Leakage</span>
+                                    <span className="text-base font-bold text-red-600 dark:text-red-400">{formatCurrency(profitLeakage)}</span>
                                 </div>
                             </div>
                         </div>
                     )}
                     {/* Insight Card */}
-                    <Card className="border border-slate-200 shadow-sm p-6 space-y-3 bg-white">
+                    <Card className="border border-slate-200 shadow-sm p-6 space-y-3 bg-white dark:border-slate-800 dark:bg-slate-900">
                         <div className="flex items-center justify-between">
-                            <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
-                                <RotateCcw className="w-5 h-5 text-blue-600" />
+                            <h3 className="text-base font-bold text-slate-900 flex items-center gap-2 dark:text-white">
+                                <RotateCcw className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                                 Return Health
                             </h3>
                             {sold > 0 && (
@@ -201,26 +201,26 @@ export function ReturnRateCalculator() {
                                 value={formatCurrency(profitLeakage)}
                                 description="Total financial impact (Refunds + Costs)."
                                 icon={DollarSign}
-                                color="text-red-600"
-                                bg="bg-red-50"
+                                color="text-red-600 dark:text-red-400"
+                                bg="bg-red-50 dark:bg-red-950/40"
                             />
                             <InsightItem
                                 label="Units Returned"
                                 value={returned.toString()}
                                 description={`Out of ${sold} units sold.`}
                                 icon={Package}
-                                color="text-slate-600"
-                                bg="bg-slate-50"
+                                color="text-slate-600 dark:text-slate-300"
+                                bg="bg-slate-50 dark:bg-slate-800/60"
                             />
                         </div>
                         <div className="pt-2">
                             <div className="flex items-center justify-between mb-3">
-                                <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">Rate Benchmarks</p>
+                                <p className="text-xs font-bold text-slate-500 uppercase tracking-widest dark:text-slate-400">Rate Benchmarks</p>
                                 {sold > 0 && (
                                     <span className={cn("text-xs font-bold px-2 py-0.5 rounded-md border",
-                                        returnRate < 5 ? "text-blue-600 bg-blue-50 border-blue-100" :
-                                            returnRate < 10 ? "text-blue-600 bg-blue-50 border-blue-100" :
-                                                "text-red-600 bg-red-50 border-red-100"
+                                        returnRate < 5 ? "text-blue-600 bg-blue-50 border-blue-100 dark:text-blue-400 dark:bg-blue-950/40 dark:border-blue-900/50" :
+                                            returnRate < 10 ? "text-blue-600 bg-blue-50 border-blue-100 dark:text-blue-400 dark:bg-blue-950/40 dark:border-blue-900/50" :
+                                                "text-red-600 bg-red-50 border-red-100 dark:text-red-400 dark:bg-red-950/40 dark:border-red-900/50"
                                     )}>
                                         {returnRate.toFixed(1)}% Rate
                                     </span>
@@ -228,7 +228,7 @@ export function ReturnRateCalculator() {
                             </div>
                             <div className="relative pt-2 pb-1">
                                 {/* Visual Scale: Green -> Blue -> Red */}
-                                <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden flex">
+                                <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden flex dark:bg-slate-800">
                                     <div className="h-full bg-blue-400" style={{ width: '25%' }} /> {/* < 5% */}
                                     <div className="h-full bg-blue-400" style={{ width: '25%' }} /> {/* < 10% */}
                                     <div className="h-full bg-amber-400" style={{ width: '25%' }} /> {/* < 15% */}
@@ -242,11 +242,11 @@ export function ReturnRateCalculator() {
                                             // Scale: 0% to 20% Rate. If Rate > 20%, caps at 100%.
                                             left: `${Math.min((returnRate / 20) * 100, 100)}%`
                                         }}
-                                        className="absolute top-0 -mt-0.5 w-4 h-4 bg-white border-2 border-slate-800 rounded-full shadow-md z-10 -ml-2 transition-all"
+                                        className="absolute top-0 -mt-0.5 w-4 h-4 bg-white border-2 border-slate-800 rounded-full shadow-md z-10 -ml-2 transition-all dark:bg-slate-900 dark:border-slate-700"
                                     />
                                 )}
                             </div>
-                            <div className="flex justify-between mt-2 text-[11px] font-bold text-slate-500 italic">
+                            <div className="flex justify-between mt-2 text-[11px] font-bold text-slate-500 italic dark:text-slate-400">
                                 <span>Excellent</span>
                                 <span>Healthy</span>
                                 <span>High Risk</span>
@@ -266,10 +266,10 @@ function InsightItem({ label, value, description, icon: Icon, color, bg }: { lab
             </div>
             <div>
                 <div className="flex items-baseline gap-2 mb-1">
-                    <h4 className="text-sm font-bold text-slate-900 leading-tight">{label}</h4>
+                    <h4 className="text-sm font-bold text-slate-900 leading-tight dark:text-white">{label}</h4>
                     <span className={cn("text-sm font-bold", color)}>{value}</span>
                 </div>
-                <p className="text-[13px] text-slate-600 font-medium leading-relaxed">{description}</p>
+                <p className="text-[13px] text-slate-600 font-medium leading-relaxed dark:text-slate-300">{description}</p>
             </div>
         </div>
     )

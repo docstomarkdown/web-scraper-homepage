@@ -11,8 +11,8 @@ export function PayPalGuide() {
                     title: "The Standard Rate",
                     description: "Most domestic transactions calculate fees at 2.9% + $0.30. This means for a $100 sale, you pay $3.20 in fees.",
                     icon: Wallet,
-                    iconBg: "bg-blue-50",
-                    iconColor: "text-blue-600",
+                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-600 dark:text-blue-400",
                     stat: "2.9% + $0.30",
                     statLabel: "Domestic Rate"
                 },
@@ -20,8 +20,8 @@ export function PayPalGuide() {
                     title: "Breakeven Pricing",
                     description: "If you need to receive exactly $100, checking the 'You should ask for' value tells you the markup needed to offset the fee.",
                     icon: RefreshCcw,
-                    iconBg: "bg-blue-50",
-                    iconColor: "text-blue-600",
+                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-600 dark:text-blue-400",
                     stat: "$103.30",
                     statLabel: "To Get $100"
                 },

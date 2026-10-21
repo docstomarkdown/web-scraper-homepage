@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function PPCBidCalculatorPage() {
     return (
-        <div className="min-h-screen bg-slate-50 pt-32 pb-12">
+        <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
                 <ToolPageTitle title="Pay-Per-Click (PPC) Bid Calculator" direction="down" duration={0.6} />
                 <div className="mb-20">

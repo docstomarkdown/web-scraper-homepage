@@ -13,9 +13,9 @@ export function GTINGuide() {
                     icon: Globe,
                     stat: "UPC→EAN",
                     statLabel: "USA to Global",
-                    iconBg: "bg-blue-50",
-                    iconColor: "text-blue-500",
-                    statColor: "text-blue-600"
+                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-500 dark:text-blue-400",
+                    statColor: "text-blue-600 dark:text-blue-400"
                 },
                 {
                     title: "EAN to UPC (GTIN-13 to 12)",
@@ -23,9 +23,9 @@ export function GTINGuide() {
                     icon: MapPin,
                     stat: "EAN→UPC",
                     statLabel: "Global to USA",
-                    iconBg: "bg-indigo-50",
-                    iconColor: "text-indigo-500",
-                    statColor: "text-indigo-600"
+                    iconBg: "bg-indigo-50 dark:bg-indigo-950/40",
+                    iconColor: "text-indigo-500 dark:text-indigo-400",
+                    statColor: "text-indigo-600 dark:text-indigo-400"
                 },
                 {
                     title: "Logistics GTIN-14 Levels",
@@ -33,9 +33,9 @@ export function GTINGuide() {
                     icon: Boxes,
                     stat: "Shipper",
                     statLabel: "Case/Pack Level",
-                    iconBg: "bg-emerald-50",
-                    iconColor: "text-emerald-500",
-                    statColor: "text-emerald-600"
+                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
+                    iconColor: "text-emerald-500 dark:text-emerald-400",
+                    statColor: "text-emerald-600 dark:text-emerald-400"
                 },
                 {
                     title: "Instant Image Scanning",
@@ -43,9 +43,9 @@ export function GTINGuide() {
                     icon: ShieldCheck,
                     stat: "Scan-ID",
                     statLabel: "Auto-Read",
-                    iconBg: "bg-violet-50",
-                    iconColor: "text-violet-500",
-                    statColor: "text-violet-600"
+                    iconBg: "bg-violet-50 dark:bg-violet-950/40",
+                    iconColor: "text-violet-500 dark:text-violet-400",
+                    statColor: "text-violet-600 dark:text-violet-400"
                 }
             ]}
         />

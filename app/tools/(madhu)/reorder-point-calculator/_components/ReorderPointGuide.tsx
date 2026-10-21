@@ -13,9 +13,9 @@ export function ReorderPointGuide() {
                     icon: LineChart,
                     stat: "Essential",
                     statLabel: "Rank Protection",
-                    iconBg: "bg-blue-50/50",
-                    iconColor: "text-blue-600",
-                    statColor: "text-blue-600"
+                    iconBg: "bg-blue-50/50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-600 dark:text-blue-400",
+                    statColor: "text-blue-600 dark:text-blue-400"
                 },
                 {
                     title: "Admin Lead Time",
@@ -23,9 +23,9 @@ export function ReorderPointGuide() {
                     icon: Hourglass,
                     stat: "+3 Days",
                     statLabel: "Receiving Buffer",
-                    iconBg: "bg-purple-50/50",
-                    iconColor: "text-purple-600",
-                    statColor: "text-purple-600"
+                    iconBg: "bg-purple-50/50 dark:bg-purple-950/40",
+                    iconColor: "text-purple-600 dark:text-purple-400",
+                    statColor: "text-purple-600 dark:text-purple-400"
                 },
                 {
                     title: "Inventory Turnover",
@@ -33,9 +33,9 @@ export function ReorderPointGuide() {
                     icon: Coins,
                     stat: "Optimized",
                     statLabel: "Cash Flow",
-                    iconBg: "bg-emerald-50/50",
-                    iconColor: "text-emerald-600",
-                    statColor: "text-emerald-600"
+                    iconBg: "bg-emerald-50/50 dark:bg-emerald-950/40",
+                    iconColor: "text-emerald-600 dark:text-emerald-400",
+                    statColor: "text-emerald-600 dark:text-emerald-400"
                 }
             ]}
         />

@@ -54,7 +54,7 @@ export function ReorderPointCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch pt-6">
                 {/* Left Column: Smart Inputs */}
                 <div className="lg:col-span-7">
-                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden flex flex-col rounded-3xl h-fit">
+                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden flex flex-col rounded-3xl h-fit dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Calculator Inputs"
                             description="Configure your inventory reorder point calculation."

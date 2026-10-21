@@ -12,8 +12,8 @@ export function FBARemovalGuide() {
                     title: "Removal vs. Disposal Options",
                     description: "A removal order returns inventory back to you, which incurs shipping but enables you to resell locally or on another channel. Disposal means Amazon destroys or donates the item. Choose removal only if the resale value covers the removal fees + extra prep costs.",
                     icon: ShieldAlert,
-                    iconBg: "bg-blue-50",
-                    iconColor: "text-blue-600",
+                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-600 dark:text-blue-400",
                     stat: "Strategy",
                     statLabel: "Compare Net Value",
                     tooltip: "Ensure profit after removal fee justifies keeping the physical items."
@@ -22,8 +22,8 @@ export function FBARemovalGuide() {
                     title: "When to 'Hold' Inventory",
                     description: "If both removing and disposing generate a strict net loss, and long-term storage fees aren't punishing your margins yet, it may be better to Hold the inventory. During this period, consider running promotions, adjusting your PPC bids, or dropping the price slightly to increase sell-through rate.",
                     icon: Anchor,
-                    iconBg: "bg-amber-50",
-                    iconColor: "text-amber-600",
+                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
+                    iconColor: "text-amber-600 dark:text-amber-400",
                     stat: "Patience",
                     statLabel: "Wait and Optimise",
                     tooltip: "A temporary hold might allow time for better market conditions."
@@ -32,8 +32,8 @@ export function FBARemovalGuide() {
                     title: "Selling on Other Channels",
                     description: "Expected selling price is key when you opt to Remove. Many sellers use multi-channel fulfillment, eBay, or their own Shopify store to offload removed items. Factoring in 'Other Costs' like shipping and prep helps predict the actual net profit correctly.",
                     icon: HandCoins,
-                    iconBg: "bg-emerald-50",
-                    iconColor: "text-emerald-600",
+                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
+                    iconColor: "text-emerald-600 dark:text-emerald-400",
                     stat: "Sales",
                     statLabel: "Alternative Channels",
                     tooltip: "Include external operational costs to get a true representation of removal profit."

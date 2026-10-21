@@ -8,11 +8,11 @@ export function ReorderPointOverview() {
             {/* Section Header */}
             <div className="px-1">
                 <div className="flex items-center gap-3.5 sm:gap-4">
-                    <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100/80 shadow-[0_2px_8px_-4px_rgba(59,130,246,0.2)]">
-                        <Lightbulb className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
+                    <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100/80 shadow-[0_2px_8px_-4px_rgba(59,130,246,0.2)] dark:from-blue-950/30 dark:to-indigo-950/30 dark:border-blue-900/50">
+                        <Lightbulb className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600 dark:text-blue-400" />
                     </div>
                     <div>
-                        <h2 className="text-[22px] sm:text-[28px] font-bold text-slate-700 tracking-tight leading-tight">
+                        <h2 className="text-[22px] sm:text-[28px] font-bold text-slate-700 tracking-tight leading-tight dark:text-slate-200">
                             Tool Essential
                         </h2>
                     </div>

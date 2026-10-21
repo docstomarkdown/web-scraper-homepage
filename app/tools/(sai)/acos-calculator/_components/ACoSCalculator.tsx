@@ -88,9 +88,9 @@ export function ACoSCalculator() {
     const CustomTooltip = ({ active, payload }: any) => {
         if (active && payload && payload.length) {
             return (
-                <div className="bg-slate-900 border border-slate-800 text-white p-3 rounded-lg shadow-xl text-sm">
+                <div className="bg-slate-900 border border-slate-800 text-white p-3 rounded-lg shadow-xl text-sm dark:bg-slate-800 dark:border-slate-700">
                     <p className="font-semibold mb-1">{payload[0].name}</p>
-                    <p className="text-slate-300">
+                    <p className="text-slate-300 dark:text-slate-600">
                         ${Number(payload[0].value).toFixed(2)}
                     </p>
                 </div>
@@ -104,7 +104,7 @@ export function ACoSCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Left Column: Inputs */}
                 <div className="lg:col-span-7 space-y-3 lg:sticky lg:top-8">
-                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden">
+                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="ACoS Details"
                             description="Enter your ad spend, revenue, and product margin."

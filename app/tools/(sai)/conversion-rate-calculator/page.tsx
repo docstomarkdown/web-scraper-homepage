@@ -15,12 +15,12 @@ export const metadata: Metadata = {
 
 export default function ConversionCalculatorPage() {
     return (
-        <div className="min-h-screen bg-slate-50 pt-32 pb-12">
+        <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
                 <ToolPageTitle title="Conversion Rate Calculator" />
                 <div className="text-center mb-10 -mt-6">
                     <FadeIn direction="down" duration={0.6} delay={0.1}>
-                        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                        <p className="text-lg text-slate-600 max-w-2xl mx-auto dark:text-slate-300">
                             Calculate your website or campaign conversion rate instantly. Understand how well your traffic is performing.
                         </p>
                     </FadeIn>

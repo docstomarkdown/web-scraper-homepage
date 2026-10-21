@@ -81,7 +81,7 @@ export function LeadTimeCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-6">
                 {/* Left Column: Inputs */}
                 <div className="lg:col-span-7">
-                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden flex flex-col rounded-3xl">
+                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden flex flex-col rounded-3xl dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Calculator Inputs"
                             description="Enter your supplier timeline details below."
@@ -124,8 +124,8 @@ export function LeadTimeCalculator() {
                         isCalculated={hasInputs}
                         customBadge={hasInputs ? {
                             text: totals.total > 60 ? "Long Lead Time" : totals.buffer > 0 ? "Protected Transit" : "Standard Delivery",
-                            bgClass: totals.total > 60 ? "bg-amber-100/80" : "bg-emerald-100/80",
-                            textClass: totals.total > 60 ? "text-amber-700" : "text-emerald-700",
+                            bgClass: totals.total > 60 ? "bg-amber-100/80 dark:bg-amber-900/40" : "bg-emerald-100/80 dark:bg-emerald-900/40",
+                            textClass: totals.total > 60 ? "text-amber-700 dark:text-amber-400" : "text-emerald-700 dark:text-emerald-400",
                             icon: <Clock className="w-3.5 h-3.5" />
                         } : undefined}
                         checklistItems={[
@@ -147,13 +147,13 @@ export function LeadTimeCalculator() {
                             children: (
                                 <div className="space-y-4 pt-1">
                                     <div className="grid grid-cols-2 gap-4">
-                                        <div className="bg-slate-50 rounded-xl p-3 border border-slate-100">
-                                            <p className="text-[11px] font-bold text-slate-400 mb-1 uppercase tracking-wider">Supplier Time</p>
-                                            <p className="text-xl font-bold text-blue-600">{hasInputs ? Math.round(totals.pct.supplier) : 0}%</p>
+                                        <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 dark:bg-slate-800/60 dark:border-slate-800">
+                                            <p className="text-[11px] font-bold text-slate-400 mb-1 uppercase tracking-wider dark:text-slate-500">Supplier Time</p>
+                                            <p className="text-xl font-bold text-blue-600 dark:text-blue-400">{hasInputs ? Math.round(totals.pct.supplier) : 0}%</p>
                                         </div>
-                                        <div className="bg-slate-50 rounded-xl p-3 border border-slate-100">
-                                            <p className="text-[11px] font-bold text-slate-400 mb-1 uppercase tracking-wider">Shipping Time</p>
-                                            <p className="text-xl font-bold text-blue-600">{hasInputs ? Math.round(totals.pct.shipping) : 0}%</p>
+                                        <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 dark:bg-slate-800/60 dark:border-slate-800">
+                                            <p className="text-[11px] font-bold text-slate-400 mb-1 uppercase tracking-wider dark:text-slate-500">Shipping Time</p>
+                                            <p className="text-xl font-bold text-blue-600 dark:text-blue-400">{hasInputs ? Math.round(totals.pct.shipping) : 0}%</p>
                                         </div>
                                     </div>
                                 </div>

@@ -78,7 +78,7 @@ export function FreeShippingCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Inputs Section */}
                 <div className="lg:col-span-7 space-y-3">
-                    <Card className="border border-slate-200 shadow-sm bg-white">
+                    <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             description="Enter your current metrics."
                             onReset={handleReset}
@@ -123,7 +123,7 @@ export function FreeShippingCalculator() {
                     <ResultFeedbackCard
                         title="Required Sales Increase"
                         titleLabel={isViable ? "Feasible" : "High Risk"}
-                        labelClassName={isViable ? "bg-blue-50 border-blue-200 text-blue-700" : "bg-red-50 border-red-200 text-red-700"}
+                        labelClassName={isViable ? "bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-950/40 dark:border-blue-900/50 dark:text-blue-400" : "bg-red-50 border-red-200 text-red-700 dark:bg-red-950/40 dark:border-red-900/50 dark:text-red-400"}
                         mainValue={
                             isViable ?
                                 <Counter value={salesIncreaseNeeded} formatter={(v) => `+${v.toFixed(1)}%`} /> :
@@ -141,32 +141,32 @@ export function FreeShippingCalculator() {
                             {
                                 label: "Gross Profit",
                                 value: <Counter value={grossProfitPerOrder} formatter={formatCurrency} key={currency} />,
-                                color: "text-slate-400"
+                                color: "text-slate-400 dark:text-slate-500"
                             }
                         ]}
                     />
                     {/* Breakdown Card */}
                     {currentAOV > 0 || shipCost > 0 || threshold > 0 ? (
-                        <div className={`bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 ${isViable ? 'border-l-blue-500' : 'border-l-red-500'}`}>
-                            <div className="px-5 py-3.5 border-b border-slate-100">
-                                <p className="text-xs font-bold text-slate-600 uppercase tracking-wider">Price Breakdown</p>
+                        <div className={`bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4  dark:bg-slate-900 dark:border-slate-800${isViable ? 'border-l-blue-500' : 'border-l-red-500'}`}>
+                            <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800">
+                                <p className="text-xs font-bold text-slate-600 uppercase tracking-wider dark:text-slate-300">Price Breakdown</p>
                             </div>
-                            <div className="divide-y divide-slate-100">
+                            <div className="divide-y divide-slate-100 dark:divide-slate-800">
                                 <div className="flex justify-between items-center px-5 py-3.5">
-                                    <span className="text-sm text-slate-600">Gross Profit per Order</span>
-                                    <span className="text-sm font-semibold text-slate-800">
+                                    <span className="text-sm text-slate-600 dark:text-slate-300">Gross Profit per Order</span>
+                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">
                                         {formatCurrency(grossProfitPerOrder)}
                                     </span>
                                 </div>
                                 <div className="flex justify-between items-center px-5 py-3.5">
-                                    <span className="text-sm text-slate-600">Shipping Cost</span>
-                                    <span className="text-sm font-semibold text-red-500">
+                                    <span className="text-sm text-slate-600 dark:text-slate-300">Shipping Cost</span>
+                                    <span className="text-sm font-semibold text-red-500 dark:text-red-400">
                                         - {formatCurrency(shipCost)}
                                     </span>
                                 </div>
                                 <div className="flex justify-between items-center px-5 py-3.5">
-                                    <span className="text-sm text-slate-600">Net Profit After Shipping</span>
-                                    <span className="text-sm font-semibold text-slate-800">
+                                    <span className="text-sm text-slate-600 dark:text-slate-300">Net Profit After Shipping</span>
+                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">
                                         {formatCurrency(netProfitWithFreeShipping)}
                                     </span>
                                 </div>
@@ -181,8 +181,8 @@ export function FreeShippingCalculator() {
                             </div>
                         </div>
                     ) : (
-                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center">
-                            <p className="text-sm text-slate-400">Enter current metrics to see price breakdown.</p>
+                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center dark:bg-slate-900 dark:border-slate-800">
+                            <p className="text-sm text-slate-400 dark:text-slate-500">Enter current metrics to see price breakdown.</p>
                         </div>
                     )}
                 </div>

@@ -165,12 +165,12 @@ export default function ToolsPage() {
         });
     }, [allTools, searchQuery, activeCategory]);
     return (
-        <div className="min-h-screen bg-slate-50 relative overflow-hidden">
+        <div className="min-h-screen bg-slate-50 relative overflow-hidden dark:bg-slate-950">
             {/* Ambient Background */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-0 left-1/4 w-[1000px] h-[600px] bg-blue-100/40 rounded-full blur-3xl mix-blend-multiply opacity-70 animate-blob" />
-                <div className="absolute top-0 right-1/4 w-[1000px] h-[600px] bg-purple-100/40 rounded-full blur-3xl mix-blend-multiply opacity-70 animate-blob animation-delay-2000" />
-                <div className="absolute -bottom-32 left-1/3 w-[1000px] h-[600px] bg-pink-100/40 rounded-full blur-3xl mix-blend-multiply opacity-70 animate-blob animation-delay-4000" />
+                <div className="absolute top-0 left-1/4 w-[1000px] h-[600px] bg-blue-100/40 rounded-full blur-3xl mix-blend-multiply opacity-70 animate-blob dark:bg-blue-900/40" />
+                <div className="absolute top-0 right-1/4 w-[1000px] h-[600px] bg-purple-100/40 rounded-full blur-3xl mix-blend-multiply opacity-70 animate-blob animation-delay-2000 dark:bg-purple-900/40" />
+                <div className="absolute -bottom-32 left-1/3 w-[1000px] h-[600px] bg-pink-100/40 rounded-full blur-3xl mix-blend-multiply opacity-70 animate-blob animation-delay-4000 dark:bg-pink-900/40" />
             </div>
             <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24">
                 {/* Header Section */}
@@ -179,39 +179,39 @@ export default function ToolsPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-slate-200 shadow-sm mb-8"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-slate-200 shadow-sm mb-8 dark:bg-slate-900/80 dark:border-slate-800"
                     >
-                        <Sparkles className="w-4 h-4 text-blue-600" />
-                        <span className="text-sm font-semibold text-slate-700">Premium E-commerce Tools</span>
+                        <Sparkles className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                        <span className="text-sm font-semibold text-slate-700 dark:text-slate-200">Premium E-commerce Tools</span>
                     </motion.div>
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.1 }}
-                        className="md:text-[42px] md:text-6xl font-bold text-slate-900 mb-6 tracking-tight"
+                        className="md:text-[42px] md:text-6xl font-bold text-slate-900 mb-6 tracking-tight dark:text-white"
                     >
-                        Everything you need to <span className="text-blue-600">grow faster</span>
+                        Everything you need to <span className="text-blue-600 dark:text-blue-400">grow faster</span>
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        className="text-xl text-slate-600 leading-relaxed"
+                        className="text-xl text-slate-600 leading-relaxed dark:text-slate-300"
                     >
                         A complete suite of 30+ powerful calculators, converters, and generators designed for modern e-commerce sellers.
                     </motion.p>
                 </div>
                 {/* Search and Filter Section */}
-                <div className="sticky top-20 z-30 bg-slate-50/90 backdrop-blur-md py-4 mb-8 -mx-4 px-4 sm:mx-0 sm:px-0 rounded-2xl">
+                <div className="sticky top-20 z-30 bg-slate-50/90 backdrop-blur-md py-4 mb-8 -mx-4 px-4 sm:mx-0 sm:px-0 rounded-2xl dark:bg-slate-800/60">
                     <div className="flex flex-col md:flex-row gap-4 items-center justify-between max-w-5xl mx-auto">
                         {/* Search Bar */}
                         <div className="relative w-full md:w-96 group">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <Search className="h-5 w-5 text-slate-400 group-focus-within:text-blue-500 transition-colors" />
+                                <Search className="h-5 w-5 text-slate-400 group-focus-within:text-blue-500 transition-colors dark:text-slate-500 dark:group-focus-within:text-blue-400" />
                             </div>
                             <input
                                 type="text"
-                                className="block w-full pl-10 pr-3 py-3 border border-slate-200 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all duration-300 shadow-sm"
+                                className="block w-full pl-10 pr-3 py-3 border border-slate-200 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all duration-300 shadow-sm dark:border-slate-800 dark:bg-slate-900"
                                 placeholder="Search tools (e.g. 'profit', 'weight')..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -254,30 +254,30 @@ export default function ToolsPage() {
                                     key={tool.title}
                                 >
                                     <Link href={tool.href} className="block h-full">
-                                        <div className="group h-full bg-white rounded-2xl border border-slate-200 p-6 hover:shadow-xl hover:shadow-slate-900/5 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+                                        <div className="group h-full bg-white rounded-2xl border border-slate-200 p-6 hover:shadow-xl hover:shadow-slate-900/5 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden dark:bg-slate-900 dark:border-slate-800">
                                             {/* Hover Gradient Effect */}
-                                            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 dark:from-blue-950/30" />
                                             <div className="relative flex flex-col h-full">
                                                 {/* Header */}
                                                 <div className="flex items-start justify-between mb-4">
-                                                    <div className="p-3 bg-blue-50 rounded-xl text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+                                                    <div className="p-3 bg-blue-50 rounded-xl text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 dark:bg-blue-950/40 dark:text-blue-400">
                                                         <Icon className="w-6 h-6" />
                                                     </div>
-                                                    <div className="px-2.5 py-1 bg-slate-100 rounded-lg text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+                                                    <div className="px-2.5 py-1 bg-slate-100 rounded-lg text-[10px] font-bold text-slate-500 uppercase tracking-wider dark:bg-slate-800 dark:text-slate-400">
                                                         {tool.category}
                                                     </div>
                                                 </div>
                                                 {/* Content */}
                                                 <div className="flex-1">
-                                                    <h3 className="text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors mb-2">
+                                                    <h3 className="text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors mb-2 dark:text-white dark:group-hover:text-blue-400">
                                                         {tool.title}
                                                     </h3>
-                                                    <p className="text-slate-500 text-sm leading-relaxed">
+                                                    <p className="text-slate-500 text-sm leading-relaxed dark:text-slate-400">
                                                         {tool.description}
                                                     </p>
                                                 </div>
                                                 {/* Footer / Action */}
-                                                <div className="mt-6 flex items-center text-blue-600 font-medium text-sm group-hover:translate-x-1 transition-transform duration-300">
+                                                <div className="mt-6 flex items-center text-blue-600 font-medium text-sm group-hover:translate-x-1 transition-transform duration-300 dark:text-blue-400">
                                                     Try Tool <ArrowRight className="w-4 h-4 ml-1" />
                                                 </div>
                                             </div>
@@ -295,11 +295,11 @@ export default function ToolsPage() {
                         animate={{ opacity: 1 }}
                         className="text-center py-24"
                     >
-                        <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <Search className="w-8 h-8 text-slate-400" />
+                        <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 dark:bg-slate-800">
+                            <Search className="w-8 h-8 text-slate-400 dark:text-slate-500" />
                         </div>
-                        <h3 className="text-lg font-semibold text-slate-900">No tools found</h3>
-                        <p className="text-slate-500">Try adjusting your search or filters.</p>
+                        <h3 className="text-lg font-semibold text-slate-900 dark:text-white">No tools found</h3>
+                        <p className="text-slate-500 dark:text-slate-400">Try adjusting your search or filters.</p>
                     </motion.div>
                 )}
             </div>

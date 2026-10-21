@@ -11,8 +11,8 @@ export function EbayFeeGuide() {
                     title: "Final Value Fees (FVF)",
                     description: "eBay takes a percentage of the total sale amount, which includes the item price and the shipping cost charged to the buyer. The standard rate is 13.25% for most categories.",
                     icon: Percent,
-                    iconBg: "bg-blue-50",
-                    iconColor: "text-blue-500",
+                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-500 dark:text-blue-400",
                     stat: "13.25%",
                     statLabel: "Standard FVF"
                 },
@@ -20,8 +20,8 @@ export function EbayFeeGuide() {
                     title: "The Fixed Order Fee",
                     description: "In addition to the percentage, eBay charges a flat $0.30 fee for every completed order. For low-cost items, this seemingly small fee can significantly impact your margin.",
                     icon: DollarSign,
-                    iconBg: "bg-emerald-50",
-                    iconColor: "text-emerald-500",
+                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
+                    iconColor: "text-emerald-500 dark:text-emerald-400",
                     stat: "$0.30",
                     statLabel: "Per Order"
                 },
@@ -29,8 +29,8 @@ export function EbayFeeGuide() {
                     title: "Promoted Listings Costs",
                     description: "To boost visibility, sellers can opt into Promoted Listings Standard, paying an additional percentage. This ad fee is charged *only* if a buyer clicks your promoted listing and buys.",
                     icon: TrendingUp,
-                    iconBg: "bg-indigo-50",
-                    iconColor: "text-indigo-500",
+                    iconBg: "bg-indigo-50 dark:bg-indigo-950/40",
+                    iconColor: "text-indigo-500 dark:text-indigo-400",
                 }
             ]}
         />

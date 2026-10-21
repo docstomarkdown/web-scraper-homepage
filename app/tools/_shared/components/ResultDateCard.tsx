@@ -130,14 +130,14 @@ export function ResultDateCard({
     const badge = customBadge
         ? {
             text: customBadge.text,
-            bg: customBadge.bgClass || "bg-emerald-100/50",
-            textCol: customBadge.textClass || "text-emerald-700",
+            bg: customBadge.bgClass || "bg-emerald-100/50 dark:bg-emerald-900/40",
+            textCol: customBadge.textClass || "text-emerald-700 dark:text-emerald-400",
             icon: customBadge.icon,
         }
         : {
             text: liveBadgeText || "Live",
-            bg: "bg-emerald-100/50",
-            textCol: "text-emerald-700",
+            bg: "bg-emerald-100/50 dark:bg-emerald-900/40",
+            textCol: "text-emerald-700 dark:text-emerald-400",
             icon: undefined,
         }
 
@@ -155,7 +155,7 @@ export function ResultDateCard({
         >
             <Card
                 className={cn(
-                    "relative overflow-hidden border border-slate-200/60 shadow-sm rounded-2xl",
+                    "relative overflow-hidden border border-slate-200/60 shadow-sm rounded-2xl dark:border-slate-800",
                     "bg-[#F5F8FD]",
                     className
                 )}
@@ -163,10 +163,10 @@ export function ResultDateCard({
                 {/* ── Static Header (matches ResultSummaryCard) ── */}
                 <div className="flex justify-between items-center gap-4 px-6 pt-5 pb-1">
                     <div className="flex items-center gap-2.5">
-                        <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-100/50 shadow-sm shadow-blue-500/5">
-                            <ClipboardList className="w-4 h-4 text-blue-600" />
+                        <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-100/50 shadow-sm shadow-blue-500/5 dark:border-blue-900/50">
+                            <ClipboardList className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                         </div>
-                        <span className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none">
+                        <span className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none dark:text-blue-400">
                             Results Panel
                         </span>
                     </div>
@@ -180,10 +180,10 @@ export function ResultDateCard({
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0, transition: { duration: 0.25 } }}
                                     transition={{ duration: 0.4, ease: "easeOut" }}
-                                    className="bg-slate-50 border border-slate-100 px-3 py-1.5 rounded-full flex items-center gap-2.5 shadow-sm"
+                                    className="bg-slate-50 border border-slate-100 px-3 py-1.5 rounded-full flex items-center gap-2.5 shadow-sm dark:bg-slate-800/60 dark:border-slate-800"
                                 >
-                                    <span className="text-[10px] font-black text-blue-600">{completedCount}/{totalCount}</span>
-                                    <div className="w-16 h-1.5 bg-blue-100/80 rounded-full overflow-hidden">
+                                    <span className="text-[10px] font-black text-blue-600 dark:text-blue-400">{completedCount}/{totalCount}</span>
+                                    <div className="w-16 h-1.5 bg-blue-100/80 rounded-full overflow-hidden dark:bg-blue-900/40">
                                         <motion.div
                                             className="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full"
                                             initial={{ width: "0%" }}
@@ -204,7 +204,7 @@ export function ResultDateCard({
                                     className={cn(
                                         "flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[10.5px] font-bold tracking-wide shrink-0",
                                         badge.bg, badge.textCol,
-                                        "border-slate-200/50"
+                                        "border-slate-200/50 dark:border-slate-800"
                                     )}
                                 >
                                     {badge.icon ? badge.icon : <Check className="w-3.5 h-3.5" />}
@@ -233,11 +233,11 @@ export function ResultDateCard({
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
                                         transition={{ duration: 0.55, ease: "easeOut" }}
-                                        className="bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_8px_40px_rgba(59,130,246,0.12)] rounded-2xl px-6 py-5 flex flex-col items-center gap-3 w-fit max-w-[320px] pointer-events-auto"
+                                        className="bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_8px_40px_rgba(59,130,246,0.12)] rounded-2xl px-6 py-5 flex flex-col items-center gap-3 w-fit max-w-[320px] pointer-events-auto dark:bg-slate-900/80 dark:border-slate-800"
                                     >
                                         <div className="relative flex items-center justify-center">
                                             <span className="absolute w-11 h-11 rounded-xl bg-blue-400/15 animate-ping" style={{ animationDuration: "2.8s" }} />
-                                            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200/60 flex items-center justify-center text-blue-500 shadow-sm">
+                                            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200/60 flex items-center justify-center text-blue-500 shadow-sm dark:from-blue-950/30 dark:to-blue-900/30 dark:border-blue-900/50 dark:text-blue-400">
                                                 <ClipboardPenLine className="w-[18px] h-[18px]" />
                                             </div>
                                         </div>
@@ -247,11 +247,11 @@ export function ResultDateCard({
                                                     <path d="M9 19l-7-7 7-7" />
                                                     <path d="M2 12h36" />
                                                 </svg>
-                                                <p className="text-[12.5px] text-slate-500 font-semibold leading-snug whitespace-nowrap z-10">
+                                                <p className="text-[12.5px] text-slate-500 font-semibold leading-snug whitespace-nowrap z-10 dark:text-slate-400">
                                                     Complete the inputs to generate your
                                                 </p>
                                             </div>
-                                            <span className="inline-flex items-center px-3 py-1 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100/80 text-[11.5px] font-extrabold text-blue-600/90 tracking-wide shadow-sm shadow-blue-100/50">
+                                            <span className="inline-flex items-center px-3 py-1 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100/80 text-[11.5px] font-extrabold text-blue-600/90 tracking-wide shadow-sm shadow-blue-100/50 dark:from-blue-950/30 dark:to-blue-900/30">
                                                 {emptyLabel}
                                             </span>
                                         </div>
@@ -262,31 +262,31 @@ export function ResultDateCard({
                                 <div className="blur-[2.5px] opacity-40 select-none pointer-events-none">
                                     {/* Primary Hero Skeleton */}
                                     <div className="flex flex-col items-center justify-center py-5 px-4 mb-2">
-                                        <div className="h-2.5 w-24 rounded-full bg-slate-200/60 mb-3 animate-pulse" />
-                                        <div className="h-12 w-40 rounded-xl bg-slate-200/50 mb-2 animate-pulse" style={{ animationDelay: "0.1s" }} />
+                                        <div className="h-2.5 w-24 rounded-full bg-slate-200/60 mb-3 animate-pulse dark:bg-slate-700/60" />
+                                        <div className="h-12 w-40 rounded-xl bg-slate-200/50 mb-2 animate-pulse dark:bg-slate-700/50" style={{ animationDelay: "0.1s" }} />
                                         <div className="flex flex-col items-center gap-1.5 mt-1">
-                                            <div className="h-2 w-44 rounded-full bg-slate-200/60 animate-pulse" style={{ animationDelay: "0.2s" }} />
-                                            <div className="h-2 w-32 rounded-full bg-slate-200/50 animate-pulse" style={{ animationDelay: "0.3s" }} />
+                                            <div className="h-2 w-44 rounded-full bg-slate-200/60 animate-pulse dark:bg-slate-700/60" style={{ animationDelay: "0.2s" }} />
+                                            <div className="h-2 w-32 rounded-full bg-slate-200/50 animate-pulse dark:bg-slate-700/50" style={{ animationDelay: "0.3s" }} />
                                         </div>
                                     </div>
 
                                     {/* Divider */}
-                                    <div className="h-px w-full bg-slate-200/40 my-4" />
+                                    <div className="h-px w-full bg-slate-200/40 my-4 dark:bg-slate-700/40" />
 
                                     {/* Date Section Skeleton */}
                                     <div className="flex items-center gap-3 mb-5">
-                                        <div className="w-10 h-10 rounded-xl bg-slate-200/50 animate-pulse" />
+                                        <div className="w-10 h-10 rounded-xl bg-slate-200/50 animate-pulse dark:bg-slate-700/50" />
                                         <div className="flex-1 space-y-2">
-                                            <div className="h-2 w-24 rounded-full bg-slate-200/60 animate-pulse" style={{ animationDelay: "0.1s" }} />
-                                            <div className="h-4 w-40 rounded-lg bg-slate-200/50 animate-pulse" style={{ animationDelay: "0.2s" }} />
+                                            <div className="h-2 w-24 rounded-full bg-slate-200/60 animate-pulse dark:bg-slate-700/60" style={{ animationDelay: "0.1s" }} />
+                                            <div className="h-4 w-40 rounded-lg bg-slate-200/50 animate-pulse dark:bg-slate-700/50" style={{ animationDelay: "0.2s" }} />
                                         </div>
                                     </div>
 
                                     {/* Info Card Skeleton */}
-                                    <div className="bg-slate-50/50 border border-slate-100 p-4 rounded-xl space-y-2">
-                                        <div className="h-2.5 w-28 rounded-full bg-slate-200/60 animate-pulse" />
-                                        <div className="h-2 w-full rounded-full bg-slate-200/50 animate-pulse" style={{ animationDelay: "0.1s" }} />
-                                        <div className="h-2 w-4/5 rounded-full bg-slate-200/50 animate-pulse" style={{ animationDelay: "0.2s" }} />
+                                    <div className="bg-slate-50/50 border border-slate-100 p-4 rounded-xl space-y-2 dark:bg-slate-800/60 dark:border-slate-800">
+                                        <div className="h-2.5 w-28 rounded-full bg-slate-200/60 animate-pulse dark:bg-slate-700/60" />
+                                        <div className="h-2 w-full rounded-full bg-slate-200/50 animate-pulse dark:bg-slate-700/50" style={{ animationDelay: "0.1s" }} />
+                                        <div className="h-2 w-4/5 rounded-full bg-slate-200/50 animate-pulse dark:bg-slate-700/50" style={{ animationDelay: "0.2s" }} />
                                     </div>
                                 </div>
                             </div>
@@ -313,7 +313,7 @@ export function ResultDateCard({
                                             initial={{ opacity: 0, y: 3 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.3, delay: 0.12 }}
-                                            className="text-[10px] sm:text-[11px] font-black text-slate-400 uppercase tracking-[0.16em] leading-none mb-2"
+                                            className="text-[10px] sm:text-[11px] font-black text-slate-400 uppercase tracking-[0.16em] leading-none mb-2 dark:text-slate-500"
                                         >
                                             {displayLabel}
                                         </motion.span>
@@ -325,7 +325,7 @@ export function ResultDateCard({
                                         transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
                                         className="flex items-baseline justify-center"
                                     >
-                                        <span className="text-[2.75rem] sm:text-[3.25rem] font-black text-blue-600 tracking-tighter leading-none">
+                                        <span className="text-[2.75rem] sm:text-[3.25rem] font-black text-blue-600 tracking-tighter leading-none dark:text-blue-400">
                                             {formatValueWithUnit(primaryResult.value, primaryResult.unit, primaryResult.isCurrency)}
                                         </span>
                                     </motion.div>
@@ -335,7 +335,7 @@ export function ResultDateCard({
                                             initial={{ opacity: 0 }}
                                             animate={{ opacity: 1 }}
                                             transition={{ duration: 0.3, delay: 0.22 }}
-                                            className="text-[11.5px] text-slate-500 font-medium mt-2 max-w-[280px] mx-auto leading-relaxed"
+                                            className="text-[11.5px] text-slate-500 font-medium mt-2 max-w-[280px] mx-auto leading-relaxed dark:text-slate-400"
                                         >
                                             {displayDescription}
                                         </motion.p>
@@ -348,17 +348,17 @@ export function ResultDateCard({
                                     initial={{ opacity: 0, y: 8 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.3, delay: 0.12, ease: "easeOut" }}
-                                    className="group bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)]"
+                                    className="group bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
                                 >
                                     <div className="flex items-center gap-3">
-                                        <div className="w-10 h-10 bg-blue-600/10 rounded-xl flex items-center justify-center border border-blue-100/50 shrink-0">
-                                            {dateSection.icon ?? <Calendar className="w-5 h-5 text-blue-500" />}
+                                        <div className="w-10 h-10 bg-blue-600/10 rounded-xl flex items-center justify-center border border-blue-100/50 shrink-0 dark:border-blue-900/50">
+                                            {dateSection.icon ?? <Calendar className="w-5 h-5 text-blue-500 dark:text-blue-400" />}
                                         </div>
                                         <div className="flex-1 min-w-0">
-                                            <p className="text-[13px] sm:text-[14px] font-bold text-slate-500 leading-none mb-1.5 group-hover:text-slate-600 transition-colors">
+                                            <p className="text-[13px] sm:text-[14px] font-bold text-slate-500 leading-none mb-1.5 group-hover:text-slate-600 transition-colors dark:text-slate-400 dark:group-hover:text-slate-300">
                                                 {dateSection.label}
                                             </p>
-                                            <p className="text-[16px] sm:text-[17px] font-bold text-slate-700 tracking-tight truncate">
+                                            <p className="text-[16px] sm:text-[17px] font-bold text-slate-700 tracking-tight truncate dark:text-slate-200">
                                                  {isCalculated ? dateSection.value : (dateSection.emptyText ?? "Waiting for inputs…")}
                                              </p>
                                         </div>
@@ -372,14 +372,14 @@ export function ResultDateCard({
                                     initial={{ opacity: 0, y: 8 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.3, delay: 0.17, ease: "easeOut" }}
-                                    className="group bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)]"
+                                    className="group bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
                                 >
                                     {infoCard.title && (
-                                        <p className="text-[13px] sm:text-[14px] font-bold text-slate-500 leading-none mb-2 group-hover:text-slate-600 transition-colors">
+                                        <p className="text-[13px] sm:text-[14px] font-bold text-slate-500 leading-none mb-2 group-hover:text-slate-600 transition-colors dark:text-slate-400 dark:group-hover:text-slate-300">
                                             {infoCard.title}
                                         </p>
                                     )}
-                                    <div className="text-sm font-medium text-slate-500 leading-relaxed">
+                                    <div className="text-sm font-medium text-slate-500 leading-relaxed dark:text-slate-400">
                                         {infoCard.children}
                                     </div>
                                 </motion.div>

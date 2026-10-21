@@ -36,7 +36,7 @@ export function ConversionCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Inputs Section */}
                 <div className="lg:col-span-7 space-y-3 lg:sticky lg:top-8">
-                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden rounded-3xl">
+                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden rounded-3xl dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Traffic & Conversions"
                             description="Enter traffic and conversion data."
@@ -111,16 +111,16 @@ export function ConversionCalculator() {
                         }
                     >
                         {/* Benchmark Inner Card */}
-                        <div className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl transition-all duration-200 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] hover:border-slate-300 overflow-hidden">
+                        <div className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl transition-all duration-200 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] hover:border-slate-300 overflow-hidden dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700">
                             <div className="flex items-center gap-2 p-4">
-                                <TrendingUp className="w-4 h-4 text-blue-500 flex-shrink-0" />
-                                <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 tracking-tight">
+                                <TrendingUp className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
+                                <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 tracking-tight dark:text-slate-400">
                                     Industry Benchmark
                                 </span>
                             </div>
-                            <div className="px-4 pb-4 pt-0 border-t border-slate-100">
-                                <p className="text-[13px] text-slate-500 leading-relaxed pt-3 pl-[24px]">
-                                    E-commerce conversion rates typically range from <strong className="text-slate-700 font-semibold">1% to 3%</strong>. A rate above <strong className="text-slate-700 font-semibold">3%</strong> is generally considered excellent, though this varies by industry and traffic quality.
+                            <div className="px-4 pb-4 pt-0 border-t border-slate-100 dark:border-slate-800">
+                                <p className="text-[13px] text-slate-500 leading-relaxed pt-3 pl-[24px] dark:text-slate-400">
+                                    E-commerce conversion rates typically range from <strong className="text-slate-700 font-semibold dark:text-slate-200">1% to 3%</strong>. A rate above <strong className="text-slate-700 font-semibold dark:text-slate-200">3%</strong> is generally considered excellent, though this varies by industry and traffic quality.
                                 </p>
                             </div>
                         </div>

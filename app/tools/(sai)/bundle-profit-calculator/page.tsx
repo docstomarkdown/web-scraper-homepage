@@ -29,14 +29,14 @@ const faqs = [
 ];
 export default function BundleCalculatorPage() {
     return (
-        <div className="min-h-screen bg-slate-50 pt-32 pb-12">
+        <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
                 <FadeIn>
                     <div className="text-center max-w-3xl mx-auto mb-12">
-                        <h1 className="text-4xl font-bold text-slate-900 mb-4">
+                        <h1 className="text-4xl font-bold text-slate-900 mb-4 dark:text-white">
                             Bundle Profit Calculator
                         </h1>
-                        <p className="text-lg text-slate-600">
+                        <p className="text-lg text-slate-600 dark:text-slate-300">
                             Determine the profitability of your product bundles. Optimize your pricing, discounts, and margins to maximize revenue.
                         </p>
                     </div>

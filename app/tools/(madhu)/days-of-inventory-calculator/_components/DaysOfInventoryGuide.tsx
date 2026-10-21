@@ -13,9 +13,9 @@ export function DaysOfInventoryGuide() {
                     icon: ShieldCheck,
                     stat: "Buffer",
                     statLabel: "Emergency Units",
-                    iconBg: "bg-purple-50",
-                    iconColor: "text-purple-600",
-                    statColor: "text-purple-600",
+                    iconBg: "bg-purple-50 dark:bg-purple-950/40",
+                    iconColor: "text-purple-600 dark:text-purple-400",
+                    statColor: "text-purple-600 dark:text-purple-400",
                     tooltip: "Your baseline stock kept purely for emergencies."
                 },
                 {
@@ -24,9 +24,9 @@ export function DaysOfInventoryGuide() {
                     icon: Clock,
                     stat: "Daily",
                     statLabel: "Best Precision",
-                    iconBg: "bg-orange-50",
-                    iconColor: "text-orange-600",
-                    statColor: "text-orange-600"
+                    iconBg: "bg-orange-50 dark:bg-orange-950/40",
+                    iconColor: "text-orange-600 dark:text-orange-400",
+                    statColor: "text-orange-600 dark:text-orange-400"
                 },
                 {
                     title: "Timing Your Reorders",
@@ -34,9 +34,9 @@ export function DaysOfInventoryGuide() {
                     icon: Bell,
                     stat: "Actionable",
                     statLabel: "Remaining Days",
-                    iconBg: "bg-blue-50",
-                    iconColor: "text-blue-600",
-                    statColor: "text-blue-600"
+                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-600 dark:text-blue-400",
+                    statColor: "text-blue-600 dark:text-blue-400"
                 }
             ]}
         />

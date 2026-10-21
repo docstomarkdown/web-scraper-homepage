@@ -43,7 +43,7 @@ export function AOVCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Inputs Section */}
                 <div className="lg:col-span-7 space-y-3">
-                    <Card className="border border-slate-200 shadow-sm bg-white">
+                    <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Revenue & Order Metrics"
                             description="Enter your gross revenue and total order count."

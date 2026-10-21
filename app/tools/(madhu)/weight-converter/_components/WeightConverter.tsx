@@ -159,11 +159,11 @@ const UNIT_ABBR: Record<WeightUnit, string> = {
 }
 
 const TIER_COLORS: Record<string, { bg: string; border: string; text: string; dot: string; badge: string }> = {
-    emerald: { bg: "bg-emerald-50", border: "border-emerald-200/70", text: "text-emerald-700", dot: "bg-emerald-400", badge: "bg-emerald-100/80 text-emerald-700" },
-    blue: { bg: "bg-blue-50", border: "border-blue-200/70", text: "text-blue-700", dot: "bg-blue-400", badge: "bg-blue-100/80 text-blue-700" },
-    amber: { bg: "bg-amber-50", border: "border-amber-200/70", text: "text-amber-700", dot: "bg-amber-400", badge: "bg-amber-100/80 text-amber-700" },
-    orange: { bg: "bg-orange-50", border: "border-orange-200/70", text: "text-orange-700", dot: "bg-orange-400", badge: "bg-orange-100/80 text-orange-700" },
-    slate: { bg: "bg-slate-50", border: "border-slate-200/70", text: "text-slate-600", dot: "bg-slate-400", badge: "bg-slate-100/80 text-slate-700" },
+    emerald: { bg: "bg-emerald-50 dark:bg-emerald-950/40", border: "border-emerald-200/70 dark:border-emerald-900/50", text: "text-emerald-700 dark:text-emerald-400", dot: "bg-emerald-400", badge: "bg-emerald-100/80 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400" },
+    blue: { bg: "bg-blue-50 dark:bg-blue-950/40", border: "border-blue-200/70 dark:border-blue-900/50", text: "text-blue-700 dark:text-blue-400", dot: "bg-blue-400", badge: "bg-blue-100/80 text-blue-700 dark:bg-blue-900/40 dark:text-blue-400" },
+    amber: { bg: "bg-amber-50 dark:bg-amber-950/40", border: "border-amber-200/70 dark:border-amber-900/50", text: "text-amber-700 dark:text-amber-400", dot: "bg-amber-400", badge: "bg-amber-100/80 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400" },
+    orange: { bg: "bg-orange-50 dark:bg-orange-950/40", border: "border-orange-200/70 dark:border-orange-900/50", text: "text-orange-700 dark:text-orange-400", dot: "bg-orange-400", badge: "bg-orange-100/80 text-orange-700 dark:bg-orange-900/40 dark:text-orange-400" },
+    slate: { bg: "bg-slate-50 dark:bg-slate-800/60", border: "border-slate-200/70 dark:border-slate-800", text: "text-slate-600 dark:text-slate-300", dot: "bg-slate-400", badge: "bg-slate-100/80 text-slate-700 dark:bg-slate-800 dark:text-slate-200" },
 }
 
 export function WeightConverter() {
@@ -251,7 +251,7 @@ export function WeightConverter() {
 
                 {/* ═══ LEFT COLUMN: Input Panel ═══ */}
                 <div className="lg:col-span-7 self-start lg:sticky lg:top-28">
-                    <Card className="border-slate-200 shadow-sm relative overflow-hidden bg-white flex flex-col">
+                    <Card className="border-slate-200 shadow-sm relative overflow-hidden bg-white flex flex-col dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Weight Converter"
                             description="Enter your product weight and select target unit. Includes shipping tier estimator by carrier."
@@ -279,19 +279,19 @@ export function WeightConverter() {
                                     <div className="calculator-input-row max-w-[520px] mx-auto px-3 sm:px-5">
                                         <div className="flex items-center gap-3 w-full relative z-10">
                                             <div className="flex items-center gap-2 flex-1 min-w-0 text-left">
-                                                <label className="text-[14.5px] font-medium text-slate-600/90 cursor-pointer py-1">Weight Unit</label>
+                                                <label className="text-[14.5px] font-medium text-slate-600/90 cursor-pointer py-1 dark:text-slate-300">Weight Unit</label>
                                                 <Tooltip>
                                                     <TooltipTrigger asChild>
-                                                        <button type="button" tabIndex={-1} className="text-slate-400 hover:text-blue-500 transition-colors cursor-help shrink-0">
+                                                        <button type="button" tabIndex={-1} className="text-slate-400 hover:text-blue-500 transition-colors cursor-help shrink-0 dark:text-slate-500 dark:hover:text-blue-400">
                                                             <Info className="w-3.5 h-3.5" />
                                                         </button>
                                                     </TooltipTrigger>
-                                                    <TooltipContent side="top" className="max-w-xs text-[13px] font-normal bg-slate-900 text-white border-slate-800">
+                                                    <TooltipContent side="top" className="max-w-xs text-[13px] font-normal bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
                                                         Select the unit of measurement for the weight value you're entering.
                                                     </TooltipContent>
                                                 </Tooltip>
                                             </div>
-                                            <div className="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200 h-11 font-sans w-36 sm:w-44">
+                                            <div className="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200 h-11 font-sans w-36 sm:w-44 dark:bg-slate-800 dark:border-slate-800">
                                                 {(["lbs", "oz", "kg", "g"] as WeightUnit[]).map((u) => (
                                                     <button
                                                         key={u}
@@ -299,8 +299,8 @@ export function WeightConverter() {
                                                         className={cn(
                                                             "px-3 h-full rounded-md text-[13px] font-bold transition-all flex-1 flex items-center justify-center",
                                                             inputUnit === u
-                                                                ? "bg-white text-blue-600 shadow-sm border border-blue-200"
-                                                                : "text-slate-500 hover:text-slate-900"
+                                                                ? "bg-white text-blue-600 shadow-sm border border-blue-200 dark:bg-slate-900 dark:text-blue-400 dark:border-blue-900/50"
+                                                                : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
                                                         )}
                                                     >{u}</button>
                                                 ))}
@@ -312,30 +312,30 @@ export function WeightConverter() {
                                 {/* ── Conversion Target ── */}
                                 <div className="space-y-0">
                                     <div className="calculator-input-row max-w-[520px] mx-auto px-3 sm:px-5 pb-0">
-                                        <div className="h-px bg-slate-100/80 w-[calc(100%+48px)] -ml-6 mb-3 mt-1" />
+                                        <div className="h-px bg-slate-100/80 w-[calc(100%+48px)] -ml-6 mb-3 mt-1 dark:bg-slate-800" />
                                         <div className="relative w-full">
                                             <div className="absolute left-[-19px] w-[1.5px] bg-blue-200/70 z-0" style={{ top: '14px', bottom: '0px' }} />
                                             <div className="flex items-center gap-2 -ml-[33px] mb-0.5 relative h-7 z-10">
-                                                <div className="w-7 h-7 rounded-lg bg-blue-50 ring-[6px] ring-white flex items-center justify-center flex-shrink-0 z-10">
-                                                    <RefreshCw className="w-3.5 h-3.5 text-blue-600" />
+                                                <div className="w-7 h-7 rounded-lg bg-blue-50 ring-[6px] ring-white flex items-center justify-center flex-shrink-0 z-10 dark:bg-blue-950/40 dark:ring-slate-900">
+                                                    <RefreshCw className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                                                 </div>
-                                                <span className="text-[16px] font-bold text-slate-600 capitalize z-10 tracking-tight flex-1">Conversion Target</span>
+                                                <span className="text-[16px] font-bold text-slate-600 capitalize z-10 tracking-tight flex-1 dark:text-slate-300">Conversion Target</span>
                                             </div>
                                             <div className="flex items-center gap-3 w-full relative z-10 mt-3">
                                                 <div className="flex items-center gap-2 flex-1 min-w-0 text-left">
-                                                    <label className="text-[14.5px] font-medium text-slate-600/90 cursor-pointer py-1">Target Unit</label>
+                                                    <label className="text-[14.5px] font-medium text-slate-600/90 cursor-pointer py-1 dark:text-slate-300">Target Unit</label>
                                                     <Tooltip>
                                                         <TooltipTrigger asChild>
-                                                            <button type="button" tabIndex={-1} className="text-slate-400 hover:text-blue-500 transition-colors cursor-help shrink-0">
+                                                            <button type="button" tabIndex={-1} className="text-slate-400 hover:text-blue-500 transition-colors cursor-help shrink-0 dark:text-slate-500 dark:hover:text-blue-400">
                                                                 <Info className="w-3.5 h-3.5" />
                                                             </button>
                                                         </TooltipTrigger>
-                                                        <TooltipContent side="top" className="max-w-xs text-[13px] font-normal bg-slate-900 text-white border-slate-800">
+                                                        <TooltipContent side="top" className="max-w-xs text-[13px] font-normal bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
                                                             Select the unit you want to convert your weight to.
                                                         </TooltipContent>
                                                     </Tooltip>
                                                 </div>
-                                                <div className="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200 h-11 font-sans w-36 sm:w-44">
+                                                <div className="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200 h-11 font-sans w-36 sm:w-44 dark:bg-slate-800 dark:border-slate-800">
                                                     {(["lbs", "oz", "kg", "g"] as WeightUnit[]).map((u) => (
                                                         <button
                                                             key={u}
@@ -344,8 +344,8 @@ export function WeightConverter() {
                                                             className={cn(
                                                                 "px-3 h-full rounded-md text-[13px] font-bold transition-all flex-1 flex items-center justify-center",
                                                                 targetUnit === u
-                                                                    ? "bg-white text-blue-600 shadow-sm border border-blue-200"
-                                                                    : "text-slate-500 hover:text-slate-900",
+                                                                    ? "bg-white text-blue-600 shadow-sm border border-blue-200 dark:bg-slate-900 dark:text-blue-400 dark:border-blue-900/50"
+                                                                    : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white",
                                                                 inputUnit === u && "opacity-30 cursor-not-allowed"
                                                             )}
                                                         >{u}</button>
@@ -359,30 +359,30 @@ export function WeightConverter() {
                                 {/* ── Shipping Details ── */}
                                 <div className="space-y-0">
                                     <div className="calculator-input-row max-w-[520px] mx-auto px-3 sm:px-5 pb-0">
-                                        <div className="h-px bg-slate-100/80 w-[calc(100%+48px)] -ml-6 mb-3 mt-1" />
+                                        <div className="h-px bg-slate-100/80 w-[calc(100%+48px)] -ml-6 mb-3 mt-1 dark:bg-slate-800" />
                                         <div className="relative w-full">
                                             <div className="absolute left-[-19px] w-[1.5px] bg-blue-200/70 z-0" style={{ top: '14px', bottom: '0px' }} />
                                             <div className="flex items-center justify-between -ml-[33px] mb-0.5 relative h-7 z-10 w-[calc(100%+33px)]">
                                                 <div className="flex items-center gap-2">
-                                                    <div className="w-7 h-7 rounded-lg bg-blue-50 ring-[6px] ring-white flex items-center justify-center flex-shrink-0 z-10">
-                                                        <Truck className="w-3.5 h-3.5 text-blue-600" />
+                                                    <div className="w-7 h-7 rounded-lg bg-blue-50 ring-[6px] ring-white flex items-center justify-center flex-shrink-0 z-10 dark:bg-blue-950/40 dark:ring-slate-900">
+                                                        <Truck className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                                                     </div>
-                                                    <span className="text-[16px] font-bold text-slate-600 capitalize z-10 tracking-tight">Shipping Estimator</span>
+                                                    <span className="text-[16px] font-bold text-slate-600 capitalize z-10 tracking-tight dark:text-slate-300">Shipping Estimator</span>
                                                 </div>
                                             </div>
                                             {/* Carrier Selector Row */}
                                             <div className="flex items-center gap-3 w-full relative z-10 mt-3">
                                                 <div className="flex items-center gap-2 flex-1 min-w-0 text-left">
-                                                    <label className="text-[14.5px] font-medium text-slate-600/90 cursor-pointer py-1">
+                                                    <label className="text-[14.5px] font-medium text-slate-600/90 cursor-pointer py-1 dark:text-slate-300">
                                                         Select Carrier
                                                     </label>
                                                     <Tooltip>
                                                         <TooltipTrigger asChild>
-                                                            <button type="button" tabIndex={-1} className="text-slate-400 hover:text-blue-500 transition-colors cursor-help shrink-0">
+                                                            <button type="button" tabIndex={-1} className="text-slate-400 hover:text-blue-500 transition-colors cursor-help shrink-0 dark:text-slate-500 dark:hover:text-blue-400">
                                                                 <Info className="w-3.5 h-3.5" />
                                                             </button>
                                                         </TooltipTrigger>
-                                                        <TooltipContent side="top" className="max-w-xs text-[13px] font-normal bg-slate-900 text-white border-slate-800">
+                                                        <TooltipContent side="top" className="max-w-xs text-[13px] font-normal bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
                                                             Select your shipping carrier to see estimated rates.
                                                         </TooltipContent>
                                                     </Tooltip>
@@ -395,10 +395,10 @@ export function WeightConverter() {
                                                             setShippingMode("carrier")
                                                         }}
                                                     >
-                                                        <SelectTrigger className="h-11 text-[13px] border border-slate-200 font-semibold transition-all px-3 bg-white text-slate-700 focus:ring-0 focus:ring-offset-0 focus:outline-none hover:border-slate-300 shadow-sm rounded-xl">
+                                                        <SelectTrigger className="h-11 text-[13px] border border-slate-200 font-semibold transition-all px-3 bg-white text-slate-700 focus:ring-0 focus:ring-offset-0 focus:outline-none hover:border-slate-300 shadow-sm rounded-xl dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-slate-700">
                                                             <SelectValue placeholder="Select..." />
                                                         </SelectTrigger>
-                                                        <SelectContent align="end" className="max-h-[300px] border-slate-200 shadow-xl rounded-xl z-[1001]">
+                                                        <SelectContent align="end" className="max-h-[300px] border-slate-200 shadow-xl rounded-xl z-[1001] dark:border-slate-800">
                                                             {Object.entries(
                                                                 Object.entries(CARRIER_TIERS).reduce((acc, [key, val]) => {
                                                                     if (!acc[val.group]) acc[val.group] = [];
@@ -407,7 +407,7 @@ export function WeightConverter() {
                                                                 }, {} as Record<string, {key: string, label: string}[]>)
                                                             ).map(([group, carriers]) => (
                                                                 <SelectGroup key={group}>
-                                                                    <SelectLabel className="text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.13em] px-2 py-1.5 bg-slate-50/80 mb-1">{group}</SelectLabel>
+                                                                    <SelectLabel className="text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.13em] px-2 py-1.5 bg-slate-50/80 mb-1 dark:text-slate-500 dark:bg-slate-800/60">{group}</SelectLabel>
                                                                     {carriers.map(c => (
                                                                         <SelectItem key={c.key} value={c.key} className="text-[12px] font-medium leading-tight py-1.5 cursor-pointer">{c.label}</SelectItem>
                                                                     ))}
@@ -421,16 +421,16 @@ export function WeightConverter() {
                                             {/* Speed Selector Row */}
                                             <div className="flex items-center gap-3 w-full relative z-10 mt-2 pb-1">
                                                 <div className="flex items-center gap-2 flex-1 min-w-0 text-left">
-                                                    <label className="text-[14.5px] font-medium text-slate-600/90 cursor-pointer py-1">
+                                                    <label className="text-[14.5px] font-medium text-slate-600/90 cursor-pointer py-1 dark:text-slate-300">
                                                         Shipping Speed
                                                     </label>
                                                     <Tooltip>
                                                         <TooltipTrigger asChild>
-                                                            <button type="button" tabIndex={-1} className="text-slate-400 hover:text-blue-500 transition-colors cursor-help shrink-0">
+                                                            <button type="button" tabIndex={-1} className="text-slate-400 hover:text-blue-500 transition-colors cursor-help shrink-0 dark:text-slate-500 dark:hover:text-blue-400">
                                                                 <Info className="w-3.5 h-3.5" />
                                                             </button>
                                                         </TooltipTrigger>
-                                                        <TooltipContent side="top" className="max-w-xs text-[13px] font-normal bg-slate-900 text-white border-slate-800">
+                                                        <TooltipContent side="top" className="max-w-xs text-[13px] font-normal bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
                                                             Select general shipping speed for estimates.
                                                         </TooltipContent>
                                                     </Tooltip>
@@ -443,12 +443,12 @@ export function WeightConverter() {
                                                             setShippingMode("class")
                                                         }}
                                                     >
-                                                        <SelectTrigger className="h-11 text-[13px] border border-slate-200 font-semibold transition-all px-3 bg-white text-slate-700 focus:ring-0 focus:ring-offset-0 focus:outline-none hover:border-slate-300 shadow-sm rounded-xl">
+                                                        <SelectTrigger className="h-11 text-[13px] border border-slate-200 font-semibold transition-all px-3 bg-white text-slate-700 focus:ring-0 focus:ring-offset-0 focus:outline-none hover:border-slate-300 shadow-sm rounded-xl dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-slate-700">
                                                             <SelectValue placeholder="Select..." />
                                                         </SelectTrigger>
-                                                        <SelectContent align="end" className="max-h-[300px] border-slate-200 shadow-xl rounded-xl z-[1001]">
+                                                        <SelectContent align="end" className="max-h-[300px] border-slate-200 shadow-xl rounded-xl z-[1001] dark:border-slate-800">
                                                             <SelectGroup>
-                                                                <SelectLabel className="text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.13em] px-2 py-1.5 bg-slate-50/80 mb-1">Speed Types</SelectLabel>
+                                                                <SelectLabel className="text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.13em] px-2 py-1.5 bg-slate-50/80 mb-1 dark:text-slate-500 dark:bg-slate-800/60">Speed Types</SelectLabel>
                                                                 {Object.entries(SHIPPING_CLASSES).map(([key, val]) => (
                                                                     <SelectItem key={key} value={key} className="text-[12px] font-medium leading-tight py-1.5 cursor-pointer">{val.label}</SelectItem>
                                                                 ))}
@@ -474,14 +474,14 @@ export function WeightConverter() {
                         transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                         className="flex flex-col gap-3"
                     >
-                        <Card className="relative overflow-hidden border border-slate-200/60 shadow-sm rounded-2xl bg-[#F5F8FD] flex flex-col">
+                        <Card className="relative overflow-hidden border border-slate-200/60 shadow-sm rounded-2xl bg-[#F5F8FD] flex flex-col dark:border-slate-800">
                             {/* Header */}
                             <div className="flex justify-between items-center gap-4 px-6 pt-5 pb-1">
                                 <div className="flex items-center gap-2.5">
-                                    <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-100/50">
-                                        <Scale className="w-4 h-4 text-blue-600" />
+                                    <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-100/50 dark:border-blue-900/50">
+                                        <Scale className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                                     </div>
-                                    <span className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none">
+                                    <span className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none dark:text-blue-400">
                                         Results Panel
                                     </span>
                                 </div>
@@ -492,9 +492,9 @@ export function WeightConverter() {
                                             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                                             className={cn(
                                                 "flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[10.5px] font-bold",
-                                                activeTier?.color === "emerald" ? "bg-emerald-100/50 text-emerald-700 border-emerald-200/50" :
-                                                activeTier?.color === "amber" || activeTier?.color === "orange" ? "bg-amber-100/50 text-amber-700 border-amber-200/50" :
-                                                "bg-blue-100/50 text-blue-700 border-blue-200/50"
+                                                activeTier?.color === "emerald" ? "bg-emerald-100/50 text-emerald-700 border-emerald-200/50 dark:bg-emerald-900/40 dark:text-emerald-400 dark:border-emerald-900/50" :
+                                                activeTier?.color === "amber" || activeTier?.color === "orange" ? "bg-amber-100/50 text-amber-700 border-amber-200/50 dark:bg-amber-900/40 dark:text-amber-400 dark:border-amber-900/50" :
+                                                "bg-blue-100/50 text-blue-700 border-blue-200/50 dark:bg-blue-900/40 dark:text-blue-400 dark:border-blue-900/50"
                                             )}
                                         >
                                             <span className={cn(
@@ -509,7 +509,7 @@ export function WeightConverter() {
                                         <motion.div
                                             key="idle"
                                             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                                            className="text-[10.5px] font-bold text-slate-400 px-2"
+                                            className="text-[10.5px] font-bold text-slate-400 px-2 dark:text-slate-500"
                                         >
                                             Awaiting input
                                         </motion.div>
@@ -533,11 +533,11 @@ export function WeightConverter() {
                                                     initial={{ opacity: 0 }}
                                                     animate={{ opacity: 1 }}
                                                     transition={{ duration: 0.55, ease: "easeOut" }}
-                                                    className="bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_8px_40px_rgba(59,130,246,0.12)] rounded-2xl px-6 py-5 flex flex-col items-center gap-3 w-fit max-w-[320px] pointer-events-auto"
+                                                    className="bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_8px_40px_rgba(59,130,246,0.12)] rounded-2xl px-6 py-5 flex flex-col items-center gap-3 w-fit max-w-[320px] pointer-events-auto dark:bg-slate-900/80 dark:border-slate-800"
                                                 >
                                                     <div className="relative flex items-center justify-center">
                                                         <span className="absolute w-11 h-11 rounded-xl bg-blue-400/15 animate-ping" style={{ animationDuration: "2.8s" }} />
-                                                        <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200/60 flex items-center justify-center text-blue-500 shadow-sm">
+                                                        <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200/60 flex items-center justify-center text-blue-500 shadow-sm dark:from-blue-950/30 dark:to-blue-900/30 dark:border-blue-900/50 dark:text-blue-400">
                                                             <Package className="w-[18px] h-[18px]" />
                                                         </div>
                                                     </div>
@@ -547,11 +547,11 @@ export function WeightConverter() {
                                                                 <path d="M9 19l-7-7 7-7" />
                                                                 <path d="M2 12h36" />
                                                             </svg>
-                                                            <p className="text-[12.5px] text-slate-500 font-semibold leading-snug whitespace-nowrap z-10">
+                                                            <p className="text-[12.5px] text-slate-500 font-semibold leading-snug whitespace-nowrap z-10 dark:text-slate-400">
                                                                 Fill in the inputs to see your
                                                             </p>
                                                         </div>
-                                                        <span className="inline-flex items-center px-3 py-1 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100/80 text-[11.5px] font-extrabold text-blue-600/90 tracking-wide shadow-sm shadow-blue-100/50">
+                                                        <span className="inline-flex items-center px-3 py-1 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100/80 text-[11.5px] font-extrabold text-blue-600/90 tracking-wide shadow-sm shadow-blue-100/50 dark:from-blue-950/30 dark:to-blue-900/30">
                                                             Conversion Results
                                                         </span>
                                                     </div>
@@ -561,22 +561,22 @@ export function WeightConverter() {
                                             {/* Blurred skeleton */}
                                             <div className="blur-[2.5px] opacity-40 select-none pointer-events-none">
                                                 <div className="flex flex-col items-center justify-center py-5 px-4 mb-2">
-                                                    <div className="h-2.5 w-24 rounded-full bg-slate-200/60 mb-3 animate-pulse" />
-                                                    <div className="h-12 w-40 rounded-xl bg-slate-200/50 mb-2 animate-pulse" style={{ animationDelay: "0.1s" }} />
+                                                    <div className="h-2.5 w-24 rounded-full bg-slate-200/60 mb-3 animate-pulse dark:bg-slate-700/60" />
+                                                    <div className="h-12 w-40 rounded-xl bg-slate-200/50 mb-2 animate-pulse dark:bg-slate-700/50" style={{ animationDelay: "0.1s" }} />
                                                     <div className="flex flex-col items-center gap-1.5 mt-1">
-                                                        <div className="h-2 w-44 rounded-full bg-slate-200/60 animate-pulse" style={{ animationDelay: "0.2s" }} />
-                                                        <div className="h-2 w-32 rounded-full bg-slate-200/50 animate-pulse" style={{ animationDelay: "0.3s" }} />
+                                                        <div className="h-2 w-44 rounded-full bg-slate-200/60 animate-pulse dark:bg-slate-700/60" style={{ animationDelay: "0.2s" }} />
+                                                        <div className="h-2 w-32 rounded-full bg-slate-200/50 animate-pulse dark:bg-slate-700/50" style={{ animationDelay: "0.3s" }} />
                                                     </div>
                                                 </div>
-                                                <div className="h-px w-full bg-slate-200/40 my-4" />
+                                                <div className="h-px w-full bg-slate-200/40 my-4 dark:bg-slate-700/40" />
                                                 <div className="space-y-3 px-2">
-                                                    <div className="bg-slate-50/50 border border-slate-100 p-3 rounded-xl">
-                                                        <div className="h-2 w-20 rounded-full bg-slate-200/60 mb-3 animate-pulse" />
-                                                        <div className="h-4 w-16 rounded-lg bg-slate-200/50 animate-pulse" />
+                                                    <div className="bg-slate-50/50 border border-slate-100 p-3 rounded-xl dark:bg-slate-800/60 dark:border-slate-800">
+                                                        <div className="h-2 w-20 rounded-full bg-slate-200/60 mb-3 animate-pulse dark:bg-slate-700/60" />
+                                                        <div className="h-4 w-16 rounded-lg bg-slate-200/50 animate-pulse dark:bg-slate-700/50" />
                                                     </div>
-                                                    <div className="bg-slate-50/50 border border-slate-100 p-3 rounded-xl">
-                                                        <div className="h-2 w-24 rounded-full bg-slate-200/60 mb-3 animate-pulse" style={{ animationDelay: "0.1s" }} />
-                                                        <div className="h-4 w-12 rounded-lg bg-slate-200/50 animate-pulse" style={{ animationDelay: "0.15s" }} />
+                                                    <div className="bg-slate-50/50 border border-slate-100 p-3 rounded-xl dark:bg-slate-800/60 dark:border-slate-800">
+                                                        <div className="h-2 w-24 rounded-full bg-slate-200/60 mb-3 animate-pulse dark:bg-slate-700/60" style={{ animationDelay: "0.1s" }} />
+                                                        <div className="h-4 w-12 rounded-lg bg-slate-200/50 animate-pulse dark:bg-slate-700/50" style={{ animationDelay: "0.15s" }} />
                                                     </div>
                                                 </div>
                                             </div>
@@ -597,18 +597,18 @@ export function WeightConverter() {
                                             transition={{ duration: 0.4, delay: 0.05 }}
                                             className="relative flex flex-col items-center text-center py-6 px-4 bg-transparent"
                                         >
-                                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.18em] leading-none mb-2">Target Conversion</span>
+                                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.18em] leading-none mb-2 dark:text-slate-500">Target Conversion</span>
                                             <motion.span
                                                 key={`${conversions[targetUnit]}-${targetUnit}`}
                                                 initial={{ opacity: 0, y: 4 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 transition={{ duration: 0.3 }}
-                                                className="text-[3.25rem] font-black text-blue-600 tracking-tighter leading-none"
+                                                className="text-[3.25rem] font-black text-blue-600 tracking-tighter leading-none dark:text-blue-400"
                                             >
                                                 {formatCompact(conversions[targetUnit], 4)}
                                             </motion.span>
-                                            <span className="text-[1rem] font-bold text-slate-700 mt-1">{UNIT_NAMES[targetUnit]}</span>
-                                            <p className="text-[11.5px] text-slate-500 font-medium mt-2">
+                                            <span className="text-[1rem] font-bold text-slate-700 mt-1 dark:text-slate-200">{UNIT_NAMES[targetUnit]}</span>
+                                            <p className="text-[11.5px] text-slate-500 font-medium mt-2 dark:text-slate-400">
                                                 from {inputValue} {UNIT_NAMES[inputUnit]}
                                             </p>
                                         </motion.div>
@@ -620,27 +620,27 @@ export function WeightConverter() {
                                             initial={{ opacity: 0, y: 8 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.35, delay: 0.1 }}
-                                            className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)]"
+                                            className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
                                         >
                                             <div className="flex items-center gap-2 mb-3">
-                                                <RefreshCw className="w-4 h-4 text-blue-500 flex-shrink-0" />
-                                                <span className="text-[13px] sm:text-[14px] font-bold text-slate-500">Other Units</span>
+                                                <RefreshCw className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
+                                                <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 dark:text-slate-400">Other Units</span>
                                             </div>
                                             <div className="pl-7 space-y-2">
                                                 {secondaryUnits.map((unit) => (
                                                     <div key={unit} className="flex items-center justify-between mt-1">
-                                                        <span className="text-xs text-slate-600 font-medium">{UNIT_NAMES[unit]}</span>
-                                                        <span className="font-bold tracking-tight text-[16px] sm:text-[17px] text-slate-700 flex items-baseline">
+                                                        <span className="text-xs text-slate-600 font-medium dark:text-slate-300">{UNIT_NAMES[unit]}</span>
+                                                        <span className="font-bold tracking-tight text-[16px] sm:text-[17px] text-slate-700 flex items-baseline dark:text-slate-200">
                                                             {formatCompact(conversions[unit], 4)}
                                                             <span className="font-medium text-[0.6em] ml-1">{UNIT_ABBR[unit]}</span>
                                                         </span>
                                                     </div>
                                                 ))}
-                                                <div className="flex items-center justify-between pt-2 border-t border-slate-100 mt-2">
-                                                    <span className="text-xs text-slate-600 font-medium">
+                                                <div className="flex items-center justify-between pt-2 border-t border-slate-100 mt-2 dark:border-slate-800">
+                                                    <span className="text-xs text-slate-600 font-medium dark:text-slate-300">
                                                         {UNIT_NAMES[inputUnit]} <span className="text-blue-400 text-[10px] ml-1">(input)</span>
                                                     </span>
-                                                    <span className="font-bold tracking-tight text-[16px] sm:text-[17px] text-slate-700 flex items-baseline">
+                                                    <span className="font-bold tracking-tight text-[16px] sm:text-[17px] text-slate-700 flex items-baseline dark:text-slate-200">
                                                         {formatCompact(conversions[inputUnit], 4)}
                                                         <span className="font-medium text-[0.6em] ml-1">{UNIT_ABBR[inputUnit]}</span>
                                                     </span>
@@ -654,24 +654,24 @@ export function WeightConverter() {
                                                 initial={{ opacity: 0, y: 8 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 transition={{ duration: 0.35, delay: 0.15 }}
-                                                className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)]"
+                                                className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
                                             >
                                                 <div className="flex items-center justify-between mb-3">
                                                     <div className="flex items-center gap-2">
-                                                        <Truck className="w-4 h-4 text-blue-500 flex-shrink-0" />
-                                                        <span className="text-[13px] sm:text-[14px] font-bold text-slate-500">
+                                                        <Truck className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
+                                                        <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 dark:text-slate-400">
                                                             {selectedShippingData.label} Estimate
                                                         </span>
                                                     </div>
-                                                    <span className="text-[10px] font-extrabold px-2 py-0.5 rounded bg-blue-100/80 text-blue-700 flex-shrink-0">
+                                                    <span className="text-[10px] font-extrabold px-2 py-0.5 rounded bg-blue-100/80 text-blue-700 flex-shrink-0 dark:bg-blue-900/40 dark:text-blue-400">
                                                         {activeTier.cost}
                                                     </span>
                                                 </div>
                                                 <div className="pl-6 pt-0.5">
-                                                    <span className="font-bold tracking-tight block text-[16px] sm:text-[17px] text-slate-700">
+                                                    <span className="font-bold tracking-tight block text-[16px] sm:text-[17px] text-slate-700 dark:text-slate-200">
                                                         {activeTier.label}
                                                     </span>
-                                                    <p className="text-[11px] font-medium text-slate-500 mt-1 flex items-baseline">
+                                                    <p className="text-[11px] font-medium text-slate-500 mt-1 flex items-baseline dark:text-slate-400">
                                                         {formatCompact(weightInLbs, 3)}<span className="ml-1 text-[0.8em]">lb</span>
                                                     </p>
                                                 </div>
@@ -683,21 +683,21 @@ export function WeightConverter() {
                                             initial={{ opacity: 0, y: 8 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.35, delay: 0.2 }}
-                                            className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl pt-1 pb-1 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)]"
+                                            className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl pt-1 pb-1 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
                                         >
                                             <button
                                                 onClick={() => setShowBreakdown(v => !v)}
                                                 className="w-full flex items-center justify-between px-4 py-3 text-left transition-colors"
                                             >
                                                 <div className="flex items-center gap-2">
-                                                    <Package className="w-4 h-4 text-blue-500" />
-                                                    <span className="text-[13px] sm:text-[14px] font-bold text-slate-500">View Cost Breakdown</span>
+                                                    <Package className="w-4 h-4 text-blue-500 dark:text-blue-400" />
+                                                    <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 dark:text-slate-400">View Cost Breakdown</span>
                                                 </div>
                                                 <motion.span
                                                     animate={{ rotate: showBreakdown ? 180 : 0 }}
                                                     transition={{ duration: 0.2 }}
                                                 >
-                                                    <ChevronDown className="w-4 h-4 text-slate-400" />
+                                                    <ChevronDown className="w-4 h-4 text-slate-400 dark:text-slate-500" />
                                                 </motion.span>
                                             </button>
                                             <AnimatePresence>
@@ -709,7 +709,7 @@ export function WeightConverter() {
                                                         transition={{ duration: 0.28, ease: "easeInOut" }}
                                                         className="overflow-hidden"
                                                     >
-                                                        <div className="border-t border-slate-100 divide-y divide-slate-100/60 mt-1 mx-2">
+                                                        <div className="border-t border-slate-100 divide-y divide-slate-100/60 mt-1 mx-2 dark:border-slate-800">
                                                             {selectedShippingData.tiers.map((tier, idx) => {
                                                                 const isActive = activeTier?.label === tier.label
                                                                 const colors = TIER_COLORS[tier.color] || TIER_COLORS.slate
@@ -717,24 +717,24 @@ export function WeightConverter() {
                                                                     <div
                                                                         key={idx}
                                                                         className={cn(
-                                                                            "flex items-center justify-between px-3 py-2.5 transition-colors rounded hover:bg-slate-50/50 mb-1 mt-1",
+                                                                            "flex items-center justify-between px-3 py-2.5 transition-colors rounded hover:bg-slate-50/50 mb-1 mt-1 dark:hover:bg-slate-800/60",
                                                                             isActive ? cn(colors.bg, "border-l-[3px]", colors.border.replace("border-", "border-l-")) : ""
                                                                         )}
                                                                     >
                                                                         <div className="flex items-center gap-2 min-w-0">
-                                                                            <span className={cn("w-1.5 h-1.5 rounded-full shrink-0", isActive ? colors.dot : "bg-slate-300")} />
+                                                                            <span className={cn("w-1.5 h-1.5 rounded-full shrink-0", isActive ? colors.dot : "bg-slate-300 dark:bg-slate-600")} />
                                                                             <div className="min-w-0">
-                                                                                <p className={cn("text-[11px] font-semibold truncate", isActive ? colors.text : "text-slate-600")}>
+                                                                                <p className={cn("text-[11px] font-semibold truncate", isActive ? colors.text : "text-slate-600 dark:text-slate-300")}>
                                                                                     {tier.label}
                                                                                 </p>
-                                                                                <p className="text-[10px] text-slate-400">
+                                                                                <p className="text-[10px] text-slate-400 dark:text-slate-500">
                                                                                     up to {tier.max === Infinity ? "∞" : `${tier.max} lb`}
                                                                                 </p>
                                                                             </div>
                                                                         </div>
                                                                         <span className={cn(
                                                                             "text-[10.5px] font-bold shrink-0 ml-2",
-                                                                            isActive ? cn("px-2 py-0.5 rounded-md", colors.badge) : "text-slate-400"
+                                                                            isActive ? cn("px-2 py-0.5 rounded-md", colors.badge) : "text-slate-400 dark:text-slate-500"
                                                                         )}>
                                                                             {tier.cost}
                                                                         </span>

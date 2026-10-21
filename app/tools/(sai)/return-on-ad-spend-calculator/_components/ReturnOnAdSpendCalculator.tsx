@@ -49,7 +49,7 @@ export function ReturnOnAdSpendCalculator() {
     // Determine ROAS health (shared logic)
     const getROASHealth = (roasValue: number, hasInput: boolean) => {
         if (!hasInput) {
-            return { color: "text-slate-400", bg: "bg-slate-800", label: "---" }
+            return { color: "text-slate-400 dark:text-slate-500", bg: "bg-slate-800 dark:bg-slate-700", label: "---" }
         }
         let label = "High Performance"
         if (roasValue < 1) label = "Loss Making"
@@ -58,7 +58,7 @@ export function ReturnOnAdSpendCalculator() {
         let color = "text-blue-400"
         if (roasValue < 1) color = "text-red-400"
         else if (roasValue < 2) color = "text-amber-400"
-        return { color, bg: "bg-slate-900", label }
+        return { color, bg: "bg-slate-900 dark:bg-slate-800", label }
     }
     const currentHealth = mode === "calculate-roas" ? getROASHealth(roas, spend > 0) : getROASHealth(targetRoasVal, targetRoasVal > 0)
     return (
@@ -66,7 +66,7 @@ export function ReturnOnAdSpendCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Inputs Section */}
                 <div className="lg:col-span-7 space-y-3">
-                    <Card className="border border-slate-200 shadow-sm bg-white">
+                    <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             description="Enter your ad spend details."
                             onReset={handleReset}
@@ -91,8 +91,8 @@ export function ReturnOnAdSpendCalculator() {
                                 But the tool has two distinct modes: "Calculate ROAS" (backward looking) and "Calculate Revenue Needed" (forward looking).
                                 I will switch to a Tabs-like approach or a simple dropdown for "Goal", which is cleaner than a "Do you know...?" question.
                             */}
-                            <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-3">
-                                <label className="text-sm font-medium text-slate-700 block">I want to calculate:</label>
+                            <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-3 dark:bg-slate-800/60 dark:border-slate-800">
+                                <label className="text-sm font-medium text-slate-700 block dark:text-slate-200">I want to calculate:</label>
                                 <div className="grid grid-cols-2 gap-2">
                                     <button
                                         onClick={() => setMode("calculate-roas")}
@@ -170,30 +170,30 @@ export function ReturnOnAdSpendCalculator() {
                     />
                     {/* Performance Breakdown Card */}
                     {spend > 0 ? (
-                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500">
-                            <div className="px-5 py-3.5 border-b border-slate-100">
-                                <p className="text-xs font-bold text-slate-600 uppercase tracking-wider">Performance Breakdown</p>
+                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500 dark:bg-slate-900 dark:border-slate-800">
+                            <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800">
+                                <p className="text-xs font-bold text-slate-600 uppercase tracking-wider dark:text-slate-300">Performance Breakdown</p>
                             </div>
-                            <div className="divide-y divide-slate-100">
+                            <div className="divide-y divide-slate-100 dark:divide-slate-800">
                                 <div className="flex justify-between items-center px-5 py-3.5">
-                                    <span className="text-sm text-slate-600">Ad Spend</span>
-                                    <span className="text-sm font-semibold text-slate-800">{formatCurrency(spend)}</span>
+                                    <span className="text-sm text-slate-600 dark:text-slate-300">Ad Spend</span>
+                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{formatCurrency(spend)}</span>
                                 </div>
                                 <div className="flex justify-between items-center px-5 py-3.5">
-                                    <span className="text-sm text-slate-600">Revenue Generated</span>
-                                    <span className="text-sm font-semibold text-slate-800">{formatCurrency(mode === "calculate-roas" ? revenue : calculatedRevenue)}</span>
+                                    <span className="text-sm text-slate-600 dark:text-slate-300">Revenue Generated</span>
+                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{formatCurrency(mode === "calculate-roas" ? revenue : calculatedRevenue)}</span>
                                 </div>
-                                <div className="flex justify-between items-center px-5 py-4 bg-slate-50">
-                                    <span className="text-sm font-bold text-blue-600">Net Profit (Ads)</span>
-                                    <span className={cn("text-base font-bold", (mode === "calculate-roas" ? profit : plannedProfit) >= 0 ? "text-blue-600" : "text-red-500")}>
+                                <div className="flex justify-between items-center px-5 py-4 bg-slate-50 dark:bg-slate-800/60">
+                                    <span className="text-sm font-bold text-blue-600 dark:text-blue-400">Net Profit (Ads)</span>
+                                    <span className={cn("text-base font-bold", (mode === "calculate-roas" ? profit : plannedProfit) >= 0 ? "text-blue-600 dark:text-blue-400" : "text-red-500 dark:text-red-400")}>
                                         {formatCurrency(mode === "calculate-roas" ? profit : plannedProfit)}
                                     </span>
                                 </div>
                             </div>
                         </div>
                     ) : (
-                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center">
-                            <p className="text-sm text-slate-400">Enter ad spend details to calculate performance.</p>
+                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center dark:bg-slate-900 dark:border-slate-800">
+                            <p className="text-sm text-slate-400 dark:text-slate-500">Enter ad spend details to calculate performance.</p>
                         </div>
                     )}
                 </div>

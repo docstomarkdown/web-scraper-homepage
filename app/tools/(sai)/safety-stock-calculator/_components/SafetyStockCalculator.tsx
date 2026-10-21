@@ -50,7 +50,7 @@ export function SafetyStockCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Inputs Section */}
                 <div className="lg:col-span-7 space-y-3 lg:sticky lg:top-8">
-                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden">
+                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Stock Variables"
                             description="Enter your worst-case and average sales and lead time data."
@@ -129,14 +129,14 @@ export function SafetyStockCalculator() {
                     >
                         <FadeIn delay={0.1}>
                             {/* Inventory Protection — stays inside the result card */}
-                            <div className="bg-white p-5 rounded-xl border border-slate-200/80 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] space-y-3 mt-4">
+                            <div className="bg-white p-5 rounded-xl border border-slate-200/80 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] space-y-3 mt-4 dark:bg-slate-900 dark:border-slate-800">
                                 <div className="flex items-start gap-3">
-                                    <ShieldCheck className="w-5 h-5 text-blue-500 mt-0.5" />
+                                    <ShieldCheck className="w-5 h-5 text-blue-500 mt-0.5 dark:text-blue-400" />
                                     <div>
-                                        <h4 className="font-semibold text-slate-800 mb-1">
+                                        <h4 className="font-semibold text-slate-800 mb-1 dark:text-slate-100">
                                             Inventory Protection
                                         </h4>
-                                        <p className="text-sm text-slate-600 leading-relaxed">
+                                        <p className="text-sm text-slate-600 leading-relaxed dark:text-slate-300">
                                             {isCalculated ? (
                                                 <>
                                                     To cover demand variability and supplier delays, hold <strong>{safetyStock} units</strong> as a permanent buffer. This ensures you stay in stock even if sales spike or a shipment arrives late.

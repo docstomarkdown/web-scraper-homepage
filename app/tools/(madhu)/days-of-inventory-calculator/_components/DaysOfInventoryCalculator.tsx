@@ -83,31 +83,31 @@ export function DaysOfInventoryCalculator() {
         switch (status) {
             case "critical": return {
                 text: "Critical",
-                icon: <AlertCircle className="w-3.5 h-3.5 text-red-600" />,
-                bgClass: "bg-red-50",
-                textClass: "text-red-600",
-                borderClass: "border-red-200"
+                icon: <AlertCircle className="w-3.5 h-3.5 text-red-600 dark:text-red-400" />,
+                bgClass: "bg-red-50 dark:bg-red-950/40",
+                textClass: "text-red-600 dark:text-red-400",
+                borderClass: "border-red-200 dark:border-red-900/50"
             }
             case "warning": return {
                 text: "Warning",
-                icon: <CheckCircle2 className="w-3.5 h-3.5 text-amber-600" />,
-                bgClass: "bg-amber-50",
-                textClass: "text-amber-600",
-                borderClass: "border-amber-200"
+                icon: <CheckCircle2 className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />,
+                bgClass: "bg-amber-50 dark:bg-amber-950/40",
+                textClass: "text-amber-600 dark:text-amber-400",
+                borderClass: "border-amber-200 dark:border-amber-900/50"
             }
             case "healthy": return {
                 text: "Healthy",
-                icon: <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />,
-                bgClass: "bg-emerald-50",
-                textClass: "text-emerald-600",
-                borderClass: "border-emerald-200"
+                icon: <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />,
+                bgClass: "bg-emerald-50 dark:bg-emerald-950/40",
+                textClass: "text-emerald-600 dark:text-emerald-400",
+                borderClass: "border-emerald-200 dark:border-emerald-900/50"
             }
             case "overstock": return {
                 text: "Overstock",
-                icon: <CheckCircle2 className="w-3.5 h-3.5 text-blue-600" />,
-                bgClass: "bg-blue-50",
-                textClass: "text-blue-600",
-                borderClass: "border-blue-200"
+                icon: <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />,
+                bgClass: "bg-blue-50 dark:bg-blue-950/40",
+                textClass: "text-blue-600 dark:text-blue-400",
+                borderClass: "border-blue-200 dark:border-blue-900/50"
             }
             default: return undefined
         }
@@ -125,7 +125,7 @@ export function DaysOfInventoryCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch pt-6">
                 {/* Left Column: Smart Inputs */}
                 <div className="lg:col-span-7">
-                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden h-full flex flex-col rounded-[2.5rem]">
+                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden h-full flex flex-col rounded-[2.5rem] dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Inventory Configuration"
                             description="Analyze your remaining stock runway."
@@ -144,22 +144,22 @@ export function DaysOfInventoryCalculator() {
                                 <div className="relative w-full">
                                     {/* Group Header */}
                                     <div className="flex items-center gap-2 -ml-[33px] mb-2.5 relative h-7">
-                                        <div className="w-7 h-7 rounded-lg bg-blue-50 ring-[6px] ring-white flex items-center justify-center flex-shrink-0 z-10">
-                                            <Calendar className="w-3.5 h-3.5 text-blue-600" />
+                                        <div className="w-7 h-7 rounded-lg bg-blue-50 ring-[6px] ring-white flex items-center justify-center flex-shrink-0 z-10 dark:bg-blue-950/40 dark:ring-slate-900">
+                                            <Calendar className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                                         </div>
-                                        <span className="text-[16px] font-bold text-slate-600 capitalize z-10 tracking-tight">
+                                        <span className="text-[16px] font-bold text-slate-600 capitalize z-10 tracking-tight dark:text-slate-300">
                                             Velocity Period
                                         </span>
                                         <TooltipProvider delayDuration={100}>
                                             <Tooltip>
                                                 <TooltipTrigger asChild>
-                                                    <button type="button" tabIndex={-1} className="text-slate-400 hover:text-blue-600 transition-colors cursor-help shrink-0">
+                                                    <button type="button" tabIndex={-1} className="text-slate-400 hover:text-blue-600 transition-colors cursor-help shrink-0 dark:text-slate-500 dark:hover:text-blue-400">
                                                         <Info className="h-3.5 w-3.5" />
                                                     </button>
                                                 </TooltipTrigger>
-                                                <TooltipContent side="top" className="max-w-[220px] text-[13px] font-normal bg-slate-900 text-white border-slate-800 p-3 rounded-lg">
+                                                <TooltipContent side="top" className="max-w-[220px] text-[13px] font-normal bg-slate-900 text-white border-slate-800 p-3 rounded-lg dark:bg-slate-800 dark:border-slate-700">
                                                     <p className="font-semibold mb-1.5">Select your sales tracking period:</p>
-                                                    <div className="text-slate-300 text-[11px] leading-relaxed space-y-1">
+                                                    <div className="text-slate-300 text-[11px] leading-relaxed space-y-1 dark:text-slate-600">
                                                         <p><span className="text-blue-400 font-semibold">Daily</span> if you track sales every day</p>
                                                         <p><span className="text-blue-400 font-semibold">Weekly</span> for weekly reports</p>
                                                         <p><span className="text-blue-400 font-semibold">Monthly</span> for monthly data</p>
@@ -174,7 +174,7 @@ export function DaysOfInventoryCalculator() {
                                             onValueChange={(v) => handleInputChange('velocityUnit', v)}
                                             className="w-full"
                                         >
-                                            <TabsList className="grid w-full grid-cols-3 h-10 bg-slate-100/50 p-1 rounded-xl border border-slate-200/50">
+                                            <TabsList className="grid w-full grid-cols-3 h-10 bg-slate-100/50 p-1 rounded-xl border border-slate-200/50 dark:bg-slate-800 dark:border-slate-800">
                                                 <TabsTrigger
                                                     value="daily"
                                                     className="rounded-xl font-bold data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-sm transition-all"
@@ -241,7 +241,7 @@ export function DaysOfInventoryCalculator() {
                             label: "Days of Inventory Remaining",
                         }}
                         dateSection={{
-                            icon: <Calendar className="w-5 h-5 text-blue-500" />,
+                            icon: <Calendar className="w-5 h-5 text-blue-500 dark:text-blue-400" />,
                             label: "Expected Stock-Out Date",
                             value: formattedRunOutDate,
                             emptyText: "Waiting for inputs...",
@@ -249,9 +249,9 @@ export function DaysOfInventoryCalculator() {
                         infoCard={{
                             title: "Actionable Stock Runway",
                             children: (
-                                <p className="text-sm font-medium text-slate-600 leading-relaxed">
+                                <p className="text-sm font-medium text-slate-600 leading-relaxed dark:text-slate-300">
                                     You have{" "}
-                                    <span className="text-blue-500 font-bold">
+                                    <span className="text-blue-500 font-bold dark:text-blue-400">
                                         {hasInputs ? results.useableDays : 0} days
                                     </span>{" "}
                                     of stock remaining before hitting your safety buffer

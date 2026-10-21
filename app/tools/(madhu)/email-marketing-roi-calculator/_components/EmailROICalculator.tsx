@@ -57,7 +57,7 @@ export function EmailROICalculator() {
         <FadeIn className="w-full max-w-6xl mx-auto py-2 px-4" duration={0.6}>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
                 <div className="lg:col-span-7 flex flex-col h-full space-y-3">
-                    <Card className="border border-slate-200 shadow-xl shadow-slate-200/40 bg-white rounded-2xl overflow-hidden h-full flex flex-col">
+                    <Card className="border border-slate-200 shadow-xl shadow-slate-200/40 bg-white rounded-2xl overflow-hidden h-full flex flex-col dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Campaign Data"
                             description="Essential metrics for quick ROI calculation."

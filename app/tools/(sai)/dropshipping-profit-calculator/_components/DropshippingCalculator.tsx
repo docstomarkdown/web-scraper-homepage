@@ -72,7 +72,7 @@ export function DropshippingCalculator() {
                 {/* Left Column: Inputs (Col Span 7) */}
                 <div className="lg:col-span-7">
                     <FadeIn delay={0.2} direction="right" className="h-full">
-                        <Card className="border border-slate-200 shadow-sm bg-white">
+                        <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                             <CalculatorCardHeader
                                 description="Calculate your dropshipping net profit."
                                 onReset={handleReset}
@@ -161,7 +161,7 @@ export function DropshippingCalculator() {
                             valueColor={netProfit > 0 ? "text-blue-400" : (netProfit < 0 ? "text-red-400" : "text-white")}
                             mainMetricLabel="Status"
                             mainMetricValue={deliveredOrders > 0 ? (netProfit >= 0 ? "PROFIT" : "LOSS") : "Waiting for Data"}
-                            mainMetricColor={deliveredOrders > 0 ? (netProfit >= 0 ? "text-blue-400" : "text-red-400") : "text-slate-500"}
+                            mainMetricColor={deliveredOrders > 0 ? (netProfit >= 0 ? "text-blue-400" : "text-red-400") : "text-slate-500 dark:text-slate-400"}
                             secondaryMetrics={[
                                 {
                                     label: "Revenue",
@@ -194,46 +194,46 @@ export function DropshippingCalculator() {
                                 variant="compact"
                                 title="RTO Orders"
                                 mainValue={<Counter value={rtoQty} />}
-                                valueColor="text-orange-600"
+                                valueColor="text-orange-600 dark:text-orange-400"
                                 tooltip="RTO (Return to Origin): Orders sent back to you. This costs you double shipping plus wasted ad money."
                             />
                         </div>
                         {/* Breakdown Card */}
                         {deliveredOrders > 0 ? (
-                            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500">
-                                <div className="px-5 py-3.5 border-b border-slate-100">
-                                    <p className="text-xs font-bold text-slate-600 uppercase tracking-wider">P&L Breakdown</p>
+                            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500 dark:bg-slate-900 dark:border-slate-800">
+                                <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800">
+                                    <p className="text-xs font-bold text-slate-600 uppercase tracking-wider dark:text-slate-300">P&L Breakdown</p>
                                 </div>
-                                <div className="divide-y divide-slate-100">
+                                <div className="divide-y divide-slate-100 dark:divide-slate-800">
                                     <div className="flex justify-between items-center px-5 py-3.5">
-                                        <span className="text-sm text-slate-600">Total Product Cost</span>
-                                        <span className="text-sm font-semibold text-slate-800">{formatCurrency(totalPurchaseCost)}</span>
+                                        <span className="text-sm text-slate-600 dark:text-slate-300">Total Product Cost</span>
+                                        <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{formatCurrency(totalPurchaseCost)}</span>
                                     </div>
                                     <div className="flex justify-between items-center px-5 py-3.5">
-                                        <span className="text-sm text-slate-600">Total Ad Spend</span>
-                                        <span className="text-sm font-semibold text-slate-800">{formatCurrency(totalAdsCost)}</span>
+                                        <span className="text-sm text-slate-600 dark:text-slate-300">Total Ad Spend</span>
+                                        <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{formatCurrency(totalAdsCost)}</span>
                                     </div>
                                     <div className="flex justify-between items-center px-5 py-3.5">
-                                        <span className="text-sm text-slate-600">Total Shipping</span>
-                                        <span className="text-sm font-semibold text-slate-800">{formatCurrency(deliveredOrders * shippingCostVal)}</span>
+                                        <span className="text-sm text-slate-600 dark:text-slate-300">Total Shipping</span>
+                                        <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{formatCurrency(deliveredOrders * shippingCostVal)}</span>
                                     </div>
                                     {(totalRtoCost > 0 || totalOtherCosts > 0) && (
                                         <div className="flex justify-between items-center px-5 py-3.5">
-                                            <span className="text-sm text-slate-600">RTO & Other Costs</span>
-                                            <span className="text-sm font-semibold text-slate-800">{formatCurrency(totalRtoCost + totalOtherCosts)}</span>
+                                            <span className="text-sm text-slate-600 dark:text-slate-300">RTO & Other Costs</span>
+                                            <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{formatCurrency(totalRtoCost + totalOtherCosts)}</span>
                                         </div>
                                     )}
-                                    <div className="flex justify-between items-center px-5 py-4 bg-slate-50">
-                                        <span className="text-sm font-bold text-blue-600">Net Profit</span>
-                                        <span className={cn("text-base font-bold", netProfit >= 0 ? "text-blue-600" : "text-red-600")}>
+                                    <div className="flex justify-between items-center px-5 py-4 bg-slate-50 dark:bg-slate-800/60">
+                                        <span className="text-sm font-bold text-blue-600 dark:text-blue-400">Net Profit</span>
+                                        <span className={cn("text-base font-bold", netProfit >= 0 ? "text-blue-600 dark:text-blue-400" : "text-red-600 dark:text-red-400")}>
                                             {formatCurrency(netProfit)}
                                         </span>
                                     </div>
                                 </div>
                             </div>
                         ) : (
-                            <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center">
-                                <p className="text-sm text-slate-400">Enter order details to calculate profit.</p>
+                            <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center dark:bg-slate-900 dark:border-slate-800">
+                                <p className="text-sm text-slate-400 dark:text-slate-500">Enter order details to calculate profit.</p>
                             </div>
                         )}
                     </FadeIn>

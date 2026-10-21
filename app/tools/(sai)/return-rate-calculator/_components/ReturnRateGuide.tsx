@@ -12,20 +12,20 @@ export function ReturnRateGuide() {
           title: "Industry Benchmarks",
           description: "Return rates vary by category. Electronics: 5-8%, Fashion: 20-30%. Understanding your segment is key to setting goals.",
           icon: Shirt,
-          iconBg: "bg-purple-50",
-          iconColor: "text-purple-500",
+          iconBg: "bg-purple-50 dark:bg-purple-950/40",
+          iconColor: "text-purple-500 dark:text-purple-400",
           stat: "2-25%",
-          statColor: "text-purple-500",
+          statColor: "text-purple-500 dark:text-purple-400",
           statLabel: "Typical Range"
         },
         {
           title: "The 'Hidden' Cost",
           description: "A return costs more than you think: shipping (both ways), labor, packaging, and non-refundable payment fees.",
           icon: AlertTriangle,
-          iconBg: "bg-red-50",
-          iconColor: "text-red-500",
+          iconBg: "bg-red-50 dark:bg-red-950/40",
+          iconColor: "text-red-500 dark:text-red-400",
           stat: "$15+",
-          statColor: "text-red-500",
+          statColor: "text-red-500 dark:text-red-400",
           statLabel: "Est. Cost/Unit"
         },
       ]}

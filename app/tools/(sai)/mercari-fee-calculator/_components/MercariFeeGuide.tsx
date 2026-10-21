@@ -9,8 +9,8 @@ export function MercariFeeGuide() {
             title: "Mercari's Two-Part Fee Structure",
             description: "Every Mercari sale incurs two automatic fees. First, a flat 10% selling fee on the final sale price. Second, a payment processing fee of 2.9% + $0.50 applied to the total charged to the buyer (item + shipping). Both are deducted before you receive your payout — this calculator shows both, separately.",
             icon: DollarSign,
-            iconBg: "bg-blue-50",
-            iconColor: "text-blue-600",
+            iconBg: "bg-blue-50 dark:bg-blue-950/40",
+            iconColor: "text-blue-600 dark:text-blue-400",
             stat: "12.9%+",
             statLabel: "True Fee Range"
         },
@@ -18,8 +18,8 @@ export function MercariFeeGuide() {
             title: "Shipping: Who Pays Makes All the Difference",
             description: "Mercari offers two shipping modes. If you offer 'Free Shipping', the shipping label cost comes out of your payout — raise your list price by $5–$12 to compensate. If you select 'Buyer Pays Shipping', the buyer pays the label and you keep your full payout. This single decision can determine whether a low-priced listing is profitable.",
             icon: Truck,
-            iconBg: "bg-slate-50",
-            iconColor: "text-slate-600",
+            iconBg: "bg-slate-50 dark:bg-slate-800/60",
+            iconColor: "text-slate-600 dark:text-slate-300",
             stat: "$5–$12",
             statLabel: "Avg. Label Cost"
         },
@@ -27,8 +27,8 @@ export function MercariFeeGuide() {
             title: "Setting a Price That Actually Profits",
             description: "Work backwards from your desired profit. Add your item cost + shipping cost, then estimate Mercari's combined ~13% fee on top of your target sale price. A useful rule of thumb: divide your total expenses by 0.87 to find the minimum list price that covers all fees. Use this calculator's breakdown to verify each scenario before committing.",
             icon: TrendingUp,
-            iconBg: "bg-emerald-50",
-            iconColor: "text-emerald-600",
+            iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
+            iconColor: "text-emerald-600 dark:text-emerald-400",
             stat: "÷ 0.87",
             statLabel: "Min. Price Formula"
         },

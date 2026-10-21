@@ -74,7 +74,7 @@ export function AdBudgetCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Left Column: Inputs */}
                 <div className="lg:col-span-7 space-y-3">
-                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden pb-4">
+                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden pb-4 dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Campaign Goals"
                             description="Enter your monthly revenue goal and target ROAS."

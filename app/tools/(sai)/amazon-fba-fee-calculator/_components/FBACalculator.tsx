@@ -284,7 +284,7 @@ export function FBACalculator() {
                 {/* Left Column: Inputs (Col Span 7) */}
                 <div className="lg:col-span-7">
                     <FadeIn delay={0.2} direction="right" className="h-full">
-                        <Card className="border border-slate-200/80 shadow-sm bg-white overflow-hidden h-full flex flex-col rounded-3xl">
+                        <Card className="border border-slate-200/80 shadow-sm bg-white overflow-hidden h-full flex flex-col rounded-3xl dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Amazon FBA Fee Calculator"
                             description="Analyze FBA fees, storage costs, and net profitability."
@@ -348,28 +348,28 @@ export function FBACalculator() {
                                     </div>
                                 </div>
                                 {/* Advanced Toggle */}
-                                <div className="pt-6 mt-4 border-t border-slate-100 max-w-[520px] mx-auto w-full">
+                                <div className="pt-6 mt-4 border-t border-slate-100 max-w-[520px] mx-auto w-full dark:border-slate-800">
                                     <div
                                         onClick={() => setShowAdvanced(!showAdvanced)}
                                         className={cn(
                                             "flex items-center justify-between p-4 rounded-xl border cursor-pointer transition-all duration-200 group select-none",
                                             showAdvanced
-                                                ? "bg-emerald-50/50 border-emerald-200 shadow-sm"
-                                                : "bg-slate-50 border-slate-200 hover:border-emerald-300 hover:bg-slate-100"
+                                                ? "bg-emerald-50/50 border-emerald-200 shadow-sm dark:bg-emerald-950/40 dark:border-emerald-900/50"
+                                                : "bg-slate-50 border-slate-200 hover:border-emerald-300 hover:bg-slate-100 dark:bg-slate-800/60 dark:border-slate-800 dark:hover:border-emerald-800 dark:hover:bg-slate-800"
                                         )}
                                     >
                                         <div className="flex items-center gap-3">
                                             <div className={cn(
                                                 "w-8 h-8 rounded-full flex items-center justify-center transition-colors",
-                                                showAdvanced ? "bg-emerald-100 text-emerald-600" : "bg-white text-slate-400 group-hover:text-emerald-500"
+                                                showAdvanced ? "bg-emerald-100 text-emerald-600 dark:bg-emerald-900/40 dark:text-emerald-400" : "bg-white text-slate-400 group-hover:text-emerald-500 dark:bg-slate-900 dark:text-slate-500 dark:group-hover:text-emerald-400"
                                             )}>
                                                 <ChevronsUpDown className="w-4 h-4" />
                                             </div>
                                             <div className="flex flex-col">
-                                                <span className={cn("text-sm font-semibold transition-colors", showAdvanced ? "text-emerald-700" : "text-slate-700")}>
+                                                <span className={cn("text-sm font-semibold transition-colors", showAdvanced ? "text-emerald-700 dark:text-emerald-400" : "text-slate-700 dark:text-slate-200")}>
                                                     Advanced Settings
                                                 </span>
-                                                <span className="text-[11px] text-slate-400 font-medium">
+                                                <span className="text-[11px] text-slate-400 font-medium dark:text-slate-500">
                                                     Category & Storage details
                                                 </span>
                                             </div>
@@ -377,11 +377,11 @@ export function FBACalculator() {
                                         <div className="flex items-center gap-3">
                                             <span className={cn(
                                                 "text-[10px] px-2 py-0.5 rounded-full font-bold tracking-wide uppercase transition-colors",
-                                                showAdvanced ? "bg-emerald-100 text-emerald-700" : "bg-slate-200 text-slate-500"
+                                                showAdvanced ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400" : "bg-slate-200 text-slate-500 dark:bg-slate-700 dark:text-slate-400"
                                             )}>
                                                 Optional
                                             </span>
-                                            {showAdvanced ? <ChevronUp className="w-4 h-4 text-emerald-500" /> : <ChevronDown className="w-4 h-4 text-slate-400" />}
+                                            {showAdvanced ? <ChevronUp className="w-4 h-4 text-emerald-500 dark:text-emerald-400" /> : <ChevronDown className="w-4 h-4 text-slate-400 dark:text-slate-500" />}
                                         </div>
                                     </div>
                                     {showAdvanced && (
@@ -389,14 +389,14 @@ export function FBACalculator() {
                                         <FadeIn className="pt-4 space-y-5 max-w-[520px] mx-auto w-full px-1">
                                             <div className="flex items-center gap-3 w-full relative z-10">
                                                 <div className="flex items-center gap-2 flex-1 min-w-0 text-left">
-                                                    <label className="text-[14.5px] font-medium text-slate-600/90 cursor-pointer py-1">Product Category</label>
+                                                    <label className="text-[14.5px] font-medium text-slate-600/90 cursor-pointer py-1 dark:text-slate-300">Product Category</label>
                                                     <Tooltip>
                                                         <TooltipTrigger asChild>
-                                                            <button type="button" className="text-slate-400 hover:text-emerald-600 transition-colors cursor-help">
+                                                            <button type="button" className="text-slate-400 hover:text-emerald-600 transition-colors cursor-help dark:text-slate-500 dark:hover:text-emerald-400">
                                                                 <Info className="h-3.5 w-3.5" />
                                                             </button>
                                                         </TooltipTrigger>
-                                                        <TooltipContent className="bg-slate-900 text-white border-slate-800 text-[13px]">
+                                                        <TooltipContent className="bg-slate-900 text-white border-slate-800 text-[13px] dark:bg-slate-800 dark:border-slate-700">
                                                             Amazon Referral fees vary by product category. Use this to ensure accuracy.
                                                         </TooltipContent>
                                                     </Tooltip>
@@ -407,7 +407,7 @@ export function FBACalculator() {
                                                             <Button
                                                                 variant="outline"
                                                                 role="combobox"
-                                                                className="w-full justify-between h-11 bg-white border-2 border-slate-200 text-slate-700 hover:border-emerald-300 hover:shadow-md transition-all font-semibold px-3 rounded-xl"
+                                                                className="w-full justify-between h-11 bg-white border-2 border-slate-200 text-slate-700 hover:border-emerald-300 hover:shadow-md transition-all font-semibold px-3 rounded-xl dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200 dark:hover:border-emerald-800"
                                                             >
                                                                 <span className="truncate w-full text-right pr-3">{category}</span>
                                                                 <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -430,7 +430,7 @@ export function FBACalculator() {
                                                                                 className="flex items-center justify-between py-2.5 px-3 cursor-pointer"
                                                                             >
                                                                                 <span className="text-sm truncate mr-2">{cat}</span>
-                                                                                <span className={cn("text-xs font-medium px-1.5 py-0.5 rounded shrink-0", category === cat ? "bg-emerald-50 text-emerald-600" : "text-slate-400")}>
+                                                                                <span className={cn("text-xs font-medium px-1.5 py-0.5 rounded shrink-0", category === cat ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400" : "text-slate-400 dark:text-slate-500")}>
                                                                                     {Math.round(categories[cat] * 100)}%
                                                                                 </span>
                                                                             </CommandItem>

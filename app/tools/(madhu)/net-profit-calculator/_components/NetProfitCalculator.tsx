@@ -86,7 +86,7 @@ export function NetProfitCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
                 {/* Left Column: Inputs */}
                 <div className="lg:col-span-7 self-start lg:sticky lg:top-28">
-                    <Card className="border border-slate-200 shadow-lg shadow-slate-200/40 bg-white rounded-3xl overflow-hidden">
+                    <Card className="border border-slate-200 shadow-lg shadow-slate-200/40 bg-white rounded-3xl overflow-hidden dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Profit Analysis"
                             description="Enter your revenue and expenses to calculate true take-home pay."

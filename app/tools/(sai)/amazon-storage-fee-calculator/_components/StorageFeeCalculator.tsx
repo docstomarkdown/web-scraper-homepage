@@ -103,7 +103,7 @@ export function StorageFeeCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Inputs Section */}
                 <div className="lg:col-span-7 space-y-3">
-                    <Card className="border border-slate-200/80 shadow-sm bg-white overflow-hidden h-full flex flex-col rounded-3xl">
+                    <Card className="border border-slate-200/80 shadow-sm bg-white overflow-hidden h-full flex flex-col rounded-3xl dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Amazon Storage Fee Calculator"
                             description="Enter product dimensions and inventory details to estimate storage costs."
@@ -166,28 +166,28 @@ export function StorageFeeCalculator() {
                                 </div>
 
                                 {/* Advanced Toggle */}
-                                <div className="pt-6 mt-4 border-t border-slate-100">
+                                <div className="pt-6 mt-4 border-t border-slate-100 dark:border-slate-800">
                                     <div
                                         onClick={() => setShowAdvanced(!showAdvanced)}
                                         className={cn(
                                             "flex items-center justify-between p-4 rounded-xl border cursor-pointer transition-all duration-200 group select-none",
                                             showAdvanced
-                                                ? "bg-blue-50/50 border-blue-200 shadow-sm"
-                                                : "bg-slate-50 border-slate-200 hover:border-blue-300 hover:bg-slate-100"
+                                                ? "bg-blue-50/50 border-blue-200 shadow-sm dark:bg-blue-950/40 dark:border-blue-900/50"
+                                                : "bg-slate-50 border-slate-200 hover:border-blue-300 hover:bg-slate-100 dark:bg-slate-800/60 dark:border-slate-800 dark:hover:border-blue-800 dark:hover:bg-slate-800"
                                         )}
                                     >
                                         <div className="flex items-center gap-3">
                                             <div className={cn(
                                                 "w-8 h-8 rounded-full flex items-center justify-center transition-colors",
-                                                showAdvanced ? "bg-blue-100 text-blue-600" : "bg-white text-slate-400 group-hover:text-blue-500"
+                                                showAdvanced ? "bg-blue-100 text-blue-600 dark:bg-blue-900/40 dark:text-blue-400" : "bg-white text-slate-400 group-hover:text-blue-500 dark:bg-slate-900 dark:text-slate-500 dark:group-hover:text-blue-400"
                                             )}>
                                                 <ChevronsUpDown className="w-4 h-4" />
                                             </div>
                                             <div className="flex flex-col">
-                                                <span className={cn("text-sm font-semibold transition-colors", showAdvanced ? "text-blue-700" : "text-slate-700")}>
+                                                <span className={cn("text-sm font-semibold transition-colors", showAdvanced ? "text-blue-700 dark:text-blue-400" : "text-slate-700 dark:text-slate-200")}>
                                                     Advanced Settings
                                                 </span>
-                                                <span className="text-[11px] text-slate-400 font-medium">
+                                                <span className="text-[11px] text-slate-400 font-medium dark:text-slate-500">
                                                     Season & Size Tier Rules
                                                 </span>
                                             </div>
@@ -195,11 +195,11 @@ export function StorageFeeCalculator() {
                                         <div className="flex items-center gap-3">
                                             <span className={cn(
                                                 "text-[10px] px-2 py-0.5 rounded-full font-bold tracking-wide uppercase transition-colors",
-                                                showAdvanced ? "bg-blue-100 text-blue-700" : "bg-slate-200 text-slate-500"
+                                                showAdvanced ? "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-400" : "bg-slate-200 text-slate-500 dark:bg-slate-700 dark:text-slate-400"
                                             )}>
                                                 Optional
                                             </span>
-                                            {showAdvanced ? <ChevronUp className="w-4 h-4 text-blue-500" /> : <ChevronDown className="w-4 h-4 text-slate-400" />}
+                                            {showAdvanced ? <ChevronUp className="w-4 h-4 text-blue-500 dark:text-blue-400" /> : <ChevronDown className="w-4 h-4 text-slate-400 dark:text-slate-500" />}
                                         </div>
                                     </div>
 
@@ -208,21 +208,21 @@ export function StorageFeeCalculator() {
                                         <FadeIn className="pt-4 space-y-5 max-w-[520px] mx-auto w-full px-1">
                                             <div className="flex items-center gap-3 w-full relative z-10">
                                                 <div className="flex items-center gap-2 flex-1 min-w-0 text-left">
-                                                    <label className="text-[14.5px] font-medium text-slate-600/90 cursor-pointer py-1">Season</label>
+                                                    <label className="text-[14.5px] font-medium text-slate-600/90 cursor-pointer py-1 dark:text-slate-300">Season</label>
                                                     <Tooltip>
                                                         <TooltipTrigger asChild>
-                                                            <button type="button" className="text-slate-400 hover:text-blue-600 transition-colors cursor-help">
+                                                            <button type="button" className="text-slate-400 hover:text-blue-600 transition-colors cursor-help dark:text-slate-500 dark:hover:text-blue-400">
                                                                 <Info className="h-3.5 w-3.5" />
                                                             </button>
                                                         </TooltipTrigger>
-                                                        <TooltipContent className="bg-slate-900 text-white border-slate-800 text-[13px]">
+                                                        <TooltipContent className="bg-slate-900 text-white border-slate-800 text-[13px] dark:bg-slate-800 dark:border-slate-700">
                                                             Amazon's monthly storage fees vary by season (Peak vs Standard).
                                                         </TooltipContent>
                                                     </Tooltip>
                                                 </div>
                                                 <div className="w-36 sm:w-44 relative flex-shrink-0">
                                                     <Select value={season} onValueChange={(v: "jan-sept" | "oct-dec") => setSeason(v)}>
-                                                        <SelectTrigger className="h-11 border-2 border-slate-200 bg-white font-semibold text-slate-600 focus:ring-4 focus:ring-blue-500/10 hover:border-blue-300 hover:shadow-sm focus:border-blue-500 text-right w-full rounded-xl transition-all [&>span]:w-full [&>span]:text-right [&>span]:pr-3">
+                                                        <SelectTrigger className="h-11 border-2 border-slate-200 bg-white font-semibold text-slate-600 focus:ring-4 focus:ring-blue-500/10 hover:border-blue-300 hover:shadow-sm focus:border-blue-500 text-right w-full rounded-xl transition-all [&>span]:w-full [&>span]:text-right [&>span]:pr-3 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-800">
                                                             <SelectValue />
                                                         </SelectTrigger>
                                                         <SelectContent>
@@ -235,21 +235,21 @@ export function StorageFeeCalculator() {
 
                                             <div className="flex items-center gap-3 w-full relative z-10">
                                                 <div className="flex items-center gap-2 flex-1 min-w-0 text-left">
-                                                    <label className="text-[14.5px] font-medium text-slate-600/90 cursor-pointer py-1">Size Tier</label>
+                                                    <label className="text-[14.5px] font-medium text-slate-600/90 cursor-pointer py-1 dark:text-slate-300">Size Tier</label>
                                                     <Tooltip>
                                                         <TooltipTrigger asChild>
-                                                            <button type="button" className="text-slate-400 hover:text-blue-600 transition-colors cursor-help">
+                                                            <button type="button" className="text-slate-400 hover:text-blue-600 transition-colors cursor-help dark:text-slate-500 dark:hover:text-blue-400">
                                                                 <Info className="h-3.5 w-3.5" />
                                                             </button>
                                                         </TooltipTrigger>
-                                                        <TooltipContent className="bg-slate-900 text-white border-slate-800 text-[13px]">
+                                                        <TooltipContent className="bg-slate-900 text-white border-slate-800 text-[13px] dark:bg-slate-800 dark:border-slate-700">
                                                             Auto-detect calculates if the product is Standard or Oversize based on dimensions.
                                                         </TooltipContent>
                                                     </Tooltip>
                                                 </div>
                                                 <div className="w-36 sm:w-44 relative flex-shrink-0">
                                                     <Select value={sizeTier} onValueChange={(v: "standard" | "oversize" | "auto") => setSizeTier(v)}>
-                                                        <SelectTrigger className="h-11 border-2 border-slate-200 bg-white font-semibold text-slate-600 focus:ring-4 focus:ring-blue-500/10 hover:border-blue-300 hover:shadow-sm focus:border-blue-500 text-right w-full rounded-xl transition-all [&>span]:w-full [&>span]:text-right [&>span]:pr-3">
+                                                        <SelectTrigger className="h-11 border-2 border-slate-200 bg-white font-semibold text-slate-600 focus:ring-4 focus:ring-blue-500/10 hover:border-blue-300 hover:shadow-sm focus:border-blue-500 text-right w-full rounded-xl transition-all [&>span]:w-full [&>span]:text-right [&>span]:pr-3 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-800">
                                                             <SelectValue />
                                                         </SelectTrigger>
                                                         <SelectContent>

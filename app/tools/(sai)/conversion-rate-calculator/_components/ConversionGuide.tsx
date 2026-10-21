@@ -10,10 +10,10 @@ export function ConversionGuide() {
                 {
                     title: "Understand the Core Formula",
                     icon: MousePointerClick,
-                    iconBg: "bg-blue-50",
-                    iconColor: "text-blue-500",
+                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-500 dark:text-blue-400",
                     stat: "Rate",
-                    statColor: "text-blue-600",
+                    statColor: "text-blue-600 dark:text-blue-400",
                     statLabel: "Action per session",
                     tooltip: "Formula: (Conversions ÷ Visitors) × 100",
                     description: "Your conversion rate calculates the exact percentage of your raw traffic that successfully completed your desired, primary objective (like sales, leads, or signups)."
@@ -21,10 +21,10 @@ export function ConversionGuide() {
                 {
                     title: "Clean Your Traffic Data",
                     icon: Users,
-                    iconBg: "bg-amber-50",
-                    iconColor: "text-amber-500",
+                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
+                    iconColor: "text-amber-500 dark:text-amber-400",
                     stat: "Accuracy",
-                    statColor: "text-amber-600",
+                    statColor: "text-amber-600 dark:text-amber-400",
                     statLabel: "Clean traffic data",
                     tooltip: "For accurate rates, ensure bot and spam traffic are excluded.",
                     description: "For the most precise calculation, exclude bot traffic, internal visits, and known spam from your Total Visitors input. Inflated traffic metrics artificially suppress your real conversion rate."
@@ -32,10 +32,10 @@ export function ConversionGuide() {
                 {
                     title: "Separate Macro and Micro Goals",
                     icon: Target,
-                    iconBg: "bg-purple-50",
-                    iconColor: "text-purple-500",
+                    iconBg: "bg-purple-50 dark:bg-purple-950/40",
+                    iconColor: "text-purple-500 dark:text-purple-400",
                     stat: "Goals",
-                    statColor: "text-purple-600",
+                    statColor: "text-purple-600 dark:text-purple-400",
                     statLabel: "Macro vs Micro",
                     tooltip: "Track different rates for different transaction types.",
                     description: "Not all traffic intends to buy on the first visit. It's recommended to calculate separate conversion rates against multiple goal types: from high-friction macro events (checkouts) to low-friction micro events (newsletter signups)."
@@ -43,10 +43,10 @@ export function ConversionGuide() {
                 {
                     title: "Prioritize Conversions Over Traffic",
                     icon: TrendingUp,
-                    iconBg: "bg-emerald-50",
-                    iconColor: "text-emerald-500",
+                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
+                    iconColor: "text-emerald-500 dark:text-emerald-400",
                     stat: "Growth",
-                    statColor: "text-emerald-600",
+                    statColor: "text-emerald-600 dark:text-emerald-400",
                     statLabel: "Scaling revenue",
                     tooltip: "Improving conversion rates actively lowers your cost-per-acquisition.",
                     description: "Even a 1% lift in your conversion rate can sustainably multiply your revenue without requiring you to increase your ad spend. Focus strongly on your calls-to-action (CTAs), page speed, and value clarity."

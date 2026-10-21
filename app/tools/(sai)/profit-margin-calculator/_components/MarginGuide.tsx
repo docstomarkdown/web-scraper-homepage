@@ -9,10 +9,10 @@ export function MarginGuide() {
                 {
                     title: "Gross Margin",
                     icon: CircleDollarSign,
-                    iconBg: "bg-blue-50",
-                    iconColor: "text-blue-500",
+                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-500 dark:text-blue-400",
                     stat: "Keep %",
-                    statColor: "text-blue-600",
+                    statColor: "text-blue-600 dark:text-blue-400",
                     statLabel: "Percentage of revenue you keep",
                     tooltip: "Gross Margin %: (Revenue - Cost) / Revenue. Shows how much of your sales revenue is actually profit.",
                     description: "Your Gross Margin is the percentage of every dollar of sales that is profit after subtracting the cost of goods sold. A higher margin means more money left for other expenses."
@@ -20,10 +20,10 @@ export function MarginGuide() {
                 {
                     title: "Markup",
                     icon: Percent,
-                    iconBg: "bg-blue-50",
-                    iconColor: "text-blue-500",
+                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-500 dark:text-blue-400",
                     stat: "Add %",
-                    statColor: "text-blue-600",
+                    statColor: "text-blue-600 dark:text-blue-400",
                     statLabel: "Percentage added to cost",
                     tooltip: "Markup %: (Revenue - Cost) / Cost. The percentage increase over your cost price.",
                     description: "Markup is the percentage amount you add to the cost price to determine your selling price. For example, a 100% markup means you double your cost."
@@ -31,10 +31,10 @@ export function MarginGuide() {
                 {
                     title: "Profit per Unit",
                     icon: Calculator,
-                    iconBg: "bg-amber-50",
-                    iconColor: "text-amber-500",
+                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
+                    iconColor: "text-amber-500 dark:text-amber-400",
                     stat: "Cash",
-                    statColor: "text-amber-600",
+                    statColor: "text-amber-600 dark:text-amber-400",
                     statLabel: "Actual cash earned per sale",
                     tooltip: "Profit per Unit: Selling Price - Cost Price. The actual cash profit per item sold.",
                     description: "This is the simple dollar amount you earn from selling a single item. It is calculated by subtracting your unit cost from your unit selling price."
@@ -42,10 +42,10 @@ export function MarginGuide() {
                 {
                     title: "Margin vs. Markup",
                     icon: Info,
-                    iconBg: "bg-violet-50",
-                    iconColor: "text-violet-500",
+                    iconBg: "bg-violet-50 dark:bg-violet-950/40",
+                    iconColor: "text-violet-500 dark:text-violet-400",
                     stat: "≠",
-                    statColor: "text-violet-600",
+                    statColor: "text-violet-600 dark:text-violet-400",
                     statLabel: "They are not the same",
                     tooltip: "Margin is based on revenue (selling price), while markup is based on cost. The same profit gives different percentages depending on which base you use.",
                     description: "A common mistake is treating margin and markup as interchangeable. A 50% markup does not equal a 50% margin. For example, if your cost is $50 and you add a 100% markup, your selling price is $100 — but your margin is only 50%. Always know which metric you are using when setting prices."

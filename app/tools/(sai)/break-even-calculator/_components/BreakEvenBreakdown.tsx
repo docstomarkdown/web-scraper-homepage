@@ -85,16 +85,16 @@ export function BreakEvenBreakdown({
     return (
         <Card
             className={cn(
-                "border border-slate-200/60 shadow-sm bg-[#F5F8FD] rounded-2xl p-4 sm:p-5 flex flex-col gap-4 sm:gap-5",
+                "border border-slate-200/60 shadow-sm bg-[#F5F8FD] rounded-2xl p-4 sm:p-5 flex flex-col gap-4 sm:gap-5 dark:border-slate-800",
                 className
             )}
         >
             {/* Header */}
-            <div className="flex items-center gap-2 pb-3 border-b border-slate-200/50">
+            <div className="flex items-center gap-2 pb-3 border-b border-slate-200/50 dark:border-slate-800">
                 <div className="flex items-center justify-center w-6 h-6 rounded-md bg-blue-600/10 border border-blue-500/20">
-                    <PieChart className="w-3.5 h-3.5 text-blue-600" />
+                    <PieChart className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                 </div>
-                <h2 className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none">
+                <h2 className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none dark:text-blue-400">
                     Unit Economics Breakdown
                 </h2>
             </div>
@@ -122,16 +122,16 @@ export function BreakEvenBreakdown({
                             </RechartsPie>
                         </ResponsiveContainer>
                     ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-center p-3 text-slate-400 text-[10.5px] leading-tight font-medium border-2 border-dashed border-slate-200/70 rounded-full bg-slate-50/40">
+                        <div className="absolute inset-0 flex items-center justify-center text-center p-3 text-slate-400 text-[10.5px] leading-tight font-medium border-2 border-dashed border-slate-200/70 rounded-full bg-slate-50/40 dark:text-slate-500 dark:border-slate-800 dark:bg-slate-800/60">
                             Add data to see breakdown
                         </div>
                     )}
                     {pieTotal > 0 && (
                         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                            <span className="text-[10px] sm:text-[11px] font-medium text-slate-400 text-center leading-tight mb-0.5 mt-0.5">
+                            <span className="text-[10px] sm:text-[11px] font-medium text-slate-400 text-center leading-tight mb-0.5 mt-0.5 dark:text-slate-500">
                                 Price
                             </span>
-                            <span className="text-[11px] sm:text-[13px] font-bold text-slate-900 tracking-tight">
+                            <span className="text-[11px] sm:text-[13px] font-bold text-slate-900 tracking-tight dark:text-white">
                                 {formatCurrency(pieTotal)}
                             </span>
                         </div>
@@ -149,8 +149,8 @@ export function BreakEvenBreakdown({
                             <div
                                 key={item.label}
                                 className={cn(
-                                    "flex items-start sm:items-center justify-between px-3 border rounded-[10px] py-1.5 shadow-sm w-full gap-2 transition-all hover:border-slate-300",
-                                    item.showDot ? "bg-white border-slate-200/80" : "bg-blue-50/50 border-blue-200/60"
+                                    "flex items-start sm:items-center justify-between px-3 border rounded-[10px] py-1.5 shadow-sm w-full gap-2 transition-all hover:border-slate-300 dark:hover:border-slate-700",
+                                    item.showDot ? "bg-white border-slate-200/80 dark:bg-slate-900 dark:border-slate-800" : "bg-blue-50/50 border-blue-200/60 dark:bg-blue-950/40 dark:border-blue-900/50"
                                 )}
                             >
                                 <div className="flex items-center gap-2">
@@ -160,7 +160,7 @@ export function BreakEvenBreakdown({
                                             style={{ backgroundColor: derivedDotColor }}
                                         />
                                     )}
-                                    <span className="text-[12px] text-slate-600 font-bold leading-tight">
+                                    <span className="text-[12px] text-slate-600 font-bold leading-tight dark:text-slate-300">
                                         {item.label}
                                     </span>
                                 </div>
@@ -169,8 +169,8 @@ export function BreakEvenBreakdown({
                                         className={cn(
                                             "text-[12px] font-semibold tabular-nums text-right flex-shrink-0 min-w-[60px]",
                                             item.isCost
-                                                ? "text-slate-500"
-                                                : "text-slate-700"
+                                                ? "text-slate-500 dark:text-slate-400"
+                                                : "text-slate-700 dark:text-slate-200"
                                         )}
                                     >
                                         {item.isCost && item.value > 0 ? "-" : ""}
@@ -179,7 +179,7 @@ export function BreakEvenBreakdown({
                                     <span
                                         className={cn(
                                             "text-[12px] font-extrabold tabular-nums text-right flex-shrink-0 w-[32px] sm:w-[40px] ml-2.5",
-                                            !item.showDot ? "text-blue-600" : "text-slate-500"
+                                            !item.showDot ? "text-blue-600 dark:text-blue-400" : "text-slate-500 dark:text-slate-400"
                                         )}
                                     >
                                         {Math.abs(item.value) > 0 || item.showDot
@@ -195,8 +195,8 @@ export function BreakEvenBreakdown({
             
             <div className="px-1 mt-1">
                 <div className="flex justify-between items-center text-[12.5px]">
-                    <span className="text-slate-500 font-medium">Total Fixed Costs</span>
-                    <span className="text-slate-700 font-semibold">{formatCurrency(fixedCosts)}</span>
+                    <span className="text-slate-500 font-medium dark:text-slate-400">Total Fixed Costs</span>
+                    <span className="text-slate-700 font-semibold dark:text-slate-200">{formatCurrency(fixedCosts)}</span>
                 </div>
             </div>
         </Card>

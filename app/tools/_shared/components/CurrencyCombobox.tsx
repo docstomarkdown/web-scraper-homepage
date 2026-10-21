@@ -269,7 +269,7 @@ export function CurrencyCombobox({ value, onValueChange, className }: CurrencyCo
                     role="combobox"
                     aria-expanded={open}
                     className={cn(
-                        'w-full flex items-center gap-2 h-10 text-sm font-bold border border-slate-200 bg-white shadow-sm px-3 transition-all duration-200 rounded-xl hover:shadow-md hover:border-slate-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/5',
+                        'w-full flex items-center gap-2 h-10 text-sm font-bold border border-slate-200 bg-white shadow-sm px-3 transition-all duration-200 rounded-xl hover:shadow-md hover:border-slate-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/5 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700',
                         !value && 'text-muted-foreground',
                         className
                     )}
@@ -283,7 +283,7 @@ export function CurrencyCombobox({ value, onValueChange, className }: CurrencyCo
                                 alt={selectedCurrency.name}
                                 className="object-contain flex-shrink-0"
                             />
-                            <span className="whitespace-nowrap text-slate-700 tracking-tight">{selectedCurrency.code} ({selectedCurrency.symbol})</span>
+                            <span className="whitespace-nowrap text-slate-700 tracking-tight dark:text-slate-200">{selectedCurrency.code} ({selectedCurrency.symbol})</span>
                         </div>
                     ) : (
                         <span className="text-left">Select currency</span>

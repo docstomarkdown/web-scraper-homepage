@@ -14,9 +14,9 @@ export function EOQGuide() {
                     icon: RefreshCw,
                     stat: "Recalculate",
                     statLabel: "Seasonally",
-                    iconBg: "bg-blue-50",
-                    iconColor: "text-blue-600",
-                    statColor: "text-blue-600",
+                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-600 dark:text-blue-400",
+                    statColor: "text-blue-600 dark:text-blue-400",
                     tooltip: "Run EOQ with seasonal demand figures, not just annual averages."
                 },
                 {
@@ -25,9 +25,9 @@ export function EOQGuide() {
                     icon: TrendingDown,
                     stat: "20–30%",
                     statLabel: "True Hold Rate",
-                    iconBg: "bg-amber-50",
-                    iconColor: "text-amber-600",
-                    statColor: "text-amber-600",
+                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
+                    iconColor: "text-amber-600 dark:text-amber-400",
+                    statColor: "text-amber-600 dark:text-amber-400",
                     tooltip: "Underestimating holding cost skews your EOQ and inflates order sizes."
                 },
                 {
@@ -36,9 +36,9 @@ export function EOQGuide() {
                     icon: AlertTriangle,
                     stat: "Compare",
                     statLabel: "With MOQ Deals",
-                    iconBg: "bg-red-50",
-                    iconColor: "text-red-600",
-                    statColor: "text-red-600",
+                    iconBg: "bg-red-50 dark:bg-red-950/40",
+                    iconColor: "text-red-600 dark:text-red-400",
+                    statColor: "text-red-600 dark:text-red-400",
                     tooltip: "Supplier discounts at higher quantities can beat your calculated EOQ."
                 }
             ]}

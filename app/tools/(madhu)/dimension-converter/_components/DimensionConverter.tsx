@@ -70,14 +70,14 @@ function ConvertedDimensionsCard(props: ConvertedDimensionsCardProps) {
     const progressPct = (completedCount / totalCount) * 100
 
     return (
-        <Card className="relative overflow-hidden border border-slate-200/60 bg-white shadow-sm rounded-2xl">
+        <Card className="relative overflow-hidden border border-slate-200/60 bg-white shadow-sm rounded-2xl dark:border-slate-800 dark:bg-slate-900">
             {/* Header: RESULTS PANEL with icon */}
             <div className="flex justify-between items-center gap-4 px-6 pt-5 pb-1">
                 <div className="flex items-center gap-2.5">
-                    <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-100/50 shadow-sm shadow-blue-500/5">
-                        <ClipboardList className="w-4 h-4 text-blue-600" />
+                    <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-100/50 shadow-sm shadow-blue-500/5 dark:border-blue-900/50">
+                        <ClipboardList className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                     </div>
-                    <span className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none">
+                    <span className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none dark:text-blue-400">
                         Results Panel
                     </span>
                 </div>
@@ -89,10 +89,10 @@ function ConvertedDimensionsCard(props: ConvertedDimensionsCardProps) {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.4, ease: "easeOut" }}
-                            className="bg-slate-50 border border-slate-100 px-3 py-1.5 rounded-full flex items-center gap-2.5 shadow-sm"
+                            className="bg-slate-50 border border-slate-100 px-3 py-1.5 rounded-full flex items-center gap-2.5 shadow-sm dark:bg-slate-800/60 dark:border-slate-800"
                         >
-                            <span className="text-[10px] font-black text-blue-600">{completedCount}/{totalCount}</span>
-                            <div className="w-16 h-1.5 bg-blue-100/80 rounded-full overflow-hidden">
+                            <span className="text-[10px] font-black text-blue-600 dark:text-blue-400">{completedCount}/{totalCount}</span>
+                            <div className="w-16 h-1.5 bg-blue-100/80 rounded-full overflow-hidden dark:bg-blue-900/40">
                                 <motion.div
                                     className="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full"
                                     initial={{ width: "0%" }}
@@ -108,7 +108,7 @@ function ConvertedDimensionsCard(props: ConvertedDimensionsCardProps) {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.4, ease: "easeInOut" }}
-                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border bg-blue-50/80 border-blue-200/50 text-[10.5px] font-bold tracking-wide text-blue-600 shrink-0"
+                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border bg-blue-50/80 border-blue-200/50 text-[10.5px] font-bold tracking-wide text-blue-600 shrink-0 dark:bg-blue-950/40 dark:border-blue-900/50 dark:text-blue-400"
                         >
                             {fromUnit} → {toUnit}
                         </motion.div>
@@ -131,11 +131,11 @@ function ConvertedDimensionsCard(props: ConvertedDimensionsCardProps) {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ duration: 0.55, ease: "easeOut" }}
-                                    className="bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_8px_40px_rgba(59,130,246,0.12)] rounded-2xl px-6 py-5 flex flex-col items-center gap-3 w-fit max-w-[320px] pointer-events-auto"
+                                    className="bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_8px_40px_rgba(59,130,246,0.12)] rounded-2xl px-6 py-5 flex flex-col items-center gap-3 w-fit max-w-[320px] pointer-events-auto dark:bg-slate-900/80 dark:border-slate-800"
                                 >
                                     <div className="relative flex items-center justify-center">
                                         <span className="absolute w-11 h-11 rounded-xl bg-blue-400/15 animate-ping" style={{ animationDuration: "2.8s" }} />
-                                        <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200/60 flex items-center justify-center text-blue-500 shadow-sm">
+                                        <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200/60 flex items-center justify-center text-blue-500 shadow-sm dark:from-blue-950/30 dark:to-blue-900/30 dark:border-blue-900/50 dark:text-blue-400">
                                             <ClipboardPenLine className="w-[18px] h-[18px]" />
                                         </div>
                                     </div>
@@ -145,11 +145,11 @@ function ConvertedDimensionsCard(props: ConvertedDimensionsCardProps) {
                                                 <path d="M9 19l-7-7 7-7" />
                                                 <path d="M2 12h36" />
                                             </svg>
-                                            <p className="text-[12.5px] text-slate-500 font-semibold leading-snug whitespace-nowrap z-10">
+                                            <p className="text-[12.5px] text-slate-500 font-semibold leading-snug whitespace-nowrap z-10 dark:text-slate-400">
                                                 Fill in the inputs to see your
                                             </p>
                                         </div>
-                                        <span className="inline-flex items-center px-3 py-1 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100/80 text-[11.5px] font-extrabold text-blue-600/90 tracking-wide shadow-sm shadow-blue-100/50">
+                                        <span className="inline-flex items-center px-3 py-1 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100/80 text-[11.5px] font-extrabold text-blue-600/90 tracking-wide shadow-sm shadow-blue-100/50 dark:from-blue-950/30 dark:to-blue-900/30">
                                             Converted Dimensions
                                         </span>
                                     </div>
@@ -157,16 +157,16 @@ function ConvertedDimensionsCard(props: ConvertedDimensionsCardProps) {
                             </div>
                             <div className="blur-[2.5px] opacity-40 select-none pointer-events-none space-y-2 py-2">
                                 {AXIS_META.map((axis, i) => (
-                                    <div key={axis.key ?? i} className="flex items-center gap-3 p-3 rounded-xl bg-slate-50/50 border border-slate-100">
-                                        <div className="h-5 w-5 rounded-md bg-slate-200/60 animate-pulse" />
+                                    <div key={axis.key ?? i} className="flex items-center gap-3 p-3 rounded-xl bg-slate-50/50 border border-slate-100 dark:bg-slate-800/60 dark:border-slate-800">
+                                        <div className="h-5 w-5 rounded-md bg-slate-200/60 animate-pulse dark:bg-slate-700/60" />
                                         <div className="flex-1">
-                                            <div className="h-2.5 w-14 rounded-full bg-slate-200/60 animate-pulse mb-1.5" />
-                                            <div className="h-5 w-20 rounded-lg bg-slate-200/50 animate-pulse" />
+                                            <div className="h-2.5 w-14 rounded-full bg-slate-200/60 animate-pulse mb-1.5 dark:bg-slate-700/60" />
+                                            <div className="h-5 w-20 rounded-lg bg-slate-200/50 animate-pulse dark:bg-slate-700/50" />
                                         </div>
-                                        <div className="h-3 w-3 rounded bg-slate-200/40 animate-pulse" />
+                                        <div className="h-3 w-3 rounded bg-slate-200/40 animate-pulse dark:bg-slate-700/40" />
                                         <div className="flex-1 text-right">
-                                            <div className="h-2.5 w-14 rounded-full bg-slate-200/60 animate-pulse mb-1.5 ml-auto" />
-                                            <div className="h-5 w-20 rounded-lg bg-slate-200/50 animate-pulse ml-auto" />
+                                            <div className="h-2.5 w-14 rounded-full bg-slate-200/60 animate-pulse mb-1.5 ml-auto dark:bg-slate-700/60" />
+                                            <div className="h-5 w-20 rounded-lg bg-slate-200/50 animate-pulse ml-auto dark:bg-slate-700/50" />
                                         </div>
                                     </div>
                                 ))}
@@ -193,24 +193,24 @@ function ConvertedDimensionsCard(props: ConvertedDimensionsCardProps) {
                                         initial={{ opacity: 0, x: -12 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ duration: 0.35, delay: 0.08 + idx * 0.06, ease: "easeOut" }}
-                                        className="group flex items-center gap-3 p-3 sm:p-3.5 rounded-xl bg-slate-50/70 border border-slate-100/80 hover:border-blue-200/60 hover:bg-blue-50/30 transition-all duration-200"
+                                        className="group flex items-center gap-3 p-3 sm:p-3.5 rounded-xl bg-slate-50/70 border border-slate-100/80 hover:border-blue-200/60 hover:bg-blue-50/30 transition-all duration-200 dark:bg-slate-800/60 dark:border-slate-800 dark:hover:border-blue-900/50 dark:hover:bg-blue-950/40"
                                     >
                                         <div className="flex items-center gap-2.5 flex-1 min-w-0">
-                                            <div className="flex items-center justify-center w-7 h-7 rounded-lg bg-slate-200/60 text-[11px] font-black text-slate-500 shrink-0">
+                                            <div className="flex items-center justify-center w-7 h-7 rounded-lg bg-slate-200/60 text-[11px] font-black text-slate-500 shrink-0 dark:bg-slate-700/60 dark:text-slate-400">
                                                 {axis.label}
                                             </div>
                                             <div className="min-w-0">
-                                                <span className="text-[14px] font-bold text-slate-500 block leading-none mb-1">
+                                                <span className="text-[14px] font-bold text-slate-500 block leading-none mb-1 dark:text-slate-400">
                                                     {axis.full}
                                                 </span>
-                                                <span className="text-[16px] sm:text-[17px] font-bold text-slate-700 tabular-nums">
+                                                <span className="text-[16px] sm:text-[17px] font-bold text-slate-700 tabular-nums dark:text-slate-200">
                                                     {givenVal}
-                                                    <span className="text-[11px] font-semibold text-slate-400 ml-1">{fromUnit}</span>
+                                                    <span className="text-[11px] font-semibold text-slate-400 ml-1 dark:text-slate-500">{fromUnit}</span>
                                                 </span>
                                             </div>
                                         </div>
 
-                                        <ArrowRight className="w-3.5 h-3.5 text-slate-300 shrink-0 group-hover:text-blue-400 transition-colors" />
+                                        <ArrowRight className="w-3.5 h-3.5 text-slate-300 shrink-0 group-hover:text-blue-400 transition-colors dark:text-slate-600" />
 
                                         <div className="flex-1 min-w-0 text-right">
                                             {isFirst && (
@@ -219,7 +219,7 @@ function ConvertedDimensionsCard(props: ConvertedDimensionsCardProps) {
                                                 </span>
                                             )}
                                             {!isFirst && <div className="h-2.5" />}
-                                            <span className="text-[16px] sm:text-[17px] font-bold text-blue-600 tabular-nums tracking-tight">
+                                            <span className="text-[16px] sm:text-[17px] font-bold text-blue-600 tabular-nums tracking-tight dark:text-blue-400">
                                                 {convertedVal}
                                                 <span className="text-[11px] font-semibold text-blue-400 ml-1">{toUnit}</span>
                                             </span>
@@ -280,7 +280,7 @@ export function DimensionConverterContent() {
             <div className="lg:col-span-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
                 {/* Left Column: Inputs */}
                 <div className="lg:col-span-7 h-full">
-                    <Card className="border-slate-200 shadow-sm relative overflow-hidden bg-white h-full flex flex-col">
+                    <Card className="border-slate-200 shadow-sm relative overflow-hidden bg-white h-full flex flex-col dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Calculator Inputs"
                             description="Enter dimensions and select your base unit to convert."
@@ -308,7 +308,7 @@ export function DimensionConverterContent() {
                                         groupingTitle="Dimensions"
                                         groupingIcon={Ruler}
                                         groupingAction={
-                                            <div className="flex bg-slate-100 p-0.5 rounded-lg border border-slate-200 h-7 font-sans ml-4">
+                                            <div className="flex bg-slate-100 p-0.5 rounded-lg border border-slate-200 h-7 font-sans ml-4 dark:bg-slate-800 dark:border-slate-800">
                                                 {(["in", "cm"] as Unit[]).map((u) => (
                                                     <button
                                                         key={u}
@@ -316,8 +316,8 @@ export function DimensionConverterContent() {
                                                         className={cn(
                                                             "px-3 h-full rounded-md text-[11px] font-bold transition-all flex-1 flex items-center justify-center",
                                                             unit === u
-                                                                ? "bg-white text-blue-600 shadow-sm border border-blue-200"
-                                                                : "text-slate-500 hover:text-slate-900"
+                                                                ? "bg-white text-blue-600 shadow-sm border border-blue-200 dark:bg-slate-900 dark:text-blue-400 dark:border-blue-900/50"
+                                                                : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
                                                         )}
                                                     >
                                                         {u}

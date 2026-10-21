@@ -30,12 +30,12 @@ const priceElasticityFaqs = [
 ]
 export default function PriceElasticityCalculatorPage() {
     return (
-        <div className="min-h-screen bg-slate-50 pt-32 pb-12">
+        <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
                 <div className="max-w-4xl mx-auto text-center mb-12">
                     <FadeIn>
-                        <h1 className="text-4xl md:text-[42px] font-bold text-slate-900 mb-4 tracking-tight">
-                            Price Elasticity <span className="text-blue-600">Calculator</span>
+                        <h1 className="text-4xl md:text-[42px] font-bold text-slate-900 mb-4 tracking-tight dark:text-white">
+                            Price Elasticity <span className="text-blue-600 dark:text-blue-400">Calculator</span>
                         </h1>
                     </FadeIn>
                 </div>

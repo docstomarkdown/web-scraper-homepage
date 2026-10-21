@@ -13,9 +13,9 @@ export function InventoryTurnoverGuide() {
                     icon: Gauge,
                     stat: "Analyze",
                     statLabel: "Sales Flow",
-                    iconBg: "bg-blue-50",
-                    iconColor: "text-blue-600",
-                    statColor: "text-blue-600",
+                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-600 dark:text-blue-400",
+                    statColor: "text-blue-600 dark:text-blue-400",
                     tooltip: "The ratio shows if you're matching your buying speed to your customer demand."
                 },
                 {
@@ -24,9 +24,9 @@ export function InventoryTurnoverGuide() {
                     icon: Hourglass,
                     stat: "Sell Time",
                     statLabel: "Cash Cycle",
-                    iconBg: "bg-orange-50",
-                    iconColor: "text-orange-600",
-                    statColor: "text-orange-600"
+                    iconBg: "bg-orange-50 dark:bg-orange-950/40",
+                    iconColor: "text-orange-600 dark:text-orange-400",
+                    statColor: "text-orange-600 dark:text-orange-400"
                 },
                 {
                     title: "Avoid Overstock Costs",
@@ -34,9 +34,9 @@ export function InventoryTurnoverGuide() {
                     icon: Warehouse,
                     stat: "Save",
                     statLabel: "Storage Cap",
-                    iconBg: "bg-red-50",
-                    iconColor: "text-red-600",
-                    statColor: "text-red-600"
+                    iconBg: "bg-red-50 dark:bg-red-950/40",
+                    iconColor: "text-red-600 dark:text-red-400",
+                    statColor: "text-red-600 dark:text-red-400"
                 },
                 {
                     title: "Simplify Stock Planning",
@@ -44,9 +44,9 @@ export function InventoryTurnoverGuide() {
                     icon: CalendarDays,
                     stat: "Flexible",
                     statLabel: "Periods",
-                    iconBg: "bg-emerald-50",
-                    iconColor: "text-emerald-600",
-                    statColor: "text-emerald-600"
+                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
+                    iconColor: "text-emerald-600 dark:text-emerald-400",
+                    statColor: "text-emerald-600 dark:text-emerald-400"
                 }
             ]}
         />

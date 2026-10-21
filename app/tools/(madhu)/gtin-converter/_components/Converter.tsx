@@ -174,7 +174,7 @@ export function Converter() {
                 {/* LEFT: Inputs */}
                 <div className="lg:col-span-6">
                     <FadeIn delay={0.2} direction="right">
-                        <Card className="border border-slate-200 shadow-sm overflow-hidden bg-white">
+                        <Card className="border border-slate-200 shadow-sm overflow-hidden bg-white dark:border-slate-800 dark:bg-slate-900">
                             <CalculatorCardHeader
                                 title="GTIN Converter"
                                 description="Enter your barcode number or upload an image below to convert between GTIN formats."
@@ -198,19 +198,19 @@ export function Converter() {
                                     />
 
                                     <div className="relative flex items-center justify-center">
-                                        <div className="w-full border-t border-slate-200/80"></div>
-                                        <span className="absolute px-3 bg-white text-[10.5px] font-bold text-slate-400 uppercase tracking-widest">
+                                        <div className="w-full border-t border-slate-200/80 dark:border-slate-800"></div>
+                                        <span className="absolute px-3 bg-white text-[10.5px] font-bold text-slate-400 uppercase tracking-widest dark:bg-slate-900 dark:text-slate-500">
                                             Or
                                         </span>
                                     </div>
 
                                     <Button
                                         variant="secondary"
-                                        className="w-full h-10 text-xs font-bold border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 rounded-xl"
+                                        className="w-full h-10 text-xs font-bold border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 rounded-xl dark:border-slate-800 dark:bg-slate-800/60 dark:hover:bg-slate-800 dark:text-slate-200"
                                         onClick={() => document.getElementById('barcode-upload')?.click()}
                                     >
                                         <div className="flex items-center justify-center">
-                                            <ImageIcon className="w-4 h-4 mr-2 text-blue-500 shrink-0" />
+                                            <ImageIcon className="w-4 h-4 mr-2 text-blue-500 shrink-0 dark:text-blue-400" />
                                             Upload Barcode Image
                                         </div>
                                     </Button>
@@ -224,13 +224,13 @@ export function Converter() {
                 <div className="lg:col-span-6">
                     <FadeIn delay={0.4} direction="left" className="h-full">
                         <div className="space-y-3 flex flex-col h-full">
-                            <Card className="relative overflow-hidden border border-slate-200/60 shadow-sm rounded-2xl bg-[#F5F8FD]">
+                            <Card className="relative overflow-hidden border border-slate-200/60 shadow-sm rounded-2xl bg-[#F5F8FD] dark:border-slate-800">
                                 <div className="flex justify-between items-center gap-4 px-6 pt-5 pb-1">
                                     <div className="flex items-center gap-2.5">
-                                        <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-100/50 shadow-sm shadow-blue-500/5">
-                                            <Activity className="w-4 h-4 text-blue-600" />
+                                        <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-100/50 shadow-sm shadow-blue-500/5 dark:border-blue-900/50">
+                                            <Activity className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                                         </div>
-                                        <span className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none">
+                                        <span className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none dark:text-blue-400">
                                             Results Panel
                                         </span>
                                     </div>
@@ -241,10 +241,10 @@ export function Converter() {
                                             animate={{ opacity: 1 }}
                                             transition={{ duration: 0.4, ease: "easeInOut" }}
                                             className={cn(
-                                                "flex items-center justify-center px-2.5 py-1.5 rounded-full border shrink-0 border-slate-200/50",
+                                                "flex items-center justify-center px-2.5 py-1.5 rounded-full border shrink-0 border-slate-200/50 dark:border-slate-800",
                                                 status.isValid
-                                                    ? "bg-emerald-100/80 text-emerald-700"
-                                                    : "bg-red-100/80 text-red-700"
+                                                    ? "bg-emerald-100/80 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400"
+                                                    : "bg-red-100/80 text-red-700 dark:bg-red-900/40 dark:text-red-400"
                                             )}
                                         >
                                             {status.isValid ? (
@@ -272,11 +272,11 @@ export function Converter() {
                                                     <motion.div
                                                         initial={{ opacity: 0 }}
                                                         animate={{ opacity: 1 }}
-                                                        className="bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_8px_40px_rgba(59,130,246,0.12)] rounded-2xl px-6 py-5 flex flex-col items-center gap-3 w-fit max-w-[320px] pointer-events-auto"
+                                                        className="bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_8px_40px_rgba(59,130,246,0.12)] rounded-2xl px-6 py-5 flex flex-col items-center gap-3 w-fit max-w-[320px] pointer-events-auto dark:bg-slate-900/80 dark:border-slate-800"
                                                     >
                                                         <div className="relative flex items-center justify-center">
                                                             <span className="absolute w-11 h-11 rounded-xl bg-blue-400/15 animate-ping" style={{ animationDuration: "2.8s" }} />
-                                                            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200/60 flex items-center justify-center text-blue-500 shadow-sm">
+                                                            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200/60 flex items-center justify-center text-blue-500 shadow-sm dark:from-blue-950/30 dark:to-blue-900/30 dark:border-blue-900/50 dark:text-blue-400">
                                                                 <ClipboardPenLine className="w-[18px] h-[18px]" />
                                                             </div>
                                                         </div>
@@ -286,11 +286,11 @@ export function Converter() {
                                                                     <path d="M9 19l-7-7 7-7" />
                                                                     <path d="M2 12h36" />
                                                                 </svg>
-                                                                <p className="text-[12.5px] text-slate-500 font-semibold leading-snug whitespace-nowrap z-10">
+                                                                <p className="text-[12.5px] text-slate-500 font-semibold leading-snug whitespace-nowrap z-10 dark:text-slate-400">
                                                                     Fill in the inputs to see your
                                                                 </p>
                                                             </div>
-                                                            <span className="inline-flex items-center px-3 py-1 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100/80 text-[11.5px] font-extrabold text-blue-600/90 tracking-wide shadow-sm shadow-blue-100/50">
+                                                            <span className="inline-flex items-center px-3 py-1 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100/80 text-[11.5px] font-extrabold text-blue-600/90 tracking-wide shadow-sm shadow-blue-100/50 dark:from-blue-950/30 dark:to-blue-900/30">
                                                                 Conversion Results
                                                             </span>
                                                         </div>
@@ -300,22 +300,22 @@ export function Converter() {
                                                 {/* Ghosted Skeleton */}
                                                 <div className="blur-[2.5px] opacity-40 select-none pointer-events-none">
                                                     <div className="flex flex-col items-center justify-center py-5 px-4 mb-2">
-                                                        <div className="h-2.5 w-24 rounded-full bg-slate-200/60 mb-3 animate-pulse" />
-                                                        <div className="h-12 w-40 rounded-xl bg-slate-200/50 mb-2 animate-pulse" style={{ animationDelay: "0.1s" }} />
+                                                        <div className="h-2.5 w-24 rounded-full bg-slate-200/60 mb-3 animate-pulse dark:bg-slate-700/60" />
+                                                        <div className="h-12 w-40 rounded-xl bg-slate-200/50 mb-2 animate-pulse dark:bg-slate-700/50" style={{ animationDelay: "0.1s" }} />
                                                         <div className="flex flex-col items-center gap-1.5 mt-1">
-                                                            <div className="h-2 w-44 rounded-full bg-slate-200/60 animate-pulse" style={{ animationDelay: "0.2s" }} />
-                                                            <div className="h-2 w-32 rounded-full bg-slate-200/50 animate-pulse" style={{ animationDelay: "0.3s" }} />
+                                                            <div className="h-2 w-44 rounded-full bg-slate-200/60 animate-pulse dark:bg-slate-700/60" style={{ animationDelay: "0.2s" }} />
+                                                            <div className="h-2 w-32 rounded-full bg-slate-200/50 animate-pulse dark:bg-slate-700/50" style={{ animationDelay: "0.3s" }} />
                                                         </div>
                                                     </div>
-                                                    <div className="h-px w-full bg-slate-200/40 my-4" />
+                                                    <div className="h-px w-full bg-slate-200/40 my-4 dark:bg-slate-700/40" />
                                                     <div className="space-y-3 px-2">
-                                                        <div className="bg-slate-50/50 border border-slate-100 p-3 rounded-xl">
-                                                            <div className="h-2 w-20 rounded-full bg-slate-200/60 mb-3 animate-pulse" />
-                                                            <div className="h-4 w-16 rounded-lg bg-slate-200/50 animate-pulse" />
+                                                        <div className="bg-slate-50/50 border border-slate-100 p-3 rounded-xl dark:bg-slate-800/60 dark:border-slate-800">
+                                                            <div className="h-2 w-20 rounded-full bg-slate-200/60 mb-3 animate-pulse dark:bg-slate-700/60" />
+                                                            <div className="h-4 w-16 rounded-lg bg-slate-200/50 animate-pulse dark:bg-slate-700/50" />
                                                         </div>
-                                                        <div className="bg-slate-50/50 border border-slate-100 p-3 rounded-xl">
-                                                            <div className="h-2 w-24 rounded-full bg-slate-200/60 mb-3 animate-pulse" style={{ animationDelay: "0.1s" }} />
-                                                            <div className="h-4 w-12 rounded-lg bg-slate-200/50 animate-pulse" style={{ animationDelay: "0.15s" }} />
+                                                        <div className="bg-slate-50/50 border border-slate-100 p-3 rounded-xl dark:bg-slate-800/60 dark:border-slate-800">
+                                                            <div className="h-2 w-24 rounded-full bg-slate-200/60 mb-3 animate-pulse dark:bg-slate-700/60" style={{ animationDelay: "0.1s" }} />
+                                                            <div className="h-4 w-12 rounded-lg bg-slate-200/50 animate-pulse dark:bg-slate-700/50" style={{ animationDelay: "0.15s" }} />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -341,11 +341,11 @@ export function Converter() {
                                                                 transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
                                                                 className="relative flex flex-col items-center text-center py-5 px-4 mb-2"
                                                             >
-                                                                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                                                                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1.5 dark:text-slate-500">
                                                                     Detected Format
                                                                 </span>
                                                                 <div className="flex items-baseline justify-center">
-                                                                    <span className="text-[2.75rem] sm:text-[3.25rem] font-black tracking-tighter leading-none text-blue-600">
+                                                                    <span className="text-[2.75rem] sm:text-[3.25rem] font-black tracking-tighter leading-none text-blue-600 dark:text-blue-400">
                                                                         {status.format}
                                                                     </span>
                                                                 </div>
@@ -363,19 +363,19 @@ export function Converter() {
                                                                         initial={{ opacity: 0, y: 8 }}
                                                                         animate={{ opacity: 1, y: 0 }}
                                                                         transition={{ duration: 0.3, delay: item.delay, ease: "easeOut" }}
-                                                                        className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] flex flex-col justify-between"
+                                                                        className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] flex flex-col justify-between dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
                                                                     >
                                                                         <div className="flex items-center gap-2 mb-1.5">
-                                                                            <item.icon className="w-4 h-4 text-blue-500 flex-shrink-0" />
-                                                                            <span className="text-[13px] font-bold text-slate-500">{item.label}</span>
+                                                                            <item.icon className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
+                                                                            <span className="text-[13px] font-bold text-slate-500 dark:text-slate-400">{item.label}</span>
                                                                         </div>
                                                                         <div className="pl-6 flex items-center justify-between gap-3">
-                                                                            <span className="text-[15px] font-mono font-bold text-slate-700 break-all">{item.value}</span>
+                                                                            <span className="text-[15px] font-mono font-bold text-slate-700 break-all dark:text-slate-200">{item.value}</span>
                                                                             <button
                                                                                 onClick={() => {
                                                                                     navigator.clipboard.writeText(item.value)
                                                                                 }}
-                                                                                className="text-slate-400 hover:text-blue-600 transition-colors p-1 rounded-md hover:bg-blue-50/80 active:bg-blue-100 flex-shrink-0"
+                                                                                className="text-slate-400 hover:text-blue-600 transition-colors p-1 rounded-md hover:bg-blue-50/80 active:bg-blue-100 flex-shrink-0 dark:text-slate-500 dark:hover:text-blue-400 dark:hover:bg-blue-950/40 dark:active:bg-blue-900/40"
                                                                                 title="Copy to clipboard"
                                                                             >
                                                                                 <Copy className="w-3.5 h-3.5" />
@@ -390,14 +390,14 @@ export function Converter() {
                                                             initial={{ opacity: 0, y: 8 }}
                                                             animate={{ opacity: 1, y: 0 }}
                                                             transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
-                                                            className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)]"
+                                                            className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
                                                         >
                                                             <div className="flex items-center gap-2 mb-2">
-                                                                <XCircle className="w-4 h-4 text-rose-500 flex-shrink-0" />
-                                                                <span className="text-[13px] font-bold text-slate-500">{status.format}</span>
+                                                                <XCircle className="w-4 h-4 text-rose-500 flex-shrink-0 dark:text-rose-400" />
+                                                                <span className="text-[13px] font-bold text-slate-500 dark:text-slate-400">{status.format}</span>
                                                             </div>
                                                             <div className="pl-6 pt-1">
-                                                                <div className="text-[13px] font-medium text-slate-700">{status.message}</div>
+                                                                <div className="text-[13px] font-medium text-slate-700 dark:text-slate-200">{status.message}</div>
                                                             </div>
                                                         </motion.div>
                                                     )}

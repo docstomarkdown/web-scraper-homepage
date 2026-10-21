@@ -13,9 +13,9 @@ export function AffiliateGuide() {
                     icon: MousePointerClick,
                     stat: "Instant",
                     statLabel: "Payout Estimate",
-                    iconBg: "bg-emerald-50",
-                    iconColor: "text-emerald-600",
-                    statColor: "text-emerald-600",
+                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
+                    iconColor: "text-emerald-600 dark:text-emerald-400",
+                    statColor: "text-emerald-600 dark:text-emerald-400",
                     tooltip: "Your core metrics power the Affiliate Payout, Total Revenue, and Estimated Sales outputs."
                 },
                 {
@@ -24,9 +24,9 @@ export function AffiliateGuide() {
                     icon: Handshake,
                     stat: "Compare",
                     statLabel: "Scenarios",
-                    iconBg: "bg-blue-50",
-                    iconColor: "text-blue-600",
-                    statColor: "text-blue-600"
+                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-600 dark:text-blue-400",
+                    statColor: "text-blue-600 dark:text-blue-400"
                 },
                 {
                     title: "Understand Product Cost Impact",
@@ -34,9 +34,9 @@ export function AffiliateGuide() {
                     icon: ShoppingCart,
                     stat: "Margins",
                     statLabel: "Matter",
-                    iconBg: "bg-orange-50",
-                    iconColor: "text-orange-600",
-                    statColor: "text-orange-600"
+                    iconBg: "bg-orange-50 dark:bg-orange-950/40",
+                    iconColor: "text-orange-600 dark:text-orange-400",
+                    statColor: "text-orange-600 dark:text-orange-400"
                 },
                 {
                     title: "Conversion Rate is Your Lever",
@@ -44,9 +44,9 @@ export function AffiliateGuide() {
                     icon: TrendingUp,
                     stat: "Scalable",
                     statLabel: "Growth",
-                    iconBg: "bg-purple-50",
-                    iconColor: "text-purple-600",
-                    statColor: "text-purple-600"
+                    iconBg: "bg-purple-50 dark:bg-purple-950/40",
+                    iconColor: "text-purple-600 dark:text-purple-400",
+                    statColor: "text-purple-600 dark:text-purple-400"
                 }
             ]}
         />

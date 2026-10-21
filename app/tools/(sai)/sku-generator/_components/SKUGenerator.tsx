@@ -128,7 +128,7 @@ export function SKUGenerator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Inputs Section */}
                 <div className="lg:col-span-7 space-y-3">
-                    <Card className="border border-slate-200 shadow-sm bg-white">
+                    <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             description="Enter the data to build your SKU structure."
                             onReset={resetFields}
@@ -170,7 +170,7 @@ export function SKUGenerator() {
                                 <Button
                                     variant="outline"
                                     onClick={() => addItemToList(true)}
-                                    className="border-blue-200 text-blue-600 hover:bg-blue-50 h-12 font-bold"
+                                    className="border-blue-200 text-blue-600 hover:bg-blue-50 h-12 font-bold dark:border-blue-900/50 dark:text-blue-400 dark:hover:bg-blue-950/40"
                                 >
                                     Add & Retain
                                 </Button>
@@ -180,26 +180,26 @@ export function SKUGenerator() {
                                 <button
                                     onClick={() => setIsAdvancedOpen(!isAdvancedOpen)}
                                     className={cn(
-                                        "w-full flex items-center justify-between p-4 rounded-xl border border-slate-100 transition-all duration-300 group",
-                                        isAdvancedOpen ? "bg-slate-50 shadow-sm border-blue-100" : "bg-white hover:bg-slate-50/50"
+                                        "w-full flex items-center justify-between p-4 rounded-xl border border-slate-100 transition-all duration-300 group dark:border-slate-800",
+                                        isAdvancedOpen ? "bg-slate-50 shadow-sm border-blue-100 dark:bg-slate-800/60 dark:border-blue-900/50" : "bg-white hover:bg-slate-50/50 dark:bg-slate-900 dark:hover:bg-slate-800/60"
                                     )}
                                 >
                                     <div className="flex items-center gap-2.5">
                                         <div className={cn(
                                             "w-8 h-8 rounded-lg flex items-center justify-center transition-colors",
-                                            isAdvancedOpen ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-500"
+                                            isAdvancedOpen ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400"
                                         )}>
                                             <Settings2 className="w-4 h-4" />
                                         </div>
                                         <div className="text-left">
-                                            <p className="text-sm font-bold text-slate-800">Advanced Settings</p>
-                                            <p className="text-[10px] text-slate-500 font-medium">Extra attributes & formatting</p>
+                                            <p className="text-sm font-bold text-slate-800 dark:text-slate-100">Advanced Settings</p>
+                                            <p className="text-[10px] text-slate-500 font-medium dark:text-slate-400">Extra attributes & formatting</p>
                                         </div>
                                     </div>
                                     {isAdvancedOpen ? (
-                                        <ChevronUp className="w-5 h-5 text-blue-500" />
+                                        <ChevronUp className="w-5 h-5 text-blue-500 dark:text-blue-400" />
                                     ) : (
-                                        <ChevronDown className="w-5 h-5 text-slate-400 group-hover:text-slate-600" />
+                                        <ChevronDown className="w-5 h-5 text-slate-400 group-hover:text-slate-600 dark:text-slate-500 dark:group-hover:text-slate-300" />
                                     )}
                                 </button>
                             </div>
@@ -234,12 +234,12 @@ export function SKUGenerator() {
                                             </div>
                                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                 <div className="flex items-center justify-between gap-4">
-                                                    <span className="text-sm font-semibold text-slate-700">Char Pull Count</span>
+                                                    <span className="text-sm font-semibold text-slate-700 dark:text-slate-200">Char Pull Count</span>
                                                     <Input
                                                         type="number"
                                                         value={charLimit}
                                                         onChange={(e) => setCharLimit(e.target.value)}
-                                                        className="w-32 bg-white border-slate-200 h-10 text-right font-medium"
+                                                        className="w-32 bg-white border-slate-200 h-10 text-right font-medium dark:bg-slate-900 dark:border-slate-800"
                                                         min="1"
                                                         max="10"
                                                     />
@@ -255,9 +255,9 @@ export function SKUGenerator() {
                                             </div>
                                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                 <div className="flex items-center justify-between gap-4">
-                                                    <span className="text-sm font-semibold text-slate-700">Separator</span>
+                                                    <span className="text-sm font-semibold text-slate-700 dark:text-slate-200">Separator</span>
                                                     <Select value={separator} onValueChange={setSeparator}>
-                                                        <SelectTrigger className="w-32 bg-white border-slate-200 h-10">
+                                                        <SelectTrigger className="w-32 bg-white border-slate-200 h-10 dark:bg-slate-900 dark:border-slate-800">
                                                             <SelectValue placeholder="Select" />
                                                         </SelectTrigger>
                                                         <SelectContent>
@@ -269,9 +269,9 @@ export function SKUGenerator() {
                                                     </Select>
                                                 </div>
                                                 <div className="flex items-center justify-between gap-4">
-                                                    <span className="text-sm font-semibold text-slate-700">Letter Case</span>
+                                                    <span className="text-sm font-semibold text-slate-700 dark:text-slate-200">Letter Case</span>
                                                     <Select value={caseType} onValueChange={setCaseType}>
-                                                        <SelectTrigger className="w-32 bg-white border-slate-200 h-10">
+                                                        <SelectTrigger className="w-32 bg-white border-slate-200 h-10 dark:bg-slate-900 dark:border-slate-800">
                                                             <SelectValue placeholder="Select" />
                                                         </SelectTrigger>
                                                         <SelectContent>
@@ -305,7 +305,7 @@ export function SKUGenerator() {
                                 disabled={!generatedSKU}
                                 className={cn(
                                     "py-6 text-sm font-bold transition-all duration-300",
-                                    copied ? "bg-blue-500 hover:bg-blue-600" : "bg-slate-800 hover:bg-slate-900"
+                                    copied ? "bg-blue-500 hover:bg-blue-600" : "bg-slate-800 hover:bg-slate-900 dark:bg-slate-700 dark:hover:bg-slate-800"
                                 )}
                             >
                                 {copied ? <Check className="w-4 h-4 mr-2" /> : <Copy className="w-4 h-4 mr-2" />}
@@ -321,11 +321,11 @@ export function SKUGenerator() {
                             </Button>
                         </div>
                     </ResultFeedbackCard>
-                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden">
+                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden dark:border-slate-800 dark:bg-slate-900">
                         <CardHeader className="pb-4 border-b border-slate-50 flex flex-row items-center justify-between space-y-0">
                             <div className="space-y-1">
                                 <CardTitle className="text-lg font-bold flex items-center gap-2">
-                                    <List className="w-5 h-5 text-blue-600" />
+                                    <List className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                                     Live Preview ({entries.length})
                                 </CardTitle>
                                 <CardDescription>Your generated SKU list.</CardDescription>
@@ -344,30 +344,30 @@ export function SKUGenerator() {
                         <CardContent className="p-0">
                             <div className="overflow-x-auto">
                                 <table className="w-full text-sm text-left">
-                                    <thead className="text-xs uppercase bg-slate-50 text-slate-500 font-bold border-b border-slate-100">
+                                    <thead className="text-xs uppercase bg-slate-50 text-slate-500 font-bold border-b border-slate-100 dark:bg-slate-800/60 dark:text-slate-400 dark:border-slate-800">
                                         <tr>
                                             <th className="px-4 py-3">Item</th>
                                             <th className="px-4 py-3">SKU</th>
                                             <th className="px-4 py-3 text-right">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="divide-y divide-slate-100">
+                                    <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                                         {entries.length === 0 ? (
                                             <tr>
-                                                <td colSpan={3} className="px-4 py-8 text-center text-slate-400 italic">
+                                                <td colSpan={3} className="px-4 py-8 text-center text-slate-400 italic dark:text-slate-500">
                                                     No items added yet. Fill the form to add items.
                                                 </td>
                                             </tr>
                                         ) : (
                                             entries.map((entry) => (
-                                                <tr key={entry.id} className="hover:bg-slate-50 transition-colors">
+                                                <tr key={entry.id} className="hover:bg-slate-50 transition-colors dark:hover:bg-slate-800/60">
                                                     <td className="px-4 py-3">
-                                                        <div className="font-medium text-slate-800">{entry.productName}</div>
-                                                        <div className="text-[10px] text-slate-400 truncate max-w-[100px]">
+                                                        <div className="font-medium text-slate-800 dark:text-slate-100">{entry.productName}</div>
+                                                        <div className="text-[10px] text-slate-400 truncate max-w-[100px] dark:text-slate-500">
                                                             {entry.brand}/{entry.category}
                                                         </div>
                                                     </td>
-                                                    <td className="px-4 py-3 font-mono font-bold text-blue-600 uppercase">
+                                                    <td className="px-4 py-3 font-mono font-bold text-blue-600 uppercase dark:text-blue-400">
                                                         {entry.sku}
                                                     </td>
                                                     <td className="px-4 py-3 text-right">
@@ -375,7 +375,7 @@ export function SKUGenerator() {
                                                             variant="ghost"
                                                             size="icon"
                                                             onClick={() => removeEntry(entry.id)}
-                                                            className="text-slate-300 hover:text-red-600 h-8 w-8"
+                                                            className="text-slate-300 hover:text-red-600 h-8 w-8 dark:text-slate-600 dark:hover:text-red-400"
                                                         >
                                                             <Trash2 className="w-4 h-4" />
                                                         </Button>
@@ -405,16 +405,16 @@ function SKUInput({ label, value, onChange, placeholder, icon: Icon, tooltip }: 
     return (
         <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-2">
-                <Label className="text-sm font-semibold text-slate-700 whitespace-nowrap">{label}</Label>
+                <Label className="text-sm font-semibold text-slate-700 whitespace-nowrap dark:text-slate-200">{label}</Label>
                 {tooltip && (
                     <TooltipProvider delayDuration={100}>
                         <Tooltip>
                             <TooltipTrigger asChild>
-                                <button type="button" className="text-slate-400 hover:text-blue-600 transition-colors">
+                                <button type="button" className="text-slate-400 hover:text-blue-600 transition-colors dark:text-slate-500 dark:hover:text-blue-400">
                                     <HelpCircle className="h-3.5 w-3.5" />
                                 </button>
                             </TooltipTrigger>
-                            <TooltipContent side="top" className="max-w-xs text-xs bg-slate-900 text-white p-2 rounded-lg">
+                            <TooltipContent side="top" className="max-w-xs text-xs bg-slate-900 text-white p-2 rounded-lg dark:bg-slate-800">
                                 {tooltip}
                             </TooltipContent>
                         </Tooltip>
@@ -422,14 +422,14 @@ function SKUInput({ label, value, onChange, placeholder, icon: Icon, tooltip }: 
                 )}
             </div>
             <div className="relative w-40 sm:w-48">
-                <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+                <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500">
                     <Icon className="w-3.5 h-3.5" />
                 </div>
                 <Input
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
                     placeholder={placeholder}
-                    className="pl-9 h-10 bg-white border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/5 transition-all uppercase text-right font-medium placeholder:italic placeholder:text-slate-300"
+                    className="pl-9 h-10 bg-white border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/5 transition-all uppercase text-right font-medium placeholder:italic placeholder:text-slate-300 dark:bg-slate-900 dark:border-slate-800 dark:placeholder:text-slate-600"
                 />
             </div>
         </div>

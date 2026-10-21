@@ -39,7 +39,7 @@ export function ReorderCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Inputs Section */}
                 <div className="lg:col-span-7 space-y-3">
-                    <Card className="border border-slate-200 shadow-sm bg-white">
+                    <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             description="Enter your sales velocity and lead times."
                             onReset={handleReset}
@@ -81,7 +81,7 @@ export function ReorderCalculator() {
                     <ResultFeedbackCard
                         title="Reorder Point"
                         titleLabel={titleLabel}
-                        labelClassName={!isReorderNeeded ? "bg-blue-50 border-blue-200 text-blue-700" : "bg-red-50 border-red-200 text-red-700"}
+                        labelClassName={!isReorderNeeded ? "bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-950/40 dark:border-blue-900/50 dark:text-blue-400" : "bg-red-50 border-red-200 text-red-700 dark:bg-red-950/40 dark:border-red-900/50 dark:text-red-400"}
                         mainValue={
                             <div className="flex items-baseline gap-1">
                                 <Counter value={reorderPoint} />
@@ -95,7 +95,7 @@ export function ReorderCalculator() {
                             {
                                 label: "Lead Time Demand",
                                 value: <><Counter value={leadTimeDemand} /> Units</>,
-                                color: "text-slate-400"
+                                color: "text-slate-400 dark:text-slate-500"
                             },
                             {
                                 label: "Safety Stock",
@@ -106,42 +106,42 @@ export function ReorderCalculator() {
                     />
                     {/* Breakdown Card */}
                     {sales > 0 || lead > 0 || safetyDays > 0 || stock > 0 ? (
-                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500">
-                            <div className="px-5 py-3.5 border-b border-slate-100">
-                                <p className="text-xs font-bold text-slate-600 uppercase tracking-wider">Reorder Calculation</p>
+                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500 dark:bg-slate-900 dark:border-slate-800">
+                            <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800">
+                                <p className="text-xs font-bold text-slate-600 uppercase tracking-wider dark:text-slate-300">Reorder Calculation</p>
                             </div>
-                            <div className="divide-y divide-slate-100">
+                            <div className="divide-y divide-slate-100 dark:divide-slate-800">
                                 <div className="flex justify-between items-center px-5 py-3.5">
-                                    <span className="text-sm text-slate-600">Lead Time Demand</span>
-                                    <span className="text-sm font-semibold text-slate-800"><Counter value={leadTimeDemand} /> units</span>
+                                    <span className="text-sm text-slate-600 dark:text-slate-300">Lead Time Demand</span>
+                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100"><Counter value={leadTimeDemand} /> units</span>
                                 </div>
                                 <div className="flex justify-between items-center px-5 py-3.5">
-                                    <span className="text-sm text-slate-600">Safety Stock</span>
-                                    <span className="text-sm font-semibold text-slate-800"><Counter value={safetyStockUnits} /> units</span>
+                                    <span className="text-sm text-slate-600 dark:text-slate-300">Safety Stock</span>
+                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100"><Counter value={safetyStockUnits} /> units</span>
                                 </div>
-                                <div className="flex justify-between items-center px-5 py-3.5 bg-blue-50/20">
-                                    <span className="text-sm font-bold text-slate-900">Reorder Point</span>
-                                    <span className="text-base font-bold text-blue-600">{reorderPoint.toLocaleString()} units</span>
+                                <div className="flex justify-between items-center px-5 py-3.5 bg-blue-50/20 dark:bg-blue-950/40">
+                                    <span className="text-sm font-bold text-slate-900 dark:text-white">Reorder Point</span>
+                                    <span className="text-base font-bold text-blue-600 dark:text-blue-400">{reorderPoint.toLocaleString()} units</span>
                                 </div>
                             </div>
                         </div>
                     ) : (
-                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center">
-                            <p className="text-sm text-slate-400">Enter sales and lead times to see reorder calculation.</p>
+                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center dark:bg-slate-900 dark:border-slate-800">
+                            <p className="text-sm text-slate-400 dark:text-slate-500">Enter sales and lead times to see reorder calculation.</p>
                         </div>
                     )}
                     {/* Analysis Card */}
-                    <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-3">
+                    <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-3 dark:bg-slate-900 dark:border-slate-800">
                         <div className="flex items-start gap-3">
                             {isReorderNeeded ?
-                                <AlertTriangle className="w-5 h-5 text-red-500 mt-0.5" /> :
-                                <CheckCircle2 className="w-5 h-5 text-blue-500 mt-0.5" />
+                                <AlertTriangle className="w-5 h-5 text-red-500 mt-0.5 dark:text-red-400" /> :
+                                <CheckCircle2 className="w-5 h-5 text-blue-500 mt-0.5 dark:text-blue-400" />
                             }
                             <div>
-                                <h4 className="font-semibold text-slate-800 mb-1">
+                                <h4 className="font-semibold text-slate-800 mb-1 dark:text-slate-100">
                                     {isReorderNeeded ? "Reorder Action Needed" : "Inventory Healthy"}
                                 </h4>
-                                <p className="text-sm text-slate-600 leading-relaxed">
+                                <p className="text-sm text-slate-600 leading-relaxed dark:text-slate-300">
                                     {isReorderNeeded ? (
                                         <>
                                             Your current stock ({stock}) is below the Reorder Point ({reorderPoint}).

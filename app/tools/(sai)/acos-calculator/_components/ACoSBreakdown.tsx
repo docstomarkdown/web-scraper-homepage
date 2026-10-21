@@ -51,13 +51,13 @@ export function ACoSBreakdown({
     const outerR = 60;
 
     return (
-        <Card className={cn("border border-slate-200/60 shadow-sm bg-[#F5F8FD] rounded-2xl p-4 sm:p-5 flex flex-col gap-4 sm:gap-5", className)}>
+        <Card className={cn("border border-slate-200/60 shadow-sm bg-[#F5F8FD] rounded-2xl p-4 sm:p-5 flex flex-col gap-4 sm:gap-5 dark:border-slate-800", className)}>
             {/* Header */}
-            <div className="flex items-center gap-2 pb-3 border-b border-slate-200/50">
+            <div className="flex items-center gap-2 pb-3 border-b border-slate-200/50 dark:border-slate-800">
                 <div className="flex items-center justify-center w-6 h-6 rounded-md bg-blue-600/10 border border-blue-500/20">
-                    <PieChart className="w-3.5 h-3.5 text-blue-600" />
+                    <PieChart className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                 </div>
-                <h2 className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none">
+                <h2 className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none dark:text-blue-400">
                     Revenue Breakdown
                 </h2>
             </div>
@@ -85,16 +85,16 @@ export function ACoSBreakdown({
                             </RechartsPie>
                         </ResponsiveContainer>
                     ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-center p-3 text-slate-400 text-[10.5px] leading-tight font-medium border-2 border-dashed border-slate-200/70 rounded-full bg-slate-50/40">
+                        <div className="absolute inset-0 flex items-center justify-center text-center p-3 text-slate-400 text-[10.5px] leading-tight font-medium border-2 border-dashed border-slate-200/70 rounded-full bg-slate-50/40 dark:text-slate-500 dark:border-slate-800 dark:bg-slate-800/60">
                             Add data to see breakdown
                         </div>
                     )}
                     {pieTotal > 0 && (
                         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                            <span className="text-[10px] sm:text-[11px] font-medium text-slate-400 text-center leading-tight mb-0.5 mt-0.5">
+                            <span className="text-[10px] sm:text-[11px] font-medium text-slate-400 text-center leading-tight mb-0.5 mt-0.5 dark:text-slate-500">
                                 Ad Revenue
                             </span>
-                            <span className="text-[11px] sm:text-[13px] font-bold text-slate-900 tracking-tight">
+                            <span className="text-[11px] sm:text-[13px] font-bold text-slate-900 tracking-tight dark:text-white">
                                 {formatCurrency(pieTotal)}
                             </span>
                         </div>
@@ -111,27 +111,27 @@ export function ACoSBreakdown({
                         return (
                             <div
                                 key={item.label}
-                                className="flex items-start sm:items-center justify-between px-3 bg-white border border-slate-200/80 rounded-[10px] py-1.5 shadow-sm w-full gap-2 transition-all hover:border-slate-300"
+                                className="flex items-start sm:items-center justify-between px-3 bg-white border border-slate-200/80 rounded-[10px] py-1.5 shadow-sm w-full gap-2 transition-all hover:border-slate-300 dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
                             >
                                 <div className="flex items-center gap-2">
                                     <div
                                         className="w-2.5 h-2.5 rounded-full shrink-0 mt-0.5"
                                         style={{ backgroundColor: derivedDotColor }}
                                     />
-                                    <span className="text-[12px] text-slate-600 font-bold leading-tight">
+                                    <span className="text-[12px] text-slate-600 font-bold leading-tight dark:text-slate-300">
                                         {item.label}
                                     </span>
                                 </div>
                                 <div className="flex items-center flex-1 justify-end shrink-0">
                                     <span className={cn(
                                         "text-[12px] font-semibold tabular-nums text-right flex-shrink-0 w-[76px] sm:w-[86px]",
-                                        item.isCost ? "text-slate-500" : (!isPositive ? "text-rose-600" : "text-emerald-600")
+                                        item.isCost ? "text-slate-500 dark:text-slate-400" : (!isPositive ? "text-rose-600 dark:text-rose-400" : "text-emerald-600 dark:text-emerald-400")
                                     )}>
                                         {!item.isCost && item.value > 0 ? "+" : ""}{formatCurrency(item.value)}
                                     </span>
                                     <span className={cn(
                                         "text-[12px] font-extrabold tabular-nums text-right flex-shrink-0 w-[32px] sm:w-[40px] ml-2.5",
-                                        item.isCost ? "text-slate-900" : (!isPositive ? "text-rose-700" : "text-emerald-700")
+                                        item.isCost ? "text-slate-900 dark:text-white" : (!isPositive ? "text-rose-700 dark:text-rose-400" : "text-emerald-700 dark:text-emerald-400")
                                     )}>
                                         {Math.abs(item.value) > 0 ? `${item.pct.toFixed(0)}%` : "—"}
                                     </span>

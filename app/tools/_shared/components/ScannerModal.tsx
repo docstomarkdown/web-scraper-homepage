@@ -20,9 +20,9 @@ export function ScannerModal({ isOpen, onOpenChange, error, readerId = "reader" 
                     <DialogTitle>Scan Barcode</DialogTitle>
                     <DialogDescription>Point your camera at a UPC or EAN barcode.</DialogDescription>
                 </DialogHeader>
-                <div className="flex flex-col items-center justify-center min-h-[300px] bg-slate-100 rounded-lg overflow-hidden border border-slate-200">
+                <div className="flex flex-col items-center justify-center min-h-[300px] bg-slate-100 rounded-lg overflow-hidden border border-slate-200 dark:bg-slate-800 dark:border-slate-800">
                     <div id={readerId} className="w-full"></div>
-                    {error && <p className="text-red-500 text-sm p-4">{error}</p>}
+                    {error && <p className="text-red-500 text-sm p-4 dark:text-red-400">{error}</p>}
                 </div>
             </DialogContent>
         </Dialog>

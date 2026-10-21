@@ -33,7 +33,7 @@ export function MOQCalculator() {
         level: "good" | "bad" | "neutral";
         text: string;
         color: string;
-    }>({ level: "neutral", text: "Enter details", color: "text-slate-400" });
+    }>({ level: "neutral", text: "Enter details", color: "text-slate-400 dark:text-slate-500" });
 
     useEffect(() => {
         const p = val(unitPrice);
@@ -58,15 +58,15 @@ export function MOQCalculator() {
             const months = m / v;
             setMonthsInventory(months);
             if (months <= 3) {
-                setRiskAssessment({ level: "good", text: "Low Risk", color: "text-blue-500" });
+                setRiskAssessment({ level: "good", text: "Low Risk", color: "text-blue-500 dark:text-blue-400" });
             } else if (months <= 6) {
-                setRiskAssessment({ level: "neutral", text: "Moderate Risk", color: "text-amber-500" });
+                setRiskAssessment({ level: "neutral", text: "Moderate Risk", color: "text-amber-500 dark:text-amber-400" });
             } else {
-                setRiskAssessment({ level: "bad", text: "High Risk", color: "text-rose-500" });
+                setRiskAssessment({ level: "bad", text: "High Risk", color: "text-rose-500 dark:text-rose-400" });
             }
         } else {
             setMonthsInventory(0);
-            setRiskAssessment({ level: "neutral", text: "Enter Sales", color: "text-slate-400" });
+            setRiskAssessment({ level: "neutral", text: "Enter Sales", color: "text-slate-400 dark:text-slate-500" });
         }
     }, [unitPrice, moq, shippingCost, miscCost, monthlySales]);
 
@@ -77,7 +77,7 @@ export function MOQCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Inputs Section */}
                 <div className="lg:col-span-7 space-y-3 lg:sticky lg:top-8">
-                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden">
+                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="MOQ Details"
                             description="Enter your supplier pricing, shipping, and sales data."
@@ -180,14 +180,14 @@ export function MOQCalculator() {
                         liveBadgeColor={riskAssessment.level === "good" ? "blue" : riskAssessment.level === "bad" ? "rose" : riskAssessment.level === "neutral" && isCalculated ? "amber" : "amber"}
                     >
                         <FadeIn delay={0.1}>
-                            <div className="bg-white p-5 rounded-xl border border-slate-200/80 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] space-y-3 mt-4">
+                            <div className="bg-white p-5 rounded-xl border border-slate-200/80 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] space-y-3 mt-4 dark:bg-slate-900 dark:border-slate-800">
                                 <div className="flex items-start gap-3">
                                     <AlertTriangle className={`w-5 h-5 mt-0.5 ${riskAssessment.level === "bad" ? "text-rose-500" : riskAssessment.level === "good" ? "text-blue-500" : "text-amber-500"}`} />
                                     <div>
-                                        <h4 className="font-semibold text-slate-800 mb-1">
+                                        <h4 className="font-semibold text-slate-800 mb-1 dark:text-slate-100">
                                             Investment Insight
                                         </h4>
-                                        <p className="text-sm text-slate-600 leading-relaxed">
+                                        <p className="text-sm text-slate-600 leading-relaxed dark:text-slate-300">
                                             {isCalculated && val(monthlySales) > 0 ? (
                                                 riskAssessment.level === "bad"
                                                     ? <><strong>{moq} units</strong> covers <strong>{monthsInventory.toFixed(1)} months</strong> of stock — too long. Cash is locked up; negotiate a lower MOQ.</>

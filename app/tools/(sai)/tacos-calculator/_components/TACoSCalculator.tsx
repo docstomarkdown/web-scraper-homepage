@@ -52,32 +52,32 @@ export function TACoSCalculator() {
     };
     // Determine Health Status
     let status = "Waiting";
-    let statusColor = "text-slate-400";
-    let statusBg = "bg-slate-100";
+    let statusColor = "text-slate-400 dark:text-slate-500";
+    let statusBg = "bg-slate-100 dark:bg-slate-800";
     if (revenue > 0) {
         if (margin > 0) {
             if (tacos < (margin * 0.3)) { // Spending < 30% of margin
                 status = "Excellent";
-                statusColor = "text-blue-600";
-                statusBg = "bg-blue-100";
+                statusColor = "text-blue-600 dark:text-blue-400";
+                statusBg = "bg-blue-100 dark:bg-blue-900/40";
             } else if (tacos < (margin * 0.6)) { // Spending < 60% of margin
                 status = "Healthy";
-                statusColor = "text-blue-600";
-                statusBg = "bg-blue-100";
+                statusColor = "text-blue-600 dark:text-blue-400";
+                statusBg = "bg-blue-100 dark:bg-blue-900/40";
             } else if (tacos < margin) { // Spending < 100% of margin (Profitable)
                 status = "Warning";
-                statusColor = "text-amber-600";
-                statusBg = "bg-amber-100";
+                statusColor = "text-amber-600 dark:text-amber-400";
+                statusBg = "bg-amber-100 dark:bg-amber-900/40";
             } else { // Spending > Margin (Loss)
                 status = "Unprofitable";
-                statusColor = "text-red-600";
-                statusBg = "bg-red-100";
+                statusColor = "text-red-600 dark:text-red-400";
+                statusBg = "bg-red-100 dark:bg-red-900/40";
             }
         } else {
             // Fallback if no margin entered (Standard TACoS benchmarks)
-            if (tacos < 10) { status = "Excellent"; statusColor = "text-blue-600"; statusBg = "bg-blue-100"; }
-            else if (tacos < 20) { status = "Healthy"; statusColor = "text-blue-600"; statusBg = "bg-blue-100"; }
-            else { status = "High"; statusColor = "text-amber-600"; statusBg = "bg-amber-100"; }
+            if (tacos < 10) { status = "Excellent"; statusColor = "text-blue-600 dark:text-blue-400"; statusBg = "bg-blue-100 dark:bg-blue-900/40"; }
+            else if (tacos < 20) { status = "Healthy"; statusColor = "text-blue-600 dark:text-blue-400"; statusBg = "bg-blue-100 dark:bg-blue-900/40"; }
+            else { status = "High"; statusColor = "text-amber-600 dark:text-amber-400"; statusBg = "bg-amber-100 dark:bg-amber-900/40"; }
         }
     }
     return (
@@ -85,7 +85,7 @@ export function TACoSCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Left Column: Inputs */}
                 <div className="lg:col-span-7 space-y-3 lg:sticky lg:top-8">
-                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden">
+                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="TACoS Details"
                             description="Enter total ad spend, revenue, and product margins."
@@ -176,7 +176,7 @@ export function TACoSCalculator() {
                                 isCurrency: true,
                                 icon: PieChart,
                                 tooltip: "Estimated real currency profit based on Net Margin × Total Revenue.",
-                                className: netProfit > 0 ? "text-emerald-600" : "text-red-500"
+                                className: netProfit > 0 ? "text-emerald-600 dark:text-emerald-400" : "text-red-500 dark:text-red-400"
                             }
                         ]}
                         checklistItems={[
@@ -187,33 +187,33 @@ export function TACoSCalculator() {
                     />
 
                     {/* Insight Card */}
-                    <Card className="border border-slate-200 shadow-sm p-4 md:p-6 space-y-3 bg-white mt-4">
+                    <Card className="border border-slate-200 shadow-sm p-4 md:p-6 space-y-3 bg-white mt-4 dark:border-slate-800 dark:bg-slate-900">
                         <div className="flex flex-col gap-2 mb-4">
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-2.5">
-                                    <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-100/50 shadow-sm shadow-blue-500/5">
-                                        <LineChart className="w-4 h-4 text-blue-600" />
+                                    <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-100/50 shadow-sm shadow-blue-500/5 dark:border-blue-900/50">
+                                        <LineChart className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                                     </div>
-                                    <span className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none">
+                                    <span className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none dark:text-blue-400">
                                         Margin Health
                                     </span>
                                 </div>
                                 {revenue > 0 && (
-                                    <span className={cn("flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[10.5px] font-bold tracking-wide shrink-0 border-slate-200/50", statusBg, statusColor)}>
+                                    <span className={cn("flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[10.5px] font-bold tracking-wide shrink-0 border-slate-200/50 dark:border-slate-800", statusBg, statusColor)}>
                                         {status}
                                     </span>
                                 )}
                             </div>
-                            <p className="text-xs font-medium text-slate-500 leading-relaxed pr-6 mt-1">
-                                Visualize how your total ad spend impacts your overall gross margin. Keep the pointer inside the <strong className="text-blue-500 font-bold">Safe</strong> zone to ensure your business remains profitable.
+                            <p className="text-xs font-medium text-slate-500 leading-relaxed pr-6 mt-1 dark:text-slate-400">
+                                Visualize how your total ad spend impacts your overall gross margin. Keep the pointer inside the <strong className="text-blue-500 font-bold dark:text-blue-400">Safe</strong> zone to ensure your business remains profitable.
                             </p>
                         </div>
                         <div className="pt-2">
                             <div className="flex items-center justify-between mb-3">
-                                <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">Profitability Scale</p>
+                                <p className="text-xs font-bold text-slate-500 uppercase tracking-widest dark:text-slate-400">Profitability Scale</p>
                                 {margin > 0 && (
                                     <span className={cn("text-xs font-bold px-2.5 py-1 rounded-md border",
-                                        netMargin > 0 ? "text-blue-600 bg-blue-50 border-blue-100" : "text-red-600 bg-red-50 border-red-100"
+                                        netMargin > 0 ? "text-blue-600 bg-blue-50 border-blue-100 dark:text-blue-400 dark:bg-blue-950/40 dark:border-blue-900/50" : "text-red-600 bg-red-50 border-red-100 dark:text-red-400 dark:bg-red-950/40 dark:border-red-900/50"
                                     )}>
                                         {netMargin.toFixed(1)}% Net
                                     </span>
@@ -221,7 +221,7 @@ export function TACoSCalculator() {
                             </div>
                             <div className="relative pt-2 pb-1">
                                 {/* Visual Bar: Spend Impact on Margin */}
-                                <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden flex">
+                                <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden flex dark:bg-slate-800">
                                     <div className="h-full bg-blue-400" style={{ width: '60%' }} /> {/* Healthy Zone */}
                                     <div className="h-full bg-amber-400" style={{ width: '20%' }} /> {/* Warning Zone */}
                                     <div className="h-full bg-red-400" style={{ width: '20%' }} /> {/* Danger Zone */}
@@ -234,11 +234,11 @@ export function TACoSCalculator() {
                                             // Scale: 0% to 100% of Margin. If TACoS > Margin, it caps at 100%
                                             left: `${Math.min((tacos / margin) * 100, 100)}%`
                                         }}
-                                        className="absolute top-0 -mt-0.5 w-4 h-4 bg-white border-2 border-slate-800 rounded-full shadow-md z-10 -ml-2 transition-all"
+                                        className="absolute top-0 -mt-0.5 w-4 h-4 bg-white border-2 border-slate-800 rounded-full shadow-md z-10 -ml-2 transition-all dark:bg-slate-900 dark:border-slate-700"
                                     />
                                 )}
                             </div>
-                            <div className="flex justify-between mt-2 text-[11px] font-bold text-slate-500 italic">
+                            <div className="flex justify-between mt-2 text-[11px] font-bold text-slate-500 italic dark:text-slate-400">
                                 <span>Safe</span>
                                 <span>Caution</span>
                                 <span>Unprofitable</span>

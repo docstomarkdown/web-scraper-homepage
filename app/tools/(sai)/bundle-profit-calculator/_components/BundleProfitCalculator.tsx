@@ -95,12 +95,12 @@ export function BundleProfitCalculator() {
     // Helper to get color for product badge (cycling through some colors)
     const getBadgeColor = (index: number) => {
         const colors = [
-            "bg-blue-100 text-blue-600",
-            "bg-purple-100 text-purple-600",
-            "bg-blue-100 text-blue-600",
-            "bg-amber-100 text-amber-600",
-            "bg-rose-100 text-rose-600",
-            "bg-indigo-100 text-indigo-600",
+            "bg-blue-100 text-blue-600 dark:bg-blue-900/40 dark:text-blue-400",
+            "bg-purple-100 text-purple-600 dark:bg-purple-900/40 dark:text-purple-400",
+            "bg-blue-100 text-blue-600 dark:bg-blue-900/40 dark:text-blue-400",
+            "bg-amber-100 text-amber-600 dark:bg-amber-900/40 dark:text-amber-400",
+            "bg-rose-100 text-rose-600 dark:bg-rose-900/40 dark:text-rose-400",
+            "bg-indigo-100 text-indigo-600 dark:bg-indigo-900/40 dark:text-indigo-400",
         ]
         return colors[index % colors.length]
     }
@@ -109,7 +109,7 @@ export function BundleProfitCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Inputs Section */}
                 <div className="lg:col-span-7 space-y-3">
-                    <Card className="border border-slate-200 shadow-sm bg-white">
+                    <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             description="Enter costs and selling prices for each item in the bundle."
                             onReset={handleReset}
@@ -118,9 +118,9 @@ export function BundleProfitCalculator() {
                         />
                         <CardContent className="space-y-3 pt-6">
                             {products.map((product, index) => (
-                                <div key={product.id} className="relative group p-4 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-slate-50 transition-colors">
+                                <div key={product.id} className="relative group p-4 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-slate-50 transition-colors dark:border-slate-800 dark:bg-slate-800/60 dark:hover:bg-slate-800/60">
                                     <div className="flex items-center justify-between mb-3">
-                                        <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2">
+                                        <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2 dark:text-white">
                                             <span className={cn("w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold", getBadgeColor(index))}>
                                                 {String.fromCharCode(65 + index)}
                                             </span>
@@ -131,7 +131,7 @@ export function BundleProfitCalculator() {
                                                 variant="ghost"
                                                 size="sm"
                                                 onClick={() => removeProduct(product.id)}
-                                                className="h-8 w-8 p-0 text-slate-400 hover:text-red-500 hover:bg-red-50"
+                                                className="h-8 w-8 p-0 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:text-slate-500 dark:hover:text-red-400 dark:hover:bg-red-950/40"
                                             >
                                                 <Trash2 className="w-4 h-4" />
                                             </Button>
@@ -155,7 +155,7 @@ export function BundleProfitCalculator() {
                             ))}
                             <Button
                                 variant="outline"
-                                className="w-full border-dashed border-2 border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50"
+                                className="w-full border-dashed border-2 border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 dark:border-slate-800 dark:text-slate-400 dark:hover:border-slate-700 dark:hover:bg-slate-800/60"
                                 onClick={addProduct}
                             >
                                 <Plus className="w-4 h-4 mr-2" />
@@ -164,10 +164,10 @@ export function BundleProfitCalculator() {
                         </CardContent>
                     </Card>
                     {/* Advanced Toggle */}
-                    <div className="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-200">
+                    <div className="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-200 dark:bg-slate-800/60 dark:border-slate-800">
                         <div className="space-y-0.5">
-                            <Label className="text-sm font-semibold text-slate-800">Advanced Bundle Strategy</Label>
-                            <p className="text-xs text-slate-500">Apply discounts or set a fixed custom bundle price.</p>
+                            <Label className="text-sm font-semibold text-slate-800 dark:text-slate-100">Advanced Bundle Strategy</Label>
+                            <p className="text-xs text-slate-500 dark:text-slate-400">Apply discounts or set a fixed custom bundle price.</p>
                         </div>
                         <Button
                             variant={showAdvanced ? "default" : "outline"}
@@ -175,7 +175,7 @@ export function BundleProfitCalculator() {
                             onClick={() => setShowAdvanced(!showAdvanced)}
                             className={cn(
                                 "transition-all duration-200",
-                                showAdvanced ? "bg-slate-800 hover:bg-slate-700" : ""
+                                showAdvanced ? "bg-slate-800 hover:bg-slate-700 dark:bg-slate-700" : ""
                             )}
                         >
                             {showAdvanced ? "Disable Advanced" : "Enable Advanced"}
@@ -183,9 +183,9 @@ export function BundleProfitCalculator() {
                     </div>
                     {showAdvanced && (
                         <FadeIn>
-                            <Card className="border border-slate-200 shadow-sm bg-white">
+                            <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                                 <CardHeader className="pb-4 border-b border-slate-50">
-                                    <CardTitle className="text-xl font-bold text-slate-800">
+                                    <CardTitle className="text-xl font-bold text-slate-800 dark:text-slate-100">
                                         Bundle Strategy
                                     </CardTitle>
                                     <CardDescription>Define how you want to price your bundle.</CardDescription>
@@ -256,38 +256,38 @@ export function BundleProfitCalculator() {
                     {margin !== 0 && (
                         <div className={cn(
                             "px-4 py-3 rounded-xl border text-center text-sm font-semibold",
-                            margin >= 20 ? "bg-blue-50 border-blue-200 text-blue-700" :
-                                margin > 0 ? "bg-yellow-50 border-yellow-200 text-yellow-700" :
-                                    "bg-red-50 border-red-200 text-red-700"
+                            margin >= 20 ? "bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-950/40 dark:border-blue-900/50 dark:text-blue-400" :
+                                margin > 0 ? "bg-yellow-50 border-yellow-200 text-yellow-700 dark:bg-yellow-950/40 dark:border-yellow-900/50 dark:text-yellow-400" :
+                                    "bg-red-50 border-red-200 text-red-700 dark:bg-red-950/40 dark:border-red-900/50 dark:text-red-400"
                         )}>
                             {margin >= 20 ? "🚀 Highly Profitable Bundle" : margin > 0 ? "⚠️ Low Margin Bundle" : "🛑 Unprofitable Bundle"}
                         </div>
                     )}
                     {/* Breakdown Card */}
                     {margin !== 0 ? (
-                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500">
-                            <div className="px-5 py-3.5 border-b border-slate-100">
-                                <p className="text-xs font-bold text-slate-600 uppercase tracking-wider">Profit Breakdown</p>
+                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500 dark:bg-slate-900 dark:border-slate-800">
+                            <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800">
+                                <p className="text-xs font-bold text-slate-600 uppercase tracking-wider dark:text-slate-300">Profit Breakdown</p>
                             </div>
-                            <div className="divide-y divide-slate-100">
+                            <div className="divide-y divide-slate-100 dark:divide-slate-800">
                                 <div className="flex justify-between items-center px-5 py-3.5">
-                                    <span className="text-sm text-slate-600">Total Product Cost</span>
-                                    <span className="text-sm font-semibold text-slate-800">{formatCurrency(totalCost)}</span>
+                                    <span className="text-sm text-slate-600 dark:text-slate-300">Total Product Cost</span>
+                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{formatCurrency(totalCost)}</span>
                                 </div>
                                 <div className="flex justify-between items-center px-5 py-3.5">
-                                    <span className="text-sm text-slate-600">Bundle Selling Price</span>
-                                    <span className="text-sm font-semibold text-slate-800">{formatCurrency(bundlePrice)}</span>
+                                    <span className="text-sm text-slate-600 dark:text-slate-300">Bundle Selling Price</span>
+                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{formatCurrency(bundlePrice)}</span>
                                 </div>
-                                <div className="flex justify-between items-center px-5 py-3.5 bg-slate-50">
-                                    <span className="text-sm font-semibold text-slate-900">Net Profit per Bundle</span>
-                                    <span className={cn("text-sm font-bold", profit >= 0 ? "text-blue-600" : "text-red-600")}>
+                                <div className="flex justify-between items-center px-5 py-3.5 bg-slate-50 dark:bg-slate-800/60">
+                                    <span className="text-sm font-semibold text-slate-900 dark:text-white">Net Profit per Bundle</span>
+                                    <span className={cn("text-sm font-bold", profit >= 0 ? "text-blue-600 dark:text-blue-400" : "text-red-600 dark:text-red-400")}>
                                         {formatCurrency(profit)}
                                     </span>
                                 </div>
                                 {discountAmount > 0 && (
-                                    <div className="flex justify-between items-center px-5 py-4 bg-blue-50/50">
-                                        <span className="text-sm text-slate-500">Customer Savings</span>
-                                        <span className="text-base font-bold text-blue-600">
+                                    <div className="flex justify-between items-center px-5 py-4 bg-blue-50/50 dark:bg-blue-950/40">
+                                        <span className="text-sm text-slate-500 dark:text-slate-400">Customer Savings</span>
+                                        <span className="text-base font-bold text-blue-600 dark:text-blue-400">
                                             {formatCurrency(discountAmount)} ({discountPercent.toFixed(1)}%)
                                         </span>
                                     </div>
@@ -295,8 +295,8 @@ export function BundleProfitCalculator() {
                             </div>
                         </div>
                     ) : (
-                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center">
-                            <p className="text-sm text-slate-400">Enter product details to calculate profit.</p>
+                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center dark:bg-slate-900 dark:border-slate-800">
+                            <p className="text-sm text-slate-400 dark:text-slate-500">Enter product details to calculate profit.</p>
                         </div>
                     )}
                 </div>

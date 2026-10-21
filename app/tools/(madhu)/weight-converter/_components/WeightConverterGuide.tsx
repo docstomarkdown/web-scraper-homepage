@@ -14,9 +14,9 @@ export function WeightConverterGuide() {
                     icon: RefreshCw,
                     stat: "4 Units",
                     statLabel: "Simultaneously",
-                    iconBg: "bg-blue-50",
-                    iconColor: "text-blue-600",
-                    statColor: "text-blue-700",
+                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-600 dark:text-blue-400",
+                    statColor: "text-blue-700 dark:text-blue-400",
                     tooltip: "lbs, oz, kg, and g are all calculated and shown at the same time."
                 },
                 {
@@ -25,9 +25,9 @@ export function WeightConverterGuide() {
                     icon: Truck,
                     stat: "7+",
                     statLabel: "Carriers supported",
-                    iconBg: "bg-emerald-50",
-                    iconColor: "text-emerald-600",
-                    statColor: "text-emerald-700",
+                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
+                    iconColor: "text-emerald-600 dark:text-emerald-400",
+                    statColor: "text-emerald-700 dark:text-emerald-400",
                     tooltip: "US domestic, global express, and regional carriers all included."
                 },
                 {
@@ -36,9 +36,9 @@ export function WeightConverterGuide() {
                     icon: PackageOpen,
                     stat: "Full",
                     statLabel: "Tier breakdown",
-                    iconBg: "bg-purple-50",
-                    iconColor: "text-purple-600",
-                    statColor: "text-purple-700",
+                    iconBg: "bg-purple-50 dark:bg-purple-950/40",
+                    iconColor: "text-purple-600 dark:text-purple-400",
+                    statColor: "text-purple-700 dark:text-purple-400",
                     tooltip: "See the full price ladder — not just your tier — so you can optimise packaging weight."
                 },
                 {
@@ -47,9 +47,9 @@ export function WeightConverterGuide() {
                     icon: Globe,
                     stat: "3 Speeds",
                     statLabel: "Generic tiers",
-                    iconBg: "bg-amber-50",
-                    iconColor: "text-amber-600",
-                    statColor: "text-amber-700",
+                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
+                    iconColor: "text-amber-600 dark:text-amber-400",
+                    statColor: "text-amber-700 dark:text-amber-400",
                     tooltip: "Standard, Express, and Next Day tiers give carrier-agnostic shipping cost ranges."
                 }
             ]}

@@ -13,14 +13,14 @@ export const metadata: Metadata = {
 }
 export default function AOVCalculatorPage() {
     return (
-        <div className="min-h-screen bg-slate-50 pt-32 pb-12">
+        <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-10">
                     <FadeIn direction="down" duration={0.6}>
-                        <h1 className="text-4xl font-bold tracking-tight text-gray-800 md:text-[42px] mb-4">
+                        <h1 className="text-4xl font-bold tracking-tight text-gray-800 md:text-[42px] mb-4 dark:text-slate-100">
                             Average Order Value (AOV) Calculator
                         </h1>
-                        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                        <p className="text-lg text-slate-600 max-w-2xl mx-auto dark:text-slate-300">
                             Determine the average amount spent every time a customer places an order.
                         </p>
                     </FadeIn>

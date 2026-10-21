@@ -14,9 +14,9 @@ export function GrossMarginGuide() {
                     icon: ShieldCheck,
                     stat: "Critical",
                     statLabel: "Profit Health",
-                    iconBg: "bg-red-50",
-                    iconColor: "text-red-600",
-                    statColor: "text-red-700",
+                    iconBg: "bg-red-50 dark:bg-red-950/40",
+                    iconColor: "text-red-600 dark:text-red-400",
+                    statColor: "text-red-700 dark:text-red-400",
                     tooltip: "Tracking margins allows you to see if your product costs are rising faster than your prices."
                 },
                 {
@@ -25,9 +25,9 @@ export function GrossMarginGuide() {
                     icon: Target,
                     stat: "3-in-1",
                     statLabel: "Tool Versatility",
-                    iconBg: "bg-amber-50",
-                    iconColor: "text-amber-600",
-                    statColor: "text-amber-700",
+                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
+                    iconColor: "text-amber-600 dark:text-amber-400",
+                    statColor: "text-amber-700 dark:text-amber-400",
                     tooltip: "Switch instantly between calculating margin, required price, or manufacturing cost limits."
                 },
                 {
@@ -36,9 +36,9 @@ export function GrossMarginGuide() {
                     icon: BarChart3,
                     stat: "Budgeting",
                     statLabel: "Cost Control",
-                    iconBg: "bg-emerald-50",
-                    iconColor: "text-emerald-600",
-                    statColor: "text-emerald-700",
+                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
+                    iconColor: "text-emerald-600 dark:text-emerald-400",
+                    statColor: "text-emerald-700 dark:text-emerald-400",
                     tooltip: "Visualizing your revenue breakdown helps you see exactly where your capital is being allocated."
                 }
             ]}

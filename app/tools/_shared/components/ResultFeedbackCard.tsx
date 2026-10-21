@@ -49,19 +49,19 @@ export function ResultFeedbackCard({
             case "warning":
                 return "bg-red-950 border-red-900"
             case "compact":
-                return "bg-white border-slate-200 shadow-sm text-slate-900"
+                return "bg-white border-slate-200 shadow-sm text-slate-900 dark:bg-slate-900 dark:border-slate-800 dark:text-white"
             default:
                 return "bg-slate-700 border-0 text-white"
         }
     }
     const getLabelStyles = () => {
         if (labelClassName) return labelClassName
-        if (variant === "compact") return "bg-slate-100 text-slate-600"
+        if (variant === "compact") return "bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300"
         return "text-blue-400 bg-slate-600/50 border-slate-500/50"
     }
     const getValueColor = () => {
         if (valueColor) return valueColor
-        if (variant === "compact") return "text-slate-900"
+        if (variant === "compact") return "text-slate-900 dark:text-white"
         return "text-white"
     }
     // Background effects (only for default/warning dark themes)
@@ -93,17 +93,17 @@ export function ResultFeedbackCard({
             )}>
                 <div className={cn(
                     "text-sm font-medium tracking-wider flex justify-between items-center gap-2",
-                    variant === "compact" ? "text-slate-500" : "text-slate-300/80"
+                    variant === "compact" ? "text-slate-500 dark:text-slate-400" : "text-slate-300/80 dark:text-slate-600"
                 )}>
                     <div className="flex items-center gap-2">
                         {TitleIcon && (
                             <div className={cn(
                                 "flex-shrink-0 w-4 h-4 rounded flex items-center justify-center",
-                                variant === "compact" ? "bg-blue-50" : "bg-white/10"
+                                variant === "compact" ? "bg-blue-50 dark:bg-blue-950/40" : "bg-white/10 dark:bg-slate-900/10"
                             )}>
                                 <TitleIcon className={cn(
                                     "h-2.5 w-2.5",
-                                    variant === "compact" ? "text-blue-600" : "text-white"
+                                    variant === "compact" ? "text-blue-600 dark:text-blue-400" : "text-white"
                                 )} />
                             </div>
                         )}
@@ -114,12 +114,12 @@ export function ResultFeedbackCard({
                                     <TooltipTrigger asChild>
                                         <button type="button" className={cn(
                                             "transition-colors",
-                                            variant === "compact" ? "text-slate-400 hover:text-blue-600" : "text-slate-500 hover:text-white"
+                                            variant === "compact" ? "text-slate-400 hover:text-blue-600 dark:text-slate-500 dark:hover:text-blue-400" : "text-slate-500 hover:text-white dark:text-slate-400"
                                         )}>
                                             <Info className="h-3.5 w-3.5" />
                                         </button>
                                     </TooltipTrigger>
-                                    <TooltipContent side="top" className="max-w-xs text-xs bg-slate-900 text-white border-slate-800">
+                                    <TooltipContent side="top" className="max-w-xs text-xs bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
                                         {tooltip}
                                     </TooltipContent>
                                 </Tooltip>
@@ -154,12 +154,12 @@ export function ResultFeedbackCard({
                 {(mainMetricLabel || secondaryMetrics.length > 0) && (
                     <div className={cn(
                         "pt-4 space-y-4",
-                        variant === "compact" ? "border-t border-slate-100" : "border-t border-white/10"
+                        variant === "compact" ? "border-t border-slate-100 dark:border-slate-800" : "border-t border-white/10 dark:border-slate-800"
                     )}>
                         {/* Primary Supporting Metric (Full Width) */}
                         {mainMetricLabel && (
-                            <div className={cn("pb-3", variant === "compact" ? "border-b border-slate-100" : "border-b border-white/5")}>
-                                <p className={cn("text-xs mb-1", variant === "compact" ? "text-slate-500" : "text-slate-300")}>{mainMetricLabel}</p>
+                            <div className={cn("pb-3", variant === "compact" ? "border-b border-slate-100 dark:border-slate-800" : "border-b border-white/5 dark:border-slate-800")}>
+                                <p className={cn("text-xs mb-1", variant === "compact" ? "text-slate-500 dark:text-slate-400" : "text-slate-300 dark:text-slate-600")}>{mainMetricLabel}</p>
                                 <div className={cn("text-2xl font-bold break-words", mainMetricColor)}>
                                     {mainMetricValue}
                                 </div>
@@ -171,19 +171,19 @@ export function ResultFeedbackCard({
                                 {secondaryMetrics.map((metric, index) => (
                                     <div key={index}>
                                         <div className="flex items-center gap-1.5 mb-1">
-                                            <p className={cn("text-sm", variant === "compact" ? "text-slate-500" : "text-slate-400")}>{metric.label}</p>
+                                            <p className={cn("text-sm", variant === "compact" ? "text-slate-500 dark:text-slate-400" : "text-slate-400 dark:text-slate-500")}>{metric.label}</p>
                                             {metric.tooltip && (
                                                 <TooltipProvider delayDuration={100}>
                                                     <Tooltip>
                                                         <TooltipTrigger asChild>
                                                             <button type="button" className={cn(
                                                                 "transition-colors",
-                                                                variant === "compact" ? "text-slate-400 hover:text-blue-600" : "text-slate-500 hover:text-white"
+                                                                variant === "compact" ? "text-slate-400 hover:text-blue-600 dark:text-slate-500 dark:hover:text-blue-400" : "text-slate-500 hover:text-white dark:text-slate-400"
                                                             )}>
                                                                 <Info className="h-3 w-3" />
                                                             </button>
                                                         </TooltipTrigger>
-                                                        <TooltipContent side="top" className="max-w-xs text-[11px] bg-slate-900 text-white border-slate-800">
+                                                        <TooltipContent side="top" className="max-w-xs text-[11px] bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
                                                             {metric.tooltip}
                                                         </TooltipContent>
                                                     </Tooltip>
@@ -203,7 +203,7 @@ export function ResultFeedbackCard({
                 {children && (
                     <div className={cn(
                         "pt-4",
-                        !hideChildrenBorder && (mainValue || mainMetricLabel || secondaryMetrics.length > 0) && (variant === "compact" ? "border-t border-slate-100" : "border-t border-white/10")
+                        !hideChildrenBorder && (mainValue || mainMetricLabel || secondaryMetrics.length > 0) && (variant === "compact" ? "border-t border-slate-100 dark:border-slate-800" : "border-t border-white/10 dark:border-slate-800")
                     )}>
                         {children}
                     </div>

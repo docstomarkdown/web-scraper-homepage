@@ -81,7 +81,7 @@ export function ROICalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Inputs Section */}
                 <div className="lg:col-span-7 space-y-3">
-                    <Card className="border border-slate-200 shadow-sm bg-white">
+                    <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             description="Calculate your return on investment."
                             onReset={handleReset}
@@ -107,10 +107,10 @@ export function ROICalculator() {
                                 tooltip="The final total value you received back from the investment (including your original capital)."
                             />
                             <div className="space-y-3 pt-4 border-t border-slate-50">
-                                <label className="text-sm font-bold text-slate-600">Investment Time</label>
-                                <div className="relative flex bg-slate-100 p-1 rounded-xl border border-slate-200 w-full sm:w-fit">
+                                <label className="text-sm font-bold text-slate-600 dark:text-slate-300">Investment Time</label>
+                                <div className="relative flex bg-slate-100 p-1 rounded-xl border border-slate-200 w-full sm:w-fit dark:bg-slate-800 dark:border-slate-800">
                                     <motion.div
-                                        className="absolute bg-white rounded-lg shadow-sm border border-slate-200"
+                                        className="absolute bg-white rounded-lg shadow-sm border border-slate-200 dark:bg-slate-900 dark:border-slate-800"
                                         initial={false}
                                         animate={{
                                             x: mode === "dates" ? 0 : "100%",
@@ -123,7 +123,7 @@ export function ROICalculator() {
                                         onClick={() => setMode("dates")}
                                         className={cn(
                                             "relative z-10 px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 w-28",
-                                            mode === "dates" ? "text-blue-600" : "text-slate-500 hover:text-slate-700"
+                                            mode === "dates" ? "text-blue-600 dark:text-blue-400" : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
                                         )}
                                     >
                                         Use Dates
@@ -133,7 +133,7 @@ export function ROICalculator() {
                                         onClick={() => setMode("length")}
                                         className={cn(
                                             "relative z-10 px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 w-28",
-                                            mode === "length" ? "text-blue-600" : "text-slate-500 hover:text-slate-700"
+                                            mode === "length" ? "text-blue-600 dark:text-blue-400" : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
                                         )}
                                     >
                                         Use Length
@@ -149,41 +149,41 @@ export function ROICalculator() {
                                     {mode === "dates" ? (
                                         <div className="space-y-3">
                                             <div className="flex items-center justify-between gap-4 group">
-                                                <label className="text-base font-semibold text-slate-700 group-hover:text-blue-600 transition-colors">From Date</label>
+                                                <label className="text-base font-semibold text-slate-700 group-hover:text-blue-600 transition-colors dark:text-slate-200 dark:group-hover:text-blue-400">From Date</label>
                                                 <input
                                                     type="date"
                                                     value={fromDate}
                                                     onChange={(e) => setFromDate(e.target.value)}
                                                     onClick={(e) => e.currentTarget.showPicker?.()}
-                                                    className="h-10 px-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-bold bg-white w-36 md:w-44 text-right hover:border-blue-400 cursor-pointer shadow-sm"
+                                                    className="h-10 px-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-bold bg-white w-36 md:w-44 text-right hover:border-blue-400 cursor-pointer shadow-sm dark:border-slate-800 dark:bg-slate-900"
                                                 />
                                             </div>
                                             <div className="flex items-center justify-between gap-4 group">
-                                                <label className="text-base font-semibold text-slate-700 group-hover:text-blue-600 transition-colors">To Date</label>
+                                                <label className="text-base font-semibold text-slate-700 group-hover:text-blue-600 transition-colors dark:text-slate-200 dark:group-hover:text-blue-400">To Date</label>
                                                 <input
                                                     type="date"
                                                     value={toDate}
                                                     onChange={(e) => setToDate(e.target.value)}
                                                     onClick={(e) => e.currentTarget.showPicker?.()}
-                                                    className="h-10 px-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-bold bg-white w-36 md:w-44 text-right hover:border-blue-400 cursor-pointer shadow-sm"
+                                                    className="h-10 px-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-bold bg-white w-36 md:w-44 text-right hover:border-blue-400 cursor-pointer shadow-sm dark:border-slate-800 dark:bg-slate-900"
                                                 />
                                             </div>
                                         </div>
                                     ) : (
                                         <div className="flex items-center justify-between gap-4 group">
-                                            <label className="text-base font-semibold text-slate-700 group-hover:text-blue-600 transition-colors">Duration</label>
+                                            <label className="text-base font-semibold text-slate-700 group-hover:text-blue-600 transition-colors dark:text-slate-200 dark:group-hover:text-blue-400">Duration</label>
                                             <div className="flex gap-2 items-center">
                                                 <input
                                                     type="number"
                                                     value={lengthValue}
                                                     onChange={(e) => setLengthValue(e.target.value === "" ? "" : Number(e.target.value))}
                                                     placeholder="Ex: 1"
-                                                    className="h-10 px-3 rounded-md border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium bg-white w-20 text-right hover:border-blue-300"
+                                                    className="h-10 px-3 rounded-md border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium bg-white w-20 text-right hover:border-blue-300 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-blue-800"
                                                 />
                                                 <select
                                                     value={lengthUnit}
                                                     onChange={(e) => setLengthUnit(e.target.value as any)}
-                                                    className="h-10 px-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-bold bg-white cursor-pointer hover:border-blue-400 shadow-sm appearance-none pr-8 relative"
+                                                    className="h-10 px-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-bold bg-white cursor-pointer hover:border-blue-400 shadow-sm appearance-none pr-8 relative dark:border-slate-800 dark:bg-slate-900"
                                                 >
                                                     <option value="days">Days</option>
                                                     <option value="months">Months</option>
@@ -214,12 +214,12 @@ export function ROICalculator() {
                             className={cn(
                                 "px-4 py-3 rounded-xl border text-center text-sm font-semibold",
                                 safeROI >= 100
-                                    ? "bg-blue-50 border-blue-200 text-blue-700"
+                                    ? "bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-950/40 dark:border-blue-900/50 dark:text-blue-400"
                                     : safeROI >= 20
-                                        ? "bg-blue-50 border-blue-200 text-blue-700"
+                                        ? "bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-950/40 dark:border-blue-900/50 dark:text-blue-400"
                                         : safeROI >= 0
-                                            ? "bg-amber-50 border-amber-200 text-amber-700"
-                                            : "bg-red-50 border-red-200 text-red-700"
+                                            ? "bg-amber-50 border-amber-200 text-amber-700 dark:bg-amber-950/40 dark:border-amber-900/50 dark:text-amber-400"
+                                            : "bg-red-50 border-red-200 text-red-700 dark:bg-red-950/40 dark:border-red-900/50 dark:text-red-400"
                             )}
                         >
                             {safeROI >= 100
@@ -236,45 +236,45 @@ export function ROICalculator() {
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500"
+                            className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500 dark:bg-slate-900 dark:border-slate-800"
                         >
-                            <div className="px-5 py-3.5 border-b border-slate-100">
-                                <p className="text-xs font-bold text-slate-600 uppercase tracking-wider">Investment Breakdown</p>
+                            <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800">
+                                <p className="text-xs font-bold text-slate-600 uppercase tracking-wider dark:text-slate-300">Investment Breakdown</p>
                             </div>
-                            <div className="divide-y divide-slate-100">
+                            <div className="divide-y divide-slate-100 dark:divide-slate-800">
                                 <div className="flex justify-between items-center px-5 py-3.5">
-                                    <span className="text-sm text-slate-600">Amount Invested</span>
-                                    <span className="text-sm font-semibold text-slate-800">{formatCurrency(invested)}</span>
+                                    <span className="text-sm text-slate-600 dark:text-slate-300">Amount Invested</span>
+                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{formatCurrency(invested)}</span>
                                 </div>
                                 <div className="flex justify-between items-center px-5 py-3.5">
-                                    <span className="text-sm text-slate-600">Amount Returned</span>
-                                    <span className="text-sm font-semibold text-slate-800">{formatCurrency(returned)}</span>
+                                    <span className="text-sm text-slate-600 dark:text-slate-300">Amount Returned</span>
+                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{formatCurrency(returned)}</span>
                                 </div>
-                                <div className={cn("flex justify-between items-center px-5 py-3.5", safeGain >= 0 ? "bg-blue-50/50" : "bg-red-50/50")}>
-                                    <span className={cn("text-sm font-semibold", safeGain >= 0 ? "text-blue-700" : "text-red-700")}>
+                                <div className={cn("flex justify-between items-center px-5 py-3.5", safeGain >= 0 ? "bg-blue-50/50 dark:bg-blue-950/40" : "bg-red-50/50 dark:bg-red-950/40")}>
+                                    <span className={cn("text-sm font-semibold", safeGain >= 0 ? "text-blue-700 dark:text-blue-400" : "text-red-700 dark:text-red-400")}>
                                         {safeGain >= 0 ? "Net Gain" : "Net Loss"}
                                     </span>
-                                    <span className={cn("text-sm font-bold", safeGain >= 0 ? "text-blue-700" : "text-red-700")}>
+                                    <span className={cn("text-sm font-bold", safeGain >= 0 ? "text-blue-700 dark:text-blue-400" : "text-red-700 dark:text-red-400")}>
                                         {safeGain >= 0 ? "+" : ""}{formatCurrency(safeGain)}
                                     </span>
                                 </div>
                                 <div className="flex justify-between items-center px-5 py-3.5">
-                                    <span className="text-sm text-slate-600">Investment Period</span>
-                                    <span className="text-sm font-semibold text-slate-800">
+                                    <span className="text-sm text-slate-600 dark:text-slate-300">Investment Period</span>
+                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">
                                         {safeYears >= 1 ? `${safeYears.toFixed(1)} years` : `${Math.round(safeYears * 365)} days`}
                                     </span>
                                 </div>
                                 {safeAnnualized !== 0 && (
-                                    <div className="flex justify-between items-center px-5 py-4 bg-blue-50/50">
-                                        <span className="text-sm font-bold text-blue-700">Annualized Return</span>
-                                        <span className="text-base font-bold text-blue-700">{safeAnnualized.toFixed(2)}%</span>
+                                    <div className="flex justify-between items-center px-5 py-4 bg-blue-50/50 dark:bg-blue-950/40">
+                                        <span className="text-sm font-bold text-blue-700 dark:text-blue-400">Annualized Return</span>
+                                        <span className="text-base font-bold text-blue-700 dark:text-blue-400">{safeAnnualized.toFixed(2)}%</span>
                                     </div>
                                 )}
                             </div>
                         </motion.div>
                     ) : (
-                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center">
-                            <p className="text-sm text-slate-400">Enter values to see the investment breakdown.</p>
+                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center dark:bg-slate-900 dark:border-slate-800">
+                            <p className="text-sm text-slate-400 dark:text-slate-500">Enter values to see the investment breakdown.</p>
                         </div>
                     )}
                 </div>

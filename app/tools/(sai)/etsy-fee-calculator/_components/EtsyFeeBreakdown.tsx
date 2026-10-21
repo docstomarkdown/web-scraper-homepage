@@ -71,13 +71,13 @@ export function EtsyFeeBreakdown({
     }))
 
     return (
-        <Card className={cn("border border-slate-200/60 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] bg-[#F5F8FD] rounded-2xl p-4 sm:p-5 flex flex-col gap-4 sm:gap-5", className)}>
-            <div className="flex items-center justify-between pb-3 border-b border-slate-200/50">
+        <Card className={cn("border border-slate-200/60 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] bg-[#F5F8FD] rounded-2xl p-4 sm:p-5 flex flex-col gap-4 sm:gap-5 dark:border-slate-800", className)}>
+            <div className="flex items-center justify-between pb-3 border-b border-slate-200/50 dark:border-slate-800">
                 <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-lg bg-blue-50 ring-[6px] ring-white flex items-center justify-center flex-shrink-0 z-10">
-                        <PieChart className="w-3.5 h-3.5 text-blue-600" />
+                    <div className="w-7 h-7 rounded-lg bg-blue-50 ring-[6px] ring-white flex items-center justify-center flex-shrink-0 z-10 dark:bg-blue-950/40 dark:ring-slate-900">
+                        <PieChart className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                     </div>
-                    <h2 className="text-[15px] sm:text-[16px] font-bold text-slate-600 leading-none">
+                    <h2 className="text-[15px] sm:text-[16px] font-bold text-slate-600 leading-none dark:text-slate-300">
                         Revenue Breakdown
                     </h2>
                 </div>
@@ -89,8 +89,8 @@ export function EtsyFeeBreakdown({
                             <div className={cn(
                                 "px-2 py-1 rounded-full text-[10px] font-bold flex items-center gap-1.5 cursor-help transition-all",
                                 isDetailed 
-                                    ? "bg-blue-100 text-blue-700 border border-blue-200" 
-                                    : "bg-amber-100 text-amber-700 border border-amber-200"
+                                    ? "bg-blue-100 text-blue-700 border border-blue-200 dark:bg-blue-900/40 dark:text-blue-400 dark:border-blue-900/50" 
+                                    : "bg-amber-100 text-amber-700 border border-amber-200 dark:bg-amber-900/40 dark:text-amber-400 dark:border-amber-900/50"
                             )}>
                                 {isDetailed ? (
                                     <>
@@ -105,7 +105,7 @@ export function EtsyFeeBreakdown({
                                 )}
                             </div>
                         </TooltipTrigger>
-                        <TooltipContent side="top" className="bg-slate-900 text-white text-[11px] max-w-[240px]">
+                        <TooltipContent side="top" className="bg-slate-900 text-white text-[11px] max-w-[240px] dark:bg-slate-800">
                             {isDetailed 
                                 ? "Current visualization accounts for your custom fee configuration." 
                                 : "Currently showing standard Etsy fee estimates. Open the Fees panel on the left to customize these values for higher accuracy."
@@ -140,17 +140,17 @@ export function EtsyFeeBreakdown({
                             </RechartsPie>
                         </ResponsiveContainer>
                     ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-center p-3 text-slate-400 text-[9px] sm:text-[10px] leading-tight font-medium border-2 border-dashed border-slate-200/70 rounded-full bg-slate-50/40">
+                        <div className="absolute inset-0 flex items-center justify-center text-center p-3 text-slate-400 text-[9px] sm:text-[10px] leading-tight font-medium border-2 border-dashed border-slate-200/70 rounded-full bg-slate-50/40 dark:text-slate-500 dark:border-slate-800 dark:bg-slate-800/60">
                             Add data to see breakdown
                         </div>
                     )}
                     {/* Center Label */}
                     {pieTotal > 0 && (
                         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                            <span className="text-[10px] sm:text-[11px] font-medium text-slate-400 text-center leading-tight mb-0.5">
+                            <span className="text-[10px] sm:text-[11px] font-medium text-slate-400 text-center leading-tight mb-0.5 dark:text-slate-500">
                                 {isProfitable ? "Total Revenue" : "Total Costs"}
                             </span>
-                            <span className="text-[11px] sm:text-[13px] font-bold text-slate-900 tracking-tight">
+                            <span className="text-[11px] sm:text-[13px] font-bold text-slate-900 tracking-tight dark:text-white">
                                 {formatCurrency(pieTotal)}
                             </span>
                         </div>
@@ -167,22 +167,22 @@ export function EtsyFeeBreakdown({
                         return (
                             <div
                                 key={item.label}
-                                className="grid text-[11px] px-3 bg-white border border-slate-100 rounded-lg py-1.5 shadow-sm"
+                                className="grid text-[11px] px-3 bg-white border border-slate-100 rounded-lg py-1.5 shadow-sm dark:bg-slate-900 dark:border-slate-800"
                                 style={{ gridTemplateColumns: "1fr auto auto" }}
                             >
                                 <div className="flex items-center gap-2 min-w-0">
                                     <div className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: derivedDotColor }} />
-                                    <span className="text-slate-600 font-bold truncate">{item.label}</span>
+                                    <span className="text-slate-600 font-bold truncate dark:text-slate-300">{item.label}</span>
                                 </div>
                                 <span className={cn(
                                     "font-semibold tabular-nums text-right px-2 self-center",
-                                    item.isCost ? "text-slate-500" : (!isPositive ? "text-rose-600" : "text-emerald-600")
+                                    item.isCost ? "text-slate-500 dark:text-slate-400" : (!isPositive ? "text-rose-600 dark:text-rose-400" : "text-emerald-600 dark:text-emerald-400")
                                 )}>
                                     {!item.isCost && item.value > 0 ? "+" : ""}{formatCurrency(item.value)}
                                 </span>
                                 <span className={cn(
                                     "font-extrabold tabular-nums text-right self-center w-[36px]",
-                                    item.isCost ? "text-slate-900" : (!isPositive ? "text-rose-700" : "text-emerald-700")
+                                    item.isCost ? "text-slate-900 dark:text-white" : (!isPositive ? "text-rose-700 dark:text-rose-400" : "text-emerald-700 dark:text-emerald-400")
                                 )}>
                                     {item.pct.toFixed(0)}%
                                 </span>

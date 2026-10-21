@@ -20,67 +20,67 @@ interface ToolOverviewProps {
 
 const accentStyles = {
     blue: {
-        headingAccent: "text-blue-600",
-        sectionBg: "bg-gradient-to-br from-blue-50/80 via-slate-50/60 to-white",
-        border: "border-blue-100/80",
-        columnDivider: "bg-blue-100/60",
-        statColor: "text-blue-600",
-        cardBorder: "border-blue-100/50",
-        cardBg: "bg-white/70",
+        headingAccent: "text-blue-600 dark:text-blue-400",
+        sectionBg: "bg-gradient-to-br from-blue-50/80 via-slate-50/60 to-white dark:from-blue-950/30 dark:via-slate-900 dark:to-slate-900",
+        border: "border-blue-100/80 dark:border-blue-900/50",
+        columnDivider: "bg-blue-100/60 dark:bg-blue-900/40",
+        statColor: "text-blue-600 dark:text-blue-400",
+        cardBorder: "border-blue-100/50 dark:border-blue-900/50",
+        cardBg: "bg-white/70 dark:bg-slate-900/70",
     },
     indigo: {
-        headingAccent: "text-indigo-600",
-        sectionBg: "bg-gradient-to-br from-indigo-50/80 via-slate-50/60 to-white",
-        border: "border-indigo-100/80",
-        columnDivider: "bg-indigo-100/60",
-        statColor: "text-indigo-600",
-        cardBorder: "border-indigo-100/50",
-        cardBg: "bg-white/70",
+        headingAccent: "text-indigo-600 dark:text-indigo-400",
+        sectionBg: "bg-gradient-to-br from-indigo-50/80 via-slate-50/60 to-white dark:from-indigo-950/30 dark:via-slate-900 dark:to-slate-900",
+        border: "border-indigo-100/80 dark:border-indigo-900/50",
+        columnDivider: "bg-indigo-100/60 dark:bg-indigo-900/40",
+        statColor: "text-indigo-600 dark:text-indigo-400",
+        cardBorder: "border-indigo-100/50 dark:border-indigo-900/50",
+        cardBg: "bg-white/70 dark:bg-slate-900/70",
     },
     violet: {
-        headingAccent: "text-violet-600",
-        sectionBg: "bg-gradient-to-br from-violet-50/80 via-slate-50/60 to-white",
-        border: "border-violet-100/80",
-        columnDivider: "bg-violet-100/60",
-        statColor: "text-violet-600",
-        cardBorder: "border-violet-100/50",
-        cardBg: "bg-white/70",
+        headingAccent: "text-violet-600 dark:text-violet-400",
+        sectionBg: "bg-gradient-to-br from-violet-50/80 via-slate-50/60 to-white dark:from-violet-950/30 dark:via-slate-900 dark:to-slate-900",
+        border: "border-violet-100/80 dark:border-violet-900/50",
+        columnDivider: "bg-violet-100/60 dark:bg-violet-900/40",
+        statColor: "text-violet-600 dark:text-violet-400",
+        cardBorder: "border-violet-100/50 dark:border-violet-900/50",
+        cardBg: "bg-white/70 dark:bg-slate-900/70",
     },
     rose: {
-        headingAccent: "text-rose-600",
-        sectionBg: "bg-gradient-to-br from-rose-50/80 via-slate-50/60 to-white",
-        border: "border-rose-100/80",
-        columnDivider: "bg-rose-100/60",
-        statColor: "text-rose-600",
-        cardBorder: "border-rose-100/50",
-        cardBg: "bg-white/70",
+        headingAccent: "text-rose-600 dark:text-rose-400",
+        sectionBg: "bg-gradient-to-br from-rose-50/80 via-slate-50/60 to-white dark:from-rose-950/30 dark:via-slate-900 dark:to-slate-900",
+        border: "border-rose-100/80 dark:border-rose-900/50",
+        columnDivider: "bg-rose-100/60 dark:bg-rose-900/40",
+        statColor: "text-rose-600 dark:text-rose-400",
+        cardBorder: "border-rose-100/50 dark:border-rose-900/50",
+        cardBg: "bg-white/70 dark:bg-slate-900/70",
     },
     red: {
-        headingAccent: "text-red-600",
-        sectionBg: "bg-gradient-to-br from-red-50/80 via-slate-50/60 to-white",
-        border: "border-red-100/80",
-        columnDivider: "bg-red-100/60",
-        statColor: "text-red-600",
-        cardBorder: "border-red-100/50",
-        cardBg: "bg-white/70",
+        headingAccent: "text-red-600 dark:text-red-400",
+        sectionBg: "bg-gradient-to-br from-red-50/80 via-slate-50/60 to-white dark:from-red-950/30 dark:via-slate-900 dark:to-slate-900",
+        border: "border-red-100/80 dark:border-red-900/50",
+        columnDivider: "bg-red-100/60 dark:bg-red-900/40",
+        statColor: "text-red-600 dark:text-red-400",
+        cardBorder: "border-red-100/50 dark:border-red-900/50",
+        cardBg: "bg-white/70 dark:bg-slate-900/70",
     },
     emerald: {
-        headingAccent: "text-emerald-600",
-        sectionBg: "bg-gradient-to-br from-emerald-50/80 via-slate-50/60 to-white",
-        border: "border-emerald-100/80",
-        columnDivider: "bg-emerald-100/60",
-        statColor: "text-emerald-600",
-        cardBorder: "border-emerald-100/50",
-        cardBg: "bg-white/70",
+        headingAccent: "text-emerald-600 dark:text-emerald-400",
+        sectionBg: "bg-gradient-to-br from-emerald-50/80 via-slate-50/60 to-white dark:from-emerald-950/30 dark:via-slate-900 dark:to-slate-900",
+        border: "border-emerald-100/80 dark:border-emerald-900/50",
+        columnDivider: "bg-emerald-100/60 dark:bg-emerald-900/40",
+        statColor: "text-emerald-600 dark:text-emerald-400",
+        cardBorder: "border-emerald-100/50 dark:border-emerald-900/50",
+        cardBg: "bg-white/70 dark:bg-slate-900/70",
     },
     amber: {
-        headingAccent: "text-amber-600",
-        sectionBg: "bg-gradient-to-br from-amber-50/80 via-slate-50/60 to-white",
-        border: "border-amber-100/80",
-        columnDivider: "bg-amber-100/60",
-        statColor: "text-amber-600",
-        cardBorder: "border-amber-100/50",
-        cardBg: "bg-white/70",
+        headingAccent: "text-amber-600 dark:text-amber-400",
+        sectionBg: "bg-gradient-to-br from-amber-50/80 via-slate-50/60 to-white dark:from-amber-950/30 dark:via-slate-900 dark:to-slate-900",
+        border: "border-amber-100/80 dark:border-amber-900/50",
+        columnDivider: "bg-amber-100/60 dark:bg-amber-900/40",
+        statColor: "text-amber-600 dark:text-amber-400",
+        cardBorder: "border-amber-100/50 dark:border-amber-900/50",
+        cardBg: "bg-white/70 dark:bg-slate-900/70",
     },
 }
 
@@ -124,10 +124,10 @@ export function ToolOverview({
             <div className="flex flex-col lg:flex-row gap-0 items-stretch relative z-10">
                 {/* ── Left: heading + definition ── */}
                 <div className="lg:w-[42%] flex-shrink-0 flex flex-col justify-center pr-0 lg:pr-10 pb-8 lg:pb-0">
-                    <h2 className="text-[21px] sm:text-[23px] font-extrabold tracking-tight leading-snug text-slate-800 mb-3">
+                    <h2 className="text-[21px] sm:text-[23px] font-extrabold tracking-tight leading-snug text-slate-800 mb-3 dark:text-slate-100">
                         {renderHeading()}
                     </h2>
-                    <p className="text-[13.5px] sm:text-[14px] text-slate-500 font-medium leading-relaxed text-left hyphens-none">
+                    <p className="text-[13.5px] sm:text-[14px] text-slate-500 font-medium leading-relaxed text-left hyphens-none dark:text-slate-400">
                         {definition}
                     </p>
                 </div>
@@ -158,11 +158,11 @@ export function ToolOverview({
                                     <span className={cn("text-[18px] font-extrabold leading-none tracking-tight", s.statColor)}>
                                         {fact.stat}
                                     </span>
-                                    <span className="text-[13px] font-bold text-slate-600 leading-snug">
+                                    <span className="text-[13px] font-bold text-slate-600 leading-snug dark:text-slate-300">
                                         {fact.label}
                                     </span>
                                 </div>
-                                <p className="text-[12.5px] text-slate-500 font-medium leading-relaxed">
+                                <p className="text-[12.5px] text-slate-500 font-medium leading-relaxed dark:text-slate-400">
                                     {fact.detail}
                                 </p>
                             </motion.div>

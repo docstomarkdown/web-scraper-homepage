@@ -112,7 +112,7 @@ export function EtsyFeeCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Inputs Section */}
                 <div className="lg:col-span-7 space-y-3">
-                    <Card className="border border-slate-200 shadow-sm bg-white">
+                    <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Sale & Fee Details"
                             description="Enter your item price, costs, and Etsy fee settings."
@@ -192,21 +192,21 @@ export function EtsyFeeCalculator() {
                                         className="w-full relative calculator-input-row max-w-[520px] mx-auto px-3 sm:px-5"
                                         data-has-title="false"
                                     >
-                                        <div className="h-px bg-slate-100/80 w-[calc(100%+48px)] -ml-6 mb-3 mt-1" />
+                                        <div className="h-px bg-slate-100/80 w-[calc(100%+48px)] -ml-6 mb-3 mt-1 dark:bg-slate-800" />
                                         <button
                                             onClick={() => setShowAdvanced(!showAdvanced)}
                                             className="flex items-center gap-2 w-full group -ml-[33px] relative z-10"
                                         >
-                                            <div className="w-7 h-7 rounded-lg bg-white ring-[6px] ring-white border border-slate-200 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-50 group-hover:border-blue-200 transition-all duration-200 shadow-sm">
-                                                <Settings2 className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-500 transition-colors" />
+                                            <div className="w-7 h-7 rounded-lg bg-white ring-[6px] ring-white border border-slate-200 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-50 group-hover:border-blue-200 transition-all duration-200 shadow-sm dark:bg-slate-900 dark:ring-slate-900 dark:border-slate-800 dark:group-hover:bg-blue-950/40 dark:group-hover:border-blue-900/50">
+                                                <Settings2 className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-500 transition-colors dark:text-slate-500 dark:group-hover:text-blue-400" />
                                             </div>
-                                            <span className="text-[15px] font-bold text-slate-600 group-hover:text-blue-600 transition-colors flex-1 text-left tracking-tight">
+                                            <span className="text-[15px] font-bold text-slate-600 group-hover:text-blue-600 transition-colors flex-1 text-left tracking-tight dark:text-slate-300 dark:group-hover:text-blue-400">
                                                 Fees
-                                                <span className="ml-1.5 font-normal italic text-[12px] text-slate-400 lowercase tracking-normal group-hover:text-blue-400/80 transition-colors">(advanced – optional)</span>
+                                                <span className="ml-1.5 font-normal italic text-[12px] text-slate-400 lowercase tracking-normal group-hover:text-blue-400/80 transition-colors dark:text-slate-500">(advanced – optional)</span>
                                             </span>
                                             {showAdvanced
-                                                ? <ChevronUp className="w-4 h-4 text-slate-400" />
-                                                : <ChevronDown className="w-4 h-4 text-slate-400" />
+                                                ? <ChevronUp className="w-4 h-4 text-slate-400 dark:text-slate-500" />
+                                                : <ChevronDown className="w-4 h-4 text-slate-400 dark:text-slate-500" />
                                             }
                                         </button>
                                     </div>
@@ -222,10 +222,10 @@ export function EtsyFeeCalculator() {
                                                     
                                                     {/* Header */}
                                                     <div className="flex items-center gap-2 -ml-[33px] mb-3 relative h-7">
-                                                        <div className="w-7 h-7 rounded-lg bg-blue-50 ring-[6px] ring-white flex items-center justify-center flex-shrink-0 z-10">
-                                                            <CreditCard className="w-3.5 h-3.5 text-blue-600" />
+                                                        <div className="w-7 h-7 rounded-lg bg-blue-50 ring-[6px] ring-white flex items-center justify-center flex-shrink-0 z-10 dark:bg-blue-950/40 dark:ring-slate-900">
+                                                            <CreditCard className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                                                         </div>
-                                                        <span className="text-[15px] font-bold text-slate-600 z-10 tracking-tight">Marketplace Fees</span>
+                                                        <span className="text-[15px] font-bold text-slate-600 z-10 tracking-tight dark:text-slate-300">Marketplace Fees</span>
                                                     </div>
 
                                                     <div className="space-y-3">

@@ -200,7 +200,7 @@ export function PalletConfigurationCalculator() {
             <div className="lg:col-span-12 grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
                 {/* ═══════════════════ LEFT: INPUTS ═══════════════════ */}
                 <div className="lg:col-span-7 h-full">
-                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden h-full flex flex-col">
+                    <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden h-full flex flex-col dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Pallet Configuration Calculator"
                             description="Enter box dimensions and pallet details to find the optimal loading arrangement."
@@ -233,7 +233,7 @@ export function PalletConfigurationCalculator() {
                                         groupingTitle="Box Details"
                                         groupingIcon={Box}
                                         groupingAction={
-                                            <div className="flex bg-slate-100 p-0.5 rounded-lg border border-slate-200 h-7 font-sans ml-4">
+                                            <div className="flex bg-slate-100 p-0.5 rounded-lg border border-slate-200 h-7 font-sans ml-4 dark:bg-slate-800 dark:border-slate-800">
                                                 {(["in", "cm"] as DimensionUnit[]).map((u) => (
                                                     <button
                                                         key={u}
@@ -249,8 +249,8 @@ export function PalletConfigurationCalculator() {
                                                         className={cn(
                                                             "px-3 h-full rounded-md text-[11px] font-bold transition-all",
                                                             unit === u
-                                                                ? "bg-white text-blue-600 shadow-sm border border-blue-200"
-                                                                : "text-slate-500 hover:text-slate-900"
+                                                                ? "bg-white text-blue-600 shadow-sm border border-blue-200 dark:bg-slate-900 dark:text-blue-400 dark:border-blue-900/50"
+                                                                : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
                                                         )}
                                                     >
                                                         {u}
@@ -286,7 +286,7 @@ export function PalletConfigurationCalculator() {
                                         className="w-full relative calculator-input-row max-w-[520px] mx-auto px-3 sm:px-5"
                                         data-has-title="true"
                                     >
-                                        <div className="h-px bg-slate-100/80 w-[calc(100%+48px)] -ml-6 mb-3 mt-1" />
+                                        <div className="h-px bg-slate-100/80 w-[calc(100%+48px)] -ml-6 mb-3 mt-1 dark:bg-slate-800" />
                                         <div className="relative w-full">
                                             {/* Vertical line */}
                                             <div
@@ -295,10 +295,10 @@ export function PalletConfigurationCalculator() {
                                             />
                                             {/* Header */}
                                             <div className="flex items-center gap-2 -ml-[33px] mb-3 relative h-7">
-                                                <div className="w-7 h-7 rounded-lg bg-blue-50 ring-[6px] ring-white flex items-center justify-center flex-shrink-0 z-10">
-                                                    <Layers className="w-3.5 h-3.5 text-blue-600" />
+                                                <div className="w-7 h-7 rounded-lg bg-blue-50 ring-[6px] ring-white flex items-center justify-center flex-shrink-0 z-10 dark:bg-blue-950/40 dark:ring-slate-900">
+                                                    <Layers className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                                                 </div>
-                                                <span className="text-[16px] font-bold text-slate-600 capitalize z-10 tracking-tight">
+                                                <span className="text-[16px] font-bold text-slate-600 capitalize z-10 tracking-tight dark:text-slate-300">
                                                     Pallet Details
                                                 </span>
                                             </div>
@@ -306,12 +306,12 @@ export function PalletConfigurationCalculator() {
                                             {/* Preset quick-select label */}
                                             <div className="flex items-center gap-3 w-full relative z-10 mb-3">
                                                 <div className="flex items-center flex-1 min-w-0">
-                                                    <Label className="text-[14.5px] font-medium text-slate-600/90 py-1">
+                                                    <Label className="text-[14.5px] font-medium text-slate-600/90 py-1 dark:text-slate-300">
                                                         Pallet type
                                                     </Label>
                                                 </div>
                                                 <div className="flex-shrink-0">
-                                                    <div className="flex bg-slate-100 p-0.5 rounded-lg border border-slate-200 h-8 font-sans w-36 sm:w-44">
+                                                    <div className="flex bg-slate-100 p-0.5 rounded-lg border border-slate-200 h-8 font-sans w-36 sm:w-44 dark:bg-slate-800 dark:border-slate-800">
                                                         {(["standard", "euro", "custom"] as PalletPreset[]).map((p) => (
                                                             <button
                                                                 key={p}
@@ -319,8 +319,8 @@ export function PalletConfigurationCalculator() {
                                                                 className={cn(
                                                                     "flex-1 h-full rounded-md text-[10.5px] font-bold transition-all whitespace-nowrap",
                                                                     palletPreset === p
-                                                                        ? "bg-white text-blue-600 shadow-sm border border-blue-200"
-                                                                        : "text-slate-500 hover:text-slate-900"
+                                                                        ? "bg-white text-blue-600 shadow-sm border border-blue-200 dark:bg-slate-900 dark:text-blue-400 dark:border-blue-900/50"
+                                                                        : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
                                                                 )}
                                                             >
                                                                 {p === "standard" ? "Standard" : p === "euro" ? "Euro" : "Custom"}
@@ -334,7 +334,7 @@ export function PalletConfigurationCalculator() {
                                             {palletPreset !== "custom" && (
                                                 <div className="flex items-center gap-3 w-full relative z-10 mb-1">
                                                     <div className="flex items-center flex-1 min-w-0">
-                                                        <Label className="text-[13px] font-medium text-slate-400">
+                                                        <Label className="text-[13px] font-medium text-slate-400 dark:text-slate-500">
                                                             {palletPreset === "standard" ? "Standard (48 × 40 in)" : "Euro (120 × 80 cm)"}
                                                         </Label>
                                                     </div>
@@ -395,21 +395,21 @@ export function PalletConfigurationCalculator() {
                                         className="w-full relative calculator-input-row max-w-[520px] mx-auto px-3 sm:px-5"
                                         data-has-title="false"
                                     >
-                                        <div className="h-px bg-slate-100/80 w-[calc(100%+48px)] -ml-6 mb-3 mt-1" />
+                                        <div className="h-px bg-slate-100/80 w-[calc(100%+48px)] -ml-6 mb-3 mt-1 dark:bg-slate-800" />
                                         <button
                                             onClick={() => setShowAdvanced(!showAdvanced)}
                                             className="flex items-center gap-2 w-full group -ml-[33px] relative z-10"
                                         >
-                                            <div className="w-7 h-7 rounded-lg bg-white ring-[6px] ring-white border border-slate-200 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-50 group-hover:border-blue-200 transition-all duration-200 shadow-sm">
-                                                <Settings2 className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-500 transition-colors" />
+                                            <div className="w-7 h-7 rounded-lg bg-white ring-[6px] ring-white border border-slate-200 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-50 group-hover:border-blue-200 transition-all duration-200 shadow-sm dark:bg-slate-900 dark:ring-slate-900 dark:border-slate-800 dark:group-hover:bg-blue-950/40 dark:group-hover:border-blue-900/50">
+                                                <Settings2 className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-500 transition-colors dark:text-slate-500 dark:group-hover:text-blue-400" />
                                             </div>
-                                            <span className="text-[15px] font-bold text-slate-600 group-hover:text-blue-600 transition-colors flex-1 text-left tracking-tight">
+                                            <span className="text-[15px] font-bold text-slate-600 group-hover:text-blue-600 transition-colors flex-1 text-left tracking-tight dark:text-slate-300 dark:group-hover:text-blue-400">
                                                 Advanced Settings
-                                                <span className="ml-1.5 font-normal italic text-[12px] text-slate-400 lowercase tracking-normal group-hover:text-blue-400/80 transition-colors">(optional)</span>
+                                                <span className="ml-1.5 font-normal italic text-[12px] text-slate-400 lowercase tracking-normal group-hover:text-blue-400/80 transition-colors dark:text-slate-500">(optional)</span>
                                             </span>
                                             {showAdvanced
-                                                ? <ChevronUp className="w-4 h-4 text-slate-400" />
-                                                : <ChevronDown className="w-4 h-4 text-slate-400" />
+                                                ? <ChevronUp className="w-4 h-4 text-slate-400 dark:text-slate-500" />
+                                                : <ChevronDown className="w-4 h-4 text-slate-400 dark:text-slate-500" />
                                             }
                                         </button>
                                     </div>
@@ -428,16 +428,16 @@ export function PalletConfigurationCalculator() {
                                                         style={{ top: "14px", bottom: "10px" }}
                                                     />
                                                     <div className="flex items-center gap-2 -ml-[33px] mb-3 relative h-7">
-                                                        <div className="w-7 h-7 rounded-lg bg-blue-50 ring-[6px] ring-white flex items-center justify-center flex-shrink-0 z-10">
-                                                            <RotateCcw className="w-3.5 h-3.5 text-blue-600" />
+                                                        <div className="w-7 h-7 rounded-lg bg-blue-50 ring-[6px] ring-white flex items-center justify-center flex-shrink-0 z-10 dark:bg-blue-950/40 dark:ring-slate-900">
+                                                            <RotateCcw className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                                                         </div>
-                                                        <span className="text-[15px] font-bold text-slate-600 z-10 tracking-tight">
+                                                        <span className="text-[15px] font-bold text-slate-600 z-10 tracking-tight dark:text-slate-300">
                                                             Optimization
                                                         </span>
                                                     </div>
                                                     <div className="flex items-center gap-3 w-full relative z-10">
                                                         <div className="flex items-center gap-2 flex-1 min-w-0 text-left">
-                                                            <Label className="text-[14.5px] font-medium text-slate-600/90 py-1">
+                                                            <Label className="text-[14.5px] font-medium text-slate-600/90 py-1 dark:text-slate-300">
                                                                 Allow Rotation
                                                             </Label>
                                                             <TooltipProvider delayDuration={200}>
@@ -446,19 +446,19 @@ export function PalletConfigurationCalculator() {
                                                                         <button
                                                                             type="button"
                                                                             tabIndex={-1}
-                                                                            className="text-slate-400 hover:text-blue-600 transition-colors cursor-help shrink-0"
+                                                                            className="text-slate-400 hover:text-blue-600 transition-colors cursor-help shrink-0 dark:text-slate-500 dark:hover:text-blue-400"
                                                                         >
                                                                             <Info className="h-3.5 w-3.5" />
                                                                         </button>
                                                                     </TooltipTrigger>
-                                                                    <TooltipContent side="top" className="max-w-xs text-[13px] font-normal bg-slate-900 text-white border-slate-800">
+                                                                    <TooltipContent side="top" className="max-w-xs text-[13px] font-normal bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
                                                                         Determine if boxes can be rotated to find a better fit on the pallet.
                                                                     </TooltipContent>
                                                                 </Tooltip>
                                                             </TooltipProvider>
                                                         </div>
                                                         <div className="flex-shrink-0">
-                                                            <div className="flex bg-slate-100 p-0.5 rounded-lg border border-slate-200 h-8 font-sans w-28">
+                                                            <div className="flex bg-slate-100 p-0.5 rounded-lg border border-slate-200 h-8 font-sans w-28 dark:bg-slate-800 dark:border-slate-800">
                                                                 {[true, false].map((v) => (
                                                                     <button
                                                                         key={v.toString()}
@@ -466,8 +466,8 @@ export function PalletConfigurationCalculator() {
                                                                         className={cn(
                                                                             "flex-1 h-full rounded-md text-[11px] font-bold transition-all",
                                                                             allowRotation === v
-                                                                                ? "bg-white text-blue-600 shadow-sm border border-blue-200"
-                                                                                : "text-slate-500 hover:text-slate-900"
+                                                                                ? "bg-white text-blue-600 shadow-sm border border-blue-200 dark:bg-slate-900 dark:text-blue-400 dark:border-blue-900/50"
+                                                                                : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
                                                                         )}
                                                                     >
                                                                         {v ? "Yes" : "No"}
@@ -574,10 +574,10 @@ export function PalletConfigurationCalculator() {
                     <ResultFeedbackCard
                         title={
                             <div className="flex items-center gap-2 -ml-1 h-7">
-                                <div className="w-7 h-7 rounded-lg bg-blue-50 ring-[6px] ring-white flex items-center justify-center flex-shrink-0 z-10">
-                                    <Grid3x3 className="w-3.5 h-3.5 text-blue-600" />
+                                <div className="w-7 h-7 rounded-lg bg-blue-50 ring-[6px] ring-white flex items-center justify-center flex-shrink-0 z-10 dark:bg-blue-950/40 dark:ring-slate-900">
+                                    <Grid3x3 className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                                 </div>
-                                <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 z-10 tracking-tight">
+                                <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 z-10 tracking-tight dark:text-slate-400">
                                     Pallet Layout — Top View
                                 </span>
                             </div>
@@ -624,7 +624,7 @@ function PalletTopView({ results }: TopViewProps) {
             {/* Isometric 3D Visualization */}
             <div className={cn(
                 "flex-1 flex flex-col items-center justify-center py-4 min-h-[200px] rounded-xl border overflow-hidden relative group transition-all duration-500",
-                isDummy ? "bg-slate-50 border-slate-100" : "bg-slate-50/50 border-slate-200/50"
+                isDummy ? "bg-slate-50 border-slate-100 dark:bg-slate-800/60 dark:border-slate-800" : "bg-slate-50/50 border-slate-200/50 dark:bg-slate-800/60 dark:border-slate-800"
             )}>
                 {/* Background Grid Pattern */}
                 <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -633,14 +633,14 @@ function PalletTopView({ results }: TopViewProps) {
                 
                 {/* Ghost Overlay for Dummy State */}
                 {isDummy && (
-                    <div className="absolute inset-0 z-20 flex items-center justify-center bg-white/40 backdrop-blur-[1px]">
-                        <div className="bg-white px-5 py-3 rounded-2xl shadow-[0_8px_30px_rgba(59,130,246,0.08)] border border-blue-50 text-[13px] font-semibold flex flex-col items-center gap-2 group/badge transition-all duration-300 hover:scale-105">
-                            <div className="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center text-blue-500 mb-1 border border-blue-100/50 shadow-sm">
+                    <div className="absolute inset-0 z-20 flex items-center justify-center bg-white/40 backdrop-blur-[1px] dark:bg-slate-900/40">
+                        <div className="bg-white px-5 py-3 rounded-2xl shadow-[0_8px_30px_rgba(59,130,246,0.08)] border border-blue-50 text-[13px] font-semibold flex flex-col items-center gap-2 group/badge transition-all duration-300 hover:scale-105 dark:bg-slate-900">
+                            <div className="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center text-blue-500 mb-1 border border-blue-100/50 shadow-sm dark:bg-blue-950/40 dark:text-blue-400 dark:border-blue-900/50">
                                 <Box className="w-5 h-5 animate-pulse" />
                             </div>
                             <div className="flex flex-col items-center">
-                                <span className="text-slate-400 text-[11px] font-bold uppercase tracking-wider mb-0.5">Ready to design</span>
-                                <span className="text-slate-600">Enter box dimensions to preview</span>
+                                <span className="text-slate-400 text-[11px] font-bold uppercase tracking-wider mb-0.5 dark:text-slate-500">Ready to design</span>
+                                <span className="text-slate-600 dark:text-slate-300">Enter box dimensions to preview</span>
                             </div>
                         </div>
                     </div>
@@ -695,7 +695,7 @@ function PalletTopView({ results }: TopViewProps) {
                                             transition: 'transform 1s ease-out'
                                         }}
                                     >
-                                        <div className="absolute top-1/2 left-1 right-1 h-0.5 bg-white/20" />
+                                        <div className="absolute top-1/2 left-1 right-1 h-0.5 bg-white/20 dark:bg-slate-900/20" />
                                     </div>
                                     {/* Side faces */}
                                     <div
@@ -721,24 +721,24 @@ function PalletTopView({ results }: TopViewProps) {
                 </div>
                 
                 {/* Bottom Legend */}
-                <div className="absolute bottom-3 left-0 right-0 px-6 flex justify-between items-center text-slate-400">
+                <div className="absolute bottom-3 left-0 right-0 px-6 flex justify-between items-center text-slate-400 dark:text-slate-500">
                     <div className="flex flex-col gap-0">
-                        <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 leading-tight">Arrangement</span>
-                        <span className={cn("text-[16px] sm:text-[17px] font-bold tracking-tight block", isDummy ? "text-blue-400" : "text-slate-700")}>
+                        <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 leading-tight dark:text-slate-400">Arrangement</span>
+                        <span className={cn("text-[16px] sm:text-[17px] font-bold tracking-tight block", isDummy ? "text-blue-400" : "text-slate-700 dark:text-slate-200")}>
                             {displayResults.unitsAlongLength} × {displayResults.unitsAlongWidth} Grid
                         </span>
                     </div>
-                    <div className="h-6 w-px bg-slate-200 mx-1" />
+                    <div className="h-6 w-px bg-slate-200 mx-1 dark:bg-slate-700" />
                     <div className="flex flex-col items-center gap-0">
-                        <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 leading-tight">Total stack</span>
-                        <span className={cn("text-[16px] sm:text-[17px] font-bold tracking-tight block", isDummy ? "text-blue-400" : "text-blue-600")}>
+                        <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 leading-tight dark:text-slate-400">Total stack</span>
+                        <span className={cn("text-[16px] sm:text-[17px] font-bold tracking-tight block", isDummy ? "text-blue-400" : "text-blue-600 dark:text-blue-400")}>
                             {displayResults.layers} {displayResults.layers === 1 ? 'Layer' : 'Layers'}
                         </span>
                     </div>
-                    <div className="h-6 w-px bg-slate-200 mx-1" />
+                    <div className="h-6 w-px bg-slate-200 mx-1 dark:bg-slate-700" />
                     <div className="flex flex-col items-end gap-0 text-right">
-                        <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 leading-tight">Fill Rate</span>
-                        <span className={cn("text-[16px] sm:text-[17px] font-bold tracking-tight block", isDummy ? "text-blue-400" : "text-slate-700")}>
+                        <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 leading-tight dark:text-slate-400">Fill Rate</span>
+                        <span className={cn("text-[16px] sm:text-[17px] font-bold tracking-tight block", isDummy ? "text-blue-400" : "text-slate-700 dark:text-slate-200")}>
                             {isDummy ? "—" : `${displayResults.areaEfficiency.toFixed(0)}%`}
                         </span>
                     </div>
@@ -749,8 +749,8 @@ function PalletTopView({ results }: TopViewProps) {
             {!isDummy && results!.warnings.length > 0 && (
                 <div className="space-y-1.5 mt-2.5">
                     {results!.warnings.map((warning, i) => (
-                        <div key={i} className="flex gap-2 bg-amber-50/50 px-2 py-1.5 rounded-lg border border-amber-100 text-amber-800 text-[10px] font-bold items-center">
-                            <AlertTriangle className="w-3 h-3 shrink-0 text-amber-500" />
+                        <div key={i} className="flex gap-2 bg-amber-50/50 px-2 py-1.5 rounded-lg border border-amber-100 text-amber-800 text-[10px] font-bold items-center dark:bg-amber-950/40 dark:border-amber-900/50 dark:text-amber-400">
+                            <AlertTriangle className="w-3 h-3 shrink-0 text-amber-500 dark:text-amber-400" />
                             <span>{warning}</span>
                         </div>
                     ))}

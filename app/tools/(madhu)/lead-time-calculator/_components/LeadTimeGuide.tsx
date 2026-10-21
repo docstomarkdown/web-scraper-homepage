@@ -13,9 +13,9 @@ export function LeadTimeGuide() {
                     icon: Building2,
                     stat: "Factory",
                     statLabel: "Manufacturing",
-                    iconBg: "bg-blue-50",
-                    iconColor: "text-blue-600",
-                    statColor: "text-blue-600"
+                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-600 dark:text-blue-400",
+                    statColor: "text-blue-600 dark:text-blue-400"
                 },
                 {
                     title: "Door-to-Door Shipping Time",
@@ -23,9 +23,9 @@ export function LeadTimeGuide() {
                     icon: Route,
                     stat: "Transit",
                     statLabel: "Logistics",
-                    iconBg: "bg-indigo-50",
-                    iconColor: "text-indigo-600",
-                    statColor: "text-indigo-600"
+                    iconBg: "bg-indigo-50 dark:bg-indigo-950/40",
+                    iconColor: "text-indigo-600 dark:text-indigo-400",
+                    statColor: "text-indigo-600 dark:text-indigo-400"
                 },
                 {
                     title: "Safety Buffer Timeline",
@@ -33,9 +33,9 @@ export function LeadTimeGuide() {
                     icon: ShieldAlert,
                     stat: "Delay",
                     statLabel: "Protection",
-                    iconBg: "bg-amber-50",
-                    iconColor: "text-amber-600",
-                    statColor: "text-amber-600"
+                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
+                    iconColor: "text-amber-600 dark:text-amber-400",
+                    statColor: "text-amber-600 dark:text-amber-400"
                 }
             ]}
         />

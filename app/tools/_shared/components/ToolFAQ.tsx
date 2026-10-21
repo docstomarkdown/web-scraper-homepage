@@ -29,32 +29,32 @@ export function ToolFAQ({ title = "Frequently Asked Questions", icon = MessagesS
                     <Accordion key={index} type="single" collapsible>
                         <AccordionItem
                             value={`faq-${index}`}
-                            className="group bg-white border border-slate-200/70 rounded-2xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.03)] data-[state=open]:border-blue-200/80 data-[state=open]:shadow-[0_4px_20px_rgba(59,130,246,0.08)] transition-all duration-300 border-b-0"
+                            className="group bg-white border border-slate-200/70 rounded-2xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.03)] data-[state=open]:border-blue-200/80 data-[state=open]:shadow-[0_4px_20px_rgba(59,130,246,0.08)] transition-all duration-300 border-b-0 dark:bg-slate-900 dark:border-slate-800"
                         >
-                            <AccordionTrigger className="w-full px-5 py-4 hover:no-underline gap-4 [&>svg]:hidden hover:bg-slate-50/60 data-[state=open]:bg-blue-50/40 transition-all duration-300 rounded-2xl">
+                            <AccordionTrigger className="w-full px-5 py-4 hover:no-underline gap-4 [&>svg]:hidden hover:bg-slate-50/60 data-[state=open]:bg-blue-50/40 transition-all duration-300 rounded-2xl dark:hover:bg-slate-800/60">
                                 <div className="flex items-center gap-3.5 text-left flex-1 min-w-0">
                                     {/* Numbered badge → question icon when open */}
-                                    <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-xl bg-slate-100 border border-slate-200/60 group-data-[state=open]:bg-gradient-to-br group-data-[state=open]:from-blue-500 group-data-[state=open]:to-blue-600 group-data-[state=open]:border-transparent group-data-[state=open]:shadow-md group-data-[state=open]:shadow-blue-500/25 transition-all duration-300">
-                                        <span className="text-[11px] font-black text-slate-500 leading-none group-data-[state=open]:hidden">
+                                    <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-xl bg-slate-100 border border-slate-200/60 group-data-[state=open]:bg-gradient-to-br group-data-[state=open]:from-blue-500 group-data-[state=open]:to-blue-600 group-data-[state=open]:border-transparent group-data-[state=open]:shadow-md group-data-[state=open]:shadow-blue-500/25 transition-all duration-300 dark:bg-slate-800 dark:border-slate-800">
+                                        <span className="text-[11px] font-black text-slate-500 leading-none group-data-[state=open]:hidden dark:text-slate-400">
                                             {String(index + 1).padStart(2, '0')}
                                         </span>
                                         <MessageCircleQuestion className="w-4 h-4 text-white hidden group-data-[state=open]:block" />
                                     </div>
                                     {/* Question text */}
-                                    <h3 className="text-[14.5px] font-semibold text-slate-700 group-data-[state=open]:text-blue-700 transition-colors duration-300 leading-snug flex-1 min-w-0">
+                                    <h3 className="text-[14.5px] font-semibold text-slate-700 group-data-[state=open]:text-blue-700 transition-colors duration-300 leading-snug flex-1 min-w-0 dark:text-slate-200">
                                         {faq.question}
                                     </h3>
                                 </div>
                                 {/* Chevron */}
-                                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-slate-100 group-data-[state=open]:bg-blue-100 flex items-center justify-center transition-all duration-300">
-                                    <ChevronRight className="w-3 h-3 text-slate-400 group-data-[state=open]:text-blue-600 transition-all duration-300 group-data-[state=open]:rotate-90" />
+                                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-slate-100 group-data-[state=open]:bg-blue-100 flex items-center justify-center transition-all duration-300 dark:bg-slate-800">
+                                    <ChevronRight className="w-3 h-3 text-slate-400 group-data-[state=open]:text-blue-600 transition-all duration-300 group-data-[state=open]:rotate-90 dark:text-slate-500" />
                                 </div>
                             </AccordionTrigger>
 
                             <AccordionContent className="px-5 pb-5 pt-0">
-                                <div className="ml-[calc(2rem+14px)] border-t border-blue-100/60 pt-3.5 mt-0.5">
+                                <div className="ml-[calc(2rem+14px)] border-t border-blue-100/60 pt-3.5 mt-0.5 dark:border-blue-900/50">
                                     <p
-                                        className="text-[13.5px] text-slate-500 leading-relaxed font-medium [&_strong]:font-semibold [&_strong]:text-slate-600 [&_em]:not-italic [&_em]:font-semibold [&_em]:text-slate-500"
+                                        className="text-[13.5px] text-slate-500 leading-relaxed font-medium [&_strong]:font-semibold [&_strong]:text-slate-600 [&_em]:not-italic [&_em]:font-semibold [&_em]:text-slate-500 dark:text-slate-400"
                                         dangerouslySetInnerHTML={{ __html: faq.answer }}
                                     />
                                 </div>

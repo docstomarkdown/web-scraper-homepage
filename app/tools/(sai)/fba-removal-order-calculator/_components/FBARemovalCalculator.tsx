@@ -105,7 +105,7 @@ export function FBARemovalCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Left side inputs */}
                 <div className="lg:col-span-7 space-y-3">
-                    <Card className="border border-slate-200 shadow-sm bg-white">
+                    <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Removal vs Disposal Details"
                             description="Enter your inventory and fee details to determine the most profitable action."
@@ -262,15 +262,15 @@ export function FBARemovalCalculator() {
                     {isValid && bestOption && (
                         <div className={cn(
                             "flex items-start gap-4 p-5 rounded-2xl border transition-all duration-300 shadow-sm",
-                            bestOption === "REMOVE" ? "bg-emerald-50/50 border-emerald-100" :
-                            bestOption === "DISPOSE" ? "bg-blue-50/50 border-blue-100" :
-                            "bg-amber-50/50 border-amber-100"
+                            bestOption === "REMOVE" ? "bg-emerald-50/50 border-emerald-100 dark:bg-emerald-950/40 dark:border-emerald-900/50" :
+                            bestOption === "DISPOSE" ? "bg-blue-50/50 border-blue-100 dark:bg-blue-950/40 dark:border-blue-900/50" :
+                            "bg-amber-50/50 border-amber-100 dark:bg-amber-950/40 dark:border-amber-900/50"
                         )}>
                             <div className={cn(
-                                "p-2.5 rounded-xl bg-white shadow-sm ring-1 shrink-0 mt-0.5",
-                                bestOption === "REMOVE" ? "text-emerald-600 ring-emerald-100" :
-                                bestOption === "DISPOSE" ? "text-blue-600 ring-blue-100" :
-                                "text-amber-600 ring-amber-100"
+                                "p-2.5 rounded-xl bg-white shadow-sm ring-1 shrink-0 mt-0.5 dark:bg-slate-900",
+                                bestOption === "REMOVE" ? "text-emerald-600 ring-emerald-100 dark:text-emerald-400" :
+                                bestOption === "DISPOSE" ? "text-blue-600 ring-blue-100 dark:text-blue-400" :
+                                "text-amber-600 ring-amber-100 dark:text-amber-400"
                             )}>
                                 {bestOption === "REMOVE" ? <CheckCircle2 className="w-5 h-5" /> :
                                  bestOption === "DISPOSE" ? <Truck className="w-5 h-5" /> :
@@ -279,9 +279,9 @@ export function FBARemovalCalculator() {
                             <div className="space-y-1">
                                 <h4 className={cn(
                                     "text-sm font-semibold",
-                                    bestOption === "REMOVE" ? "text-emerald-900" :
-                                    bestOption === "DISPOSE" ? "text-blue-900" :
-                                    "text-amber-900"
+                                    bestOption === "REMOVE" ? "text-emerald-900 dark:text-emerald-400" :
+                                    bestOption === "DISPOSE" ? "text-blue-900 dark:text-blue-400" :
+                                    "text-amber-900 dark:text-amber-400"
                                 )}>
                                     {bestOption === "REMOVE" ? "Action: REMOVE ✅" :
                                      bestOption === "DISPOSE" ? "Action: DISPOSE ❌" :
@@ -289,9 +289,9 @@ export function FBARemovalCalculator() {
                                 </h4>
                                 <p className={cn(
                                     "text-sm leading-relaxed",
-                                    bestOption === "REMOVE" ? "text-emerald-700" :
-                                    bestOption === "DISPOSE" ? "text-blue-700" :
-                                    "text-amber-700"
+                                    bestOption === "REMOVE" ? "text-emerald-700 dark:text-emerald-400" :
+                                    bestOption === "DISPOSE" ? "text-blue-700 dark:text-blue-400" :
+                                    "text-amber-700 dark:text-amber-400"
                                 )}>
                                     {bestOption === "REMOVE" && `The net difference is ${formatCurrency(netDifference)} better if you REMOVE. When profit after removal is positive, removal is the ideal choice.`}
                                     {bestOption === "DISPOSE" && `The net difference is ${formatCurrency(netDifference)} better if you DISPOSE. Removal gives more loss than disposal in this scenario.`}

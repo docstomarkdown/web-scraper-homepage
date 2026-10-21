@@ -301,7 +301,7 @@ export function Validator() {
                 {/* LEFT: Input (Col Span 6) */}
                 <div className="lg:col-span-6 self-start lg:sticky lg:top-28">
                     <FadeIn delay={0.2} direction="right">
-                        <Card className="border border-slate-200 shadow-sm overflow-hidden bg-white min-h-[360px]">
+                        <Card className="border border-slate-200 shadow-sm overflow-hidden bg-white min-h-[360px] dark:border-slate-800 dark:bg-slate-900">
                             <CalculatorCardHeader
                                 title="UPC/EAN Validator"
                                 description="Enter a barcode / upload an image / import a CSV/TXT file to check status—with bulk validation support."
@@ -329,8 +329,8 @@ export function Validator() {
 
                                 {/* ── Divider ── */}
                                 <div className="relative flex items-center justify-center">
-                                    <div className="w-full border-t border-slate-200/80"></div>
-                                    <span className="absolute px-3 bg-white text-[10.5px] font-bold text-slate-400 uppercase tracking-widest">
+                                    <div className="w-full border-t border-slate-200/80 dark:border-slate-800"></div>
+                                    <span className="absolute px-3 bg-white text-[10.5px] font-bold text-slate-400 uppercase tracking-widest dark:bg-slate-900 dark:text-slate-500">
                                         Or
                                     </span>
                                 </div>
@@ -343,14 +343,14 @@ export function Validator() {
                                             animate={{ opacity: 1, scale: 1 }}
                                             exit={{ opacity: 0, scale: 0.97 }}
                                             transition={{ duration: 0.25 }}
-                                            className="rounded-xl border border-blue-200 bg-blue-50/50 p-5"
+                                            className="rounded-xl border border-blue-200 bg-blue-50/50 p-5 dark:border-blue-900/50 dark:bg-blue-950/40"
                                         >
                                             <div className="flex items-center gap-3">
-                                                <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0">
-                                                    <CheckCircle2 className="w-5 h-5 text-blue-600" />
+                                                <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 dark:bg-blue-900/40">
+                                                    <CheckCircle2 className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                                                 </div>
                                                 <div className="flex-1 min-w-0">
-                                                    <p className="text-[13px] font-bold text-blue-700">
+                                                    <p className="text-[13px] font-bold text-blue-700 dark:text-blue-400">
                                                         {bulkResults.length} barcode{bulkResults.length !== 1 ? 's' : ''} loaded
                                                     </p>
                                                     <p className="text-[11px] text-blue-600/70 truncate">
@@ -358,7 +358,7 @@ export function Validator() {
                                                     </p>
                                                 </div>
                                                 <button
-                                                    className="text-[11px] font-semibold text-blue-600 hover:text-blue-800 bg-blue-100 hover:bg-blue-200 px-3 py-1.5 rounded-lg transition-colors flex-shrink-0"
+                                                    className="text-[11px] font-semibold text-blue-600 hover:text-blue-800 bg-blue-100 hover:bg-blue-200 px-3 py-1.5 rounded-lg transition-colors flex-shrink-0 dark:text-blue-400 dark:hover:text-blue-400 dark:bg-blue-900/40"
                                                     onClick={() => { setBulkResults([]); setBulkFileName("") }}
                                                 >
                                                     Clear
@@ -379,8 +379,8 @@ export function Validator() {
                                                     "relative rounded-xl border-2 border-dashed transition-all duration-200 cursor-pointer",
                                                     "px-6 py-6",
                                                     isDragOver
-                                                        ? "border-blue-400 bg-blue-50/60"
-                                                        : "border-slate-200 bg-slate-50/40 hover:border-blue-300 hover:bg-blue-50/30"
+                                                        ? "border-blue-400 bg-blue-50/60 dark:bg-blue-950/40"
+                                                        : "border-slate-200 bg-slate-50/40 hover:border-blue-300 hover:bg-blue-50/30 dark:border-slate-800 dark:bg-slate-800/60 dark:hover:border-blue-800 dark:hover:bg-blue-950/40"
                                                 )}
                                                 onDragOver={handleDragOver}
                                                 onDragLeave={handleDragLeave}
@@ -390,25 +390,25 @@ export function Validator() {
                                                 <div className="flex flex-col items-center gap-3">
                                                     <div className={cn(
                                                         "w-11 h-11 rounded-xl flex items-center justify-center transition-colors",
-                                                        isDragOver ? "bg-blue-100 text-blue-600" : "bg-slate-100 text-slate-400"
+                                                        isDragOver ? "bg-blue-100 text-blue-600 dark:bg-blue-900/40 dark:text-blue-400" : "bg-slate-100 text-slate-400 dark:bg-slate-800 dark:text-slate-500"
                                                     )}>
                                                         <Upload className="w-5 h-5" />
                                                     </div>
                                                     <div className="text-center space-y-1.5">
-                                                        <p className="text-[13.5px] font-semibold text-slate-700 leading-snug">
-                                                            Drop file here or <span className="text-blue-600 hover:text-blue-700 transition-colors">browse</span>
+                                                        <p className="text-[13.5px] font-semibold text-slate-700 leading-snug dark:text-slate-200">
+                                                            Drop file here or <span className="text-blue-600 hover:text-blue-700 transition-colors dark:text-blue-400 dark:hover:text-blue-400">browse</span>
                                                         </p>
-                                                        <p className="text-[11.5px] text-slate-500 leading-relaxed">
+                                                        <p className="text-[11.5px] text-slate-500 leading-relaxed dark:text-slate-400">
                                                             Supports barcode images, CSV, or TXT files
                                                         </p>
                                                         <div className="flex items-center justify-center gap-2 pt-1">
-                                                            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100">
-                                                                <ImageIcon className="w-3 h-3 text-blue-600" />
-                                                                <span className="text-[10px] font-semibold text-blue-700">Image</span>
+                                                            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100 dark:bg-blue-950/40 dark:border-blue-900/50">
+                                                                <ImageIcon className="w-3 h-3 text-blue-600 dark:text-blue-400" />
+                                                                <span className="text-[10px] font-semibold text-blue-700 dark:text-blue-400">Image</span>
                                                             </div>
-                                                            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100">
-                                                                <FileUp className="w-3 h-3 text-blue-600" />
-                                                                <span className="text-[10px] font-semibold text-blue-700">Bulk CSV/TXT</span>
+                                                            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100 dark:bg-blue-950/40 dark:border-blue-900/50">
+                                                                <FileUp className="w-3 h-3 text-blue-600 dark:text-blue-400" />
+                                                                <span className="text-[10px] font-semibold text-blue-700 dark:text-blue-400">Bulk CSV/TXT</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -431,24 +431,24 @@ export function Validator() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                             >
-                                <Card className="relative overflow-hidden border border-slate-200/60 shadow-sm rounded-2xl bg-[#F5F8FD]">
+                                <Card className="relative overflow-hidden border border-slate-200/60 shadow-sm rounded-2xl bg-[#F5F8FD] dark:border-slate-800">
                                     {/* ── Header ── */}
                                     <div className="flex justify-between items-center gap-4 px-6 pt-5 pb-1">
                                         <div className="flex items-center gap-2.5">
-                                            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-100/50 shadow-sm shadow-blue-500/5">
-                                                <ClipboardList className="w-4 h-4 text-blue-600" />
+                                            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-100/50 shadow-sm shadow-blue-500/5 dark:border-blue-900/50">
+                                                <ClipboardList className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                                             </div>
-                                            <span className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none">
+                                            <span className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none dark:text-blue-400">
                                                 Results Panel
                                             </span>
                                         </div>
                                         {/* Badge: single valid/invalid OR bulk summary */}
                                         {bulkResults.length > 0 ? (
                                             <div className="flex items-center gap-1.5">
-                                                <span className="text-[10.5px] font-bold text-emerald-700 bg-emerald-100/80 px-2.5 py-1.5 rounded-full">
+                                                <span className="text-[10.5px] font-bold text-emerald-700 bg-emerald-100/80 px-2.5 py-1.5 rounded-full dark:text-emerald-400 dark:bg-emerald-900/40">
                                                     {bulkResults.filter(r => r.result.isValid).length} Valid
                                                 </span>
-                                                <span className="text-[10.5px] font-bold text-red-700 bg-red-100/80 px-2.5 py-1.5 rounded-full">
+                                                <span className="text-[10.5px] font-bold text-red-700 bg-red-100/80 px-2.5 py-1.5 rounded-full dark:text-red-400 dark:bg-red-900/40">
                                                     {bulkResults.filter(r => !r.result.isValid).length} Invalid
                                                 </span>
                                             </div>
@@ -458,10 +458,10 @@ export function Validator() {
                                                 animate={{ opacity: 1 }}
                                                 transition={{ duration: 0.4, ease: "easeInOut" }}
                                                 className={cn(
-                                                    "flex items-center justify-center px-2.5 py-1.5 rounded-full border shrink-0 border-slate-200/50",
+                                                    "flex items-center justify-center px-2.5 py-1.5 rounded-full border shrink-0 border-slate-200/50 dark:border-slate-800",
                                                     result.isValid
-                                                        ? "bg-emerald-100/80 text-emerald-700"
-                                                        : "bg-red-100/80 text-red-700"
+                                                        ? "bg-emerald-100/80 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400"
+                                                        : "bg-red-100/80 text-red-700 dark:bg-red-900/40 dark:text-red-400"
                                                 )}
                                             >
                                                 {result.isValid ? (
@@ -490,16 +490,16 @@ export function Validator() {
                                                         initial={{ opacity: 0, y: 6 }}
                                                         animate={{ opacity: 1, y: 0 }}
                                                         transition={{ duration: 0.22, delay: idx * 0.025, ease: "easeOut" }}
-                                                        className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-3.5 flex items-center justify-between gap-3"
+                                                        className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-3.5 flex items-center justify-between gap-3 dark:bg-slate-900 dark:border-slate-800"
                                                     >
                                                         <div className="flex items-center gap-3 min-w-0">
                                                             {item.result.isValid
-                                                                ? <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0" />
-                                                                : <XCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
+                                                                ? <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 dark:text-emerald-400" />
+                                                                : <XCircle className="w-5 h-5 text-red-500 flex-shrink-0 dark:text-red-400" />
                                                             }
                                                             <div className="min-w-0">
-                                                                <p className="text-sm font-bold text-slate-800 font-mono truncate">{item.code}</p>
-                                                                <p className="text-[10px] text-slate-500">
+                                                                <p className="text-sm font-bold text-slate-800 font-mono truncate dark:text-slate-100">{item.code}</p>
+                                                                <p className="text-[10px] text-slate-500 dark:text-slate-400">
                                                                     {item.result.format !== "Unknown" ? item.result.format : "Unknown format"}
                                                                     {item.result.isValid && ` · Check Digit: ${item.result.checkDigit}`}
                                                                 </p>
@@ -508,8 +508,8 @@ export function Validator() {
                                                         <span className={cn(
                                                             "text-[10px] font-bold px-2.5 py-1 rounded-full flex-shrink-0",
                                                             item.result.isValid
-                                                                ? "text-emerald-700 bg-emerald-50"
-                                                                : "text-red-700 bg-red-50"
+                                                                ? "text-emerald-700 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-950/40"
+                                                                : "text-red-700 bg-red-50 dark:text-red-400 dark:bg-red-950/40"
                                                         )}>
                                                             {item.result.isValid ? "Valid" : "Invalid"}
                                                         </span>
@@ -532,11 +532,11 @@ export function Validator() {
                                                             initial={{ opacity: 0 }}
                                                             animate={{ opacity: 1 }}
                                                             transition={{ duration: 0.55, ease: "easeOut" }}
-                                                            className="bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_8px_40px_rgba(59,130,246,0.12)] rounded-2xl px-6 py-5 flex flex-col items-center gap-3 w-fit max-w-[320px] pointer-events-auto"
+                                                            className="bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_8px_40px_rgba(59,130,246,0.12)] rounded-2xl px-6 py-5 flex flex-col items-center gap-3 w-fit max-w-[320px] pointer-events-auto dark:bg-slate-900/80 dark:border-slate-800"
                                                         >
                                                             <div className="relative flex items-center justify-center">
                                                                 <span className="absolute w-11 h-11 rounded-xl bg-blue-400/15 animate-ping" style={{ animationDuration: "2.8s" }} />
-                                                                <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200/60 flex items-center justify-center text-blue-500 shadow-sm">
+                                                                <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200/60 flex items-center justify-center text-blue-500 shadow-sm dark:from-blue-950/30 dark:to-blue-900/30 dark:border-blue-900/50 dark:text-blue-400">
                                                                     <ClipboardPenLine className="w-[18px] h-[18px]" />
                                                                 </div>
                                                             </div>
@@ -546,11 +546,11 @@ export function Validator() {
                                                                         <path d="M9 19l-7-7 7-7" />
                                                                         <path d="M2 12h36" />
                                                                     </svg>
-                                                                    <p className="text-[12.5px] text-slate-500 font-semibold leading-snug whitespace-nowrap z-10">
+                                                                    <p className="text-[12.5px] text-slate-500 font-semibold leading-snug whitespace-nowrap z-10 dark:text-slate-400">
                                                                         Fill in the inputs to see your
                                                                     </p>
                                                                 </div>
-                                                                <span className="inline-flex items-center px-3 py-1 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100/80 text-[11.5px] font-extrabold text-blue-600/90 tracking-wide shadow-sm shadow-blue-100/50">
+                                                                <span className="inline-flex items-center px-3 py-1 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100/80 text-[11.5px] font-extrabold text-blue-600/90 tracking-wide shadow-sm shadow-blue-100/50 dark:from-blue-950/30 dark:to-blue-900/30">
                                                                     Validation Status
                                                                 </span>
                                                             </div>
@@ -560,22 +560,22 @@ export function Validator() {
                                                     {/* Ghosted Skeleton */}
                                                     <div className="blur-[2.5px] opacity-40 select-none pointer-events-none">
                                                         <div className="flex flex-col items-center justify-center py-5 px-4 mb-2">
-                                                            <div className="h-2.5 w-24 rounded-full bg-slate-200/60 mb-3 animate-pulse" />
-                                                            <div className="h-12 w-40 rounded-xl bg-slate-200/50 mb-2 animate-pulse" style={{ animationDelay: "0.1s" }} />
+                                                            <div className="h-2.5 w-24 rounded-full bg-slate-200/60 mb-3 animate-pulse dark:bg-slate-700/60" />
+                                                            <div className="h-12 w-40 rounded-xl bg-slate-200/50 mb-2 animate-pulse dark:bg-slate-700/50" style={{ animationDelay: "0.1s" }} />
                                                             <div className="flex flex-col items-center gap-1.5 mt-1">
-                                                                <div className="h-2 w-44 rounded-full bg-slate-200/60 animate-pulse" style={{ animationDelay: "0.2s" }} />
-                                                                <div className="h-2 w-32 rounded-full bg-slate-200/50 animate-pulse" style={{ animationDelay: "0.3s" }} />
+                                                                <div className="h-2 w-44 rounded-full bg-slate-200/60 animate-pulse dark:bg-slate-700/60" style={{ animationDelay: "0.2s" }} />
+                                                                <div className="h-2 w-32 rounded-full bg-slate-200/50 animate-pulse dark:bg-slate-700/50" style={{ animationDelay: "0.3s" }} />
                                                             </div>
                                                         </div>
-                                                        <div className="h-px w-full bg-slate-200/40 my-4" />
+                                                        <div className="h-px w-full bg-slate-200/40 my-4 dark:bg-slate-700/40" />
                                                         <div className="space-y-3 px-2">
-                                                            <div className="bg-slate-50/50 border border-slate-100 p-3 rounded-xl">
-                                                                <div className="h-2 w-20 rounded-full bg-slate-200/60 mb-3 animate-pulse" />
-                                                                <div className="h-4 w-16 rounded-lg bg-slate-200/50 animate-pulse" />
+                                                            <div className="bg-slate-50/50 border border-slate-100 p-3 rounded-xl dark:bg-slate-800/60 dark:border-slate-800">
+                                                                <div className="h-2 w-20 rounded-full bg-slate-200/60 mb-3 animate-pulse dark:bg-slate-700/60" />
+                                                                <div className="h-4 w-16 rounded-lg bg-slate-200/50 animate-pulse dark:bg-slate-700/50" />
                                                             </div>
-                                                            <div className="bg-slate-50/50 border border-slate-100 p-3 rounded-xl">
-                                                                <div className="h-2 w-24 rounded-full bg-slate-200/60 mb-3 animate-pulse" style={{ animationDelay: "0.1s" }} />
-                                                                <div className="h-4 w-12 rounded-lg bg-slate-200/50 animate-pulse" style={{ animationDelay: "0.15s" }} />
+                                                            <div className="bg-slate-50/50 border border-slate-100 p-3 rounded-xl dark:bg-slate-800/60 dark:border-slate-800">
+                                                                <div className="h-2 w-24 rounded-full bg-slate-200/60 mb-3 animate-pulse dark:bg-slate-700/60" style={{ animationDelay: "0.1s" }} />
+                                                                <div className="h-4 w-12 rounded-lg bg-slate-200/50 animate-pulse dark:bg-slate-700/50" style={{ animationDelay: "0.15s" }} />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -597,7 +597,7 @@ export function Validator() {
                                                         initial={{ opacity: 0 }}
                                                         animate={{ opacity: 1 }}
                                                         transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-                                                        className="relative flex flex-col items-center text-center py-6 px-4 rounded-2xl bg-slate-50/70 border border-slate-100/80"
+                                                        className="relative flex flex-col items-center text-center py-6 px-4 rounded-2xl bg-slate-50/70 border border-slate-100/80 dark:bg-slate-800/60 dark:border-slate-800"
                                                     >
 
 
@@ -609,7 +609,7 @@ export function Validator() {
                                                         >
                                                             <span className={cn(
                                                                 "text-[2.75rem] sm:text-[3.25rem] font-black tracking-tighter leading-none",
-                                                                result.isValid ? "text-emerald-600" : "text-red-600"
+                                                                result.isValid ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400"
                                                             )}>
                                                                 {result.isValid ? "Valid" : "Invalid"}
                                                             </span>
@@ -619,7 +619,7 @@ export function Validator() {
                                                             initial={{ opacity: 0 }}
                                                             animate={{ opacity: 1 }}
                                                             transition={{ duration: 0.3, delay: 0.2 }}
-                                                            className="text-[12px] text-slate-500 font-medium max-w-[280px] mx-auto leading-relaxed mt-2.5"
+                                                            className="text-[12px] text-slate-500 font-medium max-w-[280px] mx-auto leading-relaxed mt-2.5 dark:text-slate-400"
                                                         >
                                                             {result.isValid
                                                                 ? (
@@ -639,29 +639,29 @@ export function Validator() {
                                                         initial={{ opacity: 0, y: 8 }}
                                                         animate={{ opacity: 1, y: 0 }}
                                                         transition={{ duration: 0.3, delay: 0.12, ease: "easeOut" }}
-                                                        className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)]"
+                                                        className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
                                                     >
                                                         <div className="flex items-center gap-2 mb-2">
                                                             {result.format !== "Unknown"
-                                                                ? <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                                                                : <XCircle className="w-4 h-4 text-red-500 flex-shrink-0" />
+                                                                ? <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 dark:text-emerald-400" />
+                                                                : <XCircle className="w-4 h-4 text-red-500 flex-shrink-0 dark:text-red-400" />
                                                             }
-                                                            <span className="text-[13px] font-bold text-slate-500">Barcode type</span>
+                                                            <span className="text-[13px] font-bold text-slate-500 dark:text-slate-400">Barcode type</span>
                                                         </div>
                                                         <div className="pl-7 space-y-1.5">
                                                             {result.format !== "Unknown" ? (
                                                                 <>
                                                                     <div className="flex items-center gap-1.5">
-                                                                        <Check className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
-                                                                        <span className="text-xs text-slate-600">
-                                                                            Barcode type: <span className="font-bold text-slate-700">{result.format}</span>
+                                                                        <Check className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0 dark:text-emerald-400" />
+                                                                        <span className="text-xs text-slate-600 dark:text-slate-300">
+                                                                            Barcode type: <span className="font-bold text-slate-700 dark:text-slate-200">{result.format}</span>
                                                                         </span>
                                                                     </div>
                                                                 </>
                                                             ) : (
                                                                 <div className="flex items-center gap-1.5">
-                                                                    <AlertTriangle className="w-3.5 h-3.5 text-red-500 flex-shrink-0" />
-                                                                    <span className="text-xs text-slate-600">{result.message}</span>
+                                                                    <AlertTriangle className="w-3.5 h-3.5 text-red-500 flex-shrink-0 dark:text-red-400" />
+                                                                    <span className="text-xs text-slate-600 dark:text-slate-300">{result.message}</span>
                                                                 </div>
                                                             )}
                                                         </div>
@@ -673,28 +673,28 @@ export function Validator() {
                                                             initial={{ opacity: 0, y: 8 }}
                                                             animate={{ opacity: 1, y: 0 }}
                                                             transition={{ duration: 0.3, delay: 0.17, ease: "easeOut" }}
-                                                            className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)]"
+                                                            className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
                                                         >
                                                             <div className="flex items-center gap-2 mb-2">
                                                                 {result.isValid
-                                                                    ? <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                                                                    : <XCircle className="w-4 h-4 text-red-500 flex-shrink-0" />
+                                                                    ? <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 dark:text-emerald-400" />
+                                                                    : <XCircle className="w-4 h-4 text-red-500 flex-shrink-0 dark:text-red-400" />
                                                                 }
-                                                                <span className="text-[13px] font-bold text-slate-500">Check Digit Analysis</span>
+                                                                <span className="text-[13px] font-bold text-slate-500 dark:text-slate-400">Check Digit Analysis</span>
                                                             </div>
                                                             <div className="pl-7 space-y-1.5">
                                                                 {result.isValid ? (
                                                                     <div className="flex items-center gap-1.5">
-                                                                        <Check className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
-                                                                        <span className="text-xs text-slate-600">
-                                                                            Check digit is correct: <span className="font-bold text-slate-700">{result.checkDigit}</span>
+                                                                        <Check className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0 dark:text-emerald-400" />
+                                                                        <span className="text-xs text-slate-600 dark:text-slate-300">
+                                                                            Check digit is correct: <span className="font-bold text-slate-700 dark:text-slate-200">{result.checkDigit}</span>
                                                                         </span>
                                                                     </div>
                                                                 ) : (
                                                                     <div className="flex items-center gap-1.5">
-                                                                        <AlertTriangle className="w-3.5 h-3.5 text-red-500 flex-shrink-0" />
-                                                                        <span className="text-xs text-slate-600">
-                                                                            Entered check digit is <span className="font-bold text-slate-700">{result.checkDigit}</span>, expected <span className="font-bold text-slate-700">{result.expectedCheckDigit}</span>.
+                                                                        <AlertTriangle className="w-3.5 h-3.5 text-red-500 flex-shrink-0 dark:text-red-400" />
+                                                                        <span className="text-xs text-slate-600 dark:text-slate-300">
+                                                                            Entered check digit is <span className="font-bold text-slate-700 dark:text-slate-200">{result.checkDigit}</span>, expected <span className="font-bold text-slate-700 dark:text-slate-200">{result.expectedCheckDigit}</span>.
                                                                         </span>
                                                                     </div>
                                                                 )}
@@ -708,7 +708,7 @@ export function Validator() {
                                                             initial={{ opacity: 0, y: 8 }}
                                                             animate={{ opacity: 1, y: 0 }}
                                                             transition={{ duration: 0.3, delay: 0.22, ease: "easeOut" }}
-                                                            className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)]"
+                                                            className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
                                                         >
                                                             <Dialog>
                                                                 <DialogTrigger asChild>
@@ -717,37 +717,37 @@ export function Validator() {
                                                                         className="w-full h-auto p-0 text-xs font-medium justify-between hover:bg-transparent"
                                                                     >
                                                                         <span className="flex items-center gap-2">
-                                                                            <Calculator className="w-4 h-4 text-blue-500" />
-                                                                            <span className="text-[13px] font-bold text-slate-500">View Calculation Breakdown</span>
+                                                                            <Calculator className="w-4 h-4 text-blue-500 dark:text-blue-400" />
+                                                                            <span className="text-[13px] font-bold text-slate-500 dark:text-slate-400">View Calculation Breakdown</span>
                                                                             <TooltipProvider delayDuration={0}>
                                                                                 <Tooltip>
                                                                                     <TooltipTrigger asChild>
                                                                                         <span
                                                                                             onClick={(e) => e.stopPropagation()}
-                                                                                            className="flex-shrink-0 text-slate-400 hover:text-blue-600 transition-colors cursor-help"
+                                                                                            className="flex-shrink-0 text-slate-400 hover:text-blue-600 transition-colors cursor-help dark:text-slate-500 dark:hover:text-blue-400"
                                                                                             aria-label="Calculation breakdown info"
                                                                                         >
                                                                                             <Info className="w-3.5 h-3.5" />
                                                                                         </span>
                                                                                     </TooltipTrigger>
-                                                                                    <TooltipContent side="top" className="bg-slate-900 border-slate-800 text-white text-xs">
+                                                                                    <TooltipContent side="top" className="bg-slate-900 border-slate-800 text-white text-xs dark:bg-slate-800 dark:border-slate-700">
                                                                                         Step-by-step check digit calculation
                                                                                     </TooltipContent>
                                                                                 </Tooltip>
                                                                             </TooltipProvider>
                                                                         </span>
-                                                                        <Maximize2 className="w-3.5 h-3.5 text-slate-400" />
+                                                                        <Maximize2 className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
                                                                     </Button>
                                                                 </DialogTrigger>
-                                                                <DialogContent className="max-w-md bg-white text-slate-900 border-slate-200">
+                                                                <DialogContent className="max-w-md bg-white text-slate-900 border-slate-200 dark:bg-slate-900 dark:text-white dark:border-slate-800">
                                                                     <DialogHeader>
-                                                                        <DialogTitle className="flex items-center gap-2 text-slate-900">
-                                                                            <Calculator className="w-5 h-5 text-blue-500" />
+                                                                        <DialogTitle className="flex items-center gap-2 text-slate-900 dark:text-white">
+                                                                            <Calculator className="w-5 h-5 text-blue-500 dark:text-blue-400" />
                                                                             Calculation Breakdown
                                                                         </DialogTitle>
-                                                                        <DialogDescription className="text-slate-500">
+                                                                        <DialogDescription className="text-slate-500 dark:text-slate-400">
                                                                             {inputCode
-                                                                                ? <>Step-by-step verification regarding <span className="font-mono font-bold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded text-xs">{inputCode}</span></>
+                                                                                ? <>Step-by-step verification regarding <span className="font-mono font-bold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded text-xs dark:text-slate-200 dark:bg-slate-800">{inputCode}</span></>
                                                                                 : "Enter a barcode to see the step-by-step validation logic."
                                                                             }
                                                                         </DialogDescription>
@@ -758,7 +758,7 @@ export function Validator() {
                                                                                 initial={{ height: 0 }}
                                                                                 animate={{ height: "100%" }}
                                                                                 transition={{ duration: 0.8, delay: 0.2 }}
-                                                                                className={cn("absolute left-3 top-2 bottom-2 w-0.5", result.isValid ? "bg-emerald-100" : "bg-rose-100")}
+                                                                                className={cn("absolute left-3 top-2 bottom-2 w-0.5", result.isValid ? "bg-emerald-100 dark:bg-emerald-900/40" : "bg-rose-100 dark:bg-rose-900/40")}
                                                                             />
                                                                             {result.calculationSteps.map((step, idx) => (
                                                                                 <motion.div
@@ -771,18 +771,18 @@ export function Validator() {
                                                                                     <div className={cn(
                                                                                         "flex-shrink-0 w-6 h-6 rounded-full border flex items-center justify-center text-xs font-black z-10 transition-colors",
                                                                                         result.isValid
-                                                                                            ? "bg-emerald-50 border-emerald-200 text-emerald-600"
-                                                                                            : "bg-rose-50 border-rose-200 text-rose-600"
+                                                                                            ? "bg-emerald-50 border-emerald-200 text-emerald-600 dark:bg-emerald-950/40 dark:border-emerald-900/50 dark:text-emerald-400"
+                                                                                            : "bg-rose-50 border-rose-200 text-rose-600 dark:bg-rose-950/40 dark:border-rose-900/50 dark:text-rose-400"
                                                                                     )}>
                                                                                         {step.step}
                                                                                     </div>
                                                                                     <div className="space-y-1">
-                                                                                        <p className="text-sm font-bold text-slate-700 leading-none">{step.description}</p>
+                                                                                        <p className="text-sm font-bold text-slate-700 leading-none dark:text-slate-200">{step.description}</p>
                                                                                         <div className={cn(
                                                                                             "font-mono text-xs px-2.5 py-1 rounded w-fit border transition-colors",
                                                                                             result.isValid
-                                                                                                ? "text-emerald-700 bg-emerald-50/50 border-emerald-100"
-                                                                                                : "text-rose-700 bg-rose-50/50 border-rose-100"
+                                                                                                ? "text-emerald-700 bg-emerald-50/50 border-emerald-100 dark:text-emerald-400 dark:bg-emerald-950/40 dark:border-emerald-900/50"
+                                                                                                : "text-rose-700 bg-rose-50/50 border-rose-100 dark:text-rose-400 dark:bg-rose-950/40 dark:border-rose-900/50"
                                                                                         )}>
                                                                                             {step.value}
                                                                                         </div>
@@ -790,11 +790,11 @@ export function Validator() {
                                                                                 </motion.div>
                                                                             ))}
                                                                         </div>
-                                                                        <div className="bg-blue-50 p-3 rounded-lg border border-blue-100">
-                                                                            <p className="text-xs text-blue-700 font-medium">
+                                                                        <div className="bg-blue-50 p-3 rounded-lg border border-blue-100 dark:bg-blue-950/40 dark:border-blue-900/50">
+                                                                            <p className="text-xs text-blue-700 font-medium dark:text-blue-400">
                                                                                 Note: Standard Modulo 10 Algorithm
                                                                             </p>
-                                                                            <p className="text-[10px] text-blue-600 mt-1">
+                                                                            <p className="text-[10px] text-blue-600 mt-1 dark:text-blue-400">
                                                                                 This calculation is used universally for GTIN barcodes (UPC, EAN) to detect common data entry errors.
                                                                             </p>
                                                                         </div>

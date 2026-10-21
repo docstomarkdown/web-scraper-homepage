@@ -106,7 +106,7 @@ export function CubicFeetCalculator() {
                 
                 {/* ═══ LEFT COLUMN: Input Panel ═══ */}
                 <div className="lg:col-span-7 self-start lg:sticky lg:top-28">
-                    <Card className="border-slate-200 shadow-sm relative overflow-hidden bg-white flex flex-col">
+                    <Card className="border-slate-200 shadow-sm relative overflow-hidden bg-white flex flex-col dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Cubic Feet Calculator"
                             description="Enter dimensions to calculate the cubic volume of your item or shipment."
@@ -133,7 +133,7 @@ export function CubicFeetCalculator() {
                                         groupingTitle="Dimensions"
                                         groupingIcon={Box}
                                         groupingAction={
-                                            <div className="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200 h-11 font-sans ml-4 w-36 sm:w-44">
+                                            <div className="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200 h-11 font-sans ml-4 w-36 sm:w-44 dark:bg-slate-800 dark:border-slate-800">
                                                 {(["ft", "in", "cm", "m"] as DimensionUnit[]).map((u) => (
                                                     <button
                                                         key={u}
@@ -141,8 +141,8 @@ export function CubicFeetCalculator() {
                                                         className={cn(
                                                             "px-3 h-full rounded-md text-[13px] font-bold transition-all flex-1 flex items-center justify-center",
                                                             unit === u
-                                                                ? "bg-white text-blue-600 shadow-sm border border-blue-200"
-                                                                : "text-slate-500 hover:text-slate-900"
+                                                                ? "bg-white text-blue-600 shadow-sm border border-blue-200 dark:bg-slate-900 dark:text-blue-400 dark:border-blue-900/50"
+                                                                : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
                                                         )}
                                                     >
                                                         {u}
@@ -176,7 +176,7 @@ export function CubicFeetCalculator() {
                                 {/* ── Quantity ── */}
                                 <div className="space-y-0">
                                     <div className="calculator-input-row max-w-[520px] mx-auto px-3 sm:px-5 pb-0">
-                                        <div className="h-px bg-slate-100/80 w-[calc(100%+48px)] -ml-6 mb-3 mt-1" />
+                                        <div className="h-px bg-slate-100/80 w-[calc(100%+48px)] -ml-6 mb-3 mt-1 dark:bg-slate-800" />
                                     </div>
                                     <CalculatorInput
                                         hideSeparator={true}
@@ -195,7 +195,7 @@ export function CubicFeetCalculator() {
                                 {/* ── Cost ── */}
                                 <div className="space-y-0">
                                     <div className="calculator-input-row max-w-[520px] mx-auto px-3 sm:px-5 pb-0">
-                                        <div className="h-px bg-slate-100/80 w-[calc(100%+48px)] -ml-6 mb-3 mt-1" />
+                                        <div className="h-px bg-slate-100/80 w-[calc(100%+48px)] -ml-6 mb-3 mt-1 dark:bg-slate-800" />
                                     </div>
                                     <CalculatorInput
                                         hideSeparator={true}
@@ -225,14 +225,14 @@ export function CubicFeetCalculator() {
                         transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                         className="flex flex-col gap-3"
                     >
-                        <Card className="relative overflow-hidden border border-slate-200/60 shadow-sm rounded-2xl bg-[#F5F8FD] flex flex-col">
+                        <Card className="relative overflow-hidden border border-slate-200/60 shadow-sm rounded-2xl bg-[#F5F8FD] flex flex-col dark:border-slate-800">
                             {/* Header */}
                             <div className="flex justify-between items-center gap-4 px-6 pt-5 pb-1">
                                 <div className="flex items-center gap-2.5">
-                                    <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-100/50">
-                                        <Calculator className="w-4 h-4 text-blue-600" />
+                                    <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-100/50 dark:border-blue-900/50">
+                                        <Calculator className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                                     </div>
-                                    <span className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none">
+                                    <span className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none dark:text-blue-400">
                                         Results Panel
                                     </span>
                                 </div>
@@ -243,7 +243,7 @@ export function CubicFeetCalculator() {
                                             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                                             className={cn(
                                                 "flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[10.5px] font-bold",
-                                                results.cft > 100 ? "bg-amber-100/50 text-amber-700 border-amber-200/50" : "bg-emerald-100/50 text-emerald-700 border-slate-200/50"
+                                                results.cft > 100 ? "bg-amber-100/50 text-amber-700 border-amber-200/50 dark:bg-amber-900/40 dark:text-amber-400 dark:border-amber-900/50" : "bg-emerald-100/50 text-emerald-700 border-slate-200/50 dark:bg-emerald-900/40 dark:text-emerald-400 dark:border-slate-800"
                                             )}
                                         >
                                             <span className={cn(
@@ -256,7 +256,7 @@ export function CubicFeetCalculator() {
                                         <motion.div
                                             key="idle"
                                             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                                            className="text-[10.5px] font-bold text-slate-400 px-2"
+                                            className="text-[10.5px] font-bold text-slate-400 px-2 dark:text-slate-500"
                                         >
                                             Awaiting input
                                         </motion.div>
@@ -280,11 +280,11 @@ export function CubicFeetCalculator() {
                                                     initial={{ opacity: 0 }}
                                                     animate={{ opacity: 1 }}
                                                     transition={{ duration: 0.55, ease: "easeOut" }}
-                                                    className="bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_8px_40px_rgba(59,130,246,0.12)] rounded-2xl px-6 py-5 flex flex-col items-center gap-3 w-fit max-w-[320px] pointer-events-auto"
+                                                    className="bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_8px_40px_rgba(59,130,246,0.12)] rounded-2xl px-6 py-5 flex flex-col items-center gap-3 w-fit max-w-[320px] pointer-events-auto dark:bg-slate-900/80 dark:border-slate-800"
                                                 >
                                                     <div className="relative flex items-center justify-center">
                                                         <span className="absolute w-11 h-11 rounded-xl bg-blue-400/15 animate-ping" style={{ animationDuration: "2.8s" }} />
-                                                        <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200/60 flex items-center justify-center text-blue-500 shadow-sm">
+                                                        <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200/60 flex items-center justify-center text-blue-500 shadow-sm dark:from-blue-950/30 dark:to-blue-900/30 dark:border-blue-900/50 dark:text-blue-400">
                                                             <Package className="w-[18px] h-[18px]" />
                                                         </div>
                                                     </div>
@@ -294,11 +294,11 @@ export function CubicFeetCalculator() {
                                                                 <path d="M9 19l-7-7 7-7" />
                                                                 <path d="M2 12h36" />
                                                             </svg>
-                                                            <p className="text-[12.5px] text-slate-500 font-semibold leading-snug whitespace-nowrap z-10">
+                                                            <p className="text-[12.5px] text-slate-500 font-semibold leading-snug whitespace-nowrap z-10 dark:text-slate-400">
                                                                 Fill in dimensions to see your
                                                             </p>
                                                         </div>
-                                                        <span className="inline-flex items-center px-3 py-1 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100/80 text-[11.5px] font-extrabold text-blue-600/90 tracking-wide shadow-sm shadow-blue-100/50">
+                                                        <span className="inline-flex items-center px-3 py-1 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100/80 text-[11.5px] font-extrabold text-blue-600/90 tracking-wide shadow-sm shadow-blue-100/50 dark:from-blue-950/30 dark:to-blue-900/30">
                                                             Volume Results
                                                         </span>
                                                     </div>
@@ -308,22 +308,22 @@ export function CubicFeetCalculator() {
                                             {/* Blurred skeleton */}
                                             <div className="blur-[2.5px] opacity-40 select-none pointer-events-none">
                                                 <div className="flex flex-col items-center justify-center py-5 px-4 mb-2">
-                                                    <div className="h-2.5 w-24 rounded-full bg-slate-200/60 mb-3 animate-pulse" />
-                                                    <div className="h-12 w-40 rounded-xl bg-slate-200/50 mb-2 animate-pulse" style={{ animationDelay: "0.1s" }} />
+                                                    <div className="h-2.5 w-24 rounded-full bg-slate-200/60 mb-3 animate-pulse dark:bg-slate-700/60" />
+                                                    <div className="h-12 w-40 rounded-xl bg-slate-200/50 mb-2 animate-pulse dark:bg-slate-700/50" style={{ animationDelay: "0.1s" }} />
                                                     <div className="flex flex-col items-center gap-1.5 mt-1">
-                                                        <div className="h-2 w-44 rounded-full bg-slate-200/60 animate-pulse" style={{ animationDelay: "0.2s" }} />
-                                                        <div className="h-2 w-32 rounded-full bg-slate-200/50 animate-pulse" style={{ animationDelay: "0.3s" }} />
+                                                        <div className="h-2 w-44 rounded-full bg-slate-200/60 animate-pulse dark:bg-slate-700/60" style={{ animationDelay: "0.2s" }} />
+                                                        <div className="h-2 w-32 rounded-full bg-slate-200/50 animate-pulse dark:bg-slate-700/50" style={{ animationDelay: "0.3s" }} />
                                                     </div>
                                                 </div>
-                                                <div className="h-px w-full bg-slate-200/40 my-4" />
+                                                <div className="h-px w-full bg-slate-200/40 my-4 dark:bg-slate-700/40" />
                                                 <div className="space-y-3 px-2">
-                                                    <div className="bg-slate-50/50 border border-slate-100 p-3 rounded-xl">
-                                                        <div className="h-2 w-20 rounded-full bg-slate-200/60 mb-3 animate-pulse" />
-                                                        <div className="h-4 w-16 rounded-lg bg-slate-200/50 animate-pulse" />
+                                                    <div className="bg-slate-50/50 border border-slate-100 p-3 rounded-xl dark:bg-slate-800/60 dark:border-slate-800">
+                                                        <div className="h-2 w-20 rounded-full bg-slate-200/60 mb-3 animate-pulse dark:bg-slate-700/60" />
+                                                        <div className="h-4 w-16 rounded-lg bg-slate-200/50 animate-pulse dark:bg-slate-700/50" />
                                                     </div>
-                                                    <div className="bg-slate-50/50 border border-slate-100 p-3 rounded-xl">
-                                                        <div className="h-2 w-24 rounded-full bg-slate-200/60 mb-3 animate-pulse" style={{ animationDelay: "0.1s" }} />
-                                                        <div className="h-4 w-12 rounded-lg bg-slate-200/50 animate-pulse" style={{ animationDelay: "0.15s" }} />
+                                                    <div className="bg-slate-50/50 border border-slate-100 p-3 rounded-xl dark:bg-slate-800/60 dark:border-slate-800">
+                                                        <div className="h-2 w-24 rounded-full bg-slate-200/60 mb-3 animate-pulse dark:bg-slate-700/60" style={{ animationDelay: "0.1s" }} />
+                                                        <div className="h-4 w-12 rounded-lg bg-slate-200/50 animate-pulse dark:bg-slate-700/50" style={{ animationDelay: "0.15s" }} />
                                                     </div>
                                                 </div>
                                             </div>
@@ -344,18 +344,18 @@ export function CubicFeetCalculator() {
                                             transition={{ duration: 0.4, delay: 0.05 }}
                                             className="relative flex flex-col items-center text-center py-6 px-4 bg-transparent"
                                         >
-                                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.18em] leading-none mb-2">Cubic Feet</span>
+                                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.18em] leading-none mb-2 dark:text-slate-500">Cubic Feet</span>
                                             <motion.span
                                                 key={results.singleCft}
                                                 initial={{ opacity: 0, y: 4 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 transition={{ duration: 0.3 }}
-                                                className="text-[3.25rem] font-black text-blue-600 tracking-tighter leading-none"
+                                                className="text-[3.25rem] font-black text-blue-600 tracking-tighter leading-none dark:text-blue-400"
                                             >
                                                 {formatCompact(results.singleCft, 2)}
                                             </motion.span>
-                                            <span className="text-[1rem] font-bold text-slate-700 mt-1">Cubic Feet (ft³)</span>
-                                            <p className="text-[11.5px] text-slate-500 font-medium mt-2">
+                                            <span className="text-[1rem] font-bold text-slate-700 mt-1 dark:text-slate-200">Cubic Feet (ft³)</span>
+                                            <p className="text-[11.5px] text-slate-500 font-medium mt-2 dark:text-slate-400">
                                                 from {inputs.length} × {inputs.width} × {inputs.height} {unit}
                                             </p>
                                         </motion.div>
@@ -366,14 +366,14 @@ export function CubicFeetCalculator() {
                                                 initial={{ opacity: 0, y: 8 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 transition={{ duration: 0.35, delay: 0.08 }}
-                                                className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] mb-1"
+                                                className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] mb-1 dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
                                             >
                                                 <div className="flex items-center justify-between">
                                                     <div className="flex items-center gap-2">
-                                                        <Package className="w-4 h-4 text-blue-500 flex-shrink-0" />
-                                                        <span className="text-[13px] sm:text-[14px] font-bold text-slate-500">Total Volume <span className="font-medium text-[11px] ml-1 opacity-70">(×{qtyNum} items)</span></span>
+                                                        <Package className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
+                                                        <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 dark:text-slate-400">Total Volume <span className="font-medium text-[11px] ml-1 opacity-70">(×{qtyNum} items)</span></span>
                                                     </div>
-                                                    <span className="text-[16px] sm:text-[17px] font-bold text-slate-700 tabular-nums">
+                                                    <span className="text-[16px] sm:text-[17px] font-bold text-slate-700 tabular-nums dark:text-slate-200">
                                                         {formatCompact(results.cft, 2)} <span className="font-normal">ft³</span>
                                                     </span>
                                                 </div>
@@ -385,23 +385,23 @@ export function CubicFeetCalculator() {
                                             initial={{ opacity: 0, y: 8 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.35, delay: 0.1 }}
-                                            className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)]"
+                                            className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
                                         >
                                             <div className="flex items-center gap-2 mb-3">
-                                                <RefreshCw className="w-4 h-4 text-blue-500 flex-shrink-0" />
-                                                <span className="text-[13px] sm:text-[14px] font-bold text-slate-500">Other Units</span>
+                                                <RefreshCw className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
+                                                <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 dark:text-slate-400">Other Units</span>
                                             </div>
                                             <div className="pl-7 space-y-2">
                                                 <div className="flex items-center justify-between mt-1">
-                                                    <span className="text-xs text-slate-600 font-medium">Cubic Meters</span>
-                                                    <span className="text-[16px] sm:text-[17px] font-bold text-slate-700 tabular-nums">
+                                                    <span className="text-xs text-slate-600 font-medium dark:text-slate-300">Cubic Meters</span>
+                                                    <span className="text-[16px] sm:text-[17px] font-bold text-slate-700 tabular-nums dark:text-slate-200">
                                                         {formatCompact(results.cbm, 4)}{" "}
                                                         <span className="font-normal text-xs">m³</span>
                                                     </span>
                                                 </div>
                                                 <div className="flex items-center justify-between mt-1">
-                                                    <span className="text-xs text-slate-600 font-medium">Cubic Inches</span>
-                                                    <span className="text-[16px] sm:text-[17px] font-bold text-slate-700 tabular-nums">
+                                                    <span className="text-xs text-slate-600 font-medium dark:text-slate-300">Cubic Inches</span>
+                                                    <span className="text-[16px] sm:text-[17px] font-bold text-slate-700 tabular-nums dark:text-slate-200">
                                                         {formatCompact(results.inches, 2)}{" "}
                                                         <span className="font-normal text-xs">in³</span>
                                                     </span>
@@ -415,23 +415,23 @@ export function CubicFeetCalculator() {
                                                 initial={{ opacity: 0, y: 8 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 transition={{ duration: 0.35, delay: 0.15 }}
-                                                className="bg-white border border-blue-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-blue-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] bg-blue-50/30"
+                                                className="bg-white border border-blue-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-blue-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] bg-blue-50/30 dark:bg-slate-900 dark:border-blue-900/50 dark:hover:border-blue-800 dark:bg-blue-950/40"
                                             >
                                                 <div className="flex items-center justify-between mb-2">
                                                     <div className="flex items-center gap-2">
-                                                        <span className="flex items-center justify-center w-4 h-4 rounded-full bg-blue-100 text-blue-600 font-bold text-[10px] flex-shrink-0">
+                                                        <span className="flex items-center justify-center w-4 h-4 rounded-full bg-blue-100 text-blue-600 font-bold text-[10px] flex-shrink-0 dark:bg-blue-900/40 dark:text-blue-400">
                                                             {getCurrencySymbol(currency)}
                                                         </span>
-                                                        <span className="text-[13px] sm:text-[14px] font-bold text-slate-500">
+                                                        <span className="text-[13px] sm:text-[14px] font-bold text-slate-500 dark:text-slate-400">
                                                             Estimated Total Cost
                                                         </span>
                                                     </div>
-                                                    <span className="text-[10px] font-extrabold px-2 py-0.5 rounded bg-blue-100/80 text-blue-700">
+                                                    <span className="text-[10px] font-extrabold px-2 py-0.5 rounded bg-blue-100/80 text-blue-700 dark:bg-blue-900/40 dark:text-blue-400">
                                                         {formatCurrency(parseFloat(inputs.costPerVolume))}/ft³
                                                     </span>
                                                 </div>
                                                 <div className="pl-6 pt-1">
-                                                    <span className="text-[16px] sm:text-[17px] font-bold text-slate-700 tracking-tight block">
+                                                    <span className="text-[16px] sm:text-[17px] font-bold text-slate-700 tracking-tight block dark:text-slate-200">
                                                         {formatCurrency(results.estimatedCost)}
                                                     </span>
                                                 </div>

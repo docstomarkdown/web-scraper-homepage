@@ -73,7 +73,7 @@ export function PackagingCostCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* ── Inputs Column ── */}
                 <div className="lg:col-span-7 space-y-3 lg:sticky lg:top-8">
-                    <Card className="border border-slate-200 shadow-sm bg-white">
+                    <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Packaging Details"
                             description="Enter your per-unit material costs, packing time, and order quantity."
@@ -147,22 +147,22 @@ export function PackagingCostCalculator() {
                                         className={cn(
                                             "flex items-center justify-between p-4 rounded-xl border cursor-pointer transition-all duration-200 group select-none ml-0",
                                             showAdvanced
-                                                ? "bg-blue-50/50 border-blue-200 shadow-sm"
-                                                : "bg-slate-50 border-slate-200 hover:border-blue-300 hover:bg-slate-100"
+                                                ? "bg-blue-50/50 border-blue-200 shadow-sm dark:bg-blue-950/40 dark:border-blue-900/50"
+                                                : "bg-slate-50 border-slate-200 hover:border-blue-300 hover:bg-slate-100 dark:bg-slate-800/60 dark:border-slate-800 dark:hover:border-blue-800 dark:hover:bg-slate-800"
                                         )}
                                     >
                                         <div className="flex items-center gap-3">
                                             <div className={cn(
                                                 "w-8 h-8 rounded-full flex items-center justify-center transition-colors",
-                                                showAdvanced ? "bg-blue-100 text-blue-600" : "bg-white text-slate-400 group-hover:text-blue-500"
+                                                showAdvanced ? "bg-blue-100 text-blue-600 dark:bg-blue-900/40 dark:text-blue-400" : "bg-white text-slate-400 group-hover:text-blue-500 dark:bg-slate-900 dark:text-slate-500 dark:group-hover:text-blue-400"
                                             )}>
                                                 <Scissors className="w-4 h-4" />
                                             </div>
                                             <div className="flex flex-col">
-                                                <span className={cn("text-sm font-semibold transition-colors", showAdvanced ? "text-blue-700" : "text-slate-700")}>
+                                                <span className={cn("text-sm font-semibold transition-colors", showAdvanced ? "text-blue-700 dark:text-blue-400" : "text-slate-700 dark:text-slate-200")}>
                                                     Advanced Settings
                                                 </span>
-                                                <span className="text-[11px] text-slate-400 font-medium">
+                                                <span className="text-[11px] text-slate-400 font-medium dark:text-slate-500">
                                                     Tape, Label & Branding details
                                                 </span>
                                             </div>
@@ -170,16 +170,16 @@ export function PackagingCostCalculator() {
                                         <div className="flex items-center gap-3">
                                             <span className={cn(
                                                 "text-[10px] px-2 py-0.5 rounded-full font-bold tracking-wide uppercase transition-colors",
-                                                showAdvanced ? "bg-blue-100 text-blue-700" : "bg-slate-200 text-slate-500"
+                                                showAdvanced ? "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-400" : "bg-slate-200 text-slate-500 dark:bg-slate-700 dark:text-slate-400"
                                             )}>
                                                 Optional
                                             </span>
-                                            {showAdvanced ? <Percent className="w-4 h-4 text-blue-500" /> : <Package className="w-4 h-4 text-slate-400 opacity-50" />}
+                                            {showAdvanced ? <Percent className="w-4 h-4 text-blue-500 dark:text-blue-400" /> : <Package className="w-4 h-4 text-slate-400 opacity-50 dark:text-slate-500" />}
                                         </div>
                                     </div>
 
                                     {showAdvanced && (
-                                        <FadeIn className="mt-4 p-5 bg-slate-50/20 rounded-xl border border-slate-200/60 space-y-4">
+                                        <FadeIn className="mt-4 p-5 bg-slate-50/20 rounded-xl border border-slate-200/60 space-y-4 dark:bg-slate-800/60 dark:border-slate-800">
                                             <CalculatorInput
                                                 label="Padding / Infill"
                                                 value={paddingCost}

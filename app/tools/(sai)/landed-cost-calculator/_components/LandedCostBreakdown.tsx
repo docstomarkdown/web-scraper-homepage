@@ -77,24 +77,24 @@ export function LandedCostBreakdown({
     return (
         <Card
             className={cn(
-                "border border-slate-200/60 shadow-sm bg-[#F5F8FD] rounded-2xl p-4 sm:p-5 flex flex-col gap-4 sm:gap-5",
+                "border border-slate-200/60 shadow-sm bg-[#F5F8FD] rounded-2xl p-4 sm:p-5 flex flex-col gap-4 sm:gap-5 dark:border-slate-800",
                 className
             )}
         >
             {/* Header */}
-            <div className="flex items-center justify-between pb-3 border-b border-slate-200/50">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-200/50 dark:border-slate-800">
                 <div className="flex items-center gap-2">
                     <div className="flex items-center justify-center w-6 h-6 rounded-md bg-blue-600/10 border border-blue-500/20">
-                        <PieChart className="w-3.5 h-3.5 text-blue-600" />
+                        <PieChart className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                     </div>
-                    <h2 className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none">
+                    <h2 className="text-[15px] sm:text-[16px] font-bold text-blue-700 leading-none dark:text-blue-400">
                         Landed Breakdown
                     </h2>
                 </div>
                 {/* Optional: Cost Increase badge if > 0 */}
                 {costIncrease > 0 && (
-                    <div className="text-[11px] font-bold text-slate-500 bg-white border border-slate-200 px-2.5 py-1 rounded-md shadow-sm">
-                        Cost Increase: <span className="text-slate-800">+{costIncrease.toFixed(1)}%</span>
+                    <div className="text-[11px] font-bold text-slate-500 bg-white border border-slate-200 px-2.5 py-1 rounded-md shadow-sm dark:text-slate-400 dark:bg-slate-900 dark:border-slate-800">
+                        Cost Increase: <span className="text-slate-800 dark:text-slate-100">+{costIncrease.toFixed(1)}%</span>
                     </div>
                 )}
             </div>
@@ -122,16 +122,16 @@ export function LandedCostBreakdown({
                             </RechartsPie>
                         </ResponsiveContainer>
                     ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-center p-3 text-slate-400 text-[10.5px] leading-tight font-medium border-2 border-dashed border-slate-200/70 rounded-full bg-slate-50/40">
+                        <div className="absolute inset-0 flex items-center justify-center text-center p-3 text-slate-400 text-[10.5px] leading-tight font-medium border-2 border-dashed border-slate-200/70 rounded-full bg-slate-50/40 dark:text-slate-500 dark:border-slate-800 dark:bg-slate-800/60">
                             Add fees to view
                         </div>
                     )}
                     {pieTotal > 0 && (
                         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                            <span className="text-[10px] sm:text-[11px] font-medium text-slate-400 text-center leading-tight mb-0.5 mt-0.5">
+                            <span className="text-[10px] sm:text-[11px] font-medium text-slate-400 text-center leading-tight mb-0.5 mt-0.5 dark:text-slate-500">
                                 Total Cost
                             </span>
-                            <span className="text-[11px] sm:text-[13px] font-bold text-slate-900 tracking-tight">
+                            <span className="text-[11px] sm:text-[13px] font-bold text-slate-900 tracking-tight dark:text-white">
                                 {formatCurrency(pieTotal)}
                             </span>
                         </div>
@@ -146,7 +146,7 @@ export function LandedCostBreakdown({
                         return (
                             <div
                                 key={item.label}
-                                className="grid text-[11px] px-3 bg-white border border-slate-100 rounded-lg py-1.5 shadow-sm"
+                                className="grid text-[11px] px-3 bg-white border border-slate-100 rounded-lg py-1.5 shadow-sm dark:bg-slate-900 dark:border-slate-800"
                                 style={{ gridTemplateColumns: "1fr auto auto" }}
                             >
                                 <div className="flex items-center gap-2 min-w-0">
@@ -154,14 +154,14 @@ export function LandedCostBreakdown({
                                         className="w-2 h-2 rounded-full shrink-0"
                                         style={{ backgroundColor: derivedDotColor }}
                                     />
-                                    <span className="text-slate-600 font-bold truncate">
+                                    <span className="text-slate-600 font-bold truncate dark:text-slate-300">
                                         {item.label}
                                     </span>
                                 </div>
-                                <span className="text-slate-500 font-semibold tabular-nums text-right px-2 self-center">
+                                <span className="text-slate-500 font-semibold tabular-nums text-right px-2 self-center dark:text-slate-400">
                                     {formatCurrency(item.value)}
                                 </span>
-                                <span className="font-extrabold text-slate-900 tabular-nums text-right self-center w-[36px]">
+                                <span className="font-extrabold text-slate-900 tabular-nums text-right self-center w-[36px] dark:text-white">
                                     {`${item.pct.toFixed(0)}%`}
                                 </span>
                             </div>

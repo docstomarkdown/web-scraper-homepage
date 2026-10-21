@@ -87,7 +87,7 @@ export function InventoryTurnoverCalculator() {
                 {/* Left Column: Smart Inputs */}
                 <div className="lg:col-span-7">
                     <FadeIn direction="right">
-                        <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden h-full flex flex-col rounded-[2.5rem]">
+                        <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden h-full flex flex-col rounded-[2.5rem] dark:border-slate-800 dark:bg-slate-900">
                             <CalculatorCardHeader
                                 title="Turnover Configuration"
                                 description="Input your financial data to analyze how effectively you're managing inventory."

@@ -53,7 +53,7 @@ export function MercariFeeCalculator() {
                 {/* Left Column: Inputs */}
                 <div className="lg:col-span-7 lg:sticky lg:top-8">
                     <FadeIn delay={0.2} direction="right" className="h-full">
-                        <Card className="border border-slate-200 shadow-sm bg-white">
+                        <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                             <CalculatorCardHeader
                                 title="Listing Details"
                                 description="Enter your sale price and cost breakdown to calculate net profit."

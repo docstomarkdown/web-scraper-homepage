@@ -165,10 +165,10 @@ const formatTime = (minutesSinceMidnight: number) => {
     return `${displayH}:${displayM} ${ampm}`;
 };
 const getTimeOfDayStatus = (hour: number) => {
-    if (hour >= 9 && hour < 17) return { label: "Business Hours", color: "text-blue-600", bg: "bg-blue-50", border: "border-blue-100", icon: Sun };
-    if (hour >= 6 && hour < 9) return { label: "Morning", color: "text-amber-600", bg: "bg-amber-50", border: "border-amber-100", icon: Sun };
-    if (hour >= 17 && hour < 22) return { label: "Evening", color: "text-indigo-600", bg: "bg-indigo-50", border: "border-indigo-100", icon: Moon };
-    return { label: "Off Hours", color: "text-slate-500", bg: "bg-slate-50", border: "border-slate-200", icon: Moon };
+    if (hour >= 9 && hour < 17) return { label: "Business Hours", color: "text-blue-600 dark:text-blue-400", bg: "bg-blue-50 dark:bg-blue-950/40", border: "border-blue-100 dark:border-blue-900/50", icon: Sun };
+    if (hour >= 6 && hour < 9) return { label: "Morning", color: "text-amber-600 dark:text-amber-400", bg: "bg-amber-50 dark:bg-amber-950/40", border: "border-amber-100 dark:border-amber-900/50", icon: Sun };
+    if (hour >= 17 && hour < 22) return { label: "Evening", color: "text-indigo-600 dark:text-indigo-400", bg: "bg-indigo-50 dark:bg-indigo-950/40", border: "border-indigo-100 dark:border-indigo-900/50", icon: Moon };
+    return { label: "Off Hours", color: "text-slate-500 dark:text-slate-400", bg: "bg-slate-50 dark:bg-slate-800/60", border: "border-slate-200 dark:border-slate-800", icon: Moon };
 };
 export function TimeZonePlanner() {
     const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split("T")[0]);
@@ -226,7 +226,7 @@ export function TimeZonePlanner() {
         <FadeIn className="w-full max-w-6xl mx-auto py-8 px-4">
             <div className="space-y-8">
                 {/* Main Controls Card */}
-                <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden">
+                <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden dark:border-slate-800 dark:bg-slate-900">
                     <CalculatorCardHeader
                         description="Enter your details."
                         onReset={() => { setBaseTime("09:00"); setCompareTimezones(["Europe/London", "Asia/Tokyo", "America/New_York"]); }}
@@ -235,8 +235,8 @@ export function TimeZonePlanner() {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             {/* Date Picker */}
                             <div className="space-y-3">
-                                <Label className="text-[13px] font-bold text-slate-600 flex items-center gap-2 mb-2 px-1">
-                                    <CalendarIcon className="h-4 w-4 text-blue-500" /> Selected Date
+                                <Label className="text-[13px] font-bold text-slate-600 flex items-center gap-2 mb-2 px-1 dark:text-slate-300">
+                                    <CalendarIcon className="h-4 w-4 text-blue-500 dark:text-blue-400" /> Selected Date
                                 </Label>
                                 <div className="relative group">
                                     <Input
@@ -244,17 +244,17 @@ export function TimeZonePlanner() {
                                         value={selectedDate}
                                         onChange={(e: ChangeEvent<HTMLInputElement>) => setSelectedDate(e.target.value)}
                                         onClick={(e) => e.currentTarget.showPicker?.()}
-                                        className="h-14 bg-white border-slate-200 hover:border-blue-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/5 rounded-2xl font-bold text-slate-800 transition-all shadow-sm px-4 cursor-pointer"
+                                        className="h-14 bg-white border-slate-200 hover:border-blue-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/5 rounded-2xl font-bold text-slate-800 transition-all shadow-sm px-4 cursor-pointer dark:bg-slate-900 dark:border-slate-800 dark:text-slate-100"
                                     />
                                     <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                                        <CalendarIcon className="h-4 w-4 text-slate-400 group-hover:text-blue-500 transition-colors" />
+                                        <CalendarIcon className="h-4 w-4 text-slate-400 group-hover:text-blue-500 transition-colors dark:text-slate-500 dark:group-hover:text-blue-400" />
                                     </div>
                                 </div>
                             </div>
                             {/* Base Time */}
                             <div className="space-y-3">
-                                <Label className="text-[13px] font-bold text-slate-600 flex items-center gap-2 mb-2 px-1">
-                                    <Clock className="h-4 w-4 text-blue-500" /> Start Time
+                                <Label className="text-[13px] font-bold text-slate-600 flex items-center gap-2 mb-2 px-1 dark:text-slate-300">
+                                    <Clock className="h-4 w-4 text-blue-500 dark:text-blue-400" /> Start Time
                                 </Label>
                                 <div className="relative group">
                                     <Input
@@ -262,34 +262,34 @@ export function TimeZonePlanner() {
                                         value={baseTime}
                                         onChange={(e: ChangeEvent<HTMLInputElement>) => setBaseTime(e.target.value)}
                                         onClick={(e) => e.currentTarget.showPicker?.()}
-                                        className="h-14 bg-white border-slate-200 hover:border-blue-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/5 rounded-2xl font-bold text-slate-800 transition-all shadow-sm px-4 cursor-pointer"
+                                        className="h-14 bg-white border-slate-200 hover:border-blue-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/5 rounded-2xl font-bold text-slate-800 transition-all shadow-sm px-4 cursor-pointer dark:bg-slate-900 dark:border-slate-800 dark:text-slate-100"
                                     />
                                     <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                                        <Clock className="h-4 w-4 text-slate-400 group-hover:text-blue-500 transition-colors" />
+                                        <Clock className="h-4 w-4 text-slate-400 group-hover:text-blue-500 transition-colors dark:text-slate-500 dark:group-hover:text-blue-400" />
                                     </div>
                                 </div>
                             </div>
                             {/* My Location - Country Dropdown */}
                             <div className="space-y-3">
-                                <Label className="text-[13px] font-bold text-slate-600 flex items-center gap-2 mb-2 px-1">
-                                    <MapPin className="h-4 w-4 text-blue-500" /> My Location
+                                <Label className="text-[13px] font-bold text-slate-600 flex items-center gap-2 mb-2 px-1 dark:text-slate-300">
+                                    <MapPin className="h-4 w-4 text-blue-500 dark:text-blue-400" /> My Location
                                 </Label>
                                 <Popover>
                                     <PopoverTrigger asChild>
                                         <Button
                                             variant={"outline"}
                                             role={"combobox"}
-                                            className="w-full h-14 justify-between bg-white border-slate-200 hover:border-blue-400 hover:bg-white rounded-2xl px-4 font-bold text-slate-800 shadow-sm transition-all group focus:ring-4 focus:ring-blue-500/5 group"
+                                            className="w-full h-14 justify-between bg-white border-slate-200 hover:border-blue-400 hover:bg-white rounded-2xl px-4 font-bold text-slate-800 shadow-sm transition-all group focus:ring-4 focus:ring-blue-500/5 group dark:bg-slate-900 dark:border-slate-800 dark:hover:bg-slate-900 dark:text-slate-100"
                                         >
                                             <div className="flex items-center gap-3">
                                                 {baseCountry && <Flag code={baseCountry.code} className="w-5 h-3.5 rounded-sm overflow-hidden" />}
                                                 <span>{baseCountry ? baseCountry.name : "Select Country..."}</span>
                                             </div>
-                                            <ChevronDown className="h-4 w-4 text-slate-400 group-hover:text-blue-500 transition-colors" />
+                                            <ChevronDown className="h-4 w-4 text-slate-400 group-hover:text-blue-500 transition-colors dark:text-slate-500 dark:group-hover:text-blue-400" />
                                         </Button>
                                     </PopoverTrigger>
                                     <PopoverContent className="w-[320px] p-0 shadow-2xl border-none">
-                                        <Command className="border border-slate-200">
+                                        <Command className="border border-slate-200 dark:border-slate-800">
                                             <CommandInput placeholder="Search country..." className="h-12" />
                                             <CommandList>
                                                 <CommandEmpty>No country found.</CommandEmpty>
@@ -299,14 +299,14 @@ export function TimeZonePlanner() {
                                                             key={country.timezone}
                                                             value={country.label}
                                                             onSelect={() => setBaseTimezone(country.timezone)}
-                                                            className="py-3 px-4 aria-selected:bg-blue-50"
+                                                            className="py-3 px-4 aria-selected:bg-blue-50 dark:aria-selected:bg-blue-950/40"
                                                         >
-                                                            <Check className={cn("mr-2 h-4 w-4 text-blue-600", baseTimezone === country.timezone ? "opacity-100" : "opacity-0")} />
+                                                            <Check className={cn("mr-2 h-4 w-4 text-blue-600 dark:text-blue-400", baseTimezone === country.timezone ? "opacity-100" : "opacity-0")} />
                                                             <div className="flex items-center gap-2">
                                                                 <Flag code={country.code} className="w-5 h-3.5" />
-                                                                <span className="font-bold text-slate-900">{country.name}</span>
+                                                                <span className="font-bold text-slate-900 dark:text-white">{country.name}</span>
                                                             </div>
-                                                            <span className="ml-auto text-xs text-slate-400 font-medium">{country.offsetStr}</span>
+                                                            <span className="ml-auto text-xs text-slate-400 font-medium dark:text-slate-500">{country.offsetStr}</span>
                                                         </CommandItem>
                                                     ))}
                                                 </CommandGroup>
@@ -316,14 +316,14 @@ export function TimeZonePlanner() {
                                                             key={country.timezone}
                                                             value={country.label}
                                                             onSelect={() => setBaseTimezone(country.timezone)}
-                                                            className="py-3 px-4 aria-selected:bg-blue-50"
+                                                            className="py-3 px-4 aria-selected:bg-blue-50 dark:aria-selected:bg-blue-950/40"
                                                         >
-                                                            <Check className={cn("mr-2 h-4 w-4 text-blue-600", baseTimezone === country.timezone ? "opacity-100" : "opacity-0")} />
+                                                            <Check className={cn("mr-2 h-4 w-4 text-blue-600 dark:text-blue-400", baseTimezone === country.timezone ? "opacity-100" : "opacity-0")} />
                                                             <div className="flex items-center gap-2">
                                                                 <Flag code={country.code} className="w-5 h-3.5" />
-                                                                <span className="font-bold text-slate-900">{country.name}</span>
+                                                                <span className="font-bold text-slate-900 dark:text-white">{country.name}</span>
                                                             </div>
-                                                            <span className="ml-auto text-xs text-slate-400 font-medium">{country.offsetStr}</span>
+                                                            <span className="ml-auto text-xs text-slate-400 font-medium dark:text-slate-500">{country.offsetStr}</span>
                                                         </CommandItem>
                                                     ))}
                                                 </CommandGroup>
@@ -334,8 +334,8 @@ export function TimeZonePlanner() {
                             </div>
                         </div>
                         {/* Add Country Search Bar */}
-                        <div className="mt-8 pt-8 border-t border-slate-100 flex flex-col md:flex-row items-center justify-between gap-4">
-                            <div className="flex items-center gap-2 text-slate-400 font-medium text-sm italic">
+                        <div className="mt-8 pt-8 border-t border-slate-100 flex flex-col md:flex-row items-center justify-between gap-4 dark:border-slate-800">
+                            <div className="flex items-center gap-2 text-slate-400 font-medium text-sm italic dark:text-slate-500">
                                 💡 Tip: Add your supplier or VA&apos;s country to check their local status.
                             </div>
                             <Popover open={isMenuOpen} onOpenChange={setIsMenuOpen}>
@@ -346,7 +346,7 @@ export function TimeZonePlanner() {
                                         <ChevronDown className="h-4 w-4 opacity-50 ml-1" />
                                     </Button>
                                 </PopoverTrigger>
-                                <PopoverContent className="w-[320px] p-0 shadow-2xl border border-slate-100">
+                                <PopoverContent className="w-[320px] p-0 shadow-2xl border border-slate-100 dark:border-slate-800">
                                     <Command>
                                         <CommandInput placeholder="Search country..." className="h-12" />
                                         <CommandList className="max-h-[300px] overflow-y-auto">
@@ -357,14 +357,14 @@ export function TimeZonePlanner() {
                                                         key={country.timezone}
                                                         value={country.label}
                                                         onSelect={() => addCountry(country.timezone)}
-                                                        className="py-3 px-4 aria-selected:bg-blue-50 cursor-pointer"
+                                                        className="py-3 px-4 aria-selected:bg-blue-50 cursor-pointer dark:aria-selected:bg-blue-950/40"
                                                     >
-                                                        <Plus className="mr-2 h-4 w-4 text-slate-300" />
+                                                        <Plus className="mr-2 h-4 w-4 text-slate-300 dark:text-slate-600" />
                                                         <div className="flex items-center gap-2">
                                                             <Flag code={country.code} className="w-5 h-3.5" />
-                                                            <span className="font-bold text-slate-900">{country.name}</span>
+                                                            <span className="font-bold text-slate-900 dark:text-white">{country.name}</span>
                                                         </div>
-                                                        <span className="ml-auto text-xs text-slate-400 font-medium">{country.offsetStr}</span>
+                                                        <span className="ml-auto text-xs text-slate-400 font-medium dark:text-slate-500">{country.offsetStr}</span>
                                                     </CommandItem>
                                                 ))}
                                             </CommandGroup>
@@ -374,14 +374,14 @@ export function TimeZonePlanner() {
                                                         key={country.timezone}
                                                         value={country.label}
                                                         onSelect={() => addCountry(country.timezone)}
-                                                        className="py-3 px-4 aria-selected:bg-blue-50 cursor-pointer"
+                                                        className="py-3 px-4 aria-selected:bg-blue-50 cursor-pointer dark:aria-selected:bg-blue-950/40"
                                                     >
-                                                        <Plus className="mr-2 h-4 w-4 text-slate-300" />
+                                                        <Plus className="mr-2 h-4 w-4 text-slate-300 dark:text-slate-600" />
                                                         <div className="flex items-center gap-2">
                                                             <Flag code={country.code} className="w-5 h-3.5" />
-                                                            <span className="font-bold text-slate-900">{country.name}</span>
+                                                            <span className="font-bold text-slate-900 dark:text-white">{country.name}</span>
                                                         </div>
-                                                        <span className="ml-auto text-xs text-slate-400 font-medium">{country.offsetStr}</span>
+                                                        <span className="ml-auto text-xs text-slate-400 font-medium dark:text-slate-500">{country.offsetStr}</span>
                                                     </CommandItem>
                                                 ))}
                                             </CommandGroup>
@@ -396,17 +396,17 @@ export function TimeZonePlanner() {
                 <div className="space-y-6">
                     <div className="flex items-center justify-between">
                         <div className="space-y-1">
-                            <h3 className="text-xl font-black text-slate-800 flex items-center gap-2 uppercase tracking-tight">
+                            <h3 className="text-xl font-black text-slate-800 flex items-center gap-2 uppercase tracking-tight dark:text-slate-100">
                                 Availability Dashboard
                             </h3>
-                            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Global Status Tracking</p>
+                            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest dark:text-slate-500">Global Status Tracking</p>
                         </div>
                         {compareTimezones.length > 0 && (
                             <Button
                                 variant="outline"
                                 size="sm"
                                 onClick={() => setCompareTimezones([])}
-                                className="text-xs font-bold text-slate-500 hover:text-red-500 border-slate-200 bg-white"
+                                className="text-xs font-bold text-slate-500 hover:text-red-500 border-slate-200 bg-white dark:text-slate-400 dark:hover:text-red-400 dark:border-slate-800 dark:bg-slate-900"
                             >
                                 Reset View
                             </Button>
@@ -425,7 +425,7 @@ export function TimeZonePlanner() {
                                         title={
                                             <div className="flex items-center gap-2">
                                                 <Flag code={result.country.code} className="w-5 h-3.5" />
-                                                <span className="font-bold text-slate-900">{result.country.name}</span>
+                                                <span className="font-bold text-slate-900 dark:text-white">{result.country.name}</span>
                                             </div>
                                         }
                                         titleLabel={
@@ -443,29 +443,29 @@ export function TimeZonePlanner() {
                                         )}
                                         className={cn(
                                             "group transition-all duration-500 hover:translate-y-[-8px] hover:shadow-2xl relative overflow-hidden",
-                                            result.status.label === "Business Hours" ? "bg-blue-50 border-blue-100" :
-                                                result.status.label === "Morning" ? "bg-amber-50 border-amber-100" :
-                                                    result.status.label === "Evening" ? "bg-indigo-50 border-indigo-100" :
-                                                        "bg-slate-50 border-slate-200"
+                                            result.status.label === "Business Hours" ? "bg-blue-50 border-blue-100 dark:bg-blue-950/40 dark:border-blue-900/50" :
+                                                result.status.label === "Morning" ? "bg-amber-50 border-amber-100 dark:bg-amber-950/40 dark:border-amber-900/50" :
+                                                    result.status.label === "Evening" ? "bg-indigo-50 border-indigo-100 dark:bg-indigo-950/40 dark:border-indigo-900/50" :
+                                                        "bg-slate-50 border-slate-200 dark:bg-slate-800/60 dark:border-slate-800"
                                         )}
                                         mainValue={
                                             <div className="space-y-8">
                                                 <div className="flex items-baseline gap-2">
-                                                    <span className="font-black tracking-tighter text-4xl text-slate-900">{result.time}</span>
+                                                    <span className="font-black tracking-tighter text-4xl text-slate-900 dark:text-white">{result.time}</span>
                                                     {result.dayOffset !== 0 && (
                                                         <span className={cn("text-[10px] font-black px-2 py-0.5 rounded-lg align-middle ml-2 shadow-sm border",
-                                                            result.dayOffset > 0 ? "bg-amber-100 text-amber-600 border-amber-200" : "bg-blue-100 text-blue-600 border-blue-200"
+                                                            result.dayOffset > 0 ? "bg-amber-100 text-amber-600 border-amber-200 dark:bg-amber-900/40 dark:text-amber-400 dark:border-amber-900/50" : "bg-blue-100 text-blue-600 border-blue-200 dark:bg-blue-900/40 dark:text-blue-400 dark:border-blue-900/50"
                                                         )}>
                                                             {result.dayOffset > 0 ? "+1 DAY" : "-1 DAY"}
                                                         </span>
                                                     )}
                                                 </div>
                                                 <div className="flex items-center justify-between pt-4 opacity-60">
-                                                    <div className="flex items-center gap-2 text-xs font-bold text-slate-400">
-                                                        <Globe className="h-3.5 w-3.5 opacity-40 text-blue-500" />
+                                                    <div className="flex items-center gap-2 text-xs font-bold text-slate-400 dark:text-slate-500">
+                                                        <Globe className="h-3.5 w-3.5 opacity-40 text-blue-500 dark:text-blue-400" />
                                                         <span className="uppercase tracking-widest truncate max-w-[120px]">{result.country.timezone}</span>
                                                     </div>
-                                                    <div className="bg-slate-50 px-3 py-1 rounded-lg border border-slate-200 font-black text-slate-600 text-[10px] shadow-sm tracking-tighter">
+                                                    <div className="bg-slate-50 px-3 py-1 rounded-lg border border-slate-200 font-black text-slate-600 text-[10px] shadow-sm tracking-tighter dark:bg-slate-800/60 dark:border-slate-800 dark:text-slate-300">
                                                         {result.country.offsetStr}
                                                     </div>
                                                 </div>
@@ -474,7 +474,7 @@ export function TimeZonePlanner() {
                                     >
                                         <button
                                             onClick={() => removeCountry(tz)}
-                                            className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all p-2 bg-white/90 hover:bg-red-500 hover:text-white shadow-md rounded-xl text-slate-400 z-20 hover:scale-110 active:scale-90"
+                                            className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all p-2 bg-white/90 hover:bg-red-500 hover:text-white shadow-md rounded-xl text-slate-400 z-20 hover:scale-110 active:scale-90 dark:bg-slate-900/90 dark:text-slate-500"
                                             title="Remove Country"
                                         >
                                             <Trash2 className="h-4 w-4" />

@@ -13,9 +13,9 @@ export function NetProfitGuide() {
                     icon: Activity,
                     stat: "10-20%",
                     statLabel: "Target Margin",
-                    iconBg: "bg-blue-50",
-                    iconColor: "text-blue-600",
-                    statColor: "text-blue-700",
+                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+                    iconColor: "text-blue-600 dark:text-blue-400",
+                    statColor: "text-blue-700 dark:text-blue-400",
                     tooltip: "A 15% net margin is generally considered the benchmark for a healthy, profitable e-commerce brand."
                 },
                 {
@@ -24,9 +24,9 @@ export function NetProfitGuide() {
                     icon: CreditCard,
                     stat: "-12%",
                     statLabel: "Average Leakage",
-                    iconBg: "bg-amber-50",
-                    iconColor: "text-amber-600",
-                    statColor: "text-amber-700",
+                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
+                    iconColor: "text-amber-600 dark:text-amber-400",
+                    statColor: "text-amber-700 dark:text-amber-400",
                     tooltip: "Business owners often underestimate their overhead by 25% or more before doing a formal calculation."
                 },
                 {
@@ -35,9 +35,9 @@ export function NetProfitGuide() {
                     icon: Landmark,
                     stat: "25%+",
                     statLabel: "Tax Allocation",
-                    iconBg: "bg-red-50",
-                    iconColor: "text-red-600",
-                    statColor: "text-red-700",
+                    iconBg: "bg-red-50 dark:bg-red-950/40",
+                    iconColor: "text-red-600 dark:text-red-400",
+                    statColor: "text-red-700 dark:text-red-400",
                     tooltip: "Setting aside 25-30% of your operating profit for taxes ensures you never have to scramble during tax season."
                 }
             ]}

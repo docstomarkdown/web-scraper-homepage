@@ -37,17 +37,17 @@ export function CalculatorCardHeader({
     }
 
     return (
-        <CardHeader className="px-6 py-5 border-b border-slate-100/80 bg-white/40">
+        <CardHeader className="px-6 py-5 border-b border-slate-100/80 bg-white/40 dark:border-slate-800 dark:bg-slate-900/40">
             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                 {/* Title + description */}
                 <div className="flex-1 min-w-0 space-y-1">
                     <div className="flex items-center gap-2">
                         {TitleIcon && (
-                            <div className="flex-shrink-0 w-5 h-5 rounded-lg bg-blue-50 flex items-center justify-center">
-                                <TitleIcon className="h-3.5 w-3.5 text-blue-600" />
+                            <div className="flex-shrink-0 w-5 h-5 rounded-lg bg-blue-50 flex items-center justify-center dark:bg-blue-950/40">
+                                <TitleIcon className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400" />
                             </div>
                         )}
-                        <CardTitle className="text-xl font-bold text-blue-600 tracking-tight leading-none">
+                        <CardTitle className="text-xl font-bold text-blue-600 tracking-tight leading-none dark:text-blue-400">
                             {title}
                         </CardTitle>
                         <Tooltip>
@@ -56,17 +56,17 @@ export function CalculatorCardHeader({
                                     type="button"
                                     tabIndex={-1}
                                     onClick={scrollToGuide}
-                                    className="text-slate-400 hover:text-blue-500 transition-colors flex-shrink-0 mt-0.5"
+                                    className="text-slate-400 hover:text-blue-500 transition-colors flex-shrink-0 mt-0.5 dark:text-slate-500 dark:hover:text-blue-400"
                                 >
                                     <HelpCircle className="h-4 w-4" />
                                 </button>
                             </TooltipTrigger>
-                            <TooltipContent side="top" className="text-xs bg-slate-900 text-white border-slate-800">
+                            <TooltipContent side="top" className="text-xs bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
                                 {tooltip || "How to use this tool"}
                             </TooltipContent>
                         </Tooltip>
                     </div>
-                    <CardDescription className="text-[13px] text-slate-400 font-medium leading-relaxed whitespace-pre-wrap">
+                    <CardDescription className="text-[13px] text-slate-400 font-medium leading-relaxed whitespace-pre-wrap dark:text-slate-500">
                         {description}
                     </CardDescription>
                 </div>
@@ -82,7 +82,7 @@ export function CalculatorCardHeader({
                         <button
                             type="button"
                             onClick={onReset}
-                            className="group flex items-center justify-center h-9 w-9 text-slate-400 hover:text-blue-600 bg-white border border-slate-200 hover:border-blue-200 shadow-sm hover:shadow-md rounded-xl transition-all duration-250 active:scale-90"
+                            className="group flex items-center justify-center h-9 w-9 text-slate-400 hover:text-blue-600 bg-white border border-slate-200 hover:border-blue-200 shadow-sm hover:shadow-md rounded-xl transition-all duration-250 active:scale-90 dark:text-slate-500 dark:hover:text-blue-400 dark:bg-slate-900 dark:border-slate-800 dark:hover:border-blue-900/50"
                             aria-label="Reset Calculator"
                         >
                             <RotateCw className="h-3.5 w-3.5" />

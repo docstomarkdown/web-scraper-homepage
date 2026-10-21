@@ -86,7 +86,7 @@ export function AffiliateCommissionCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch pt-2">
                 {/* Left Column: Inputs */}
                 <div className="lg:col-span-7 flex flex-col h-full">
-                    <Card className="border border-slate-200/80 shadow-sm bg-white overflow-hidden h-full flex flex-col rounded-3xl">
+                    <Card className="border border-slate-200/80 shadow-sm bg-white overflow-hidden h-full flex flex-col rounded-3xl dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             title="Affiliate Payout Calculator"
                             description="Enter traffic, pricing, and commission details to estimate affiliate payouts and profitability."

@@ -32,9 +32,9 @@ export interface MadhuSubHeaderProps {
 }
 export function MadhuSubHeader({ title, icon: Icon, className, withDot = false }: MadhuSubHeaderProps) {
     return (
-        <label className={cn("text-sm font-medium text-slate-700 flex items-center gap-2 mb-4", className)}>
+        <label className={cn("text-sm font-medium text-slate-700 flex items-center gap-2 mb-4 dark:text-slate-200", className)}>
             {withDot && <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />}
-            {Icon && <Icon className="w-4 h-4 text-slate-400" />}
+            {Icon && <Icon className="w-4 h-4 text-slate-400 dark:text-slate-500" />}
             {title}
         </label>
     )
@@ -67,30 +67,30 @@ export function InputCardHeader({ title, subtitle, icon: Icon, onHelpClick, scro
     }
     const showHelp = !!onHelpClick || !!scrollId
     return (
-        <div className="px-6 py-3 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="px-6 py-3 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 dark:border-slate-800">
             <div className="flex items-center gap-4">
                 <div className="space-y-0.5">
                     <div className="flex items-center gap-2">
-                        <h2 className="text-2xl font-bold text-blue-600 tracking-tight">{title}</h2>
+                        <h2 className="text-2xl font-bold text-blue-600 tracking-tight dark:text-blue-400">{title}</h2>
                         {showHelp && (
                             <TooltipProvider delayDuration={100}>
                                 <Tooltip>
                                     <TooltipTrigger asChild>
                                         <button
                                             onClick={handleHelp}
-                                            className="text-slate-400 hover:text-blue-600 transition-colors"
+                                            className="text-slate-400 hover:text-blue-600 transition-colors dark:text-slate-500 dark:hover:text-blue-400"
                                         >
                                             <HelpCircle className="h-5 w-5" />
                                         </button>
                                     </TooltipTrigger>
-                                    <TooltipContent side="top" className="text-xs bg-slate-900 text-white border-slate-800">
+                                    <TooltipContent side="top" className="text-xs bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
                                         {tooltip || "How to use this tool"}
                                     </TooltipContent>
                                 </Tooltip>
                             </TooltipProvider>
                         )}
                     </div>
-                    {subtitle && <p className="text-sm text-slate-500 font-medium">{subtitle}</p>}
+                    {subtitle && <p className="text-sm text-slate-500 font-medium dark:text-slate-400">{subtitle}</p>}
                 </div>
             </div>
             <div className="flex items-center gap-2 pr-1">
@@ -101,13 +101,13 @@ export function InputCardHeader({ title, subtitle, icon: Icon, onHelpClick, scro
                                 <button
                                     type="button"
                                     onClick={onReset}
-                                    className="group flex items-center justify-center h-10 w-10 text-slate-400 bg-white border border-slate-200 shadow-sm rounded-xl transition-all duration-200 active:scale-90"
+                                    className="group flex items-center justify-center h-10 w-10 text-slate-400 bg-white border border-slate-200 shadow-sm rounded-xl transition-all duration-200 active:scale-90 dark:text-slate-500 dark:bg-slate-900 dark:border-slate-800"
                                     aria-label="Reset Calculator"
                                 >
                                     <RotateCcw className="h-4 w-4 transition-transform duration-500 group-active:rotate-[-180deg]" />
                                 </button>
                             </TooltipTrigger>
-                            <TooltipContent side="top" className="text-xs bg-slate-900 text-white border-slate-800 font-medium">
+                            <TooltipContent side="top" className="text-xs bg-slate-900 text-white border-slate-800 font-medium dark:bg-slate-800 dark:border-slate-700">
                                 Reset inputs
                             </TooltipContent>
                         </Tooltip>
@@ -130,7 +130,7 @@ export function ActionButtons({ onReset, onCopy, copyDisabled, isCopied, classNa
             <Button
                 variant="outline"
                 className={cn(
-                    "group h-11 border-dashed border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-slate-900 transition-all font-medium rounded-xl",
+                    "group h-11 border-dashed border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-slate-900 transition-all font-medium rounded-xl dark:border-slate-800 dark:hover:bg-slate-800/60 dark:text-slate-400 dark:hover:text-white",
                     onCopy ? "flex-[2]" : "w-full"
                 )}
                 onClick={onReset}
@@ -143,8 +143,8 @@ export function ActionButtons({ onReset, onCopy, copyDisabled, isCopied, classNa
                     variant="outline"
                     disabled={copyDisabled}
                     className={cn(
-                        "flex-[3] h-11 px-6 shadow-sm border-slate-200 transition-all font-bold text-slate-950 disabled:opacity-30 rounded-xl",
-                        isCopied ? "bg-green-50 text-green-600 border-green-200 hover:bg-green-100" : "hover:bg-blue-50 hover:border-blue-200 hover:text-blue-600"
+                        "flex-[3] h-11 px-6 shadow-sm border-slate-200 transition-all font-bold text-slate-950 disabled:opacity-30 rounded-xl dark:border-slate-800",
+                        isCopied ? "bg-green-50 text-green-600 border-green-200 hover:bg-green-100 dark:bg-green-950/40 dark:text-green-400 dark:border-green-900/50 dark:hover:bg-green-900/40" : "hover:bg-blue-50 hover:border-blue-200 hover:text-blue-600 dark:hover:bg-blue-950/40 dark:hover:border-blue-900/50 dark:hover:text-blue-400"
                     )}
                 >
                     {isCopied ? (
@@ -209,12 +209,12 @@ export function MadhuToolTemplate({
     faqs
 }: MadhuToolTemplateProps) {
     return (
-        <div className="min-h-screen bg-slate-50 pt-28 pb-12">
+        <div className="min-h-screen bg-slate-50 pt-28 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
                 {/* Header */}
                 <div className="text-center mb-6">
                     <FadeIn direction="down" duration={0.6}>
-                        <h1 className="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl mb-4">
+                        <h1 className="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl mb-4 dark:text-slate-100">
                             {title}
                         </h1>
                     </FadeIn>
@@ -225,30 +225,30 @@ export function MadhuToolTemplate({
                     {/* How to Use Section */}
                     <FadeIn delay={0.1}>
                         <section id="how-to-use" className="relative max-w-4xl mx-auto">
-                            <div className="flex items-center gap-3 mb-10 pb-4 border-b border-slate-200">
-                                <div className="p-2 bg-blue-50 rounded-xl text-blue-600">
+                            <div className="flex items-center gap-3 mb-10 pb-4 border-b border-slate-200 dark:border-slate-800">
+                                <div className="p-2 bg-blue-50 rounded-xl text-blue-600 dark:bg-blue-950/40 dark:text-blue-400">
                                     <HelpCircle className="h-6 w-6" />
                                 </div>
-                                <h2 className="text-2xl font-bold text-slate-900">{howToUseTitle}</h2>
+                                <h2 className="text-2xl font-bold text-slate-900 dark:text-white">{howToUseTitle}</h2>
                             </div>
                             <div className="max-w-3xl mx-auto space-y-6">
                                 {howToUseSteps.map((step, index) => {
                                     const Icon = step.icon
                                     const stepNumber = (index + 1).toString().padStart(2, '0')
                                     return (
-                                        <div key={index} className="group bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-md transition-all duration-300">
+                                        <div key={index} className="group bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-md transition-all duration-300 dark:bg-slate-900 dark:border-slate-800">
                                             <div className="flex items-start gap-4 sm:gap-6">
-                                                <div className="flex-shrink-0 w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 transition-transform duration-300 group-hover:scale-110">
+                                                <div className="flex-shrink-0 w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 transition-transform duration-300 group-hover:scale-110 dark:bg-blue-950/40 dark:text-blue-400">
                                                     <Icon className="w-6 h-6" />
                                                 </div>
                                                 <div className="flex-1">
                                                     <div className="mb-1">
-                                                        <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full uppercase tracking-wider">
+                                                        <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full uppercase tracking-wider dark:text-blue-400 dark:bg-blue-950/40">
                                                             Step {stepNumber}
                                                         </span>
                                                     </div>
-                                                    <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-1">{step.title}</h3>
-                                                    <p className="text-sm text-slate-600 leading-relaxed" dangerouslySetInnerHTML={{ __html: step.description }} />
+                                                    <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-1 dark:text-white">{step.title}</h3>
+                                                    <p className="text-sm text-slate-600 leading-relaxed dark:text-slate-300" dangerouslySetInnerHTML={{ __html: step.description }} />
                                                 </div>
                                             </div>
                                         </div>
@@ -256,7 +256,7 @@ export function MadhuToolTemplate({
                                 })}
                                 {/* Goal Step */}
                                 {howToUseGoal && (
-                                    <div className="relative flex items-start gap-4 sm:gap-8 group bg-blue-50/50 p-6 sm:p-8 rounded-3xl border border-blue-200 shadow-sm transition-all duration-300">
+                                    <div className="relative flex items-start gap-4 sm:gap-8 group bg-blue-50/50 p-6 sm:p-8 rounded-3xl border border-blue-200 shadow-sm transition-all duration-300 dark:bg-blue-950/40 dark:border-blue-900/50">
                                         <div className="relative flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 bg-blue-600 rounded-2xl flex items-center justify-center text-white z-10 shadow-lg shadow-blue-600/20 transition-transform duration-300 group-hover:scale-110">
                                             {(() => {
                                                 const GoalIcon = howToUseGoal.icon
@@ -267,8 +267,8 @@ export function MadhuToolTemplate({
                                             <div className="flex items-center gap-2 mb-3">
                                                 <span className="text-[10px] font-bold text-white bg-blue-600 px-3 py-1 rounded-full uppercase tracking-wider shadow-md">The Goal</span>
                                             </div>
-                                            <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2 leading-tight">{howToUseGoal.title}</h3>
-                                            <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-medium opacity-90" dangerouslySetInnerHTML={{ __html: howToUseGoal.description }} />
+                                            <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2 leading-tight dark:text-white">{howToUseGoal.title}</h3>
+                                            <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-medium opacity-90 dark:text-slate-300" dangerouslySetInnerHTML={{ __html: howToUseGoal.description }} />
                                         </div>
                                     </div>
                                 )}
@@ -278,11 +278,11 @@ export function MadhuToolTemplate({
                     {/* Hidden Truth Section */}
                     <FadeIn delay={0.2}>
                         <section id="insights" className="max-w-4xl mx-auto">
-                            <div className="flex items-center gap-3 mb-10 pb-4 border-b border-slate-200">
-                                <div className="p-2 bg-blue-50 rounded-xl text-blue-600">
+                            <div className="flex items-center gap-3 mb-10 pb-4 border-b border-slate-200 dark:border-slate-800">
+                                <div className="p-2 bg-blue-50 rounded-xl text-blue-600 dark:bg-blue-950/40 dark:text-blue-400">
                                     <BookOpen className="h-6 w-6" />
                                 </div>
-                                <h2 className="text-2xl font-bold text-slate-900">{hiddenTruthTitle}</h2>
+                                <h2 className="text-2xl font-bold text-slate-900 dark:text-white">{hiddenTruthTitle}</h2>
                             </div>
                             <div className="space-y-6">
                                 {hiddenTruthInsights.map((insight, index) => {
@@ -290,26 +290,26 @@ export function MadhuToolTemplate({
                                     return (
                                         <div
                                             key={index}
-                                            className="bg-white rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
+                                            className="bg-white rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden dark:bg-slate-900 dark:border-slate-800"
                                         >
                                             <div className="flex flex-col md:flex-row">
                                                 {/* Left: Content */}
                                                 <div className="flex-1 p-6 order-2 md:order-1">
                                                     <div className="flex items-center gap-3 mb-4">
-                                                        <div className={`w-9 h-9 rounded-xl ${insight.iconBg} ${insight.iconColor} flex items-center justify-center border border-slate-100/50`}>
+                                                        <div className={`w-9 h-9 rounded-xl ${insight.iconBg} ${insight.iconColor} flex items-center justify-center border border-slate-100/50 dark:border-slate-800`}>
                                                             <Icon className="w-4.5 h-4.5" />
                                                         </div>
                                                         <div className="flex items-center gap-2">
-                                                            <h3 className="text-base font-bold text-slate-900">{insight.title}</h3>
+                                                            <h3 className="text-base font-bold text-slate-900 dark:text-white">{insight.title}</h3>
                                                             {insight.tooltip && (
                                                                 <TooltipProvider delayDuration={100}>
                                                                     <Tooltip>
                                                                         <TooltipTrigger asChild>
-                                                                            <button type="button" className="text-slate-400 hover:text-blue-600 transition-colors">
+                                                                            <button type="button" className="text-slate-400 hover:text-blue-600 transition-colors dark:text-slate-500 dark:hover:text-blue-400">
                                                                                 <Info className="h-3.5 w-3.5" />
                                                                             </button>
                                                                         </TooltipTrigger>
-                                                                        <TooltipContent side="top" className="max-w-xs text-xs bg-slate-900 text-white border-slate-800 p-2 rounded-lg">
+                                                                        <TooltipContent side="top" className="max-w-xs text-xs bg-slate-900 text-white border-slate-800 p-2 rounded-lg dark:bg-slate-800 dark:border-slate-700">
                                                                             {insight.tooltip}
                                                                         </TooltipContent>
                                                                     </Tooltip>
@@ -317,17 +317,17 @@ export function MadhuToolTemplate({
                                                             )}
                                                         </div>
                                                     </div>
-                                                    <p className="text-sm text-slate-600 leading-relaxed">
+                                                    <p className="text-sm text-slate-600 leading-relaxed dark:text-slate-300">
                                                         {insight.description}
                                                     </p>
                                                 </div>
                                                 {/* Right: Takeaway Stat Panel */}
-                                                <div className="flex md:flex-col items-center justify-center gap-1.5 p-6 md:w-48 bg-slate-50/50 border-b md:border-b-0 md:border-l border-slate-100 order-1 md:order-2">
+                                                <div className="flex md:flex-col items-center justify-center gap-1.5 p-6 md:w-48 bg-slate-50/50 border-b md:border-b-0 md:border-l border-slate-100 order-1 md:order-2 dark:bg-slate-800/60 dark:border-slate-800">
                                                     <div className={`text-3xl font-bold ${insight.statColor} tracking-tight`}>{insight.stat}</div>
-                                                    <div className="text-[10px] font-bold uppercase tracking-widest text-slate-300 bg-slate-100/50 px-2 py-0.5 rounded-full">
+                                                    <div className="text-[10px] font-bold uppercase tracking-widest text-slate-300 bg-slate-100/50 px-2 py-0.5 rounded-full dark:text-slate-600 dark:bg-slate-800">
                                                         Takeaway
                                                     </div>
-                                                    <div className="text-[11px] font-medium text-slate-500 text-center leading-tight mt-1 max-w-[120px]">
+                                                    <div className="text-[11px] font-medium text-slate-500 text-center leading-tight mt-1 max-w-[120px] dark:text-slate-400">
                                                         {insight.statLabel}
                                                     </div>
                                                 </div>

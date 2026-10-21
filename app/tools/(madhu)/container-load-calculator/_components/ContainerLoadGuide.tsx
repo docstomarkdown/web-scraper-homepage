@@ -13,9 +13,9 @@ export function ContainerLoadGuide() {
                     icon: Scale,
                     stat: "28,200 kg",
                     statLabel: "20ft Payload",
-                    iconBg: "bg-red-100",
-                    iconColor: "text-red-600",
-                    statColor: "text-red-600"
+                    iconBg: "bg-red-100 dark:bg-red-900/40",
+                    iconColor: "text-red-600 dark:text-red-400",
+                    statColor: "text-red-600 dark:text-red-400"
                 },
                 {
                     title: "Pallets Trade Space for Safety",
@@ -23,9 +23,9 @@ export function ContainerLoadGuide() {
                     icon: Package,
                     stat: "-15%",
                     statLabel: "Volume Lost",
-                    iconBg: "bg-amber-100",
-                    iconColor: "text-amber-600",
-                    statColor: "text-amber-600"
+                    iconBg: "bg-amber-100 dark:bg-amber-900/40",
+                    iconColor: "text-amber-600 dark:text-amber-400",
+                    statColor: "text-amber-600 dark:text-amber-400"
                 },
                 {
                     title: "High Cube = One Extra Layer",
@@ -33,9 +33,9 @@ export function ContainerLoadGuide() {
                     icon: Layers,
                     stat: "+30 cm",
                     statLabel: "Extra Height",
-                    iconBg: "bg-blue-100",
-                    iconColor: "text-blue-600",
-                    statColor: "text-blue-600"
+                    iconBg: "bg-blue-100 dark:bg-blue-900/40",
+                    iconColor: "text-blue-600 dark:text-blue-400",
+                    statColor: "text-blue-600 dark:text-blue-400"
                 },
                 {
                     title: "Space Utilization = Shipping ROI",
@@ -43,9 +43,9 @@ export function ContainerLoadGuide() {
                     icon: TrendingUp,
                     stat: "85%+",
                     statLabel: "Target Utilization",
-                    iconBg: "bg-green-100",
-                    iconColor: "text-green-600",
-                    statColor: "text-green-600"
+                    iconBg: "bg-green-100 dark:bg-green-900/40",
+                    iconColor: "text-green-600 dark:text-green-400",
+                    statColor: "text-green-600 dark:text-green-400"
                 }
             ]}
         />

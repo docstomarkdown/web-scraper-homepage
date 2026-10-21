@@ -60,7 +60,7 @@ export function PromoCodeCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Inputs Section */}
                 <div className="lg:col-span-7 space-y-3">
-                    <Card className="border border-slate-200 shadow-sm bg-white">
+                    <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             description="Set your prefix, suffix and randomization rules."
                             onReset={() => { setPrefix(""); setSuffix(""); setLength(8); setCount(5); setGeneratedCodes([]); }}
@@ -86,26 +86,26 @@ export function PromoCodeCalculator() {
                                 <button
                                     onClick={() => setShowAdvanced(!showAdvanced)}
                                     className={cn(
-                                        "w-full flex items-center justify-between p-4 rounded-xl border border-slate-100 transition-all duration-300 group",
-                                        showAdvanced ? "bg-slate-50 shadow-sm border-blue-100" : "bg-white hover:bg-slate-50/50"
+                                        "w-full flex items-center justify-between p-4 rounded-xl border border-slate-100 transition-all duration-300 group dark:border-slate-800",
+                                        showAdvanced ? "bg-slate-50 shadow-sm border-blue-100 dark:bg-slate-800/60 dark:border-blue-900/50" : "bg-white hover:bg-slate-50/50 dark:bg-slate-900 dark:hover:bg-slate-800/60"
                                     )}
                                 >
                                     <div className="flex items-center gap-2.5">
                                         <div className={cn(
                                             "w-8 h-8 rounded-lg flex items-center justify-center transition-colors",
-                                            showAdvanced ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-500"
+                                            showAdvanced ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400"
                                         )}>
                                             <Settings2 className="w-4 h-4" />
                                         </div>
                                         <div className="text-left">
-                                            <p className="text-sm font-bold text-slate-800">Advanced Settings</p>
-                                            <p className="text-[10px] text-slate-500 font-medium">Prefix, Suffix, and Character Rules</p>
+                                            <p className="text-sm font-bold text-slate-800 dark:text-slate-100">Advanced Settings</p>
+                                            <p className="text-[10px] text-slate-500 font-medium dark:text-slate-400">Prefix, Suffix, and Character Rules</p>
                                         </div>
                                     </div>
                                     {showAdvanced ? (
-                                        <ChevronUp className="w-5 h-5 text-blue-500" />
+                                        <ChevronUp className="w-5 h-5 text-blue-500 dark:text-blue-400" />
                                     ) : (
-                                        <ChevronDown className="w-5 h-5 text-slate-400 group-hover:text-slate-600" />
+                                        <ChevronDown className="w-5 h-5 text-slate-400 group-hover:text-slate-600 dark:text-slate-500 dark:group-hover:text-slate-300" />
                                     )}
                                 </button>
                                 <AnimatePresence>
@@ -139,7 +139,7 @@ export function PromoCodeCalculator() {
                                                 </div>
                                                 {/* Character Selection Chips */}
                                                 <div className="space-y-3">
-                                                    <label className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Include Characters</label>
+                                                    <label className="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Include Characters</label>
                                                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                                                         <CharacterChip
                                                             label="Uppercase"
@@ -180,10 +180,10 @@ export function PromoCodeCalculator() {
                     </Card>
                     {/* Codes List Card (only if generated) */}
                     {generatedCodes.length > 0 && (
-                        <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden">
+                        <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden dark:border-slate-800 dark:bg-slate-900">
                             <CardHeader className="pb-3 border-b border-slate-50 flex flex-row items-center justify-between">
-                                <CardTitle className="text-lg font-bold text-slate-800">Generated Codes</CardTitle>
-                                <Button variant="outline" size="sm" onClick={copyAll} className="text-slate-600">
+                                <CardTitle className="text-lg font-bold text-slate-800 dark:text-slate-100">Generated Codes</CardTitle>
+                                <Button variant="outline" size="sm" onClick={copyAll} className="text-slate-600 dark:text-slate-300">
                                     <Copy className="w-4 h-4 mr-2" />
                                     Copy All
                                 </Button>
@@ -191,15 +191,15 @@ export function PromoCodeCalculator() {
                             <CardContent className="p-0 max-h-[400px] overflow-y-auto">
                                 <div className="divide-y divide-slate-50">
                                     {generatedCodes.map((code, idx) => (
-                                        <div key={idx} className="flex items-center justify-between p-4 hover:bg-slate-50 transition-colors">
-                                            <code className="text-base font-mono font-bold text-slate-700">{code}</code>
+                                        <div key={idx} className="flex items-center justify-between p-4 hover:bg-slate-50 transition-colors dark:hover:bg-slate-800/60">
+                                            <code className="text-base font-mono font-bold text-slate-700 dark:text-slate-200">{code}</code>
                                             <Button
                                                 variant="ghost"
                                                 size="sm"
                                                 onClick={() => copyToClipboard(code, idx)}
-                                                className="text-blue-500 hover:text-blue-700 hover:bg-blue-50"
+                                                className="text-blue-500 hover:text-blue-700 hover:bg-blue-50 dark:text-blue-400 dark:hover:text-blue-400 dark:hover:bg-blue-950/40"
                                             >
-                                                {copiedIndex === idx ? <Check className="w-4 h-4 text-blue-500" /> : <Copy className="w-4 h-4 font-bold" />}
+                                                {copiedIndex === idx ? <Check className="w-4 h-4 text-blue-500 dark:text-blue-400" /> : <Copy className="w-4 h-4 font-bold" />}
                                             </Button>
                                         </div>
                                     ))}
@@ -213,7 +213,7 @@ export function PromoCodeCalculator() {
                     <ResultFeedbackCard
                         title="Latest Reward Code"
                         titleLabel="Active"
-                        labelClassName="bg-blue-500/10 text-blue-500"
+                        labelClassName="bg-blue-500/10 text-blue-500 dark:text-blue-400"
                         mainValue={
                             <div className="text-3xl font-mono font-bold tracking-wider truncate max-w-full">
                                 {generatedCodes.length > 0 ? generatedCodes[0] : "---- ----"}
@@ -222,12 +222,12 @@ export function PromoCodeCalculator() {
                         valueColor="text-white"
                         mainMetricLabel="Total Unique Codes"
                         mainMetricValue={<Counter value={generatedCodes.length} />}
-                        mainMetricColor="text-slate-600"
+                        mainMetricColor="text-slate-600 dark:text-slate-300"
                         secondaryMetrics={[
                             {
                                 label: "Avg Length",
                                 value: `${(prefix.length + (length === "" ? 0 : length) + suffix.length)} chars`,
-                                color: "text-slate-500"
+                                color: "text-slate-500 dark:text-slate-400"
                             },
                             {
                                 label: "Complexity",
@@ -250,18 +250,18 @@ function CharacterChip({ label, sub, icon: Icon, checked, onChange }: { label: s
                 "flex items-center gap-3 p-3 rounded-xl border transition-all duration-300 text-left",
                 checked
                     ? "bg-blue-600 border-blue-600 text-white shadow-md shadow-blue-200"
-                    : "bg-white border-slate-200 text-slate-600 hover:border-blue-300 hover:bg-slate-50"
+                    : "bg-white border-slate-200 text-slate-600 hover:border-blue-300 hover:bg-slate-50 dark:bg-slate-900 dark:border-slate-800 dark:text-slate-300 dark:hover:border-blue-800 dark:hover:bg-slate-800/60"
             )}
         >
             <div className={cn(
                 "w-8 h-8 rounded-lg flex items-center justify-center",
-                checked ? "bg-white/20" : "bg-slate-100"
+                checked ? "bg-white/20 dark:bg-slate-900/20" : "bg-slate-100 dark:bg-slate-800"
             )}>
                 <Icon className="w-4 h-4" />
             </div>
             <div>
                 <p className="text-xs font-bold leading-none mb-1">{label}</p>
-                <p className={cn("text-[10px] font-medium opacity-80", checked ? "text-white" : "text-slate-400")}>{sub}</p>
+                <p className={cn("text-[10px] font-medium opacity-80", checked ? "text-white" : "text-slate-400 dark:text-slate-500")}>{sub}</p>
             </div>
         </button>
     )
