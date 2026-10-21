@@ -44,9 +44,9 @@ export const zillow: ScraperPageContent = {
     steps: {
         heading: "Search, pick, collect",
         items: [
-            { title: "Search on Zillow", body: "Search the city, zip code or drawn area with the filters you want: price, beds, home type, for sale or for rent. The extension collects what the list shows." },
-            { title: "Pick the list and the pages", body: "Open the side panel's List tab and choose the results list; the extension scrolls Zillow's list panel so every card is loaded. Choose Collect more pages and Next page, set Stop after, and click Collect from N pages." },
-            { title: "Review and export", body: "Rename or remove columns, filter rows, then Export as Excel, CSV, JSON or Google Sheets." },
+            { title: "Search on Zillow", points: ["Example: one zip code, for sale, with your price and beds filters.", "Zillow shows at most 20 pages, about 800 homes, per search."], body: "Search the city, zip code or drawn area with the filters you want: price, beds, home type, for sale or for rent. The extension collects what the list shows." },
+            { title: "Pick the list and the pages", points: ["The setup scrolls Zillow's list panel first so every card loads.", "Choose Collect more pages and Next page; if the Next arrow isn't found, click Change and click it yourself."], body: "Open the side panel's List tab and choose the results list; the extension scrolls Zillow's list panel so every card is loaded. Choose Collect more pages and Next page, set Stop after, and click Collect from N pages." },
+            { title: "Review and export", points: ["Example to type with the results tab in front: Only address, price, beds, baths and sq ft, under 400000, sorted by price."], body: "Rename or remove columns, filter rows, then Export as Excel, CSV, JSON or Google Sheets." },
         ],
     },
     notes: {
@@ -59,6 +59,8 @@ export const zillow: ScraperPageContent = {
             "Zillow's terms restrict automated collection and reuse of its data. Collect for your own research and check the terms before anything else.",
         ],
     },
+    emptyWhen: [{"column": "Lot Size", "when": "The card doesn't show it, common for condos and apartments."}, {"column": "Sq Ft", "when": "Not stated on the listing."}, {"column": "Badges", "when": "No New, Price cut, Open house or 3D tour label."}, {"column": "Listed By", "when": "The card shows no brokerage line."}, {"column": "Beds, Baths", "when": "Land listings and some rentals leave them blank."}],
+    pushback: ["If the site shows a verification page, the run stops and the panel says so. Complete the check in the tab, click Rescan, and collect again; what was collected is kept.", "A site that slows down for anyone loading many pages fast shows fewer results or an error page. Collect in smaller runs and come back later; History keeps each run.", "When the site changes its layout, the list is found again on the next visit. Column names may change; rename them once on the results page.", "Zillow often asks you to confirm you're human after many pages. Do it in the tab and start the collection again."],
     screenshots: ["ext/list-tab-zillow", "ext/results-zillow"],
     feature: "list-scraper",
     guide: "export-zillow-listings-to-excel",
@@ -69,5 +71,7 @@ export const zillow: ScraperPageContent = {
         { q: "Why does my export have fewer homes than Zillow says?", a: "Zillow's count covers the map area, but the list shows at most 20 pages. Narrow the search, or collect by zip code, to get every home." },
         { q: "Does it collect the agent's phone number?", a: "Not from the search results; the card shows who listed the home, not a phone. Zillow's agent directory pages collect agent name, brokerage, rating, review count and sales, which is a separate list." },
         { q: "Can I get the price history?", a: "No. The results card doesn't show it, and the listing page's price history isn't part of the standard fields." },
+        { q: "Why fewer rows than Zillow's count?", a: "Zillow's count covers the map area, but the list shows at most 20 pages. Narrow the search or collect by zip code." },
+        { q: "Can I get the agent's phone number?", a: "Not from the results card. Zillow's agent directory pages collect agent name, brokerage, rating, review count and sales as a separate list." },
     ],
 };

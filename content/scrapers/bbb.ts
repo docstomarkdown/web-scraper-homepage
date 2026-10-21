@@ -36,9 +36,9 @@ export const bbb: ScraperPageContent = {
     steps: {
         heading: "Three clicks",
         items: [
-            { title: "Search BBB", body: "Search for a category near a place and open the side panel's List tab." },
-            { title: "Collect the pages", body: "Choose Collect more pages and Next page, then Collect N items." },
-            { title: "Export", body: "Export to Excel, CSV, JSON or Google Sheets, or add contact details from each business's website first." },
+            { title: "Search BBB", points: ["Example: roofing contractors in Denver, CO.", "Filter to Accredited businesses on BBB first if the client wants only those."], body: "Search for a category near a place and open the side panel's List tab." },
+            { title: "Collect the pages", points: ["Choose Collect more pages, then Next page; set Stop after and click Collect from 5 pages."], body: "Choose Collect more pages and Next page, then Collect N items." },
+            { title: "Export", points: ["Export as gives Excel, CSV, JSON or Google Sheets. For emails, run Bulk scrape → Collect contacts over the website addresses with Use saved data."], body: "Export to Excel, CSV, JSON or Google Sheets, or add contact details from each business's website first." },
         ],
     },
     notes: {
@@ -48,9 +48,14 @@ export const bbb: ScraperPageContent = {
             "BBB ratings are the bureau's grades, collected as shown; they aren't verified by Web Scraper Pro.",
         ],
     },
+    emptyWhen: [{"column": "BBB Rating", "when": "The business isn't rated by BBB."}, {"column": "Accredited", "when": "Shown only for accredited businesses; others are blank, not No."}, {"column": "Phone, Address", "when": "The profile card doesn't show them; the business's BBB page may."}],
+    pushback: ["If the site shows a verification page, the run stops and the panel says so. Complete the check in the tab, click Rescan, and collect again; what was collected is kept.", "A site that slows down for anyone loading many pages fast shows fewer results or an error page. Collect in smaller runs and come back later; History keeps each run.", "When the site changes its layout, the list is found again on the next visit. Column names may change; rename them once on the results page."],
     screenshots: ["ext/list-tab-bbb"],
     feature: "list-scraper",
     useCase: "lead-generation",
     related: ["maps", "yellow-pages", "justdial"],
-    faqs: [],
+    faqs: [
+        { q: "Does Accredited mean BBB-approved?", a: "It means the business pays for BBB accreditation and meets its standards. The column is filled for accredited businesses and blank for the rest." },
+        { q: "Can I get the full profile for each business?", a: "The results card gives the summary. Open a profile and use the Properties tab for the details on that page." },
+    ],
 };

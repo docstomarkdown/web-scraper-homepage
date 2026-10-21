@@ -44,9 +44,9 @@ export const youtube: ScraperPageContent = {
     steps: {
         heading: "Search, scroll, collect",
         items: [
-            { title: "Open the search or the channel", body: "Run the search with the filters you want (upload date, type, duration), or open a channel's Videos or Shorts tab." },
-            { title: "Pick the list and let it scroll", body: "Open the side panel's List tab and choose the videos list. YouTube loads more as you scroll, so choose Collect more pages; the run auto-scrolls until nothing new loads, or until you stop." },
-            { title: "Review and export", body: "Sort by Views, remove columns you don't need, then Export as Excel, CSV, JSON or Google Sheets." },
+            { title: "Open the search or the channel", points: ["Example: trail running shoe review, filtered to this year.", "A channel's Videos tab lists every public upload as you scroll."], body: "Run the search with the filters you want (upload date, type, duration), or open a channel's Videos or Shorts tab." },
+            { title: "Pick the list and let it scroll", points: ["Choose Collect more pages; the panel shows Auto scroll detected. Click Collect to end, and Stop whenever you have enough."], body: "Open the side panel's List tab and choose the videos list. YouTube loads more as you scroll, so choose Collect more pages; the run auto-scrolls until nothing new loads, or until you stop." },
+            { title: "Review and export", points: ["Example to type with the results tab in front: Only title, channel, views and url, sorted by views."], body: "Sort by Views, remove columns you don't need, then Export as Excel, CSV, JSON or Google Sheets." },
         ],
     },
     notes: {
@@ -59,6 +59,8 @@ export const youtube: ScraperPageContent = {
             "YouTube's terms restrict automated collection. Collect for your own research, such as topic analysis or a creator shortlist, and check the terms before anything else.",
         ],
     },
+    emptyWhen: [{"column": "Playlist ID, Videos in Playlist", "when": "The card is a video, not a playlist."}, {"column": "Chapters", "when": "The card lists no chapters."}, {"column": "Description", "when": "Search cards show a snippet; channel pages often don't."}, {"column": "Badges", "when": "No New, 4K or similar label."}, {"column": "Verified Channel", "when": "The channel has no verification mark."}],
+    pushback: ["YouTube loads results as you scroll, with no end on busy searches. Stop when you have enough; the rows so far are kept.", "A very large channel takes a while to scroll through. Sort by date on YouTube first if you only want recent videos."],
     screenshots: ["ext/results-youtube"],
     feature: "list-scraper",
     guide: "collect-youtube-search-results",
@@ -69,5 +71,7 @@ export const youtube: ScraperPageContent = {
         { q: "Does it get the comments?", a: "No. Comments aren't part of the setup. A video's comment list on its page is detected like any other list, but there's no ready-made setup for it, so check the columns on a small run first." },
         { q: "Can I collect channel emails for outreach?", a: "No. Channel contact emails sit behind a verification on the About page, and the extension never bypasses one. Use the channel's own website, which many list in their links, and collect contacts there." },
         { q: "Can I compare several topics?", a: "Run a search per topic and export each; History keeps every run. Or search each topic in its own tab and ask chat to combine the conversation's lists into one table." },
+        { q: "Why are the views rounded?", a: "They're what the card shows, such as 48K; the extension saves them as numbers. A video's own page shows the exact count." },
+        { q: "Does it collect Shorts?", a: "Yes, as rows with Type set to Short. Filter the Type column to keep or drop them." },
     ],
 };

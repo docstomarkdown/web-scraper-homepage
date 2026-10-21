@@ -42,9 +42,9 @@ export const maps: ScraperPageContent = {
     steps: {
         heading: "From search to spreadsheet",
         items: [
-            { title: "Search Maps", body: "Search for a type of business in a place, such as \"dentists in Springfield\", and open the side panel's List tab." },
-            { title: "Click Collect places from this map", body: "Leave Also collect contact details from each business's website ticked. The table fills in as it scrolls; Stop keeps what it has. In chat, type the search instead and pick how many on the card." },
-            { title: "Export", body: "Open the results, keep the columns you want, and export to Excel, CSV, JSON or Google Sheets." },
+            { title: "Search Maps", points: ["Example: dentists in Austin.", "Or in the Chat tab: Find dentists in Austin. A card asks how many: 20, 50, 100 or 200."], body: "Search for a type of business in a place, such as \"dentists in Springfield\", and open the side panel's List tab." },
+            { title: "Click Collect places from this map", points: ["Leave Also collect contact details from each business's website ticked for emails and social links.", "Keep the tab in front. 50 businesses with emails take about four minutes, 200 about fifteen."], body: "Leave Also collect contact details from each business's website ticked. The table fills in as it scrolls; Stop keeps what it has. In chat, type the search instead and pick how many on the card." },
+            { title: "Export", points: ["Example to type with the results tab in front: Only name, phone, website and rating, sorted by rating."], body: "Open the results, keep the columns you want, and export to Excel, CSV, JSON or Google Sheets." },
         ],
     },
     notes: {
@@ -57,6 +57,8 @@ export const maps: ScraperPageContent = {
             "It collects what Maps shows publicly. It doesn't sign in or reveal hidden details.",
         ],
     },
+    emptyWhen: [{"column": "Website", "when": "The business has no website listed on Maps. Its emails and social columns stay empty too."}, {"column": "Emails", "when": "The website publishes no email as text, or only behind a form or an image."}, {"column": "Website phones, Faxes", "when": "The website lists no phone beyond the one Maps shows, or no fax."}, {"column": "LinkedIn, Instagram and the other social columns", "when": "No business in the run had that network; a column appears only when at least one row has a value."}, {"column": "Operating Hours", "when": "The listing shows no hours."}, {"column": "Rating, Review Count", "when": "A new listing with no reviews yet."}],
+    pushback: ["A Maps run opens businesses at an uneven pace and slows down when Maps stops answering, so a long run finishes rather than being cut off.", "If Maps shows a verification page, the run stops; complete it in the tab and start the search again.", "One search returns at most 200 businesses. Search by neighbourhood or zip code and let chat combine the searches."],
     screenshots: ["ext/list-tab-maps-collect", "ext/results-maps-with-contacts"],
     feature: "maps-leads",
     guide: "get-local-business-leads-from-maps",
@@ -65,5 +67,7 @@ export const maps: ScraperPageContent = {
     faqs: [
         { q: "Do I need a Maps API key?", a: "No. It works on the Maps website in your own browser." },
         { q: "Can I get reviews as well?", a: "The rating and review count, yes. Review text isn't collected from Maps." },
+        { q: "Why do some rows have no email?", a: "Maps never lists emails. They come from each business's own website, and many small businesses publish none. Those rows keep the phone and website from Maps." },
+        { q: "Can I collect only businesses without a website?", a: "Yes. On the results page, click Filter rows and keep rows where Website is empty." },
     ],
 };

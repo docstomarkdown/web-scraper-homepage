@@ -45,9 +45,9 @@ export const scholar: ScraperPageContent = {
     steps: {
         heading: "Search, choose the pages, collect",
         items: [
-            { title: "Search on Scholar", body: "Run the search with the filters you want: year range, sort by date, include citations or not. The extension collects the results as the page shows them." },
-            { title: "Choose how many pages", body: "Open the side panel's List tab. Scholar is recognised, and the panel offers to collect this page, a number of pages, or every available page. Ten pages is the default." },
-            { title: "Review and export", body: "Sort by Cited By or Year, remove columns you don't need, then Export as Excel, CSV, JSON or Google Sheets." },
+            { title: "Search on Scholar", points: ["Example: trail running injury rates, with a year range.", "Each Scholar page holds ten results."], body: "Run the search with the filters you want: year range, sort by date, include citations or not. The extension collects the results as the page shows them." },
+            { title: "Choose how many pages", points: ["Keep 10, type a number, or choose every page. The run pauses between pages on purpose.", "If Scholar shows a verification page, the run stops; complete it in the tab, click Rescan, and collect again."], body: "Open the side panel's List tab. Scholar is recognised, and the panel offers to collect this page, a number of pages, or every available page. Ten pages is the default." },
+            { title: "Review and export", points: ["Example to type with the results tab in front: Only title, authors, year and cited by, sorted by cited by."], body: "Sort by Cited By or Year, remove columns you don't need, then Export as Excel, CSV, JSON or Google Sheets." },
         ],
     },
     notes: {
@@ -60,6 +60,8 @@ export const scholar: ScraperPageContent = {
             "Scholar's terms restrict automated collection. Collect for your own research and cite the papers from their own pages.",
         ],
     },
+    emptyWhen: [{"column": "Document URL, Document Type, Document Host Name", "when": "Scholar shows no full-text link for the result."}, {"column": "Author Profile URLs", "when": "No author has a Scholar profile."}, {"column": "Cited By, Cited By URL", "when": "The paper has no citations yet."}, {"column": "Versions, Versions URL", "when": "Scholar found one version only."}, {"column": "Year, Publication", "when": "A citation-only result with no venue or date."}],
+    pushback: ["Scholar shows a verification page when many pages load in a sitting. The run stops and keeps what it has; complete the check, Rescan, and continue.", "Scholar caps a search at 100 pages, 1,000 results. Split a wider sweep into narrower searches or year ranges."],
     screenshots: ["ext/list-tab-scholar", "ext/results-scholar"],
     feature: "list-scraper",
     guide: "export-scholar-search-results",
@@ -70,5 +72,7 @@ export const scholar: ScraperPageContent = {
         { q: "Does it get the citation counts?", a: "Yes. Cited By is a number column, so the sheet sorts by it, and Cited By URL links to the citing papers." },
         { q: "How many pages can I collect?", a: "As many as Scholar offers, up to its own limit of 100 pages. The panel's default is 10; choose a number or every available page." },
         { q: "Can I collect a Scholar author profile or Cited by list?", a: "The ready-made setup is for search results. A Cited by page is a results page too, so it collects the same way; author profile pages are detected as a plain list." },
+        { q: "Why is the full-text link empty?", a: "Scholar shows a PDF or HTML link only when it knows of one. Follow the Result URL for the publisher's page." },
+        { q: "Can I import the file into a reference manager?", a: "Export as CSV and use your manager's CSV import, mapping Title, Authors, Publication and Year." },
     ],
 };

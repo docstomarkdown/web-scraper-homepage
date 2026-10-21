@@ -46,9 +46,9 @@ export const ebay: ScraperPageContent = {
     steps: {
         heading: "Search, pick, collect",
         items: [
-            { title: "Search on eBay", body: "Search and filter as you normally would: condition, Buy It Now or auction, price, item location. The extension collects what the page shows." },
-            { title: "Pick the list and the pages", body: "Open the side panel's List tab, choose the results list, then Collect more pages. The Next button is found on its own; set Stop after and click Collect from N pages." },
-            { title: "Review and export", body: "Sort by Sold or Price, remove columns you don't need, then Export as Excel, CSV, JSON or Google Sheets." },
+            { title: "Search on eBay", points: ["Example: vintage film camera, filtered to Buy It Now or to Sold items for pricing.", "Sponsored rows are kept and marked; Settings → Results → Skip sponsored products leaves them out."], body: "Search and filter as you normally would: condition, Buy It Now or auction, price, item location. The extension collects what the page shows." },
+            { title: "Pick the list and the pages", points: ["Set Stop after and click Collect from 5 pages (or the number you set). Keep the tab in front."], body: "Open the side panel's List tab, choose the results list, then Collect more pages. The Next button is found on its own; set Stop after and click Collect from N pages." },
+            { title: "Review and export", points: ["Example to type with the results tab in front: Only name, price, sold and seller, sorted by sold."], body: "Sort by Sold or Price, remove columns you don't need, then Export as Excel, CSV, JSON or Google Sheets." },
         ],
     },
     notes: {
@@ -61,6 +61,8 @@ export const ebay: ScraperPageContent = {
             "eBay's terms restrict automated collection. Collect for your own research, such as pricing a lot or watching a category, and check the terms before reusing anything.",
         ],
     },
+    emptyWhen: [{"column": "Bids, Time Left, Auction Ends", "when": "The listing is Buy It Now, not an auction."}, {"column": "Sold", "when": "The listing shows no \"N sold\" line yet."}, {"column": "Watchers", "when": "eBay shows watchers on some listings only."}, {"column": "Price With Coupon", "when": "No coupon on the listing."}, {"column": "Rating, Rating Count", "when": "Product ratings appear only on catalogue-matched listings."}, {"column": "Returns, Item Location", "when": "Not shown on every card."}],
+    pushback: ["If the site shows a verification page, the run stops and the panel says so. Complete the check in the tab, click Rescan, and collect again; what was collected is kept.", "A site that slows down for anyone loading many pages fast shows fewer results or an error page. Collect in smaller runs and come back later; History keeps each run.", "When the site changes its layout, the list is found again on the next visit. Column names may change; rename them once on the results page.", "Sold-items searches page like any other; a very long sold history is capped by eBay itself."],
     screenshots: ["ext/results-ebay"],
     feature: "list-scraper",
     guide: "collect-store-listings-to-excel",
@@ -71,5 +73,7 @@ export const ebay: ScraperPageContent = {
         { q: "Can I collect a seller's whole store?", a: "A seller's items page is a list like any other; pick it in the List tab and collect every page." },
         { q: "Why is the price a range on some rows?", a: "Listings with variations show a range on the card, and the extension keeps what the card shows. Open the listing and use the Properties tab for one variation's price." },
         { q: "Can I run several searches at once?", a: "Paste the search addresses into Bulk scrape and each is collected in turn with the same page settings." },
+        { q: "Why do some rows have no bids or time left?", a: "Those listings are Buy It Now. Bids, Time Left and Auction Ends fill in for auctions only; filter on Purchase Format to separate them." },
+        { q: "Can I collect a seller's whole store?", a: "A seller's items page is a list like any other; pick it in the List tab and collect every page." },
     ],
 };

@@ -44,9 +44,9 @@ export const rightmove: ScraperPageContent = {
     steps: {
         heading: "Search, pick, collect",
         items: [
-            { title: "Search on Rightmove", body: "Search the area with the filters you want: price, bedrooms, property type, added since. The extension collects what the page shows." },
-            { title: "Pick the list and the pages", body: "Open the side panel's List tab, choose the results list, then Collect more pages. The Next button is found on its own; set Stop after and click Collect from N pages." },
-            { title: "Review and export", body: "Rename or remove columns, filter rows, then Export as Excel, CSV, JSON or Google Sheets." },
+            { title: "Search on Rightmove", points: ["Example: two-bedroom flats in one town, for sale or to rent.", "Rightmove shows up to 42 pages per search."], body: "Search the area with the filters you want: price, bedrooms, property type, added since. The extension collects what the page shows." },
+            { title: "Pick the list and the pages", points: ["Choose Collect more pages and Next page; set Stop after and click Collect from 5 pages."], body: "Open the side panel's List tab, choose the results list, then Collect more pages. The Next button is found on its own; set Stop after and click Collect from N pages." },
+            { title: "Review and export", points: ["Example to type with the results tab in front: Only address, price, bedrooms and property type, sorted by price."], body: "Rename or remove columns, filter rows, then Export as Excel, CSV, JSON or Google Sheets." },
         ],
     },
     notes: {
@@ -59,6 +59,8 @@ export const rightmove: ScraperPageContent = {
             "Rightmove's terms restrict automated collection of its data. Collect for your own research and check the terms before reusing anything.",
         ],
     },
+    emptyWhen: [{"column": "Price Qualifier", "when": "No Offers over, Guide price or similar wording."}, {"column": "Added / Reduced", "when": "The card shows no date line."}, {"column": "Featured, Tags", "when": "No featured flag or labels such as New home."}, {"column": "Agent Phone", "when": "The branch shows no phone on the card."}, {"column": "Bathrooms", "when": "Not stated on the listing."}],
+    pushback: ["If the site shows a verification page, the run stops and the panel says so. Complete the check in the tab, click Rescan, and collect again; what was collected is kept.", "A site that slows down for anyone loading many pages fast shows fewer results or an error page. Collect in smaller runs and come back later; History keeps each run.", "When the site changes its layout, the list is found again on the next visit. Column names may change; rename them once on the results page."],
     screenshots: ["ext/results-rightmove"],
     feature: "list-scraper",
     guide: "export-zillow-listings-to-excel",
@@ -69,5 +71,7 @@ export const rightmove: ScraperPageContent = {
         { q: "Can I get the floor area and council tax band?", a: "Not from the results page; they're on each listing's own page. Open a listing and click Collect details on this page in the Properties tab." },
         { q: "Can I run the same search every week?", a: "Yes, by running it again: every collection is saved in History with its date, so two exports side by side show what's new. Scheduled runs are coming with the cloud." },
         { q: "Does it work on Zoopla and OnTheMarket too?", a: "Zoopla has a ready-made setup; see the real-estate sites list. Other property sites are detected on the page, with columns named from the page's own labels." },
+        { q: "Does it collect rentals as well as sales?", a: "Yes. A lettings search gives the same columns, with the monthly rent in Price." },
+        { q: "Can I get the floor area or council tax band?", a: "Not from the results page; they're on each listing's own page. Open one and use Collect details on this page in the Properties tab." },
     ],
 };

@@ -43,9 +43,9 @@ export const etsy: ScraperPageContent = {
     steps: {
         heading: "Search, pick, collect",
         items: [
-            { title: "Search on Etsy", body: "Search and filter as you normally would: price, ships from, free shipping, item type. The extension collects what the page shows." },
-            { title: "Pick the list and the pages", body: "Open the side panel's List tab, choose the results list, then Collect more pages. The Next button is found on its own; set Stop after and click Collect from N pages." },
-            { title: "Review and export", body: "Sort by Shop Review Count or Price, remove columns you don't need, then Export as Excel, CSV, JSON or Google Sheets." },
+            { title: "Search on Etsy", points: ["Example: linen apron, filtered to free shipping or a price range.", "Sponsored rows are kept and marked; Settings → Results → Skip sponsored products leaves them out."], body: "Search and filter as you normally would: price, ships from, free shipping, item type. The extension collects what the page shows." },
+            { title: "Pick the list and the pages", points: ["Set Stop after and click Collect from 5 pages (or the number you set). Keep the tab in front."], body: "Open the side panel's List tab, choose the results list, then Collect more pages. The Next button is found on its own; set Stop after and click Collect from N pages." },
+            { title: "Review and export", points: ["Example to type with the results tab in front: Only name, price, shop and shop review count, sorted by shop review count."], body: "Sort by Shop Review Count or Price, remove columns you don't need, then Export as Excel, CSV, JSON or Google Sheets." },
         ],
     },
     notes: {
@@ -58,6 +58,8 @@ export const etsy: ScraperPageContent = {
             "Etsy's terms restrict automated collection, and listings' photos and text belong to their sellers. Collect for your own research and check the terms before reusing anything.",
         ],
     },
+    emptyWhen: [{"column": "Original Price, Discount", "when": "The listing isn't on sale."}, {"column": "Badges", "when": "No Bestseller, Star Seller or Etsy's Pick label."}, {"column": "Stock", "when": "Shown only as a scarcity note such as Only 2 left."}, {"column": "Delivery", "when": "No delivery line on the card."}, {"column": "Shop Rating, Shop Review Count", "when": "A new shop with no reviews yet."}],
+    pushback: ["If the site shows a verification page, the run stops and the panel says so. Complete the check in the tab, click Rescan, and collect again; what was collected is kept.", "A site that slows down for anyone loading many pages fast shows fewer results or an error page. Collect in smaller runs and come back later; History keeps each run.", "When the site changes its layout, the list is found again on the next visit. Column names may change; rename them once on the results page."],
     screenshots: ["ext/results-etsy"],
     feature: "list-scraper",
     guide: "collect-store-listings-to-excel",
@@ -68,5 +70,7 @@ export const etsy: ScraperPageContent = {
         { q: "Does it get the number of sales for a listing?", a: "Only what the card shows. Etsy's cards show the shop's review count and badges rather than per-listing sales; open a listing and use the Properties tab for its own details." },
         { q: "Can I find the top shops in a niche?", a: "Collect the search, then sort the sheet by Shop Review Count; the shops with the most reviews lead the niche." },
         { q: "Can I run several searches at once?", a: "Paste the search addresses into Bulk scrape and each is collected in turn with the same page settings." },
+        { q: "Why do several listings share the same rating?", a: "Shop Rating and Shop Review Count belong to the shop, not the listing, so every listing from one shop shows the shop's numbers." },
+        { q: "Can I collect one shop's listings?", a: "Yes. Open the shop's page; its items are a list, so pick it in the List tab and collect every page or section." },
     ],
 };

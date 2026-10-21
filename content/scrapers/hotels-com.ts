@@ -43,9 +43,9 @@ export const hotelsCom: ScraperPageContent = {
     steps: {
         heading: "Search, pick, collect",
         items: [
-            { title: "Search on Hotels.com", body: "Enter the city, dates and guests, then set the filters you want: price, star rating, free cancellation. The extension collects what the list shows, for those dates." },
-            { title: "Pick the list and load more", body: "Open the side panel's List tab and choose the results list. Choose Collect more pages; Hotels.com uses a Load more button, so set Stop after to a number of loads or To end, and click Collect." },
-            { title: "Review and export", body: "Sort by price or rating, filter rows, then Export as Excel, CSV, JSON or Google Sheets." },
+            { title: "Search on Hotels.com", points: ["Example: a city, two nights, two guests, filtered to free cancellation.", "Member prices show only when you're signed in."], body: "Enter the city, dates and guests, then set the filters you want: price, star rating, free cancellation. The extension collects what the list shows, for those dates." },
+            { title: "Pick the list and load more", points: ["Hotels.com uses a Load more button. Choose Collect more pages, set Stop after to a number of loads or To end, and click Collect."], body: "Open the side panel's List tab and choose the results list. Choose Collect more pages; Hotels.com uses a Load more button, so set Stop after to a number of loads or To end, and click Collect." },
+            { title: "Review and export", points: ["Example to type with the results tab in front: Only hotel name, guest rating and total price, sorted by total price."], body: "Sort by price or rating, filter rows, then Export as Excel, CSV, JSON or Google Sheets." },
         ],
     },
     notes: {
@@ -58,6 +58,8 @@ export const hotelsCom: ScraperPageContent = {
             "Hotels.com's terms restrict automated collection. Collect for your own planning or research and check the terms before reusing anything.",
         ],
     },
+    emptyWhen: [{"column": "Original Price, Discount", "when": "No deal on the card."}, {"column": "Rooms Left", "when": "No scarcity note."}, {"column": "Rating Label, Guest Rating", "when": "A new property with no reviews."}, {"column": "Amenities", "when": "The card lists none."}],
+    pushback: ["If the site shows a verification page, the run stops and the panel says so. Complete the check in the tab, click Rescan, and collect again; what was collected is kept.", "A site that slows down for anyone loading many pages fast shows fewer results or an error page. Collect in smaller runs and come back later; History keeps each run.", "When the site changes its layout, the list is found again on the next visit. Column names may change; rename them once on the results page."],
     screenshots: ["ext/results-hotels"],
     feature: "list-scraper",
     guide: "collect-every-page-of-results",
@@ -68,5 +70,7 @@ export const hotelsCom: ScraperPageContent = {
         { q: "Does it collect the room types?", a: "The results card shows the lead price, not every room. Open a hotel's page and use the Properties tab for the details on that page." },
         { q: "Are the prices in my currency?", a: "In whatever currency Hotels.com shows you. Set it on the site before collecting." },
         { q: "Does it work on Expedia too?", a: "Expedia pages are detected as a list without a ready-made setup, so the columns are named from the page's own labels. Hotels.com, Booking.com and Tripadvisor have named columns." },
+        { q: "Are taxes and fees in the total?", a: "The Total Price column is the card's total including taxes and fees as Hotels.com states it. Resort fees paid at the hotel may not be in it." },
+        { q: "Can I compare two date ranges?", a: "Run the search for each and export both; Hotel URL is the same across runs, so a lookup lines them up." },
     ],
 };

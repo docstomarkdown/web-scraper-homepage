@@ -43,9 +43,9 @@ export const walmart: ScraperPageContent = {
     steps: {
         heading: "Search, pick, collect",
         items: [
-            { title: "Search on Walmart", body: "Search and filter as you normally would: price, brand, fulfilment, rating. The extension collects what the page shows." },
-            { title: "Pick the list and the pages", body: "Open the side panel's List tab, choose the results list, then Collect more pages. The Next button is found on its own; set Stop after and click Collect from N pages." },
-            { title: "Review and export", body: "Sort by Price or Rating, remove columns you don't need, then Export as Excel, CSV, JSON or Google Sheets." },
+            { title: "Search on Walmart", points: ["Example: trail running shoes, with brand or fulfilment filters.", "Sponsored rows are kept and marked; Settings → Results → Skip sponsored products leaves them out."], body: "Search and filter as you normally would: price, brand, fulfilment, rating. The extension collects what the page shows." },
+            { title: "Pick the list and the pages", points: ["Walmart shows up to 25 pages. Set Stop after and click Collect from 5 pages (or the number you set)."], body: "Open the side panel's List tab, choose the results list, then Collect more pages. The Next button is found on its own; set Stop after and click Collect from N pages." },
+            { title: "Review and export", points: ["Example to type with the results tab in front: Only name, price, rating and review count, sorted by price."], body: "Sort by Price or Rating, remove columns you don't need, then Export as Excel, CSV, JSON or Google Sheets." },
         ],
     },
     notes: {
@@ -58,6 +58,8 @@ export const walmart: ScraperPageContent = {
             "Walmart's terms restrict automated collection. Collect for your own research, such as a price comparison, and check the terms before reusing anything.",
         ],
     },
+    emptyWhen: [{"column": "Original Price, Savings", "when": "No rollback or struck-through price."}, {"column": "Options Price Range, Sizes", "when": "The product has no options."}, {"column": "Pickup", "when": "No store set for your zip code, or pickup not offered."}, {"column": "Badge", "when": "No Best seller or Rollback label."}, {"column": "Rating, Review Count", "when": "No reviews yet."}],
+    pushback: ["If the site shows a verification page, the run stops and the panel says so. Complete the check in the tab, click Rescan, and collect again; what was collected is kept.", "A site that slows down for anyone loading many pages fast shows fewer results or an error page. Collect in smaller runs and come back later; History keeps each run.", "When the site changes its layout, the list is found again on the next visit. Column names may change; rename them once on the results page.", "Walmart sometimes shows a verification page when many pages load quickly; complete it in the tab and collect again."],
     screenshots: ["ext/results-walmart"],
     feature: "list-scraper",
     guide: "collect-store-listings-to-excel",
@@ -68,5 +70,7 @@ export const walmart: ScraperPageContent = {
         { q: "Does it collect marketplace sellers?", a: "The search card doesn't show the seller, so it isn't in the table. Open a product and use the Properties tab, which reads the seller on the product page." },
         { q: "Can I collect a product's reviews?", a: "Yes, one product at a time: open the product page, click Collect details on this page in the Properties tab, then View all reviews to collect them across pages." },
         { q: "Can I run several searches at once?", a: "Paste the search addresses into Bulk scrape and each is collected in turn with the same page settings." },
+        { q: "Why is Pickup empty?", a: "Walmart fills the pickup line from the store set for your zip code. Set your store on walmart.com before collecting." },
+        { q: "Does it show the seller?", a: "Not from the search card. Open a product and use the Properties tab, which reads the seller on the product page." },
     ],
 };

@@ -37,9 +37,9 @@ export const justdial: ScraperPageContent = {
     steps: {
         heading: "Three clicks",
         items: [
-            { title: "Search Justdial", body: "Search for a service in a city and open the side panel's List tab." },
-            { title: "Collect the pages", body: "Choose Collect more pages and Auto scroll or Next page, then Collect N items." },
-            { title: "Export", body: "Keep the columns you want and export to Excel, CSV, JSON or Google Sheets." },
+            { title: "Search Justdial", points: ["Example: dentists in Chennai.", "Justdial may ask you to sign in or verify after a few pages; do it in the tab and collect again."], body: "Search for a service in a city and open the side panel's List tab." },
+            { title: "Collect the pages", points: ["Choose Collect more pages, then Next page; set Stop after and click Collect from 5 pages."], body: "Choose Collect more pages and Auto scroll or Next page, then Collect N items." },
+            { title: "Export", points: ["Export as gives Excel, CSV, JSON or Google Sheets. For emails, run Bulk scrape → Collect contacts over the Website column with Use saved data."], body: "Keep the columns you want and export to Excel, CSV, JSON or Google Sheets." },
         ],
     },
     notes: {
@@ -49,9 +49,14 @@ export const justdial: ScraperPageContent = {
             "Listings given as the website for a business are directory pages, so contact details aren't read from them.",
         ],
     },
+    emptyWhen: [{"column": "Phone", "when": "Justdial hides some numbers behind a Show number button; only numbers shown on the card are collected."}, {"column": "Rating, Rating Count", "when": "The listing has no ratings yet."}, {"column": "Services, Highlights", "when": "The card lists none."}],
+    pushback: ["If the site shows a verification page, the run stops and the panel says so. Complete the check in the tab, click Rescan, and collect again; what was collected is kept.", "A site that slows down for anyone loading many pages fast shows fewer results or an error page. Collect in smaller runs and come back later; History keeps each run.", "When the site changes its layout, the list is found again on the next visit. Column names may change; rename them once on the results page.", "Justdial shows some phone numbers only after a click or a sign-in; the extension collects what the card shows and never clicks through for you."],
     screenshots: ["ext/list-tab-justdial"],
     feature: "list-scraper",
     useCase: "lead-generation",
     related: ["maps", "yellow-pages", "bbb"],
-    faqs: [],
+    faqs: [
+        { q: "Why are some phone numbers missing?", a: "Justdial shows some numbers only after a click or a sign-in. The extension collects the numbers shown on the card; it doesn't click through or sign in for you." },
+        { q: "Does it work in every city?", a: "Yes. The setup reads the listing cards, which are the same across Justdial's cities and categories." },
+    ],
 };

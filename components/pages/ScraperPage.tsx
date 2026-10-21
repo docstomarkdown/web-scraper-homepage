@@ -32,9 +32,14 @@ export interface ScraperPageContent {
     version: string;
     sample: { caption: string; columns: string[]; rows: string[][] };
     fields: { heading: string; intro?: string; items: { name: string; description: string }[] };
-    steps: { heading: string; items: { title: string; body: string }[] };
+    /** `points` are the specifics under a step: an example to type, a number, a thing to watch for. */
+    steps: { heading: string; items: { title: string; body: string; points?: string[] }[] };
     /** What's specific to this site: sign-in, paging, limits, known gaps. */
     notes: { heading: string; items: string[] };
+    /** Which columns can come back empty, and why. */
+    emptyWhen?: { column: string; when: string }[];
+    /** What happens when the site slows down, asks a question or changes. */
+    pushback?: string[];
     /** Capture ids from the visuals library, shown after the steps. */
     screenshots: string[];
     /** The feature page that does the work, and the guide and use case that go with it. */
@@ -126,6 +131,22 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
                             ))}
                         </dl>
                     </Reveal>
+                    {c.emptyWhen && c.emptyWhen.length > 0 && (
+                        <Reveal className="mt-14">
+                            <h3 className="text-xl font-semibold text-slate-900 dark:text-white">Which columns can be empty, and why</h3>
+                            <p className="mt-2 text-base text-slate-700 dark:text-slate-200 leading-[1.65]">An empty cell means the page didn&apos;t show that detail. Nothing is guessed.</p>
+                            <div className="mt-5 overflow-x-auto">
+                                <table className="w-full text-base text-left border-collapse">
+                                    <thead><tr className="border-b-2 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white"><th className="py-2.5 pr-5 font-semibold w-[38%]">Column</th><th className="py-2.5 font-semibold">Empty when</th></tr></thead>
+                                    <tbody className="text-slate-700 dark:text-slate-200">
+                                        {c.emptyWhen.map((r) => (
+                                            <tr key={r.column} className="border-b border-slate-100 dark:border-slate-800/60 align-top"><td className="py-2.5 pr-5 font-medium text-slate-900 dark:text-white">{r.column}</td><td className="py-2.5">{r.when}</td></tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </Reveal>
+                    )}
                 </div>
             </section>
 
@@ -139,6 +160,13 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
                                     <span className="inline-flex w-8 h-8 items-center justify-center rounded-full bg-[#2772ED]/10 text-sm font-semibold text-[#1f5ec2] dark:text-[#7aa7ff]">{i + 1}</span>
                                     <h3 className="mt-4 text-lg font-semibold text-slate-900 dark:text-white">{s.title}</h3>
                                     <p className="mt-2 text-base text-slate-700 dark:text-slate-200 leading-[1.65]">{s.body}</p>
+                                    {s.points && s.points.length > 0 && (
+                                        <ul className="mt-3 space-y-1.5 text-base text-slate-700 dark:text-slate-200 leading-[1.6]">
+                                            {s.points.map((pt) => (
+                                                <li key={pt} className="flex gap-2.5"><span className="mt-[0.65em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#2772ED]" aria-hidden="true" /><span>{pt}</span></li>
+                                            ))}
+                                        </ul>
+                                    )}
                                 </li>
                             </Reveal>
                         ))}
@@ -159,6 +187,19 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
                                 </li>
                             ))}
                         </ul>
+                        {c.pushback && c.pushback.length > 0 && (
+                            <>
+                                <h3 className="mt-10 text-xl font-semibold text-slate-900 dark:text-white">When the site pushes back</h3>
+                                <ul className="mt-4 space-y-3">
+                                    {c.pushback.map((n) => (
+                                        <li key={n} className="flex gap-3 text-base text-slate-700 dark:text-slate-200 leading-[1.65]">
+                                            <span className="mt-[0.3em] inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-100 text-xs font-semibold" aria-hidden="true">!</span>
+                                            <span>{n}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </>
+                        )}
                     </Reveal>
                     <Reveal>
                         <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Go further</h2>

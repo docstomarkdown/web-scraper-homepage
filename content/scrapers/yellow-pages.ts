@@ -40,9 +40,9 @@ export const yellowPages: ScraperPageContent = {
     steps: {
         heading: "Three clicks",
         items: [
-            { title: "Search Yellow Pages", body: "Search for a category in a city and open the side panel's List tab. The listings appear under Choose from lists we found." },
-            { title: "Collect the pages", body: "Choose Collect more pages, Next page, and how many pages. Click Collect N items." },
-            { title: "Add contact details, then export", body: "On the results page, click Add contact details to add emails and social links from each website. Export to Excel, CSV, JSON or Google Sheets." },
+            { title: "Search Yellow Pages", points: ["Example: dentists in Austin, TX.", "Sponsored rows are kept and marked Sponsored; Settings → Results → Skip sponsored products leaves them out."], body: "Search for a category in a city and open the side panel's List tab. The listings appear under Choose from lists we found." },
+            { title: "Collect the pages", points: ["Choose Collect more pages, then Next page; set Stop after and click Collect from 5 pages (or the number you set).", "Keep the tab in front while it pages through."], body: "Choose Collect more pages, Next page, and how many pages. Click Collect N items." },
+            { title: "Add contact details, then export", points: ["The Add contact details button needs a Maps-style Website column, so on a Yellow Pages table use Bulk scrape → Collect contacts → Use saved data instead.", "Export as gives Excel, CSV, JSON or Google Sheets."], body: "On the results page, click Add contact details to add emails and social links from each website. Export to Excel, CSV, JSON or Google Sheets." },
         ],
     },
     notes: {
@@ -53,10 +53,16 @@ export const yellowPages: ScraperPageContent = {
             "Keep the tab in front while it pages through; paging slows down in a background tab.",
         ],
     },
+    emptyWhen: [{"column": "Website", "when": "The listing has no website link."}, {"column": "Rating, Review Count", "when": "The listing has no reviews on Yellow Pages."}, {"column": "Years in Business", "when": "The business hasn't stated it."}, {"column": "Description", "when": "The listing shows no snippet."}],
+    pushback: ["If the site shows a verification page, the run stops and the panel says so. Complete the check in the tab, click Rescan, and collect again; what was collected is kept.", "A site that slows down for anyone loading many pages fast shows fewer results or an error page. Collect in smaller runs and come back later; History keeps each run.", "When the site changes its layout, the list is found again on the next visit. Column names may change; rename them once on the results page."],
     screenshots: ["ext/list-tab-yellowpages", "ext/results-yellowpages"],
     feature: "list-scraper",
     guide: "collect-business-listings-from-yellow-pages",
     useCase: "lead-generation",
     related: ["maps", "justdial", "bbb"],
-    faqs: [{ q: "Does it work on other countries' Yellow Pages?", a: "The ready-made setup is for yellowpages.com. Other directories are detected as lists, with columns named from the page." }],
+    faqs: [
+        { q: "Does it work on other countries' Yellow Pages?", a: "The ready-made setup is for yellowpages.com. Other directories are detected as lists, with columns named from the page." },
+        { q: "Can I get emails for the businesses?", a: "Yes, in a second step: open Bulk scrape → Collect contacts, choose Use saved data, and pick this collection. Each website is read for emails, phones and social links." },
+        { q: "Why are there sponsored rows?", a: "Yellow Pages mixes paid listings into results. They're kept and marked Sponsored so you can filter them; turn on Skip sponsored products to leave them out." },
+    ],
 };
