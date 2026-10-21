@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Check, Chrome } from "lucide-react";
+import { ArrowRight, Chrome } from "lucide-react";
 import Reveal from "@/components/landing/Reveal";
 import CTA from "@/components/landing/CTA";
 import { productConfig } from "@/config/product";
@@ -9,6 +9,7 @@ import { ogImageUrl } from "@/lib/og";
 import type { Metadata } from "next";
 import { relatedPages, type SitePage } from "@/config/pages";
 import { Screenshot } from "@/components/Screenshot";
+import ProseSection, { type ContentSection } from "@/components/pages/ProseSection";
 import { getCapture } from "@/lib/visuals";
 
 /** Content for one product feature page. Copy rules: docs/content-standards.md and docs/writing-style.md. */
@@ -30,7 +31,7 @@ export interface FeaturePageContent {
     /** `points` are the specifics under a step: an example to type, a number, a thing to watch for. */
     steps: { heading: string; intro?: string; items: { title: string; body: string; points?: string[]; screenshot?: string }[] };
     /** Extra sections that are specific to this feature (e.g. "Add emails to your list"). */
-    sections?: { id: string; eyebrow: string; heading: string; paragraphs: string[]; points?: string[]; screenshot?: string }[];
+    sections?: ContentSection[];
     limits: { heading: string; items: string[] };
     useCases: { heading: string; items: { title: string; body: string }[] };
     faqs: { q: string; a: string }[];
@@ -206,32 +207,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
             </section>
 
             {/* Feature-specific sections */}
-            {c.sections?.map((s) => (
-                <section key={s.id} id={s.id} className="py-12 md:py-16 scroll-mt-24 border-t border-slate-200 dark:border-slate-800">
-                    <div className={reading}>
-                        <Reveal>
-                            <p className={eyebrowCls}>{s.eyebrow}</p>
-                            <h2 className={`mt-2 ${h2}`}>{s.heading}</h2>
-                            <div className={`mt-5 space-y-5 ${body}`}>
-                                {s.paragraphs.map((p) => (
-                                    <p key={p}>{p}</p>
-                                ))}
-                                {s.points && (
-                                    <ul className="space-y-3">
-                                        {s.points.map((pt) => (
-                                            <li key={pt} className="flex gap-3">
-                                                <Check className="w-5 h-5 mt-[0.3em] shrink-0 text-[#1f5ec2] dark:text-[#7aa7ff]" aria-hidden="true" />
-                                                <span>{pt}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
-                            </div>
-                            {s.screenshot && <Screenshot id={s.screenshot} className="mt-8 mb-0" />}
-                        </Reveal>
-                    </div>
-                </section>
-            ))}
+            {c.sections?.map((s) => <ProseSection key={s.id} s={s} />)}
 
             {/* Use cases */}
             <section className="py-12 md:py-16 border-t border-slate-200 dark:border-slate-800">

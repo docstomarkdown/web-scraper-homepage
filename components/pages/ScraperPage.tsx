@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Reveal from "@/components/landing/Reveal";
 import CTA from "@/components/landing/CTA";
 import { Screenshot } from "@/components/Screenshot";
+import ProseSection, { type ContentSection } from "@/components/pages/ProseSection";
 import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/components/seo/JsonLd";
 import { productConfig } from "@/config/product";
 import { siteConfig } from "@/config/site";
@@ -40,6 +41,8 @@ export interface ScraperPageContent {
     emptyWhen?: { column: string; when: string }[];
     /** What happens when the site slows down, asks a question or changes. */
     pushback?: string[];
+    /** Site-specific reading sections after the notes: worked examples, what to do with the table, filters, caps. */
+    sections?: ContentSection[];
     /** Capture ids from the visuals library, shown after the steps. */
     screenshots: string[];
     /** The feature page that does the work, and the guide and use case that go with it. */
@@ -236,6 +239,8 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
                     </Reveal>
                 </div>
             </section>
+
+            {c.sections?.map((s) => <ProseSection key={s.id} s={s} />)}
 
             {/* FAQ */}
             {c.faqs.length > 0 && (

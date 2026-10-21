@@ -4,6 +4,7 @@ import { ArrowRight, Chrome, Minus } from "lucide-react";
 import Reveal from "@/components/landing/Reveal";
 import CTA from "@/components/landing/CTA";
 import { Screenshot } from "@/components/Screenshot";
+import ProseSection, { type ContentSection } from "@/components/pages/ProseSection";
 import { productConfig } from "@/config/product";
 import { siteConfig } from "@/config/site";
 import { getPage, showPlannedPages, type SitePage } from "@/config/pages";
@@ -28,6 +29,8 @@ export interface UseCasePageContent {
     /** The workflow from start to finish. `title` is the one-line instruction; `body` is two or three short sentences; `points` are optional specifics. */
     workflow: { heading: string; intro?: string; steps: { title: string; body: string; points?: string[]; feature?: string; screenshot?: string }[] };
     sample: { caption: string; columns: string[]; rows: string[][] };
+    /** Reading sections after the workflow: variations of the job, what to do with the table, worked examples, mistakes. */
+    sections?: ContentSection[];
     /** Sites this job usually involves: per-site page slugs, with a label for those without a page yet. */
     sites: { name: string; page?: string }[];
     cantDo: { heading: string; items: string[] };
@@ -138,6 +141,8 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
                     </ol>
                 </div>
             </section>
+
+            {c.sections?.map((s) => <ProseSection key={s.id} s={s} />)}
 
             {/* Sites, limits, guides: three short lists, each on its own */}
             <section className="py-14 md:py-16">
