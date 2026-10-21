@@ -1,73 +1,106 @@
 import type { ScraperPageContent } from "@/components/pages/ScraperPage";
 
-// Facts checked against release 1.3.0 on 2026-10-20: Maps columns (Business Name, Category, Rating, Review Count, Address,
-// Operating Hours, Phone, Website, Map URL) from the google-maps pack in configs-prod/; contact columns added in the same
-// run (DECISIONS.md D-022); chat count card up to 200 (D-026); best rated first and repeats left out (D-031, D-032).
+// Facts checked against release 1.3.0 on 2026-10-20: Google Maps columns (Business Name, Category, Rating, Review Count,
+// Address, Operating Hours, Phone, Website, Map URL) from the google-maps pack in configs-prod/; contact columns added in
+// the same run (DECISIONS.md D-022); chat count card up to 200 (D-026); best rated first and repeats left out (D-031, D-032).
 // Draft until a real run's screenshots are in the visuals library and lastVerified is set from that run.
+// 2026-10-21: title targets the search phrase ("scrape google maps business listings"); the site says "Google Maps".
+// The feature page /maps-leads owns "how to scrape google maps for business leads"; this page is the column-level sibling.
 
 export const maps: ScraperPageContent = {
     slug: "maps",
     category: "maps-and-directories",
-    site: { name: "Maps", url: "https://www.google.com/maps" },
+    site: { name: "Google Maps", url: "https://www.google.com/maps" },
     meta: {
-        title: "Maps Scraper: Every Business from a Search, with Contact Details",
-        description: "Collect the businesses in a Maps search into a spreadsheet: name, category, rating, reviews, address, hours, phone and website, plus emails and social links from each site.",
+        title: "How to Scrape Google Maps Business Listings with Phone and Email",
+        description: "Turn a Google Maps search into a spreadsheet: name, category, rating, reviews, address, hours, phone and website for every business, plus the emails from each one's own site. Free Chrome extension.",
     },
-    h1: "Collect every business from a Maps search",
-    intro: "Search for a type of business in a place, click once, and get each result as a row, with the emails and social links from its own website added in the same run.",
+    h1: "How to scrape Google Maps business listings with phone, website and emails",
+    intro: "Search Google Maps for a type of business in a place and click once. Every listing becomes a row with its rating, address, phone and website. The emails and social links from each business's own site are added in the same run.",
     status: "draft",
     lastVerified: "2026-10-20",
     version: "1.3.0",
     sample: {
-        caption: "A search for dentists, after export. Names, numbers and addresses are made up.",
-        columns: ["Business Name", "Category", "Rating", "Review Count", "Address", "Phone", "Website", "Emails"],
+        caption: "A search for dentists, after export. Names, numbers and emails are made up.",
+        columns: ["Business Name", "Rating", "Phone", "Website", "Emails"],
         rows: [
-            ["Bright Smile Dental", "Dentist", "4.8", "212", "101 Main St, Springfield", "(555) 010-2231", "brightsmile.example", "hello@brightsmile.example"],
-            ["Lakeside Family Dentistry", "Dentist", "4.6", "87", "42 Lake Rd, Springfield", "(555) 010-4410", "lakesidefd.example", ""],
-            ["Northside Orthodontics", "Orthodontist", "4.9", "1,034", "7 Oak Ave, Springfield", "(555) 010-7782", "northsideortho.example", "info@northsideortho.example"],
+            ["Bright Smile Dental", "4.8", "(555) 010-2231", "brightsmile.example", "hello@brightsmile.example"],
+            ["Lakeside Family Dentistry", "4.6", "(555) 010-4410", "lakesidefd.example", ""],
+            ["Northside Orthodontics", "4.9", "(555) 010-7782", "northsideortho.example", "info@northsideortho.example"],
         ],
     },
     fields: {
-        heading: "Nine columns from Maps, plus contact details",
-        intro: "A column stays empty when the place doesn't list that detail.",
+        heading: "What you get for every business",
+        intro: "Nine columns from the Google Maps listing, plus contact details from the business's own website.",
         items: [
-            { name: "Business Name and Category", description: "The name and the business type Maps shows for it." },
-            { name: "Rating and Review Count", description: "The star rating and how many reviews, as numbers you can sort by." },
-            { name: "Address and Operating Hours", description: "The full address and the opening hours on the listing." },
-            { name: "Phone and Website", description: "The listed phone number and the business's own site." },
-            { name: "Map URL", description: "A link back to the place, to check any row." },
-            { name: "Emails, Website phones, Faxes, social links", description: "Read from the business's website and contact page during the run, when contact details are on." },
+            { name: "Business Name", description: "The name as Google Maps shows it." },
+            { name: "Category", description: "The business type on the listing, such as Dentist." },
+            { name: "Rating", description: "The star rating, saved as a number you can sort by." },
+            { name: "Review Count", description: "How many reviews the place has." },
+            { name: "Address", description: "The full street address." },
+            { name: "Operating Hours", description: "The opening hours on the listing." },
+            { name: "Phone", description: "The listed phone number." },
+            { name: "Website", description: "The business's own site." },
+            { name: "Map URL", description: "A link back to the place, so you can check any row." },
+            { name: "Emails, Website phones, Faxes", description: "Read from the business's website and its contact page during the run." },
+            { name: "Social links", description: "One column per network found on the website: LinkedIn, Instagram, Facebook and more." },
         ],
     },
     steps: {
-        heading: "From search to spreadsheet",
+        heading: "How to scrape Google Maps listings in three steps",
         items: [
-            { title: "Search Maps", points: ["Example: dentists in Austin.", "Or in the Chat tab: Find dentists in Austin. A card asks how many: 20, 50, 100 or 200."], body: "Search for a type of business in a place, such as \"dentists in Springfield\", and open the side panel's List tab." },
-            { title: "Click Collect places from this map", points: ["Leave Also collect contact details from each business's website ticked for emails and social links.", "Keep the tab in front. 50 businesses with emails take about four minutes, 200 about fifteen."], body: "Leave Also collect contact details from each business's website ticked. The table fills in as it scrolls; Stop keeps what it has. In chat, type the search instead and pick how many on the card." },
-            { title: "Export", points: ["Example to type with the results tab in front: Only name, phone, website and rating, sorted by rating."], body: "Open the results, keep the columns you want, and export to Excel, CSV, JSON or Google Sheets." },
+            {
+                title: "Search Google Maps",
+                body: "Search for a type of business in a place, such as dentists in Springfield. Then click the Web Scraper Pro icon and open the List tab.",
+                points: ["Or type it in the Chat tab: Find dentists in Austin.", "Chat asks how many you want: 20, 50, 100 or 200."],
+            },
+            {
+                title: "Click Collect places from this map",
+                body: "The table fills in as the list scrolls. Leave \"Also collect contact details from each business's website\" ticked and the emails and social links arrive in the same run.",
+                points: ["Keep the tab in front. The tab's title counts the businesses as they come in.", "50 businesses with emails take about four minutes. 200 take about fifteen.", "Click Stop at any time. What's collected is kept."],
+            },
+            {
+                title: "Export",
+                body: "Open the results, keep the columns you want, and export to Excel, CSV, JSON or Google Sheets. The list is saved in History too.",
+                points: ["Or type with the results tab in front: Only name, phone, website and rating, sorted by rating."],
+            },
         ],
     },
     notes: {
-        heading: "Specific to Maps",
+        heading: "Specific to Google Maps",
         items: [
-            "Maps shows a limited number of results per search. Search smaller areas or narrower categories and run them together in Bulk.",
-            "In chat, one search collects up to 200 businesses; the side panel keeps going until Maps reaches the end.",
+            "Google Maps shows a limited number of results per search. Search smaller areas or narrower categories and run them together in Bulk.",
+            "In chat, one search collects up to 200 businesses. The side panel keeps going until Google Maps reaches the end.",
             "Businesses are saved best rated first, and a place that appears twice is kept once. Both can be changed in Settings → Results.",
             "Many small businesses publish no email. Those rows keep their phone and website.",
-            "It collects what Maps shows publicly. It doesn't sign in or reveal hidden details.",
+            "It collects what Google Maps shows publicly. It doesn't sign in or reveal hidden details.",
         ],
     },
-    emptyWhen: [{"column": "Website", "when": "The business has no website listed on Maps. Its emails and social columns stay empty too."}, {"column": "Emails", "when": "The website publishes no email as text, or only behind a form or an image."}, {"column": "Website phones, Faxes", "when": "The website lists no phone beyond the one Maps shows, or no fax."}, {"column": "LinkedIn, Instagram and the other social columns", "when": "No business in the run had that network; a column appears only when at least one row has a value."}, {"column": "Operating Hours", "when": "The listing shows no hours."}, {"column": "Rating, Review Count", "when": "A new listing with no reviews yet."}],
-    pushback: ["A Maps run opens businesses at an uneven pace and slows down when Maps stops answering, so a long run finishes rather than being cut off.", "If Maps shows a verification page, the run stops; complete it in the tab and start the search again.", "One search returns at most 200 businesses. Search by neighbourhood or zip code and let chat combine the searches."],
+    emptyWhen: [
+        { column: "Website", when: "The business has no website listed on Google Maps. Its emails and social columns stay empty too." },
+        { column: "Emails", when: "The website publishes no email as text, or only behind a form or an image." },
+        { column: "Website phones, Faxes", when: "The website lists no phone beyond the one Google Maps shows, or no fax." },
+        { column: "LinkedIn, Instagram and the other social columns", when: "No business in the run had that network. A column appears only when at least one row has a value." },
+        { column: "Operating Hours", when: "The listing shows no hours." },
+        { column: "Rating, Review Count", when: "A new listing with no reviews yet." },
+    ],
+    pushback: [
+        "A run opens businesses at an uneven pace and slows down when Google Maps stops answering. A long run finishes instead of being cut off.",
+        "If Google Maps shows a verification page, the run stops. Complete it in the tab and start the search again.",
+        "One search returns at most 200 businesses in chat. Search by neighbourhood or zip code and let chat combine the searches.",
+    ],
     screenshots: ["ext/list-tab-maps-collect", "ext/results-maps-with-contacts"],
     feature: "maps-leads",
     guide: "get-local-business-leads-from-maps",
     useCase: "lead-generation",
     related: ["yellow-pages", "justdial", "bbb"],
     faqs: [
-        { q: "Do I need a Maps API key?", a: "No. It works on the Maps website in your own browser." },
-        { q: "Can I get reviews as well?", a: "The rating and review count, yes. Review text isn't collected from Maps." },
-        { q: "Why do some rows have no email?", a: "Maps never lists emails. They come from each business's own website, and many small businesses publish none. Those rows keep the phone and website from Maps." },
+        { q: "Is this Google Maps scraper free?", a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create." },
+        { q: "Do I need a Google Maps API key?", a: "No. It works on the Google Maps website in your own browser." },
+        { q: "Can I scrape Google Maps reviews as well?", a: "The rating and review count, yes. Review text isn't collected from Google Maps." },
+        { q: "Why do some rows have no email?", a: "Google Maps never lists emails. They come from each business's own website, and many small businesses publish none. Those rows keep the phone and website from Google Maps." },
+        { q: "How many businesses can I get from one search?", a: "In chat, up to 200. From the side panel, as many as Google Maps shows before it reaches the end of its results. For more, split a city into smaller searches." },
         { q: "Can I collect only businesses without a website?", a: "Yes. On the results page, click Filter rows and keep rows where Website is empty." },
+        { q: "Does it add the same business twice?", a: "No. A place that appears again while the list scrolls is kept once." },
     ],
 };
