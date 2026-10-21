@@ -34,11 +34,11 @@ export const aiChat: FeaturePageContent = {
             { name: "Find businesses", example: "Find plumbers in Denver", description: "Searches Maps and collects 50 businesses, or up to 200 if you ask." },
             { name: "Collect this map", example: "Collect the first 20", description: "Collects the Maps results you're already looking at." },
             { name: "Collect a list", example: "Collect the products on this page", description: "Products, listings or results on this page, with named columns." },
-            { name: "Copy a Shopify store", example: "Every product, one row per size", description: "The whole catalog or one collection, not just what's on screen." },
+            { name: "Copy a Shopify store", example: "Every product, one row per size", description: "The whole catalog or one collection, not only what's on screen." },
             { name: "Get product details", example: "Collect this product", description: "Everything on the product page you're on, except reviews." },
             { name: "Find contact details", example: "Find contact emails on this site", description: "Emails, phone numbers and social links on this page." },
             { name: "Get the page text", example: "Collect the page text", description: "Readable text, plus the title, author and date." },
-            { name: "Export a file", example: "Only name and phone, as CSV", description: "CSV, Excel or JSON, with just the columns you name." },
+            { name: "Export a file", example: "Only name and phone, as CSV", description: "CSV, Excel or JSON, with only the columns you name." },
         ],
     },
     steps: {
