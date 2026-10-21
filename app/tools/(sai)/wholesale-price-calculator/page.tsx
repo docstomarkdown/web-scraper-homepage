@@ -9,6 +9,7 @@ import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
     title: "Wholesale Price Calculator — Set Profitable Selling Prices",
     description: "Free wholesale price calculator. Determine the correct wholesale selling price from your cost per unit and desired profit margin. Instantly see markup, profit per unit, and the true cost breakdown.",
+    alternates: { canonical: "/tools/wholesale-price-calculator" },
 }
 
 export default function WholesalePriceCalculatorPage() {

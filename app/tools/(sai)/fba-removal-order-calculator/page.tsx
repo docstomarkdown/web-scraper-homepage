@@ -8,8 +8,9 @@ import { CTA } from "@/components/sections/CTA"
 import { BookOpen } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: "FBA Removal vs Disposal Calculator | Web Scraper Pro",
-    description: "Compare Amazon FBA removal and disposal fees. Calculate potential profit, net difference, and identify whether to remove, dispose, or hold your stranded inventory."
+    title: "FBA Removal vs Disposal Calculator",
+    description: "Compare Amazon FBA removal and disposal fees. Calculate potential profit, net difference, and identify whether to remove, dispose, or hold your stranded inventory.",
+    alternates: { canonical: "/tools/fba-removal-order-calculator" },
 }
 
 export default function FBARemovalOrderPage() {

@@ -8,8 +8,9 @@ import { CTA } from "@/components/sections/CTA"
 import { Lightbulb } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: "Gross Margin Calculator - Calculate Margin, Revenue & COGS | Web Scraper Pro",
+    title: "Gross Margin Calculator - Calculate Margin, Revenue & COGS",
     description: "Free advanced Gross Margin Calculator. Calculate Gross Margin Percentage from Revenue and COGS. Optimize pricing strategies and protect your bottom line.",
+    alternates: { canonical: "/tools/gross-margin-calculator" },
 }
 
 export default function GrossMarginCalculatorPage() {

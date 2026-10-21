@@ -10,6 +10,7 @@ import { BookOpen } from "lucide-react"
 export const metadata: Metadata = {
     title: "Dimension Converter - Unit Conversion & Volume Calculator",
     description: "Convert product dimensions between Inches and Centimeters. Calculate cubic volume, DIM weight, and verify oversized shipping surcharges instantly.",
+    alternates: { canonical: "/tools/dimension-converter" },
 }
 
 export default function DimensionConverterPage() {

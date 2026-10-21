@@ -10,6 +10,7 @@ import { BookOpen } from "lucide-react"
 export const metadata: Metadata = {
     title: "Advertising Cost of Sales (ACoS) Calculator | Calculate Advertising Cost of Sales",
     description: "Calculate your Advertising Cost of Sales (ACoS) to measure the efficiency and profitability of your Amazon PPC campaigns.",
+    alternates: { canonical: "/tools/acos-calculator" },
 }
 
 export default function ACoSCalculatorPage() {
@@ -56,4 +57,4 @@ export default function ACoSCalculatorPage() {
             </div>
         </div>
     )
-}
+}

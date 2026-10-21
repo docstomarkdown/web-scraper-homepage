@@ -8,8 +8,9 @@ import { CTA } from "@/components/sections/CTA"
 import { Lightbulb } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: "Net Profit Calculator - Calculate True Business Profit | Web Scraper Pro",
+    title: "Net Profit Calculator - Calculate True Business Profit",
     description: "Calculate your net profit after expenses, ads, overhead, and taxes. Get a clear view of your business bottom line with our free calculator.",
+    alternates: { canonical: "/tools/net-profit-calculator" },
 }
 
 export default function NetProfitCalculatorPage() {

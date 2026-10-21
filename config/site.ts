@@ -6,26 +6,13 @@ export const siteConfig = {
   description: "Extract data from any website without code. Simple, powerful, and designed for everyone.",
   metaDescription: "Extract data from any website without code with Web Scraper Pro. Save time and streamline your workflow with automated data extraction.",
   url: "https://www.webscraper.pro/",
-  ogImage: "https://webscraper.pro/og.jpg",
   links: {
     twitter: "https://x.com/vikramaruchamy",
     linkedin: "https://www.linkedin.com/in/vikramaruchamy/",
   },
-  keywords: [
-    "Web Scraper",
-    "Data Extraction",
-    "No Code",
-    "Productivity",
-    "Automation",
-    "Workflow",
-    "Integration",
-    "Scraping",
-    "Web Scraper Pro",
-  ],
+  keywords: ["web scraper", "web scraping", "chrome extension", "data extraction", "no code", "Maps leads", "email extractor"],
 }
 
-// Tools groups configuration (exported separately for tools page)
-// Tools groups configuration (exported separately for tools page)
 // Tools groups configuration (exported separately for tools page)
 export const toolsGroups = [
   {

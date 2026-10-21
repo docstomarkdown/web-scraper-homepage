@@ -19,7 +19,7 @@ import { getPage } from "@/config/pages";
 export const aiChat: FeaturePageContent = {
     page: getPage("ai-chat"),
     meta: {
-        title: "AI Chat: Collect Web Data in Plain Words | Web Scraper Pro",
+        title: "AI Chat: Collect Web Data in Plain Words",
         description:
             "Type what you need, like \"find plumbers in Denver\", and Web Scraper Pro collects it in your browser. Then ask for the file: CSV, Excel or JSON, with the columns you name.",
     },

@@ -9,6 +9,7 @@ import { Metadata } from "next"
 export const metadata: Metadata = {
     title: "Inventory Turnover Calculator | Measure Inventory Efficiency",
     description: "Calculate your inventory turnover ratio and Days to Sell Inventory. Optimize your stock levels, improve cash flow, and analyze operational efficiency with our professional calculator.",
+    alternates: { canonical: "/tools/inventory-turnover-calculator" },
 }
 
 export default function InventoryTurnoverCalculatorPage() {

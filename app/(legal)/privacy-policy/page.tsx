@@ -5,7 +5,8 @@ import { Metadata } from "next";
 import LegalPage from "@/components/legal/LegalPage";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Web Scraper Pro",
+  title: "Privacy Policy",
+  alternates: { canonical: "/privacy-policy" },
   description: "Learn how Web Scraper Pro collects, uses, and protects your data.",
   keywords: ["privacy policy", "data protection", "GDPR"],
 };

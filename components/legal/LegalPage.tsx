@@ -34,8 +34,8 @@ const subheadings = {
 };
 
 const badges = {
-    privacy: { label: "Data Protection", color: "bg-emerald-50 text-emerald-600 border-emerald-200" },
-    terms: { label: "Legal Agreement", color: "bg-blue-50 text-blue-600 border-blue-200" },
+    privacy: { label: "Data Protection", color: "bg-[#7CF2C4]/20 text-[#0B7A5C] dark:text-[#7CF2C4] border-[#12A37B]/30" },
+    terms: { label: "Legal Agreement", color: "bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-[#7aa7ff] border-blue-200 dark:border-blue-800" },
 };
 
 export default function LegalPage({ type, content, sections }: LegalPageProps) {
@@ -79,20 +79,20 @@ export default function LegalPage({ type, content, sections }: LegalPageProps) {
     }, []);
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50/50">
+        <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50/50 dark:from-slate-950 dark:via-slate-950 dark:to-slate-950">
 
             {/* ── Hero header ── */}
-            <div className="relative bg-white border-b border-slate-200 overflow-hidden">
+            <div className="relative bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 overflow-hidden">
                 {/* Subtle decorative background */}
                 <div className="absolute inset-0 pointer-events-none">
-                    <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-blue-50/60 blur-3xl" />
-                    <div className="absolute -bottom-16 -left-16 w-72 h-72 rounded-full bg-indigo-50/40 blur-3xl" />
+                    <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-blue-50/60 dark:bg-blue-900/20 blur-3xl" />
+                    <div className="absolute -bottom-16 -left-16 w-72 h-72 rounded-full bg-indigo-50/40 dark:bg-indigo-900/10 blur-3xl" />
                 </div>
 
                 <div className="relative max-w-7xl mx-auto px-6 lg:px-8 pt-24 pb-12 md:pt-[110px] md:pb-14">
                     <Link
                         href="/"
-                        className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-blue-600 transition-colors mb-8 group"
+                        className="inline-flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-[#7aa7ff] transition-colors mb-8 group"
                     >
                         <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
                         Back to home
@@ -108,10 +108,10 @@ export default function LegalPage({ type, content, sections }: LegalPageProps) {
                                     {badge.label}
                                 </span>
                             </div>
-                            <h1 className="text-3xl md:text-4xl font-bold text-slate-700 tracking-tight">
+                            <h1 className="text-3xl md:text-4xl font-bold text-slate-700 dark:text-white tracking-tight">
                                 {headings[type]}
                             </h1>
-                            <p className="mt-3 text-slate-500 text-base md:text-lg leading-relaxed max-w-2xl">
+                            <p className="mt-3 text-slate-500 dark:text-slate-400 text-base md:text-lg leading-relaxed max-w-2xl">
                                 {subheadings[type]}
                             </p>
                         </div>
@@ -126,9 +126,9 @@ export default function LegalPage({ type, content, sections }: LegalPageProps) {
                     {/* Sidebar TOC */}
                     {sections.length > 0 && (
                         <aside className="hidden lg:block sticky top-24 self-start">
-                            <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
-                                <div className="px-5 py-4 border-b border-slate-100 bg-slate-50/60">
-                                    <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400">
+                            <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm overflow-hidden">
+                                <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800/60">
+                                    <p className="text-[11px] font-semibold tracking-wider text-slate-400 dark:text-slate-500">
                                         On this page
                                     </p>
                                 </div>
@@ -152,14 +152,14 @@ export default function LegalPage({ type, content, sections }: LegalPageProps) {
 
                     {/* Main content */}
                     <main>
-                        <article className="bg-white rounded-3xl border border-slate-200/80 shadow-sm overflow-hidden">
+                        <article className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm overflow-hidden">
                             <div className="px-8 py-10 md:px-12 md:py-12">
                                 <ReactMarkdown
                                     rehypePlugins={[rehypeRaw]}
                                     remarkPlugins={[remarkGfm]}
                                     components={{
                                         h1: ({ ...props }) => (
-                                            <h1 className="text-2xl font-bold text-slate-700 mt-2 mb-5 tracking-tight" {...props} />
+                                            <h1 className="text-2xl font-bold text-slate-700 dark:text-white mt-2 mb-5 tracking-tight" {...props} />
                                         ),
                                         h2: ({ children, ...props }) => {
                                             const text = Array.isArray(children)
@@ -169,7 +169,7 @@ export default function LegalPage({ type, content, sections }: LegalPageProps) {
                                             return (
                                                 <h2
                                                     id={id}
-                                                    className="group scroll-mt-28 text-lg font-bold text-slate-700 mt-12 mb-4 pb-3 border-b border-slate-100 tracking-tight flex items-center gap-3"
+                                                    className="group scroll-mt-28 text-lg font-bold text-slate-700 dark:text-white mt-12 mb-4 pb-3 border-b border-slate-100 dark:border-slate-800 tracking-tight flex items-center gap-3"
                                                     {...props}
                                                 >
                                                     <span className="w-1 h-5 rounded-full bg-blue-500 shrink-0" />
@@ -178,25 +178,25 @@ export default function LegalPage({ type, content, sections }: LegalPageProps) {
                                             );
                                         },
                                         h3: ({ ...props }) => (
-                                            <h3 className="text-[15px] font-semibold text-slate-600 mt-7 mb-2" {...props} />
+                                            <h3 className="text-[15px] font-semibold text-slate-600 dark:text-slate-200 mt-7 mb-2" {...props} />
                                         ),
                                         p: ({ ...props }) => (
-                                            <p className="text-slate-500 leading-[1.8] mb-4 text-[15px]" {...props} />
+                                            <p className="text-slate-500 dark:text-slate-400 leading-[1.8] mb-4 text-[15px]" {...props} />
                                         ),
                                         ul: ({ ...props }) => (
                                             <ul className="mb-5 space-y-2.5 pl-1" {...props} />
                                         ),
                                         ol: ({ ...props }) => (
-                                            <ol className="list-decimal pl-5 mb-5 space-y-2.5 text-slate-500 text-[15px]" {...props} />
+                                            <ol className="list-decimal pl-5 mb-5 space-y-2.5 text-slate-500 dark:text-slate-400 text-[15px]" {...props} />
                                         ),
                                         li: ({ ...props }) => (
-                                            <li className="flex items-start gap-3 text-slate-500 text-[15px] leading-[1.8]">
+                                            <li className="flex items-start gap-3 text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8]">
                                                 <span className="mt-[10px] w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0" />
                                                 <span {...props} />
                                             </li>
                                         ),
                                         strong: ({ ...props }) => (
-                                            <strong className="font-semibold text-slate-700" {...props} />
+                                            <strong className="font-semibold text-slate-700 dark:text-slate-200" {...props} />
                                         ),
                                         a: ({ href, ...props }) => {
                                             const isInternal = href?.startsWith("/");

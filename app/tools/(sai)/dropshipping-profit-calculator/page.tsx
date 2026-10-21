@@ -9,6 +9,7 @@ import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
     title: "Dropshipping Profit Calculator - Estimate your e-commerce margins",
     description: "Free tool to calculate your dropshipping profits, taking into account ads cost, RTOs, shipping, and product costs.",
+    alternates: { canonical: "/tools/dropshipping-profit-calculator" },
 }
 export default function DropshippingCalculatorPage() {
     return (
@@ -60,4 +61,4 @@ export default function DropshippingCalculatorPage() {
             </div >
         </div >
     )
-}
+}

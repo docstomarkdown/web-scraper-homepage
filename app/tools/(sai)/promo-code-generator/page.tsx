@@ -7,6 +7,7 @@ import { PromoCodeGuide } from "./_components/PromoCodeGuide"
 export const metadata: Metadata = {
     title: "Promo Code Generator | Create Professional Discount Codes",
     description: "Quickly generate professional, randomized promo codes for your e-commerce store. Support for custom prefixes, suffixes, and character selection.",
+    alternates: { canonical: "/tools/promo-code-generator" },
     keywords: ["promo code generator", "discount code generator", "coupon code generator", "amazon promo codes", "shopify discounts"],
 }
 const promoCodeFaqs = [
@@ -61,4 +62,4 @@ export default function PromoCodeGeneratorPage() {
             </div>
         </div>
     )
-}
+}

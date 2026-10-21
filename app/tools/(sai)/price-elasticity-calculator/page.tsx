@@ -7,6 +7,7 @@ import { PriceElasticityGuide } from "./_components/PriceElasticityGuide"
 export const metadata: Metadata = {
     title: "Price Elasticity Calculator | Measure Demand Sensitivity",
     description: "Calculate Price Elasticity of Demand (PED) to understand how sensitive your product's demand is to price changes. Optimize your pricing strategy.",
+    alternates: { canonical: "/tools/price-elasticity-calculator" },
     keywords: ["price elasticity calculator", "PED calculator", "demand sensitivity", "pricing strategy", "elastic demand"],
 }
 const priceElasticityFaqs = [
@@ -58,4 +59,4 @@ export default function PriceElasticityCalculatorPage() {
             </div>
         </div>
     )
-}
+}

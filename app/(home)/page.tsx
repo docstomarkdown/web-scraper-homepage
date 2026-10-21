@@ -9,10 +9,10 @@ import Cloud from "@/components/landing/Cloud";
 import Developers from "@/components/landing/Developers";
 import FAQ from "@/components/landing/FAQ";
 import CTA from "@/components/landing/CTA";
-import Footer from "@/components/landing/Footer";
 
 export const metadata = {
-    title: "Web Scraper Pro",
+    title: { absolute: "Web Scraper Pro: turn any web page into a spreadsheet" },
+    alternates: { canonical: "/" },
     description:
         "Turn any web page into a spreadsheet. Collect Maps leads, Amazon products, and Zillow listings in one click, then export to Google Sheets, Excel, or CSV. A Chrome extension.",
 };
@@ -32,7 +32,6 @@ export default function Home() {
                 <FAQ />
                 <CTA />
             </main>
-            <Footer />
         </div>
     );
 }

@@ -8,6 +8,7 @@ import { CTA } from "@/components/sections/CTA";
 export const metadata: Metadata = {
     title: "Total Advertising Cost of Sales (TACoS) Calculator",
     description: "Calculate your Total Advertising Cost of Sales (TACoS) to measure the long-term health of your e-commerce brand.",
+    alternates: { canonical: "/tools/tacos-calculator" },
 };
 export default function TACoSPage() {
     return (
@@ -64,4 +65,4 @@ export default function TACoSPage() {
             </div>
         </div>
     );
-}
+}

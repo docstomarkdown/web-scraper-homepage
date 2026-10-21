@@ -9,8 +9,9 @@ import { DimWeightGuide } from "./_components/DimWeightGuide";
 import { DimWeightOverview } from "./_components/DimWeightOverview";
 
 export const metadata: Metadata = {
-    title: "Dimensional Weight Calculator | Web Scraper Pro",
+    title: "Dimensional Weight Calculator",
     description: "Calculate dimensional weight for shipping with our free DIM weight calculator. Compare actual vs. billable weight for UPS, FedEx, and DHL.",
+    alternates: { canonical: "/tools/dimensional-weight-calculator" },
 };
 
 export default function Page() {
@@ -70,4 +71,4 @@ export default function Page() {
             </div>
         </div>
     );
-}
+}

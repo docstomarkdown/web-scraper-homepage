@@ -10,6 +10,7 @@ import { CTA } from "@/components/sections/CTA";
 export const metadata: Metadata = {
     title: "Ad Spend Budget Calculator - Calculate Marketing Budget",
     description: "Reverse engineer your marketing budget based on your revenue goals and target ROAS.",
+    alternates: { canonical: "/tools/ad-spend-budget-planner" },
 };
 
 export default function AdBudgetPage() {
@@ -68,4 +69,4 @@ export default function AdBudgetPage() {
         </div>
     );
 }
-
+

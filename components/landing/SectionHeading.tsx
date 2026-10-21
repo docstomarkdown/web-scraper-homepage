@@ -1,18 +1,20 @@
 import React from "react";
 
-/** Shared section header: small eyebrow, the section's <h2>, and an optional intro line. */
+/** Shared section header: small eyebrow, the section's <h2> (or a page's <h1> with `as`), and an optional intro line. */
 export default function SectionHeading({
     eyebrow,
     badge,
     title,
     intro,
     align = "center",
+    as: Tag = "h2",
 }: {
     eyebrow: string;
     badge?: string;
     title: React.ReactNode;
     intro?: React.ReactNode;
     align?: "center" | "left";
+    as?: "h1" | "h2";
 }) {
     const centered = align === "center";
     return (
@@ -25,7 +27,7 @@ export default function SectionHeading({
                     </span>
                 )}
             </p>
-            <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">{title}</h2>
+            <Tag className="mt-3 text-3xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">{title}</Tag>
             {intro && <p className="mt-4 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">{intro}</p>}
         </div>
     );

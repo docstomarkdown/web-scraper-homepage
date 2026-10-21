@@ -5,6 +5,9 @@ import Reveal from "@/components/landing/Reveal";
 import SectionHeading from "@/components/landing/SectionHeading";
 import CTA from "@/components/landing/CTA";
 import { productConfig } from "@/config/product";
+import { JsonLd, faqJsonLd } from "@/components/seo/JsonLd";
+import { ogImageUrl } from "@/lib/og";
+import type { Metadata } from "next";
 import { relatedPages, type SitePage } from "@/config/pages";
 
 /** Content for one product feature page. Copy rules: docs/content-standards.md and docs/writing-style.md. */
@@ -36,12 +39,28 @@ const formatDate = (iso: string) =>
 const container = "max-w-6xl mx-auto px-6 md:px-12";
 
 /** `visual` (optional) sits beside the headline, e.g. a product demo; without it the sample table does. */
+/** Page metadata for a feature page: its own canonical and a titled Open Graph image. */
+export function featureMetadata(c: FeaturePageContent): Metadata {
+    return {
+        title: c.meta.title,
+        description: c.meta.description,
+        alternates: { canonical: c.page.href },
+        openGraph: {
+            title: c.meta.title,
+            description: c.meta.description,
+            url: c.page.href,
+            images: [{ url: ogImageUrl(c.h1, c.meta.description), width: 1200, height: 630, alt: c.h1 }],
+        },
+    };
+}
+
 export default function FeaturePage({ content: c, visual }: { content: FeaturePageContent; visual?: React.ReactNode }) {
     const related = relatedPages(c.related);
     const installUrl = `${productConfig.product.ctaUrl}?utm_source=website&utm_medium=${c.page.slug}&utm_campaign=chrome_install`;
 
     return (
         <main className="flex-1 bg-white dark:bg-slate-950">
+            {c.faqs.length > 0 && <JsonLd data={faqJsonLd(c.faqs)} />}
             {/* Hero */}
             <section className="pt-32 pb-16 md:pt-36 md:pb-20">
                 <div className={visual ? "max-w-7xl mx-auto px-6 md:px-12 grid lg:grid-cols-[5fr_7fr] gap-12 items-center" : container}>

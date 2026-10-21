@@ -8,6 +8,7 @@ import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
     title: "UPC/EAN Validator - Check Digit Calculator & Format Checker",
     description: "Free tool to validate UPC-A, EAN-13, and EAN-8 barcodes. Calculate check digits, verify formats, and fix errors instantly.",
+    alternates: { canonical: "/tools/upc-ean-validator" },
 }
 export default function UPCEANValidatorPage() {
     return (

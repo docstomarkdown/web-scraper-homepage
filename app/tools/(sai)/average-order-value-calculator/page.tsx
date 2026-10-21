@@ -7,8 +7,9 @@ import { FadeIn, ToolFAQ, ToolSectionHeader } from "@/app/tools/_shared/componen
 import { CTA } from "@/components/sections/CTA"
 import { BookOpen } from "lucide-react"
 export const metadata: Metadata = {
-    title: 'Average Order Value (AOV) Calculator | Web Scraper Pro',
+    title: 'Average Order Value (AOV) Calculator',
     description: 'Calculate your Average Order Value (AOV) to understand customer spending habits and improve your pricing strategy.',
+    alternates: { canonical: "/tools/average-order-value-calculator" },
 }
 export default function AOVCalculatorPage() {
     return (

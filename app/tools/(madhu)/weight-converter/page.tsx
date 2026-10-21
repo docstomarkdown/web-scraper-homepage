@@ -8,6 +8,7 @@ import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
     title: "Product Weight Converter - Optimize E-Commerce Shipping Cost",
     description: "Convert e-commerce product weight to lbs, oz, kg, grams. Instantly calculate shipping tier impact, packaging dead weight, and carrier thresholds to cut fulfillment costs.",
+    alternates: { canonical: "/tools/weight-converter" },
 }
 export default function WeightConverterPage() {
     return (

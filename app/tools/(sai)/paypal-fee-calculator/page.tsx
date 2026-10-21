@@ -7,6 +7,7 @@ import { CTA } from "@/components/sections/CTA";
 export const metadata: Metadata = {
     title: "PayPal Fee Calculator - Calculate Transaction Fees",
     description: "Instantly calculate PayPal merchant fees for domestic and international transactions. Find out exactly how much you'll receive.",
+    alternates: { canonical: "/tools/paypal-fee-calculator" },
 };
 export default function PayPalCalculatorPage() {
     return (
@@ -50,4 +51,4 @@ export default function PayPalCalculatorPage() {
             </div>
         </div>
     );
-}
+}

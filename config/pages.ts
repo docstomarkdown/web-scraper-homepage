@@ -105,7 +105,7 @@ export const pages: SitePage[] = [
     resource(["web-scraping-legal", "Is web scraping legal?", "What the law says about collecting public data.", "planned", "gavel"]),
     resource(["privacy", "Your data and privacy", "What stays in your browser and what reaches our servers.", "planned", "lock"]),
     resource(["tools", "Free seller calculators", "Marketplace fees, profit margins, shipping and stock.", "live", "calculator"]),
-    resource(["contact", "Contact us", "Questions, problems, or a site you need.", "live", "mail"]),
+    { ...resource(["contact", "Get help", "Questions, problems, or a site you need.", "live", "mail"]), href: "/support" },
 ];
 
 export const isPublished = (p: SitePage) => p.status === "live" || p.status === "soon";

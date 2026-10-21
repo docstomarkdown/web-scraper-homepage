@@ -9,8 +9,9 @@ import { Lightbulb } from "lucide-react"
 
 
 export const metadata: Metadata = {
-    title: "Influencer Marketing ROI Calculator - Track Campaign Performance | Web Scraper Pro",
+    title: "Influencer Marketing ROI Calculator - Track Campaign Performance",
     description: "Calculate the true return on investment for your influencer marketing campaigns. Enter campaign cost and revenue to instantly see your ROI and profit.",
+    alternates: { canonical: "/tools/influencer-marketing-roi-calculator" },
 }
 
 export default function InfluencerROICalculatorPage() {

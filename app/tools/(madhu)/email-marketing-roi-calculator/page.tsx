@@ -7,9 +7,10 @@ import { CTA } from "@/components/sections/CTA"
 import { Metadata } from "next"
 import { BookOpen } from "lucide-react"
 export const metadata: Metadata = {
-    title: "Email Marketing ROI Calculator | Free Tools",
+    title: "Email Marketing ROI Calculator",
     description:
         "Calculate the ROI of your email marketing campaigns. Optimize your open rates, click-through rates, and conversion rates to maximize profit.",
+    alternates: { canonical: "/tools/email-marketing-roi-calculator" },
 }
 export default function EmailROICalculatorPage() {
     return (

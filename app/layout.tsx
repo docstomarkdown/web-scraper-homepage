@@ -10,6 +10,7 @@ import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 import { ReCaptchaProvider } from '@/components/recaptcha-provider'
 import { ClarityProvider } from '@/components/clarity-provider'
+import { JsonLd } from '@/components/seo/JsonLd'
 
 const fontHeading = localFont({
   src: '../public/fonts/CalSans-SemiBold.woff2',
@@ -19,16 +20,16 @@ const fontHeading = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
+  // Every page's own title gets the site name appended. A page that must not can set `title: { absolute }`.
   title: {
-    default: siteConfig.name,
-    template: `%s`,//| ${siteConfig.name}
+    default: `${siteConfig.name}: turn any web page into a spreadsheet`,
+    template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.metaDescription,
-  keywords: ['software', 'product', 'business', 'solution', ...siteConfig.keywords],
+  keywords: siteConfig.keywords,
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
   publisher: siteConfig.name,
-  alternates: { canonical: siteConfig.url },
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -36,20 +37,11 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,
-    images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-        alt: siteConfig.name,
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [siteConfig.ogImage],
     creator: '@webscraperpro',
     site: '@webscraperpro',
   },
@@ -95,24 +87,6 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
-        {/* Force light theme before any rendering */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var root = document.documentElement;
-                  root.classList.remove('dark');
-                  root.style.colorScheme = 'light';
-                  localStorage.setItem('theme', 'light');
-                  if (window.matchMedia) {
-                    window.matchMedia('(prefers-color-scheme: dark)').matches = false;
-                  }
-                } catch (e) {}
-              })();
-            `,
-          }}
-        />
         {/* Google Analytics */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
@@ -133,6 +107,18 @@ export default function RootLayout({
         className={`${fontHeading.variable} font-sans antialiased overflow-x-hidden`}
       >
         <ClarityProvider />
+        <JsonLd
+          data={[
+            {
+              '@type': 'Organization',
+              name: 'Thinksolv Technologies',
+              url: siteConfig.url,
+              logo: `${siteConfig.url}logo.svg`,
+              sameAs: [siteConfig.links.twitter, siteConfig.links.linkedin],
+            },
+            { '@type': 'WebSite', name: siteConfig.name, url: siteConfig.url },
+          ]}
+        />
         <ThemeProvider>
           <ReCaptchaProvider>
             <TooltipProvider>

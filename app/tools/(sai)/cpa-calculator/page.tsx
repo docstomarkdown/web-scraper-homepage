@@ -5,8 +5,9 @@ import { FadeIn, ToolFAQ } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 import { Metadata } from "next"
 export const metadata: Metadata = {
-    title: "Cost Per Acquisition (CPA) Calculator | Web Scraper Pro",
+    title: "Cost Per Acquisition (CPA) Calculator",
     description: "Calculate your Cost Per Acquisition (CPA) from campaign data or estimate it based on CPC and Conversion Rate.",
+    alternates: { canonical: "/tools/cpa-calculator" },
 }
 export default function CPACalculatorPage() {
     return (
@@ -54,4 +55,4 @@ export default function CPACalculatorPage() {
             </div>
         </div>
     )
-}
+}

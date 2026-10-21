@@ -7,6 +7,7 @@ import { CTA } from "@/components/sections/CTA";
 export const metadata: Metadata = {
     title: "Return Rate Calculator - E-commerce Return Metrics",
     description: "Calculate your product return rate percentage to identify quality issues or description mismatches.",
+    alternates: { canonical: "/tools/return-rate-calculator" },
 };
 export default function ReturnRatePage() {
     return (
@@ -50,4 +51,4 @@ export default function ReturnRatePage() {
             </div>
         </div>
     );
-}
+}

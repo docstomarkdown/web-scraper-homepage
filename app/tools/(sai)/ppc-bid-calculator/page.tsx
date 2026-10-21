@@ -9,6 +9,7 @@ import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
     title: "Pay-Per-Click (PPC) Bid Calculator | Calculate Max Cost Per Click",
     description: "Calculate your maximum profitable PPC bid based on your product price, conversion rate, profit margin, and target ACoS. Free tool for Amazon PPC, Google Ads, and all eCommerce advertising.",
+    alternates: { canonical: "/tools/ppc-bid-calculator" },
 }
 
 export default function PPCBidCalculatorPage() {

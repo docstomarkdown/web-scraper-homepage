@@ -7,8 +7,9 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: 'Break-Even Calculator - Calculate Break-Even Point in Units & Revenue | Web Scraper Pro',
+    title: 'Break-Even Calculator - Calculate Break-Even Point in Units & Revenue',
     description: 'Free Break-Even Calculator for e-commerce and business. Calculate the number of units you need to sell to cover fixed costs and start making profit. Essential for pricing strategy.',
+    alternates: { canonical: "/tools/break-even-calculator" },
 }
 
 export default function BreakEvenCalculatorPage() {
@@ -73,4 +74,4 @@ export default function BreakEvenCalculatorPage() {
         </div>
     )
 }
-
+

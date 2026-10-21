@@ -5,8 +5,9 @@ import { ROASHowToUse } from "./_components/ROASHowToUse"
 import { FadeIn, ToolFAQ } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
-    title: 'Return on Ad Spend (ROAS) Calculator - Return on Ad Spend | Web Scraper Pro',
+    title: 'Return on Ad Spend (ROAS) Calculator - Return on Ad Spend',
     description: 'Free Return on Ad Spend (ROAS) calculator to instantly measure the return on your advertising spend. Calculate ROAS percentage, ratio, and net profit from ads.',
+    alternates: { canonical: "/tools/return-on-ad-spend-calculator" },
 }
 export default function ROASCalculatorPage() {
     return (
@@ -60,4 +61,4 @@ export default function ROASCalculatorPage() {
             </div>
         </div>
     )
-}
+}

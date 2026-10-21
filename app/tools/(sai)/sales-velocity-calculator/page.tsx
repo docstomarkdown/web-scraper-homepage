@@ -7,8 +7,9 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: 'Sales Velocity Calculator | Web Scraper Pro',
+    title: 'Sales Velocity Calculator',
     description: 'Calculate your true sales velocity by adjusting for out-of-stock days. Improve inventory forecasting accuracy.',
+    alternates: { canonical: "/tools/sales-velocity-calculator" },
 }
 
 export default function SalesVelocityCalculatorPage() {
@@ -64,4 +65,4 @@ export default function SalesVelocityCalculatorPage() {
             </div>
         </div>
     )
-}
+}

@@ -9,6 +9,7 @@ import { CTA } from "@/components/sections/CTA";
 export const metadata: Metadata = {
     title: "Customer Lifetime Value (CLV) Calculator",
     description: "Calculate the total profit a single customer generates for your business over their entire relationship — including gross margin, acquisition costs, and LTV/CAC ratio.",
+    alternates: { canonical: "/tools/customer-lifetime-value-calculator" },
 };
 
 export default function CLVPage() {

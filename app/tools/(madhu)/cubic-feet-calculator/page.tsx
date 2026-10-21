@@ -8,6 +8,7 @@ import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
     title: "Cubic Feet Calculator - Freight & Storage Cost Estimator",
     description: "Calculate cubic feet (CFT) from dimensions for freight and storage cost estimation. Support for Inches, Feet, CM, and Meters with instant shipping volume calculations.",
+    alternates: { canonical: "/tools/cubic-feet-calculator" },
 }
 export default function CubicFeetCalculatorPage() {
     return (

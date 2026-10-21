@@ -8,8 +8,9 @@ import { ToolPageTitle } from "@/app/tools/_shared/components/ToolPageTitle";
 import { CTA } from "@/components/sections/CTA";
 
 export const metadata: Metadata = {
-    title: "Safety Stock Calculator | Web Scraper Pro",
+    title: "Safety Stock Calculator",
     description: "Calculate the optimal safety stock to prevent stockouts. Handle demand and lead time variability with confidence using the standard buffer formula.",
+    alternates: { canonical: "/tools/safety-stock-calculator" },
 };
 
 const faqs = [

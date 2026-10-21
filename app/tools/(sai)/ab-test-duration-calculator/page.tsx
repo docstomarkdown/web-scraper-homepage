@@ -7,8 +7,9 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: 'A/B Test Duration Calculator | Web Scraper Pro',
+    title: 'A/B Test Duration Calculator',
     description: 'Calculate how long to run your A/B test for statistical significance. Avoid common testing mistakes.',
+    alternates: { canonical: "/tools/ab-test-duration-calculator" },
 }
 
 export default function ABDurationCalculatorPage() {

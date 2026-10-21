@@ -8,8 +8,9 @@ import { CTA } from "@/components/sections/CTA"
 import { Lightbulb } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: 'COGS Calculator - Calculate Cost of Goods Sold & Fulfillment | Web Scraper Pro',
+    title: 'COGS Calculator - Calculate Cost of Goods Sold & Fulfillment',
     description: 'Free Cost of Goods Sold (COGS) calculator for e-commerce. Calculate true product cost including manufacturing, freight, customs, packaging, and fulfillment fees.',
+    alternates: { canonical: "/tools/cost-of-goods-sold-calculator" },
 }
 
 export default function COGSCalculatorPage() {

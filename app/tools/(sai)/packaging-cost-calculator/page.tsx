@@ -10,6 +10,7 @@ import { CTA } from "@/components/sections/CTA";
 export const metadata: Metadata = {
     title: "Packaging Cost Calculator | Calculate Material & Labor Costs Per Unit",
     description: "Calculate the true per-unit cost of your packaging — materials, tape, labels, and labor. Optimize your fulfillment expenses and price products accurately with this free tool.",
+    alternates: { canonical: "/tools/packaging-cost-calculator" },
 };
 
 const faqs = [

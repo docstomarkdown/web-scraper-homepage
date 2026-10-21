@@ -245,9 +245,9 @@ export default function SupportForm({ header, tips }: { header: React.ReactNode;
     return (
       <div className="text-center" role="status">
         <CheckCircle2 className="mx-auto h-14 w-14 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
-        <h1 className="mt-5 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+        <h2 className="mt-5 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
           Thanks, we&apos;ve got your request
-        </h1>
+        </h2>
         <p className="mt-3 text-base text-slate-600 dark:text-slate-300">Request number {done.id}</p>
 
         <div className="mx-auto mt-10 max-w-md rounded-xl border border-slate-200 bg-white p-6 text-left dark:border-slate-800 dark:bg-slate-900">

@@ -1,85 +1,30 @@
-// app/sitemap.ts
-import { MetadataRoute } from 'next'
-import { getAllPosts, getAllAuthors, getAllCategories } from '@/lib/posts'
-import { siteConfig } from '@/config/site'
-import { publishedPages } from '@/config/pages'
+import { MetadataRoute } from "next";
+import { getAllPosts, getAllAuthors, getAllCategories, getPostsByAuthor, getPostsByCategory, categorySlug } from "@/lib/posts";
+import { siteConfig, toolsGroups } from "@/config/site";
+import { publishedPages } from "@/config/pages";
 
-// Get base URL from environment variable or fallback to site config
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || siteConfig.url.replace(/\/$/, '')
+// Canonical URLs only: no redirects, no noindex pages. Dates are given only where they're known.
+const BASE = siteConfig.url.replace(/\/$/, "");
+const url = (href: string, extra: Partial<MetadataRoute.Sitemap[number]> = {}) => ({ url: `${BASE}${href}`, ...extra });
 
-export const dynamic = 'force-static';
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // Static pages
-  const staticPages = [
-    {
-      url: BASE_URL,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 1.0,
-    },
-    {
-      url: `${BASE_URL}/blog`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/privacy-policy`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly' as const,
-      priority: 0.3,
-    },
-    {
-      url: `${BASE_URL}/terms-of-service`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly' as const,
-      priority: 0.3,
-    },
-  ]
+export const dynamic = "force-static";
 
-  // Get all blog posts
-  let blogPosts: MetadataRoute.Sitemap = []
-  let authors: MetadataRoute.Sitemap = []
-  let categories: MetadataRoute.Sitemap = []
-  
-  try {
-    // Blog posts
-    const posts = await getAllPosts()
-    blogPosts = posts.map(post => ({
-      url: `${BASE_URL}/blog/${post.slug}`,
-      lastModified: new Date(post.date || Date.now()),
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
-    }))
+export default function sitemap(): MetadataRoute.Sitemap {
+    const pages: MetadataRoute.Sitemap = [url("/", { priority: 1 })];
 
-    // Author pages
-    const authorList = await getAllAuthors() // Should return string[] of author names
-    authors = authorList.map(author => ({
-      url: `${BASE_URL}/blog/author/${encodeURIComponent(author)}`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
-    }))
+    // Product, use-case, scraper and resource pages that are live or "coming soon", from the registry.
+    for (const p of publishedPages()) pages.push(url(p.href, { priority: 0.8 }));
 
-    // Category pages
-    const categoryList = await getAllCategories() // Should return string[] of category names
-    categories = categoryList.map(category => ({
-      url: `${BASE_URL}/blog/category/${encodeURIComponent(category)}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.6,
-    }))
+    pages.push(url("/support", { priority: 0.4 }), url("/privacy-policy", { priority: 0.3 }), url("/terms-of-service", { priority: 0.3 }));
 
-  } catch (error) {
-    console.error('Error generating sitemap entries:', error)
-  }
+    for (const group of toolsGroups) for (const t of group.items) pages.push(url(t.href, { priority: 0.5 }));
 
-  const sitePages: MetadataRoute.Sitemap = publishedPages().map(p => ({
-    url: `${BASE_URL}${p.href}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.8,
-  }))
+    const posts = getAllPosts();
+    for (const post of posts) pages.push(url(`/blog/${post.slug}`, { lastModified: new Date(post.updated), priority: 0.7 }));
+    // Archives are listed only once they hold more than one post; a one-post archive is a thin page.
+    for (const a of getAllAuthors()) if (getPostsByAuthor(a).length > 1) pages.push(url(`/blog/author/${a}`, { priority: 0.4 }));
+    for (const c of getAllCategories()) if (getPostsByCategory(c).length > 1) pages.push(url(`/blog/category/${categorySlug(c)}`, { priority: 0.4 }));
 
-  return [...staticPages, ...sitePages, ...blogPosts, ...authors, ...categories]
+    const seen = new Set<string>();
+    return pages.filter((p) => !seen.has(p.url) && seen.add(p.url));
 }

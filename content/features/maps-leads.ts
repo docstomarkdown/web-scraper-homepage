@@ -12,7 +12,7 @@ import { getPage } from "@/config/pages";
 export const mapsLeads: FeaturePageContent = {
     page: getPage("maps-leads"),
     meta: {
-        title: "Maps Scraper for Local Business Leads | Web Scraper Pro",
+        title: "Maps Scraper for Local Business Leads",
         description:
             "Collect every business from a Maps search into a spreadsheet: name, phone, website, address, hours and rating. Then add emails from their websites.",
     },

@@ -10,6 +10,7 @@ import { Lightbulb } from "lucide-react"
 export const metadata: Metadata = {
     title: "Economic Order Quantity (EOQ) Calculator | Inventory Optimization Tool",
     description: "Calculate the optimal order quantity to minimize annual inventory costs. Find the perfect balance between ordering and holding costs with our free EOQ tool.",
+    alternates: { canonical: "/tools/economic-order-quantity-calculator" },
 }
 
 export default function EOQCalculatorPage() {

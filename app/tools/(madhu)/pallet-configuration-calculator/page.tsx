@@ -10,6 +10,7 @@ import { Lightbulb } from "lucide-react"
 export const metadata: Metadata = {
     title: "Pallet Configuration Calculator - Optimize Product Loading & Shipping",
     description: "Calculate optimal product configuration per pallet based on box dimensions. Maximize pallet efficiency, reduce shipping costs, and optimize warehouse space utilization.",
+    alternates: { canonical: "/tools/pallet-configuration-calculator" },
 }
 
 export default function PalletConfigurationCalculatorPage() {

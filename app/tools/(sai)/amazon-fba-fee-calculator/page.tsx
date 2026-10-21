@@ -7,6 +7,7 @@ import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
     title: "Amazon FBA Fee Calculator - Estimate Fees & Profit",
     description: "Free tool to estimate Amazon FBA fees, referral fees, and net profit based on product size, weight, and price.",
+    alternates: { canonical: "/tools/amazon-fba-fee-calculator" },
 }
 export default function FbaCalculatorPage() {
     return (
@@ -52,4 +53,4 @@ export default function FbaCalculatorPage() {
             </div >
         </div >
     )
-}
+}

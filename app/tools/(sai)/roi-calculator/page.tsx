@@ -5,8 +5,9 @@ import { ROIHowToUse } from "./_components/ROIHowToUse"
 import { FadeIn, ToolFAQ } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
-    title: 'Return on Investment (ROI) Calculator - Measure Product Return on Investment | Web Scraper Pro',
+    title: 'Return on Investment (ROI) Calculator - Measure Product Return on Investment',
     description: 'Free Return on Investment (ROI) calculator to instantly measure return on investment for any product. Calculate net profit, ROI percentage, and profit ratio. Essential for e-commerce sellers.',
+    alternates: { canonical: "/tools/roi-calculator" },
 }
 export default function ROICalculatorPage() {
     return (
@@ -64,4 +65,4 @@ export default function ROICalculatorPage() {
             </div>
         </div>
     )
-}
+}

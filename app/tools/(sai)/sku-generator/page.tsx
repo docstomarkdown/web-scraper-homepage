@@ -7,6 +7,7 @@ import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
     title: "E-commerce SKU Generator | Create Professional Product Codes",
     description: "Generate consistent, professional SKU codes for your e-commerce inventory. Customize brand, category, and attributes with real-time preview.",
+    alternates: { canonical: "/tools/sku-generator" },
 }
 export default function SKUGeneratorPage() {
     return (
@@ -58,4 +59,4 @@ export default function SKUGeneratorPage() {
             </div>
         </div>
     )
-}
+}

@@ -5,8 +5,9 @@ import { DiscountHowToUse } from "./_components/DiscountHowToUse"
 import { FadeIn, ToolFAQ } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
-    title: 'Discount Percentage Calculator - Calculate Savings & Final Price | Web Scraper Pro',
+    title: 'Discount Percentage Calculator - Calculate Savings & Final Price',
     description: 'Free discount percentage calculator to instantly calculate final price, discount amount, and savings. Essential for shoppers and retailers.',
+    alternates: { canonical: "/tools/discount-percentage-calculator" },
 }
 export default function DiscountCalculatorPage() {
     return (
@@ -56,4 +57,4 @@ export default function DiscountCalculatorPage() {
             </div>
         </div>
     )
-}
+}

@@ -7,6 +7,7 @@ import { CTA } from "@/components/sections/CTA";
 export const metadata: Metadata = {
     title: "Time Zone Meeting Planner - E-commerce Logistics",
     description: "Coordinate meetings with international suppliers, VAs, and teams. Find the perfect overlap time between EST, CST (Beijing), GMT, and more.",
+    alternates: { canonical: "/tools/time-zone-meeting-planner" },
 };
 export default function TimeZonePlannerPage() {
     return (
@@ -48,4 +49,4 @@ export default function TimeZonePlannerPage() {
             </div>
         </div>
     );
-}
+}

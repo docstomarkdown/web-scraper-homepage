@@ -2,6 +2,7 @@ import React from "react";
 import { ChevronDown } from "lucide-react";
 import SectionHeading from "@/components/landing/SectionHeading";
 import Reveal from "@/components/landing/Reveal";
+import { JsonLd, faqJsonLd } from "@/components/seo/JsonLd";
 
 // Native <details> keeps every answer in the HTML (readable by search engines and without JS).
 // Pagination and export formats are covered in the Features section, so they're not repeated here.
@@ -83,6 +84,7 @@ const GROUPS = [
 export default function FAQ() {
     return (
         <section id="faq" className="py-20 md:py-24 bg-slate-50/70 dark:bg-slate-900/40 border-y border-slate-100 dark:border-slate-800/60">
+            <JsonLd data={faqJsonLd(GROUPS.flatMap((g) => g.faqs))} />
             <div className="max-w-3xl mx-auto px-6 md:px-12">
                 <Reveal>
                     <SectionHeading eyebrow="FAQ" title="Questions, answered" />

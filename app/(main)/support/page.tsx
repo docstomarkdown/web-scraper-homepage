@@ -3,7 +3,8 @@ import { Suspense } from "react"
 import SupportForm from "@/components/support/support-form"
 
 export const metadata: Metadata = {
-  title: "Get help with Web Scraper Pro",
+  title: "Get help",
+  alternates: { canonical: "/support" },
   description:
     "Report a site that doesn't scrape correctly, a problem with the extension, or ask about plans and payments. Attach screenshots, exports or a screen recording.",
 }

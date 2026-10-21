@@ -5,8 +5,9 @@ import { FreeShippingHowToUse } from "./_components/FreeShippingHowToUse"
 import { FadeIn, ToolFAQ } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
-    title: 'Free Shipping Threshold Calculator | Web Scraper Pro',
+    title: 'Free Shipping Threshold Calculator',
     description: 'Calculate the optimal free shipping threshold for your e-commerce store. Balance conversion uplift with profit margins effectively.',
+    alternates: { canonical: "/tools/free-shipping-calculator" },
 }
 export default function FreeShippingCalculatorPage() {
     return (
@@ -56,4 +57,4 @@ export default function FreeShippingCalculatorPage() {
             </div>
         </div>
     )
-}
+}

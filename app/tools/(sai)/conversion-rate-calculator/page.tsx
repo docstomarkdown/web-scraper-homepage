@@ -8,8 +8,9 @@ import { CTA } from "@/components/sections/CTA"
 import { Lightbulb } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: 'Conversion Rate Calculator | Web Scraper Pro',
+    title: 'Conversion Rate Calculator',
     description: 'Calculate your website or campaign conversion rate instantly. Understand how well your traffic is performing.',
+    alternates: { canonical: "/tools/conversion-rate-calculator" },
 }
 
 export default function ConversionCalculatorPage() {

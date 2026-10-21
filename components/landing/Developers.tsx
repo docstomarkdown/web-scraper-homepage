@@ -54,14 +54,7 @@ export default function Developers() {
                             </li>
                         ))}
                     </ul>
-                    <Link
-                        href="https://docs.webscraper.pro"
-                        target="_blank"
-                        className="mt-8 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#1f5ec2] dark:text-[#7aa7ff] hover:underline"
-                    >
-                        Read the developer docs
-                        <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
-                    </Link>
+                    <p className="mt-8 text-[15px] font-semibold text-slate-500 dark:text-slate-400">Developer docs: coming soon with the cloud release.</p>
                 </Reveal>
 
                 <Reveal delay={0.08}>

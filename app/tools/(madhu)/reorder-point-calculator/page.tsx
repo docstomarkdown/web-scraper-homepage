@@ -8,6 +8,7 @@ import { Metadata } from "next"
 export const metadata: Metadata = {
     title: "Reorder Point Calculator - Inventory Reorder Estimator",
     description: "Calculate your optimal reorder point based on lead time, average daily units sold, and optional safety stock. Never run out of stock or overstock again.",
+    alternates: { canonical: "/tools/reorder-point-calculator" },
 }
 export default function ReorderPointCalculatorPage() {
     return (

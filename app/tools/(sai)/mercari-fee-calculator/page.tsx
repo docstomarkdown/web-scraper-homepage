@@ -10,6 +10,7 @@ import { CTA } from "@/components/sections/CTA";
 export const metadata: Metadata = {
     title: "Mercari Fee Calculator - Calculate Your True Profit After Fees",
     description: "Calculate your exact Mercari profit after the 10% selling fee and 2.9% + $0.50 payment processing fee. Plan pricing and avoid hidden losses before you list.",
+    alternates: { canonical: "/tools/mercari-fee-calculator" },
 };
 
 const faqs = [

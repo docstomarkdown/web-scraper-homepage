@@ -8,8 +8,9 @@ import { CTA } from "@/components/sections/CTA"
 import { Target } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: 'Customer Acquisition Cost (CAC) Calculator | Web Scraper Pro',
+    title: 'Customer Acquisition Cost (CAC) Calculator',
     description: 'Calculate your Customer Acquisition Cost (CAC) instantly. Determine how much you spend to acquire a new customer and optimize your marketing budget.',
+    alternates: { canonical: "/tools/customer-acquisition-cost-calculator" },
 }
 
 export default function CACCalculatorPage() {
