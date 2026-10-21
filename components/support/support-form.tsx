@@ -2,12 +2,12 @@
 
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
-import { useSearchParams } from "next/navigation"
 import { CheckCircle2, Paperclip, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import { takePrefillFromAddress, type Prefill } from "@/components/support/prefill"
 
 /**
  * The public support form. It posts to the admin app (admin.webscraper.pro/api/public/tickets), which
@@ -15,9 +15,11 @@ import { Textarea } from "@/components/ui/textarea"
  * go with the form; larger ones (up to 50 MB each, e.g. a screen recording) are uploaded right after,
  * straight to storage, with the one-hour token the admin app returns.
  *
- * The extension's links open this page with ?source=extension&type=…&url=…&subject=…&message=…&v=…
- * (chrome-extension-source/lib/config/supportLinks.ts), so the page address, a subject, the details of
- * the collection being reported and the extension version are already filled in. The details the
+ * The extension's links open this page with the topic, the page address, a subject, the details of the
+ * collection being reported and the extension version already filled in (the keys and where they can
+ * arrive are in ./prefill.ts; chrome-extension-source/lib/config/supportLinks.ts builds the links). The
+ * page takes them out of the address bar before analytics start, so the form gets them from
+ * window.__supportPrefill, or from the address itself after an in-site navigation. The details the
  * extension adds for the team (everything after DETAILS_MARKER in its message) are shown separately and
  * sent after what the person writes, so they type into an empty box instead of the middle of a template.
  *
@@ -62,7 +64,7 @@ const DETAILS_MARKER = "Added for the support team:"
 
 /** Splits the extension's prefilled message into what the person still has to write and the details it
  * adds for the team. A message without the marker is all the person's. */
-function splitPrefill(message: string | null): { own: string; details: string } {
+function splitPrefill(message: string | undefined): { own: string; details: string } {
   if (!message) return { own: "", details: "" }
   const at = message.indexOf(DETAILS_MARKER)
   if (at < 0) return { own: message, details: "" }
@@ -74,7 +76,7 @@ function splitPrefill(message: string | null): { own: string; details: string } 
 }
 
 /** The ticket's subject: the first line of the message, cut at a word, after the extension's subject. */
-function subjectFor(message: string, preset: string | null) {
+function subjectFor(message: string, preset: string | undefined) {
   const first = message.trim().split(/\n/)[0].trim()
   const snippet = first.length > 90 ? `${first.slice(0, 90).replace(/\s+\S*$/, "")}…` : first
   return (preset ? `${preset}: ${snippet}` : snippet).slice(0, 150)
@@ -100,14 +102,35 @@ function sizeLabel(n: number) {
   return n >= 1024 * 1024 ? `${(n / 1024 / 1024).toFixed(1)} MB` : `${Math.max(1, Math.round(n / 1024))} KB`
 }
 
+type FormProps = { header: React.ReactNode; tips: React.ReactNode }
+
 /** `header` and `tips` are the page's heading and advice, shown around the form and replaced by the
- * thank-you screen once a request is sent. */
-export default function SupportForm({ header, tips }: { header: React.ReactNode; tips: React.ReactNode }) {
-  const params = useSearchParams()
-  const fromExtension = params.get("source") === "extension"
-  const presetType = TYPES.some((t) => t.value === params.get("type")) ? params.get("type")! : "site_problem"
+ * thank-you screen once a request is sent. Until the prefill has been read (after hydration), only the
+ * header shows. */
+export default function SupportForm(props: FormProps) {
+  const [prefill, setPrefill] = useState<Prefill | null>(null)
+
+  // Reads the prefill once, after the first render, when the address is the current page's (during an
+  // in-site navigation it changes only after render). On a full page load the inline script has already
+  // taken it out of the address; it's used once, so coming back to the page later starts with an empty form.
+  useEffect(() => {
+    const fromAddress = takePrefillFromAddress()
+    const early = window.__supportPrefill
+    delete window.__supportPrefill
+    const found = Object.keys(fromAddress).length > 0 ? fromAddress : (early ?? {})
+    // Keeps the first value when development mode runs this effect twice.
+    setPrefill((current) => current ?? found)
+  }, [])
+
+  if (!prefill) return <>{props.header}</>
+  return <SupportFormBody {...props} preset={prefill} />
+}
+
+function SupportFormBody({ header, tips, preset }: FormProps & { preset: Prefill }) {
+  const fromExtension = preset.source === "extension"
+  const presetType = TYPES.some((t) => t.value === preset.type) ? preset.type! : "site_problem"
   const topics = TYPES.filter((t) => t.value !== "dashboard" || presetType === "dashboard")
-  const prefill = splitPrefill(params.get("message"))
+  const prefill = splitPrefill(preset.message)
 
   const [type, setType] = useState(presetType)
   const ask = MESSAGE_PROMPTS[type] ?? MESSAGE_PROMPTS.other
@@ -166,7 +189,7 @@ export default function SupportForm({ header, tips }: { header: React.ReactNode;
     const form = new FormData(event.currentTarget)
     form.set("type", type)
     const own = String(form.get("description") ?? "").trim()
-    form.set("subject", subjectFor(own, params.get("subject")))
+    form.set("subject", subjectFor(own, preset.subject))
     if (prefill.details) form.set("description", `${own}\n\n${DETAILS_MARKER}\n${prefill.details}`)
     form.delete("files")
     // Small files ride with the form; the rest are uploaded one by one afterwards.
@@ -237,7 +260,11 @@ export default function SupportForm({ header, tips }: { header: React.ReactNode;
     const steps = [
       "A person on the Web Scraper Pro team reads your request.",
       <>
-        We reply by email to <strong className="font-semibold text-slate-900 dark:text-white">{done.email}</strong>, usually
+        We reply by email to{" "}
+        <strong data-clarity-mask="True" className="font-semibold text-slate-900 dark:text-white">
+          {done.email}
+        </strong>
+        , usually
         within one working day.
       </>,
       "To add details or files, reply to our email.",
@@ -295,7 +322,12 @@ export default function SupportForm({ header, tips }: { header: React.ReactNode;
   return (
     <>
     {header}
-    <form onSubmit={submit} className="mt-8 space-y-5 rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
+    {/* data-clarity-mask: session recordings show the form's layout but none of what's typed or prefilled. */}
+    <form
+      onSubmit={submit}
+      data-clarity-mask="True"
+      className="mt-8 space-y-5 rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900"
+    >
       <fieldset className="space-y-2">
         <legend className="mb-1 text-sm font-medium text-slate-900 dark:text-white">What do you need help with?</legend>
         <div className="grid gap-2 sm:grid-cols-2">
@@ -338,12 +370,12 @@ export default function SupportForm({ header, tips }: { header: React.ReactNode;
         </div>
       )}
 
-      {(type === "site_problem" || params.get("url")) && (
+      {(type === "site_problem" || preset.url) && (
         <div className="space-y-1.5">
           <Label htmlFor="support-site" className="text-slate-900 dark:text-white">
             Page address (optional)
           </Label>
-          <Input id="support-site" name="site" defaultValue={params.get("url") ?? ""} placeholder="https://www.example.com/search?q=shoes" className={fieldClass} />
+          <Input id="support-site" name="site" defaultValue={preset.url ?? ""} placeholder="https://www.example.com/search?q=shoes" className={fieldClass} />
           <p className="text-xs text-slate-500 dark:text-slate-400">Paste the address of the page you were scraping. It helps us see the problem for ourselves.</p>
         </div>
       )}
@@ -383,7 +415,7 @@ export default function SupportForm({ header, tips }: { header: React.ReactNode;
         )}
       </div>
 
-      {params.get("v") && <input type="hidden" name="extensionVersion" value={params.get("v") ?? ""} />}
+      {preset.v && <input type="hidden" name="extensionVersion" value={preset.v} />}
       {/* Spam trap: hidden from people, filled in by bots. */}
       <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
         <label>

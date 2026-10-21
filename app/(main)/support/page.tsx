@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
-import { Suspense } from "react"
 import SupportForm from "@/components/support/support-form"
+import { takePrefillScript } from "@/components/support/prefill"
 
 export const metadata: Metadata = {
   title: "Get help",
@@ -38,11 +38,12 @@ const tips = (
 export default function SupportPage() {
   return (
     <div className="bg-slate-50 py-16 dark:bg-slate-950 sm:py-24">
+      {/* Runs while the page is parsed, before analytics start: moves the extension's prefill (page address,
+          message, collection details) out of the address bar. See components/support/prefill.ts. */}
+      <script dangerouslySetInnerHTML={{ __html: takePrefillScript }} />
       <div className="mx-auto max-w-2xl px-4 sm:px-6">
-        {/* Shown before the form is ready, so the page never flashes empty. */}
-        <Suspense fallback={header}>
-          <SupportForm header={header} tips={tips} />
-        </Suspense>
+        {/* The form shows the header on its own until it has read the prefill, so the page never flashes empty. */}
+        <SupportForm header={header} tips={tips} />
       </div>
     </div>
   )
