@@ -61,28 +61,28 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
             <JsonLd data={[breadcrumbJsonLd([{ name: "Home", href: "/" }, { name: "Use cases", href: "/use-cases" }, { name: c.page.label, href: c.page.href }], base), ...(c.faqs.length ? [faqJsonLd(c.faqs)] : [])]} />
 
             {/* Hero: the job in one sentence, then the two buttons */}
-            <section className="pt-32 pb-12 md:pt-36 md:pb-16">
+            <section className="pt-28 pb-10 md:pt-28 md:pb-12">
                 <div className={reading}>
                     {c.status === "draft" && <p className="mb-6 rounded-lg bg-amber-50 dark:bg-amber-900/20 px-4 py-2 text-base text-amber-900 dark:text-amber-200">Draft: visible in local development only.</p>}
                     <Reveal>
                         <nav aria-label="Breadcrumb" className="text-base text-slate-600 dark:text-slate-300"><Link href="/use-cases" className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]">Use cases</Link></nav>
-                        <h1 className="mt-4 text-[2.125rem] md:text-[2.625rem] font-semibold tracking-tight text-slate-800 dark:text-white leading-[1.15]">{c.h1}</h1>
-                        <p className="mt-6 text-xl text-slate-700 dark:text-slate-200 leading-[1.6]">{c.intro}</p>
-                        <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                            <Link href={installUrl} target="_blank" className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#2772ED] hover:bg-[#1f5ec2] px-6 py-3.5 text-lg font-semibold text-white transition-colors"><Chrome className="w-5 h-5" aria-hidden="true" />Add to Chrome</Link>
-                            <a href="#workflow" className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-6 py-3.5 text-lg font-semibold text-slate-800 dark:text-slate-100 hover:border-[#2772ED] transition-colors">See the steps<ArrowRight className="w-4 h-4" aria-hidden="true" /></a>
+                        <h1 className="mt-3 text-[2rem] md:text-[2.375rem] font-semibold tracking-tight text-slate-800 dark:text-white leading-[1.15]">{c.h1}</h1>
+                        <p className="mt-4 text-lg text-slate-700 dark:text-slate-200 leading-[1.6]">{c.intro}</p>
+                        <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-3">
+                            <Link href={installUrl} target="_blank" className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#2772ED] hover:bg-[#1f5ec2] px-5 py-3 text-base font-semibold text-white transition-colors"><Chrome className="w-5 h-5" aria-hidden="true" />Add to Chrome</Link>
+                            <a href="#workflow" className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-5 py-3 text-base font-semibold text-slate-800 dark:text-slate-100 hover:border-[#2772ED] transition-colors">See the steps<ArrowRight className="w-4 h-4" aria-hidden="true" /></a>
+                            <span className="text-base text-slate-600 dark:text-slate-300 sm:ml-2">Updated <time dateTime={c.lastUpdated}>{formatDate(c.lastUpdated)}</time></span>
                         </div>
-                        <p className="mt-6 text-base text-slate-600 dark:text-slate-300">Last updated <time dateTime={c.lastUpdated}>{formatDate(c.lastUpdated)}</time></p>
                     </Reveal>
                 </div>
             </section>
 
             {/* What you get: the sample table first, because the picture of the sheet is the fastest explanation */}
-            <section className="py-12 md:py-16 bg-slate-50/70 dark:bg-slate-900/40 border-y border-slate-100 dark:border-slate-800/60">
+            <section className="py-10 md:py-12 bg-slate-50/70 dark:bg-slate-900/40 border-y border-slate-100 dark:border-slate-800/60">
                 <div className={reading}>
                     <Reveal>
                         <p className="text-base font-semibold text-[#1f5ec2] dark:text-[#7aa7ff]">What you get</p>
-                        <h2 className="mt-2 text-[1.75rem] font-semibold tracking-tight text-slate-800 dark:text-white">A spreadsheet like this</h2>
+                        <h2 className="mt-1 text-[1.75rem] font-semibold tracking-tight text-slate-800 dark:text-white">A spreadsheet like this</h2>
                         <p className={`mt-3 ${body}`}>One row per item, with the columns named. {c.sample.caption}</p>
                     </Reveal>
                     <Reveal className="mt-8">
@@ -98,7 +98,7 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
             </section>
 
             {/* The job, in the reader's words */}
-            <section className="py-16 md:py-20">
+            <section className="py-14 md:py-16">
                 <div className={reading}>
                     <Reveal>
                         <p className="text-base font-semibold text-[#1f5ec2] dark:text-[#7aa7ff]">The job</p>
@@ -109,7 +109,7 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
             </section>
 
             {/* The steps */}
-            <section id="workflow" className="py-16 md:py-20 scroll-mt-24 bg-slate-50/70 dark:bg-slate-900/40 border-y border-slate-100 dark:border-slate-800/60">
+            <section id="workflow" className="py-14 md:py-16 scroll-mt-24 bg-slate-50/70 dark:bg-slate-900/40 border-y border-slate-100 dark:border-slate-800/60">
                 <div className={reading}>
                     <Reveal>
                         <p className="text-base font-semibold text-[#1f5ec2] dark:text-[#7aa7ff]">Step by step</p>
@@ -147,7 +147,7 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
             </section>
 
             {/* Sites, limits, guides: three short lists, each on its own */}
-            <section className="py-16 md:py-20">
+            <section className="py-14 md:py-16">
                 <div className={reading}>
                     <Reveal>
                         <h2 className="text-[1.75rem] font-semibold tracking-tight text-slate-800 dark:text-white">Which websites</h2>
@@ -188,7 +188,7 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
             </section>
 
             {c.faqs.length > 0 && (
-                <section className="py-16 md:py-20 bg-slate-50/70 dark:bg-slate-900/40 border-y border-slate-100 dark:border-slate-800/60">
+                <section className="py-14 md:py-16 bg-slate-50/70 dark:bg-slate-900/40 border-y border-slate-100 dark:border-slate-800/60">
                     <div className={reading}>
                         <Reveal>
                             <p className="text-base font-semibold text-[#1f5ec2] dark:text-[#7aa7ff]">Questions</p>
