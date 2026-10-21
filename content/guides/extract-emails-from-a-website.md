@@ -13,6 +13,12 @@ campaign: yt-b2-04-how-to-extract-emails-from-a-website-1-click-no-code
 faq:
   - q: "The site shows an email but it wasn't collected. Why?"
     a: "Addresses shown as images, or hidden behind a contact form, can't be read. Everything written as text on the page or its contact page is."
+  - q: "Can it extract every email address on a domain?"
+    a: "It reads the page you're on and one linked Contact or About page. For a whole site, paste its main pages into Bulk scrape → Collect contacts; each page becomes a row, and the merged table holds every email found."
+  - q: "Does it work on any website?"
+    a: "On any page your browser can show, including pages you're signed in to. Sites that draw their content with JavaScript are fine, because it reads the page as you see it."
+  - q: "Is there a free online version?"
+    a: "It's a Chrome extension, so the collecting happens in your browser with nothing uploaded. Install it from the Chrome Web Store to try it on a page."
 ---
 
 Collect the email addresses, phone numbers and social links a website publishes, from its contact page, in one click. This guide shows each step on version 1.3.0, with a screenshot of what you should see.

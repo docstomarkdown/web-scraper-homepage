@@ -19,9 +19,15 @@ faq:
     a: "A language model rewrites text rather than copying it, so long lists get skipped rows and altered digits. Check a sample against the page before you rely on it."
   - q: "What does Web Scraper Pro do differently?"
     a: "The AI only reads your request. The rows come from the page itself, in your browser, so every value is what the page shows, and it can follow every page and open each item."
+  - q: "Can ChatGPT do web scraping with a prompt?"
+    a: "A prompt gets you a table from text you paste, or a script to run yourself. Neither pages through a site or opens each item, and the pasted route rewrites values. The prompts above show both."
+  - q: "Is Claude any different for web scraping?"
+    a: "Claude has the same two routes and the same limits: it reads what you paste or fetches a page's text, and it can write a script. The gap is the same one: a model generates text; it doesn't copy a page's values."
+  - q: "What about ChatGPT's browsing or agent mode?"
+    a: "Browsing fetches a page's text, which is enough for a short public list and not for a paged catalog or a signed-in page. Values still pass through the model, so check them."
 ---
 
-ChatGPT can help you scrape a website in two ways: turn text you paste into a table, or write a script you run yourself. Neither one pages through a site, opens each item, or works where you're signed in, and the table route rewrites values instead of copying them. This guide shows both routes honestly, where each breaks, and the one-sentence alternative in Web Scraper Pro, tested on version 1.3.0.
+ChatGPT can help you collect data from a website in two ways: turn text you paste into a table, or write a script you run yourself. Neither one pages through a site, opens each item, or works where you're signed in, and the table route rewrites values instead of copying them. This guide shows both routes honestly, where each breaks, and the one-sentence alternative in Web Scraper Pro, tested on version 1.3.0.
 
 ## Prerequisites
 
@@ -59,7 +65,7 @@ Paste the page's HTML (right-click the page and choose View page source, then co
 **Where it breaks:**
 
 - **JavaScript pages.** Many stores and directories draw the list after the page loads. The script sees an empty page.
-- **Pagination.** The script handles the first page unless you describe the site's next-page mechanism exactly, and infinite scroll needs a real browser.
+- **More pages.** The script handles the first page unless you describe the site's next-page mechanism exactly, and infinite scroll needs a real browser.
 - **Sign-in and blocks.** The script has no cookies, so member pages are closed to it, and sites that check for bots stop it.
 - **Layout changes.** The script matches today's class names. When the site redesigns, it returns nothing, and you're back to ChatGPT.
 - **Setup.** Python, packages, a terminal. Fine for a developer; a detour for everyone else.

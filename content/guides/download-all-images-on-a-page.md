@@ -17,8 +17,10 @@ faq:
     a: "Icons, logos, sprites and tracking pixels are left out on purpose, and an image that appears many times is kept once. Images that only load further down the page appear after you scroll there and click Rescan."
   - q: "How big can the download be?"
     a: "There's no limit on the page. A ZIP holds up to 5,000 files; a bigger collection is split into part-1, part-2 and so on."
-  - q: "Can I download the images from many pages at once?"
-    a: "One page at a time from the Images tab. For every product image in a Shopify store, use the Shopify store export, which downloads the whole catalog's images."
+  - q: "Can I download the images from a website's subpages too?"
+    a: "One page at a time. Open each page and collect, or, for a Shopify store, use the Shopify store export, which downloads every product's images in one go."
+  - q: "Is there a Chrome extension for this?"
+    a: "Yes, this one. The Images tab is part of Web Scraper Pro; install it from the Chrome Web Store and the tab is there on every page."
 ---
 
 Save every image on a web page as one ZIP file in three clicks. The Images tab finds the images, groups them by size with a count for each group, and downloads a group or all of them at once. This guide shows each step on version 1.3.0, with a screenshot of what you should see.

@@ -15,6 +15,12 @@ faq:
     a: "Up to 200 in chat. For more, search smaller areas or narrower categories and run them together with Bulk runs."
   - q: "Why do some rows have no email?"
     a: "Emails come from each business's own website. A business that doesn't publish one gets its phone and website only."
+  - q: "Is there a free way to try this?"
+    a: "Install the extension from the Chrome Web Store and run a search. You see the rows before you export, so you know what you're getting."
+  - q: "Can I get the business listings without code?"
+    a: "Yes. Everything here is a sentence in the Chat tab or a click in the side panel. There's no API key, no script and no selector to set up."
+  - q: "Can I collect reviews as well?"
+    a: "Not from a Maps search. The run collects each business's details and contact details; review text isn't part of it."
 ---
 
 Collect every business from a Maps search into a spreadsheet, with phone, website, rating and address, in one run. This guide shows each step on version 1.3.0, with a screenshot of what you should see.

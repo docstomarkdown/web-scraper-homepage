@@ -19,6 +19,12 @@ faq:
     a: "Yes. Type `collect every page of this list` in the Chat tab, or accept the Collect every page card chat offers after collecting the first page."
   - q: "Will I get the same item twice?"
     a: "No. An item that shows up again on the next page, or in a carousel, is kept once."
+  - q: "How do I scrape all pages of a website, not only one?"
+    a: "Choose Collect more pages, confirm how the page moves on, set Stop after to All pages, and click Collect from all pages. For a site with several lists, run it once per list page."
+  - q: "Does it handle pagination on any website?"
+    a: "It handles the three ways a list continues: numbered pages or a Next link, a Load more button, and loading as you scroll. When it can't tell which, it asks, and you can point it at the Next button yourself."
+  - q: "Can I collect multiple pages from different websites in one go?"
+    a: "Paste the first-page addresses into Bulk scrape; each site is collected in turn with its own page settings, and View merged table puts the rows together."
 ---
 
 Collect a whole list across numbered pages, Load more buttons or endless scrolling into one spreadsheet. You pick the list, say how many pages to go through, and click once; the extension pages through on its own and the rows land in one table. This guide shows each step on version 1.3.0, with a screenshot of what you should see.

@@ -15,6 +15,10 @@ faq:
     a: "Yes. Say no on the card, or untick the box on the List tab. The run is faster without them: about a minute for 20 businesses instead of a minute and a half."
   - q: "Are the emails verified?"
     a: "No. They're the addresses the websites publish. Verify them in your email tool before a campaign."
+  - q: "Where do the emails come from?"
+    a: "From each business's own website: the page Maps links to and one linked Contact or About page. Maps itself doesn't list emails, so a business without a website, or without a published email, gets none."
+  - q: "Can I get emails for leads I collected with another tool?"
+    a: "Yes, if the list has a Website column. Paste the websites into Bulk scrape → Collect contacts, or import the list and use Add contact details on its results page."
 ---
 
 Collect businesses from Maps with the emails, phone numbers and social links from their websites, in the same run or added to a list you already have. This guide shows each step on version 1.3.0, with a screenshot of what you should see.

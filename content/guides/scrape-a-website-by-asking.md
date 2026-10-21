@@ -19,6 +19,12 @@ faq:
     a: "No. The first time you use chat, the extension connects to our servers on its own, using your Chrome profile's email if there is one."
   - q: "What happens when it gets the wrong list?"
     a: "Say which one: \"the main results, not the sidebar\". Or switch to the List tab, click Choose an item on the page, and click an item in the list you want."
+  - q: "Can it collect a website's text, not a list?"
+    a: "Yes. Type \"collect the page text\" and you get the readable text with the title, author and date, ready for a document or an AI tool."
+  - q: "Does it work on a website that requires a login?"
+    a: "Yes, on the pages you can see once you're signed in, because it runs in your own browser tab. It doesn't sign in for you."
+  - q: "Can it collect the images on a page?"
+    a: "Images come from the side panel's Images tab, not chat: Collect images from this page, then download a size group or all of them as a ZIP."
 ---
 
 Type what you want in plain words and get a spreadsheet back. The Chat tab reads your request, runs the right job in your browser, and offers the next step when there is one, such as collecting every page or adding emails. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
