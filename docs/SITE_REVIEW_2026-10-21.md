@@ -158,6 +158,13 @@ description length, and flags titles that share most of their words with another
 grade is fine almost everywhere (2 pages above 8), long sentences are common (one to ten per page), and most meta
 descriptions run past 160 characters, which is the one thing worth a scripted pass before the owner's read.
 
+**Depth pass (owner: "the pages are too thin").** Every feature, site and use-case page gained reading sections through a
+shared `ProseSection` (worked example with numbers, what to do with the table, settings table, verdict-first comparison
+with doing it by hand or with code, what it doesn't do, when it goes wrong) and 9–10 FAQs. Prose per page went from
+600–1,400 words to 1,050–2,450; grades stayed at 4–6; all titles ≤ 60 characters. Facts were re-read from the
+extension source and several claims corrected (no product-fields bulk mode; count card defaults; deep scan always on;
+image button and ZIP names; bulk stall and run caps). Site prose: 85,000 words across 76 pages.
+
 ## 6. Rerunning the audit
 
 ```bash
