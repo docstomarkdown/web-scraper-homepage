@@ -1,6 +1,8 @@
 import React from "react";
 import { Check, CloudUpload, Loader2 } from "lucide-react";
 import Reveal from "@/components/landing/Reveal";
+import Link from "next/link";
+import { publishedHref } from "@/config/pages";
 
 const POINTS = [
     "Paste up to 200 URLs at a time, or upload a CSV",
@@ -51,6 +53,11 @@ export default function Cloud() {
                                         </li>
                                     ))}
                                 </ul>
+                                {publishedHref("cloud") && (
+                                    <Link href={publishedHref("cloud")!} className="mt-7 inline-block rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-[#1f5ec2] hover:bg-blue-50">
+                                        What cloud runs will do →
+                                    </Link>
+                                )}
                             </div>
 
                             {/* Mock dashboard card (decorative) */}

@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { Plus } from "lucide-react";
 import SectionHeading from "@/components/landing/SectionHeading";
 import Reveal from "@/components/landing/Reveal";
@@ -47,6 +48,11 @@ export default function Sites() {
                             </dd>
                         </div>
                     </dl>
+                    <p className="mt-6 text-center">
+                        <Link href="/scrapers" className="text-sm font-semibold text-[#1f5ec2] dark:text-[#7aa7ff] hover:underline">
+                            Every ready-made site, by category →
+                        </Link>
+                    </p>
                 </Reveal>
             </div>
         </section>

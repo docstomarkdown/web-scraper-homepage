@@ -2,6 +2,8 @@ import React from "react";
 import { Check, ChevronDown, Download, FileSpreadsheet, FolderTree, Images, Layers, Link2, Store, Tags } from "lucide-react";
 import SectionHeading from "@/components/landing/SectionHeading";
 import Reveal from "@/components/landing/Reveal";
+import Link from "next/link";
+import { publishedHref } from "@/config/pages";
 
 const POINTS = [
     {
@@ -55,6 +57,7 @@ export default function ShopifyStores() {
                 </Reveal>
 
                 <div className="mt-14 grid lg:grid-cols-[1fr_380px] gap-12 items-start">
+                    <div>
                     <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-8">
                         {POINTS.map((p, i) => (
                             <li key={p.title}>
@@ -70,6 +73,14 @@ export default function ShopifyStores() {
                             </li>
                         ))}
                     </ul>
+                    {publishedHref("shopify-scraper") && (
+                        <Reveal className="mt-8">
+                            <Link href={publishedHref("shopify-scraper")!} className="inline-block text-sm font-semibold text-[#1f5ec2] dark:text-[#7aa7ff] hover:underline">
+                                How the Shopify store export works →
+                            </Link>
+                        </Reveal>
+                    )}
+                    </div>
 
                     {/* Mock of the extension's Shopify card (decorative) */}
                     <Reveal delay={0.1}>

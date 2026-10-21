@@ -1,13 +1,16 @@
 import React from "react";
+import Link from "next/link";
 import { Columns3, FileSpreadsheet, Layers, Link2, LockKeyhole, SquarePen } from "lucide-react";
 import SectionHeading from "@/components/landing/SectionHeading";
 import Reveal from "@/components/landing/Reveal";
+import { publishedHref } from "@/config/pages";
 
-const ITEMS = [
+const ITEMS: { icon: typeof Layers; title: string; body: string; link?: { slug: string; text: string } }[] = [
     {
         icon: Layers,
         title: "Every page, not just the first",
         body: "Next-page buttons, “Load more” and infinite scroll are all handled, so you get the whole list.",
+        link: { slug: "list-scraper", text: "How lists from any website work" },
     },
     {
         icon: LockKeyhole,
@@ -18,6 +21,7 @@ const ITEMS = [
         icon: Link2,
         title: "Hundreds of URLs at once",
         body: "Paste or upload a list of URLs and get one combined table back.",
+        link: { slug: "bulk-scraper", text: "See bulk runs" },
     },
     {
         icon: Columns3,
@@ -28,6 +32,7 @@ const ITEMS = [
         icon: SquarePen,
         title: "Tidy up before you export",
         body: "Rename, reorder, hide or delete columns and rows in the built-in data viewer.",
+        link: { slug: "export-to-google-sheets", text: "See editing and export" },
     },
     {
         icon: FileSpreadsheet,
@@ -54,6 +59,11 @@ export default function Capabilities() {
                                 <div>
                                     <h3 className="text-base font-semibold text-slate-900 dark:text-white">{item.title}</h3>
                                     <p className="mt-1.5 text-[15px] text-slate-600 dark:text-slate-300 leading-relaxed">{item.body}</p>
+                                    {item.link && publishedHref(item.link.slug) && (
+                                        <Link href={publishedHref(item.link.slug)!} className="mt-2 inline-block text-sm font-semibold text-[#1f5ec2] dark:text-[#7aa7ff] hover:underline">
+                                            {item.link.text} →
+                                        </Link>
+                                    )}
                                 </div>
                             </div>
                         </Reveal>

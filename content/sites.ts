@@ -20,7 +20,8 @@ export const readyMadeSites: ReadyMadeSite[] = [
     { name: "Yellow Pages", category: "maps-and-directories", page: "yellow-pages" },
     { name: "Justdial", category: "maps-and-directories", page: "justdial" },
     { name: "BBB", category: "maps-and-directories", page: "bbb" },
-    { name: "Manta", category: "maps-and-directories" },
+    // configs-prod/manta.com.json is the generic default with no site-specific selectors: nothing is tuned yet.
+    { name: "Manta", category: "maps-and-directories", hidden: true },
     // Shopify
     { name: "Any Shopify store: full catalog", category: "shopify-stores" },
     // Online stores
@@ -38,7 +39,8 @@ export const readyMadeSites: ReadyMadeSite[] = [
     { name: "Allegro", category: "online-stores" },
     // Real estate
     { name: "Zillow", category: "real-estate" },
-    { name: "Realtor.com", category: "real-estate" },
+    // configs-prod/realtor.com.json targets the agent directory only, not home listings.
+    { name: "Realtor.com", category: "real-estate", hidden: true },
     { name: "Rightmove", category: "real-estate" },
     // Travel
     { name: "Booking.com", category: "travel" },

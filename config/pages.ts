@@ -56,7 +56,7 @@ const make = (kind: PageKind, prefix: string, group?: FeatureGroup) =>
 const collect = make("feature", "/", "collect");
 const scale = make("feature", "/", "scale");
 const connect = make("feature", "/", "connect");
-const useCase = make("use-case", "/use-cases/");
+const caseEntry = make("use-case", "/use-cases/");
 const scraper = make("scraper", "/scrapers/");
 const resource = make("resource", "/");
 
@@ -76,21 +76,21 @@ export const pages: SitePage[] = [
     { ...scale(["cloud", "Cloud runs", "Big jobs and scheduled runs without keeping your browser open, plus a REST API.", "soon", "cloud"]), comingSoon: true },
 
     // Use cases: one page per job
-    useCase(["lead-generation", "Lead generation", "Local businesses with phones and websites, plus emails from their own sites.", "planned", "target"]),
-    useCase(["ecommerce", "E-commerce research", "Competitor prices, bestsellers and reviews from marketplaces and independent stores.", "planned", "tag"]),
-    useCase(["real-estate", "Real estate", "Homes for sale or rent in any area, with price, beds, baths, size and photos.", "planned", "home"]),
-    useCase(["shopify", "Shopify agencies and dropshipping", "Research products and move catalogs between stores.", "planned", "store"]),
-    useCase(["freelance-data-work", "Freelance data work", "Client-ready lead lists and data exports from whatever site the client names.", "planned", "table"]),
-    useCase(["reviews", "Reviews and reputation", "Ratings and review text from review sites and stores.", "planned", "star"]),
-    useCase(["job-postings", "Job postings", "See who is hiring, from job boards and company careers pages.", "planned", "briefcase"]),
-    useCase(["research", "Research and AI datasets", "Research papers, page text and lists, ready for analysis or AI tools.", "planned", "graduation"]),
-    useCase(["travel", "Travel and hospitality", "Hotels, prices and ratings from travel sites.", "planned", "plane"]),
+    caseEntry(["lead-generation", "Lead generation", "Local businesses with phones and websites, plus emails from their own sites.", "planned", "target"]),
+    caseEntry(["ecommerce", "E-commerce research", "Competitor prices, bestsellers and reviews from marketplaces and independent stores.", "planned", "tag"]),
+    caseEntry(["real-estate", "Real estate", "Homes for sale or rent in any area, with price, beds, baths, size and photos.", "planned", "home"]),
+    caseEntry(["shopify", "Shopify agencies and dropshipping", "Research products and move catalogs between stores.", "planned", "store"]),
+    caseEntry(["freelance-data-work", "Freelance data work", "Client-ready lead lists and data exports from whatever site the client names.", "planned", "table"]),
+    caseEntry(["reviews", "Reviews and reputation", "Ratings and review text from review sites and stores.", "planned", "star"]),
+    caseEntry(["job-postings", "Job postings", "See who is hiring, from job boards and company careers pages.", "planned", "briefcase"]),
+    caseEntry(["research", "Research and AI datasets", "Research papers, page text and lists, ready for analysis or AI tools.", "planned", "graduation"]),
+    caseEntry(["travel", "Travel and hospitality", "Hotels, prices and ratings from travel sites.", "planned", "plane"]),
 
     // Scrapers: categories of ready-made sites (per-site pages hang off these)
     // Summaries list only sites from the verified "ready-made sites" list (components/landing/Sites.tsx).
-    scraper(["maps-and-directories", "Maps and directories", "Maps, Yellow Pages, Manta", "planned", "map-pin"]),
+    scraper(["maps-and-directories", "Maps and directories", "Maps, Yellow Pages, Justdial, BBB", "planned", "map-pin"]),
     scraper(["online-stores", "Online stores", "Amazon, Walmart, Target, Etsy, Costco, Wayfair and more", "planned", "shopping-bag"]),
-    scraper(["real-estate", "Real estate", "Zillow, Realtor.com, Rightmove", "planned", "home"]),
+    scraper(["real-estate", "Real estate", "Zillow, Rightmove", "planned", "home"]),
     scraper(["travel", "Travel", "Booking.com, Hotels.com, Tripadvisor", "planned", "plane"]),
     scraper(["jobs-cars-software", "Jobs, cars and software", "Monster, CarGurus, Capterra, Product Hunt", "planned", "briefcase"]),
     scraper(["research-papers", "Research papers", "Scholar search results", "planned", "graduation"]),
@@ -134,6 +134,12 @@ export const relatedPages = (slugs: string[]) =>
     slugs
         .map((s) => pages.find((p) => p.slug === s && p.kind === "feature"))
         .filter((p): p is SitePage => !!p && isPublished(p));
+
+/** Href of a page once it's published (live or coming soon), otherwise null, so a section link never points at an unbuilt page. */
+export const publishedHref = (slug: string, kind: PageKind = "feature") => {
+    const p = pages.find((x) => x.slug === slug && x.kind === kind);
+    return p && isPublished(p) ? p.href : null;
+};
 
 /** Badge for a menu item, or null for none. "Page to build" only ever shows in local preview. */
 export function statusBadge(p: SitePage): string | null {

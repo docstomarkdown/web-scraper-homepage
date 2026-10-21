@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BookOpen, Briefcase, Calendar, Car, FileText, Home, Image, ListChecks, Mail, MapPin, MessageSquareQuote, Plane, ShoppingBag } from "lucide-react";
 import SectionHeading from "@/components/landing/SectionHeading";
 import Reveal from "@/components/landing/Reveal";
+import { publishedHref, type PageKind } from "@/config/pages";
 
 const TYPES: {
     icon: typeof MapPin;
@@ -11,7 +12,8 @@ const TYPES: {
     fields: string[];
     goodFor: string;
     tint: string;
-    link?: { href: string; text: string };
+    /** Page this card leads to, shown once that page is published. */
+    link?: { slug: string; kind?: PageKind; text: string };
 }[] = [
     {
         icon: MapPin,
@@ -20,7 +22,7 @@ const TYPES: {
         fields: ["Name", "Category", "Address", "Phone", "Website", "Rating", "Email"],
         goodFor: "building prospect lists by city and niche, finding local partners, sizing up competitors nearby.",
         tint: "text-rose-500 bg-rose-50 dark:bg-rose-950/40",
-        link: { href: "/maps-leads", text: "Collect local business leads from Maps" },
+        link: { slug: "maps-leads", text: "Collect local business leads from Maps" },
     },
     {
         icon: ShoppingBag,
@@ -29,6 +31,7 @@ const TYPES: {
         fields: ["Product", "Price", "Sale price", "Rating", "Reviews", "Seller", "Image"],
         goodFor: "checking competitor prices, researching what sells, gathering reviews for product ideas.",
         tint: "text-amber-500 bg-amber-50 dark:bg-amber-950/40",
+        link: { slug: "product-scraper", text: "Collect product details and reviews" },
     },
     {
         icon: Home,
@@ -37,6 +40,7 @@ const TYPES: {
         fields: ["Address", "Price", "Beds", "Baths", "Sq ft", "Photos", "Listing link"],
         goodFor: "comparing homes in a neighbourhood, pulling this week's new listings, building a list of rentals.",
         tint: "text-emerald-500 bg-emerald-50 dark:bg-emerald-950/40",
+        link: { slug: "real-estate", kind: "use-case", text: "Collect property listings" },
     },
     {
         icon: Briefcase,
@@ -45,6 +49,7 @@ const TYPES: {
         fields: ["Role", "Company", "Location", "Salary", "Posted", "Job link"],
         goodFor: "seeing who is hiring, tracking openings on company careers pages, researching salaries.",
         tint: "text-indigo-500 bg-indigo-50 dark:bg-indigo-950/40",
+        link: { slug: "job-postings", kind: "use-case", text: "Collect job posts" },
     },
     {
         icon: Mail,
@@ -53,6 +58,7 @@ const TYPES: {
         fields: ["Website", "Email", "Phone", "Social profiles"],
         goodFor: "adding contact details to a list of companies before outreach.",
         tint: "text-sky-500 bg-sky-50 dark:bg-sky-950/40",
+        link: { slug: "email-extractor", text: "Get emails from a list of websites" },
     },
     {
         icon: ListChecks,
@@ -61,18 +67,19 @@ const TYPES: {
         fields: ["Automatic columns", "Next page", "Load more", "Infinite scroll"],
         goodFor: "directories, event lists, catalogues and tables on any other site.",
         tint: "text-[#2772ED] bg-[#2772ED]/10",
+        link: { slug: "list-scraper", text: "Collect lists from any website" },
     },
 ];
 
 // Smaller data types, one line each (all supported by the extension today).
-const MORE = [
+const MORE: { icon: typeof MapPin; title: string; body: string; slug?: string }[] = [
     { icon: MessageSquareQuote, title: "Reviews", body: "Ratings, titles and review text, across every page of reviews." },
     { icon: Plane, title: "Hotels and travel", body: "Hotel names, prices, ratings and locations from travel sites." },
     { icon: Car, title: "Cars", body: "Car listings with their prices and details." },
     { icon: Calendar, title: "Events", body: "Event names, dates and places from event listings." },
     { icon: BookOpen, title: "Research papers", body: "Titles, authors, sources, snippets and full-text links from Scholar search results." },
-    { icon: Image, title: "Images and links", body: "Every image or link on a page, with its web address." },
-    { icon: FileText, title: "Page text", body: "A page's readable text, saved as a document or ready to paste into an AI tool." },
+    { icon: Image, title: "Images and links", body: "Every image or link on a page, with its web address.", slug: "image-downloader" },
+    { icon: FileText, title: "Page text", body: "A page's readable text, saved as a document or ready to paste into an AI tool.", slug: "page-text" },
 ];
 
 export default function Collect() {
@@ -109,9 +116,9 @@ export default function Collect() {
                                         </li>
                                     ))}
                                 </ul>
-                                {t.link && (
+                                {t.link && publishedHref(t.link.slug, t.link.kind) && (
                                     <Link
-                                        href={t.link.href}
+                                        href={publishedHref(t.link.slug, t.link.kind)!}
                                         className="mt-5 inline-block text-sm font-semibold text-[#1f5ec2] dark:text-[#7aa7ff] hover:underline"
                                     >
                                         {t.link.text} →
@@ -129,7 +136,13 @@ export default function Collect() {
                             <li key={m.title} className="flex gap-3">
                                 <m.icon className="w-4 h-4 mt-0.5 shrink-0 text-slate-400 dark:text-slate-500" aria-hidden="true" />
                                 <div>
-                                    <h4 className="text-sm font-semibold text-slate-800 dark:text-slate-100">{m.title}</h4>
+                                    <h4 className="text-sm font-semibold text-slate-800 dark:text-slate-100">
+                                        {m.slug && publishedHref(m.slug) ? (
+                                            <Link href={publishedHref(m.slug)!} className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff] hover:underline">{m.title}</Link>
+                                        ) : (
+                                            m.title
+                                        )}
+                                    </h4>
                                     <p className="mt-0.5 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{m.body}</p>
                                 </div>
                             </li>

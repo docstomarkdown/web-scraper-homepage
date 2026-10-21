@@ -7,7 +7,12 @@ import { Screenshot } from "@/components/Screenshot";
 const components = {
     h2: (p: React.ComponentProps<"h2">) => <h2 className="text-2xl font-bold mt-12 mb-4 text-slate-900 dark:text-white tracking-tight scroll-mt-24" {...p} />,
     h3: (p: React.ComponentProps<"h3">) => <h3 className="text-xl font-semibold mt-8 mb-3 text-slate-900 dark:text-white" {...p} />,
-    p: (p: React.ComponentProps<"p">) => <p className="my-5 text-[17px] leading-relaxed text-slate-700 dark:text-slate-300" {...p} />,
+    // A paragraph holding only an image is unwrapped, because images render as <figure>, which can't sit inside <p>.
+    p: ({ node, ...p }: React.ComponentProps<"p"> & { node?: { children?: { type: string; tagName?: string; value?: string }[] } }) => {
+        const kids = (node?.children ?? []).filter((c) => !(c.type === "text" && !c.value?.trim()));
+        if (kids.length === 1 && kids[0].type === "element" && kids[0].tagName === "img") return <>{p.children}</>;
+        return <p className="my-5 text-[17px] leading-relaxed text-slate-700 dark:text-slate-300" {...p} />;
+    },
     ul: (p: React.ComponentProps<"ul">) => <ul className="my-5 pl-6 list-disc space-y-2 text-[17px] text-slate-700 dark:text-slate-300" {...p} />,
     ol: (p: React.ComponentProps<"ol">) => <ol className="my-5 pl-6 list-decimal space-y-2 text-[17px] text-slate-700 dark:text-slate-300" {...p} />,
     a: (p: React.ComponentProps<"a">) => <a className="text-[#1f5ec2] dark:text-[#7aa7ff] underline underline-offset-2" {...p} />,

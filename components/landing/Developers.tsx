@@ -3,22 +3,23 @@ import Link from "next/link";
 import { ArrowUpRight, Bot, Braces, MonitorSmartphone } from "lucide-react";
 import SectionHeading from "@/components/landing/SectionHeading";
 import Reveal from "@/components/landing/Reveal";
+import { publishedHref } from "@/config/pages";
 
 const POINTS = [
     {
         icon: Bot,
         title: "Connect AI agents over MCP",
-        body: "Claude and other MCP clients can call it as a tool. Cloud scraping of URL lists and whole Shopify catalogs, with no browser needed, is coming soon.",
+        body: "Claude and other MCP clients will call it as a tool: hand over a list of URLs or a Shopify store and get rows back, with no browser needed.",
     },
     {
         icon: MonitorSmartphone,
         title: "Let an agent use your browser",
-        body: "Turn on the extension's permission and an agent can collect from the page you have open, including pages you're signed in to.",
+        body: "Turn on a permission in the extension and an agent will collect from the page you have open, including pages you're signed in to.",
     },
     {
         icon: Braces,
         title: "Call the REST API",
-        body: "Send URLs with an API key and get the results back as JSON. Coming soon, with the cloud.",
+        body: "Send URLs with an API key and get the results back as JSON, from the same cloud dashboard.",
     },
 ];
 
@@ -38,8 +39,9 @@ export default function Developers() {
                     <SectionHeading
                         align="left"
                         eyebrow="For developers and AI agents"
+                        badge="Coming soon"
                         title="Plug it into your AI agent"
-                        intro="The same collection engine, available to your code and your agents."
+                        intro="The same collection engine, on its way to your code and your agents with the cloud release."
                     />
                     <ul className="mt-8 space-y-6">
                         {POINTS.map((p) => (
@@ -54,7 +56,12 @@ export default function Developers() {
                             </li>
                         ))}
                     </ul>
-                    <p className="mt-8 text-[15px] font-semibold text-slate-500 dark:text-slate-400">Developer docs: coming soon with the cloud release.</p>
+                    <p className="mt-8 text-[15px] text-slate-600 dark:text-slate-300">
+                        Developer docs arrive with the cloud release. Until then, read what&apos;s planned for{" "}
+                        {publishedHref("mcp") ? <Link href={publishedHref("mcp")!} className="font-semibold text-[#1f5ec2] dark:text-[#7aa7ff] hover:underline">MCP and AI agents</Link> : "MCP and AI agents"}
+                        {" "}and{" "}
+                        {publishedHref("cloud") ? <Link href={publishedHref("cloud")!} className="font-semibold text-[#1f5ec2] dark:text-[#7aa7ff] hover:underline">cloud runs and the API</Link> : "cloud runs and the API"}.
+                    </p>
                 </Reveal>
 
                 <Reveal delay={0.08}>
