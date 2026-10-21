@@ -93,6 +93,7 @@ export const pages: SitePage[] = [
     scraper(["travel", "Travel", "Booking.com, Hotels.com, Tripadvisor", "planned", "plane"]),
     scraper(["jobs-cars-software", "Jobs, cars and software", "Monster, CarGurus, Capterra, Product Hunt", "planned", "briefcase"]),
     scraper(["research-papers", "Research papers", "Scholar search results", "planned", "graduation"]),
+    scraper(["video", "Video", "YouTube search results and channel videos", "planned", "image"]),
     scraper(["shopify-stores", "Shopify stores", "Full catalogs from public Shopify stores", "planned", "store"]),
 
     // Resources

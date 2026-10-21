@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { showPlannedPages, pages } from "@/config/pages";
 import { getAllGuides } from "@/lib/guides";
+import { getAllPosts } from "@/lib/posts";
 import { useCasePages } from "@/content/use-cases";
 import { scraperPages } from "@/content/scrapers";
 import { captureIds } from "@/lib/visuals";
@@ -83,6 +84,7 @@ export default function ReviewDesk() {
         { title: "Compare: Web Scraper (webscraper.io)", href: "/compare/webscraper-io", status: "live", words: words(fs.readFileSync(path.join(root, "content/compare/webscraper-io.ts"), "utf8")), captures: [0, 0], updated: "2026-10-21", notes: ["Their prices and limits were read on 2026-09-06; re-check before republishing."] },
         { title: "Blog: Web Scraper Pro 1.3.0", href: "/blog/web-scraper-pro-1-3-0-emails-in-the-same-maps-run", status: "live", words: words(fs.readFileSync(path.join(root, "content/blog/web-scraper-pro-1-3-0-emails-in-the-same-maps-run.md"), "utf8")), captures: [0, 0], updated: "2026-10-21", notes: [] },
     ];
+    const posts: Row[] = getAllPosts().map((b) => ({ title: b.title, href: `/blog/${b.slug}`, status: b.status, words: words(b.content), captures: [0, 0], updated: b.updated, notes: b.category === "Comparisons" ? ["Names other products: check every line against their public pages before publishing."] : [] }));
     const total = (rows: Row[]) => rows.reduce((n, r) => n + r.words, 0);
 
     return (
@@ -98,6 +100,7 @@ export default function ReviewDesk() {
                 <Table heading="Site pages" rows={sites} />
                 <Table heading="Feature pages" rows={features} />
                 <Table heading="Resources" rows={resources} />
+                <Table heading="Blog posts" rows={posts} />
                 <section className="mt-12 text-sm text-slate-600 dark:text-slate-300">
                     <h2 className="text-xl font-semibold text-slate-900 dark:text-white">How to review a page</h2>
                     <ol className="mt-4 list-decimal pl-5 space-y-2">

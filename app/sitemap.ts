@@ -28,7 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const c of Object.values(scraperPages)) if (c.status === "published") pages.push(url(`/scrapers/${c.slug}`, { lastModified: new Date(c.lastVerified), priority: 0.7 }));
     for (const c of Object.values(useCasePages)) if (c.status === "published") pages.push(url(c.page.href, { lastModified: new Date(c.lastUpdated), priority: 0.7 }));
 
-    const posts = getAllPosts();
+    const posts = getAllPosts().filter((p) => p.status === "published");
     for (const post of posts) pages.push(url(`/blog/${post.slug}`, { lastModified: new Date(post.updated), priority: 0.7 }));
     // Archives are listed only once they hold more than one post; a one-post archive is a thin page.
     for (const a of getAllAuthors()) if (getPostsByAuthor(a).length > 1) pages.push(url(`/blog/author/${a}`, { priority: 0.4 }));

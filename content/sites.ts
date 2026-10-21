@@ -53,6 +53,8 @@ export const readyMadeSites: ReadyMadeSite[] = [
     { name: "Product Hunt", category: "jobs-cars-software" },
     // Research
     { name: "Scholar search results", category: "research-papers", page: "scholar" },
+    // Video
+    { name: "YouTube", category: "video", page: "youtube" },
 ];
 
 export const visibleSites = () => readyMadeSites.filter((s) => !s.hidden);

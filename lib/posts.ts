@@ -2,11 +2,12 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { getAuthor, type Author } from "@/content/authors";
+import { showPlannedPages } from "@/config/pages";
 
 // Blog posts are Markdown files in content/blog/<slug>.md with YAML front matter:
 //   title, description, date (YYYY-MM-DD), updated (YYYY-MM-DD, optional), author (a key in content/authors.ts),
 //   category, tags (list), image (optional path under /public), imageAlt (optional).
-// A post is published once its file exists; there is no draft flag, so unfinished posts stay out of the folder.
+// A post with `status: draft` renders only in local preview (noindex, with a banner); set `status: published` to ship it.
 
 /** A front-matter value as a YYYY-MM-DD string; YAML parses bare dates into Date objects. */
 const isoDate = (v: unknown) => (v instanceof Date ? v.toISOString().slice(0, 10) : String(v ?? ""));
@@ -17,6 +18,7 @@ export interface BlogPost {
     slug: string;
     title: string;
     description: string;
+    status: "draft" | "published";
     date: string;
     updated: string;
     author: Author;
@@ -37,6 +39,7 @@ function readPost(fileName: string): BlogPost {
         slug,
         title: String(data.title ?? ""),
         description: String(data.description ?? data.excerpt ?? ""),
+        status: data.status === "draft" ? "draft" : "published",
         date: isoDate(data.date),
         updated: isoDate(data.updated ?? data.date),
         author: getAuthor(String(data.author ?? "vikram")),
@@ -55,7 +58,7 @@ export function getAllPosts(): BlogPost[] {
         .readdirSync(postsDirectory)
         .filter((name) => /\.mdx?$/.test(name))
         .map(readPost)
-        .filter((p) => p.title)
+        .filter((p) => p.title && (p.status === "published" || showPlannedPages))
         .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
@@ -67,7 +70,10 @@ export function getPostBySlug(slug: string): BlogPost | null {
     if (!SLUG_PATTERN.test(slug)) return null;
     for (const ext of [".md", ".mdx"]) {
         const p = path.join(postsDirectory, `${slug}${ext}`);
-        if (fs.existsSync(p)) return readPost(`${slug}${ext}`);
+        if (fs.existsSync(p)) {
+            const post = readPost(`${slug}${ext}`);
+            return post.status === "published" || showPlannedPages ? post : null;
+        }
     }
     return null;
 }

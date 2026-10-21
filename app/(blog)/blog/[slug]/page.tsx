@@ -24,6 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         title: post.title,
         description: post.description,
         alternates: { canonical: href },
+        robots: post.status === "draft" ? { index: false, follow: false } : undefined,
         authors: [{ name: post.author.name, url: post.author.url }],
         openGraph: {
             type: "article",
@@ -76,6 +77,11 @@ export default async function BlogPostPage({ params }: Props) {
                         </>
                     ) : null}
                 </nav>
+                {post.status === "draft" && (
+                    <p className="mb-6 rounded-lg bg-amber-50 dark:bg-amber-900/20 px-4 py-2 text-sm text-amber-800 dark:text-amber-200">
+                        Draft: visible in local development only. Set <code>status: published</code> once it has been reviewed.
+                    </p>
+                )}
                 <h1 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">{post.title}</h1>
                 <p className="mt-5 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">{post.description}</p>
                 <p className="mt-5 text-sm text-slate-500 dark:text-slate-400">
