@@ -1,9 +1,9 @@
 ---
-title: "How To Scrape Data from Any Website with Web Scraper Pro"
-description: "Turn any list on a web page, such as products, listings or search results, into an Excel file by clicking Collect, with no code or selectors."
+title: "How To Scrape Data from Any Website into Excel, No Code"
+description: "Turn any list on a web page, such as products, listings or search results, into an Excel file by clicking Collect. No code, no selectors, every page of the list."
 status: draft
 date: 2026-10-20
-updated: 2026-10-20
+updated: 2026-10-21
 version: "1.3.0"
 author: vikram
 feature: list-scraper
@@ -25,7 +25,7 @@ faq:
     a: "Copying gets you one screen of one page. This follows every page of the list, opens nothing by hand, and names the columns, so the file is ready to sort and filter."
 ---
 
-Turn any list on a web page, such as products, listings or search results, into an Excel file by clicking Collect, with no code or selectors. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
+Any list on a web page, such as products, listings or search results, becomes an Excel file when you click Collect in Web Scraper Pro. There is no code and nothing to set up, and the run follows every page of the list. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
 ## Prerequisites
 
@@ -34,7 +34,7 @@ Turn any list on a web page, such as products, listings or search results, into 
 
 ## Step 1 — Opening the List tab
 
-Go to the page and open the side panel's **List** tab. Under **Choose from lists we found**, the detected lists show how many items each has.
+Go to the page and open the side panel's **List** tab. Under **Choose from lists we found**, each list on the page shows how many items it has.
 
 ![](visual:ext/list-tab-detected)
 
@@ -58,7 +58,7 @@ On the results page, hover a column header to rename it with the pencil or remov
 
 ## Step 5 — Exporting
 
-Click **Export as** and choose Excel.
+Click **Export as** and choose **Microsoft Excel**. **CSV**, **JSON** and **Google Sheets** are there too.
 
 ![](visual:ext/results-export-menu)
 

@@ -1,5 +1,5 @@
 ---
-title: "How To Export a Shopify Store's Catalog with Web Scraper Pro"
+title: "How To Scrape Products from Any Shopify Store"
 description: "Collect every product and variant from any public Shopify store, with prices, SKUs, tags and images, as a spreadsheet or a Shopify import CSV, in a couple of clicks."
 status: draft
 date: 2026-10-21
@@ -25,7 +25,7 @@ faq:
     a: "One store at a time, each in a few clicks. The whole store or one collection per run; several stores run one after another."
 ---
 
-Collect every product and variant from any public Shopify store, with prices, SKUs, tags, descriptions and images, as a spreadsheet or a Shopify import CSV. The extension reads the store's own product data, so there's no paging through the site and the columns are the same on every store. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
+Open the store in Chrome, open the side panel, and click Collect products on the Shopify store card. Web Scraper Pro reads the store's own product data, so every product and variant arrives with prices, SKUs, tags, descriptions and images, as a spreadsheet or a Shopify import CSV. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
 ## Prerequisites
 
@@ -50,7 +50,10 @@ On the card, pick the scope and the row shape:
 | Scope | **All products** or one **Collection** | A collection is a store's own grouping, such as Jackets. One collection per run |
 | Rows | **One row per product** or **One row per variant** | Per variant gives one row for each size and colour, with its own SKU, price and barcode. Pick it for imports and stock checks |
 
-Two settings refine the run. **Include barcodes and image descriptions (slower)** reads each product in more detail. **Name images by product handle** names the downloaded image files after the product rather than the store's file names.
+Two settings refine the run:
+
+- **Include barcodes and image descriptions (slower)** reads each product in more detail.
+- **Name images by product handle** names the downloaded image files after the product rather than the store's file names.
 
 ## Step 3 — Collecting
 
@@ -81,7 +84,7 @@ Three downloads cover the three jobs:
 
 ## Or ask instead
 
-In the **Chat** tab, `Collect all products from this store` runs the same collection, and `every variant` or a collection's name narrows it. After collecting a list on a Shopify store, chat offers **Collect the whole store** on its own.
+In the **Chat** tab, `Collect all products from this store` runs the same collection. Add `every variant` or a collection's name to narrow it. After collecting a list on a Shopify store, chat offers **Collect the whole store** on its own.
 
 ## When it goes wrong
 
@@ -95,4 +98,4 @@ In the **Chat** tab, `Collect all products from this store` runs the same collec
 
 ## Conclusion
 
-You exported a Shopify store's catalog with every variant and image, and you have a CSV a store can import. For competitor prices across several stores, run each store and compare the exports in one sheet; for a product page on a store that isn't on Shopify, use the product details feature instead.
+You exported a Shopify store's catalog with every variant and image, and you have a CSV a store can import. For competitor prices across several stores, run each store and compare the exports in one sheet. For a product page on a store that isn't on Shopify, use the product details feature instead.

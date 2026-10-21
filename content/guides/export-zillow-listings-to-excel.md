@@ -1,5 +1,5 @@
 ---
-title: "How To Export Zillow Listings to Excel with Web Scraper Pro"
+title: "How To Scrape Zillow Data by Zip Code into a Spreadsheet"
 description: "Turn a Zillow search into a spreadsheet with address, price, beds, baths, square footage and link, for every page of results, with no code. Works for sales and rentals."
 status: draft
 date: 2026-10-21
@@ -25,12 +25,12 @@ faq:
     a: "Zillow's terms restrict automated collection and reuse of its data. Collect what you need for your own research and read the terms before anything else."
 ---
 
-Turn a Zillow search into a spreadsheet with address, price, beds, baths, square footage and link, for every page of results. Zillow has a ready-made setup in Web Scraper Pro, so the columns come out named and the list panel is scrolled for you. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
+Search a zip code on Zillow, pick the results list in the side panel, set how many pages, and click Collect. Web Scraper Pro has a ready-made Zillow setup, so every home arrives as a row with address, price, beds, baths, square footage and link, and the list panel is scrolled for you. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
 ## Prerequisites
 
 - Google Chrome with Web Scraper Pro installed (version 1.3.0 or later).
-- A Zillow search: a city, a zip code or a drawn area, for sale or for rent, with your filters set.
+- A Zillow search: a zip code, a city or a drawn area, for sale or for rent, with your filters set.
 
 ## Step 1 — Searching on Zillow
 
@@ -70,7 +70,7 @@ The results page opens with one row per home. The columns come from the Zillow s
 
 ## Step 5 — Keeping what the report needs
 
-Hover a column header to rename it with the pencil or remove it with the trash icon. Click **Filter rows** to keep homes by a value, or, with the results tab in front, type in the side panel's chat:
+Hover a column header to rename it with the pencil or remove it with the trash icon. Click **Filter rows** to keep homes by a value. Or, with the results tab in front, type in the side panel's chat:
 
 ```
 Only address, price, beds, baths and sq ft, under 400000, sorted by price

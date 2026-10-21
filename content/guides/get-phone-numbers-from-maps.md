@@ -1,9 +1,9 @@
 ---
-title: "How To Get Phone Numbers from Google Maps with Web Scraper Pro"
-description: "Collect the businesses in a Google Maps search and keep only their names and phone numbers in a clean Excel list."
+title: "How To Scrape Phone Numbers from Google Maps to Excel"
+description: "Collect the businesses in a Google Maps search, keep only their names and phone numbers, and export a clean call list to Excel. One sentence in the chat does the filtering."
 status: draft
 date: 2026-10-20
-updated: 2026-10-20
+updated: 2026-10-21
 version: "1.3.0"
 author: vikram
 feature: maps-leads
@@ -15,7 +15,7 @@ faq:
     a: "From each business's own website, read during the run when contact details are on. The Phone column is the number Google Maps lists."
 ---
 
-Collect the businesses in a Google Maps search and keep only their names and phone numbers in a clean Excel list. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
+Search Google Maps for a type of business in a city and Web Scraper Pro collects every result with its phone number. One sentence in the chat keeps only the names and numbers, ready to export to Excel. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
 ## Prerequisites
 
@@ -23,19 +23,27 @@ Collect the businesses in a Google Maps search and keep only their names and pho
 
 ## Step 1 — Searching
 
-In the **Chat** tab, type `Find HVAC contractors in Houston` and choose **50** on the card and click **Start**. Contact details stay on by default, so the Website phones column adds numbers from each business's site. The screenshots show dentists in Austin; use your own trade and city.
+In the **Chat** tab, type `Find HVAC contractors in Houston`. Choose **50** on the card and click **Start**. Contact details stay on by default, so a Website phones column adds the numbers from each business's own site.
+
+The screenshots show dentists in Austin; use your own trade and city.
 
 ![](visual:ext/chat-maps-count-card)
 
 ## Step 2 — Opening the results
 
-Click **View results** on the result card.
+Click **View results** on the result card. Each business is a row with its Phone from Google Maps and its Website phones from its site.
 
 ![](visual:ext/results-maps-with-contacts)
 
 ## Step 3 — Keeping only the phone columns
 
-With the results tab in front, type `Only name, phone and website phones, rows with a phone` in the side panel's chat. Rows without a phone number are hidden and the other columns disappear from view.
+With the results tab in front, type this in the side panel's chat:
+
+```
+Only name, phone and website phones, rows with a phone
+```
+
+Rows without a phone number are hidden and the other columns disappear from view.
 
 ![](visual:ext/results-arranged)
 
@@ -55,4 +63,4 @@ Click **Export as** and choose Excel. The download matches what's shown.
 
 ## Conclusion
 
-You have a two-column call list from a Google Maps search. The same filter works on any collection: name the columns and the rows you want.
+You have a call list from a Google Maps search: names and phone numbers, nothing else. The same filter works on any collection: name the columns and the rows you want.

@@ -1,6 +1,6 @@
 ---
-title: "How To Scrape a Website by Asking with Web Scraper Pro"
-description: "Type what you want in plain words, such as \"collect the products on this page\", and get a spreadsheet back. No selectors, no code, and the data never leaves your browser until you export it."
+title: "How To Scrape a Website Without Coding, by Asking"
+description: "Type what you want in plain words, such as \"collect the products on this page\", and get a spreadsheet back. No selectors, no code, and the data stays in your browser until you export it."
 status: draft
 date: 2026-10-21
 updated: 2026-10-21
@@ -27,7 +27,7 @@ faq:
     a: "Images come from the side panel's Images tab, not chat: Collect images from this page, then download a size group or all of them as a ZIP."
 ---
 
-Type what you want in plain words and get a spreadsheet back. The Chat tab reads your request, runs the right job in your browser, and offers the next step when there is one, such as collecting every page or adding emails. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
+Type what you want in plain words and Web Scraper Pro gives you a spreadsheet back, with no code and nothing to set up. The Chat tab reads your request, runs the right job in your browser, and offers the next step when there is one, such as collecting every page or adding emails. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
 ## Prerequisites
 
@@ -37,7 +37,7 @@ Type what you want in plain words and get a spreadsheet back. The Chat tab reads
 
 ## Step 1 — Opening the Chat tab on the page
 
-Open the page you want to collect from, click the Web Scraper Pro icon in the toolbar, and open the **Chat** tab. The panel opens on **What do you want to collect?** with idea cards for the page you're on: on a normal page, the first card is **Collect the list on this page**.
+Open the page you want to collect from, click the Web Scraper Pro icon in the toolbar, and open the **Chat** tab. The panel opens on **What do you want to collect?** with idea cards for the page you're on. On a normal page, the first card is **Collect the list on this page**.
 
 ![](visual:ext/panel-chat-empty)
 
@@ -75,7 +75,7 @@ With the results tab in front, tell chat which columns and rows you want:
 Only name, price and rating, sorted by price
 ```
 
-The results page keeps only those columns and sorts them. A request like `rows rated above 4` adds a filter chip to the toolbar; **Clear filters** brings every row back. These changes also shape the download.
+The results page keeps only those columns and sorts them. A request like `rows rated above 4` adds a filter chip to the toolbar, and **Clear filters** brings every row back. These changes also shape the download.
 
 ![](visual:ext/results-arranged)
 
@@ -119,4 +119,4 @@ Each browser tab keeps its own chat, so a Google Maps search in one tab and a pr
 
 ## Conclusion
 
-You collected a list by describing it, followed the list across pages, shaped the columns and exported a file, all in plain words. When chat picks the wrong list, the List tab's **Choose an item on the page** is the quickest fix; see How To Scrape Data from Any Website to Excel for that route.
+You collected a list by describing it, followed the list across pages, shaped the columns and exported a file, all in plain words. When chat picks the wrong list, the List tab's **Choose an item on the page** is the quickest fix; see How To Scrape Data from Any Website into Excel, No Code to Excel for that route.

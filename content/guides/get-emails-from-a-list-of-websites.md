@@ -1,9 +1,9 @@
 ---
-title: "How To Get Emails from a List of Websites with Web Scraper Pro"
-description: "Turn a list of website addresses into a sheet with each site's emails, phone numbers and social links, in one bulk run."
+title: "How To Extract Emails from a List of Websites in Bulk"
+description: "Paste or upload a list of website addresses and get one sheet with each site's emails, phone numbers and social links. One bulk run, no code, nothing to open by hand."
 status: draft
 date: 2026-10-20
-updated: 2026-10-20
+updated: 2026-10-21
 version: "1.3.0"
 author: vikram
 feature: bulk-scraper
@@ -15,7 +15,7 @@ faq:
     a: "Yes. Choose **Reuse URLs from a saved table**, pick the collection, then its website column. Or open that table and click **Add contact details** on its results page."
 ---
 
-Turn a list of website addresses into a sheet with each site's emails, phone numbers and social links, in one bulk run. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
+Paste or upload a list of website addresses, and Web Scraper Pro reads each site for its emails, phone numbers and social links. You get one sheet with a row per site, without opening any of them yourself. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
 ## Prerequisites
 
@@ -36,7 +36,7 @@ Upload the CSV or TXT file, or choose **Paste URLs** and paste the list. Click *
 
 ## Step 3 — Choosing what to collect
 
-**Email addresses**, **Phone numbers** and **Social media links** are on for every site; untick what you don't need, for all sites at once or per site. One linked Contact or About page is always read as well.
+**Email addresses**, **Phone numbers** and **Social media links** are on for every site. Untick what you don't need, for all sites at once or per site. One linked Contact or About page is always read as well.
 
 ![](visual:ext/bulk-contacts-config)
 
@@ -56,12 +56,12 @@ When it finishes, the **Collection results** page lists each site. Click **View 
 
 **A site shows Waiting for you.** It asked for a verification. Complete it in the embedded browser on the right and the run carries on.
 
-**The run skipped a site.** Its pages timed out or refused to load. Its rows so far are kept; open the site in a normal tab to see what it shows, then add it to a new run.
+**The run skipped a site.** Its pages timed out or refused to load. Its rows so far are kept. Open the site in a normal tab to see what it shows, then add it to a new run.
 
 **The merged table has the same business twice.** Two addresses from the same site were in the list. Remove duplicates keeps one copy per result, but two different pages of one site are two results; dedupe on the Website column in your sheet.
 
-**Nothing happens when I click Start collecting.** Every site needs at least one contact type ticked. The Configure step shows Choose at least one contact type for this site under the card that has none.
+**Nothing happens when I click Start collecting.** Every site needs at least one contact type ticked. The Configure step shows "Choose at least one contact type for this site" under the card that has none.
 
 ## Conclusion
 
-A list of websites became a sheet of contact details, one row per site, without opening any of them yourself.
+A list of websites became a sheet of contact details, one row per site. For a single site, see How To Scrape Emails from a Website into Excel.

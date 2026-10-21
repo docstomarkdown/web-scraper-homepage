@@ -1,5 +1,5 @@
 ---
-title: "How To Collect from a List of URLs in One Run with Web Scraper Pro"
+title: "How To Scrape Data from a List of URLs in One Run"
 description: "Paste or upload a list of web pages, say what to collect from each site, and let Web Scraper Pro work through them one by one: category pages, Google Maps searches, contact details or page text, merged into one table."
 status: draft
 date: 2026-10-21
@@ -22,7 +22,7 @@ faq:
     a: "Not today; the run happens in your open browser. Scheduled cloud runs are coming."
 ---
 
-Paste or upload a list of web pages, say what to collect from each site, and let Web Scraper Pro work through them one by one. Each site gets its own table and a merged one holds everything. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
+Paste or upload a list of web pages, say what to collect from each site, and Web Scraper Pro works through them one by one. Each site gets its own table and a merged one holds everything. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
 ## Prerequisites
 
@@ -45,7 +45,9 @@ A bulk page opens in a new tab. In the Chat tab, pasting several addresses offer
 
 ## Step 2 — Adding the addresses
 
-On the **Upload** step, drop a CSV or TXT file onto the page, or choose **Paste URLs** and paste the list; every address is picked up, one per row, and a chip reads **N valid URLs detected**. **Use saved data** takes the addresses from a column of a table you collected earlier, such as the Website column of a Google Maps list. Click **Continue →**.
+On the **Upload** step, drop a CSV or TXT file onto the page, or choose **Paste URLs** and paste the list. Every address is picked up, one per row, and a chip reads **N valid URLs detected**. **Use saved data** takes the addresses from a column of a table you collected earlier, such as the Website column of a Google Maps list.
+
+Click **Continue →**.
 
 ![](visual:ext/bulk-upload)
 
@@ -70,13 +72,17 @@ Click **Start collecting →**.
 
 ## Step 5 — Watching the run
 
-Sites load one after another in the embedded browser on the right, while the cards on the left count rows and source URLs. The run goes one site at a time on purpose, to keep the load on each site light. If a site shows a verification step, the run pauses with **Waiting for you**; complete it in the embedded browser and it carries on. **Stop** keeps everything collected so far.
+Sites load one after another in the embedded browser on the right, while the cards on the left count rows and source URLs. The run goes one site at a time on purpose, to keep the load on each site light.
+
+If a site shows a verification step, the run pauses with **Waiting for you**. Complete it in the embedded browser and it carries on. **Stop** keeps everything collected so far.
 
 ![](visual:ext/bulk-run)
 
 ## Step 6 — Reviewing and exporting
 
-When it finishes, the **Collection results** page lists each site with its row count and a **View →** button, and the box **One clean table, ready to use** offers **View merged table**. The merged table carries a Source URL column, so every row traces back to its page. Click **Export as** there for **Microsoft Excel**, **CSV**, **JSON** or **Google Sheets**. Everything is also saved in History.
+When it finishes, the **Collection results** page lists each site with its row count and a **View →** button. The box **One clean table, ready to use** offers **View merged table**, and the merged table carries a Source URL column, so every row traces back to its page.
+
+Click **Export as** there for **Microsoft Excel**, **CSV**, **JSON** or **Google Sheets**. Everything is also saved in History.
 
 ![](visual:ext/bulk-overview)
 
@@ -92,4 +98,4 @@ When it finishes, the **Collection results** page lists each site with its row c
 
 ## Conclusion
 
-You collected from a whole list of pages in one run, with one setup per site and one merged table at the end. For a store's catalog, Shopify stores are the exception: they export from the store's own page, not from a bulk run. For emails from a list of websites specifically, see How To Get Emails from a List of Websites.
+You collected from a whole list of pages in one run, with one setup per site and one merged table at the end. For a store's catalog, Shopify stores are the exception: they export from the store's own page, not from a bulk run. For emails from a list of websites specifically, see How To Extract Emails from a List of Websites in Bulk.

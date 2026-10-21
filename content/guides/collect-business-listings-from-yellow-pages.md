@@ -1,9 +1,9 @@
 ---
-title: "How To Collect Yellow Pages Listings with Web Scraper Pro"
-description: "Collect a Yellow Pages search into a spreadsheet with phone, address, rating, years in business and website, across every page."
+title: "How To Scrape Yellow Pages into Excel"
+description: "Turn a Yellow Pages search into a spreadsheet with phone, address, rating, years in business and website, across every page of results, then add each business's emails in a second run."
 status: draft
 date: 2026-10-20
-updated: 2026-10-20
+updated: 2026-10-21
 version: "1.3.0"
 author: vikram
 feature: list-scraper
@@ -15,7 +15,7 @@ faq:
     a: "Yellow Pages mixes sponsored listings into the results. They're marked, and Settings → Results can skip them."
 ---
 
-Collect a Yellow Pages search into a spreadsheet with phone, address, rating, years in business and website, across every page. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
+Search Yellow Pages for a category in a city, and Web Scraper Pro collects every page of results into a spreadsheet: phone, address, rating, years in business and website. A second run adds each business's emails. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
 ## Prerequisites
 
@@ -35,7 +35,7 @@ Choose **Collect more pages**, then **Next page**, and set how many pages under 
 
 ## Step 3 — Adding contact details
 
-Click the **Bulk scrape** icon at the top of the side panel and choose **Collect contacts**. On the upload step pick **Use saved data** and choose this Yellow Pages collection, so its Website column becomes the list of sites to read. Each business's website is read for emails, phone numbers and social links.
+Click the **Bulk scrape** icon at the top of the side panel and choose **Collect contacts**. On the upload step pick **Use saved data** and choose this Yellow Pages collection; its Website column becomes the list of sites to read. Each business's website is read for emails, phone numbers and social links.
 
 ![](visual:ext/bulk-menu)
 
@@ -55,4 +55,4 @@ Click **Export as** and choose Excel.
 
 ## Conclusion
 
-You collected a directory search with every page and its contact details. The same steps work on Justdial and BBB.
+You scraped a directory search with every page and its contact details into Excel. The same steps work on Justdial and BBB.

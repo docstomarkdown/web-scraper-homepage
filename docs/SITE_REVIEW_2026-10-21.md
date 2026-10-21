@@ -144,6 +144,13 @@ sample table of five columns under the hero). Re-audit of `/maps-leads` and `/li
 text under 16px, light and dark. The other eleven feature pages render on the new template with their old copy;
 each needs the same search-first title and shorter copy before it counts as done.
 
+**Later the same day:** the other eleven feature pages, the thirteen site pages and the twenty-one guides got
+search-first titles from the autosuggest and search-volume data, "Google Maps" became the wording site-wide (owner
+decision), guide titles dropped "with Web Scraper Pro", the site-page template moved to the reading-column shape, and
+the copy on all of them was cut to short paragraphs. Audits of every feature and site page and a sample of guides:
+0 violations light and dark. Left for the owner's read: homepage, use cases (titles not yet search-first), posts,
+and the guide template's small sidebar text (11 nodes under 16px per guide).
+
 ## 6. Rerunning the audit
 
 ```bash

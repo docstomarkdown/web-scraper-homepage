@@ -1,9 +1,9 @@
 ---
-title: "How To Extract Emails from a Website with Web Scraper Pro"
-description: "Collect the email addresses, phone numbers and social links a website publishes, from its contact page, in one click."
+title: "How To Scrape Emails from a Website into Excel"
+description: "Open a website, click once, and get every email address, phone number and social link it publishes in one row you can export to Excel. The contact page is read too."
 status: draft
 date: 2026-10-20
-updated: 2026-10-20
+updated: 2026-10-21
 version: "1.3.0"
 author: vikram
 feature: email-extractor
@@ -21,7 +21,7 @@ faq:
     a: "It's a Chrome extension, so the collecting happens in your browser with nothing uploaded. Install it from the Chrome Web Store to try it on a page."
 ---
 
-Collect the email addresses, phone numbers and social links a website publishes, from its contact page, in one click. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
+Open a website and click **Collect contacts**, and Web Scraper Pro gives you every email address, phone number and social link the site publishes, in one row. Export it to Excel, or run a whole list of sites at once. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
 ## Prerequisites
 
@@ -36,13 +36,22 @@ Go to the website in Chrome. Its Contact page is the best place to start, but an
 
 ## Step 2 — Collecting the contact details
 
-Open the side panel's **Properties** tab and click **Collect contacts**. Or, in the **Chat** tab, type `Find contact emails on this site`. The deep scan also reads one linked Contact or About page.
+Open the side panel's **Properties** tab and click **Collect contacts**. Or, in the **Chat** tab, type `Find contact emails on this site`. Either way, one linked Contact or About page is read as well.
 
 ![](visual:ext/properties-collect-contacts)
 
 ## Step 3 — Reading the result
 
-The results page shows one row for the site: Website, Email count, Emails, Phone count, Phones, Faxes, Social count and one column per social network. Several values in a cell are separated by a bar.
+The results page shows one row for the site:
+
+| Column | What it holds |
+|---|---|
+| Website | The site you collected from |
+| Email count, Emails | How many addresses were found, and the addresses |
+| Phone count, Phones, Faxes | The phone numbers, with faxes in their own column |
+| Social count, and one column per network | LinkedIn, Facebook, Instagram, X and the rest |
+
+Several values in a cell are separated by a bar.
 
 ![](visual:ext/results-contacts-one-site)
 
@@ -54,7 +63,7 @@ Click **Export as** and choose Excel, CSV or JSON. For many sites at once, use *
 
 ## When it goes wrong
 
-**No email was found on a site that clearly has one.** The address is an image, sits behind a contact form, or is on a page the extension didn't open. It reads the page you're on plus one linked Contact or About page; open the page that shows the address and collect there.
+**No email was found on a site that clearly has one.** The address is an image, sits behind a contact form, or is on a page the extension didn't open. It reads the page you're on plus one linked Contact or About page. Open the page that shows the address and collect there.
 
 **The row has a phone but no email.** Many businesses publish a phone and no email. The extension never guesses an address; an empty cell means none was published as text.
 
@@ -62,4 +71,4 @@ Click **Export as** and choose Excel, CSV or JSON. For many sites at once, use *
 
 ## Conclusion
 
-You collected a site's public contact details in one click. For a list of sites, see How To Get Emails from a List of Websites.
+You scraped a site's public contact details into a sheet in one click. For a list of sites, see How To Extract Emails from a List of Websites in Bulk.

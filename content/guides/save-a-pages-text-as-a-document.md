@@ -1,5 +1,5 @@
 ---
-title: "How To Save a Page's Text as a Document with Web Scraper Pro"
+title: "How To Save a Web Page as a Word Document with Its Text"
 description: "Turn an article, a guide or a documentation page into clean text with its title, author and date, saved as a Word document or copied for an AI tool, in one click. Then do it for a whole reading list at once."
 status: draft
 date: 2026-10-21
@@ -22,7 +22,7 @@ faq:
     a: "It collects the text the page shows you. If you can read it in your browser, it can be collected; it doesn't sign in or get past a paywall for you."
 ---
 
-Turn an article, a guide or a documentation page into clean text with its title, author and date, saved as a Word document or copied for an AI tool. The Properties tab does it in one click, and Bulk scrape does it for a whole reading list. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
+Web Scraper Pro turns an article, a guide or a documentation page into clean text with its title, author and date, saved as a Word document or copied for an AI tool. The Properties tab does it in one click, and Bulk scrape does it for a whole reading list. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
 ## Prerequisites
 
@@ -65,7 +65,9 @@ Click **Export as** and choose **Microsoft Word** for a document, or **Copy text
 
 ## Step 4 — A whole reading list at once
 
-For many pages, click the **Bulk scrape** icon at the top of the side panel and choose **Collect page text**. Paste the addresses or upload a CSV or TXT file, click **Continue →**, choose clean text, page details or both for each site, and click **Start collecting →**. Each page becomes a row with its text and details; **View merged table** puts the whole list in one table, and **Export as** → **Microsoft Word** saves it as one document.
+For many pages, click the **Bulk scrape** icon at the top of the side panel and choose **Collect page text**. Paste the addresses or upload a CSV or TXT file, click **Continue →**, choose clean text, page details or both for each site, and click **Start collecting →**.
+
+Each page becomes a row with its text and details. **View merged table** puts the whole list in one table, and **Export as** → **Microsoft Word** saves it as one document.
 
 ![](visual:ext/bulk-upload)
 
@@ -79,4 +81,4 @@ For many pages, click the **Bulk scrape** icon at the top of the side panel and 
 
 ## Conclusion
 
-You saved a page's readable text with its title, author and date, as a document or as rows, and you can do the same for a reading list in one run. The text belongs to its publisher: keep it for reading, notes and analysis, and quote from the source. For the lists on a page rather than its text, see How To Scrape Data from Any Website to Excel.
+You saved a page's readable text with its title, author and date, as a document or as rows, and you can do the same for a reading list in one run. The text belongs to its publisher: keep it for reading, notes and analysis, and quote from the source. For the lists on a page rather than its text, see How To Scrape Data from Any Website into Excel, No Code to Excel.

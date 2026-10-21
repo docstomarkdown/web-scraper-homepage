@@ -1,9 +1,9 @@
 ---
-title: "How To Get Business Leads from Google Maps with Web Scraper Pro"
-description: "Collect every business from a Google Maps search into a spreadsheet, with phone, website, rating and address, in one run."
+title: "How To Extract Leads from Google Maps to Excel"
+description: "Type a business type and a city, and get every Google Maps result as a row with phone, website, rating and address, exported to Excel in one run. No code, no API key."
 status: draft
 date: 2026-10-20
-updated: 2026-10-20
+updated: 2026-10-21
 version: "1.3.0"
 author: vikram
 feature: maps-leads
@@ -23,7 +23,7 @@ faq:
     a: "Not from a Google Maps search. The run collects each business's details and contact details; review text isn't part of it."
 ---
 
-Collect every business from a Google Maps search into a spreadsheet, with phone, website, rating and address, in one run. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
+Type a business type and a city into Web Scraper Pro's chat, and every Google Maps result becomes a row with its phone, website, rating and address. One click exports the list to Excel. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
 ## Prerequisites
 
@@ -32,37 +32,51 @@ Collect every business from a Google Maps search into a spreadsheet, with phone,
 
 ## Step 1 — Opening the side panel
 
-Open a new tab, click the Web Scraper Pro icon in the toolbar, and open the **Chat** tab. The panel opens on **What do you want to collect?** with idea cards for the page you're on.
+Open a new tab and click the Web Scraper Pro icon in the toolbar. Open the **Chat** tab. The panel opens on **What do you want to collect?** with idea cards for the page you're on.
 
 ![](visual:ext/panel-chat-empty)
 
 ## Step 2 — Asking for the businesses
 
-Type `Find dentists in Austin` and press Enter. A card asks how many businesses to collect: 20, 50, 100 or 200, or a number you type. Choose **50** and click **Start**. Emails and social links from each business's website are collected too, because **Add emails from their websites** is on by default in Settings → Results; add `no emails` to the request to skip them.
+Type `Find dentists in Austin` and press Enter. A card asks how many businesses to collect: 20, 50, 100 or 200, or a number you type. Choose **50** and click **Start**.
+
+Emails and social links from each business's website are collected too. That's because **Add emails from their websites** is on by default in Settings → Results. Add `no emails` to the request to skip them.
 
 ![](visual:ext/chat-maps-count-card)
 
 ## Step 3 — Watching the run
 
-Google Maps opens in a new tab and the extension scrolls the results, opening each place for its phone, website, address and hours. The progress line in the panel counts the businesses collected and how many have an email. Click the round Stop button, or press Esc, at any time to keep what it has.
+Google Maps opens in a new tab. The extension scrolls the results and opens each place for its phone, website, address and hours. The progress line in the panel counts the businesses collected and how many have an email.
+
+Click the round Stop button, or press Esc, at any time to keep what it has.
 
 ![](visual:ext/chat-maps-progress)
 
 ## Step 4 — Opening the results
 
-When the run finishes, the result card shows the row count with **View results** and download buttons. Click **View results**. Each business is one row: Business Name, Category, Rating, Review Count, Address, Operating Hours, Phone, Website and Map URL, plus Emails, Website phones and social links.
+When the run finishes, the result card shows the row count with **View results** and download buttons. Click **View results**. Each business is one row:
+
+| Columns from Google Maps | Columns from each website |
+|---|---|
+| Business Name, Category, Rating, Review Count, Address, Operating Hours, Phone, Website, Map URL | Emails, Website phones, and one column per social network |
 
 ![](visual:ext/results-maps-with-contacts)
 
 ## Step 5 — Keeping the columns you need
 
-With the results tab in front, type `Only name, phone, website and rating, sorted by rating` in the side panel's chat. The table changes to match, and the download will too.
+With the results tab in front, type this in the side panel's chat:
+
+```
+Only name, phone, website and rating, sorted by rating
+```
+
+The table changes to match, and the download will too.
 
 ![](visual:ext/results-arranged)
 
 ## Step 6 — Exporting to Excel
 
-Click **Export as** and choose **Microsoft Excel**. The file opens with one row per business, prices and ratings saved as numbers.
+Click **Export as** and choose **Microsoft Excel**. The file opens with one row per business. Ratings and review counts are saved as numbers, so the sheet sorts them without clean-up.
 
 ![](visual:ext/results-export-menu)
 
@@ -70,12 +84,12 @@ Click **Export as** and choose **Microsoft Excel**. The file opens with one row 
 
 **The count card never appeared.** It shows only until a count is remembered. Say the number in the request, such as `Find dentists in Austin, 100`, or change Businesses per chat search in Settings → Results.
 
-**The run stopped part way.** Google Maps asked for a verification, or the tab went to the background. Complete the check in the Google Maps tab, keep that tab in front, and run the search again; the businesses already collected are in History.
+**The run stopped part way.** Google Maps asked for a verification, or the tab went to the background. Complete the check in the Google Maps tab, keep that tab in front, and run the search again. The businesses already collected are in History.
 
-**Most rows have no email.** Google Maps never lists emails; they come from each business's website, and many small businesses publish none. Check the Website column: rows without a website can't have an email.
+**Most rows have no email.** Google Maps never lists emails. They come from each business's website, and many small businesses publish none. Rows without a website can't have an email.
 
-**The table has fewer businesses than Google Maps shows.** Google Maps itself lists only so many results per search, usually around 120, whatever the count on screen. Search by neighbourhood or zip code and let chat combine the searches.
+**The table has fewer businesses than Google Maps shows.** Google Maps lists only so many results per search, usually around 120, whatever the count on screen. Search by neighbourhood or zip code and let chat combine the searches.
 
 ## Conclusion
 
-You collected a Google Maps search into a spreadsheet with contact details in one run. To repeat it for several cities at once, see the bulk runs guide; to get emails for a list you collected earlier, see How To Get Google Maps Leads with Emails.
+You turned a Google Maps search into an Excel list with contact details in one run. To repeat it for several cities at once, see the bulk runs guide. To add emails to a list you collected earlier, see How To Extract Emails from Google Maps.

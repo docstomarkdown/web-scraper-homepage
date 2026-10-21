@@ -1,5 +1,5 @@
 ---
-title: "How To Collect Job Postings from a Careers Page with Web Scraper Pro"
+title: "How To Scrape Job Listings from Any Company Career Page"
 description: "Turn a company's careers page, or a job board's search, into a spreadsheet of roles with title, location, department and link, across every page, with no code. Roles only, never candidates."
 status: draft
 date: 2026-10-21
@@ -22,7 +22,7 @@ faq:
     a: "No. It collects the roles a page lists. Job postings are about jobs, not people, and the extension isn't built to collect profiles."
 ---
 
-Turn a company's careers page, or a job board's search, into a spreadsheet of roles with title, location, department and link, across every page. Careers pages are lists, and the List tab finds them on the page without any setup, so the same steps work on a hosted board and a company's own site. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
+Open the careers page, pick the list of roles in the side panel, and click Collect. Web Scraper Pro finds the list without any setup, so the same steps work on a hosted board and a company's own site, and every role arrives as a row with title, location, department and link. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
 ## Prerequisites
 
@@ -39,19 +39,21 @@ Click the Web Scraper Pro icon and open the **List** tab. Under **Choose from li
 
 ![](visual:ext/list-tab-careers)
 
-Careers pages often hold other lists too, such as a row of departments or office locations. If the first card isn't the roles, pick the card whose count matches the number of postings, or click **Choose an item on the page** and click one posting; every similar posting is picked with it.
+Careers pages often hold other lists too, such as a row of departments or office locations. If the first card isn't the roles, pick the card whose count matches the number of postings. Or click **Choose an item on the page** and click one posting; every similar posting is picked with it.
 
 ## Step 3 — Collecting every page
 
-If the roles continue on more pages, or behind a **Load more** button, choose **Collect more pages**. The extension finds the Next button or the Load more button on its own and shows **Next button ready** or **Load more button ready**; set **Stop after** and click **Collect from 5 pages** or **Collect (5 loads)**. For a single page, **Collect N items** is enough.
+If the roles continue on more pages, or behind a **Load more** button, choose **Collect more pages**. The extension finds the Next button or the Load more button on its own and shows **Next button ready** or **Load more button ready**. Set **Stop after** and click **Collect from 5 pages** or **Collect (5 loads)**.
+
+For a single page, **Collect N items** is enough.
 
 ![](visual:ext/list-tab-more-pages)
 
 ## Step 4 — Reading the results
 
-The results page opens with one row per role. Because careers pages have no ready-made setup, the columns are named from the page's own labels, which usually means Title, Location, Department or Team, Type (full-time, contract), Posted and the link to the posting. A column the page doesn't show stays out.
+The results page opens with one row per role. Because careers pages have no ready-made setup, the columns are named from the page's own labels. That usually means Title, Location, Department or Team, Type (full-time, contract), Posted and the link to the posting.
 
-Hover a header to rename it with the pencil, such as changing the site's label to Role, or remove one with the trash icon. Mostly empty columns are hidden on their own; click **Columns** to show them.
+A column the page doesn't show stays out. Hover a header to rename it with the pencil, such as changing the site's label to Role, or remove one with the trash icon. Mostly empty columns are hidden on their own; click **Columns** to show them.
 
 ## Step 5 — Adding the job descriptions
 

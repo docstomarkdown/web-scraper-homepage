@@ -1,5 +1,5 @@
 ---
-title: "How To Collect YouTube Search Results to a Spreadsheet with Web Scraper Pro"
+title: "How To Scrape YouTube Search Results into a Spreadsheet"
 description: "Turn a YouTube search or a channel's Videos tab into a spreadsheet with title, channel, views, published date, duration and link, as far down as the page scrolls, with no code. Sort a whole topic by views."
 status: draft
 date: 2026-10-21
@@ -22,7 +22,7 @@ faq:
     a: "YouTube's terms restrict automated collection. Collect what you need for your own research, keep it to public listings, and read the terms before reusing anything."
 ---
 
-Turn a YouTube search or a channel's Videos tab into a spreadsheet with title, channel, views, published date, duration and link. YouTube has a ready-made setup in Web Scraper Pro, so the columns come out named, and the run scrolls the page for you because YouTube loads results as you scroll. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
+Search YouTube, pick the results in the side panel, and click Collect to end. Web Scraper Pro has a ready-made YouTube setup, so every video arrives as a row with title, channel, views, published date, duration and link, and the run scrolls the page for you. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
 ## Prerequisites
 
@@ -37,11 +37,13 @@ Search for the topic and use YouTube's filters: upload date, type (video, channe
 
 Click the Web Scraper Pro icon and open the **List** tab. Under **Choose from lists we found**, the videos show as **List 1** with the number of cards on this page. Hover the card and the results are outlined on the page.
 
-A search page also holds a row of Shorts and sometimes a channel card; if the first card isn't the main results, pick the card whose count matches, or click **Choose an item on the page** and click one video.
+A search page also holds a row of Shorts and sometimes a channel card. If the first card isn't the main results, pick the card whose count matches, or click **Choose an item on the page** and click one video.
 
 ## Step 3 — Letting it scroll
 
-Choose **Collect more pages**. YouTube has no Next button; it loads more as you scroll, so the panel shows **Auto scroll detected**. Click **Collect to end**. The run scrolls the page and collects until nothing new loads; click Stop at any time to keep what it has. A channel with thousands of videos takes a while.
+Choose **Collect more pages**. YouTube has no Next button; it loads more as you scroll, so the panel shows **Auto scroll detected**. Click **Collect to end**.
+
+The run scrolls the page and collects until nothing new loads. Click Stop at any time to keep what it has. A channel with thousands of videos takes a while.
 
 ![](visual:ext/list-tab-more-pages)
 
@@ -61,7 +63,7 @@ The results page opens with one row per video. The columns come from the YouTube
 
 ![](visual:ext/results-youtube)
 
-Search results mix videos, Shorts and playlists; filter the Type column to the kind you want.
+Search results mix videos, Shorts and playlists. Filter the Type column to the kind you want.
 
 ## Step 5 — Sorting and trimming
 

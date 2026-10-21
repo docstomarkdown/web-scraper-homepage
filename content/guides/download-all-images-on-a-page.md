@@ -1,5 +1,5 @@
 ---
-title: "How To Download All Images on a Page with Web Scraper Pro"
+title: "How To Download All Images from a Web Page at Once"
 description: "Save every image on a web page as one ZIP file in three clicks. Images are grouped by their size, so you take the photos and leave the icons behind."
 status: draft
 date: 2026-10-21
@@ -23,7 +23,7 @@ faq:
     a: "Yes, this one. The Images tab is part of Web Scraper Pro; install it from the Chrome Web Store and the tab is there on every page."
 ---
 
-Save every image on a web page as one ZIP file in three clicks. The Images tab finds the images, groups them by size with a count for each group, and downloads a group or all of them at once. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
+Web Scraper Pro saves every image on a web page as one ZIP file in three clicks. The Images tab finds the images, groups them by size with a count for each group, and downloads a group or all of them at once. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
 ## Prerequisites
 

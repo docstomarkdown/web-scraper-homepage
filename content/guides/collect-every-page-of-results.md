@@ -1,5 +1,5 @@
 ---
-title: "How To Collect Every Page of Results with Web Scraper Pro"
+title: "How To Scrape All Pages of a Website's Search Results"
 description: "Collect a whole list across numbered pages, Load more buttons or endless scrolling into one spreadsheet, with no code: pick the list, set how many pages, click once."
 status: draft
 date: 2026-10-21
@@ -27,7 +27,7 @@ faq:
     a: "Paste the first-page addresses into Bulk scrape; each site is collected in turn with its own page settings, and View merged table puts the rows together."
 ---
 
-Collect a whole list across numbered pages, Load more buttons or endless scrolling into one spreadsheet. You pick the list, say how many pages to go through, and click once; the extension pages through on its own and the rows land in one table. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
+Web Scraper Pro collects a whole list across numbered pages, Load more buttons or endless scrolling into one spreadsheet. You pick the list, say how many pages to go through, and click once; the run pages through on its own. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
 ## Prerequisites
 
@@ -44,7 +44,7 @@ Hover a card and the list it means is outlined on the page. If none is the list 
 
 ## Step 2 — Choosing to collect more pages
 
-Pick the list. The panel shows **How much to collect** with two choices. **This page only** is selected by default and collects the items you can see. Choose **Collect more pages** to follow the list across pages.
+Pick the list. The panel shows **How much to collect** with two choices: **This page only**, selected by default, collects the items you can see, and **Collect more pages** follows the list across pages.
 
 The extension looks at the page to work out how it moves on. When it finds a method, it goes straight to that setup; otherwise it asks you to choose between **Next page**, **Load more** and **Auto scroll**.
 
@@ -58,7 +58,7 @@ The extension looks at the page to work out how it moves on. When it finds a met
 
 ## Step 3 — Setting how far to go
 
-For **Next page**, the panel shows **Next button ready** once it has found the button. Under **Stop after**, pick **5 pages**, **10 pages**, **20 pages**, **All pages**, or **Custom** for a number you type. Five pages is the default, and you can change the default in Settings → Results → Pages to go through.
+For **Next page**, the panel shows **Next button ready** once it has found the button. Under **Stop after**, pick **5 pages**, **10 pages**, **20 pages**, **All pages**, or **Custom** for a number you type. Five pages is the default; change it in Settings → Results → Pages to go through.
 
 For **Load more**, the choices are **5 loads**, **10 loads**, **15 loads** or **To end**. **Auto scroll** has no setting; it scrolls until the page stops loading.
 
@@ -98,4 +98,4 @@ Click **Export as** and choose **Microsoft Excel**, **CSV**, **JSON** or **Googl
 
 ## Conclusion
 
-You collected a list that spans many pages into one table with a single click. For a list that runs across several sites, or the same category on several stores, paste the first-page addresses into Bulk scrape and each one is collected in turn. To ask for it in words instead of clicking, see How To Scrape a Website by Asking.
+You collected a list that spans many pages into one table with a single click. For a list that runs across several sites, or the same category on several stores, paste the first-page addresses into Bulk scrape and each one is collected in turn. To ask for it in words instead of clicking, see How To Scrape a Website Without Coding, by Asking.
