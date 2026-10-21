@@ -120,7 +120,7 @@ Because it runs in your Chrome window, it reads pages you're signed in to, and a
 
 **The pasted table has wrong numbers.** A model rewrites text rather than copying it. Check a sample against the page; for long lists, use a tool that copies values from the page.
 
-**The site blocked the script.** Scripts without a real browser are easy to spot. Slow it down, or run the collection in your own browser, where the site sees an ordinary visit.
+**The site blocked the script.** Scripts without a real browser stand out. Slow it down, or run the collection in your own browser, where the site sees an ordinary visit.
 
 ## Conclusion
 
