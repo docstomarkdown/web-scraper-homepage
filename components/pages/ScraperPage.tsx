@@ -115,7 +115,7 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
                     </Reveal>
                     <Reveal className="mt-10" delay={0.08}>
                         <figure className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden">
-                            <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="Sample table, scrolls sideways">
+                            <div className="overflow-x-auto" tabIndex={0} role="group" aria-label="Sample table, scrolls sideways">
                                 <table className="w-full text-base text-left">
                                     <thead className="bg-slate-50 dark:bg-slate-800/70 text-slate-800 dark:text-slate-100">
                                         <tr>{c.sample.columns.map((col) => <th key={col} scope="col" className="px-3 py-2.5 font-semibold whitespace-nowrap">{col}</th>)}</tr>

@@ -21,7 +21,7 @@ const components = {
     pre: (p: React.ComponentProps<"pre">) => <pre tabIndex={0} className="my-6 overflow-x-auto rounded-xl bg-slate-900 dark:bg-slate-800 p-4 text-sm text-slate-100 [&>code]:bg-transparent [&>code]:p-0 [&>code]:text-inherit" {...p} />,
     blockquote: (p: React.ComponentProps<"blockquote">) => <blockquote className="my-8 border-l-2 border-[#1f5ec2] pl-5 text-lg text-slate-700 dark:text-slate-200 italic" {...p} />,
     table: (p: React.ComponentProps<"table">) => (
-        <div className="my-6 overflow-x-auto" tabIndex={0} role="region" aria-label="Table, scrolls sideways">
+        <div className="my-6 overflow-x-auto" tabIndex={0} role="group" aria-label="Table, scrolls sideways">
             <table className="w-full text-base leading-[1.5] text-left border-collapse" {...p} />
         </div>
     ),

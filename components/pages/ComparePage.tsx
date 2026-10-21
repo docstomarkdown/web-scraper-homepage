@@ -78,7 +78,7 @@ export default function ComparePage({ content: c }: { content: ComparePageConten
                         <SectionHeading eyebrow="At a glance" title="Side by side" align="left" />
                     </Reveal>
                     <Reveal className="mt-8">
-                        <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="Comparison table, scrolls sideways">
+                        <div className="overflow-x-auto" tabIndex={0} role="group" aria-label="Comparison table, scrolls sideways">
                         <table className="w-full text-left border-collapse">
                             <thead>
                                 <tr className="border-b border-slate-200 dark:border-slate-800 text-sm text-slate-600 dark:text-slate-300">

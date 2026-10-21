@@ -320,7 +320,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
 function SampleTable({ sample }: { sample: NonNullable<FeaturePageContent["sample"]> }) {
     return (
         <figure className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden">
-            <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="Sample table, scrolls sideways">
+            <div className="overflow-x-auto" tabIndex={0} role="group" aria-label="Sample table, scrolls sideways">
                 <table className="w-full text-left text-base">
                     <thead className="bg-slate-50 dark:bg-slate-800/70 text-slate-800 dark:text-slate-100">
                         <tr>

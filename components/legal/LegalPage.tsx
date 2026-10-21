@@ -227,7 +227,7 @@ export default function LegalPage({ type, content, sections }: LegalPageProps) {
                                             <blockquote className="my-6 pl-5 border-l-4 border-[#1f5ec2]/40 bg-slate-50 dark:bg-slate-800/60 py-3 pr-4 rounded-r-xl text-slate-700 dark:text-slate-200 italic text-lg" {...props} />
                                         ),
                                         table: ({ ...props }) => (
-                                            <div className="overflow-x-auto mb-6 rounded-xl border border-slate-200 dark:border-slate-800" tabIndex={0} role="region" aria-label="Table, scrolls sideways">
+                                            <div className="overflow-x-auto mb-6 rounded-xl border border-slate-200 dark:border-slate-800" tabIndex={0} role="group" aria-label="Table, scrolls sideways">
                                                 <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-800 text-base" {...props} />
                                             </div>
                                         ),
