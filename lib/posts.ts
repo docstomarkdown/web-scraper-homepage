@@ -59,7 +59,12 @@ export function getAllPosts(): BlogPost[] {
         .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
+/** A post's slug is its file name: lowercase letters, digits and hyphens. The slug comes from the URL, so
+ * anything else (a dot, a slash, an encoded "../") is refused before it becomes part of a file path. */
+const SLUG_PATTERN = /^[a-z0-9-]+$/;
+
 export function getPostBySlug(slug: string): BlogPost | null {
+    if (!SLUG_PATTERN.test(slug)) return null;
     for (const ext of [".md", ".mdx"]) {
         const p = path.join(postsDirectory, `${slug}${ext}`);
         if (fs.existsSync(p)) return readPost(`${slug}${ext}`);
