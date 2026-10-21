@@ -38,10 +38,10 @@ export const readyMadeSites: ReadyMadeSite[] = [
     { name: "Flipkart", category: "online-stores" },
     { name: "Allegro", category: "online-stores" },
     // Real estate
-    { name: "Zillow", category: "real-estate" },
+    { name: "Zillow", category: "real-estate", page: "zillow" },
     // configs-prod/realtor.com.json targets the agent directory only, not home listings.
     { name: "Realtor.com", category: "real-estate", hidden: true },
-    { name: "Rightmove", category: "real-estate" },
+    { name: "Rightmove", category: "real-estate", page: "rightmove" },
     // Travel
     { name: "Booking.com", category: "travel" },
     { name: "Hotels.com", category: "travel" },
