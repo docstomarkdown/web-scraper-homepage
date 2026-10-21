@@ -34,7 +34,7 @@ export default function WebScrapingLegalPage() {
     const p = load();
     const base = siteConfig.url.replace(/\/$/, "");
     return (
-        <main className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
+        <main id="main" className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
             <JsonLd
                 data={[
                     { "@type": "Article", headline: p.title, description: p.description, datePublished: p.date, dateModified: p.updated, author: { "@type": "Person", name: p.author.name, url: p.author.url }, publisher: { "@type": "Organization", name: "Thinksolv Technologies", url: siteConfig.url }, mainEntityOfPage: `${base}/web-scraping-legal` },

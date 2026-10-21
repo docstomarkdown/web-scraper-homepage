@@ -126,8 +126,8 @@ export const exportToGoogleSheets: FeaturePageContent = {
             a: "Yes. In chat, ask to combine the searches or lists from the conversation into one table; a bulk run also merges its sites' tables in the Collection results page.",
         },
         {
-            q: "Is this included in the plan?",
-            a: "Yes. Editing and every export format are part of the one plan, Pro.",
+            q: "Is this free?",
+            a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create. Editing and every export format are included.",
         },
         {
             q: "Can Google Sheets pull data from a website on its own?",

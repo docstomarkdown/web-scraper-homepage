@@ -76,7 +76,7 @@ export default function Header({ menus }: { menus: Menus }) {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav aria-label="Main" className="hidden lg:flex items-center gap-1">
             {navigationConfig.mainNav.map((item: any) => {
               if (item.menu) return menus[item.menu as MenuId]?.length ? <NavMenuDesktop key={item.title} id={item.menu} groups={menus[item.menu as MenuId]} /> : null;
               if (item.grouped && item.groups) {

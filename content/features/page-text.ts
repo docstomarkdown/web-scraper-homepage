@@ -113,8 +113,8 @@ export const pageText: FeaturePageContent = {
             a: "Give the bulk run a list of the site's page addresses and it collects each one's text in turn into one table.",
         },
         {
-            q: "Is this included in the plan?",
-            a: "Yes. Page text is part of the one plan, Pro.",
+            q: "Is this free?",
+            a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create.",
         },
         {
             q: "Can I collect a page I'm reading behind a sign-in?",

@@ -106,6 +106,12 @@ export default function RootLayout({
       <body
         className={`${fontHeading.variable} font-sans antialiased overflow-x-hidden`}
       >
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-base focus:font-semibold focus:text-slate-900 focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#1f5ec2] dark:focus:bg-slate-900 dark:focus:text-white"
+        >
+          Skip to content
+        </a>
         <ClarityProvider />
         <JsonLd
           data={[

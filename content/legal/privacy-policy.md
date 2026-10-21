@@ -61,7 +61,7 @@ You can:
 
 - **Access** your personal data by asking our support team for a copy.
 - **Correct** your information by contacting us.
-- **Delete** your account and its data by contacting us. We'll process deletion requests promptly.
+- **Delete** the information we hold about you by contacting us. There's no account to delete; we remove what we have, such as support messages and chat history, promptly.
 - **Opt Out** of non-essential messages at any time.
 
 ## Data Retention

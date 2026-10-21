@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function UseCasesHub() {
     const list = pages.filter((p) => p.kind === "use-case" && (isPublished(p) || showPlannedPages));
     return (
-        <main className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
+        <main id="main" className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
             <div className="max-w-6xl mx-auto px-6 md:px-12">
                 <SectionHeading as="h1" eyebrow="Use cases" title="One job at a time, start to finish" intro="Each page walks through a whole job: which sites, which steps, what the sheet looks like, and what it won't do." />
                 <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

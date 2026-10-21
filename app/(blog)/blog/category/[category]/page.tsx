@@ -31,7 +31,7 @@ export default async function CategoryPage({ params }: Props) {
     if (!name) notFound();
     const posts = getPostsByCategory(name);
     return (
-        <main className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
+        <main id="main" className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
             <div className="max-w-6xl mx-auto px-6 md:px-12">
                 <SectionHeading as="h1" eyebrow="Blog" title={name} intro={`Every post about ${name.toLowerCase()}.`} />
                 <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">

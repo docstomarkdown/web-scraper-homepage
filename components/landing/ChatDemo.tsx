@@ -242,7 +242,7 @@ export default function ChatDemo({
                 {/* Extension side panel: chat */}
                 <div className="flex flex-col h-[410px]">
                     <div className="flex items-center gap-1.5 px-3 py-2 border-b border-slate-100 dark:border-slate-800">
-                        <Sparkles className="w-3.5 h-3.5 text-[#2772ED]" />
+                        <Sparkles className="w-3.5 h-3.5 text-[#1f5ec2] dark:text-[#7aa7ff]" />
                         <p className="text-xs font-semibold text-slate-800 dark:text-slate-100">Web Scraper Pro</p>
                         <span className="ml-auto text-xs text-slate-400 dark:text-slate-500">Chat</span>
                     </div>
@@ -256,7 +256,7 @@ export default function ChatDemo({
                                     animate={{ opacity: 1, y: 0 }}
                                     className="flex justify-end"
                                 >
-                                    <p className="max-w-[85%] rounded-2xl rounded-br-sm bg-[#2772ED] px-3 py-1.5 text-xs text-white">{s.prompt}</p>
+                                    <p className="max-w-[85%] rounded-2xl rounded-br-sm bg-[#1f5ec2] px-3 py-1.5 text-xs text-white">{s.prompt}</p>
                                 </motion.div>
                             )}
                             {sent && (
@@ -268,7 +268,7 @@ export default function ChatDemo({
                                     className="flex items-center gap-1.5 text-xs text-slate-600 dark:text-slate-300"
                                 >
                                     {stage === 1 ? (
-                                        <Loader2 className="w-3.5 h-3.5 text-[#2772ED] animate-spin shrink-0" />
+                                        <Loader2 className="w-3.5 h-3.5 text-[#1f5ec2] dark:text-[#7aa7ff] animate-spin shrink-0" />
                                     ) : (
                                         <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
                                     )}
@@ -361,7 +361,7 @@ export default function ChatDemo({
                             <span
                                 className={[
                                     "w-6 h-6 rounded-full flex items-center justify-center shrink-0 transition-colors",
-                                    stage === 0 && typed >= s.prompt.length ? "bg-[#2772ED] text-white" : "bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500",
+                                    stage === 0 && typed >= s.prompt.length ? "bg-[#1f5ec2] text-white" : "bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500",
                                 ].join(" ")}
                             >
                                 <ArrowUp className="w-3.5 h-3.5" />
@@ -382,7 +382,7 @@ function DownloadChip({ icon, label, pressed }: { icon: React.ReactNode; label: 
             transition={{ delay: 0.4, duration: 0.3 }}
             className={[
                 "inline-flex items-center gap-1 rounded-md border px-2 py-1 text-xs font-semibold",
-                pressed ? "bg-[#2772ED] border-[#2772ED] text-white" : "bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300",
+                pressed ? "bg-[#1f5ec2] border-[#1f5ec2] text-white" : "bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300",
             ].join(" ")}
         >
             {icon}

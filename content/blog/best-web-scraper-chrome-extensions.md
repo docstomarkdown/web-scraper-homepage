@@ -17,7 +17,7 @@ Eight extensions, two broad models, three price shapes.
 
 | Extension | How you tell it what to collect | Where it runs | Listed pricing (public pages, autumn 2026) |
 |---|---|---|---|
-| Web Scraper Pro | Ask in plain words, or pick the list it found on the page | In your browser; cloud runs coming | One plan, every feature; free to install |
+| Web Scraper Pro | Ask in plain words, or pick the list it found on the page | In your browser; cloud runs coming | Free to use, every feature included; nothing priced yet |
 | Web Scraper (webscraper.io) | Build a sitemap of selectors | Locally free; cloud from $50/month, by URL credit | Extension free; Cloud $50, $100, from $200 |
 | Thunderbit | AI suggests columns on the page; one click | Browser, with cloud runs on paid plans | About $9 to $16.50/month on its surfaces |
 | Chat4Data | Chat with the page, then confirm | In the browser, local processing | Free; Pro $10; Max $35 (credits for setup) |

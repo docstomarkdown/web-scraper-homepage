@@ -31,7 +31,7 @@ export default async function AuthorPage({ params }: Props) {
     if (posts.length === 0) notFound();
     const a = getAuthor(author);
     return (
-        <main className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
+        <main id="main" className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
             <div className="max-w-6xl mx-auto px-6 md:px-12">
                 <SectionHeading as="h1" eyebrow={a.role} title={`Posts by ${a.name}`} intro={a.bio} />
                 <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">

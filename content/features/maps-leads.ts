@@ -165,7 +165,7 @@ export const mapsLeads: FeaturePageContent = {
         },
         {
             q: "Is Maps leads part of the plan?",
-            a: "Yes. There's one plan, Pro, and it includes every feature, including Maps leads, contact details, bulk runs and every export format.",
+            a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create. That includes Maps leads, contact details, bulk runs and every export format.",
         },
         {
             q: "Why does the run slow down near the end?",

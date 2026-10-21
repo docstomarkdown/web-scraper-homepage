@@ -49,7 +49,7 @@ export const mcp: FeaturePageContent = {
     },
     faqs: [
         { q: "Can I use the chat inside the extension today?", a: "Yes. The AI chat in the side panel collects data from the page you're on by asking in plain words. MCP is for connecting an external agent." },
-        { q: "Will it be part of the same plan?", a: "Yes. There's one plan, Pro, and MCP access will be included when it launches." },
+        { q: "Will it be free?", a: "The extension is free today, and nothing has been priced yet. This page will say so if that changes when MCP access launches." },
         {
             q: "When will MCP and the browser connection ship?",
             a: "With the cloud release. There's no date on this page on purpose; the changelog will carry it when it's real, and this page will stop saying coming soon.",

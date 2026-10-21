@@ -51,14 +51,14 @@ export function metadataForUseCase(c: UseCasePageContent): Metadata {
 const reading = "max-w-[56rem] mx-auto px-6 md:px-12";
 const wide = "max-w-7xl mx-auto px-6 md:px-8";
 const body = "text-lg text-slate-700 dark:text-slate-200 leading-[1.65]";
-const link = "font-semibold text-[#1f5ec2] dark:text-[#7aa7ff] hover:underline underline-offset-2";
+const link = "font-semibold text-[#1f5ec2] dark:text-[#7aa7ff] underline underline-offset-2";
 
 export default function UseCasePage({ content: c }: { content: UseCasePageContent }) {
     const base = siteConfig.url.replace(/\/$/, "");
     const installUrl = `${productConfig.product.ctaUrl}?utm_source=website&utm_medium=use-case-${c.page.slug}&utm_campaign=chrome_install`;
     const guideTitle = (slug: string) => slug.replace(/-/g, " ").replace(/^\w/, (m) => m.toUpperCase());
     return (
-        <main className="flex-1 bg-white dark:bg-slate-950">
+        <main id="main" className="flex-1 bg-white dark:bg-slate-950">
             <JsonLd data={[breadcrumbJsonLd([{ name: "Home", href: "/" }, { name: "Use cases", href: "/use-cases" }, { name: c.page.label, href: c.page.href }], base), ...(c.faqs.length ? [faqJsonLd(c.faqs)] : [])]} />
 
             {/* Hero: the title and the result side by side, so the first screen shows what you get */}
@@ -71,14 +71,14 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
                             <h1 className="mt-3 text-[2rem] md:text-[2.25rem] font-semibold tracking-tight text-slate-800 dark:text-white leading-[1.15]">{c.h1}</h1>
                             <p className="mt-4 text-lg text-slate-700 dark:text-slate-200 leading-[1.6]">{c.intro}</p>
                             <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-3">
-                                <Link href={installUrl} target="_blank" className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#2772ED] hover:bg-[#1f5ec2] px-5 py-3 text-base font-semibold text-white transition-colors"><Chrome className="w-5 h-5" aria-hidden="true" />Add to Chrome</Link>
+                                <Link href={installUrl} target="_blank" className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#1f5ec2] hover:bg-[#1a4fa3] px-5 py-3 text-base font-semibold text-white transition-colors"><Chrome className="w-5 h-5" aria-hidden="true" />Add to Chrome</Link>
                                 <a href="#workflow" className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-5 py-3 text-base font-semibold text-slate-800 dark:text-slate-100 hover:border-[#2772ED] transition-colors">See the steps<ArrowRight className="w-4 h-4" aria-hidden="true" /></a>
                             </div>
                             <p className="mt-5 text-base text-slate-600 dark:text-slate-300">Updated <time dateTime={c.lastUpdated}>{formatDate(c.lastUpdated)}</time></p>
                         </Reveal>
                         <Reveal delay={0.08} className="min-w-0">
                             <p className="text-base font-semibold text-[#1f5ec2] dark:text-[#7aa7ff]">What you get: a spreadsheet like this</p>
-                            <figure className="mt-3 overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-lg shadow-slate-200/50 dark:shadow-black/30">
+                            <figure tabIndex={0} role="region" aria-label="Sample table, scrolls sideways" className="mt-3 overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-lg shadow-slate-200/50 dark:shadow-black/30">
                                 <table className="w-full text-base text-left leading-snug">
                                     <thead className="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white"><tr>{c.sample.columns.map((col) => <th key={col} className="px-2 py-3 font-semibold whitespace-nowrap align-bottom">{col}</th>)}</tr></thead>
                                     <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-200">{c.sample.rows.map((r, i) => <tr key={i}>{r.map((cell, j) => <td key={j} className="px-2 py-3 whitespace-nowrap align-top">{cell || <span className="text-slate-400 dark:text-slate-500" aria-label="empty">—</span>}</td>)}</tr>)}</tbody>
@@ -113,8 +113,8 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
                         {c.workflow.steps.map((s, i) => {
                             const f = s.feature ? getPage(s.feature) : null;
                             return (
-                                <Reveal key={s.title} delay={i * 0.04}>
-                                    <li className="py-10 first:pt-2">
+                                <Reveal as="li" key={s.title} delay={i * 0.04} className="py-10 first:pt-2">
+                                    <div>
                                         <div className="flex items-start gap-4">
                                             <span className="mt-0.5 inline-flex w-9 h-9 shrink-0 items-center justify-center rounded-full bg-[#2772ED]/10 text-base font-semibold text-[#1f5ec2] dark:text-[#7aa7ff]" aria-hidden="true">{i + 1}</span>
                                             <div className="min-w-0">
@@ -123,7 +123,7 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
                                                 {s.points && s.points.length > 0 && (
                                                     <ul className={`mt-4 space-y-2 ${body}`}>
                                                         {s.points.map((p) => (
-                                                            <li key={p} className="flex gap-3"><span className="mt-[0.7em] h-2 w-2 shrink-0 rounded-full bg-[#2772ED]" aria-hidden="true" /><span>{p}</span></li>
+                                                            <li key={p} className="flex gap-3"><span className="mt-[0.7em] h-2 w-2 shrink-0 rounded-full bg-[#1f5ec2]" aria-hidden="true" /><span>{p}</span></li>
                                                         ))}
                                                     </ul>
                                                 )}
@@ -131,7 +131,7 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
                                             </div>
                                         </div>
                                         {s.screenshot && <Screenshot id={s.screenshot} className="mt-6 mb-0 md:ml-[3.25rem]" />}
-                                    </li>
+                                    </div>
                                 </Reveal>
                             );
                         })}

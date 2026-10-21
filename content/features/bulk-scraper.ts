@@ -141,8 +141,8 @@ export const bulkScraper: FeaturePageContent = {
             a: "It runs in your browser, so the tab stays open, but you can keep working in other windows. Runs that go through many pages of one site are faster when their tab stays in front.",
         },
         {
-            q: "Is this included in the plan?",
-            a: "Yes. Bulk runs are part of the one plan, Pro, with every other feature.",
+            q: "Is this free?",
+            a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create.",
         },
         {
             q: "Can I run a bulk job overnight?",

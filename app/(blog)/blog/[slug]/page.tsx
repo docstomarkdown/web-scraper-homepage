@@ -48,7 +48,7 @@ export default async function BlogPostPage({ params }: Props) {
     const href = `/blog/${post.slug}`;
 
     return (
-        <main className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
+        <main id="main" className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
             <JsonLd
                 data={[
                     {
@@ -101,11 +101,11 @@ export default async function BlogPostPage({ params }: Props) {
                 <div className="mt-10">
                     <Markdown content={post.content} />
                 </div>
-                <aside className="mt-14 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 p-6">
+                <section aria-label="About the author" className="mt-14 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 p-6">
                     <p className="text-sm font-semibold text-slate-900 dark:text-white">{post.author.name}</p>
                     <p className="text-sm text-slate-600 dark:text-slate-300">{post.author.role}</p>
                     <p className="mt-2 text-base text-slate-600 dark:text-slate-300">{post.author.bio}</p>
-                </aside>
+                </section>
             </article>
             {related.length > 0 ? (
                 <section className="max-w-6xl mx-auto px-6 md:px-12 mt-20">

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function ScrapersHub() {
     const groups = sitesByCategory().filter((g) => isPublished(g.category) || showPlannedPages);
     return (
-        <main className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
+        <main id="main" className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
             <div className="max-w-6xl mx-auto px-6 md:px-12">
                 <SectionHeading as="h1" eyebrow="Sites" title="Ready-made for the sites you already use" intro="These sites come with a tuned setup, so the right columns show up with no configuration. Everything else with a list is detected automatically." />
                 <div className="mt-14 space-y-12">
@@ -44,7 +44,7 @@ export default function ScrapersHub() {
                     ))}
                 </div>
                 <p className="mt-14 text-base text-slate-600 dark:text-slate-300">
-                    Not listed? Most sites with a list are detected automatically. See <Link href={getPage("list-scraper").href} className="text-[#1f5ec2] dark:text-[#7aa7ff] hover:underline">lists from any website</Link>.
+                    Not listed? Most sites with a list are detected automatically. See <Link href={getPage("list-scraper").href} className="text-[#1f5ec2] dark:text-[#7aa7ff] underline underline-offset-2">lists from any website</Link>.
                 </p>
             </div>
         </main>

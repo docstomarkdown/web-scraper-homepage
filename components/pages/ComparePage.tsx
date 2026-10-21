@@ -44,7 +44,7 @@ export default function ComparePage({ content: c }: { content: ComparePageConten
     const href = `/compare/${c.slug}`;
     const installUrl = `${productConfig.product.ctaUrl}?utm_source=website&utm_medium=compare&utm_campaign=${c.slug}`;
     return (
-        <main className="flex-1 bg-white dark:bg-slate-950">
+        <main id="main" className="flex-1 bg-white dark:bg-slate-950">
             <JsonLd data={[breadcrumbJsonLd([{ name: "Home", href: "/" }, { name: "Comparisons", href: "/compare" }, { name: c.competitor.short, href }], base), ...(c.faqs.length ? [faqJsonLd(c.faqs)] : [])]} />
             <section className="pt-32 pb-12 md:pt-36">
                 <div className="max-w-4xl mx-auto px-6 md:px-12">
@@ -77,7 +77,8 @@ export default function ComparePage({ content: c }: { content: ComparePageConten
                     <Reveal>
                         <SectionHeading eyebrow="At a glance" title="Side by side" align="left" />
                     </Reveal>
-                    <Reveal className="mt-8 overflow-x-auto">
+                    <Reveal className="mt-8">
+                        <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="Comparison table, scrolls sideways">
                         <table className="w-full text-left border-collapse">
                             <thead>
                                 <tr className="border-b border-slate-200 dark:border-slate-800 text-sm text-slate-600 dark:text-slate-300">
@@ -96,6 +97,7 @@ export default function ComparePage({ content: c }: { content: ComparePageConten
                                 ))}
                             </tbody>
                         </table>
+                        </div>
                     </Reveal>
                 </div>
             </section>
@@ -137,7 +139,7 @@ export default function ComparePage({ content: c }: { content: ComparePageConten
                             <li key={s.url}><a href={s.url} rel="nofollow noopener" target="_blank" className="text-[#1f5ec2] dark:text-[#7aa7ff] underline underline-offset-2">{s.label}</a></li>
                         ))}
                     </ul>
-                    <Link href={installUrl} target="_blank" className="mt-8 inline-flex items-center gap-2 rounded-xl bg-[#2772ED] hover:bg-[#1f5ec2] px-5 py-3 text-sm font-semibold text-white transition-colors">
+                    <Link href={installUrl} target="_blank" className="mt-8 inline-flex items-center gap-2 rounded-xl bg-[#1f5ec2] hover:bg-[#1a4fa3] px-5 py-3 text-sm font-semibold text-white transition-colors">
                         <Chrome className="w-4 h-4" aria-hidden="true" />
                         Add Web Scraper Pro to Chrome
                     </Link>

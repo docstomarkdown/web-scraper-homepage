@@ -73,7 +73,7 @@ export default function Hero() {
                         <Link
                             href={`${productConfig.product.ctaUrl}?utm_source=website&utm_medium=hero&utm_campaign=chrome_install`}
                             target="_blank"
-                            className="w-full sm:w-auto group inline-flex items-center justify-center rounded-xl bg-[#2772ED] hover:bg-[#1f5ec2] px-7 lg:px-5 xl:px-7 py-3.5 text-base font-semibold text-white whitespace-nowrap transition-all hover:translate-y-[-1px] active:scale-[0.98] gap-2 shadow-lg shadow-[#2772ED]/25"
+                            className="w-full sm:w-auto group inline-flex items-center justify-center rounded-xl bg-[#1f5ec2] hover:bg-[#1a4fa3] px-7 lg:px-5 xl:px-7 py-3.5 text-base font-semibold text-white whitespace-nowrap transition-all hover:translate-y-[-1px] active:scale-[0.98] gap-2 shadow-lg shadow-[#1f5ec2]/25"
                         >
                             <Chrome className="w-5 h-5" />
                             Add to Chrome
@@ -101,7 +101,7 @@ export default function Hero() {
                                     className={[
                                         "inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium transition-colors",
                                         active
-                                            ? "bg-[#2772ED] border-[#2772ED] text-white shadow-sm shadow-[#2772ED]/25"
+                                            ? "bg-[#1f5ec2] border-[#1f5ec2] text-white shadow-sm shadow-[#1f5ec2]/25"
                                             : "bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:border-[#2772ED]/50 hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]",
                                     ].join(" ")}
                                 >

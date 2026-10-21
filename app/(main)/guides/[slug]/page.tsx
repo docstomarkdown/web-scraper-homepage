@@ -51,7 +51,7 @@ export default async function GuidePage({ params }: Props) {
     const installUrl = `${productConfig.product.ctaUrl}?utm_source=website&utm_medium=guide&utm_campaign=${encodeURIComponent(g.campaign)}`;
 
     return (
-        <main className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
+        <main id="main" className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
             <JsonLd
                 data={[
                     {
@@ -106,11 +106,11 @@ export default async function GuidePage({ params }: Props) {
                             </div>
                         </section>
                     )}
-                    <aside className="mt-14 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 p-6">
+                    <section aria-label="About the author" className="mt-14 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 p-6">
                         <p className="text-sm font-semibold text-slate-900 dark:text-white">{g.author.name}</p>
                         <p className="text-sm text-slate-600 dark:text-slate-300">{g.author.role}</p>
                         <p className="mt-2 text-base text-slate-600 dark:text-slate-300">{g.author.bio}</p>
-                    </aside>
+                    </section>
                 </article>
                 <aside className="mt-12 lg:mt-0 lg:sticky lg:top-28 lg:self-start space-y-6">
                     <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6">
@@ -123,7 +123,7 @@ export default async function GuidePage({ params }: Props) {
                         <Link
                             href={installUrl}
                             target="_blank"
-                            className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#2772ED] hover:bg-[#1f5ec2] px-5 py-3 text-sm font-semibold text-white transition-colors"
+                            className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#1f5ec2] hover:bg-[#1a4fa3] px-5 py-3 text-sm font-semibold text-white transition-colors"
                         >
                             <Chrome className="w-4 h-4" aria-hidden="true" />
                             Add to Chrome

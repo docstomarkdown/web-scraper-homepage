@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Get help",
   alternates: { canonical: "/support" },
   description:
-    "Report a site that doesn't scrape correctly, a problem with the extension, or ask about plans and payments. Attach screenshots, exports or a screen recording.",
+    "Report a site that doesn't scrape correctly, a problem with the extension, or ask a question about the extension. Attach screenshots, exports or a screen recording.",
 }
 
 const header = (
@@ -37,7 +37,7 @@ const tips = (
 
 export default function SupportPage() {
   return (
-    <div className="bg-slate-50 py-16 dark:bg-slate-950 sm:py-24">
+    <main id="main" className="bg-slate-50 py-16 dark:bg-slate-950 sm:py-24">
       {/* Runs while the page is parsed, before analytics start: moves the extension's prefill (page address,
           message, collection details) out of the address bar. See components/support/prefill.ts. */}
       <script dangerouslySetInnerHTML={{ __html: takePrefillScript }} />
@@ -45,6 +45,6 @@ export default function SupportPage() {
         {/* The form shows the header on its own until it has read the prefill, so the page never flashes empty. */}
         <SupportForm header={header} tips={tips} />
       </div>
-    </div>
+    </main>
   )
 }

@@ -19,10 +19,10 @@ export default function SectionHeading({
     const centered = align === "center";
     return (
         <div className={centered ? "text-center max-w-3xl mx-auto" : "max-w-3xl"}>
-            <p className="text-sm font-semibold text-[#2772ED] dark:text-[#7aa7ff]">
+            <p className="text-sm font-semibold text-[#1f5ec2] dark:text-[#7aa7ff]">
                 {eyebrow}
                 {badge && (
-                    <span className="ml-2 inline-flex align-middle rounded-full bg-gradient-to-r from-[#2772ED] to-[#7c3aed] px-2 py-0.5 text-xs font-semibold text-white">
+                    <span className="ml-2 inline-flex align-middle rounded-full bg-gradient-to-r from-[#1f5ec2] to-[#6d28d9] px-2 py-0.5 text-xs font-semibold text-white">
                         {badge}
                     </span>
                 )}

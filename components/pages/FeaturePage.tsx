@@ -67,13 +67,13 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
     const heroVisual = visual ?? (c.hero && getCapture(c.hero) ? <Screenshot id={c.hero} className="my-0" /> : undefined);
 
     return (
-        <main className="flex-1 bg-white dark:bg-slate-950">
+        <main id="main" className="flex-1 bg-white dark:bg-slate-950">
             {c.faqs.length > 0 && <JsonLd data={faqJsonLd(c.faqs)} />}
             {/* Hero */}
             <section className="pt-32 pb-16 md:pt-36 md:pb-20">
                 <div className={heroVisual ? "max-w-7xl mx-auto px-6 md:px-12 grid lg:grid-cols-[5fr_7fr] gap-12 items-center" : container}>
                     <Reveal className="max-w-3xl">
-                        <p className="text-sm font-semibold text-[#2772ED] dark:text-[#7aa7ff]">
+                        <p className="text-sm font-semibold text-[#1f5ec2] dark:text-[#7aa7ff]">
                             {c.eyebrow}
                             {comingSoon && (
                                 <span className="ml-2 inline-flex align-middle rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-0.5 text-xs font-semibold text-slate-600 dark:text-slate-300">
@@ -89,7 +89,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                             <Link
                                 href={installUrl}
                                 target="_blank"
-                                className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#2772ED] hover:bg-[#1f5ec2] px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#2772ED]/25 transition-all hover:-translate-y-px"
+                                className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#1f5ec2] hover:bg-[#1a4fa3] px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#1f5ec2]/25 transition-all hover:-translate-y-px"
                             >
                                 <Chrome className="w-5 h-5" aria-hidden="true" />
                                 Add to Chrome
@@ -125,16 +125,16 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                     {c.fields.items.some((f) => f.example) ? (
                         <ul className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                             {c.fields.items.map((f, i) => (
-                                <Reveal key={f.name} delay={i * 0.03} className="h-full">
-                                    <li className="h-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5">
+                                <Reveal as="li" key={f.name} delay={i * 0.03} className="h-full">
+                                    <div className="h-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5">
                                         <h3 className="font-semibold text-slate-900 dark:text-white">{f.name}</h3>
                                         {f.example && (
-                                            <p className="mt-3 inline-block rounded-2xl rounded-br-sm bg-[#2772ED] px-3 py-1.5 text-sm text-white">
+                                            <p className="mt-3 inline-block rounded-2xl rounded-br-sm bg-[#1f5ec2] px-3 py-1.5 text-sm text-white">
                                                 {f.example}
                                             </p>
                                         )}
                                         <p className="mt-3 text-sm text-slate-700 dark:text-slate-200 leading-[1.65]">{f.description}</p>
-                                    </li>
+                                    </div>
                                 </Reveal>
                             ))}
                         </ul>
@@ -161,8 +161,8 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                     </Reveal>
                     <ol className="mt-10 grid md:grid-cols-3 gap-5">
                         {c.steps.items.map((s, i) => (
-                            <Reveal key={s.title} delay={i * 0.05} className="h-full">
-                                <li className="h-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6">
+                            <Reveal as="li" key={s.title} delay={i * 0.05} className="h-full">
+                                <div className="h-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6">
                                     <span className="inline-flex w-8 h-8 items-center justify-center rounded-full bg-[#2772ED]/10 text-sm font-semibold text-[#1f5ec2] dark:text-[#7aa7ff]">
                                         {i + 1}
                                     </span>
@@ -171,12 +171,12 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                                     {s.points && s.points.length > 0 && (
                                         <ul className="mt-3 space-y-1.5 text-base text-slate-700 dark:text-slate-200 leading-[1.6]">
                                             {s.points.map((pt) => (
-                                                <li key={pt} className="flex gap-2.5"><span className="mt-[0.65em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#2772ED]" aria-hidden="true" /><span>{pt}</span></li>
+                                                <li key={pt} className="flex gap-2.5"><span className="mt-[0.65em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#1f5ec2]" aria-hidden="true" /><span>{pt}</span></li>
                                             ))}
                                         </ul>
                                     )}
                                     {s.screenshot && <Screenshot id={s.screenshot} className="my-5" />}
-                                </li>
+                                </div>
                             </Reveal>
                         ))}
                     </ol>
@@ -205,7 +205,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                                     <ul className="space-y-2.5 pt-1">
                                         {s.points.map((pt) => (
                                             <li key={pt} className="flex gap-3">
-                                                <Check className="w-5 h-5 mt-0.5 shrink-0 text-[#2772ED] dark:text-[#7aa7ff]" aria-hidden="true" />
+                                                <Check className="w-5 h-5 mt-0.5 shrink-0 text-[#1f5ec2] dark:text-[#7aa7ff]" aria-hidden="true" />
                                                 <span>{pt}</span>
                                             </li>
                                         ))}
@@ -303,7 +303,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
 function SampleTable({ sample }: { sample: NonNullable<FeaturePageContent["sample"]> }) {
     return (
         <figure className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xl shadow-slate-200/50 dark:shadow-black/30 overflow-hidden">
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="Sample table, scrolls sideways">
                 <table className="w-full min-w-[720px] text-left text-sm">
                     <thead className="bg-slate-50 dark:bg-slate-800/70 text-slate-700 dark:text-slate-200">
                         <tr>

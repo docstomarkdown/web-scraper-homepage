@@ -124,8 +124,8 @@ export const productScraper: FeaturePageContent = {
             a: "Collect the category page with Lists from any website for one row per product, or the whole store with Shopify store export. Product pages themselves are collected one at a time.",
         },
         {
-            q: "Is this included in the plan?",
-            a: "Yes. Product details and reviews are part of the one plan, Pro.",
+            q: "Is this free?",
+            a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create.",
         },
         {
             q: "Can I collect many product pages at once?",

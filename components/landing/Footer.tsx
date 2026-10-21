@@ -85,7 +85,7 @@ export default function Footer() {
                             ))}
                             <li>
                                 <Link href="/tools"
-                                    className="inline-flex items-center gap-1 text-base text-blue-600 hover:text-blue-700 font-medium transition-colors group">
+                                    className="inline-flex items-center gap-1 text-base text-[#1f5ec2] dark:text-[#7aa7ff] hover:underline font-medium transition-colors group">
                                     View all tools
                                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                                 </Link>
@@ -117,7 +117,7 @@ export default function Footer() {
                             href="https://thinksolv.com"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-slate-600 dark:text-slate-300 hover:text-[#2772ED] transition-colors"
+                            className="text-slate-600 dark:text-slate-300 hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff] transition-colors"
                         >
                             Thinksolv Technologies
                         </Link>

@@ -20,7 +20,7 @@ export const metadata = {
 export default function Home() {
     return (
         <div className="min-h-screen flex flex-col bg-white dark:bg-slate-950">
-            <main className="flex-1">
+            <main id="main" className="flex-1">
                 <Hero />
                 <Collect />
                 <ShopifyStores />

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function BlogPage() {
     const posts = getAllPosts();
     return (
-        <main className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
+        <main id="main" className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
             <div className="max-w-6xl mx-auto px-6 md:px-12">
                 <SectionHeading as="h1" eyebrow="Blog" title="Explainers, comparisons and news" intro="Short reads about getting data out of web pages and into a spreadsheet." />
                 {posts.length === 0 ? (

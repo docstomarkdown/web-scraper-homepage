@@ -11,8 +11,8 @@ const GROUPS = [
         title: "Getting started",
         faqs: [
             {
-                q: "What's included in the plan?",
-                a: "Everything. There's one plan, Pro, with every feature included: chat, ready-made sites, Maps leads and contact details, Shopify catalog export, bulk runs and every export format. Cloud runs are coming soon. No credits, and you can cancel anytime.",
+                q: "Is it free?",
+                a: "Yes. Web Scraper Pro is free to install and use today, with every feature included: chat, ready-made sites, Maps leads and contact details, Shopify catalog export, bulk runs and every export format. There are no credits to count and no account to create. Cloud runs are coming soon.",
             },
             {
                 q: "Do I need an account?",
@@ -93,12 +93,12 @@ export default function FAQ() {
                 <div className="mt-12 space-y-10">
                     {GROUPS.map((g, gi) => (
                         <Reveal key={g.title}>
-                            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">{g.title}</h3>
+                            <h3 className="mb-3 text-base font-semibold text-slate-700 dark:text-slate-200">{g.title}</h3>
                             <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 divide-y divide-slate-100 dark:divide-slate-800">
                                 {g.faqs.map((f, i) => (
                                     <details key={f.q} className="group px-5 md:px-6" open={gi === 0 && i === 0}>
                                         <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 rounded-lg [&::-webkit-details-marker]:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2772ED]">
-                                            <h4 className="text-base md:text-lg font-semibold text-slate-900 dark:text-white group-open:text-[#2772ED] dark:group-open:text-[#7aa7ff]">
+                                            <h4 className="text-base md:text-lg font-semibold text-slate-900 dark:text-white group-open:text-[#1f5ec2] dark:group-open:text-[#7aa7ff]">
                                                 {f.q}
                                             </h4>
                                             <ChevronDown

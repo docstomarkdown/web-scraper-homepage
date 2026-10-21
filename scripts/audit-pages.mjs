@@ -1,5 +1,5 @@
 // Accessibility and readability audit of every page on the dev server (port 3010), light and dark mode.
-// Usage: node scripts/audit-pages.mjs <out.json>
+// Usage: node scripts/audit-pages.mjs <out.json>   (ROUTES="/,/support" limits it to those routes)
 // Routes come from the app tree and the content folders. Needs axe-core (this repo) and Playwright from the
 // sibling extension repo (../chrome-extension-source/node_modules). Findings and the phase plan: docs/SITE_REVIEW_2026-10-21.md.
 import { createRequire } from "node:module";
@@ -11,7 +11,8 @@ const axePath = requireSite.resolve("axe-core/axe.min.js");
 const base = "http://localhost:3010";
 const out = process.argv[2] ?? "/tmp/audit.json";
 import { execSync } from "node:child_process";
-const routes = JSON.parse(execSync("node scripts/audit-routes.mjs", { cwd: new URL("..", import.meta.url).pathname }).toString());
+// ROUTES="/,/support" audits only those routes.
+const routes = process.env.ROUTES ? process.env.ROUTES.split(",") : JSON.parse(execSync("node scripts/audit-routes.mjs", { cwd: new URL("..", import.meta.url).pathname }).toString());
 const browser = await chromium.launch();
 const results = [];
 for (const route of routes) {

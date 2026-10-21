@@ -88,7 +88,7 @@ export default function ReviewDesk() {
     const total = (rows: Row[]) => rows.reduce((n, r) => n + r.words, 0);
 
     return (
-        <main className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
+        <main id="main" className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
             <div className="max-w-6xl mx-auto px-6 md:px-12">
                 <SectionHeading as="h1" eyebrow="Local preview" title="Review desk" intro="Every page and draft on the site, with what to check before it goes live. Open a page, read it as the persona it's written for, and note what to change. Drafts render only on localhost." />
                 <p className="mt-6 text-sm text-slate-600 dark:text-slate-300">

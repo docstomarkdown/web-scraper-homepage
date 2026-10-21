@@ -37,11 +37,12 @@ These come up across all personas. Any page that touches them must answer them h
 2. **"Is it really no-code?"** People have been told "no code" and then asked to write selectors.
    Show the real click path.
 3. **"What will it actually cost me?"** Usage-based pricing that's hard to predict makes people
-   anxious. Our answer is one plan with everything included, no credits.
+   anxious. Our answer is that the extension is free with everything included, no credits.
 4. **"Can I get out?"** Surprise renewals and hard-to-cancel plans are the angriest complaints in the
-   category. Say "cancel anytime" only where it's true, and make it easy to find.
+   category. Don't say "cancel anytime"; there is nothing to cancel.
 5. **"Is 'free' really free?"** A video or page that says free, followed by a paywall, destroys
-   trust. We don't describe the product as free.
+   trust. The extension is free today, so say "free to use today" and never put a plan, a price or
+   a locked feature next to it.
 6. **"Will the site block me, or ban my account?"**
 7. **"Is it safe and legal?"** Especially: what the extension can see, and where data goes.
 8. **"Will someone help me if it doesn't work?"**
@@ -266,9 +267,10 @@ publishing a claim marked 1.3.0). Re-check before relying on them if much time h
 - **Research papers (Scholar):** title, link, authors/source line, snippet, full-text links.
   (`chrome-extension-source/public/site-sitemaps/scholar/google-scholar.json`)
 - **No account needed for the extension.** The cloud dashboard uses Google sign-in.
-- **Pricing is one paid plan, Pro, with everything included** (owner decision, 2026-09-25). Don't
-  describe anything as free, and don't single out a feature as paid or "Pro only". Only cloud features
-  are marked "coming soon".
+- **The extension is free, with everything included, and nothing has been priced yet** (owner decision,
+  2026-10-21, replacing the 2026-09-25 "one paid plan, Pro" line). Say "free to use today"; never name a
+  plan, a price, credits or "cancel anytime", and don't single out a feature as paid or "Pro only". Only
+  cloud features are marked "coming soon".
 - **Cloud is coming soon** (owner decision): cloud runs, scheduled runs, the cloud dashboard, and cloud
   scraping via MCP or the REST API are all described as coming soon. Browser-relay MCP tools run in the
   user's own browser and aren't part of this.

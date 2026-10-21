@@ -88,8 +88,8 @@ export const imageDownloader: FeaturePageContent = {
             a: "One page at a time from the Images tab. For a Shopify store, the catalog export downloads every product's images as ZIP files of up to 5,000 images.",
         },
         {
-            q: "Is this included in the plan?",
-            a: "Yes. The image downloader is part of the one plan, Pro.",
+            q: "Is this free?",
+            a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create.",
         },
         {
             q: "Where do the files go?",

@@ -66,7 +66,7 @@ const TYPES: {
         body: "On sites without a ready-made setup, it spots the lists on the page for you. Pick one and it names the columns and follows every page.",
         fields: ["Automatic columns", "Next page", "Load more", "Infinite scroll"],
         goodFor: "directories, event lists, catalogues and tables on any other site.",
-        tint: "text-[#2772ED] bg-[#2772ED]/10",
+        tint: "text-[#1f5ec2] dark:text-[#7aa7ff] bg-[#2772ED]/10",
         link: { slug: "list-scraper", text: "Collect lists from any website" },
     },
 ];

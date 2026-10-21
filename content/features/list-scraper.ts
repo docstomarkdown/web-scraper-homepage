@@ -157,7 +157,7 @@ export const listScraper: FeaturePageContent = {
         },
         {
             q: "Is this included in the plan?",
-            a: "Yes. There's one plan, Pro, and it includes lists from any website, every page of results, bulk runs and every export format.",
+            a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create. That includes lists from any website, every page of results, bulk runs and every export format.",
         },
         {
             q: "How do I use it on a page with pagination (more pages of results)?",

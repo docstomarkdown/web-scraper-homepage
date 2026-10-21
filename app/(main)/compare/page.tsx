@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function CompareHub() {
     const list = Object.values(comparePages);
     return (
-        <main className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
+        <main id="main" className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
             <div className="max-w-6xl mx-auto px-6 md:px-12">
                 <SectionHeading as="h1" eyebrow="Comparisons" title="Web Scraper Pro, side by side" intro="Each comparison opens with when to choose the other tool, carries the date its facts were read, and links its sources. We make Web Scraper Pro; the pages say so." />
                 <ul className="mt-12 grid gap-5 sm:grid-cols-2">

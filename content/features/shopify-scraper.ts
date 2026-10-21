@@ -136,8 +136,8 @@ export const shopifyScraper: FeaturePageContent = {
             a: "The image URLs are in the table, and Download images saves the files as a ZIP, with names based on the product handle if you choose.",
         },
         {
-            q: "Is Shopify export included in the plan?",
-            a: "Yes. It's part of the one plan, Pro, like every other feature.",
+            q: "Is Shopify export free?",
+            a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create.",
         },
         {
             q: "A store gave me only a few products. Why?",

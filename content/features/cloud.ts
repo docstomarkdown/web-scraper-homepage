@@ -52,7 +52,7 @@ export const cloud: FeaturePageContent = {
     },
     faqs: [
         { q: "When does it launch?", a: "It's in development. The extension's own bulk runs cover long lists today, in your browser." },
-        { q: "Will it be part of the same plan?", a: "Yes. There's one plan, Pro, and cloud runs will be included when they launch." },
+        { q: "Will it be free?", a: "The extension is free today, and nothing has been priced yet. This page will say so if that changes when cloud runs launch." },
         {
             q: "When will cloud runs ship?",
             a: "No date yet, on purpose. This page describes what's planned; the changelog will carry the release when it's real, and until then nothing here is for sale.",

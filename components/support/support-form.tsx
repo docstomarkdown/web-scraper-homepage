@@ -297,7 +297,7 @@ function SupportFormBody({ header, tips, preset }: FormProps & { preset: Prefill
         </div>
 
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Button asChild className="bg-[#2772ED] text-white hover:bg-[#1f5ec2]">
+          <Button asChild className="bg-[#1f5ec2] text-white hover:bg-[#1a4fa3]">
             <Link href="/">Back to the homepage</Link>
           </Button>
           <Button
@@ -336,11 +336,11 @@ function SupportFormBody({ header, tips, preset }: FormProps & { preset: Prefill
               key={t.value}
               className={`flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-2 text-sm ${
                 type === t.value
-                  ? "border-[#2772ED] bg-blue-50 text-slate-900 dark:bg-blue-950/40 dark:text-white"
+                  ? "border-[#1f5ec2] bg-blue-50 text-slate-900 dark:bg-blue-950/40 dark:text-white"
                   : "border-slate-200 text-slate-700 hover:border-slate-300 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-600"
               }`}
             >
-              <input type="radio" name="typeChoice" value={t.value} checked={type === t.value} onChange={() => setType(t.value)} className="accent-[#2772ED]" />
+              <input type="radio" name="typeChoice" value={t.value} checked={type === t.value} onChange={() => setType(t.value)} className="accent-[#1f5ec2]" />
               {t.label}
             </label>
           ))}
@@ -431,7 +431,7 @@ function SupportFormBody({ header, tips, preset }: FormProps & { preset: Prefill
         </p>
       )}
 
-      <Button type="submit" disabled={busy || (Boolean(TURNSTILE_SITE_KEY) && !token)} className="w-full bg-[#2772ED] text-white hover:bg-[#1f5ec2] sm:w-auto">
+      <Button type="submit" disabled={busy || (Boolean(TURNSTILE_SITE_KEY) && !token)} className="w-full bg-[#1f5ec2] text-white hover:bg-[#1a4fa3] sm:w-auto">
         {status === "sending" ? "Sending…" : status === "uploading" ? "Uploading files…" : "Send request"}
       </Button>
     </form>

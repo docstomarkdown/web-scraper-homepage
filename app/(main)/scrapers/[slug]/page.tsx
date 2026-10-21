@@ -41,7 +41,7 @@ export default async function Page({ params }: Props) {
     const sites = visibleSites().filter((s) => s.category === cat.slug);
     const base = siteConfig.url.replace(/\/$/, "");
     return (
-        <main className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
+        <main id="main" className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
             <JsonLd data={breadcrumbJsonLd([{ name: "Home", href: "/" }, { name: "Sites", href: "/scrapers" }, { name: cat.label, href: cat.href }], base)} />
             <div className="max-w-6xl mx-auto px-6 md:px-12">
                 <nav aria-label="Breadcrumb" className="text-sm text-slate-600 dark:text-slate-300"><Link href="/scrapers" className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]">Sites</Link></nav>

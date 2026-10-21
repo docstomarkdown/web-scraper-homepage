@@ -14,8 +14,9 @@ none should be added.
 - **Every light colour class gets a `dark:` counterpart in the same class string.** Page and section
   backgrounds use `dark:bg-slate-950`; cards and panels `dark:bg-slate-900`; borders
   `dark:border-slate-800`; text steps up the scale (`text-slate-900` → `dark:text-white`,
-  `text-slate-600` → `dark:text-slate-300`, `text-slate-500` → `dark:text-slate-400`). Brand blue
-  `#2772ED` works in both. The darker link blue `#1f5ec2` pairs with `dark:text-[#7aa7ff]`.
+  `text-slate-600` → `dark:text-slate-300`, `text-slate-500` → `dark:text-slate-400`). Text, icons and
+  button backgrounds use `#1f5ec2` (paired with `dark:text-[#7aa7ff]` for text and icons); `#2772ED` is
+  for the logo tile, gradients and tints only, because it fails 4.5:1 as text and under white text.
 - **No hard-coded light colours in inline styles or animations** (`#fff`, `#e2e8f0`, …). For
   patterns, set the colour with a class (`text-slate-300 dark:text-slate-700`) and use
   `currentColor` in the style. For highlight animations, animate a `boxShadow` ring rather than a
@@ -56,6 +57,11 @@ Build every section so a later SEO pass only has to tune it, not restructure it:
 
 - Logo files, logo usage rules, and brand colors (brand blue plus the mint accent family) are in
   `docs/brand.md`. Use those tokens for new colored elements instead of arbitrary Tailwind colors.
+- Inside a `<ul>`/`<ol>`, animate items with `<Reveal as="li">`, never a `Reveal` `div` around an `li`.
+- Every page renders one `<main id="main">`; the skip link in `app/layout.tsx` targets it.
+- A wrapper that scrolls sideways (`overflow-x-auto` around a table) gets `tabIndex={0}`, `role="region"`
+  and an `aria-label`, so keyboard users can reach it.
+- Links inside running text are underlined; colour alone never marks a link.
 - Respect `prefers-reduced-motion` in animated components (`useReducedMotion` from framer-motion):
   show the final state without motion.
 - Layouts must work at phone width (375px) with no horizontal scroll.

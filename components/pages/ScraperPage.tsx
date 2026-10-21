@@ -74,7 +74,7 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
     const installUrl = `${productConfig.product.ctaUrl}?utm_source=website&utm_medium=scraper-${c.slug}&utm_campaign=chrome_install`;
 
     return (
-        <main className="flex-1 bg-white dark:bg-slate-950">
+        <main id="main" className="flex-1 bg-white dark:bg-slate-950">
             <JsonLd data={[breadcrumbJsonLd([{ name: "Home", href: "/" }, { name: "Sites", href: "/scrapers" }, { name: category.label, href: category.href }, { name: c.site.name, href }], base), ...(c.faqs.length ? [faqJsonLd(c.faqs)] : [])]} />
             <section className="pt-32 pb-16 md:pt-36 md:pb-20">
                 <div className={container}>
@@ -90,7 +90,7 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
                         <h1 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">{c.h1}</h1>
                         <p className="mt-5 text-lg md:text-xl text-slate-700 dark:text-slate-200 leading-[1.65]">{c.intro}</p>
                         <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                            <Link href={installUrl} target="_blank" className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#2772ED] hover:bg-[#1f5ec2] px-6 py-3.5 text-base font-semibold text-white transition-colors">
+                            <Link href={installUrl} target="_blank" className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#1f5ec2] hover:bg-[#1a4fa3] px-6 py-3.5 text-base font-semibold text-white transition-colors">
                                 <Chrome className="w-5 h-5" aria-hidden="true" />
                                 Add to Chrome
                             </Link>
@@ -103,7 +103,7 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
                         </p>
                     </Reveal>
                     <Reveal className="mt-14">
-                        <figure className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
+                        <figure className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800" tabIndex={0} role="region" aria-label="Sample table, scrolls sideways">
                             <table className="w-full text-sm text-left">
                                 <thead className="bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-200">
                                     <tr>{c.sample.columns.map((col) => <th key={col} className="px-4 py-2.5 font-semibold whitespace-nowrap">{col}</th>)}</tr>
@@ -135,7 +135,7 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
                         <Reveal className="mt-14">
                             <h3 className="text-xl font-semibold text-slate-900 dark:text-white">Which columns can be empty, and why</h3>
                             <p className="mt-2 text-base text-slate-700 dark:text-slate-200 leading-[1.65]">An empty cell means the page didn&apos;t show that detail. Nothing is guessed.</p>
-                            <div className="mt-5 overflow-x-auto">
+                            <div className="mt-5 overflow-x-auto" tabIndex={0} role="region" aria-label="Table, scrolls sideways">
                                 <table className="w-full text-base text-left border-collapse">
                                     <thead><tr className="border-b-2 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white"><th className="py-2.5 pr-5 font-semibold w-[38%]">Column</th><th className="py-2.5 font-semibold">Empty when</th></tr></thead>
                                     <tbody className="text-slate-700 dark:text-slate-200">
@@ -155,19 +155,19 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
                     <Reveal><SectionHeading eyebrow="How it works" title={c.steps.heading} align="left" /></Reveal>
                     <ol className="mt-10 grid md:grid-cols-3 gap-5">
                         {c.steps.items.map((s, i) => (
-                            <Reveal key={s.title} delay={i * 0.05} className="h-full">
-                                <li className="h-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6">
+                            <Reveal as="li" key={s.title} delay={i * 0.05} className="h-full">
+                                <div className="h-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6">
                                     <span className="inline-flex w-8 h-8 items-center justify-center rounded-full bg-[#2772ED]/10 text-sm font-semibold text-[#1f5ec2] dark:text-[#7aa7ff]">{i + 1}</span>
                                     <h3 className="mt-4 text-lg font-semibold text-slate-900 dark:text-white">{s.title}</h3>
                                     <p className="mt-2 text-base text-slate-700 dark:text-slate-200 leading-[1.65]">{s.body}</p>
                                     {s.points && s.points.length > 0 && (
                                         <ul className="mt-3 space-y-1.5 text-base text-slate-700 dark:text-slate-200 leading-[1.6]">
                                             {s.points.map((pt) => (
-                                                <li key={pt} className="flex gap-2.5"><span className="mt-[0.65em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#2772ED]" aria-hidden="true" /><span>{pt}</span></li>
+                                                <li key={pt} className="flex gap-2.5"><span className="mt-[0.65em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#1f5ec2]" aria-hidden="true" /><span>{pt}</span></li>
                                             ))}
                                         </ul>
                                     )}
-                                </li>
+                                </div>
                             </Reveal>
                         ))}
                     </ol>
@@ -182,7 +182,7 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
                         <ul className="mt-6 space-y-3">
                             {c.notes.items.map((n) => (
                                 <li key={n} className="flex gap-3 text-base text-slate-700 dark:text-slate-200 leading-[1.65]">
-                                    <Check className="w-5 h-5 mt-0.5 shrink-0 text-[#2772ED] dark:text-[#7aa7ff]" aria-hidden="true" />
+                                    <Check className="w-5 h-5 mt-0.5 shrink-0 text-[#1f5ec2] dark:text-[#7aa7ff]" aria-hidden="true" />
                                     <span>{n}</span>
                                 </li>
                             ))}
@@ -204,10 +204,10 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
                     <Reveal>
                         <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Go further</h2>
                         <ul className="mt-6 space-y-3 text-base">
-                            <li><Link href={feature.href} className="text-[#1f5ec2] dark:text-[#7aa7ff] hover:underline">{feature.label}</Link>: {feature.summary}</li>
-                            {c.guide && <li><Link href={`/guides/${c.guide}`} className="text-[#1f5ec2] dark:text-[#7aa7ff] hover:underline">Step-by-step guide for {c.site.name}</Link></li>}
-                            {c.useCase && <li><Link href={`/use-cases/${c.useCase}`} className="text-[#1f5ec2] dark:text-[#7aa7ff] hover:underline">{getPage(c.useCase, "use-case").label}</Link>: the whole workflow</li>}
-                            {related.map((r) => <li key={r.slug}><Link href={`/scrapers/${r.slug}`} className="text-[#1f5ec2] dark:text-[#7aa7ff] hover:underline">Collect from {r.name}</Link></li>)}
+                            <li><Link href={feature.href} className="text-[#1f5ec2] dark:text-[#7aa7ff] underline underline-offset-2">{feature.label}</Link>: {feature.summary}</li>
+                            {c.guide && <li><Link href={`/guides/${c.guide}`} className="text-[#1f5ec2] dark:text-[#7aa7ff] underline underline-offset-2">Step-by-step guide for {c.site.name}</Link></li>}
+                            {c.useCase && <li><Link href={`/use-cases/${c.useCase}`} className="text-[#1f5ec2] dark:text-[#7aa7ff] underline underline-offset-2">{getPage(c.useCase, "use-case").label}</Link>: the whole workflow</li>}
+                            {related.map((r) => <li key={r.slug}><Link href={`/scrapers/${r.slug}`} className="text-[#1f5ec2] dark:text-[#7aa7ff] underline underline-offset-2">Collect from {r.name}</Link></li>)}
                         </ul>
                     </Reveal>
                 </div>

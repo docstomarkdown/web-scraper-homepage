@@ -89,7 +89,7 @@ export const research: UseCasePageContent = {
         { q: "Is the collected text clean enough for an AI tool?", a: "It's the page's main text in reading order, without menus, ads, cookie banners, sidebars or comments, with the title, description, author and date in their own columns. Save it as a Word document, or as CSV or JSON for a pipeline." },
         { q: "How many Scholar results can I collect?", a: "As many pages as Scholar offers, up to its own limit of 100 pages, or 1,000 results. The panel's default is 10 pages; choose a number or every page." },
         { q: "Does every row carry the date it was collected?", a: "Every collection is saved in History with its date, and bulk runs record the source address per row. Add the date as a column in the sheet when the dataset needs it on each row." },
-        { q: "Can I use it for one project and stop?", a: "Yes. There's one plan, Pro, with every feature included, and you can cancel at any time. One month covers a project." },
+        { q: "Can I use it for one project and stop?", a: "Yes. It's free to use today: install it, collect what you need, and remove it when you're done. Your exports stay with you." },
         { q: "Can it collect software reviews for a competitor table?", a: "Capterra and Product Hunt listings have ready-made columns, and a review page's list of reviews is found like any other list. Collect every page and export with the source links." },
     ],
 };

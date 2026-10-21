@@ -22,7 +22,7 @@ export default function Cloud() {
         <section id="cloud" className="py-20 md:py-24 bg-white dark:bg-slate-950">
             <div className="max-w-6xl mx-auto px-6 md:px-12">
                 <Reveal>
-                    <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#2772ED] via-[#3b5bdb] to-[#5b3fd6] px-6 py-12 md:px-12 md:py-14">
+                    <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#1f5ec2] via-[#3b5bdb] to-[#5b3fd6] px-6 py-12 md:px-12 md:py-14">
                         <div
                             className="absolute inset-0 opacity-20 text-white"
                             style={{ backgroundImage: "radial-gradient(currentColor 1px, transparent 1px)", backgroundSize: "22px 22px" }}
@@ -64,7 +64,7 @@ export default function Cloud() {
                             <div className="rounded-2xl bg-white dark:bg-slate-900 shadow-2xl shadow-black/20 p-5" aria-hidden="true">
                                 <div className="flex items-center justify-between">
                                     <p className="flex items-center gap-2 text-sm font-semibold text-slate-900 dark:text-white">
-                                        <CloudUpload className="w-4 h-4 text-[#2772ED]" />
+                                        <CloudUpload className="w-4 h-4 text-[#1f5ec2] dark:text-[#7aa7ff]" />
                                         Batch · 200 URLs
                                     </p>
                                     <span className="text-xs text-slate-600 dark:text-slate-300">124 of 200 done</span>

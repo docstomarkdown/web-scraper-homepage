@@ -86,9 +86,14 @@ These files are generated from `components/chat/ThinkingMark.tsx` in `chrome-ext
 
 | Token | Hex | Use |
 |---|---|---|
-| Brand blue | `#2772ED` | Primary buttons, links, active states, the logo tile |
+| Brand blue | `#2772ED` | The logo tile, gradients, tints (`/10`, `/5`) and decorative fills only |
+| Brand blue, text and buttons | `#1f5ec2` | Text, links, icons, eyebrows and button backgrounds under white text, with `dark:text-[#7aa7ff]` for text and icons in dark mode. Hover on buttons: `#1a4fa3` |
 
-Brand blue is the **only** color for main action buttons, such as "Add to Chrome". Don't make buttons
+`#2772ED` is 4.5:1 on white (just under WCAG AA for text, and the same for white text on it), so it is never used for
+text or as a button background. `#1f5ec2` is 6.1:1 on white; `#7aa7ff` is 8.5:1 on slate-950. The audit on
+2026-10-21 (docs/SITE_REVIEW_2026-10-21.md, A1) made this split.
+
+Brand blue (`#1f5ec2`) is the **only** color for main action buttons, such as "Add to Chrome". Don't make buttons
 in the accent color.
 
 ### Mint accent

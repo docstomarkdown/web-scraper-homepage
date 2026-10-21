@@ -18,10 +18,10 @@ const components = {
     a: (p: React.ComponentProps<"a">) => <a className="text-[#1f5ec2] dark:text-[#7aa7ff] underline underline-offset-2" {...p} />,
     strong: (p: React.ComponentProps<"strong">) => <strong className="font-semibold text-slate-900 dark:text-white" {...p} />,
     code: (p: React.ComponentProps<"code">) => <code className="rounded bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 text-[0.92em] text-slate-800 dark:text-slate-200" {...p} />,
-    pre: (p: React.ComponentProps<"pre">) => <pre className="my-6 overflow-x-auto rounded-xl bg-slate-900 dark:bg-slate-800 p-4 text-sm text-slate-100 [&>code]:bg-transparent [&>code]:p-0 [&>code]:text-inherit" {...p} />,
-    blockquote: (p: React.ComponentProps<"blockquote">) => <blockquote className="my-8 border-l-2 border-[#2772ED] pl-5 text-lg text-slate-700 dark:text-slate-200 italic" {...p} />,
+    pre: (p: React.ComponentProps<"pre">) => <pre tabIndex={0} className="my-6 overflow-x-auto rounded-xl bg-slate-900 dark:bg-slate-800 p-4 text-sm text-slate-100 [&>code]:bg-transparent [&>code]:p-0 [&>code]:text-inherit" {...p} />,
+    blockquote: (p: React.ComponentProps<"blockquote">) => <blockquote className="my-8 border-l-2 border-[#1f5ec2] pl-5 text-lg text-slate-700 dark:text-slate-200 italic" {...p} />,
     table: (p: React.ComponentProps<"table">) => (
-        <div className="my-6 overflow-x-auto">
+        <div className="my-6 overflow-x-auto" tabIndex={0} role="region" aria-label="Table, scrolls sideways">
             <table className="w-full text-base leading-[1.5] text-left border-collapse" {...p} />
         </div>
     ),

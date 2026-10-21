@@ -101,7 +101,7 @@ export default function ShopifyStores() {
                                     <li key={c.name} className="flex items-center justify-between rounded-lg border border-slate-200 dark:border-slate-700 px-3 py-2 text-sm">
                                         <span className="flex items-center gap-2 text-slate-700 dark:text-slate-200">
                                             <span
-                                                className={`flex w-4 h-4 items-center justify-center rounded ${c.on ? "bg-[#2772ED] text-white" : "border border-slate-300 dark:border-slate-600"}`}
+                                                className={`flex w-4 h-4 items-center justify-center rounded ${c.on ? "bg-[#1f5ec2] text-white" : "border border-slate-300 dark:border-slate-600"}`}
                                             >
                                                 {c.on && <Check className="w-3 h-3" />}
                                             </span>
@@ -114,7 +114,7 @@ export default function ShopifyStores() {
 
                             <div className="mt-4 flex items-center justify-between text-sm text-slate-700 dark:text-slate-200">
                                 Include variants
-                                <span className="relative w-9 h-5 rounded-full bg-[#2772ED]">
+                                <span className="relative w-9 h-5 rounded-full bg-[#1f5ec2]">
                                     <span className="absolute right-0.5 top-0.5 w-4 h-4 rounded-full bg-white" />
                                 </span>
                             </div>
@@ -124,7 +124,7 @@ export default function ShopifyStores() {
                                 <ChevronDown className="w-4 h-4 text-slate-400" />
                             </div>
 
-                            <span className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-[#2772ED] px-4 py-2.5 text-sm font-semibold text-white">
+                            <span className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-[#1f5ec2] px-4 py-2.5 text-sm font-semibold text-white">
                                 <Download className="w-4 h-4" />
                                 Export catalog
                             </span>

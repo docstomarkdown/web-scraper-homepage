@@ -121,7 +121,22 @@ Each finding: where, who feels it, what, the fix, and the phase it belongs to.
 
 ---
 
-## 5. Rerunning the audit
+## 5. Phase 1 log
+
+**2026-10-21, done.** Owner decision the same day: the extension is free and nothing is priced (S1, C4 resolved by
+copy, not by a pricing page). Shipped: C1 Terms rewritten to the real product; A1 `#1f5ec2` for text, icons and
+button backgrounds with `#2772ED` kept for the tile, gradients and tints; A2 `Reveal as="li"` in the three
+templates; A4 skip link plus `<main id="main">` on every page, including the calculators and legal pages; A5
+underlined in-text links; A6 focusable scrolling tables; all plan FAQs now answer "Is this free?"; the legal
+template got dark-mode ink, labelled navs and one landmark; the author box is a section (A7). A root cause the
+audit had counted as hundreds of dark-mode contrast failures turned out to be three CSS tokens (`--text-body`,
+`--text-strong`, `--text-muted`) defined for light only; they now have dark values.
+
+Re-audit of support, terms, maps-leads, lead-generation and the Amazon page: 0 violations, light and dark.
+Still open from phase 1: wave-1 publishing (C6, S6, S8) waits on the captures; C3 "Just" in the hero waits on the
+owner. The homepage and `/ai-chat` keep small-text contrast failures inside the demo mock-ups (A9, phase 2).
+
+## 6. Rerunning the audit
 
 ```bash
 node scripts/audit-pages.mjs /tmp/audit.json

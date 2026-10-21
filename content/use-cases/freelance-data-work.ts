@@ -4,8 +4,8 @@ import { getPage } from "@/config/pages";
 // Persona: Rina, freelancer or virtual assistant (docs/personas.md), written so a first-time reader can follow. Facts checked
 // against release 1.3.0 on 2026-10-21: list detection on any site and Choose an item on the page (components/scraper/
 // ListTab.tsx), ready-made packs (configs-prod/), results page rename/reorder/delete/filter and exports
-// (entrypoints/dataviewer/), Bulk scrape and Collect contacts (entrypoints/bulk/), History. No pricing claims beyond
-// "one plan". Draft until the screenshots exist.
+// (entrypoints/dataviewer/), Bulk scrape and Collect contacts (entrypoints/bulk/), History. No pricing claims:
+// the extension is free (owner decision, 2026-10-21). Draft until the screenshots exist.
 
 export const freelanceDataWork: UseCasePageContent = {
     page: getPage("freelance-data-work", "use-case"),
@@ -90,6 +90,6 @@ export const freelanceDataWork: UseCasePageContent = {
         { q: "Can I deliver in the client's column names and order?", a: "Yes. Rename, reorder and remove columns on the results page before you save, or tell the chat the columns you want. The file matches what's shown." },
         { q: "How do I avoid duplicates?", a: "Rows that repeat across pages or carousels are kept once on their own. For lists you combine from several runs, use your spreadsheet's remove-duplicates on the website or phone column." },
         { q: "How much data can I collect in a day?", a: "There's no credit or per-row limit. A Maps search returns up to 200 businesses per run, a list runs as many pages as you set, and bulk runs cover lists of URLs. Big sites slow down anyone who loads hundreds of pages fast, so split big jobs into runs." },
-        { q: "Is there a per-row price?", a: "No. There's one plan, Pro, with every feature included, and no credits." },
+        { q: "Is there a per-row price?", a: "No. Web Scraper Pro is free to use today, with every feature included and no credits to count." },
     ],
 };

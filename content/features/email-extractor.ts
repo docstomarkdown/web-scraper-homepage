@@ -138,8 +138,8 @@ export const emailExtractor: FeaturePageContent = {
             a: "No. It collects the addresses the site shows. Use your email tool's verification before a campaign.",
         },
         {
-            q: "Is this included in the plan?",
-            a: "Yes. One plan, Pro, includes contact details on single sites, bulk runs and every export format.",
+            q: "Is this free?",
+            a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create. That includes contact details on single sites, bulk runs and every export format.",
         },
         {
             q: "Can it get emails from a Maps search?",

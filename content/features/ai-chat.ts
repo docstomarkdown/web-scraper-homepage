@@ -119,8 +119,8 @@ export const aiChat: FeaturePageContent = {
             a: "CSV, Excel (.xlsx) and JSON. For Google Sheets, export from History or the Data Viewer.",
         },
         {
-            q: "Is chat part of the plan?",
-            a: "Yes. There's one plan, Pro, and it includes every feature.",
+            q: "Is chat free?",
+            a: "Yes. Chat is free to use today, like every other feature, with a fair-use limit so it stays available to everyone. There's no account to create.",
         },
         {
             q: "Is this an AI web scraper?",

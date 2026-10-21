@@ -14,7 +14,7 @@ export default function GuidesPage() {
     const guides = showPlannedPages ? getAllGuides() : getGuides();
     const features = Array.from(new Set(guides.map((g) => g.feature)));
     return (
-        <main className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
+        <main id="main" className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
             <div className="max-w-6xl mx-auto px-6 md:px-12">
                 <SectionHeading as="h1" eyebrow="Guides" title="How to collect the data you need" intro="One task per guide, with every step tested on the released extension and the version it was tested on." />
                 {guides.length === 0 ? (

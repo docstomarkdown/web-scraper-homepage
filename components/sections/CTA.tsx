@@ -19,7 +19,7 @@ export function CTA({ withSectionWrapper = true }: { withSectionWrapper?: boolea
                     <Link
                         href={installUrl}
                         target="_blank"
-                        className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#2772ED] hover:bg-[#1f5ec2] px-6 py-3.5 text-base font-semibold text-white transition-colors"
+                        className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#1f5ec2] hover:bg-[#1a4fa3] px-6 py-3.5 text-base font-semibold text-white transition-colors"
                     >
                         <Chrome className="w-5 h-5" aria-hidden="true" />
                         Add to Chrome

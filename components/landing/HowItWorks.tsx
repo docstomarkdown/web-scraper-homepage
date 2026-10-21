@@ -39,7 +39,7 @@ export default function HowItWorks() {
                         {STEPS.map((s, i) => (
                             <li key={s.title} className="relative text-center px-2">
                                 <Reveal delay={i * 0.08}>
-                                    <span className="relative z-10 mx-auto flex w-12 h-12 items-center justify-center rounded-2xl bg-[#2772ED] text-white shadow-lg shadow-[#2772ED]/25">
+                                    <span className="relative z-10 mx-auto flex w-12 h-12 items-center justify-center rounded-2xl bg-[#1f5ec2] text-white shadow-lg shadow-[#1f5ec2]/25">
                                         <s.icon className="w-5 h-5" aria-hidden="true" />
                                     </span>
                                     <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">Step {i + 1}</p>

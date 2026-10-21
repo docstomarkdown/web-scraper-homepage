@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function ChangelogPage() {
     const base = siteConfig.url.replace(/\/$/, "");
     return (
-        <main className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
+        <main id="main" className="flex-1 bg-white dark:bg-slate-950 pt-32 pb-20">
             <JsonLd data={breadcrumbJsonLd([{ name: "Home", href: "/" }, { name: "What's new", href: "/changelog" }], base)} />
             <div className="max-w-3xl mx-auto px-6 md:px-12">
                 <SectionHeading as="h1" eyebrow="What's new" title="Every release, in plain words" intro="What changed in each version of the Chrome extension, newest first. Cloud runs, MCP and the API are described on their own pages until they ship." align="left" />
@@ -33,7 +33,7 @@ export default function ChangelogPage() {
                             <ul className="mt-6 space-y-3">
                                 {r.changes.map((c) => (
                                     <li key={c.text} className="flex gap-3 text-base text-slate-700 dark:text-slate-200 leading-relaxed">
-                                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#2772ED]" aria-hidden="true" />
+                                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#1f5ec2]" aria-hidden="true" />
                                         <span>
                                             {c.text}
                                             {c.href && (

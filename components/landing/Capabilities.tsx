@@ -53,7 +53,7 @@ export default function Capabilities() {
                     {ITEMS.map((item, i) => (
                         <Reveal key={item.title} delay={i * 0.05}>
                             <div className="flex gap-4">
-                                <span className="shrink-0 flex w-10 h-10 items-center justify-center rounded-xl bg-[#2772ED]/10 text-[#2772ED] dark:text-[#7aa7ff]" aria-hidden="true">
+                                <span className="shrink-0 flex w-10 h-10 items-center justify-center rounded-xl bg-[#2772ED]/10 text-[#1f5ec2] dark:text-[#7aa7ff]" aria-hidden="true">
                                     <item.icon className="w-5 h-5" />
                                 </span>
                                 <div>
