@@ -110,7 +110,7 @@ export default function Collect() {
                                     {t.fields.map((f) => (
                                         <li
                                             key={f}
-                                            className="rounded-md border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 px-2 py-0.5 text-xs text-slate-600 dark:text-slate-300"
+                                            className="rounded-md border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 px-2 py-0.5 text-sm text-slate-700 dark:text-slate-200"
                                         >
                                             {f}
                                         </li>
