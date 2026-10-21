@@ -24,6 +24,7 @@ export const mapsLeads: FeaturePageContent = {
     intro:
         "Search Maps for a type of business in a place, click once, and get every result as a row with its phone number, website, address, opening hours and rating. Export it to Google Sheets, Excel or CSV.",
     lastUpdated: "2026-10-20",
+    hero: "ext/results-maps-with-contacts",
     sample: {
         caption: "A search for plumbers, as it looks after export. Names, numbers and links are made up.",
         columns: ["Business Name", "Rating", "Review Count", "Address", "Operating Hours", "Phone", "Website", "Map URL"],
@@ -62,6 +63,7 @@ export const mapsLeads: FeaturePageContent = {
             },
             {
                 title: "Export your list",
+                screenshot: "ext/results-export-menu",
                 body: "Your list is saved in History. Open it in the Data Viewer to hide columns or remove rows, then export to Google Sheets, Excel, CSV or JSON.",
             },
         ],
@@ -69,6 +71,7 @@ export const mapsLeads: FeaturePageContent = {
     sections: [
         {
             id: "add-emails",
+            screenshot: "ext/results-add-contacts",
             eyebrow: "Emails in the same run",
             heading: "Emails and social links from each business's website",
             paragraphs: [

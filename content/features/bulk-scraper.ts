@@ -22,6 +22,7 @@ export const bulkScraper: FeaturePageContent = {
     intro:
         "Give it the addresses, say what to collect from each, and let it work through them one by one in your browser. You get one table per site and a combined one.",
     lastUpdated: "2026-10-20",
+    hero: "ext/bulk-overview",
     sample: {
         caption: "The combined table after a run over three category pages. Products and prices are made up.",
         columns: ["Source URL", "Product Name", "Price", "Rating", "Product URL"],
@@ -49,6 +50,7 @@ export const bulkScraper: FeaturePageContent = {
         items: [
             {
                 title: "Add the addresses",
+                screenshot: "ext/bulk-upload",
                 body: "Open the Bulk menu at the top of the side panel and choose Bulk scrape, Collect contacts or Collect page text. Upload a CSV or TXT file with one address per line, paste them in, or reuse a column from a table you collected earlier.",
             },
             {
@@ -57,10 +59,12 @@ export const bulkScraper: FeaturePageContent = {
             },
             {
                 title: "Set up each site",
+                screenshot: "ext/bulk-contacts-config",
                 body: "For a list site, confirm the list or pick an area on the page, and choose Next page, Load more or Auto scroll if the pages go on. For contacts, choose emails, phones and social links. For text, choose clean text, page details or both.",
             },
             {
                 title: "Start collecting",
+                screenshot: "ext/bulk-run",
                 body: "Sites run one after another in an embedded browser frame, so you can watch progress and stop at any time; what's collected is kept. When it finishes, the Collection overview shows every site's table and merges them into one.",
             },
         ],

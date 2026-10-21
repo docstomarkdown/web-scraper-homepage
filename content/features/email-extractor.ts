@@ -24,6 +24,7 @@ export const emailExtractor: FeaturePageContent = {
     intro:
         "Open a company's website and collect its emails, phone numbers and social links in one click. Give it a list of websites and it does the same for each, one row per site.",
     lastUpdated: "2026-10-20",
+    hero: "ext/results-contacts-one-site",
     sample: {
         caption: "Three websites after a bulk run. Every address and number is made up.",
         columns: ["Website", "Email count", "Emails", "Phones", "LinkedIn", "Instagram"],
@@ -53,6 +54,7 @@ export const emailExtractor: FeaturePageContent = {
             },
             {
                 title: "Click Collect contacts",
+                screenshot: "ext/properties-collect-contacts",
                 body: "On the Properties tab, click Collect contacts. Or in the Chat tab, type \"find contact emails on this site\". The deep scan also reads one linked Contact or About page, where emails are usually listed.",
             },
             {
@@ -64,6 +66,7 @@ export const emailExtractor: FeaturePageContent = {
     sections: [
         {
             id: "many-sites",
+            screenshot: "ext/bulk-contacts-config",
             eyebrow: "A list of websites",
             heading: "Hundreds of sites in one run",
             paragraphs: [
@@ -73,6 +76,7 @@ export const emailExtractor: FeaturePageContent = {
         },
         {
             id: "add-to-a-list",
+            screenshot: "ext/results-add-contacts",
             eyebrow: "Add to a list you have",
             heading: "Contact details on the rows of any table",
             paragraphs: [

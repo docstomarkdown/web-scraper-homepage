@@ -9,6 +9,8 @@ import { JsonLd, faqJsonLd } from "@/components/seo/JsonLd";
 import { ogImageUrl } from "@/lib/og";
 import type { Metadata } from "next";
 import { relatedPages, type SitePage } from "@/config/pages";
+import { Screenshot } from "@/components/Screenshot";
+import { getCapture } from "@/lib/visuals";
 
 /** Content for one product feature page. Copy rules: docs/content-standards.md and docs/writing-style.md. */
 export interface FeaturePageContent {
@@ -19,13 +21,16 @@ export interface FeaturePageContent {
     intro: string;
     /** ISO date the page's claims were last checked against the released extension. */
     lastUpdated: string;
+    /** Capture id (visuals library) shown beside the headline once it exists; until then the sample table shows. */
+    hero?: string;
     /** `label` defaults to "Sample data." */
     sample?: { label?: string; caption: string; columns: string[]; rows: string[][] };
     /** `eyebrow` defaults to "What you get". */
     fields: { eyebrow?: string; heading: string; intro?: string; items: { name: string; description: string; /** A prompt or input that shows the item in use; renders items as cards. */ example?: string }[] };
-    steps: { heading: string; intro?: string; items: { title: string; body: string }[] };
+    /** Each step can name a capture id; it renders under the step once captured (placeholder in local dev). */
+    steps: { heading: string; intro?: string; items: { title: string; body: string; screenshot?: string }[] };
     /** Extra sections that are specific to this feature (e.g. "Add emails to your list"). */
-    sections?: { id: string; eyebrow: string; heading: string; paragraphs: string[]; points?: string[] }[];
+    sections?: { id: string; eyebrow: string; heading: string; paragraphs: string[]; points?: string[]; screenshot?: string }[];
     limits: { heading: string; items: string[] };
     useCases: { heading: string; items: { title: string; body: string }[] };
     faqs: { q: string; a: string }[];
@@ -58,13 +63,14 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
     const related = relatedPages(c.related);
     const comingSoon = Boolean(c.page.comingSoon || c.page.status === "soon");
     const installUrl = `${productConfig.product.ctaUrl}?utm_source=website&utm_medium=${c.page.slug}&utm_campaign=chrome_install`;
+    const heroVisual = visual ?? (c.hero && getCapture(c.hero) ? <Screenshot id={c.hero} className="my-0" /> : undefined);
 
     return (
         <main className="flex-1 bg-white dark:bg-slate-950">
             {c.faqs.length > 0 && <JsonLd data={faqJsonLd(c.faqs)} />}
             {/* Hero */}
             <section className="pt-32 pb-16 md:pt-36 md:pb-20">
-                <div className={visual ? "max-w-7xl mx-auto px-6 md:px-12 grid lg:grid-cols-[5fr_7fr] gap-12 items-center" : container}>
+                <div className={heroVisual ? "max-w-7xl mx-auto px-6 md:px-12 grid lg:grid-cols-[5fr_7fr] gap-12 items-center" : container}>
                     <Reveal className="max-w-3xl">
                         <p className="text-sm font-semibold text-[#2772ED] dark:text-[#7aa7ff]">
                             {c.eyebrow}
@@ -99,9 +105,9 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                         </p>
                     </Reveal>
 
-                    {visual && <Reveal delay={0.1}>{visual}</Reveal>}
+                    {heroVisual && <Reveal delay={0.1}>{heroVisual}</Reveal>}
 
-                    {!visual && c.sample && (
+                    {!heroVisual && c.sample && (
                         <Reveal className="mt-14">
                             <SampleTable sample={c.sample} />
                         </Reveal>
@@ -161,6 +167,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                                     </span>
                                     <h3 className="mt-4 text-lg font-semibold text-slate-900 dark:text-white">{s.title}</h3>
                                     <p className="mt-2 text-[15px] text-slate-600 dark:text-slate-300 leading-relaxed">{s.body}</p>
+                                    {s.screenshot && <Screenshot id={s.screenshot} className="my-5" />}
                                 </li>
                             </Reveal>
                         ))}
@@ -198,6 +205,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                                 )}
                             </div>
                         </Reveal>
+                    {s.screenshot && <Screenshot id={s.screenshot} />}
                     </div>
                 </section>
             ))}

@@ -62,7 +62,7 @@ const GROUPS = [
             },
             {
                 q: "Can I import the export into my own Shopify store?",
-                a: "Yes. Choose Shopify import CSV when you export, and the file uses Shopify's product import layout. Try it on a test store first, and review the products before importing into a live store.",
+                a: "Yes. On the store card in the side panel, click Download Shopify import CSV; the file uses Shopify's product import layout. Try it on a test store first, and review the products before importing into a live store.",
             },
         ],
     },

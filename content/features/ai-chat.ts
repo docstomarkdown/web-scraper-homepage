@@ -44,9 +44,12 @@ export const aiChat: FeaturePageContent = {
     steps: {
         heading: "Three steps, no commands",
         items: [
-            { title: "Type your request", body: "Open the side panel and type, or tap a suggested prompt for the page you're on." },
-            { title: "Watch it collect", body: "Chat runs the job in your browser and shows how many rows it found." },
-            { title: "Ask for the file", body: "Say the format and columns you want. Every result is also saved in History." },
+            { title: "Type your request",
+                screenshot: "ext/panel-chat-empty", body: "Open the side panel and type, or tap a suggested prompt for the page you're on." },
+            { title: "Watch it collect",
+                screenshot: "ext/chat-maps-progress", body: "Chat runs the job in your browser and shows how many rows it found." },
+            { title: "Ask for the file",
+                screenshot: "ext/chat-maps-result-card", body: "Say the format and columns you want. Every result is also saved in History." },
         ],
     },
     sections: [

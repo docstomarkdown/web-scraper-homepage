@@ -23,6 +23,7 @@ export const exportToGoogleSheets: FeaturePageContent = {
     intro:
         "Every collection opens on a results page where you can rename columns, drop the ones you don't need, filter rows and fix a cell, then export to Excel, CSV, JSON or Google Sheets.",
     lastUpdated: "2026-10-20",
+    hero: "ext/results-export-menu",
     fields: {
         eyebrow: "What you can do",
         heading: "A spreadsheet's basics, before the spreadsheet",
@@ -45,6 +46,7 @@ export const exportToGoogleSheets: FeaturePageContent = {
             },
             {
                 title: "Tidy it",
+                screenshot: "ext/results-rename-column",
                 body: "Rename or remove columns, sort, filter and fix what needs fixing. Or tell the Chat tab what you want: \"only name and phone, sorted by rating\".",
             },
             {
@@ -64,6 +66,7 @@ export const exportToGoogleSheets: FeaturePageContent = {
         },
         {
             id: "ask",
+            screenshot: "ext/results-arranged",
             eyebrow: "Or ask instead",
             heading: "Tidy by typing",
             paragraphs: [

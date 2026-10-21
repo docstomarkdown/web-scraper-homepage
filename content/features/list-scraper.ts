@@ -22,6 +22,7 @@ export const listScraper: FeaturePageContent = {
     intro:
         "Open a page with a list, click Collect, and every item becomes a row with named columns. It follows the next pages too, so you get the whole list, not the first screen.",
     lastUpdated: "2026-10-20",
+    hero: "ext/list-tab-detected",
     sample: {
         caption: "A store's category page, as it looks after export. Products and prices are made up.",
         columns: ["Product Name", "Price", "Rating", "Review Count", "Availability", "Product URL"],
@@ -55,6 +56,7 @@ export const listScraper: FeaturePageContent = {
             },
             {
                 title: "Pick the list and click Collect",
+                screenshot: "ext/list-tab-more-pages",
                 body: "Choose the list you want and click Collect N items. If the page has more pages, choose Collect more pages first and pick how it moves on: Next page, Load more or Auto scroll, and how many pages to go through.",
             },
             {
@@ -66,6 +68,7 @@ export const listScraper: FeaturePageContent = {
     sections: [
         {
             id: "pick-it-yourself",
+            screenshot: "ext/list-tab-pick-item",
             eyebrow: "When the wrong list is found",
             heading: "Point at one item, and it finds the rest",
             paragraphs: [
