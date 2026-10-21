@@ -77,7 +77,7 @@ export const leadGeneration: UseCasePageContent = {
         items: [
             "Find an email for every business. It finds the emails businesses publish on their own websites. Many small businesses don't publish one, and those rows show the phone and website only.",
             "Check that an email address still works. Run your list through an email checking tool before you send a campaign.",
-            "Collect from LinkedIn, Facebook or any site you have to log in to see.",
+            "Collect from LinkedIn, Facebook or any site you have to sign in to see.",
             "Collect people's personal details. It collects businesses and the contact details they publish.",
         ],
     },

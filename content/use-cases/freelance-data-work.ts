@@ -86,7 +86,7 @@ export const freelanceDataWork: UseCasePageContent = {
     },
     guides: ["scrape-data-from-any-website-to-excel", "get-emails-from-a-list-of-websites", "collect-every-page-of-results", "get-local-business-leads-from-maps"],
     faqs: [
-        { q: "Does it work on a site that isn't in your list?", a: "Yes. On any site with a list, the List tab finds it and names the columns from the page's own labels; Choose an item on the page handles the rest. Ready-made sites simply come with better names." },
+        { q: "Does it work on a site that isn't in your list?", a: "Yes. On any site with a list, the List tab finds it and names the columns from the page's own labels; Choose an item on the page handles the rest. Ready-made sites come with better names." },
         { q: "Can I deliver in the client's column names and order?", a: "Yes. Rename, reorder and remove columns on the results page before you save, or tell the chat the columns you want. The file matches what's shown." },
         { q: "How do I avoid duplicates?", a: "Rows that repeat across pages or carousels are kept once on their own. For lists you combine from several runs, use your spreadsheet's remove-duplicates on the website or phone column." },
         { q: "How much data can I collect in a day?", a: "There's no credit or per-row limit. A Maps search returns up to 200 businesses per run, a list runs as many pages as you set, and bulk runs cover lists of URLs. Big sites slow down anyone who loads hundreds of pages fast, so split big jobs into runs." },

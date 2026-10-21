@@ -20,7 +20,7 @@ export const shopify: UseCasePageContent = {
     job: {
         heading: "The whole catalog, not the visible page",
         paragraphs: [
-            "An agency rebuilding or moving a client's store often has no admin export to work from. A dropshipper researching a niche wants a supplier's or competitor's full range with prices and variants, not screenshots of a category page.",
+            "An agency rebuilding or moving a client's store often has no admin export to work from. A dropshipper researching a product category wants a supplier's or competitor's full range with prices and variants, not screenshots of a category page.",
             "Web Scraper Pro reads the store's own product data, the same data the storefront is built from. You get every product and every variant with the same columns on every Shopify store, a Shopify import CSV, and the image files. It runs in your Chrome browser, one store at a time.",
             "A thousand products take a minute or two. There is nothing to set up.",
         ],
