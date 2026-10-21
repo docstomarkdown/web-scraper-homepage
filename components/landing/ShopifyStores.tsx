@@ -62,7 +62,7 @@ export default function ShopifyStores() {
                         {POINTS.map((p, i) => (
                             <li key={p.title}>
                                 <Reveal delay={i * 0.05} className="flex gap-4">
-                                    <span className="shrink-0 flex w-10 h-10 items-center justify-center rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400" aria-hidden="true">
+                                    <span className="shrink-0 flex w-10 h-10 items-center justify-center rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300" aria-hidden="true">
                                         <p.icon className="w-5 h-5" />
                                     </span>
                                     <div>
@@ -87,15 +87,15 @@ export default function ShopifyStores() {
                         <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xl shadow-slate-200/60 dark:shadow-black/30 p-5" aria-hidden="true">
                             <div className="flex items-center gap-2">
                                 <span className="flex w-8 h-8 items-center justify-center rounded-lg bg-emerald-50 dark:bg-emerald-950/40">
-                                    <Store className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                                    <Store className="w-4 h-4 text-emerald-700 dark:text-emerald-300" />
                                 </span>
                                 <div className="min-w-0">
                                     <p className="text-sm font-semibold text-slate-900 dark:text-white">Shopify store detected</p>
-                                    <p className="text-xs text-slate-600 dark:text-slate-300">Trail Gear Co. · 1,248 products · 12 collections</p>
+                                    <p className="text-sm text-slate-600 dark:text-slate-300">Trail Gear Co. · 1,248 products · 12 collections</p>
                                 </div>
                             </div>
 
-                            <p className="mt-5 text-xs font-medium text-slate-700 dark:text-slate-200">Collections</p>
+                            <p className="mt-5 text-sm font-medium text-slate-700 dark:text-slate-200">Collections</p>
                             <ul className="mt-2 space-y-1.5">
                                 {COLLECTIONS.map((c) => (
                                     <li key={c.name} className="flex items-center justify-between rounded-lg border border-slate-200 dark:border-slate-700 px-3 py-2 text-sm">
@@ -107,7 +107,7 @@ export default function ShopifyStores() {
                                             </span>
                                             {c.name}
                                         </span>
-                                        <span className="text-xs text-slate-400 dark:text-slate-500">{c.count}</span>
+                                        <span className="text-sm text-slate-600 dark:text-slate-300">{c.count}</span>
                                     </li>
                                 ))}
                             </ul>
@@ -128,7 +128,7 @@ export default function ShopifyStores() {
                                 <Download className="w-4 h-4" />
                                 Export catalog
                             </span>
-                            <p className="mt-3 text-xs text-slate-400 dark:text-slate-500">Sample data</p>
+                            <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">Sample data</p>
                         </div>
                     </Reveal>
                 </div>

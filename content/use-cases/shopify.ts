@@ -6,28 +6,30 @@ import { getPage } from "@/config/pages";
 // or one collection, one row per product or per variant, Download Shopify import CSV in the 48-column layout, image ZIPs
 // of up to 5,000 files, named by handle on request; password-protected stores unsupported). Never imply an import file
 // that needs no review, or that password-protected stores work. Draft until the screenshots exist.
+// Title targets what a reader would type into Google (2026-10-21); /shopify-scraper and the Shopify guide own the
+// "scrape a Shopify store's products" phrases, so this page is about moving a catalog into another store.
 
 export const shopify: UseCasePageContent = {
     page: getPage("shopify", "use-case"),
     meta: {
-        title: "Shopify Agencies and Dropshipping: Move or Research a Whole Catalog",
-        description: "Export any public Shopify store's full catalog, every variant, SKU, price and image, as a spreadsheet or a Shopify import CSV, to rebuild a client's store or research what sells.",
+        title: "How to Copy a Shopify Store's Catalog into Another Store",
+        description: "Export any public Shopify store's full catalog, every variant, SKU, price and image, as a Shopify import CSV and image files, then import it into a client's store. No admin access needed, no code.",
     },
-    h1: "Copy a whole Shopify catalog, with every variant and image",
-    intro: "Open any public Shopify store and get every product and every variant in a spreadsheet, plus a file your own store can import and all the product images. One run per store, a few clicks each, no admin access needed.",
+    h1: "How to copy a Shopify store's catalog into another store",
+    intro: "Open any public Shopify store, get every product and variant as a Shopify import CSV plus all the product images, and import them into your own store. Web Scraper Pro does it in your Chrome browser, one store at a time, with no admin access and no code.",
     status: "draft",
     lastUpdated: "2026-10-21",
     job: {
         heading: "The whole catalog, not the visible page",
         paragraphs: [
-            "An agency rebuilding or moving a client's store often has no admin export to work from. A dropshipper researching a product category wants a supplier's or competitor's full range with prices and variants, not screenshots of a category page.",
-            "Web Scraper Pro reads the store's own product data, the same data the storefront is built from. You get every product and every variant with the same columns on every Shopify store, a Shopify import CSV, and the image files. It runs in your Chrome browser, one store at a time.",
+            "An agency rebuilding or moving a client's store often has no admin export to work from. A dropshipper researching a category wants a supplier's full range with prices and variants, not screenshots of a category page.",
+            "Web Scraper Pro reads the store's own product data, the same data the storefront is built from. You get every product and every variant with the same columns on every Shopify store, a Shopify import CSV, and the image files.",
             "A thousand products take a minute or two. There is nothing to set up.",
         ],
     },
     workflow: {
-        heading: "From storefront to import file",
-        intro: "Five steps. Collecting itself takes under two minutes for most stores.",
+        heading: "How to move a Shopify catalog in five steps",
+        intro: "Collecting itself takes under two minutes for most stores.",
         steps: [
             {
                 title: "Open the store and find the store card",
@@ -55,7 +57,7 @@ export const shopify: UseCasePageContent = {
                 screenshot: "ext/results-shopify-variants",
             },
             {
-                title: "Download the import file and the images",
+                title: "Download the import file and the images, then import",
                 body: "Click Download Shopify import CSV for a file in Shopify's product import layout, and Download images for the product images as ZIP files. In your own store, go to Products → Import. Try a test store first and look at the products before touching a live store.",
                 points: ["The import CSV has Shopify's 48 columns: handle, title, body, vendor, type, tags, each variant's options, SKU, price, inventory fields and image URLs.", "Image ZIPs hold up to 5,000 files each; a bigger catalog is split into parts.", "Export as also gives Excel, CSV, JSON and Google Sheets for analysis."],
                 feature: "shopify-scraper",
@@ -63,7 +65,7 @@ export const shopify: UseCasePageContent = {
         ],
     },
     sample: {
-        caption: "This is what three rows look like with one row per variant.",
+        caption: "Three rows with one row per variant. Products and SKUs are made up.",
         columns: ["Title", "Variant", "SKU", "Price"],
         rows: [
             ["Trail Runner 2", "Black / 9", "TR2-BLK-9", "89.00"],
@@ -83,10 +85,11 @@ export const shopify: UseCasePageContent = {
     },
     guides: ["export-a-shopify-store-catalog", "download-all-images-on-a-page"],
     faqs: [
+        { q: "Is the Shopify export free?", a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create. There's no per-row limit; image ZIPs split above 5,000 files." },
         { q: "Do I need the client's Shopify admin access?", a: "No. The public product data every Shopify store publishes is enough for the catalog, the variants and the images. Inventory counts and cost prices aren't public, so those come from the client." },
+        { q: "How do I import products from one Shopify store to another?", a: "Export the source store with Download Shopify import CSV, then in the destination store go to Products → Import and choose the file. Import into a test store first and check the products before a live store." },
         { q: "How does the import CSV compare with Shopify's own export?", a: "It uses the same product import layout, so Products → Import accepts it. Fields Shopify doesn't publish, such as inventory quantity and cost, are empty and need filling in before or after the import." },
         { q: "Can I collect one collection instead of the whole store?", a: "Yes. Choose the collection on the store card. One collection per run; the whole store is one run too." },
         { q: "How long does a big store take?", a: "A thousand products take a minute or two, because the rows come from the store's product feed rather than from page after page. Turning on barcodes and image descriptions makes it slower." },
-        { q: "How many stores can I export?", a: "As many as you open, one run each. There's no per-row limit; image ZIPs split above 5,000 files." },
     ],
 };

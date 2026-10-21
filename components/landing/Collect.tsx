@@ -20,8 +20,8 @@ const TYPES: {
         title: "Local business leads",
         body: "Search Google Maps or a business directory and get every result as a row, with the emails and social links from each business's own website added in the same run.",
         fields: ["Name", "Category", "Address", "Phone", "Website", "Rating", "Email"],
-        goodFor: "building prospect lists by city and niche, finding local partners, sizing up competitors nearby.",
-        tint: "text-rose-500 bg-rose-50 dark:bg-rose-950/40",
+        goodFor: "building prospect lists by city and business type, finding local partners, sizing up competitors nearby.",
+        tint: "text-rose-700 dark:text-rose-300 bg-rose-50 dark:bg-rose-950/40",
         link: { slug: "maps-leads", text: "Collect local business leads from Google Maps" },
     },
     {
@@ -77,7 +77,7 @@ const MORE: { icon: typeof MapPin; title: string; body: string; slug?: string }[
     { icon: Plane, title: "Hotels and travel", body: "Hotel names, prices, ratings and locations from travel sites." },
     { icon: Car, title: "Cars", body: "Car listings with their prices and details." },
     { icon: Calendar, title: "Events", body: "Event names, dates and places from event listings." },
-    { icon: BookOpen, title: "Research papers", body: "Titles, authors, sources, snippets and full-text links from Scholar search results." },
+    { icon: BookOpen, title: "Research papers", body: "Titles, authors, sources, snippets and full-text links from Google Scholar search results." },
     { icon: Image, title: "Images and links", body: "Every image or link on a page, with its web address.", slug: "image-downloader" },
     { icon: FileText, title: "Page text", body: "A page's readable text, saved as a document or ready to paste into an AI tool.", slug: "page-text" },
 ];
@@ -134,7 +134,7 @@ export default function Collect() {
                     <ul className="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-5">
                         {MORE.map((m) => (
                             <li key={m.title} className="flex gap-3">
-                                <m.icon className="w-4 h-4 mt-0.5 shrink-0 text-slate-400 dark:text-slate-500" aria-hidden="true" />
+                                <m.icon className="w-4 h-4 mt-0.5 shrink-0 text-slate-600 dark:text-slate-300" aria-hidden="true" />
                                 <div>
                                     <h4 className="text-sm font-semibold text-slate-800 dark:text-slate-100">
                                         {m.slug && publishedHref(m.slug) ? (

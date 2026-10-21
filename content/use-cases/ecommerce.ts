@@ -6,21 +6,23 @@ import { getPage } from "@/config/pages";
 // product pages and reviews (lib/pdp/), Shopify store export (lib/shopifyMode/), results page filters and exports
 // (entrypoints/dataviewer/). Scheduled price checks are not live: say "coming with the cloud", never imply alerts.
 // Draft until the workflow screenshots exist.
+// Title targets the search phrases "track competitor prices", "scrape product prices" and "scrape reviews"
+// (youtube-research/SEARCH_QUERIES.md, AUTOSUGGEST.md), 2026-10-21.
 
 export const ecommerce: UseCasePageContent = {
     page: getPage("ecommerce", "use-case"),
     meta: {
-        title: "E-commerce Research: Competitor Prices, Bestsellers and Reviews in a Sheet",
-        description: "Collect a competitor's prices, bestsellers and reviews from Amazon, other marketplaces and independent stores into one spreadsheet, and export a Shopify store's whole catalog.",
+        title: "How to Track Competitor Prices and Bestsellers from Online Stores",
+        description: "Scrape a competitor's prices, bestsellers and reviews from Amazon, other marketplaces and independent stores into one spreadsheet, and export a Shopify store's whole catalog. Free Chrome extension."
     },
-    h1: "See what competitors charge, what sells, and what buyers complain about",
-    intro: "Open a store's category page, click once, and get every product with its price, rating and review count in a spreadsheet. Open a product and get its reviews too. Compare it all in Excel or Google Sheets.",
+    h1: "How to track competitor prices, bestsellers and reviews from online stores",
+    intro: "Open a store's category page and click once in Web Scraper Pro, a free Chrome extension, to get every product with its price, rating and review count in a spreadsheet. Open a product and get its reviews too. Compare it all in Excel or Google Sheets.",
     status: "draft",
     lastUpdated: "2026-10-21",
     job: {
         heading: "The price check you'd otherwise do tab by tab",
         paragraphs: [
-            "A competitor undercuts you. A sale season is coming. You want to know what sells before you stock it. The answers are on Amazon, on the other marketplaces and on independent stores, spread over hundreds of product pages.",
+            "A competitor undercuts you, a sale season is coming, or you want to know what sells before you stock it. The answers are on Amazon, on the other marketplaces and on independent stores, spread over hundreds of product pages.",
             "Web Scraper Pro collects each of those pages into the same kind of table, inside your Chrome browser. Big marketplaces come with ready-made columns. Independent stores are read from the page. You get one sheet you can sort by price, rating or review count.",
             "There's nothing to set up. You open the page, click Collect, and watch the rows appear.",
         ],
@@ -31,7 +33,7 @@ export const ecommerce: UseCasePageContent = {
         steps: [
             {
                 title: "Collect a competitor's category",
-                body: "Open the search or category page on Amazon, Walmart, Etsy or a store of your own kind. Click the Web Scraper Pro icon in Chrome; a panel opens on the right. In the List tab, the products show as a list with a count. Click it.",
+                body: "Open the search or category page on Amazon, Walmart, Etsy or a store of your own kind, then click the Web Scraper Pro icon in Chrome. A panel opens on the right. In the List tab, the products show as a list with a count; click it.",
                 points: ["Choose Collect more pages and set how many pages. Amazon shows up to 20 per search.", "Click Collect from 5 pages (or the number you set). The tab counts the products as they arrive.", "You get one row per product: Product Name, Price, Original Price, Rating, Review Count and the link, as numbers you can sort."],
                 feature: "list-scraper",
                 screenshot: "ext/results-amazon",
@@ -85,6 +87,7 @@ export const ecommerce: UseCasePageContent = {
     },
     guides: ["collect-amazon-search-results", "collect-store-listings-to-excel", "export-a-shopify-store-catalog", "scrape-data-from-any-website-to-excel"],
     faqs: [
+        { q: "Is this free?", a: "Yes. Web Scraper Pro is free to install and use today, with every feature included and no account to create." },
         { q: "Does it work on small independent stores, not only Amazon?", a: "Yes. On a store without a ready-made setup, the product list is found on the page and the columns are named from the page's own labels. Shopify stores get the full catalog from their product data." },
         { q: "How many products can I collect from one search?", a: "As many as the store shows. Amazon lists up to 20 pages per search, Walmart 25, Etsy 250. For more, search narrower categories and combine them." },
         { q: "Can I track a competitor's prices over time?", a: "By running the same collection again. Each run is saved in History with its date, so two exports side by side show what changed. Scheduled runs are coming with the cloud." },

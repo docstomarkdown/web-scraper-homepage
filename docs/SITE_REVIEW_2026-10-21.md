@@ -148,8 +148,9 @@ each needs the same search-first title and shorter copy before it counts as done
 search-first titles from the autosuggest and search-volume data, "Google Maps" became the wording site-wide (owner
 decision), guide titles dropped "with Web Scraper Pro", the site-page template moved to the reading-column shape, and
 the copy on all of them was cut to short paragraphs. Audits of every feature and site page and a sample of guides:
-0 violations light and dark. Left for the owner's read: homepage, use cases (titles not yet search-first), posts,
-and the guide template's small sidebar text (11 nodes under 16px per guide).
+0 violations light and dark. The seven use cases then got search-first titles and the homepage a copy pass (title tag targets "web scraper
+chrome extension", hero says "free" and "in plain words", demo mock-ups at 14px with readable ink): 0 violations on
+the homepage, light and dark. Left for the owner's read: posts, and the guide and hub templates' small secondary text.
 
 ## 6. Rerunning the audit
 

@@ -6,15 +6,17 @@ import { getPage } from "@/config/pages";
 // ListTab.tsx), ready-made packs (configs-prod/), results page rename/reorder/delete/filter and exports
 // (entrypoints/dataviewer/), Bulk scrape and Collect contacts (entrypoints/bulk/), History. No pricing claims:
 // the extension is free (owner decision, 2026-10-21). Draft until the screenshots exist.
+// Title targets how a freelancer or client phrases the job ("data entry from a website to Excel", "web research list");
+// no direct search-volume data for this page, 2026-10-21.
 
 export const freelanceDataWork: UseCasePageContent = {
     page: getPage("freelance-data-work", "use-case"),
     meta: {
-        title: "Freelance Data Work: Client-Ready Lists from Any Website",
-        description: "Deliver lead lists, product lists and directory exports from whatever site the client names, with clean column names and no duplicates, in Excel or Google Sheets, and run it again next order.",
+        title: "How to Deliver a Clean Data List from Any Website for a Client",
+        description: "Deliver lead lists, product lists and directory exports from whatever site the client names, with clean column names and no duplicates, in Excel or Google Sheets. Free Chrome extension, no code."
     },
-    h1: "Deliver a clean list from whatever website the client names",
-    intro: "A new order means a new website, a deadline and the client's own format. Open the site, click Collect, name the columns the way the client wants, and send an Excel or Google Sheets file the same day.",
+    h1: "How to deliver a clean data list from any website for a client",
+    intro: "A new order means a new website, a deadline and the client's own format. With Web Scraper Pro, a free Chrome extension, you open the site, click Collect, name the columns the way the client wants, and send an Excel or Google Sheets file the same day.",
     status: "draft",
     lastUpdated: "2026-10-21",
     job: {
@@ -38,7 +40,7 @@ export const freelanceDataWork: UseCasePageContent = {
             },
             {
                 title: "Collect every page",
-                body: "Choose Collect more pages, set Stop after (5 pages by default, or All pages), and click Collect from N pages. The extension clicks Next, waits, collects, and repeats. Keep the tab in front while it runs.",
+                body: "Choose Collect more pages, set Stop after (5 pages by default, or All pages), and click Collect from N pages. The extension clicks Next, waits, collects and repeats; keep the tab in front while it runs.",
                 points: ["Load more buttons and endless scrolling work the same way.", "An entry that appears twice, on two pages or in a carousel, is kept once."],
                 feature: "list-scraper",
                 screenshot: "ext/list-tab-more-pages",
@@ -52,7 +54,7 @@ export const freelanceDataWork: UseCasePageContent = {
             },
             {
                 title: "Shape the sheet to the client's format",
-                body: "Hover a column's name and click the pencil to rename it, or the trash icon to remove it. Drag names to reorder. Click Filter rows to drop the rows the client doesn't want. Or say it in the panel's chat with the results tab in front.",
+                body: "Hover a column's name and click the pencil to rename it, or the trash icon to remove it, and drag names to reorder. Click Filter rows to drop the rows the client doesn't want. Or say it in the panel's chat with the results tab in front.",
                 points: ["Example to type: Only company, phone, email and city, sorted by city", "Mostly empty columns are hidden on their own; click Columns to show them if the client wants them."],
                 feature: "export-to-google-sheets",
                 screenshot: "ext/results-rename-column",

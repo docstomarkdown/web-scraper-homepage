@@ -77,23 +77,23 @@ function MapsPage({ stage, reduceMotion }: { stage: number; reduceMotion: boolea
                         animate={stage === 1 && !reduceMotion ? { y: [0, -4, 0] } : { y: 0 }}
                         transition={{ duration: 0.6, delay: i * 0.25 }}
                     >
-                        <MapPin className="w-4 h-4 text-rose-500 fill-rose-500/90 drop-shadow-sm" strokeWidth={1.5} />
+                        <MapPin className="w-4 h-4 text-rose-700 dark:text-rose-300 fill-rose-500/90 drop-shadow-sm" strokeWidth={1.5} />
                     </motion.span>
                 ))}
             </div>
             {/* Results list */}
             <div className="p-2.5 space-y-2">
-                <p className="text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wide">Results</p>
+                <p className="text-sm font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wide">Results</p>
                 {PLACES.map((p, idx) => (
                     <Item key={p.name} idx={idx} stage={stage} reduceMotion={reduceMotion} className={`${card} p-2`}>
-                        <p className="text-xs font-semibold text-slate-800 dark:text-slate-100 truncate">{p.name}</p>
-                        <p className="flex items-center gap-1 text-xs text-slate-600 dark:text-slate-300">
+                        <p className="text-sm font-semibold text-slate-800 dark:text-slate-100 truncate">{p.name}</p>
+                        <p className="flex items-center gap-1 text-sm text-slate-600 dark:text-slate-300">
                             {p.rating}
                             <Stars value={p.rating} />
-                            <span className="text-slate-400 dark:text-slate-500">({p.count})</span>
+                            <span className="text-slate-600 dark:text-slate-300">({p.count})</span>
                         </p>
-                        <p className="text-xs text-slate-600 dark:text-slate-300 truncate">Dentist · {p.addr}</p>
-                        <p className={`text-xs truncate ${p.open.startsWith("Open") ? "text-emerald-600 dark:text-emerald-400" : "text-rose-500"}`}>{p.open}</p>
+                        <p className="text-sm text-slate-600 dark:text-slate-300 truncate">Dentist · {p.addr}</p>
+                        <p className={`text-sm truncate ${p.open.startsWith("Open") ? "text-emerald-700 dark:text-emerald-300" : "text-rose-700 dark:text-rose-300"}`}>{p.open}</p>
                     </Item>
                 ))}
             </div>
@@ -114,8 +114,8 @@ function ProductsPage({ stage, reduceMotion }: { stage: number; reduceMotion: bo
     return (
         <div className="p-2.5">
             <div className="flex items-center justify-between mb-2">
-                <p className="text-xs font-semibold text-slate-800 dark:text-slate-100">Running shoes</p>
-                <p className="text-xs text-slate-400 dark:text-slate-500">126 results</p>
+                <p className="text-sm font-semibold text-slate-800 dark:text-slate-100">Running shoes</p>
+                <p className="text-sm text-slate-600 dark:text-slate-300">126 results</p>
             </div>
             <div className="grid grid-cols-2 gap-2">
                 {PRODUCTS.map((p, idx) => (
@@ -123,9 +123,9 @@ function ProductsPage({ stage, reduceMotion }: { stage: number; reduceMotion: bo
                         <div className={`h-14 rounded-md bg-gradient-to-br ${p.tile} flex items-center justify-center`}>
                             <Footprints className={`w-6 h-6 ${p.tint}`} strokeWidth={1.5} />
                         </div>
-                        <p className="mt-1 text-xs font-medium text-slate-800 dark:text-slate-100 leading-tight line-clamp-2">{p.name}</p>
+                        <p className="mt-1 text-sm font-medium text-slate-800 dark:text-slate-100 leading-tight line-clamp-2">{p.name}</p>
                         <Stars value={p.rating} />
-                        <p className="text-xs font-bold text-slate-900 dark:text-white">
+                        <p className="text-sm font-bold text-slate-900 dark:text-white">
                             {p.price}
                             {p.was && <span className="ml-1 text-[9px] font-normal text-slate-400 line-through">{p.was}</span>}
                         </p>
@@ -147,7 +147,7 @@ const HOMES = [
 function PropertyPage({ stage, reduceMotion }: { stage: number; reduceMotion: boolean }) {
     return (
         <div className="p-2.5 space-y-2">
-            <p className="text-xs font-semibold text-slate-800 dark:text-slate-100">2-bed homes · 63 listings</p>
+            <p className="text-sm font-semibold text-slate-800 dark:text-slate-100">2-bed homes · 63 listings</p>
             {HOMES.map((h, idx) => (
                 <Item key={h.addr} idx={idx} stage={stage} reduceMotion={reduceMotion} className={`${card} p-1.5 flex gap-2`}>
                     <div className={`relative w-16 h-14 shrink-0 rounded-md bg-gradient-to-br ${h.tile} flex items-center justify-center`}>
@@ -185,18 +185,18 @@ const JOBS = [
 function JobsPage({ stage, reduceMotion }: { stage: number; reduceMotion: boolean }) {
     return (
         <div className="p-2.5 space-y-1.5">
-            <p className="text-xs font-semibold text-slate-800 dark:text-slate-100">Data analyst · Remote · 85 jobs</p>
+            <p className="text-sm font-semibold text-slate-800 dark:text-slate-100">Data analyst · Remote · 85 jobs</p>
             {JOBS.map((j, idx) => (
                 <Item key={j.role} idx={idx} stage={stage} reduceMotion={reduceMotion} className={`${card} p-2 flex gap-2`}>
                     <span className={`w-6 h-6 shrink-0 rounded-md bg-gradient-to-br ${j.logo} flex items-center justify-center shadow-sm`}>
                         <j.mark className="w-3.5 h-3.5 text-white" strokeWidth={2.25} />
                     </span>
                     <div className="min-w-0 flex-1">
-                        <p className="text-xs font-semibold text-slate-800 dark:text-slate-100 truncate">{j.role}</p>
+                        <p className="text-sm font-semibold text-slate-800 dark:text-slate-100 truncate">{j.role}</p>
                         <p className="text-[9px] text-slate-600 dark:text-slate-300 truncate">{j.co} · {j.where}</p>
                         <div className="mt-0.5 flex items-center justify-between gap-1">
                             <span className="rounded bg-emerald-50 dark:bg-emerald-950/40 px-1 text-[9px] font-medium text-emerald-700 dark:text-emerald-300">{j.pay}</span>
-                            <span className="inline-flex items-center gap-0.5 text-[8px] text-slate-400 dark:text-slate-500"><Clock className="w-2 h-2" />{j.age}</span>
+                            <span className="inline-flex items-center gap-0.5 text-[8px] text-slate-600 dark:text-slate-300"><Clock className="w-2 h-2" />{j.age}</span>
                         </div>
                     </div>
                 </Item>
@@ -222,7 +222,7 @@ function ReviewsPage({ stage, reduceMotion }: { stage: number; reduceMotion: boo
                 <div className="shrink-0 text-center">
                     <p className="text-lg font-bold leading-none text-slate-900 dark:text-white">4.3</p>
                     <Stars value={4.3} />
-                    <p className="text-[8px] text-slate-400 dark:text-slate-500 mt-0.5">1,204 reviews</p>
+                    <p className="text-[8px] text-slate-600 dark:text-slate-300 mt-0.5">1,204 reviews</p>
                 </div>
                 <div className="flex-1 space-y-0.5">
                     {BARS.map((pct, i) => (
@@ -239,13 +239,13 @@ function ReviewsPage({ stage, reduceMotion }: { stage: number; reduceMotion: boo
                 <Item key={r.who} idx={idx} stage={stage} reduceMotion={reduceMotion} className={`${card} p-2`}>
                     <div className="flex items-center justify-between">
                         <Stars value={r.stars} />
-                        <span className="text-[8px] text-slate-400 dark:text-slate-500">{r.date}</span>
+                        <span className="text-[8px] text-slate-600 dark:text-slate-300">{r.date}</span>
                     </div>
-                    <p className="mt-0.5 text-xs font-semibold text-slate-800 dark:text-slate-100 truncate">{r.title}</p>
+                    <p className="mt-0.5 text-sm font-semibold text-slate-800 dark:text-slate-100 truncate">{r.title}</p>
                     <p className="text-[9px] text-slate-600 dark:text-slate-300 truncate">{r.body}</p>
                     <p className="mt-0.5 flex items-center gap-1 text-[8px] text-slate-600 dark:text-slate-300">
                         {r.who}
-                        <span className="inline-flex items-center gap-0.5 text-emerald-600 dark:text-emerald-400">
+                        <span className="inline-flex items-center gap-0.5 text-emerald-700 dark:text-emerald-300">
                             <BadgeCheck className="w-2.5 h-2.5" />
                             Verified purchase
                         </span>
@@ -270,7 +270,7 @@ function ShopifyPage({ stage, reduceMotion }: { stage: number; reduceMotion: boo
         <div className="flex flex-col h-full">
             {/* Store header */}
             <div className="flex items-center justify-between px-2.5 py-2 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
-                <p className="text-xs font-bold tracking-wide text-slate-900 dark:text-white">TRAIL GEAR CO.</p>
+                <p className="text-sm font-bold tracking-wide text-slate-900 dark:text-white">TRAIL GEAR CO.</p>
                 <ShoppingCart className="w-3.5 h-3.5 text-slate-600 dark:text-slate-300" />
             </div>
             <div className="flex gap-1 px-2.5 pt-2">
@@ -289,13 +289,13 @@ function ShopifyPage({ stage, reduceMotion }: { stage: number; reduceMotion: boo
                         <div className={`h-12 rounded-md bg-gradient-to-br ${p.tile} flex items-center justify-center`}>
                             <p.icon className={`w-5 h-5 ${p.tint}`} strokeWidth={1.5} />
                         </div>
-                        <p className="mt-1 text-xs font-medium text-slate-800 dark:text-slate-100 leading-tight truncate">{p.name}</p>
-                        <p className="text-xs font-bold text-slate-900 dark:text-white">{p.price}</p>
-                        <p className="text-[9px] text-slate-400 dark:text-slate-500">{p.variants}</p>
+                        <p className="mt-1 text-sm font-medium text-slate-800 dark:text-slate-100 leading-tight truncate">{p.name}</p>
+                        <p className="text-sm font-bold text-slate-900 dark:text-white">{p.price}</p>
+                        <p className="text-[9px] text-slate-600 dark:text-slate-300">{p.variants}</p>
                     </Item>
                 ))}
             </div>
-            <p className="px-2.5 text-[9px] text-slate-400 dark:text-slate-500">Showing 4 of 1,248 products</p>
+            <p className="px-2.5 text-[9px] text-slate-600 dark:text-slate-300">Showing 4 of 1,248 products</p>
         </div>
     );
 }

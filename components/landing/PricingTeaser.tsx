@@ -45,7 +45,7 @@ export default function PricingTeaser() {
                             ))}
                             {COMING_SOON.map((f) => (
                                 <li key={f} className="flex items-start gap-2.5 text-base text-slate-600 dark:text-slate-300">
-                                    <Clock className="w-4 h-4 mt-0.5 shrink-0 text-slate-400 dark:text-slate-500" aria-hidden="true" />
+                                    <Clock className="w-4 h-4 mt-0.5 shrink-0 text-slate-600 dark:text-slate-300" aria-hidden="true" />
                                     <span>
                                         {f}
                                         <span className="ml-2 whitespace-nowrap rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-0.5 text-xs font-medium text-slate-600 dark:text-slate-300">

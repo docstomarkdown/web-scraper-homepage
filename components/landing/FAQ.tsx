@@ -102,7 +102,7 @@ export default function FAQ() {
                                                 {f.q}
                                             </h4>
                                             <ChevronDown
-                                                className="w-5 h-5 shrink-0 text-slate-400 dark:text-slate-500 transition-transform group-open:rotate-180 motion-reduce:transition-none"
+                                                className="w-5 h-5 shrink-0 text-slate-600 dark:text-slate-300 transition-transform group-open:rotate-180 motion-reduce:transition-none"
                                                 aria-hidden="true"
                                             />
                                         </summary>

@@ -5,21 +5,23 @@ import { getPage } from "@/config/pages";
 // follow it too. Facts checked against release 1.3.0 on 2026-10-21: Google Maps run with contact details (DECISIONS.md D-022,
 // D-026), Bulk Google Maps and contacts (D-023), Add contact details on a saved table (D-024), results page filters and exports
 // (lib/tools/arrangeResults.ts, lib/tools/exportDataset.ts). Draft until the workflow screenshots exist.
+// Title targets the search phrases "web scraping for lead generation" and "google maps for business lead generation"
+// (youtube-research/SEARCH_QUERIES.md, AUTOSUGGEST.md), 2026-10-21.
 
 export const leadGeneration: UseCasePageContent = {
     page: getPage("lead-generation", "use-case"),
     meta: {
-        title: "Lead Generation: Local Business Lists with Emails and Phones",
-        description: "Build a list of local businesses by type and city, with phone, website, email and social links, from Google Maps and business directories. Ready for your email tool or a spreadsheet.",
+        title: "How to Use Web Scraping for Lead Generation: Lists with Emails",
+        description: "Build a lead list of local businesses by type and city, with phone, website, email and social links, from Google Maps and business directories. Free Chrome extension, no code."
     },
-    h1: "Get a list of local businesses, with phone numbers and emails",
-    intro: "Type the kind of business and the city. In a few minutes you have a spreadsheet: one business per row, with the phone number, the website and the email from the business's own site.",
+    h1: "How to use web scraping for lead generation: a list of local businesses with emails and phones",
+    intro: "Type the kind of business and the city into Web Scraper Pro, a free Chrome extension. In a few minutes you have a spreadsheet: one business per row, with its phone number, website and the email from its own site.",
     status: "draft",
     lastUpdated: "2026-10-21",
     job: {
         heading: "The list you'd otherwise copy by hand",
         paragraphs: [
-            "You need every dentist in Austin, or every plumber in Denver, with a way to reach each one. The names and phone numbers are on Google Maps. The emails are on each business's own website. Copying them one by one takes a day.",
+            "You need every dentist in Austin, or every plumber in Denver, with a way to reach each one. The names and phone numbers are on Google Maps, and the emails are on each business's own website. Copying them one by one takes a day.",
             "Web Scraper Pro does it for you, inside your Chrome browser. It collects the businesses from Google Maps, visits each business's website for the email, and puts everything in one table you can save as an Excel file.",
             "You don't need to know anything technical. You type what you want in plain words, and you watch the rows appear.",
         ],
@@ -37,7 +39,7 @@ export const leadGeneration: UseCasePageContent = {
             },
             {
                 title: "Watch the businesses and emails arrive",
-                body: "Google Maps opens in a new tab and the extension works through the results on its own. For each business it also opens the business's website and reads the contact page. You can stop at any time and keep what it has found.",
+                body: "Google Maps opens in a new tab and the extension works through the results on its own. For each business it also reads the business's website and contact page. You can stop at any time and keep what it has found.",
                 points: ["The panel counts the businesses as they come in, and how many have an email.", "Fifty businesses take about four minutes. Two hundred take about fifteen.", "Some businesses never publish an email. Those rows still have the phone number and the website."],
                 feature: "email-extractor",
                 screenshot: "ext/chat-maps-progress",
@@ -83,6 +85,7 @@ export const leadGeneration: UseCasePageContent = {
     },
     guides: ["get-local-business-leads-from-maps", "get-maps-leads-with-emails", "get-emails-from-a-list-of-websites"],
     faqs: [
+        { q: "Is this free?", a: "Yes. Web Scraper Pro is free to install and use today, with every feature included and no account to create." },
         { q: "Do I need to know anything technical?", a: "No. You type what you want, such as \"find dentists in Austin\", and click a few buttons. There is nothing to set up and no code." },
         { q: "How many businesses can I collect in one go?", a: "Up to 200 per search in chat. For more, search smaller areas or more specific business types, and combine the results." },
         { q: "How long does it take?", a: "About four minutes for 50 businesses with emails, and about fifteen minutes for 200. Without emails it's much faster." },

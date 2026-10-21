@@ -15,7 +15,7 @@ const ITEMS: { icon: typeof Layers; title: string; body: string; link?: { slug: 
     {
         icon: LockKeyhole,
         title: "Works where you're signed in",
-        body: "It runs in your own browser, so it can read pages you're already logged in to.",
+        body: "It runs in your own browser, so it can read pages you're already signed in to.",
     },
     {
         icon: Link2,
@@ -46,7 +46,7 @@ export default function Capabilities() {
         <section id="features" className="py-20 md:py-24 bg-slate-50/70 dark:bg-slate-900/40 border-y border-slate-100 dark:border-slate-800/60">
             <div className="max-w-6xl mx-auto px-6 md:px-12">
                 <Reveal>
-                    <SectionHeading eyebrow="Features" title="Everything you need for clean data" />
+                    <SectionHeading eyebrow="Features" title="What's handled for you" />
                 </Reveal>
 
                 <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">

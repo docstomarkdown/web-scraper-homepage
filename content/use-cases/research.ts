@@ -6,33 +6,34 @@ import { getPage } from "@/config/pages";
 // (lib/tools/capabilityTools.ts collect_page_text, entrypoints/dataviewer/), bulk Collect page text
 // (lib/bulk/executors/textBulkExecutor.ts), list detection on any site. Never claim anything about what an AI tool does
 // with the text. Draft until the screenshots exist.
+// Title targets what a reader would type into Google; "Google Scholar" is the site's name on this site (2026-10-21).
 
 export const research: UseCasePageContent = {
     page: getPage("research", "use-case"),
     meta: {
-        title: "Research and AI Datasets: Papers, Page Text and Lists, Collected Clean",
-        description: "Build a literature table from Scholar, collect clean page text with title, author and date for notes or an AI tool, and turn any list on the web into a dated dataset, all in your browser.",
+        title: "How to Collect Research Data from Websites into a Dataset",
+        description: "Turn Google Scholar results into a citation sheet, save the clean text of the pages you cite, and make a dated dataset from any list on the web. In your browser, no code, nothing uploaded.",
     },
-    h1: "Turn search results, articles and lists into clean, dated data",
-    intro: "Collect Scholar results into a citation sheet, save the readable text of the pages you cite, and turn any list on the web into a table with the date you collected it. One-off jobs, no code, nothing uploaded.",
+    h1: "How to collect research data from websites into a clean dataset",
+    intro: "Collect Google Scholar results into a citation sheet, save the readable text of the pages you cite, and turn any list on the web into a dated table. Web Scraper Pro does all three in your Chrome browser, with no code and nothing uploaded.",
     status: "draft",
     lastUpdated: "2026-10-21",
     job: {
         heading: "The collecting part of research, done in an afternoon",
         paragraphs: [
-            "A literature review starts with a hundred results to sort. A report needs a dataset that exists only as a web page. An AI tool needs the text of thirty documentation pages without the menus. Each is a day of copying, or a scraper you'd have to write and maintain.",
-            "Web Scraper Pro does the three jobs with two tabs in one panel: the List tab for anything that repeats down a page, and the Properties tab for the text of a single page. Every collection is saved with its date, so the dataset says when it was taken.",
-            "Nothing is uploaded. The reading happens inside your Chrome browser, and the data stays there until you save a file.",
+            "A literature review starts with a hundred results to sort. A report needs a dataset that exists only as a web page. An AI tool needs the text of thirty documentation pages without the menus.",
+            "Each of those is a day of copying, or a scraper you'd have to write and maintain. Web Scraper Pro does them with two tabs in one panel: the List tab for anything that repeats down a page, and the Properties tab for the text of a single page.",
+            "Every collection is saved with its date, so the dataset says when it was taken. Nothing is uploaded; the data stays in your browser until you save a file.",
         ],
     },
     workflow: {
-        heading: "From search results to a dataset",
-        intro: "Five steps. A ten-page Scholar search takes under a minute.",
+        heading: "How to go from search results to a dataset in five steps",
+        intro: "A ten-page Google Scholar search takes under a minute.",
         steps: [
             {
                 title: "Collect the search results",
-                body: "Run your search on Scholar and click the Web Scraper Pro icon; a panel opens on the right. In the List tab, Scholar is recognised and the panel asks how many pages to collect. Keep 10, type a number, or choose every page. Click Collect.",
-                points: ["You get one row per result: Rank, Title, Authors, Publication, Year, Cited By, the link, and the full-text link where Scholar shows one.", "Cited By and Year are numbers, so the sheet sorts by them.", "If Scholar shows a verification page, the run stops. Complete the check in the tab, click Rescan, and collect again."],
+                body: "Run your search on Google Scholar and click the Web Scraper Pro icon; a panel opens on the right. In the List tab, Google Scholar is recognised and the panel asks how many pages to collect. Keep 10, type a number, or choose every page, then click Collect.",
+                points: ["You get one row per result: Rank, Title, Authors, Publication, Year, Cited By, the link, and the full-text link where Google Scholar shows one.", "Cited By and Year are numbers, so the sheet sorts by them.", "If Google Scholar shows a verification page, the run stops. Complete the check in the tab, click Rescan, and collect again."],
                 feature: "list-scraper",
                 screenshot: "ext/results-scholar",
             },
@@ -66,7 +67,7 @@ export const research: UseCasePageContent = {
         ],
     },
     sample: {
-        caption: "This is what three rows of a Scholar export look like.",
+        caption: "Three rows of a Google Scholar export. Titles and names are made up.",
         columns: ["Title", "Authors", "Year", "Cited By"],
         rows: [
             ["Trail surface and running injury rates", "A. Rivera, M. Chen", "2024", "41"],
@@ -74,22 +75,23 @@ export const research: UseCasePageContent = {
             ["A meta-analysis of boot stiffness", "L. Haddad, S. Park", "2022", "27"],
         ],
     },
-    sites: [{ name: "Scholar search results", page: "scholar" }, { name: "YouTube", page: "youtube" }, { name: "Capterra" }, { name: "Product Hunt" }, { name: "Any page with a list or an article" }],
+    sites: [{ name: "Google Scholar", page: "scholar" }, { name: "YouTube", page: "youtube" }, { name: "Capterra" }, { name: "Product Hunt" }, { name: "Any page with a list or an article" }],
     cantDo: {
         heading: "What it won't do",
         items: [
             "Read papers behind a paywall or a sign-in you don't have. It collects what your browser shows you.",
-            "Collect abstracts from the Scholar results page; they aren't there. Follow the link and collect the page text.",
+            "Collect abstracts from the Google Scholar results page; they aren't there. Follow the link and collect the page text.",
             "Tell an AI tool anything on your behalf. It gives you clean text and tables; what you do with them in another tool is yours.",
             "Decide what you may republish. Collected text belongs to its publisher; keep it for notes and analysis, and quote from the source.",
         ],
     },
     guides: ["export-scholar-search-results", "save-a-pages-text-as-a-document", "collect-youtube-search-results", "collect-every-page-of-results"],
     faqs: [
-        { q: "Is the collected text clean enough for an AI tool?", a: "It's the page's main text in reading order, without menus, ads, cookie banners, sidebars or comments, with the title, description, author and date in their own columns. Save it as a Word document, or as CSV or JSON for a pipeline." },
-        { q: "How many Scholar results can I collect?", a: "As many pages as Scholar offers, up to its own limit of 100 pages, or 1,000 results. The panel's default is 10 pages; choose a number or every page." },
+        { q: "Is it free to use for research?", a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create. Install it, collect what you need, and remove it when you're done; your exports stay with you." },
+        { q: "How do I scrape Google Scholar search results?", a: "Run the search, open the panel's List tab, choose how many pages, and click Collect. You get one row per result with title, authors, publication, year, citations and links, ready for Excel or Google Sheets." },
+        { q: "Is the collected text clean enough for an AI tool?", a: "It's the page's main text in reading order, without menus, ads, cookie banners, sidebars or comments. The title, description, author and date sit in their own columns. Save it as a Word document, or as CSV or JSON for a pipeline." },
+        { q: "How many Google Scholar results can I collect?", a: "As many pages as Google Scholar offers, up to its own limit of 100 pages, or 1,000 results. The panel's default is 10 pages; choose a number or every page." },
         { q: "Does every row carry the date it was collected?", a: "Every collection is saved in History with its date, and bulk runs record the source address per row. Add the date as a column in the sheet when the dataset needs it on each row." },
-        { q: "Can I use it for one project and stop?", a: "Yes. It's free to use today: install it, collect what you need, and remove it when you're done. Your exports stay with you." },
         { q: "Can it collect software reviews for a competitor table?", a: "Capterra and Product Hunt listings have ready-made columns, and a review page's list of reviews is found like any other list. Collect every page and export with the source links." },
     ],
 };

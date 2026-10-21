@@ -11,10 +11,10 @@ import FAQ from "@/components/landing/FAQ";
 import CTA from "@/components/landing/CTA";
 
 export const metadata = {
-    title: { absolute: "Web Scraper Pro: turn any web page into a spreadsheet" },
+    title: { absolute: "Web Scraper Pro: Free Web Scraper Chrome Extension, No Code" },
     alternates: { canonical: "/" },
     description:
-        "Turn any web page into a spreadsheet. Collect Google Maps leads, Amazon products, and Zillow listings in one click, then export to Google Sheets, Excel, or CSV. A Chrome extension.",
+        "Turn any web page into a spreadsheet. Collect Google Maps leads, Amazon products and Zillow listings in one click, then export to Google Sheets, Excel or CSV. Free Chrome extension, no code.",
 };
 
 export default function Home() {

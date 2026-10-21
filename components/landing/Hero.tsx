@@ -66,7 +66,7 @@ export default function Hero() {
                     </h1>
 
                     <p className="text-xl text-slate-700 dark:text-slate-200 leading-[1.65] mt-6 max-w-md mx-auto lg:mx-0">
-                        A Chrome extension. Just ask for the data you want, and get a clean table ready for Excel or Google Sheets.
+                        A free Chrome extension. Ask for the data you want in plain words, and get a clean table ready for Excel or Google Sheets.
                     </p>
 
                     <div className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center lg:justify-start gap-3 mt-9">
@@ -115,13 +115,13 @@ export default function Hero() {
                                 key={t.label}
                                 className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/60 px-3 py-1.5 text-sm text-slate-600 dark:text-slate-300"
                             >
-                                <t.icon className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
+                                <t.icon className="w-3.5 h-3.5 text-slate-600 dark:text-slate-300" />
                                 {t.label}
                             </span>
                         ))}
                         <span className="inline-flex items-center gap-1 rounded-full border border-dashed border-slate-300 dark:border-slate-700 px-3 py-1.5 text-sm text-slate-600 dark:text-slate-300">
                             <Plus className="w-3.5 h-3.5" />
-                            any list
+                            Any list
                         </span>
                     </div>
                 </motion.div>

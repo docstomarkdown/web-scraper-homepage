@@ -53,7 +53,7 @@ export const readyMadeSites: ReadyMadeSite[] = [
     { name: "Capterra", category: "jobs-cars-software" },
     { name: "Product Hunt", category: "jobs-cars-software" },
     // Research
-    { name: "Scholar search results", category: "research-papers", page: "scholar" },
+    { name: "Google Scholar", category: "research-papers", page: "scholar" },
     // Video
     { name: "YouTube", category: "video", page: "youtube" },
 ];

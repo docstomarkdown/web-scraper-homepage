@@ -56,7 +56,7 @@ export default function Developers() {
                             </li>
                         ))}
                     </ul>
-                    <p className="mt-8 text-base text-slate-600 dark:text-slate-300">
+                    <p className="mt-8 text-base text-slate-700 dark:text-slate-200">
                         Developer docs arrive with the cloud release. Until then, read what&apos;s planned for{" "}
                         {publishedHref("mcp") ? <Link href={publishedHref("mcp")!} className="font-semibold text-[#1f5ec2] dark:text-[#7aa7ff] hover:underline">MCP and AI agents</Link> : "MCP and AI agents"}
                         {" "}and{" "}
@@ -70,17 +70,17 @@ export default function Developers() {
                             <span className="w-2.5 h-2.5 rounded-full bg-slate-700" />
                             <span className="w-2.5 h-2.5 rounded-full bg-slate-700" />
                             <span className="w-2.5 h-2.5 rounded-full bg-slate-700" />
-                            <span className="ml-3 text-xs text-slate-400">MCP · webscraper-pro</span>
+                            <span className="ml-3 text-sm text-slate-400">MCP · webscraper-pro</span>
                         </div>
                         <div className="p-5 font-mono text-sm leading-7">
                             {LINES.map((l, i) => (
                                 <div key={i} className="flex gap-3">
                                     <span className={l.dir === "→" ? "text-[#7aa7ff]" : "text-emerald-400"}>{l.dir}</span>
                                     <span className="text-slate-100">{l.text}</span>
-                                    <span className="text-slate-500">{l.note}</span>
+                                    <span className="text-slate-300">{l.note}</span>
                                 </div>
                             ))}
-                            <p className="mt-3 text-xs font-sans text-slate-500">Example</p>
+                            <p className="mt-3 text-sm font-sans text-slate-300">Example</p>
                         </div>
                     </div>
                 </Reveal>

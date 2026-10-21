@@ -32,7 +32,7 @@ export default function Cloud() {
                             <div>
                                 <p className="text-sm font-semibold text-blue-100">
                                     Cloud
-                                    <span className="ml-2 inline-flex align-middle rounded-full bg-white/20 px-2 py-0.5 text-xs font-semibold text-white">
+                                    <span className="ml-2 inline-flex align-middle rounded-full bg-white/20 px-2 py-0.5 text-sm font-semibold text-white">
                                         Coming soon
                                     </span>
                                 </p>
@@ -67,7 +67,7 @@ export default function Cloud() {
                                         <CloudUpload className="w-4 h-4 text-[#1f5ec2] dark:text-[#7aa7ff]" />
                                         Batch · 200 URLs
                                     </p>
-                                    <span className="text-xs text-slate-600 dark:text-slate-300">124 of 200 done</span>
+                                    <span className="text-sm text-slate-600 dark:text-slate-300">124 of 200 done</span>
                                 </div>
                                 <div className="mt-3 h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
                                     <div className="h-full w-[62%] rounded-full bg-gradient-to-r from-[#2772ED] to-[#5b3fd6]" />
@@ -77,12 +77,12 @@ export default function Cloud() {
                                         <li key={j.name} className="flex items-center justify-between py-2.5 text-sm">
                                             <span className="text-slate-700 dark:text-slate-200">{j.name}</span>
                                             {j.status === "done" ? (
-                                                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 text-xs font-medium text-emerald-700 dark:text-emerald-300">
+                                                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 text-sm font-medium text-emerald-700 dark:text-emerald-300">
                                                     <Check className="w-3 h-3" />
                                                     {j.rows} rows
                                                 </span>
                                             ) : (
-                                                <span className="inline-flex items-center gap-1 rounded-full bg-[#2772ED]/10 px-2 py-0.5 text-xs font-medium text-[#1f5ec2] dark:text-[#7aa7ff]">
+                                                <span className="inline-flex items-center gap-1 rounded-full bg-[#2772ED]/10 px-2 py-0.5 text-sm font-medium text-[#1f5ec2] dark:text-[#7aa7ff]">
                                                     <Loader2 className="w-3 h-3 animate-spin motion-reduce:animate-none" />
                                                     Running
                                                 </span>
@@ -90,7 +90,7 @@ export default function Cloud() {
                                         </li>
                                     ))}
                                 </ul>
-                                <p className="mt-3 text-xs text-slate-400 dark:text-slate-500">Sample data</p>
+                                <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">Sample data</p>
                             </div>
                         </div>
                     </div>

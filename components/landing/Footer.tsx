@@ -32,13 +32,13 @@ export default function Footer() {
                         <div className="flex gap-2">
                             {siteConfig.links.twitter && (
                                 <Link href={siteConfig.links.twitter} target="_blank" aria-label="Twitter"
-                                    className="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-400 dark:text-slate-500 hover:border-blue-200 hover:text-blue-500 hover:bg-blue-50 flex items-center justify-center transition-all">
+                                    className="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:border-blue-200 hover:text-blue-500 hover:bg-blue-50 flex items-center justify-center transition-all">
                                     <Twitter className="w-4 h-4" />
                                 </Link>
                             )}
                             {siteConfig.links.linkedin && (
                                 <Link href={siteConfig.links.linkedin} target="_blank" aria-label="LinkedIn"
-                                    className="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-400 dark:text-slate-500 hover:border-blue-200 hover:text-blue-600 hover:bg-blue-50 flex items-center justify-center transition-all">
+                                    className="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:border-blue-200 hover:text-blue-600 hover:bg-blue-50 flex items-center justify-center transition-all">
                                     <Linkedin className="w-4 h-4" />
                                 </Link>
                             )}

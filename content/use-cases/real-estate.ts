@@ -5,15 +5,17 @@ import { getPage } from "@/config/pages";
 // Facts checked against release 1.3.0 on 2026-10-21: the zillow.com, rightmove.co.uk, redfin.com, zoopla.co.uk and
 // propertyfinder.ae packs and their column mappings; results page filters and exports. Never imply days on market, price
 // history, agent contact details or MLS data: none come from a results card. Draft until the screenshots exist.
+// Title targets the search phrases "how to scrape real estate data" and "scrape real estate websites"
+// (youtube-research/SEARCH_QUERIES.md), 2026-10-21.
 
 export const realEstate: UseCasePageContent = {
     page: getPage("real-estate", "use-case"),
     meta: {
-        title: "Real Estate: Every Listing in an Area, in a Spreadsheet",
-        description: "Export homes for sale or rent from Zillow, Rightmove, Redfin, Zoopla and Property Finder into one sheet: price, address, beds, baths, size, type and link, for every page of results, every week.",
+        title: "How to Scrape Real Estate Data into a Spreadsheet, No Code",
+        description: "Scrape homes for sale or rent from Zillow, Rightmove, Redfin, Zoopla and Property Finder into one spreadsheet: price, address, beds, baths, size and link, for every page of results. Free Chrome extension."
     },
-    h1: "Get every listing in an area into a spreadsheet",
-    intro: "Search a zip code or a town on your listing site, click once, and get one home per row with the price, address, beds, baths, size and link, for every page of results. Run it again next week and see what's new.",
+    h1: "How to scrape real estate data from Zillow and other listing sites into a spreadsheet",
+    intro: "Search a zip code or a town on your listing site and click once in Web Scraper Pro, a free Chrome extension. You get one home per row with the price, address, beds, baths, size and link, for every page of results. Run it again next week and see what's new.",
     status: "draft",
     lastUpdated: "2026-10-21",
     job: {
@@ -83,6 +85,7 @@ export const realEstate: UseCasePageContent = {
     },
     guides: ["export-zillow-listings-to-excel", "collect-every-page-of-results", "scrape-data-from-any-website-to-excel"],
     faqs: [
+        { q: "Is this free?", a: "Yes. Web Scraper Pro is free to install and use today, with every feature included and no account to create." },
         { q: "Do I need to know anything technical?", a: "No. You search the site the way you always do, open the panel, and click Collect. There is nothing to set up and no code." },
         { q: "Which listing sites have ready-made columns?", a: "Zillow, Rightmove, Redfin, Zoopla and Property Finder. On other sites the results list is found on the page and the columns are named from its labels." },
         { q: "How many listings can one search give me?", a: "As many as the site shows: Zillow up to 20 pages, about 800 homes; Rightmove up to 42 pages. For more, split the search by zip code or price band." },
