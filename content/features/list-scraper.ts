@@ -57,7 +57,7 @@ export const listScraper: FeaturePageContent = {
             {
                 title: "Pick the list and click Collect",
                 screenshot: "ext/list-tab-more-pages",
-                body: "Choose the list you want and click Collect N items. If the page has more pages, choose Collect more pages first and pick how it moves on: Next page, Load more or Auto scroll, and how many pages to go through.",
+                body: "Choose the list you want. For this page only, click Collect N items. For the whole list, choose Collect more pages, confirm how the page moves on (Next page, Load more or Auto scroll), set Stop after, and click Collect from N pages.",
             },
             {
                 title: "Review and export",

@@ -26,10 +26,10 @@ export const leadGeneration: UseCasePageContent = {
     workflow: {
         heading: "From a search to a sheet",
         steps: [
-            { title: "Search Maps and collect", body: "Type \"Find dentists in Austin\" in the side panel's Chat tab. A card asks how many businesses to collect and whether to add contact details; pick 100 and keep contact details on.", feature: "maps-leads", screenshot: "ext/chat-maps-count-card" },
-            { title: "Watch the emails arrive", body: "During the run, each business's website and contact page is read in the background and the emails, phone numbers and social links are added to its row. The progress line counts how many have an email so far.", feature: "email-extractor", screenshot: "ext/chat-maps-progress" },
+            { title: "Search Maps and collect", body: "Type \"Find dentists in Austin\" in the side panel's Chat tab. A card asks how many businesses to collect; pick 100 and click Start. Emails from each business's website are on by default (Settings → Results → Add emails from their websites).", feature: "maps-leads", screenshot: "ext/chat-maps-count-card" },
+            { title: "Watch the emails arrive", body: "During the run, each business's website and contact page is read in the background and the emails, phone numbers and social links are added to its row. The progress line counts how many have an email.", feature: "email-extractor", screenshot: "ext/chat-maps-progress" },
             { title: "Clean the list", body: "On the results page, keep only the columns the client wants and the rows with a phone or an email: type \"only name, phone, email and website, rows with an email\" in chat, or use the column and filter controls.", feature: "export-to-google-sheets", screenshot: "ext/results-filtered-leads" },
-            { title: "Repeat for every city", body: "Paste ten Maps search links into Bulk runs, one per city, and let them run in turn. The Collection overview merges them into one table with a Location column.", feature: "bulk-scraper" },
+            { title: "Repeat for every city", body: "Paste ten Maps search links into Bulk scrape, one per city, and let them run in turn. When they finish, View merged table puts every city in one table.", feature: "bulk-scraper" },
             { title: "Export", body: "Export to Excel for the client, CSV for the CRM, or straight into a Google Sheet. The collection stays in History for next month's refresh.", feature: "export-to-google-sheets" },
         ],
     },

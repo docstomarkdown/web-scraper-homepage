@@ -19,12 +19,13 @@ export const imageDownloader: FeaturePageContent = {
     intro:
         "Open a page, collect its images, and save them all as one ZIP file. Images are grouped by size, so you can take the large product photos and leave the icons behind.",
     lastUpdated: "2026-10-20",
+    hero: "ext/images-tab-groups",
     fields: {
         eyebrow: "What you get",
         heading: "The images, at their real size",
         items: [
             { name: "Every image on the page", description: "Photos, product shots and graphics the page shows, including ones that load as you scroll." },
-            { name: "Grouped by size", description: "Large photos, medium images and small icons sit in separate groups, each with a count, so you download only the group you want." },
+            { name: "Grouped by size", description: "Images with the same dimensions sit in one group, such as 800 × 800, with a count, largest first, so you download the photos and leave the icons behind." },
             { name: "One ZIP file", description: "Download all, or one group, as a single ZIP with the files at their original size." },
             { name: "Product and catalog images", description: "A product page's gallery comes with its product details; a Shopify store's images come with the catalog export, named by product if you choose." },
         ],
@@ -34,10 +35,12 @@ export const imageDownloader: FeaturePageContent = {
         items: [
             {
                 title: "Open the page",
+                screenshot: "ext/images-tab",
                 body: "Go to the page with the images and open the side panel's Images tab.",
             },
             {
                 title: "Click Collect images from this page",
+                screenshot: "ext/images-tab-groups",
                 body: "The images appear grouped by size, with a count for each group.",
             },
             {
@@ -51,6 +54,7 @@ export const imageDownloader: FeaturePageContent = {
         items: [
             "It collects the images the page serves to your browser, at the size the page serves them. Some sites serve a smaller version on the listing page and the full size on the product page.",
             "One page at a time. For every product image in a Shopify store, use Shopify store export.",
+            "The ZIP is named after the site, such as store.example-images.zip, and splits into parts above 5,000 files.",
             "Images belong to whoever published them. Check the site's terms and copyright before reusing them.",
         ],
     },

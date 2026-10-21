@@ -31,7 +31,7 @@ export const aiChat: FeaturePageContent = {
         eyebrow: "What you can ask",
         heading: "Say it the way you'd ask a colleague",
         items: [
-            { name: "Find businesses", example: "Find plumbers in Denver", description: "Searches Maps and collects 50 businesses, or up to 200 if you ask." },
+            { name: "Find businesses", example: "Find plumbers in Denver", description: "Searches Maps and collects 20 businesses, or up to 200 if you ask." },
             { name: "Collect this map", example: "Collect the first 20", description: "Collects the Maps results you're already looking at." },
             { name: "Collect a list", example: "Collect the products on this page", description: "Products, listings or results on this page, with named columns." },
             { name: "Copy a Shopify store", example: "Every product, one row per size", description: "The whole catalog or one collection, not only what's on screen." },
@@ -45,7 +45,7 @@ export const aiChat: FeaturePageContent = {
         heading: "Three steps, no commands",
         items: [
             { title: "Type your request",
-                screenshot: "ext/panel-chat-empty", body: "Open the side panel and type, or tap a suggested prompt for the page you're on." },
+                screenshot: "ext/panel-chat-empty", body: "Open the side panel and type, or click one of the idea cards for the page you're on." },
             { title: "Watch it collect",
                 screenshot: "ext/chat-maps-progress", body: "Chat runs the job in your browser and shows how many rows it found." },
             { title: "Ask for the file",
@@ -76,7 +76,7 @@ export const aiChat: FeaturePageContent = {
         items: [
             "Chat collects the page you're on. When a list goes on over more pages, it offers Collect every page.",
             "Chat doesn't collect reviews. Use Collect reviews in the side panel.",
-            "A Maps search collects up to 200 businesses. A card asks how many, and whether to add each business's emails and social links from its website.",
+            "A Maps search collects up to 200 businesses. A card asks how many the first time; emails and social links from each business's website are on by default and can be turned off in Settings → Results.",
             "Chat has a daily message limit and needs an internet connection.",
         ],
     },
@@ -95,7 +95,7 @@ export const aiChat: FeaturePageContent = {
         },
         {
             q: "Can chat collect every page of results?",
-            a: "Not yet. Chat collects the list on the page you're on. To follow every page, click Collect in the side panel.",
+            a: "Yes. Chat collects the page you're on first, and when the list goes on, it offers Collect every page. Or ask for it up front: \"collect every page of this list\". Stop keeps what it has.",
         },
         {
             q: "Which file formats can chat export?",
