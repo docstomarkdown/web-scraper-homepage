@@ -9,10 +9,13 @@ import { getPage } from "@/config/pages";
 // Title targets how a freelancer or client phrases the job ("data entry from a website to Excel", "web research list");
 // no direct search-volume data for this page, 2026-10-21.
 
+// Deepened 2026-10-21 (owner: pages too thin): variations, a worked example (the 300-row directory and its 190 emails are
+// an illustration; the 50-sites-in-four-minutes timing is from the Maps leads page), what to check before sending, mistakes,
+// ten FAQs.
 export const freelanceDataWork: UseCasePageContent = {
     page: getPage("freelance-data-work", "use-case"),
     meta: {
-        title: "How to Deliver a Clean Data List from Any Website for a Client",
+        title: "How to Deliver a Clean Data List from Any Website",
         description: "Deliver lead lists, product lists and directory exports from whatever site the client names, with clean column names and no duplicates, in Excel or Google Sheets. Free Chrome extension, no code."
     },
     h1: "How to deliver a clean data list from any website for a client",
@@ -76,6 +79,72 @@ export const freelanceDataWork: UseCasePageContent = {
             ["Bluebird Bakery", "Riverside", "(555) 017-7431", "orders@bluebird.example"],
         ],
     },
+    sections: [
+        {
+            id: "variations",
+            eyebrow: "Variations",
+            heading: "Four orders, one set of clicks",
+            paragraphs: [
+                "Most data orders fall into one of these shapes. The table shows where each starts and what to tell the client about the result.",
+            ],
+            table: {
+                columns: ["Order", "Start from", "What to tell the client"],
+                rows: [
+                    ["Lead list by trade and city", "Chat: Find roofers in Phoenix, then Add contact details if needed", "One business per row with phone and website; emails for the businesses that publish one, usually not all."],
+                    ["Directory export", "The directory's category page in the List tab, Collect more pages", "Every listing across the pages; columns named from the page, renamed to the brief."],
+                    ["Product list from a store", "The category page, or the Shopify stores card", "Name, price, rating, review count and link; for Shopify, every variant with SKU and images."],
+                    ["Emails for a list of websites", "The client's CSV in Bulk scrape → Collect contacts", "One row per site with emails, phones and social links; sites with no published email come back with the phone only."],
+                    ["Web research into a sheet", "Any results page in the List tab", "The list as a table with its links; add the detail pages in a second run if the brief needs them."],
+                ],
+                caption: "On a site with a ready-made setup the columns come out named; on any other site they're named from the page and you rename them once.",
+            },
+        },
+        {
+            id: "worked-example",
+            eyebrow: "Worked example",
+            heading: "A 300-row directory order, with the numbers",
+            paragraphs: [
+                "Here is a typical order from brief to delivery: every member of a trade association's online directory, with company, city, phone and email, in the client's column order.",
+            ],
+            steps: [
+                { title: "Open the directory and find the list.", body: "In the List tab the members show as a list with a count, such as List 1, 25 items on this page. Hover it and the entries are outlined on the page." },
+                { title: "Collect every page.", body: "Choose Collect more pages, set Stop after to All pages, and click Collect. Twelve pages of 25 take two or three minutes; an entry that repeats across pages is kept once." },
+                { title: "Add the emails.", body: "The rows have a Website column, so click Add contact details on the results page. Each site is read for emails, phones and social links; 50 websites take about four minutes, so 300 take about half an hour." },
+                { title: "Shape it to the brief.", body: "Rename the headers with the pencil to Company, City, Phone, Email; drag them into that order; remove the rest with the trash icon. Filter rows if the brief excludes a region." },
+                { title: "Deliver.", body: "Export as → Excel. Write the delivery note: 300 rows, 190 with an email, the rest with phone only, collected today. The collection stays in History for the repeat order." },
+            ],
+        },
+        {
+            id: "next",
+            eyebrow: "After the export",
+            heading: "What to do before you send it",
+            paragraphs: [
+                "Ten minutes of checking saves a revision round. These four are the ones clients notice.",
+            ],
+            points: [
+                "Duplicates: Remove duplicates on the results page keeps one copy of a repeated row. For a list combined from several runs, use your spreadsheet's remove-duplicates on the website or phone column too.",
+                "Column names and order: the file matches what's on screen, so rename and reorder before Export as, not after in Excel.",
+                "Empty columns: mostly empty columns are hidden on their own. Click Columns to show one the client asked for, even if it's thin, and say so in the note.",
+                "The note: say what the source was, when it was collected, how many rows have each field, and what the site didn't show. A list with 60% emails is normal; a client who expected 100% is a revision.",
+            ],
+        },
+        {
+            id: "mistakes",
+            eyebrow: "Mistakes to avoid",
+            heading: "Six things that cost a revision",
+            paragraphs: [
+                "Every one of these has cost a freelancer an evening.",
+            ],
+            points: [
+                "Accepting an order the site can't give. If the site shows nothing until you sign in, such as LinkedIn or a members-only directory, check whether you have access and the site allows exporting before you quote.",
+                "Running all pages before checking page one. Collect This page only first, read the columns, then run the rest.",
+                "Promising emails for every row. Only sites that publish an email get one. Put the expected share in the quote.",
+                "Renaming columns in Excel instead of on the results page. The next order on the same site then starts from scratch; done in the extension, the collection in History already has the right names.",
+                "Closing the browser during a bulk run. Sites run one at a time and the tab needs to stay open. A run you stop keeps its rows.",
+                "Collecting personal data because the client asked. Personal data and sites whose terms forbid collection are on you and the client; check before you accept the order.",
+            ],
+        },
+    ],
     sites: [{ name: "Google Maps", page: "maps" }, { name: "Yellow Pages", page: "yellow-pages" }, { name: "Amazon", page: "amazon" }, { name: "Zillow", page: "zillow" }, { name: "Any directory, store or job board the client names" }],
     cantDo: {
         heading: "What it won't do",
@@ -88,10 +157,15 @@ export const freelanceDataWork: UseCasePageContent = {
     },
     guides: ["scrape-data-from-any-website-to-excel", "get-emails-from-a-list-of-websites", "collect-every-page-of-results", "get-local-business-leads-from-maps"],
     faqs: [
+        { q: "Is this free?", a: "Yes. Web Scraper Pro is free to install and use today, with every feature included and no account to create. There is no per-row price and no credits to count." },
         { q: "Does it work on a site that isn't in your list?", a: "Yes. On any site with a list, the List tab finds it and names the columns from the page's own labels; Choose an item on the page handles the rest. Ready-made sites come with better names." },
+        { q: "How do I deliver a web scraping job to a client in Excel?", a: "Collect the list, rename and reorder the columns on the results page to the client's headings, remove the rest, and click Export as → Excel. The file matches what's on screen." },
         { q: "Can I deliver in the client's column names and order?", a: "Yes. Rename, reorder and remove columns on the results page before you save, or tell the chat the columns you want. The file matches what's shown." },
-        { q: "How do I avoid duplicates?", a: "Rows that repeat across pages or carousels are kept once on their own. For lists you combine from several runs, use your spreadsheet's remove-duplicates on the website or phone column." },
-        { q: "How much data can I collect in a day?", a: "There's no credit or per-row limit. A Google Maps search returns up to 200 businesses per run, a list runs as many pages as you set, and bulk runs cover lists of URLs. Big sites slow down anyone who loads hundreds of pages fast, so split big jobs into runs." },
-        { q: "Is there a per-row price?", a: "No. Web Scraper Pro is free to use today, with every feature included and no credits to count." },
+        { q: "How do I avoid duplicates?", a: "Rows that repeat across pages or carousels are kept once on their own. For lists you combine from several runs, use Remove duplicates on the results page or your spreadsheet's remove-duplicates on the website or phone column." },
+        { q: "How much data can I collect in a day?", a: "There's no credit or per-row limit. A Google Maps search returns up to 200 businesses per run in chat, a list runs as many pages as you set, and bulk runs cover lists of URLs. Big sites slow down anyone who loads hundreds of pages fast, so split big jobs into runs." },
+        { q: "Can I add emails to a client's list of websites?", a: "Yes. Paste the list into Bulk scrape → Collect contacts, or upload the CSV. Each site is read for emails, phones and social links, and View merged table gives you one file." },
+        { q: "Can I run the same order again next month?", a: "Yes. Every collection stays in History with its date. Open it, click Collect again on the same site, and the columns you renamed are already in place." },
+        { q: "What should the delivery note say?", a: "The source, the date collected, how many rows have each field, and what the site didn't show. Clients trust a list with a 60% email share when the note says so up front." },
+        { q: "Is collecting data for a client allowed?", a: "Public business listings are generally fine to collect for research; personal data and sites whose terms forbid collection aren't, whoever asks. Read our plain-words explainer on web scraping and the law, and check before you accept the order." },
     ],
 };

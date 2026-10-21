@@ -1,13 +1,19 @@
 import type { ScraperPageContent } from "@/components/pages/ScraperPage";
 
 // Facts checked against release 1.3.0 on 2026-10-21: the amazon pack in configs-prod/ (amazon.com, amazon.ae, amazon.in and
-// every other country store via *amazon.*; Next page by the s-pagination-next link) and the amazon column mapping in
-// site-column-mappings/ (Product Name, Product URL, ASIN, Brand, Price, Original Price, Discount Percentage, Coupon, Rating,
-// Review Count, Bought In Past Month, Delivery Date, Stock, Sponsored, Badge, Image URL). Sponsored rows are kept and
-// labelled unless Settings → Results → Skip sponsored products is on. Product pages: lib/pdp/ (15 standard fields, reviews).
+// every other country store via *amazon.*; Next page by the s-pagination-next link) and the amazon column mappings in
+// site-column-mappings/ (19 country-store files: Product Name, Product URL, ASIN, Brand, Price, Original Price, Discount
+// Percentage, Coupon, Price With Coupon, Rating, Review Count, Bought In Past Month, Delivery Date, Stock, Sponsored, Badge,
+// Image URL). Sponsored rows are kept and labelled unless Settings → Results → Skip sponsored products is on. Product
+// pages: lib/pdp/ (15 standard fields, reviews via View all reviews). Results page: Filter rows, pencil rename, trash
+// remove, Hide mostly empty columns, Export as (content/features/list-scraper.ts, product-scraper.ts).
 // Draft until a real run's screenshots are in the visuals library and lastVerified is set from that run.
+// Verify in that run: the "7 to 20 pages" cap per search (written as "about"), how many products one search page shows,
+// the row and time figures in the worked example (illustrative until measured), and that 19 country stores is the right
+// count for named columns (the pack wildcard matches every store; the mapping files cover 19).
 // Title targets search phrases (2026-10-21): "scraping product data from amazon website into excel"; /product-scraper owns
-// "how to scrape amazon product data and reviews", so this page is about search and category results.
+// "how to scrape amazon product data and reviews", the guides own "product listings into Excel", "Best Sellers" and
+// "reviews into Excel", so this page is about search and category results.
 
 export const amazon: ScraperPageContent = {
     slug: "amazon",
@@ -15,10 +21,10 @@ export const amazon: ScraperPageContent = {
     site: { name: "Amazon", url: "https://www.amazon.com" },
     meta: {
         title: "How to Scrape Amazon Search Results into a Spreadsheet",
-        description: "Run a search on Amazon and get every result as a row: product name, price, rating, review count, badges and link, across every page, in 21 country stores. Free Chrome extension, no code.",
+        description: "Run a search on Amazon and get every result as a row: product name, price, rating, review count, badges and link, across every page, in every country store. Free Chrome extension, no code.",
     },
     h1: "How to scrape Amazon search results into a spreadsheet",
-    intro: "Run a search on Amazon, pick the list in the side panel, and set how many pages. You get one row per product with named columns. The same setup works in Amazon's stores in 21 countries.",
+    intro: "Run a search on Amazon, pick the list in the side panel, and set how many pages. You get one row per product with named columns. The same setup works in Amazon's country stores, from .com to .co.jp.",
     status: "draft",
     lastVerified: "2026-10-21",
     version: "1.3.0",
@@ -61,7 +67,7 @@ export const amazon: ScraperPageContent = {
                 title: "Pick the list and the pages",
                 body: "Open the side panel's List tab and choose the results list. Choose Collect more pages; the Next button is found on its own. Set Stop after and click Collect from 5 pages, or the number you set.",
                 points: [
-                    "A search shows 7 to 20 pages.",
+                    "A search shows about 7 to 20 pages.",
                     "Keep the tab in front. The tab title counts the products.",
                 ],
             },
@@ -75,9 +81,9 @@ export const amazon: ScraperPageContent = {
     notes: {
         heading: "Good to know about Amazon",
         items: [
-            "Every country store works with the same setup: .com, .co.uk, .de, .in, .ae, .ca, .co.jp and the rest.",
+            "Every country store works with the same setup: .com, .co.uk, .de, .in, .ae, .ca, .co.jp and the rest. Nineteen of them have named columns; any other is detected as a list.",
             "A search page shows a product's rating and review count, not the reviews. For the reviews, open the product page and use the Properties tab.",
-            "Amazon limits a search to 7 to 20 pages. For more products, run narrower searches or categories.",
+            "Amazon limits a search to about 7 to 20 pages. For more products, run narrower searches or categories.",
             "Amazon's terms restrict automated collection, and product images and text are theirs. Collect for your own research and check the terms before reusing anything.",
         ],
     },
@@ -96,6 +102,89 @@ export const amazon: ScraperPageContent = {
         "When Amazon changes its layout, the list is found again on the next visit. Column names may change; rename them once on the results page.",
         "The country stores use the same setup, so a verification on one behaves the same way.",
     ],
+    sections: [
+        {
+            id: "searches",
+            eyebrow: "Where to start",
+            heading: "Three Amazon searches worth running",
+            paragraphs: [
+                "The search you run decides the sheet you get. These three cover most reasons people collect Amazon results, and each needs only a few of the sixteen columns.",
+                "Set the filters on Amazon first. A price band, a brand or a star rating narrows the list before it's collected, which is quicker than filtering a long sheet afterwards.",
+            ],
+            table: {
+                columns: ["Search", "Why run it", "Columns to keep"],
+                rows: [
+                    ["Your own product's keyword, say \"trail running shoes\", sorted by Amazon's default", "See who ranks above you, their prices and badges", "Product Name, Price, Rating, Review Count, Badge, Sponsored"],
+                    ["A category page, such as Men's Trail Running Shoes, filtered to 4 stars and up", "Size up a category before you source or list a product", "Product Name, Price, Original Price, Review Count, Bought In Past Month"],
+                    ["The same keyword on amazon.co.uk, amazon.de or amazon.in", "Compare prices across stores on the same ASIN", "ASIN, Product Name, Price, Delivery Date"],
+                ],
+                caption: "Three searches and what to keep from each. The ASIN is the same product id in every country store.",
+            },
+        },
+        {
+            id: "worked-example",
+            eyebrow: "Worked example",
+            heading: "A worked example: five pages of trail running shoes",
+            paragraphs: [
+                "Here is a run from start to finish, with made-up but typical numbers. The figures show the shape of a run; your counts depend on the search.",
+            ],
+            steps: [
+                { title: "Search.", body: "Type trail running shoes on amazon.com and set the filter to 4 stars and up. Amazon shows the first page of results with a Next link at the bottom." },
+                { title: "Pick the list.", body: "Open the List tab. Under Choose from lists we found, the results show as the first card with the number of products on this page. A row of sponsored items may show as a second, smaller card; leave it." },
+                { title: "Set the pages.", body: "Choose Collect more pages. The panel reads Next button ready. Under Stop after, keep 5 pages and click Collect from 5 pages." },
+                { title: "Watch the tab title.", body: "The count climbs page by page. Five pages of a search like this give a few hundred rows, a handful of them marked Sponsored." },
+                { title: "Open the results.", body: "The results page opens with sixteen columns. Columns the search never filled, such as Coupon, are hidden by the Hide mostly empty columns setting, not deleted." },
+                { title: "Export.", body: "Click Export as and choose Excel. Prices, ratings and counts are numbers, so the sheet sorts and filters without clean-up." },
+            ],
+        },
+        {
+            id: "what-to-do",
+            eyebrow: "After the run",
+            heading: "What to do with the table",
+            paragraphs: [
+                "The results page is a small spreadsheet of its own. Most people do one of these four things before exporting.",
+            ],
+            points: [
+                "Filter rows: click Filter rows and keep rows where Rating is above 4 and Sponsored is empty. That's the organic list of well-rated products.",
+                "Sort by Price or Review Count: click the column header. Review Count sorted high to low shows the established products; Price low to high shows where the floor is.",
+                "Hide what you don't need: hover a header and click the trash icon, or rename a column with the pencil. Mostly empty columns are already hidden.",
+                "Run it again next week: collect the same search and compare the two exports on ASIN or Product URL. Price and Bought In Past Month changes show up in a lookup.",
+                "Go deeper on one product: open its page and click Collect details on this page in the Properties tab. That reads the standard fields, then View all reviews collects the reviews across their pages.",
+            ],
+        },
+        {
+            id: "what-amazon-shows",
+            eyebrow: "Limits",
+            heading: "What an Amazon search shows, and what it doesn't",
+            paragraphs: [
+                "The extension collects what the search card shows. Some things live only on the product page, and some depend on how you're signed in.",
+                "A listing with several sellers or variations can show a range or no price on the card. The Price cell stays empty rather than guessing; open the listing for one variation's price.",
+            ],
+            points: [
+                "Pages: about 7 to 20 per search, set by Amazon. Narrower searches reach more products than one broad one.",
+                "Sponsored rows: kept and labelled, so you can filter them out later, or skipped when Settings → Results → Skip sponsored products is on.",
+                "Prices and delivery: what Amazon shows you, which depends on your country store, your address and Prime. Set those on Amazon before collecting.",
+                "Reviews: the card shows the rating and the count only. Reviews come from the product page through the Properties tab.",
+                "Country stores: the same setup and the same ASIN everywhere, so a price comparison across stores is one lookup.",
+            ],
+        },
+        {
+            id: "compared",
+            eyebrow: "Other ways",
+            heading: "Compared with Amazon's own tools and copying by hand",
+            paragraphs: [
+                "For a search you can see, the extension is the quickest route to a sheet. Amazon's seller and advertising reports cover your own listings, not a competitor's search, and copying cards by hand loses the numbers as numbers.",
+            ],
+            table: {
+                columns: ["Method", "What you get", "Where it falls short"],
+                rows: [
+                    ["This extension", "Every page of the search as named columns, in your own browser, free", "A verification page stops the run until you complete it; a few pages per run on a busy day"],
+                    ["Amazon's seller reports", "Your own listings' sales and traffic", "Nothing about other sellers' prices, badges or ratings"],
+                    ["Copying by hand", "Whatever you have the patience for", "Prices and counts paste as text, sponsored rows mix in, and a second run next week starts from zero"],
+                ],
+            },
+        },
+    ],
     screenshots: ["ext/list-tab-amazon", "ext/results-amazon"],
     feature: "list-scraper",
     guide: "collect-amazon-search-results",
@@ -103,11 +192,13 @@ export const amazon: ScraperPageContent = {
     related: [],
     faqs: [
         { q: "Is this Amazon scraper free?", a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create." },
-        { q: "Can I scrape a product's full details and reviews?", a: "Yes. Open the product page and click Collect details on this page in the Properties tab. It reads the standard fields, such as price, list price, rating, availability, seller and variants, and collects the reviews across their pages." },
+        { q: "How do I scrape Amazon search results without code?", a: "Run the search, open the List tab, pick the results list, choose Collect more pages and set Stop after. The columns are named by the Amazon setup, so the sheet is ready to sort." },
+        { q: "Can I scrape a product's full details and reviews?", a: "Yes. Open the product page and click Collect details on this page in the Properties tab. It reads the standard fields, such as price, list price, rating, availability, seller and variants, and View all reviews collects the reviews across their pages." },
         { q: "Can I scrape Amazon Best Sellers?", a: "Yes. Best Sellers, New Releases, Movers & Shakers and category pages are lists like any other. Pick the list in the side panel and collect." },
         { q: "Why is the price empty on some rows?", a: "A listing with several sellers or variations sometimes shows a range or no price on the search card. The cell stays empty rather than guessing; open the listing for the price." },
-        { q: "Can I scrape several Amazon searches at once?", a: "Yes. Paste the search addresses into Bulk scrape and each is collected in turn with the same page settings." },
-        { q: "Does it work on Amazon.in, Amazon.co.uk and other country stores?", a: "Yes. The setup covers 21 country stores, and the ASIN column is the same product id in each, so you can compare prices across stores." },
+        { q: "Can I scrape several Amazon searches at once?", a: "Yes. Paste the search addresses into Bulk scrape and each is collected in turn with the same page settings. View merged table puts them in one sheet with a Source URL column." },
+        { q: "Does it work on Amazon.in, Amazon.co.uk and other country stores?", a: "Yes. The setup covers every country store, and the ASIN column is the same product id in each, so you can compare prices across stores." },
         { q: "Does it work on Amazon Fresh or Amazon Business?", a: "The setup is for the main store's search and category pages. Other storefronts are detected as a plain list; check the columns on the first page." },
+        { q: "Is scraping Amazon allowed?", a: "Amazon's terms restrict automated collection, and the product text and images belong to Amazon and its sellers. Collect for your own research, keep it to what the public page shows, and read our plain-words explainer on web scraping and the law at /web-scraping-legal. It isn't legal advice." },
     ],
 };

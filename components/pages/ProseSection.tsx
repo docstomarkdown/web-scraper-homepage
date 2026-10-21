@@ -61,7 +61,7 @@ export default function ProseSection({ s }: { s: ContentSection }) {
                                 <table className="w-full text-left border-collapse text-base leading-[1.5]">
                                     <thead>
                                         <tr className="border-b-2 border-slate-200 dark:border-slate-700">
-                                            {s.table.columns.map((col) => <th key={col} scope="col" className="py-2.5 pr-5 font-semibold text-slate-800 dark:text-white align-bottom">{col}</th>)}
+                                            {s.table.columns.map((col, i) => <th key={`${i}-${col}`} scope="col" className="py-2.5 pr-5 font-semibold text-slate-800 dark:text-white align-bottom">{col.trim() ? col : <span className="sr-only">Row</span>}</th>)}
                                         </tr>
                                     </thead>
                                     <tbody>

@@ -12,7 +12,7 @@ video: ""
 campaign: yt-b2-05-how-to-get-emails-from-a-list-of-websites-to-excel-no-code
 faq:
   - q: "Can I use a list I collected earlier?"
-    a: "Yes. Choose **Reuse URLs from a saved table**, pick the collection, then its website column. Or open that table and click **Add contact details** on its results page."
+    a: "Yes. Choose **Use saved data** on the Upload step (it then reads Reuse URLs from a saved table), pick the collection under Choose a saved table, then its website column. Or open that table and click **Add contact details** on its results page."
 ---
 
 Paste or upload a list of website addresses, and Web Scraper Pro reads each site for its emails, phone numbers and social links. You get one sheet with a row per site, without opening any of them yourself. This guide shows each step on version 1.3.0, with a screenshot of what you should see.

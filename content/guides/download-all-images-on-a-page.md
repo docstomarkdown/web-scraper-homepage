@@ -51,7 +51,7 @@ Icons, logos, sprites and tracking pixels are left out, and an image that appear
 
 Click **Download** on a group for only that size, or **Download all** at the top for every image. The ZIP file saves to your Downloads folder, named after the site, such as `store.example-images.zip`. A download of more than 5,000 files is split into `…-part-1.zip`, `…-part-2.zip` and so on.
 
-If the page changed, or you scrolled further and more images loaded, click **Rescan** to collect again.
+If the page changed, or you scrolled further and more images loaded, click **Find images again** to collect again.
 
 ## When it goes wrong
 

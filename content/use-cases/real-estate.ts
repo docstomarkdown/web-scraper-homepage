@@ -8,13 +8,16 @@ import { getPage } from "@/config/pages";
 // Title targets the search phrases "how to scrape real estate data" and "scrape real estate websites"
 // (youtube-research/SEARCH_QUERIES.md), 2026-10-21.
 
+// Deepened 2026-10-21 (owner: pages too thin): variations, a worked example (the 94-home count is an illustration;
+// the four-page timing is from the list-scraper facts), next steps, mistakes, ten FAQs. Rightmove's Agent Phone column and
+// Zillow's caps come from content/scrapers/{rightmove,zillow}.ts.
 export const realEstate: UseCasePageContent = {
     page: getPage("real-estate", "use-case"),
     meta: {
         title: "How to Scrape Real Estate Data into a Spreadsheet, No Code",
         description: "Scrape homes for sale or rent from Zillow, Rightmove, Redfin, Zoopla and Property Finder into one spreadsheet: price, address, beds, baths, size and link, for every page of results. Free Chrome extension."
     },
-    h1: "How to scrape real estate data from Zillow and other listing sites into a spreadsheet",
+    h1: "How to scrape real estate data into a spreadsheet",
     intro: "Search a zip code or a town on your listing site and click once in Web Scraper Pro, a free Chrome extension. You get one home per row with the price, address, beds, baths, size and link, for every page of results. Run it again next week and see what's new.",
     status: "draft",
     lastUpdated: "2026-10-21",
@@ -38,7 +41,7 @@ export const realEstate: UseCasePageContent = {
             },
             {
                 title: "Collect every page",
-                body: "Click the Web Scraper Pro icon in Chrome; a panel opens on the right. In the List tab, the homes show as a list with a count. Click it, choose Collect more pages, and click Collect from N pages. Keep the tab in front while it runs.",
+                body: "Click the Web Scraper Pro icon in Chrome; a panel opens on the right, and in the List tab the homes show as a list with a count. Click it, choose Collect more pages, and click Collect from N pages. Keep the tab in front while it runs.",
                 points: ["On Zillow the extension scrolls the list for you first, so every card loads before it reads them.", "You get one row per home: Address, Price, Beds, Baths, Sq Ft, Listing Type, who listed it and the link.", "If the site asks you to confirm you're human, do it in the tab and collect again."],
                 feature: "list-scraper",
                 screenshot: "ext/results-zillow",
@@ -73,6 +76,71 @@ export const realEstate: UseCasePageContent = {
             ["7 Oak Ave, Springfield", "1,450 /mo", "2", "1", "980"],
         ],
     },
+    sections: [
+        {
+            id: "variations",
+            eyebrow: "Variations",
+            heading: "Four shapes the same job takes",
+            paragraphs: [
+                "Whether you're pricing one street or tracking a county, every version is a search on the listing site plus one collection in the List tab. The table shows where to start and what changes.",
+            ],
+            table: {
+                columns: ["Variation", "Start from", "What changes"],
+                rows: [
+                    ["Comparables for a report", "One zip code with your price and beds filters, for sale", "One run of up to 20 pages on Zillow; Price and Sq Ft come as numbers, so price per square foot is a formula."],
+                    ["This week's new listings", "The same search as last week", "Run it again; History keeps both with their dates. Match on Zillow Property ID or the listing link to see what's new or reduced."],
+                    ["Rentals in an area", "Switch the search to for rent", "Same columns; the Price column holds the monthly rent."],
+                    ["A whole city", "One search per zip code, pasted into Bulk scrape", "Each search runs in turn; View merged table puts them together with a Source URL column."],
+                    ["A site without a ready-made setup", "Any listing site's results page in the List tab", "The columns are named from the page's own labels; check the first page before a long run."],
+                ],
+                caption: "Zillow shows at most 20 pages, about 800 homes, per search; Rightmove shows up to 42 pages.",
+            },
+        },
+        {
+            id: "worked-example",
+            eyebrow: "Worked example",
+            heading: "One zip code, with the numbers",
+            paragraphs: [
+                "Here is a for-sale search in one zip code from search to export, with the counts the extension gives you. The times depend on how many pages the site has for your filters.",
+            ],
+            steps: [
+                { title: "Search with the filters you'd use anyway.", body: "On Zillow: one zip code, for sale, $250,000 to $450,000, 3+ beds. The page says how many homes match; say 94 across 4 pages." },
+                { title: "Collect every page.", body: "Open the List tab, pick the results list, choose Collect more pages and set Stop after to All pages. Zillow's list panel is scrolled for you so every card loads. Four pages take about a minute." },
+                { title: "Read the table.", body: "94 rows with Address, Price, Beds, Baths, Sq Ft, Lot Size, Listing Type, Listed By, Badges, Zillow Property ID, Property URL and Image URL. Lot Size is empty for the condos; Badges show New or Price cut where the card did." },
+                { title: "Trim it.", body: "Type in chat: Only address, price, beds, baths and sq ft, sorted by price. Or click Filter rows and keep Beds of 4 or more." },
+                { title: "Export.", body: "Export as → Excel. Add one column, Price divided by Sq Ft, and the comparables sort themselves. The run stays in History under its search." },
+            ],
+        },
+        {
+            id: "next",
+            eyebrow: "After the export",
+            heading: "What to do with the table next",
+            paragraphs: [
+                "The export is the inventory; the report is what you do with it. Four moves that take minutes in a spreadsheet.",
+            ],
+            points: [
+                "Price per square foot: Price and Sq Ft are numbers, so one formula gives it for every row. Sort by it to find the outliers.",
+                "What changed since last week: keep last week's export, match the two on Zillow Property ID or the listing link, and mark rows that are new, gone or cheaper.",
+                "Rentals next to sales: run the same zip code for rent, export, and put the two sheets side by side for a gross yield column.",
+                "Share with a client: Export as → Google Sheets for a sheet you can share, or Excel for a file to attach. Hide Image URL and Property URL first if the client doesn't need them.",
+            ],
+        },
+        {
+            id: "mistakes",
+            eyebrow: "Mistakes to avoid",
+            heading: "Five things that waste a run",
+            paragraphs: [
+                "Each of these shows up as a sheet that looks right and isn't.",
+            ],
+            points: [
+                "One search for a whole city. Zillow caps a search at 20 pages, so a city search misses most homes. Search by zip code or price band and merge.",
+                "Expecting days on market, price history or the agent's phone. A results card doesn't show them, so they aren't collected. Open a listing and use the Properties tab for what its page shows, one home at a time.",
+                "Reading rent as price. Rentals come through as shown, such as $1,450/mo, in the Price column. Keep sales and rentals in separate runs.",
+                "Closing the tab mid-run. The run happens in your browser; keep the tab in front. If the site asks you to confirm you're human, do it in the tab and collect again.",
+                "Reusing the data beyond your own research. Listing sites' terms restrict automated collection and reuse. Collect for your own analysis and check the terms before anything goes to a third party.",
+            ],
+        },
+    ],
     sites: [{ name: "Zillow", page: "zillow" }, { name: "Rightmove", page: "rightmove" }, { name: "Redfin" }, { name: "Zoopla" }, { name: "Property Finder" }, { name: "Any listing site with a results list" }],
     cantDo: {
         heading: "What it won't do",
@@ -87,9 +155,13 @@ export const realEstate: UseCasePageContent = {
     faqs: [
         { q: "Is this free?", a: "Yes. Web Scraper Pro is free to install and use today, with every feature included and no account to create." },
         { q: "Do I need to know anything technical?", a: "No. You search the site the way you always do, open the panel, and click Collect. There is nothing to set up and no code." },
+        { q: "How do I scrape real estate data without coding?", a: "Search the area on your listing site, open the List tab, pick the results list and choose Collect more pages. One row per home comes back with price, address, beds, baths and size, and Export as saves it to Excel." },
         { q: "Which listing sites have ready-made columns?", a: "Zillow, Rightmove, Redfin, Zoopla and Property Finder. On other sites the results list is found on the page and the columns are named from its labels." },
         { q: "How many listings can one search give me?", a: "As many as the site shows: Zillow up to 20 pages, about 800 homes; Rightmove up to 42 pages. For more, split the search by zip code or price band." },
         { q: "Can I get rentals?", a: "Yes. Switch the search to rentals and the same columns fill in, with the monthly rent in the Price column." },
+        { q: "Can I get the listing agent's phone number?", a: "On Rightmove the card shows the branch and its phone, so yes. On Zillow the card shows who listed it, not a phone; open the listing and use the Properties tab for what its page shows." },
+        { q: "Can I see which listings are new since last week?", a: "Run the same search again. Each run is saved in History with its date; match the two exports on Zillow Property ID or the listing link, and the new and reduced homes stand out." },
         { q: "Does it work on a site I sign in to, like an MLS?", a: "It can read what you see once you're signed in, because it runs in your own browser. Whether you may export it is set by that system's rules; check them first." },
+        { q: "Is scraping Zillow allowed?", a: "Zillow's terms restrict automated collection and reuse of its data. Collect for your own research at a person's pace, keep it to the public listings, and read our plain-words explainer on web scraping and the law. It isn't legal advice." },
     ],
 };

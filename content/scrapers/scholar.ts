@@ -3,21 +3,24 @@ import type { ScraperPageContent } from "@/components/pages/ScraperPage";
 // Facts checked against release 1.3.0 on 2026-10-21: the Scholar pack in configs-prod/scholar/google-scholar.json
 // (columns Rank, Title, Result Type, Result URL, Authors, Author Profile URLs, Publication, Year, Publisher / Source,
 // Cited By, Cited By URL, Versions, Versions URL, Related Articles URL, Document URL, Document Type, Document Host Name;
-// Next-page paging, 10 pages by default or every page) and the List tab's Scholar mode ("Collect this page, choose a page
-// limit, or continue through every available Scholar page"; a verification page stops the run and is never bypassed).
+// Next-page paging with a 1.5 s wait between pages, 10 pages by default or every page) and the List tab's Scholar mode
+// ("Collect this page, choose a page limit, or continue through every available Scholar page"; a verification page stops
+// the run and is never bypassed). Google Scholar's own cap: 10 results a page, 100 pages, 1,000 results per search.
 // Draft until a real run's screenshots are in the visuals library.
-// 2026-10-21: title targets the search phrase ("scrape google scholar search results"); the site is named "Google Scholar",
-// following the Google Maps wording decision of the same day.
+// 2026-10-21: title targets the search phrase ("scrape google scholar"); the site is named "Google Scholar". The guide
+// owns "How To Scrape Search Results from Google Scholar"; this page owns the citation-counts phrase.
+// 2026-10-21 (later): deepened. Verify before publishing: the time for ten pages in the worked example (written as
+// "under a minute", from the 1.5 s page wait plus load time).
 
 export const scholar: ScraperPageContent = {
     slug: "scholar",
     category: "research-papers",
     site: { name: "Google Scholar", url: "https://scholar.google.com" },
     meta: {
-        title: "How to Scrape Google Scholar Search Results into a Spreadsheet",
+        title: "How to Scrape Google Scholar Results with Citation Counts",
         description: "Turn a Google Scholar search into a spreadsheet: title, authors, publication, year, citation count and full-text link for every result, across every page. Free Chrome extension, no code.",
     },
-    h1: "How to scrape Google Scholar search results into a spreadsheet",
+    h1: "How to scrape Google Scholar results with citation counts into a spreadsheet",
     intro: "Run a search on Google Scholar and open the side panel. Every result becomes a row with title, authors, publication, year, citation count and the full-text link, across as many pages as you choose. Sort by citations or year in the sheet.",
     status: "draft",
     lastVerified: "2026-10-21",
@@ -88,6 +91,83 @@ export const scholar: ScraperPageContent = {
         "A verification page can appear when many pages load in a sitting. The run stops and keeps what it has. Complete the check, Rescan, and continue.",
         "A search is capped at 100 pages, 1,000 results. Split a wider sweep into narrower searches or year ranges.",
     ],
+    sections: [
+        {
+            id: "searches",
+            eyebrow: "Where to start",
+            heading: "Three searches worth running",
+            paragraphs: [
+                "A Google Scholar search is a topic plus the filters on the left: a year range, sort by date, and whether to include citations. The extension collects whatever the page shows, so set the filters first.",
+                "These three shapes cover most literature jobs. Change the topic to yours.",
+            ],
+            table: {
+                columns: ["Search", "Why", "Columns to keep"],
+                rows: [
+                    ["trail running injury rates, 2019 to 2025", "A year range keeps a literature review current and under the 1,000-result cap", "Title, Authors, Year, Cited By, Document URL"],
+                    ["\"hiking boot\" stiffness, sorted by date", "The newest work on a narrow phrase; quotes keep the phrase together", "Title, Year, Publication, Result URL"],
+                    ["author:\"A Rivera\" running", "One author's papers, with citation counts, for a reading list or a CV check", "Title, Year, Cited By, Versions"],
+                ],
+                caption: "Google Scholar's own operators (quotes, author:, the year boxes) all work, because the run reads the page you set up.",
+            },
+        },
+        {
+            id: "worked-example",
+            eyebrow: "A worked example",
+            heading: "A hundred papers on a topic, ranked by citations",
+            paragraphs: ["Google Scholar shows ten results a page, so ten pages is a hundred papers. Here is a typical run on version 1.3.0."],
+            steps: [
+                { title: "Search trail running injury rates and set the years.", body: "Type the year range in the boxes on the left, then open the List tab. Google Scholar is recognised, and the panel offers a page limit." },
+                { title: "Keep the default of 10 pages and click Collect.", body: "The run reads a page, waits a moment, and clicks Next. Ten pages take under a minute when Google Scholar answers normally." },
+                { title: "If a verification page appears, answer it.", body: "The run stops and keeps what it has. Complete the check in the tab, click Rescan, and collect again from the page you're on." },
+                { title: "Sort by Cited By.", body: "Click the header. The most-cited papers rise to the top, and Document URL shows which have a free PDF." },
+                { title: "Export to Excel or CSV.", body: "Click Export as. For a reference manager, export CSV and map Title, Authors, Publication and Year on import." },
+            ],
+        },
+        {
+            id: "recipes",
+            eyebrow: "After the run",
+            heading: "What to do with the table",
+            paragraphs: ["Four moves on the results page turn a search into a reading list, a review table or a download list."],
+            points: [
+                "The reading list: sort by Cited By, keep the top thirty, hide every column but Title, Authors, Year and Result URL, and export.",
+                "The free-PDF list: Filter rows, Document Type is PDF. Those links open the full text without a library sign-in.",
+                "The review table: keep Publication and Year, export to Google Sheets, and count papers per venue per year with a pivot table to see where a field publishes.",
+                "The citation trail: open a Cited By URL, which is a results page too, and collect it the same way. Two runs give you the paper and everything that cites it.",
+            ],
+        },
+        {
+            id: "caps",
+            eyebrow: "Limits",
+            heading: "What Google Scholar shows, and what it doesn't",
+            paragraphs: ["The results page is a summary of each paper. Abstracts, full author names and the paper itself sit one click away, and the run doesn't take that click."],
+            table: {
+                columns: ["What", "On Google Scholar", "In your table"],
+                rows: [
+                    ["Results per search", "10 a page, at most 100 pages", "Up to 1,000 rows; for more, narrow the search or the years"],
+                    ["Abstracts", "On the paper's own page", "Not collected; Result URL and Document URL lead there"],
+                    ["Authors", "One abbreviated line per result", "The Authors column as shown, not one column per author"],
+                    ["Verification page", "Appears after many pages in a sitting", "The run stops and is never bypassed; answer it and continue"],
+                ],
+            },
+        },
+        {
+            id: "compared",
+            eyebrow: "Compared",
+            heading: "Compared with Google Scholar's own export",
+            paragraphs: [
+                "Google Scholar exports one citation at a time, through the quote button under each result, in BibTeX or a reference manager's format. For a hundred papers that's a hundred clicks, and the citation counts don't come with them.",
+                "The run gives the whole page set as one table with Cited By as a number. The one thing Google Scholar's export has that the table doesn't is the formatted citation itself, which your reference manager builds from the columns on import.",
+            ],
+            table: {
+                columns: ["", "Google Scholar's quote button", "With the extension"],
+                rows: [
+                    ["A hundred papers", "A hundred clicks, one file each", "One run, one table"],
+                    ["Citation counts", "Not exported", "Cited By, as a number you can sort"],
+                    ["Full-text links", "Not exported", "Document URL, with PDF or HTML in Document Type"],
+                ],
+            },
+        },
+    ],
     screenshots: ["ext/list-tab-scholar", "ext/results-scholar"],
     feature: "list-scraper",
     guide: "export-scholar-search-results",
@@ -101,5 +181,7 @@ export const scholar: ScraperPageContent = {
         { q: "Can I scrape an author profile or a Cited by list?", a: "A Cited by page is a results page too, so it collects the same way. Author profile pages are detected as a plain list." },
         { q: "Why is the full-text link empty?", a: "Google Scholar shows a PDF or HTML link only when it knows of one. Follow the Result URL for the publisher's page." },
         { q: "Does it collect abstracts?", a: "No. Abstracts aren't on the results page. The Result URL and Document URL lead to them." },
+        { q: "How do I scrape Google Scholar without getting a verification page?", a: "Collect in sittings of a few hundred results, and let the run keep its pause between pages. When the page appears anyway, answer it in the tab, click Rescan, and continue; nothing collected is lost." },
+        { q: "Is scraping Google Scholar allowed?", a: "Google Scholar's terms restrict automated collection, and the run never bypasses its verification page. Collect for your own research, keep the rows to the public results page, and cite papers from their own pages; our explainer at /web-scraping-legal covers the rules in plain words. It isn't legal advice." },
     ],
 };

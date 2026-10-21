@@ -79,7 +79,7 @@ Click the **Bulk scrape** icon (the layers icon at the top of the side panel) an
 
 ## Step 3 — Using the Saved Headline List
 
-On the **Upload** step, click **Use saved data**, pick the headline table from Step 1 and its link column. The chip reads **N valid URLs detected**. Click **Continue →**.
+On the **Upload** step, click **Use saved data**; the step reads **Reuse URLs from a saved table**. Under **Choose a saved table**, pick the headline table from Step 1, then its link column. The chip reads **N valid URLs detected**. Click **Continue →**.
 
 ![](visual:ext/bulk-upload)
 

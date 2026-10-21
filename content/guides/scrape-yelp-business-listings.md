@@ -104,7 +104,7 @@ Yelp doesn't show email addresses, so this step reads each business's own websit
 
 ![](visual:ext/bulk-menu)
 
-On the upload step, choose **Use saved data** and pick this Yelp collection and its website column. Click **Continue →**, then **Continue to site configuration →**. **Email addresses**, **Phone numbers** and **Social media links** are on for every site; untick what you don't need.
+On the Upload step, choose **Use saved data**; the step reads **Reuse URLs from a saved table**. Under **Choose a saved table**, pick this Yelp collection, then its website column. Click **Continue →**, then **Continue to site configuration →**. **Email addresses**, **Phone numbers** and **Social media links** are on for every site; untick what you don't need.
 
 ![](visual:ext/bulk-contacts-config)
 
