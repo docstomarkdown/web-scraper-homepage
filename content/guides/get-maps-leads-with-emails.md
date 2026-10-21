@@ -1,0 +1,58 @@
+---
+title: "How To Get Maps Leads with Emails with Web Scraper Pro"
+description: "Collect businesses from Maps with the emails, phone numbers and social links from their websites, in the same run or added to a list you already have."
+status: draft
+date: 2026-10-20
+updated: 2026-10-20
+version: "1.3.0"
+author: vikram
+feature: maps-leads
+sites: [maps]
+video: ""
+campaign: yt-b2-02-how-to-get-google-maps-leads-with-emails-no-code
+faq:
+  - q: "Can I turn contact details off?"
+    a: "Yes. Say no on the card, or untick the box on the List tab. The run is faster without them: about a minute for 20 businesses instead of a minute and a half."
+  - q: "Are the emails verified?"
+    a: "No. They're the addresses the websites publish. Verify them in your email tool before a campaign."
+---
+
+Collect businesses from Maps with the emails, phone numbers and social links from their websites, in the same run or added to a list you already have. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
+
+## Prerequisites
+
+- Google Chrome with Web Scraper Pro installed (version 1.3.0 or later).
+
+## Step 1 — Starting a Maps search with contact details on
+
+In the **Chat** tab, type `Find plumbers in Denver`. On the card, choose **50** and leave **add contact details** on.
+
+![](visual:ext/chat-maps-count-card)
+
+## Step 2 — Reading the emails as they arrive
+
+While the businesses are collected, each one's website and its Contact or About page are read in the background. The progress line shows how many have an email so far.
+
+![](visual:ext/chat-maps-progress)
+
+## Step 3 — Checking the contact columns
+
+Open the results. Next to the Maps columns sit Emails, Website phones, Faxes and one column per social network. A cell with several values shows the first and a **+N more** button. Some businesses have no email; their phone and website still come from Maps.
+
+![](visual:ext/results-maps-with-contacts)
+
+## Step 4 — Adding contact details to an older list
+
+Open a Maps list you collected earlier from the **History** tab and click **Add contact details** on the results page. The same columns fill in. This works on any saved table with a Website column.
+
+![](visual:ext/results-add-contacts)
+
+## Step 5 — Exporting
+
+Click **Export as** and choose Excel, CSV or JSON.
+
+![](visual:ext/results-export-menu)
+
+## Conclusion
+
+You now have businesses and their contact details in one table, and you know how to add contact details to any list with a Website column.

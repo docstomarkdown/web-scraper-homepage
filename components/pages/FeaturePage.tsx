@@ -56,6 +56,7 @@ export function featureMetadata(c: FeaturePageContent): Metadata {
 
 export default function FeaturePage({ content: c, visual }: { content: FeaturePageContent; visual?: React.ReactNode }) {
     const related = relatedPages(c.related);
+    const comingSoon = Boolean(c.page.comingSoon || c.page.status === "soon");
     const installUrl = `${productConfig.product.ctaUrl}?utm_source=website&utm_medium=${c.page.slug}&utm_campaign=chrome_install`;
 
     return (
@@ -65,7 +66,14 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
             <section className="pt-32 pb-16 md:pt-36 md:pb-20">
                 <div className={visual ? "max-w-7xl mx-auto px-6 md:px-12 grid lg:grid-cols-[5fr_7fr] gap-12 items-center" : container}>
                     <Reveal className="max-w-3xl">
-                        <p className="text-sm font-semibold text-[#2772ED] dark:text-[#7aa7ff]">{c.eyebrow}</p>
+                        <p className="text-sm font-semibold text-[#2772ED] dark:text-[#7aa7ff]">
+                            {c.eyebrow}
+                            {comingSoon && (
+                                <span className="ml-2 inline-flex align-middle rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-0.5 text-[11px] font-semibold text-slate-600 dark:text-slate-300">
+                                    Coming soon
+                                </span>
+                            )}
+                        </p>
                         <h1 className="mt-3 text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
                             {c.h1}
                         </h1>
@@ -87,7 +95,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                             </a>
                         </div>
                         <p className="mt-6 text-sm text-slate-500 dark:text-slate-400">
-                            Last updated <time dateTime={c.lastUpdated}>{formatDate(c.lastUpdated)}</time>
+                            {comingSoon ? "Planned feature; details may change before release." : <>Last updated <time dateTime={c.lastUpdated}>{formatDate(c.lastUpdated)}</time></>}
                         </p>
                     </Reveal>
 

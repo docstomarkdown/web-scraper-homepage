@@ -1,10 +1,11 @@
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { defaultUrlTransform } from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { Screenshot } from "@/components/Screenshot";
 
-// Markdown body for posts and guides. Images keep their own size (screenshots are never cropped),
-// and every colour has its dark counterpart.
+// Markdown body for posts and guides. Images keep their own size (screenshots are never cropped), an image whose
+// source is `visual:<id>` renders that capture from the visuals library, and every colour has its dark counterpart.
 const components = {
-    h2: (p: React.ComponentProps<"h2">) => <h2 className="text-2xl font-bold mt-12 mb-4 text-slate-900 dark:text-white tracking-tight" {...p} />,
+    h2: (p: React.ComponentProps<"h2">) => <h2 className="text-2xl font-bold mt-12 mb-4 text-slate-900 dark:text-white tracking-tight scroll-mt-24" {...p} />,
     h3: (p: React.ComponentProps<"h3">) => <h3 className="text-xl font-semibold mt-8 mb-3 text-slate-900 dark:text-white" {...p} />,
     p: (p: React.ComponentProps<"p">) => <p className="my-5 text-[17px] leading-relaxed text-slate-700 dark:text-slate-300" {...p} />,
     ul: (p: React.ComponentProps<"ul">) => <ul className="my-5 pl-6 list-disc space-y-2 text-[17px] text-slate-700 dark:text-slate-300" {...p} />,
@@ -21,19 +22,23 @@ const components = {
     ),
     th: (p: React.ComponentProps<"th">) => <th className="border-b border-slate-200 dark:border-slate-800 py-2 pr-4 font-semibold text-slate-900 dark:text-white" {...p} />,
     td: (p: React.ComponentProps<"td">) => <td className="border-b border-slate-100 dark:border-slate-800/60 py-2 pr-4 text-slate-700 dark:text-slate-300 align-top" {...p} />,
-    img: ({ src, alt }: React.ComponentProps<"img">) => (
-        <figure className="my-8">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={typeof src === "string" ? src : undefined} alt={alt ?? ""} loading="lazy" className="w-full h-auto rounded-xl border border-slate-200 dark:border-slate-800" />
-            {alt ? <figcaption className="mt-2 text-sm text-slate-500 dark:text-slate-400">{alt}</figcaption> : null}
-        </figure>
-    ),
+    img: ({ src, alt }: React.ComponentProps<"img">) => {
+        const s = typeof src === "string" ? src : "";
+        if (s.startsWith("visual:")) return <Screenshot id={s.slice("visual:".length)} caption={alt || undefined} />;
+        return (
+            <figure className="my-8">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={s || undefined} alt={alt ?? ""} loading="lazy" className="w-full h-auto rounded-xl border border-slate-200 dark:border-slate-800" />
+                {alt ? <figcaption className="mt-2 text-sm text-slate-500 dark:text-slate-400">{alt}</figcaption> : null}
+            </figure>
+        );
+    },
     hr: () => <hr className="my-10 border-slate-200 dark:border-slate-800" />,
 };
 
 export function Markdown({ content }: { content: string }) {
     return (
-        <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
+        <ReactMarkdown remarkPlugins={[remarkGfm]} components={components} urlTransform={(url) => (url.startsWith("visual:") ? url : defaultUrlTransform(url))}>
             {content}
         </ReactMarkdown>
     );

@@ -63,7 +63,7 @@ const resource = make("resource", "/");
 export const pages: SitePage[] = [
     // Product: one page per feature
     connect(["ai-chat", "AI chat", "Ask for the data you want in plain words, and it collects and exports it for you.", "live", "message"]),
-    connect(["mcp", "MCP and AI agents", "Connect Claude or another AI agent to collect data through your browser.", "planned", "bot"]),
+    { ...connect(["mcp", "MCP and AI agents", "Connect Claude or another AI agent to collect data through your browser.", "soon", "bot"]), comingSoon: true },
     collect(["maps-leads", "Maps leads", "Every business from a Maps search, with phone, website, address and rating.", "live", "map-pin"]),
     collect(["list-scraper", "Lists from any website", "Directories, search results and catalogs on other sites, with named columns and every page of results.", "live", "list"]),
     collect(["shopify-scraper", "Shopify store export", "Every product in a public store, with variants, images and an import CSV.", "live", "store"]),
@@ -73,7 +73,7 @@ export const pages: SitePage[] = [
     collect(["image-downloader", "Image downloader", "Save every image on a page in one ZIP file.", "live", "image"]),
     scale(["bulk-scraper", "Bulk runs", "Paste a list of web pages and collect from all of them in one run.", "live", "layers"]),
     scale(["export-to-google-sheets", "Edit and export", "Rename, reorder and clean columns, then export to Google Sheets, Excel, CSV or JSON.", "live", "table"]),
-    { ...scale(["cloud", "Cloud runs", "Big jobs and scheduled runs without keeping your browser open, plus a REST API.", "planned", "cloud"]), comingSoon: true },
+    { ...scale(["cloud", "Cloud runs", "Big jobs and scheduled runs without keeping your browser open, plus a REST API.", "soon", "cloud"]), comingSoon: true },
 
     // Use cases: one page per job
     useCase(["lead-generation", "Lead generation", "Local businesses with phones and websites, plus emails from their own sites.", "planned", "target"]),

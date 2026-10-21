@@ -3,20 +3,10 @@ import { Plus } from "lucide-react";
 import SectionHeading from "@/components/landing/SectionHeading";
 import Reveal from "@/components/landing/Reveal";
 
-// Sites with tuned, ready-made settings in the extension. Names only (no logos).
-// Keep this to sites whose setup is actually tuned; generic fallback packs don't belong here.
-const GROUPS = [
-    { label: "Maps and directories", sites: ["Maps", "Yellow Pages", "Manta"] },
-    { label: "Shopify", sites: ["Any Shopify store: full catalog"] },
-    {
-        label: "Online stores",
-        sites: ["Amazon", "Walmart", "Target", "Etsy", "Costco", "Wayfair", "Newegg", "Lowe's", "Nike", "Zara", "Flipkart", "Allegro"],
-    },
-    { label: "Real estate", sites: ["Zillow", "Realtor.com", "Rightmove"] },
-    { label: "Travel", sites: ["Booking.com", "Hotels.com", "Tripadvisor"] },
-    { label: "Jobs, cars and software", sites: ["Monster", "CarGurus", "Capterra", "Product Hunt"] },
-    { label: "Research papers", sites: ["Scholar search results"] },
-];
+import { sitesByCategory } from "@/content/sites";
+
+// The site list lives in content/sites.ts, shared with the /scrapers hub and the per-site pages.
+const GROUPS = sitesByCategory().map((g) => ({ label: g.category.label, sites: g.sites.map((s) => s.name) }));
 
 export default function Sites() {
     return (

@@ -2,6 +2,9 @@ import { MetadataRoute } from "next";
 import { getAllPosts, getAllAuthors, getAllCategories, getPostsByAuthor, getPostsByCategory, categorySlug } from "@/lib/posts";
 import { siteConfig, toolsGroups } from "@/config/site";
 import { publishedPages } from "@/config/pages";
+import { getGuides } from "@/lib/guides";
+import { scraperPages } from "@/content/scrapers";
+import { useCasePages } from "@/content/use-cases";
 
 // Canonical URLs only: no redirects, no noindex pages. Dates are given only where they're known.
 const BASE = siteConfig.url.replace(/\/$/, "");
@@ -18,6 +21,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     pages.push(url("/support", { priority: 0.4 }), url("/privacy-policy", { priority: 0.3 }), url("/terms-of-service", { priority: 0.3 }));
 
     for (const group of toolsGroups) for (const t of group.items) pages.push(url(t.href, { priority: 0.5 }));
+
+    for (const g of getGuides()) pages.push(url(`/guides/${g.slug}`, { lastModified: new Date(g.updated), priority: 0.7 }));
+    for (const c of Object.values(scraperPages)) if (c.status === "published") pages.push(url(`/scrapers/${c.slug}`, { lastModified: new Date(c.lastVerified), priority: 0.7 }));
+    for (const c of Object.values(useCasePages)) if (c.status === "published") pages.push(url(c.page.href, { lastModified: new Date(c.lastUpdated), priority: 0.7 }));
 
     const posts = getAllPosts();
     for (const post of posts) pages.push(url(`/blog/${post.slug}`, { lastModified: new Date(post.updated), priority: 0.7 }));

@@ -8,6 +8,9 @@ import { getAuthor, type Author } from "@/content/authors";
 //   category, tags (list), image (optional path under /public), imageAlt (optional).
 // A post is published once its file exists; there is no draft flag, so unfinished posts stay out of the folder.
 
+/** A front-matter value as a YYYY-MM-DD string; YAML parses bare dates into Date objects. */
+const isoDate = (v: unknown) => (v instanceof Date ? v.toISOString().slice(0, 10) : String(v ?? ""));
+
 const postsDirectory = path.join(process.cwd(), "content/blog");
 
 export interface BlogPost {
@@ -34,8 +37,8 @@ function readPost(fileName: string): BlogPost {
         slug,
         title: String(data.title ?? ""),
         description: String(data.description ?? data.excerpt ?? ""),
-        date: String(data.date ?? ""),
-        updated: String(data.updated ?? data.date ?? ""),
+        date: isoDate(data.date),
+        updated: isoDate(data.updated ?? data.date),
         author: getAuthor(String(data.author ?? "vikram")),
         category: String(data.category ?? ""),
         tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
