@@ -42,7 +42,7 @@ Match the tool to the job, not the feature list.
 - **A site you'll collect every week, unattended.** Web Scraper Cloud, Browse AI or Octoparse. All three sell scheduled cloud runs and an API; Browse AI adds change monitoring.
 - **A page you've never seen, in a minute.** Web Scraper Pro, Thunderbit or Chat4Data. Open the page and go.
 - **A whole Shopify catalog with an import file.** Web Scraper Pro reads the store's own product data into one row per variant, with a Shopify import CSV and the images.
-- **Sites that block you.** The cloud tools offer proxies as an add-on. A browser extension reads the page as an ordinary visit from you, which most sites allow; none of the extensions here should be used to get past a login or a bot check you haven't satisfied yourself.
+- **Sites that block you.** The cloud tools offer proxies as an add-on. A browser extension reads the page as an ordinary visit from you, which most sites allow; none of the extensions here should be used to get past a sign-in or a bot check you haven't satisfied yourself.
 - **Zero budget, simple lists.** Web Scraper's free local extension, Listly's free tier for ten URLs, or Web Scraper Pro, which is free to install and shows you the rows before you export.
 
 ## How to choose in five minutes

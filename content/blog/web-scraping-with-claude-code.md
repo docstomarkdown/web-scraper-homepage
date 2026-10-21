@@ -80,6 +80,6 @@ In those cases, write it with Claude Code and keep it. Use an extension to look 
 
 Collect with the extension, process with the code.
 
-A quiet pattern that works: the extension does the browsing, because browsers are what sites expect, and exports a CSV; a script Claude Code wrote does the enrichment, the scoring and the CRM upload. Each tool does the part it's good at, and neither has to fight the other's weak spot. When Web Scraper Pro's MCP connection ships, Claude will be able to call the collector directly from the conversation; the [MCP page](/mcp) says what's planned.
+A quiet pattern that works: the extension does the browsing, because browsers are what sites expect, and exports a CSV; a script Claude Code wrote does the enrichment, the scoring and the upload to your sales tool. Each tool does the part it's good at, and neither has to fight the other's weak spot. When Web Scraper Pro's MCP connection ships, Claude will be able to call the collector directly from the conversation; the [MCP page](/mcp) says what's planned.
 
 The same rules apply to both routes: public pages, your own research, no personal profiles, and the site's terms. The [legal guide](/web-scraping-legal) has the cases.

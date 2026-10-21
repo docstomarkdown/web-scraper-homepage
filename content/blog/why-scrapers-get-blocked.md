@@ -53,7 +53,7 @@ Fewer blocks, not zero, and no way past a wall you shouldn't be behind.
 
 - **Volume still matters.** Load two hundred Scholar pages in a sitting and Scholar may ask you to verify. Collect in reasonable runs and spread big jobs over time.
 - **Some sites rate-limit everyone.** Large stores slow accounts that page through hundreds of listings quickly, whoever is doing it. Narrow the search instead of forcing through it.
-- **A login wall stays a wall.** The extension reads what you can see once you're signed in, under that account's terms. It doesn't create accounts, share them, or read what the site hides from you.
+- **A sign-in wall stays a wall.** The extension reads what you can see once you're signed in, under that account's terms. It doesn't create accounts, share them, or read what the site hides from you.
 - **A blocked page is a blocked page.** If a site has decided your address or account should see nothing, the extension sees nothing too. There is no proxy mode, and that's deliberate.
 
 ## The two lines
@@ -61,6 +61,18 @@ Fewer blocks, not zero, and no way past a wall you shouldn't be behind.
 Don't defeat a barrier, and don't take what you had to break in to see.
 
 Reading a public page is lawful in most places; getting past a password, a paywall or a bot check to read it is where the law, and most sites' terms, turn against you. Our [guide to the law](/web-scraping-legal) covers the cases. A tool that offers to solve verifications, rotate identities or hide where you are is a tool for crossing those lines, and the answer to "will it get blocked?" becomes "should it?"
+
+## What a block looks like in practice, and the recovery
+
+A concrete case: collecting 20 pages of a Zillow zip-code search. Around page 12, Zillow shows a "press and hold" check instead of the next page.
+
+- The extension stops and the panel says the site is showing a verification page. The 11 pages already collected are saved in History.
+- You complete the check in the Zillow tab, exactly as a visitor would. Zillow lets the page through.
+- In the List tab you click **Rescan**, choose **Collect more pages** again, and collect from the page you're on. The new rows join the earlier ones in a second collection; the Zillow property id matches the two.
+
+Total cost of the block: one click and about a minute. The alternative, a script that solves the check or switches address, is what Zillow's terms and the law object to; the [legal guide](/web-scraping-legal) explains why.
+
+For scale, a Maps run with emails reads one business's website roughly every five seconds: 50 businesses in about four minutes, 200 in about fifteen. That pace is deliberate, and it's why those runs rarely see a check at all.
 
 ## What to do when you are blocked
 
@@ -73,3 +85,9 @@ Slow down, narrow the job, complete the check yourself, or accept the no.
 5. **Stop.** If a site has made clear it doesn't want collection, the data isn't worth an account or a letter.
 
 The point of running in your own browser is that you behave like a visitor, and visitors are welcome. Keep it that way and the blocking question mostly answers itself.
+
+## Sources
+
+- Robots Exclusion Protocol, RFC 9309 (2022): [rfc-editor.org](https://www.rfc-editor.org/rfc/rfc9309)
+- *hiQ Labs v. LinkedIn*, 9th Cir. 2022, on scraping public pages: [ca9.uscourts.gov](https://cdn.ca9.uscourts.gov/datastore/opinions/2022/04/18/17-16783.pdf)
+- Web Scraper Pro's own behaviour on verifications and pacing: the [Maps leads](/maps-leads) and [bulk runs](/bulk-scraper) pages, checked against release 1.3.0.

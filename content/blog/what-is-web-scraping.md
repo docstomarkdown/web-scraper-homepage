@@ -47,9 +47,30 @@ Lists that someone needs as a table: businesses, products, listings, jobs, paper
 - **Job postings.** A company's careers page as a list of roles with location and link.
 - **Reviews.** A product's reviews across every page, to read the complaints first.
 
+## A five-minute example
+
+Collecting a store's category page into Excel, with the extension, takes about this long:
+
+1. Open the category page in Chrome and click the Web Scraper Pro icon. A panel opens on the right.
+2. In the **List** tab, the products show as a list with a count, such as **List 1, 24 items on this page**. Click it.
+3. Choose **Collect more pages**, leave **Stop after** at 5 pages, and click **Collect from 5 pages**.
+4. Click **Export as** and choose **Microsoft Excel**.
+
+What the sheet holds, for a typical store category:
+
+| Column | Example value |
+|---|---|
+| Product Name | Trail Runner 2 Men's Shoes |
+| Price | 89.00 (saved as a number) |
+| Rating | 4.6 |
+| Review Count | 1,204 |
+| Product URL | the link to the product |
+
+Five pages of 24 products is 120 rows in about two minutes. The names and numbers above are made up; the columns are what a store category gives you. The [any-website guide](/guides/scrape-data-from-any-website-to-excel) shows each click with a screenshot.
+
 ## What web scraping is not
 
-It isn't hacking, it isn't an API, and it isn't a way around a login.
+It isn't hacking, it isn't an API, and it isn't a way around a sign-in.
 
 - **Not hacking.** Scraping reads what a page already shows to any visitor. Getting past a password, a paywall or a bot check is a different act, and the law treats it differently.
 - **Not an API.** An API is a door the site built for programs, with its own rules and limits. Scraping reads the human-facing page. When a site offers an API that returns what you need, it's usually the better route.

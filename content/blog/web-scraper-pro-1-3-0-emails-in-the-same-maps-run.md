@@ -27,6 +27,14 @@ Two honest notes. Many small businesses publish no email at all; those rows keep
 
 The same reader now works on any saved table with a Website column: open it from History and click **Add contact details** on its results page. The [Maps leads page](/maps-leads) and the [emails and contacts page](/email-extractor) have the details.
 
+## Try it in two minutes
+
+1. Open a new tab, click the Web Scraper Pro icon, and open the **Chat** tab.
+2. Type `Find dentists in Austin`, pick **20** on the card, and click **Start**.
+3. Watch the run line: `12 of 20 · 5 with emails`. In about a minute and a half, click **View results** and scroll right to the Emails column.
+
+If the Emails column is missing, **Add emails from their websites** is off in Settings → Results, or the request said "no emails".
+
 ## Chat does more of the job
 
 Chat now collects every page, reshapes the last collection, and merges searches, each from a card or a sentence.

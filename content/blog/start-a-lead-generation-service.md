@@ -68,6 +68,32 @@ A saved search, a template sheet, and a delivery note, reused for every order.
 - **A delivery note.** What's included, where the data came from, what the client may do with it, and a line asking them to honour unsubscribes.
 - **History.** Every collection stays in the extension's History, so a refresh is a rerun, not a redo.
 
+## A first order, end to end
+
+The client: a dental software company. The brief: every dentist in Austin, Dallas and Houston with phone, website and email, in one sheet, by Friday.
+
+| Step | What you do | Time |
+|---|---|---|
+| 1 | In the Chat tab: `Find dentists in Austin`, pick **100**, click **Start** | about 8 minutes with emails |
+| 2 | Same for Dallas, then Houston, each in its own tab | about 8 minutes each |
+| 3 | Chat offers to combine the three searches; accept, and the table has a column for which search each row came from | 1 minute |
+| 4 | On the results page: `Only name, phone, email, website and city, rows with a phone` | 1 minute |
+| 5 | **Export as** → **Google Sheets**, share the link | 1 minute |
+
+About 300 rows in under half an hour of runs, most of it unattended. Rows without an email keep their phone and website; tell the client that up front.
+
+The delivery note, which you'll reuse for every order:
+
+```
+Dentists in Austin, Dallas and Houston: 294 businesses.
+Collected on 21 October 2026 from Maps listings and each business's own website.
+Columns: Business Name, Phone, Email, Website, City.
+Emails are the ones the businesses publish; 61% of rows have one.
+Please honour unsubscribes and the anti-spam rules where you send.
+```
+
+The 61% is this order's figure, not a promise; put each order's own number in its note.
+
 ## The lines to hold
 
 Business data for business outreach, honestly described, within the law.
@@ -78,4 +104,4 @@ A lead service lives on trust. Collect businesses and their published contact de
 
 One niche, three cities, one sample sent to ten prospects.
 
-Build a sample list for a niche you understand. Send the first twenty rows free to ten businesses that sell to that niche, with a line saying the full list is ready. One reply is a client; two is a service. From there, the extension is the easy part.
+Build a sample list for a niche you understand. Send the first twenty rows free to ten businesses that sell to that niche, with a line saying the full list is ready. One reply is a client; two is a service. From there, the extension is the quick part.

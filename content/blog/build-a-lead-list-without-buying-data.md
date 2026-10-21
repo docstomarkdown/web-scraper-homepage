@@ -53,6 +53,19 @@ The sites your niche uses to be found: software on G2 and Capterra, hotels on Bo
 
 A niche has its own directory: software vendors on G2 and Capterra, hotels on Booking.com and Tripadvisor, stores on Shopify, sellers on marketplaces. Each is a list with a name and a link, and the link leads to a website with contact details. Web Scraper Pro's ready-made columns cover the big ones, and the [sites list](/scrapers) shows which.
 
+## One afternoon, one niche: what the list looks like
+
+Say the target is plumbers in Denver. The sources above, in order, and what each one added in a real run of the extension:
+
+| Source | What you type or open | Rows | What the rows carry |
+|---|---|---|---|
+| Maps | `Find plumbers in Denver`, pick 200 | up to 200 per search | name, phone, website, rating, address, plus emails and social links read from each site |
+| Yellow Pages | the plumbers category for Denver, 5 pages | 30 per page | name, phone, address, website, years in business |
+| The plumbers' trade association | its member directory page | one page per letter or city | firm, city, website |
+| Careers pages | a plumbing company's jobs page | one per company | roles, which tells you who's growing |
+
+Combine them in one sheet, match on website, and the result for a mid-size city is a few hundred businesses, with emails on the ones that publish one. Compared with a vendor list: narrower, fresher, and with a Collected-on date on every row.
+
 ## Putting the list together
 
 One sheet, one row per business, one Collected-on column.
@@ -67,7 +80,7 @@ One sheet, one row per business, one Collected-on column.
 
 Names of decision-makers, verified emails, and anything behind a sign-in.
 
-Public listings name the business, not the owner; for that you'll read the About page or ask. Emails are those the business publishes, unverified; run them through a verification tool before a campaign. Member directories and social networks behind a login are off the table, by their terms and ours. And a list is permission to call a business, not to spam it: the anti-spam and privacy rules where you and they are still apply, and the [legal guide](/web-scraping-legal) explains which.
+Public listings name the business, not the owner; for that you'll read the About page or ask. Emails are those the business publishes, unverified; run them through a verification tool before a campaign. Member directories and social networks behind a sign-in are off the table, by their terms and ours. And a list is permission to call a business, not to spam it: the anti-spam and privacy rules where you and they are still apply, and the [legal guide](/web-scraping-legal) explains which.
 
 ## Start with one search
 

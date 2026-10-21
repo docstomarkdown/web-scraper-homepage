@@ -45,6 +45,18 @@ Ask a coding assistant for "a script that collects product name, price and link 
 
 What the AI sees: the page's HTML you paste, and your code. Good for: developers, recurring crawls with custom logic, and sites where you need exactly what an extension doesn't offer. Limits: the script sees the page without a browser, so JavaScript-drawn lists come back empty unless you add a headless browser; sign-ins and bot checks stop it; and every site change is yours to fix. Our [ChatGPT guide](/guides/scrape-a-website-with-chatgpt) shows the paste and the script routes side by side.
 
+## The same job through shape 1, step by step
+
+Fifty dentists in Austin with their emails, in the chat extension:
+
+1. Open a new tab, click the Web Scraper Pro icon, and open the **Chat** tab.
+2. Type `Find dentists in Austin` and press Enter. A card asks how many businesses: pick **50** and click **Start**.
+3. Maps opens in a tab and the run reads each business, then its website, for about four minutes. The run line counts: `32 of 50 · 18 with emails`.
+4. Click **View results**. The table has Business Name, Category, Rating, Review Count, Address, Operating Hours, Phone, Website and Map URL, then Emails, Website phones, Faxes and a column per social network found.
+5. Type `Only name, phone, email and website, rows with an email` and the table narrows to match. Click **Export as** → **Microsoft Excel**.
+
+What the AI saw: the two sentences you typed and the fact that you were on a normal page. What it didn't see: any of the fifty businesses. The [Maps leads with emails guide](/guides/get-maps-leads-with-emails) has a screenshot of each step.
+
 ## The four shapes, side by side
 
 | | Chat extension | Browser agent | MCP tool | Code assistant |
@@ -66,3 +78,9 @@ Start with the shape that copies values and needs no setup; move to an agent or 
 - A nightly crawl with rules of your own: code, written with an assistant and run by you or a scheduler.
 
 One rule holds for all four: an AI tool doesn't change what you're allowed to collect. Public pages, your own research, no personal profiles, and the site's terms still apply; the [legal guide](/web-scraping-legal) covers them.
+
+## Sources
+
+- Model Context Protocol, the open standard for tools an assistant can call: [modelcontextprotocol.io](https://modelcontextprotocol.io)
+- Browser Use, an open-source browser agent: [github.com/browser-use](https://github.com/browser-use/browser-use)
+- Web Scraper Pro's chat: what it sends and keeps, on the [AI chat page](/ai-chat), checked against release 1.3.0.
