@@ -10,7 +10,7 @@ for (const s of slugs("content/scrapers", ".ts")) r.push("/scrapers/" + s);
 for (const s of slugs("content/compare", ".ts")) r.push("/compare/" + s);
 for (const s of slugs("content/guides", ".md")) r.push("/guides/" + s);
 for (const s of slugs("content/blog", ".md")) r.push("/blog/" + s);
-for (const c of new Set([...fs.readdirSync(path.join(root, "content/blog")).map((f) => (fs.readFileSync(path.join(root, "content/blog", f), "utf8").match(/^category:\s*"?([\w-]+)"?/m) || [])[1])].filter(Boolean))) r.push("/blog/category/" + c);
+for (const c of new Set([...fs.readdirSync(path.join(root, "content/blog")).map((f) => (fs.readFileSync(path.join(root, "content/blog", f), "utf8").match(/^category:\s*"?([\w-]+)"?/m) || [])[1])].filter(Boolean))) r.push("/blog/category/" + c.toLowerCase());
 for (const group of fs.readdirSync(path.join(root, "app/tools"))) {
   const dir = path.join(root, "app/tools", group);
   if (!fs.statSync(dir).isDirectory() || !group.startsWith("(")) continue;
