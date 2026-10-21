@@ -33,7 +33,7 @@ const GROUPS = [
         faqs: [
             {
                 q: "Can I get emails for businesses I find on Maps?",
-                a: "Yes, in two steps. First collect the businesses from Maps. Then run Collect contacts on the websites from that list, and it adds the emails, phone numbers and social profiles it finds on each site.",
+                a: "Yes, in the same run. Maps doesn't list emails, so Web Scraper Pro reads each business's own website while it collects and adds the emails, phone numbers and social links it finds to that business's row. Businesses that don't publish an email still come back with their phone and website.",
             },
             {
                 q: "Can I use it on sites I log in to, like an MLS or a member directory?",

@@ -1,12 +1,15 @@
 import type { FeaturePageContent } from "@/components/pages/FeaturePage";
 import { getPage } from "@/config/pages";
 
-// Facts checked against the released extension (v1.1.0) on 2026-09-25:
-// - Columns: chrome-extension-source/public/site-sitemaps/map-leads/google-maps.json (`columns`)
-// - Side panel button "Collect places from this map" + Stop: components/scraper/ListTab.tsx
-// - Bulk maps mode and "Collect contacts" with saved tables + deep scan: entrypoints/bulk/main.tsx,
-//   lib/bulk/executors/{mapBulkExecutor,contactBulkExecutor}.ts
-// - Duplicates matched on the map link: `dedupeKeys: ["Map URL"]`
+// Facts checked against release 1.3.0 (branch test-branch-1) on 2026-10-20:
+// - Columns: chrome-extension-source/configs-prod (google-maps pack `columns`)
+// - Side panel button "Collect places from this map", the "Also collect contact details from each business's
+//   website" checkbox, and Stop: components/scraper/ListTab.tsx
+// - Contact details added to each row in the same run (on by default): lib/contactEnrichment/,
+//   DECISIONS.md D-022/D-023; the results page's "Add contact details" button: D-024
+// - Chat's count card (20/50/100/200, up to 200) and contact-details choice: lib/tools/maps.ts, D-026
+// - Best rated first, repeats left out, numbers as numbers: DECISIONS.md D-031, D-032, D-033
+// - Bulk maps mode with saved tables: entrypoints/bulk/main.tsx, lib/bulk/executors/mapBulkExecutor.ts
 // Re-check these before changing claims (docs/personas.md, "Product facts checked").
 
 export const mapsLeads: FeaturePageContent = {
@@ -14,13 +17,13 @@ export const mapsLeads: FeaturePageContent = {
     meta: {
         title: "Maps Scraper for Local Business Leads",
         description:
-            "Collect every business from a Maps search into a spreadsheet: name, phone, website, address, hours and rating. Then add emails from their websites.",
+            "Collect every business from a Maps search into a spreadsheet: name, phone, website, address, hours and rating, plus the emails and social links from each business's own website, in the same run.",
     },
     eyebrow: "Maps leads",
     h1: "Turn a Maps search into a list of local business leads",
     intro:
         "Search Maps for a type of business in a place, click once, and get every result as a row with its phone number, website, address, opening hours and rating. Export it to Google Sheets, Excel or CSV.",
-    lastUpdated: "2026-09-25",
+    lastUpdated: "2026-10-20",
     sample: {
         caption: "A search for plumbers, as it looks after export. Names, numbers and links are made up.",
         columns: ["Business Name", "Rating", "Review Count", "Address", "Operating Hours", "Phone", "Website", "Map URL"],
@@ -32,8 +35,8 @@ export const mapsLeads: FeaturePageContent = {
         ],
     },
     fields: {
-        heading: "Eight columns for every place",
-        intro: "Each business in the search results becomes one row. A column stays empty when the place doesn't list that detail on Maps.",
+        heading: "Eight columns for every place, plus its contact details",
+        intro: "Each business in the search results becomes one row. A column stays empty when the place doesn't list that detail on Maps. With contact details on, the run adds Emails, Website phones, Faxes and one column per social network, read from each business's own website.",
         items: [
             { name: "Business Name", description: "The name as it appears on Maps." },
             { name: "Rating", description: "The average star rating, as a number you can sort by." },
@@ -41,7 +44,7 @@ export const mapsLeads: FeaturePageContent = {
             { name: "Address", description: "The full street address shown on the place's listing." },
             { name: "Operating Hours", description: "The opening hours shown on the listing." },
             { name: "Phone", description: "The listed phone number." },
-            { name: "Website", description: "The business's own website. You need this column to add emails in the next step." },
+            { name: "Website", description: "The business's own website. With contact details on, it's read in the same run for emails, phone numbers and social links." },
             { name: "Map URL", description: "A link back to the place on Maps, so you can check any row." },
         ],
     },
@@ -55,7 +58,7 @@ export const mapsLeads: FeaturePageContent = {
             },
             {
                 title: "Click Collect places from this map",
-                body: "The extension scrolls through the results and opens each place to read its phone number, website, address and hours. The table fills in as it goes. Click Stop at any time to keep what it has collected so far.",
+                body: "The extension scrolls through the results and opens each place to read its phone number, website, address and hours. Leave \"Also collect contact details from each business's website\" ticked and it reads each website too, adding emails, phone numbers and social links to the same row. The table fills in as it goes; click Stop at any time to keep what it has so far. In chat, type \"Find plumbers in Springfield\" instead: a card asks how many to collect and whether to add contact details.",
             },
             {
                 title: "Export your list",
@@ -66,16 +69,16 @@ export const mapsLeads: FeaturePageContent = {
     sections: [
         {
             id: "add-emails",
-            eyebrow: "Add emails",
-            heading: "Add emails from each business's website",
+            eyebrow: "Emails in the same run",
+            heading: "Emails and social links from each business's website",
             paragraphs: [
-                "Maps doesn't show email addresses, so emails come from a second step. On the Bulk page, choose Collect contacts, then choose your Maps list as a saved table. Web Scraper Pro visits the website of each business on the list and collects the contact details it finds there.",
-                "Turn on the deep scan to also check one linked Contact or About page on each site, where emails are often listed.",
+                "Maps doesn't show email addresses, so Web Scraper Pro reads each business's own website and its Contact or About page in the background while the run goes on, and adds what it finds to the business's row. Nothing opens in a new tab, and you see the count of businesses with an email as it runs.",
+                "Collected a list earlier without contact details? Open it from History and click Add contact details on the results page. Any saved table with a Website column works, not only Maps lists.",
             ],
             points: [
-                "Email addresses and phone numbers found on each website",
-                "Social profile links: LinkedIn, Instagram, Facebook, X, YouTube, TikTok and Pinterest",
-                "Only businesses that publish an email on their website will have one",
+                "Email addresses, phone numbers and fax numbers found on each website, in their own columns",
+                "Social profile links, one column each: LinkedIn, Instagram, Facebook, X, YouTube, TikTok, Pinterest and more",
+                "Only businesses that publish an email on their website get one; the phone and website columns still fill from Maps",
             ],
         },
         {
@@ -92,7 +95,9 @@ export const mapsLeads: FeaturePageContent = {
         items: [
             "It collects what Maps shows publicly for each place. It doesn't sign in to anything or reveal hidden details.",
             "Maps shows a limited number of results for each search, so one broad search in a big city won't return every business. Search smaller areas or narrower categories, and run them together in bulk.",
-            "Collection runs in your browser and opens each place in turn, so a long list takes a few minutes. Keep the tab open until it finishes.",
+            "Collection runs in your browser and opens each place in turn. With contact details on, 20 businesses take about a minute and a half and 200 about 15 minutes; without, under a minute and about 4. Keep the tab open until it finishes.",
+            "In chat, one search collects up to 200 businesses. The side panel keeps going until Maps reaches the end of its results.",
+            "Businesses are saved best rated first, and a business that appears twice while the list scrolls is kept once. Both are settings you can change.",
             "Before you contact businesses from your list, check the rules that apply where you are, such as anti-spam and privacy laws.",
         ],
     },
@@ -124,11 +129,11 @@ export const mapsLeads: FeaturePageContent = {
         },
         {
             q: "Can I get emails for the businesses?",
-            a: "Yes, in two steps. Maps doesn't list emails, so first collect the businesses from Maps. Then run Collect contacts on the Bulk page with your Maps list as the saved table, and it adds the emails, phone numbers and social profiles it finds on each business's website.",
+            a: "Yes, in the same run. Maps doesn't list emails, so Web Scraper Pro reads each business's website and contact page while it collects, and adds the emails, phone numbers and social profiles it finds to that business's row. Leave contact details on when you start. Many small businesses don't publish an email, so some rows will have the phone and website only.",
         },
         {
             q: "How many businesses can I collect from one search?",
-            a: "As many as Maps shows for that search. The extension keeps scrolling until Maps reaches the end of its results, or until you click Stop. For more businesses, split a big area into smaller searches and run them in bulk.",
+            a: "From the side panel, as many as Maps shows for that search: it keeps scrolling until Maps reaches the end of its results, or until you click Stop. In chat, up to 200 per search. For more businesses, split a big area into smaller searches and run them in bulk.",
         },
         {
             q: "Does it add the same business twice?",

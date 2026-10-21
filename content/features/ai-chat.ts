@@ -71,8 +71,9 @@ export const aiChat: FeaturePageContent = {
     limits: {
         heading: "Good to know",
         items: [
-            "Chat collects the page you're on. To follow every page of results, use Collect in the side panel.",
-            "Chat doesn't collect reviews or add emails to a Maps list. Use Collect reviews, or Collect contacts on the Bulk page.",
+            "Chat collects the page you're on. When a list goes on over more pages, it offers Collect every page.",
+            "Chat doesn't collect reviews. Use Collect reviews in the side panel.",
+            "A Maps search collects up to 200 businesses. A card asks how many, and whether to add each business's emails and social links from its website.",
             "Chat has a daily message limit and needs an internet connection.",
         ],
     },

@@ -88,7 +88,7 @@ investors and analysts pulling market data.
 - **Pays when:** he needs volume: bulk runs, contact collection across many sites, a flat price with
   no per-row cost.
 - **Can't serve (never imply):** LinkedIn leads, social media groups, guaranteed or verified emails,
-  or Maps results that come back with emails in a single step.
+  or an email for every business (only businesses that publish one on their website get one).
 - **Sub-type, "own pipeline":** a small business owner building one list for their own business: one
   niche, their own city, a few hundred rows, bought rarely. As new to tools as Dana and more
   price-sensitive than an agency. Searches for the task ("local business leads to Excel"), not their
@@ -97,7 +97,7 @@ investors and analysts pulling market data.
   from business directories and software review sites, not only Maps.
 
 **Review questions:**
-- Is the Maps → contacts two-step shown honestly?
+- Is it clear that emails come from each business's own website, and that some businesses have none?
 - Is it clear what happens when a business has no email on its site?
 - Does anything suggest per-row or per-lead costs?
 - Is bulk (many cities, many sites) easy to find?
@@ -238,12 +238,25 @@ marketplaces); willingness to pay is untested.
 
 ## Product facts checked (keep copy consistent with these)
 
-Verified against the code on 2026-09-25. Re-check before relying on them if much time has passed.
+Verified against the code on 2026-10-20 (release 1.3.0, branch test-branch-1; check the store shows 1.3.0 before
+publishing a claim marked 1.3.0). Re-check before relying on them if much time has passed.
 
-- **Maps emails are two steps.** The chat collects contacts only from the page that is open, and
-  collecting from Maps is a separate step. Emails for a Maps list come from running *Collect contacts*
-  on the websites from that list. Never show one prompt returning Maps results *with* emails.
-  (`chrome-extension-source/lib/tools/capabilityTools.ts`, `lib/tools/maps.ts`)
+- **Maps emails come in the same run (1.3.0).** With "contact details" on (the default), a Maps run
+  reads each business's website and contact page in the background and adds Emails, Website phones,
+  Faxes and one column per social network to the same row. In chat, a card before the first Maps run
+  asks how many businesses (20, 50, 100, 200 or any number up to 200) and whether to add contact
+  details; the side panel has the same as a checkbox. An older list with a Website column gets the
+  **Add contact details** button on the results page. Many businesses list no email, so never promise
+  one for every business. (`chrome-extension-source/DECISIONS.md` D-022, D-024, D-026;
+  `lib/contactEnrichment/`, `lib/tools/maps.ts`)
+- **Maps limits (1.3.0).** Chat collects up to 200 businesses per search; the side panel collects until
+  the list ends. Businesses are saved best rated first, repeated rows are left out, and prices,
+  ratings and counts export as numbers (Settings → Results). (D-031, D-032, D-033)
+- **Chat follows every page (1.3.0).** After collecting a list, chat offers "Collect every page" and
+  "Add emails and social links" when the rows have websites. (D-025, D-027)
+- **Google Sheets export needs a Google sign-in.** Until the OAuth consent screen is confirmed as
+  published, don't show Sheets export in a page or video; name Excel, CSV and JSON instead.
+- **The side panel's help link says "Contact founder"** (1.3.0), not "Contact support".
 - **Maps returns ratings, not reviews.** Maps leads give the star rating and review count per place,
   not review text. Don't mention collecting Maps reviews.
   (`chrome-extension-source/public/site-sitemaps/map-leads/google-maps.json`)
