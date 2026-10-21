@@ -70,7 +70,7 @@ export default async function GuidePage({ params }: Props) {
                 ]}
             />
             <div className="max-w-6xl mx-auto px-6 md:px-12 lg:grid lg:grid-cols-[1fr_300px] lg:gap-16">
-                <article className="max-w-[46rem]">
+                <article className="max-w-[52rem]">
                     {g.status === "draft" && (
                         <p className="mb-6 rounded-lg bg-amber-50 dark:bg-amber-900/20 px-4 py-2 text-sm text-amber-800 dark:text-amber-200">
                             Draft: visible in local development only. Set <code>status: published</code> once every step has been tested.

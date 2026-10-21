@@ -42,7 +42,7 @@ export default function WebScrapingLegalPage() {
                 ]}
             />
             <div className="max-w-6xl mx-auto px-6 md:px-12">
-                <article className="max-w-[46rem]">
+                <article className="max-w-[52rem]">
                     <nav aria-label="Breadcrumb" className="text-sm text-slate-600 dark:text-slate-300">
                         <Link href="/guides" className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]">Resources</Link>
                     </nav>

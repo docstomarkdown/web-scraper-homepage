@@ -65,7 +65,7 @@ export default async function BlogPostPage({ params }: Props) {
                     breadcrumbJsonLd([{ name: "Home", href: "/" }, { name: "Blog", href: "/blog" }, { name: post.title, href }], base),
                 ]}
             />
-            <article className="max-w-[46rem] mx-auto px-6 md:px-12">
+            <article className="max-w-[52rem] mx-auto px-6 md:px-12">
                 <nav aria-label="Breadcrumb" className="text-sm text-slate-600 dark:text-slate-300">
                     <Link href="/blog" className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]">Blog</Link>
                     {post.category ? (

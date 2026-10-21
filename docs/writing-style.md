@@ -244,8 +244,9 @@ checked on every page, light and dark, before it's published.
 
 Never `text-[10px]`, `text-[11px]`, `text-[13px]` or `text-[15px]` for anything a person reads.
 
-**Line length:** reading text sits in one column no wider than about 70 characters (`max-w-[46rem]` at
-18px). Tables and screenshots may be wider than the text column.
+**Line length:** reading text sits in one column of about 85 characters at most (`max-w-[56rem]` at
+18px on use-case pages, `max-w-[52rem]` for articles beside a sidebar). Narrower columns read as
+cramped on wide screens; wider ones tire the eye.
 
 **Ink (contrast):** reading text is `text-slate-700` on white and `text-slate-200` on dark; secondary
 text `text-slate-600` / `text-slate-300`. `text-slate-500` and `text-slate-400` are for disabled or
