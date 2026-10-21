@@ -49,7 +49,6 @@ export function metadataForUseCase(c: UseCasePageContent): Metadata {
 
 // Reading column: about 70 characters at 18px. Wide elements (the sample table) get the full container.
 const reading = "max-w-[46rem] mx-auto px-6 md:px-12";
-const wide = "max-w-6xl mx-auto px-6 md:px-12";
 const body = "text-lg text-slate-700 dark:text-slate-200 leading-[1.65]";
 const link = "font-semibold text-[#1f5ec2] dark:text-[#7aa7ff] hover:underline underline-offset-2";
 
@@ -67,7 +66,7 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
                     {c.status === "draft" && <p className="mb-6 rounded-lg bg-amber-50 dark:bg-amber-900/20 px-4 py-2 text-base text-amber-900 dark:text-amber-200">Draft: visible in local development only.</p>}
                     <Reveal>
                         <nav aria-label="Breadcrumb" className="text-base text-slate-600 dark:text-slate-300"><Link href="/use-cases" className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]">Use cases</Link></nav>
-                        <h1 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-[1.1]">{c.h1}</h1>
+                        <h1 className="mt-4 text-[2.125rem] md:text-[2.625rem] font-semibold tracking-tight text-slate-800 dark:text-white leading-[1.15]">{c.h1}</h1>
                         <p className="mt-6 text-xl text-slate-700 dark:text-slate-200 leading-[1.6]">{c.intro}</p>
                         <div className="mt-8 flex flex-col sm:flex-row gap-3">
                             <Link href={installUrl} target="_blank" className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#2772ED] hover:bg-[#1f5ec2] px-6 py-3.5 text-lg font-semibold text-white transition-colors"><Chrome className="w-5 h-5" aria-hidden="true" />Add to Chrome</Link>
@@ -80,19 +79,19 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
 
             {/* What you get: the sample table first, because the picture of the sheet is the fastest explanation */}
             <section className="py-12 md:py-16 bg-slate-50/70 dark:bg-slate-900/40 border-y border-slate-100 dark:border-slate-800/60">
-                <div className={wide}>
-                    <Reveal className={`${reading} !px-0`}>
+                <div className={reading}>
+                    <Reveal>
                         <p className="text-base font-semibold text-[#1f5ec2] dark:text-[#7aa7ff]">What you get</p>
-                        <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-white">A spreadsheet like this</h2>
+                        <h2 className="mt-2 text-[1.75rem] font-semibold tracking-tight text-slate-800 dark:text-white">A spreadsheet like this</h2>
                         <p className={`mt-3 ${body}`}>One row per item, with the columns named. {c.sample.caption}</p>
                     </Reveal>
                     <Reveal className="mt-8">
-                        <figure className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
-                            <table className="w-full text-base text-left">
-                                <thead className="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white"><tr>{c.sample.columns.map((col) => <th key={col} className="px-4 py-3 font-semibold whitespace-nowrap">{col}</th>)}</tr></thead>
-                                <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-200">{c.sample.rows.map((r, i) => <tr key={i}>{r.map((cell, j) => <td key={j} className="px-4 py-3 whitespace-nowrap">{cell || <span className="text-slate-400 dark:text-slate-500" aria-label="empty">—</span>}</td>)}</tr>)}</tbody>
+                        <figure className="md:-mx-12 overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                            <table className="w-full text-base text-left leading-snug">
+                                <thead className="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white"><tr>{c.sample.columns.map((col) => <th key={col} className="px-3 py-3 font-semibold align-bottom">{col}</th>)}</tr></thead>
+                                <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-200">{c.sample.rows.map((r, i) => <tr key={i}>{r.map((cell, j) => <td key={j} className="px-3 py-3 align-top">{cell || <span className="text-slate-400 dark:text-slate-500" aria-label="empty">—</span>}</td>)}</tr>)}</tbody>
                             </table>
-                            <figcaption className="px-4 py-3 text-base text-slate-600 dark:text-slate-300 border-t border-slate-100 dark:border-slate-800">Sample data: the names and numbers are made up.</figcaption>
+                            <figcaption className="px-3 py-3 text-base text-slate-600 dark:text-slate-300 border-t border-slate-100 dark:border-slate-800">Sample data: the names and numbers are made up.</figcaption>
                         </figure>
                     </Reveal>
                 </div>
@@ -103,7 +102,7 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
                 <div className={reading}>
                     <Reveal>
                         <p className="text-base font-semibold text-[#1f5ec2] dark:text-[#7aa7ff]">The job</p>
-                        <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-white">{c.job.heading}</h2>
+                        <h2 className="mt-2 text-[1.75rem] font-semibold tracking-tight text-slate-800 dark:text-white">{c.job.heading}</h2>
                         <div className={`mt-6 space-y-5 ${body}`}>{c.job.paragraphs.map((p) => <p key={p}>{p}</p>)}</div>
                     </Reveal>
                 </div>
@@ -114,7 +113,7 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
                 <div className={reading}>
                     <Reveal>
                         <p className="text-base font-semibold text-[#1f5ec2] dark:text-[#7aa7ff]">Step by step</p>
-                        <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-white">{c.workflow.heading}</h2>
+                        <h2 className="mt-2 text-[1.75rem] font-semibold tracking-tight text-slate-800 dark:text-white">{c.workflow.heading}</h2>
                         {c.workflow.intro && <p className={`mt-4 ${body}`}>{c.workflow.intro}</p>}
                     </Reveal>
                     <ol className="mt-10 space-y-8">
@@ -124,9 +123,9 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
                                 <Reveal key={s.title} delay={i * 0.04}>
                                     <li className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 md:p-8">
                                         <div className="flex items-start gap-4">
-                                            <span className="mt-0.5 inline-flex w-10 h-10 shrink-0 items-center justify-center rounded-full bg-[#2772ED] text-lg font-bold text-white" aria-hidden="true">{i + 1}</span>
+                                            <span className="mt-0.5 inline-flex w-10 h-10 shrink-0 items-center justify-center rounded-full bg-[#2772ED] text-lg font-semibold text-white" aria-hidden="true">{i + 1}</span>
                                             <div className="min-w-0">
-                                                <h3 className="text-xl font-bold text-slate-900 dark:text-white leading-snug"><span className="sr-only">Step {i + 1}: </span>{s.title}</h3>
+                                                <h3 className="text-xl font-semibold text-slate-800 dark:text-white leading-snug"><span className="sr-only">Step {i + 1}: </span>{s.title}</h3>
                                                 <p className={`mt-3 ${body}`}>{s.body}</p>
                                                 {s.points && s.points.length > 0 && (
                                                     <ul className={`mt-4 space-y-2 ${body}`}>
@@ -151,7 +150,7 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
             <section className="py-16 md:py-20">
                 <div className={reading}>
                     <Reveal>
-                        <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Which websites</h2>
+                        <h2 className="text-[1.75rem] font-semibold tracking-tight text-slate-800 dark:text-white">Which websites</h2>
                         <p className={`mt-3 ${body}`}>These are the sites this job usually starts from. The ones with a link have their own page with the columns you get.</p>
                         <ul className="mt-5 flex flex-wrap gap-2.5">
                             {c.sites.map((s) => (
@@ -166,7 +165,7 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
                         </ul>
                     </Reveal>
                     <Reveal className="mt-14">
-                        <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">{c.cantDo.heading}</h2>
+                        <h2 className="text-[1.75rem] font-semibold tracking-tight text-slate-800 dark:text-white">{c.cantDo.heading}</h2>
                         <ul className="mt-5 space-y-4">
                             {c.cantDo.items.map((n) => (
                                 <li key={n} className={`flex gap-3 ${body}`}>
@@ -178,7 +177,7 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
                     </Reveal>
                     {c.guides.length > 0 && (
                         <Reveal className="mt-14">
-                            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Guides for this job</h2>
+                            <h2 className="text-[1.75rem] font-semibold tracking-tight text-slate-800 dark:text-white">Guides for this job</h2>
                             <p className={`mt-3 ${body}`}>Each guide shows every click with a screenshot, tested on the released extension.</p>
                             <ul className="mt-5 space-y-3 text-lg">
                                 {c.guides.map((g) => <li key={g}><Link href={`/guides/${g}`} className={link}>{guideTitle(g)} →</Link></li>)}
@@ -193,12 +192,12 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
                     <div className={reading}>
                         <Reveal>
                             <p className="text-base font-semibold text-[#1f5ec2] dark:text-[#7aa7ff]">Questions</p>
-                            <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Things people ask before they start</h2>
+                            <h2 className="mt-2 text-[1.75rem] font-semibold tracking-tight text-slate-800 dark:text-white">Things people ask before they start</h2>
                         </Reveal>
                         <div className="mt-8 divide-y divide-slate-200 dark:divide-slate-800 border-y border-slate-200 dark:border-slate-800">
                             {c.faqs.map((f) => (
                                 <details key={f.q} className="group py-5" open>
-                                    <summary className="cursor-pointer list-none font-bold text-slate-900 dark:text-white [&::-webkit-details-marker]:hidden"><h3 className="text-xl leading-snug">{f.q}</h3></summary>
+                                    <summary className="cursor-pointer list-none font-semibold text-slate-800 dark:text-white [&::-webkit-details-marker]:hidden"><h3 className="text-xl leading-snug">{f.q}</h3></summary>
                                     <p className={`mt-3 ${body}`}>{f.a}</p>
                                 </details>
                             ))}
