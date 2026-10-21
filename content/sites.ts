@@ -25,7 +25,7 @@ export const readyMadeSites: ReadyMadeSite[] = [
     // Shopify
     { name: "Any Shopify store: full catalog", category: "shopify-stores" },
     // Online stores
-    { name: "Amazon", category: "online-stores" },
+    { name: "Amazon", category: "online-stores", page: "amazon" },
     { name: "Walmart", category: "online-stores" },
     { name: "Target", category: "online-stores" },
     { name: "Etsy", category: "online-stores" },
