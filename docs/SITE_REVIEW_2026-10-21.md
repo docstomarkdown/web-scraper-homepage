@@ -136,6 +136,14 @@ Re-audit of support, terms, maps-leads, lead-generation and the Amazon page: 0 v
 Still open from phase 1: wave-1 publishing (C6, S6, S8) waits on the captures; C3 "Just" in the hero waits on the
 owner. The homepage and `/ai-chat` keep small-text contrast failures inside the demo mock-ups (A9, phase 2).
 
+**Phase 2 started the same day, on the owner's review of `/maps-leads`** ("the title is not search focused ... the
+information is not readable at all"). Two fixes: titles now start with "How to" and say what a user types into
+Google, which for this page is "Google Maps" (decision in the strategy log); and the feature template moved to the
+reading-column shape of the use-case pages (one column, 18px body, steps as a flowing list, columns as a table,
+sample table of five columns under the hero). Re-audit of `/maps-leads` and `/list-scraper`: 0 violations and no
+text under 16px, light and dark. The other eleven feature pages render on the new template with their old copy;
+each needs the same search-first title and shorter copy before it counts as done.
+
 ## 6. Rerunning the audit
 
 ```bash

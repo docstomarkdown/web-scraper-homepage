@@ -11,169 +11,183 @@ import { getPage } from "@/config/pages";
 // - Best rated first, repeats left out, numbers as numbers: DECISIONS.md D-031, D-032, D-033
 // - Bulk maps mode with saved tables: entrypoints/bulk/main.tsx, lib/bulk/executors/mapBulkExecutor.ts
 // Re-check these before changing claims (docs/personas.md, "Product facts checked").
+//
+// Title and headings target what people type into Google ("how to scrape google maps", "google maps scraper
+// chrome extension free", "how to extract emails from google maps"): youtube-research/AUTOSUGGEST.md and
+// SEARCH_QUERIES.md in the strategy repo. Owner instruction 2026-10-21: titles start with "How to" and say
+// what a user would search. Copy rules: docs/writing-style.md §11 (short paragraphs, plain words).
 
 export const mapsLeads: FeaturePageContent = {
     page: getPage("maps-leads"),
     meta: {
-        title: "Maps Scraper for Local Business Leads",
+        title: "How to Scrape Google Maps for Business Leads: Free Chrome Extension",
         description:
-            "Collect every business from a Maps search into a spreadsheet: name, phone, website, address, hours and rating, plus the emails and social links from each business's own website, in the same run.",
+            "Search Google Maps, click once, and get every business as a row with its phone, website, address, rating and the emails from its own site. Free Chrome extension, no code, no API key.",
     },
-    eyebrow: "Maps leads",
-    h1: "Turn a Maps search into a list of local business leads",
+    eyebrow: "Google Maps scraper",
+    h1: "How to scrape Google Maps for business leads",
     intro:
-        "Search Maps for a type of business in a place, click once, and get every result as a row with its phone number, website, address, opening hours and rating. Export it to Google Sheets, Excel or CSV.",
+        "Search Google Maps for a type of business in a city. Click once. Every result becomes a row with its phone number, website, address, rating and the emails from its own site. Free Chrome extension, no code, no API key.",
     lastUpdated: "2026-10-20",
     hero: "ext/results-maps-with-contacts",
     sample: {
-        caption: "A search for plumbers, as it looks after export. Names, numbers and links are made up.",
-        columns: ["Business Name", "Rating", "Review Count", "Address", "Operating Hours", "Phone", "Website", "Map URL"],
+        caption: "A search for plumbers, after export. Names, numbers and addresses are made up.",
+        columns: ["Business Name", "Rating", "Phone", "Website", "Email"],
         rows: [
-            ["Sample Plumbing Co.", "4.8", "212", "101 Main St, Springfield", "Open 24 hours", "(555) 010-2231", "sampleplumbing.example.com", "maps.example.com/place/1"],
-            ["Riverside Pipe & Drain", "4.6", "87", "42 River Rd, Springfield", "Mon–Fri 8 AM–6 PM", "(555) 010-4410", "riversidepipe.example.com", "maps.example.com/place/2"],
-            ["Northside Plumbers", "4.9", "1,034", "7 Oak Ave, Springfield", "Mon–Sat 7 AM–7 PM", "(555) 010-7782", "northsideplumbers.example.com", "maps.example.com/place/3"],
-            ["Quick Fix Plumbing", "4.3", "56", "300 Elm St, Springfield", "Open 24 hours", "(555) 010-9043", "", "maps.example.com/place/4"],
-        ],
-    },
-    fields: {
-        heading: "Eight columns for every place, plus its contact details",
-        intro: "Each business in the search results becomes one row. A column stays empty when the place doesn't list that detail on Maps. With contact details on, the run adds Emails, Website phones, Faxes and one column per social network, read from each business's own website.",
-        items: [
-            { name: "Business Name", description: "The name as it appears on Maps." },
-            { name: "Rating", description: "The average star rating, as a number you can sort by." },
-            { name: "Review Count", description: "How many reviews the place has, useful for spotting established businesses." },
-            { name: "Address", description: "The full street address shown on the place's listing." },
-            { name: "Operating Hours", description: "The opening hours shown on the listing." },
-            { name: "Phone", description: "The listed phone number." },
-            { name: "Website", description: "The business's own website. With contact details on, it's read in the same run for emails, phone numbers and social links." },
-            { name: "Map URL", description: "A link back to the place on Maps, so you can check any row." },
+            ["Sample Plumbing Co.", "4.8", "(555) 010-2231", "sampleplumbing.example.com", "hello@sampleplumbing.example.com"],
+            ["Riverside Pipe & Drain", "4.6", "(555) 010-4410", "riversidepipe.example.com", "info@riversidepipe.example.com"],
+            ["Northside Plumbers", "4.9", "(555) 010-7782", "northsideplumbers.example.com", ""],
+            ["Quick Fix Plumbing", "4.3", "(555) 010-9043", "", ""],
         ],
     },
     steps: {
-        heading: "From search to spreadsheet in three steps",
-        intro: "Everything runs in your own Chrome window. There's no API key to set up.",
+        heading: "How to scrape Google Maps in three steps",
+        intro: "Everything runs in your own Chrome window. You don't sign in to anything, and there is no API key to set up.",
         items: [
             {
-                title: "Search Maps",
-                points: ["Example: dentists in Austin.", "Or type it in the Chat tab: Find dentists in Austin. A card asks how many to collect: 20, 50, 100 or 200."],
-                body: "Open Maps in Chrome and search for a type of business in a place, such as \"plumbers in Springfield\". Then open the Web Scraper Pro side panel.",
+                title: "Search Google Maps",
+                body: "Open Google Maps in Chrome. Search for a type of business in a place, such as dentists in Austin. Then click the Web Scraper Pro icon to open the side panel.",
+                points: [
+                    "Or type it in the Chat tab: Find dentists in Austin.",
+                    "Chat asks how many you want: 20, 50, 100 or 200.",
+                ],
             },
             {
                 title: "Click Collect places from this map",
-                points: ["Keep the tab in front. The tab's title counts the businesses as they come in.", "With emails on, 50 businesses take about four minutes and 200 about fifteen. Without emails it's a minute or two."],
-                body: "The extension scrolls through the results and opens each place to read its phone number, website, address and hours. Leave \"Also collect contact details from each business's website\" ticked and it reads each website too, adding emails, phone numbers and social links to the same row. The table fills in as it goes; click Stop at any time to keep what it has so far. In chat, type \"Find plumbers in Springfield\" instead: a card asks how many to collect and whether to add contact details.",
+                body: "The extension scrolls through the results and opens each place to read its details. Leave \"Also collect contact details from each business's website\" ticked and it reads each website too, for emails and social links.",
+                points: [
+                    "Keep the tab in front. The tab's title counts the businesses as they come in.",
+                    "50 businesses with emails take about four minutes. 200 take about fifteen.",
+                    "Click Stop at any time. What's collected so far is kept.",
+                ],
             },
             {
                 title: "Export your list",
-                points: ["Example to type in the chat with the results tab in front: Only name, phone, website and rating, sorted by rating."],
+                body: "The results open in a table. Hide the columns you don't need, then click Export as and choose Google Sheets, Excel, CSV or JSON. The list is saved in History too.",
+                points: ["Or type in chat with the results tab in front: Only name, phone, website and rating, sorted by rating."],
                 screenshot: "ext/results-export-menu",
-                body: "Your list is saved in History. Open it in the Data Viewer to hide columns or remove rows, then export to Google Sheets, Excel, CSV or JSON.",
             },
+        ],
+    },
+    fields: {
+        heading: "What you get for every business",
+        intro: "Each business in the search becomes one row. A column stays empty when the place doesn't list that detail on Google Maps.",
+        items: [
+            { name: "Business Name", description: "The name as it appears on Google Maps." },
+            { name: "Rating", description: "The star rating, saved as a number so you can sort by it." },
+            { name: "Review Count", description: "How many reviews the place has. A quick sign of an established business." },
+            { name: "Address", description: "The full street address." },
+            { name: "Operating Hours", description: "The opening hours shown on the listing." },
+            { name: "Phone", description: "The listed phone number." },
+            { name: "Website", description: "The business's own website." },
+            { name: "Map URL", description: "A link back to the place on Google Maps, so you can check any row." },
+            { name: "Emails", description: "Email addresses found on the business's website and its Contact or About page. Collected in the same run." },
+            { name: "Social links", description: "One column per network found on the website: LinkedIn, Instagram, Facebook, X, YouTube, TikTok and more." },
         ],
     },
     sections: [
         {
-            id: "settings",
-            eyebrow: "Settings that change the result",
-            heading: "Four settings decide what a Maps run gives you",
-            paragraphs: ["All of them sit under Settings → Results → Finding businesses in the side panel. The defaults suit a lead list; change them when the job is different."],
-            points: ["Add emails from their websites: on. Each business's website and one linked Contact or About page are read during the run. Turn it off for a quick list of names and phones.", "Businesses per chat search: the number the card remembered. Change it here when you want a different default.", "Sort businesses: Best rated first, which counts how many reviews back the stars, so 4.8 from 1,200 reviews comes before 5.0 from 3. Or Most reviewed.", "Skip businesses you can't reach: leaves out rows with no phone, email or website. Off by default, so you decide on the results page.", "Remove duplicates: on. A business that appears twice in the results is kept once."],
-        },
-        {
-            id: "pushback",
-            eyebrow: "When Maps pushes back",
-            heading: "What happens when Maps slows down or asks a question",
-            paragraphs: ["A Maps run opens each business in turn and paces itself unevenly, like a person browsing. When Maps stops answering, the run slows down rather than being cut off."],
-            points: ["If Maps shows a verification page, the run stops and the panel says so. Complete the check in the tab and start the search again; what was collected is kept.", "One search returns at most 200 businesses. For a big city, search by neighbourhood or zip code and let chat combine the searches into one table.", "Businesses without a website keep their phone and address; the email columns stay empty for them."],
-        },
-        {
             id: "add-emails",
             screenshot: "ext/results-add-contacts",
-            eyebrow: "Emails in the same run",
-            heading: "Emails and social links from each business's website",
+            eyebrow: "Emails",
+            heading: "How to get emails from Google Maps",
             paragraphs: [
-                "Maps doesn't show email addresses, so Web Scraper Pro reads each business's own website and its Contact or About page in the background while the run goes on, and adds what it finds to the business's row. Nothing opens in a new tab, and you see the count of businesses with an email as it runs.",
-                "Collected a list earlier without contact details? Open it from History and click Add contact details on the results page. Any saved table with a Website column works, not only Maps lists.",
+                "Google Maps doesn't show email addresses. Web Scraper Pro reads each business's own website and its Contact or About page while the run goes on, and adds the emails it finds to that business's row.",
+                "Already have a list without emails? Open it from History and click Add contact details. Any saved table with a Website column works, not only Google Maps lists.",
             ],
             points: [
-                "Email addresses, phone numbers and fax numbers found on each website, in their own columns",
-                "Social profile links, one column each: LinkedIn, Instagram, Facebook, X, YouTube, TikTok, Pinterest and more",
-                "Only businesses that publish an email on their website get one; the phone and website columns still fill from Maps",
+                "Emails, phone numbers and fax numbers from each website, in their own columns.",
+                "Social profile links, one column each.",
+                "Only businesses that publish an email get one. Their phone and website still fill from Google Maps.",
             ],
         },
         {
             id: "many-searches",
             eyebrow: "Bulk runs",
-            heading: "Collect many searches in one run",
+            heading: "How to scrape many Google Maps searches in one run",
             paragraphs: [
-                "Need the same kind of business in ten towns, or ten kinds of business in one city? Paste the Maps search links into the Bulk page, or upload them as a CSV or TXT file. Web Scraper Pro runs each search in turn and saves the results, so you don't have to start every search by hand.",
+                "Need plumbers in ten towns, or ten kinds of business in one city? Paste the Google Maps search links into the Bulk page, or upload them as a CSV or TXT file. Each search runs in turn and the results are saved.",
+                "Google Maps shows a limited number of results per search. For a big city, search by neighbourhood or zip code, run them in bulk, and ask chat to combine the tables into one.",
+            ],
+        },
+        {
+            id: "settings",
+            eyebrow: "Settings",
+            heading: "Four settings that change the result",
+            paragraphs: ["They sit under Settings → Results → Finding businesses in the side panel. The defaults suit a lead list."],
+            points: [
+                "Add emails from their websites: on. Turn it off for a quick list of names and phones.",
+                "Businesses per chat search: the number the card remembered last time.",
+                "Sort businesses: best rated first. Change it to keep the order Google Maps shows.",
+                "Skip repeated businesses: on. A place that appears twice while the list scrolls is kept once.",
+            ],
+        },
+        {
+            id: "pushback",
+            eyebrow: "When Google Maps pushes back",
+            heading: "What happens when Google Maps slows down or asks a question",
+            paragraphs: ["A run opens each business in turn and paces itself like a person browsing. When Google Maps answers more slowly, the run slows down with it instead of being cut off."],
+            points: [
+                "If Google Maps shows a verification page, the run stops and the panel says so. Complete the check in the tab and start again. What was collected is kept.",
+                "One search returns at most 200 businesses in chat. From the side panel it keeps going until Google Maps reaches the end of its results.",
+                "A business's own website that doesn't load is skipped. Its row keeps the phone and website from Google Maps.",
             ],
         },
     ],
     limits: {
         heading: "Good to know",
         items: [
-            "It collects what Maps shows publicly for each place. It doesn't sign in to anything or reveal hidden details.",
-            "Maps shows a limited number of results for each search, so one broad search in a big city won't return every business. Search smaller areas or narrower categories, and run them together in bulk.",
-            "Collection runs in your browser and opens each place in turn. With contact details on, 20 businesses take about a minute and a half and 200 about 15 minutes; without, under a minute and about 4. Keep the tab open until it finishes.",
-            "In chat, one search collects up to 200 businesses. The side panel keeps going until Maps reaches the end of its results.",
-            "Businesses are saved best rated first, and a business that appears twice while the list scrolls is kept once. Both are settings you can change.",
+            "It collects what Google Maps shows publicly for each place. It doesn't sign in to anything or reveal hidden details.",
+            "Collection runs in your browser. Keep the tab open until it finishes.",
+            "Many small businesses publish no email. Those rows keep their phone and website.",
             "Before you contact businesses from your list, check the rules that apply where you are, such as anti-spam and privacy laws.",
         ],
     },
     useCases: {
         heading: "What people use it for",
         items: [
-            {
-                title: "Prospect lists for sales and agencies",
-                body: "Build a list of businesses by type and city, with phone numbers and websites, ready for your sales tool or a calling sheet.",
-            },
-            {
-                title: "Finding businesses to help",
-                body: "Sort by rating or review count, or look for places with no website, to find businesses that could use your service.",
-            },
-            {
-                title: "Local market research",
-                body: "Count how many competitors are in an area, compare their ratings and review counts, and see their opening hours side by side.",
-            },
-            {
-                title: "Finding partners and suppliers",
-                body: "Collect every supplier, wholesaler or service provider in a region into one list you can compare and share with your team.",
-            },
+            { title: "Prospect lists for sales and agencies", body: "A list of businesses by type and city, with phone numbers, websites and emails, ready for a calling sheet or your sales tool." },
+            { title: "Finding businesses to help", body: "Sort by rating or review count, or filter for places with no website, to find businesses that could use your service." },
+            { title: "Local market research", body: "Count the competitors in an area, compare their ratings and review counts, and see their opening hours side by side." },
+            { title: "Finding partners and suppliers", body: "Every supplier, wholesaler or service provider in a region in one list you can compare and share." },
         ],
     },
     faqs: [
         {
-            q: "Do I need a Maps API key or an account?",
-            a: "No. Web Scraper Pro works on the Maps website in your own browser, so there's no API key to set up and no Web Scraper Pro account to create.",
+            q: "Is this Google Maps scraper free?",
+            a: "Yes. Web Scraper Pro is free to install and use today, with every feature included and no account to create. That includes Google Maps searches, emails from websites, bulk runs and every export format.",
         },
         {
-            q: "Can I get emails for the businesses?",
-            a: "Yes, in the same run. Maps doesn't list emails, so Web Scraper Pro reads each business's website and contact page while it collects, and adds the emails, phone numbers and social profiles it finds to that business's row. Leave contact details on when you start. Many small businesses don't publish an email, so some rows will have the phone and website only.",
+            q: "Do I need a Google Maps API key?",
+            a: "No. The extension works on the Google Maps website in your own browser. There is no API key to set up and no Web Scraper Pro account to create.",
         },
         {
-            q: "How many businesses can I collect from one search?",
-            a: "From the side panel, as many as Maps shows for that search: it keeps scrolling until Maps reaches the end of its results, or until you click Stop. In chat, up to 200 per search. For more businesses, split a big area into smaller searches and run them in bulk.",
+            q: "How many businesses can I get from one search?",
+            a: "From the side panel, as many as Google Maps shows for that search. It keeps scrolling until Google Maps reaches the end, or until you click Stop. In chat, up to 200 per search. For more, split a big area into smaller searches and run them in bulk.",
+        },
+        {
+            q: "Can I get emails from Google Maps?",
+            a: "Yes, in the same run. Google Maps doesn't list emails, so the extension reads each business's website and contact page while it collects, and adds the emails, phone numbers and social profiles it finds. Businesses that don't publish an email still come back with their phone and website.",
         },
         {
             q: "Does it add the same business twice?",
-            a: "No. Places are matched by their map link, so a business that appears again while the list scrolls is only added once.",
+            a: "No. Places are matched by their map link, so a business that appears again while the list scrolls is added once.",
         },
         {
             q: "Which formats can I export to?",
-            a: "Google Sheets, Microsoft Excel (.xlsx), CSV and JSON. CSV works with most CRMs and email tools.",
-        },
-        {
-            q: "Is Maps leads part of the plan?",
-            a: "Yes. Web Scraper Pro is free to use today, with every feature included and no account to create. That includes Maps leads, contact details, bulk runs and every export format.",
-        },
-        {
-            q: "Why does the run slow down near the end?",
-            a: "Maps answers more slowly after many businesses are opened in a row, and the run slows with it instead of being blocked. A 200-business run with emails takes about fifteen minutes.",
+            a: "Google Sheets, Microsoft Excel, CSV and JSON. CSV opens in any spreadsheet and most sales and email tools.",
         },
         {
             q: "Can I find businesses that have no website?",
-            a: "Yes. On the results page, click Filter rows and keep rows where Website is empty. For an agency that builds websites, that filter is the lead list.",
+            a: "Yes. On the results page, click Filter rows and keep the rows where Website is empty. For an agency that builds websites, that filter is the lead list.",
+        },
+        {
+            q: "Is scraping Google Maps allowed?",
+            a: "You collect what Google Maps shows publicly, in your own browser, at a person's pace. Google's terms restrict automated collection, and anti-spam and privacy laws apply to how you contact people. Collect for your own use, keep it to public business listings, and read our plain-words explainer on web scraping and the law. It isn't legal advice.",
+        },
+        {
+            q: "Why does the run slow down near the end?",
+            a: "Google Maps answers more slowly after many businesses are opened in a row, and the run slows with it instead of being blocked. A 200-business run with emails takes about fifteen minutes.",
         },
     ],
     related: ["ai-chat", "email-extractor", "bulk-scraper", "export-to-google-sheets", "list-scraper"],
