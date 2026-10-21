@@ -80,6 +80,16 @@ When it finishes, the **Collection results** page lists each site with its row c
 
 ![](visual:ext/bulk-overview)
 
+## When it goes wrong
+
+**A site shows Waiting for you.** It asked for a verification. Complete it in the embedded browser and the run carries on.
+
+**Continue stays greyed out on the Upload step.** No valid addresses were found. Each one needs to start with http or https, one per line; a chip reads N valid URLs detected when they're picked up.
+
+**The merged table mixes columns from different sites.** Each site has its own columns, and the merged table shows all of them. Open a single site's table with View for one clean set, or hide the columns you don't need.
+
+**The run didn't finish overnight.** The tab was closed or the computer slept. A bulk run needs the tab open; what was collected before is in History.
+
 ## Conclusion
 
 You collected from a whole list of pages in one run, with one setup per site and one merged table at the end. For a store's catalog, Shopify stores are the exception: they export from the store's own page, not from a bulk run. For emails from a list of websites specifically, see How To Get Emails from a List of Websites.

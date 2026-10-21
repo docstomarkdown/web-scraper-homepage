@@ -84,6 +84,16 @@ Click **Export as** and choose **Microsoft Excel**. Prices and sizes are saved a
 
 ![](visual:ext/results-export-menu)
 
+## When it goes wrong
+
+**Zillow asked me to confirm I'm human.** Complete it in the tab, click Rescan, and collect again from the page you're on. It happens after many pages; collect one zip code at a time.
+
+**The Next arrow wasn't found.** Click Change next to Next button ready and click Zillow's next arrow at the bottom of the list panel yourself.
+
+**Fewer homes than Zillow's count.** Zillow's count covers the map area, but the list shows at most 20 pages, about 800 homes. Narrow the search or collect by zip code.
+
+**Some cards were skipped.** Zillow draws cards only as the list scrolls. The setup scrolls the panel first; if a run still misses cards, scroll the list to the bottom yourself, then collect.
+
 ## Conclusion
 
 You exported a Zillow search into a spreadsheet with named columns across every page. Run the same search next week and the new and reduced homes stand out when you match rows on Zillow Property ID. For UK listings, Rightmove works the same way; see the real-estate use case for the whole weekly workflow.

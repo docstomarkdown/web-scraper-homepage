@@ -45,6 +45,14 @@ Click **Export as** and choose Excel. The download matches what's shown.
 
 ![](visual:ext/results-export-menu)
 
+## When it goes wrong
+
+**Phone is empty for some rows.** The listing shows no phone on Maps. Website phones, read from the business's own site, often fills the gap; keep both columns.
+
+**The chat filter hid too many rows.** `rows with a phone` keeps rows where the Phone column has a value. Say `rows with a phone or a website phone` to keep both, or click Clear filters and use Filter rows on the results page.
+
+**The run stopped at a verification page.** Complete the check in the Maps tab and run the search again. What was collected is kept in History.
+
 ## Conclusion
 
 You have a two-column call list from a Maps search. The same filter works on any collection: name the columns and the rows you want.

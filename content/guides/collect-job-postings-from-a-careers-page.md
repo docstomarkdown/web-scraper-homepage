@@ -63,6 +63,14 @@ Click **Export as** and choose **Microsoft Excel**, **CSV**, **JSON** or **Googl
 
 ![](visual:ext/results-export-menu)
 
+## When it goes wrong
+
+**The List tab found the departments list, not the roles.** Pick the card whose count matches the number of postings, or click Choose an item on the page and click one role.
+
+**The roles load as I scroll, with no Next button.** Choose Collect more pages and then Auto scroll; the run scrolls until nothing new loads.
+
+**The board needs a sign-in.** Sign in as you normally would and collect; the extension reads what you can see. Boards that forbid collection in their terms, such as LinkedIn, stay off the list.
+
 ## Conclusion
 
 You collected a careers page into a spreadsheet of roles with links, and optionally their full descriptions. For a list of companies to watch, paste their careers-page addresses into Bulk scrape and each is collected in turn. The roles are the data; the people applying for them are not, and the extension keeps it that way.

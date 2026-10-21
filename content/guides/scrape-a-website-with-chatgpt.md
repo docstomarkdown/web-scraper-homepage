@@ -114,6 +114,14 @@ Because it runs in your Chrome window, it reads pages you're signed in to, and a
 - A Maps search stops at 200 businesses per run. Split big jobs into smaller searches.
 - Collecting personal data, or data a site's terms forbid, is on you, whatever tool you use.
 
+## When it goes wrong
+
+**The script returns an empty list.** The page draws its list with JavaScript, so a plain fetch sees nothing. Ask for a version that uses Playwright or Selenium, or collect the page with the extension instead.
+
+**The pasted table has wrong numbers.** A model rewrites text rather than copying it. Check a sample against the page; for long lists, use a tool that copies values from the page.
+
+**The site blocked the script.** Scripts without a real browser are easy to spot. Slow it down, or run the collection in your own browser, where the site sees an ordinary visit.
+
 ## Conclusion
 
 ChatGPT is a good way to tidy a short list you've pasted, and a fair way to get a starter script if you're a developer. For a list that spans pages, lives behind a sign-in, or has to be right to the digit, ask Web Scraper Pro instead; the request is the same sentence, and the rows come from the page. See How To Scrape a Website by Asking for the full walkthrough.

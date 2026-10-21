@@ -53,6 +53,14 @@ Click **Download** on a group for only that size, or **Download all** at the top
 
 If the page changed, or you scrolled further and more images loaded, click **Rescan** to collect again.
 
+## When it goes wrong
+
+**Some images are missing.** They hadn't loaded yet. Scroll to the bottom of the page, wait for the images to appear, and click Rescan.
+
+**The images are small.** They're saved at the size the page serves them. Open the page with the full-size version, usually the product page, and collect there.
+
+**Chrome asked for permission to download several files.** Allow it once for the site. The ZIP is one file, but Chrome asks when an extension saves more than one file in a row.
+
 ## Conclusion
 
 You saved every image on a page as one ZIP, choosing the sizes you wanted. For the images of a whole product catalog, open the store in the side panel and use the Shopify store export, which downloads every product's images with the product data. For the product details that go with a gallery, see the product details feature page.

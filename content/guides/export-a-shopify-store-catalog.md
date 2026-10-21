@@ -83,6 +83,16 @@ Three downloads cover the three jobs:
 
 In the **Chat** tab, `Collect all products from this store` runs the same collection, and `every variant` or a collection's name narrows it. After collecting a list on a Shopify store, chat offers **Collect the whole store** on its own.
 
+## When it goes wrong
+
+**No Shopify stores card appears.** The store isn't on Shopify, or it has turned off its public product data. The List tab still collects the page's own list, which is only what's on screen.
+
+**Only a handful of products came back.** Use store product data is off in Settings → Shopify stores, so the page was collected instead of the feed. Turn it on and collect again.
+
+**The import fails in Shopify.** Shopify's import has rules the source store may not follow: duplicate handles, missing options, image URLs it can't fetch. Import into a test store, read the error rows, fix them in the CSV, and import again.
+
+**The image ZIP is huge.** ZIPs split at 5,000 files. A store with many images gives part-1, part-2 and so on; download them all.
+
 ## Conclusion
 
 You exported a Shopify store's catalog with every variant and image, and you have a CSV a store can import. For competitor prices across several stores, run each store and compare the exports in one sheet; for a product page on a store that isn't on Shopify, use the product details feature instead.

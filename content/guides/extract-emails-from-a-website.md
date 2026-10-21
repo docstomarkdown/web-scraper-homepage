@@ -52,6 +52,14 @@ Click **Export as** and choose Excel, CSV or JSON. For many sites at once, use *
 
 ![](visual:ext/results-export-menu)
 
+## When it goes wrong
+
+**No email was found on a site that clearly has one.** The address is an image, sits behind a contact form, or is on a page the extension didn't open. It reads the page you're on plus one linked Contact or About page; open the page that shows the address and collect there.
+
+**The row has a phone but no email.** Many businesses publish a phone and no email. The extension never guesses an address; an empty cell means none was published as text.
+
+**Collect contacts isn't on the Properties tab.** On a listing page the Properties tab shows Select a product on the page instead. Open a normal page, such as the site's Contact page, and the button appears.
+
 ## Conclusion
 
 You collected a site's public contact details in one click. For a list of sites, see How To Get Emails from a List of Websites.

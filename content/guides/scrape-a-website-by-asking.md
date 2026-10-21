@@ -107,6 +107,16 @@ Each request runs one of these jobs. The wording is yours; these are examples.
 
 Each browser tab keeps its own chat, so a Maps search in one tab and a product list in another don't get mixed up.
 
+## When it goes wrong
+
+**Chat collected the wrong list.** Say which one: `the main results, not the sidebar`. Or open the List tab, click Choose an item on the page, and click one entry.
+
+**Chat says it reached the daily limit.** Chat answers again the next day. The List and Properties tabs collect without chat in the meantime.
+
+**The reply says it opened the last collection.** The results tab wasn't in front, so chat opened the newest collection and arranged that one. Bring the right results tab to the front and ask again.
+
+**The download has the wrong columns.** Downloads match what the results page shows. Tidy the table first, or name the columns in the request: `Excel with name and phone`.
+
 ## Conclusion
 
 You collected a list by describing it, followed the list across pages, shaped the columns and exported a file, all in plain words. When chat picks the wrong list, the List tab's **Choose an item on the page** is the quickest fix; see How To Scrape Data from Any Website to Excel for that route.

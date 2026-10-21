@@ -62,6 +62,16 @@ Click **Export as** and choose Excel.
 
 ![](visual:ext/results-export-menu)
 
+## When it goes wrong
+
+**The List tab found the wrong list.** Pages hold several lists: results, a sidebar, a row of recommendations. Pick the card whose count matches, or click Choose an item on the page and click one entry of the list you want.
+
+**The columns have odd names.** On a site without a ready-made setup, names come from the page's own labels. Hover a header and click the pencil to rename it; the export uses your names.
+
+**Only the first page was collected.** This page only is the default. Choose Collect more pages, confirm Next page, Load more or Auto scroll, and set Stop after.
+
+**The page needs a sign-in.** Sign in as you normally would, then collect; the extension reads what you can see. It never signs in for you.
+
 ## Conclusion
 
 You turned a list on a web page into a spreadsheet without writing anything. For many pages at once, see Bulk runs.

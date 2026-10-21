@@ -86,6 +86,16 @@ Click **Export as** and choose **Microsoft Excel**, **CSV**, **JSON** or **Googl
 
 ![](visual:ext/results-export-menu)
 
+## When it goes wrong
+
+**Next button ready never appears.** Click Change and click the site's own Next button; the extension remembers it for the run. If the page loads more as you scroll, choose Auto scroll instead.
+
+**The run stopped before the last page.** The site rate-limited or showed a verification. Complete the check, click Rescan, and collect again from the page you're on; History keeps the first run.
+
+**The same items appear twice.** Items repeated across pages are kept once on their own. If a site reorders results between pages, a few can slip through; use Remove duplicates in your sheet on the link column.
+
+**Paging is slow.** Keep the tab in front; a background tab is throttled by Chrome. Each page waits for the site to load, so a slow site means a slow run.
+
 ## Conclusion
 
 You collected a list that spans many pages into one table with a single click. For a list that runs across several sites, or the same category on several stores, paste the first-page addresses into Bulk scrape and each one is collected in turn. To ask for it in words instead of clicking, see How To Scrape a Website by Asking.

@@ -84,6 +84,16 @@ Click **Export as** and choose **Microsoft Excel**, **CSV**, **JSON** or **Googl
 
 ![](visual:ext/results-export-menu)
 
+## When it goes wrong
+
+**The price is empty on some rows.** Listings with several sellers or variations show a range or no price on the search card. Open the listing for its price; the cell stays empty rather than guessing.
+
+**Amazon showed a verification page.** Complete it in the tab, click Rescan, and collect again from the page you're on. Collect in smaller runs if it keeps happening.
+
+**Sponsored rows are mixed in.** They carry a Sponsored label. Filter them out on the results page, or turn on Skip sponsored products in Settings → Results before collecting.
+
+**Fewer pages than expected.** Amazon caps a search at 7 to 20 pages whatever the count it shows. Search narrower categories and combine them.
+
 ## Conclusion
 
 You collected an Amazon search into a spreadsheet with named columns across every page. To do the same for a list of searches, paste their addresses into Bulk scrape and each one is collected in turn. For one product's full details and its reviews, open the product page and see the product details feature page.

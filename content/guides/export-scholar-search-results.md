@@ -76,6 +76,14 @@ Click **Export as** and choose **Microsoft Excel**, **CSV**, **JSON** or **Googl
 
 ![](visual:ext/results-export-menu)
 
+## When it goes wrong
+
+**Scholar showed a verification page.** Complete it in the tab, click Rescan, and collect again. The run keeps what it collected. Fewer pages per sitting keeps it from happening.
+
+**The full-text link is empty.** Scholar shows a PDF or HTML link only when it knows of one. Follow the Result URL for the publisher's page.
+
+**Authors came as one line.** Scholar prints authors as one abbreviated line, such as A Rivera, M Chen. Split the column in your sheet on the commas if you need one author per column.
+
 ## Conclusion
 
 You exported a Scholar search into a citation spreadsheet with counts you can sort by and links to every full text. For the readable text of the papers' web pages, open each one and use Collect page text; see the research use case for the whole workflow from search to dataset.

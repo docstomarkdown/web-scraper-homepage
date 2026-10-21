@@ -45,6 +45,14 @@ Click **Export as** and choose Excel.
 
 ![](visual:ext/results-export-menu)
 
+## When it goes wrong
+
+**The results include ads.** Yellow Pages mixes sponsored listings into results. They're marked Sponsored; filter them out on the results page, or turn on Skip sponsored products in Settings → Results.
+
+**Add contact details is greyed out.** The Yellow Pages table stores the website under a different column key, so the button doesn't see it. Use Bulk scrape → Collect contacts → Use saved data and pick this collection; the emails fill in the same way.
+
+**The run stopped after a few pages.** Yellow Pages asked for a verification, or the tab was in the background. Complete the check, keep the tab in front, click Rescan, and collect again from the page you're on.
+
 ## Conclusion
 
 You collected a directory search with every page and its contact details. The same steps work on Justdial and BBB.

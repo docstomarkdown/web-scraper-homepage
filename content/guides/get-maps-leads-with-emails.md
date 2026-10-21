@@ -57,6 +57,16 @@ Click **Export as** and choose Excel, CSV or JSON.
 
 ![](visual:ext/results-export-menu)
 
+## When it goes wrong
+
+**Emails came back empty for every row.** Add emails from their websites is off in Settings → Results, or the request contained "no emails". Turn the setting on, or run again without those words.
+
+**The run is slow.** Reading each website adds a few seconds per business: 50 take about four minutes, 200 about fifteen. For a quick list of names and phones, say `no emails` and add the emails later with Add contact details.
+
+**Add contact details is greyed out on a saved table.** The button needs a column whose name is exactly Website. Rename the website column to Website on the results page, or use Bulk scrape → Collect contacts → Use saved data.
+
+**A business has an email on its site but the row is empty.** The address is shown as an image, behind a contact form, or on a page other than the home and Contact pages. Only text on those pages is read.
+
 ## Conclusion
 
 You now have businesses and their contact details in one table, and you know how to add contact details to any list with a Website column.

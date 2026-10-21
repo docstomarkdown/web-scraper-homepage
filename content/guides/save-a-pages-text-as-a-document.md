@@ -69,6 +69,14 @@ For many pages, click the **Bulk scrape** icon at the top of the side panel and 
 
 ![](visual:ext/bulk-upload)
 
+## When it goes wrong
+
+**The text is cut off.** The page loads more as you scroll. Scroll to the end, wait, and collect again.
+
+**Author and date are empty.** The page doesn't state them in a form the extension recognises. Fill them in on the results page by clicking the cell.
+
+**The document includes a cookie banner or a menu.** Rare, but a site can mark its chrome as content. Delete the lines in Word, or use Copy text and paste into your editor.
+
 ## Conclusion
 
 You saved a page's readable text with its title, author and date, as a document or as rows, and you can do the same for a reading list in one run. The text belongs to its publisher: keep it for reading, notes and analysis, and quote from the source. For the lists on a page rather than its text, see How To Scrape Data from Any Website to Excel.

@@ -45,6 +45,14 @@ Click **Export as** and choose Excel.
 
 ![](visual:ext/results-export-menu)
 
+## When it goes wrong
+
+**The number is shown on the page but not in the row.** It's an image or drawn by a script after the page loads. Scroll to it so it's on the page, then collect again; images can't be read.
+
+**The row shows a fax under Phones.** Fax numbers go to their own Faxes column; a number in Phones is one the site labelled as a phone. Check the site's own label.
+
+**I want numbers from many sites.** Paste the addresses into Bulk scrape → Collect contacts with Phone numbers ticked; see How To Get Emails from a List of Websites, the steps are the same.
+
 ## Conclusion
 
 You pulled a page's phone numbers into a sheet. The same run finds emails and social links, so one collection covers every way to reach the business.

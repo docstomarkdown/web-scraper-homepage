@@ -73,6 +73,16 @@ Click **Export as** and choose **Microsoft Excel**, **CSV**, **JSON** or **Googl
 
 ![](visual:ext/results-export-menu)
 
+## When it goes wrong
+
+**The store showed a verification page.** Complete it in the tab, click Rescan, and collect again from the page you're on.
+
+**Prices show as a range.** Listings with variations show a range on the card, and the extension keeps what the card shows. Open the listing for one variation's price.
+
+**The columns differ from the ones listed here.** A column the search never shows stays out of the table, and the stores change their cards now and then. Rename what's different once on the results page.
+
+**Only the first page was collected.** Choose Collect more pages and set Stop after; This page only is the default.
+
 ## Conclusion
 
 You collected a store search into a spreadsheet with named columns across every page. To do the same for several searches or several stores, paste the search addresses into Bulk scrape and each is collected in turn with its own setup. For one listing's full details and reviews, open it and use the product details feature.

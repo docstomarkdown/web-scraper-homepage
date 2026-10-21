@@ -77,6 +77,14 @@ Click **Export as** and choose **Microsoft Excel**, **CSV**, **JSON** or **Googl
 
 ![](visual:ext/results-export-menu)
 
+## When it goes wrong
+
+**The run never ends.** Busy searches load results for a long time. Click Stop when you have enough; the rows so far are kept.
+
+**View counts look wrong.** They're the rounded counts the card shows, such as 48K, saved as numbers. A video's own page shows the exact count.
+
+**Shorts and playlists are mixed in.** Filter the Type column on the results page to keep videos only, or use YouTube's own Type filter before collecting.
+
 ## Conclusion
 
 You collected a YouTube search or a channel's videos into a spreadsheet you can sort by views and date. To compare several topics, run a search per topic and ask chat to combine the conversation's lists into one table, or export each from History. For the channels' websites and contact details, collect from their own sites; see the research use case for the full workflow.

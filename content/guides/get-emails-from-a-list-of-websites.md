@@ -52,6 +52,16 @@ When it finishes, the **Collection results** page lists each site. Click **View 
 
 ![](visual:ext/bulk-overview)
 
+## When it goes wrong
+
+**A site shows Waiting for you.** It asked for a verification. Complete it in the embedded browser on the right and the run carries on.
+
+**The run skipped a site.** Its pages timed out or refused to load. Its rows so far are kept; open the site in a normal tab to see what it shows, then add it to a new run.
+
+**The merged table has the same business twice.** Two addresses from the same site were in the list. Remove duplicates keeps one copy per result, but two different pages of one site are two results; dedupe on the Website column in your sheet.
+
+**Nothing happens when I click Start collecting.** Every site needs at least one contact type ticked. The Configure step shows Choose at least one contact type for this site under the card that has none.
+
 ## Conclusion
 
 A list of websites became a sheet of contact details, one row per site, without opening any of them yourself.
