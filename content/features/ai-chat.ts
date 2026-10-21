@@ -105,6 +105,14 @@ export const aiChat: FeaturePageContent = {
             q: "Is chat part of the plan?",
             a: "Yes. There's one plan, Pro, and it includes every feature.",
         },
+        {
+            q: "Is this an AI web scraper?",
+            a: "The AI reads your request and decides what to collect; the rows come from the page itself, in your browser. So every value is copied from the page, not generated, and nothing on the page is sent to the AI.",
+        },
+        {
+            q: "Does it work with ChatGPT or Claude?",
+            a: "Chat is built into the extension, so you don't need either. Connecting Claude and other MCP clients to collect through your browser is coming soon.",
+        },
     ],
     related: ["maps-leads", "shopify-scraper", "list-scraper", "export-to-google-sheets", "mcp"],
 };

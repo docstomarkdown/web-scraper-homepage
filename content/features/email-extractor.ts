@@ -124,6 +124,18 @@ export const emailExtractor: FeaturePageContent = {
             q: "Is this included in the plan?",
             a: "Yes. One plan, Pro, includes contact details on single sites, bulk runs and every export format.",
         },
+        {
+            q: "Can it get emails from a Maps search?",
+            a: "Yes. A Maps search in the Chat tab reads each business's website while it collects, so the Emails column fills in the same run. For a Maps list you saved earlier, click Add contact details on its results page.",
+        },
+        {
+            q: "Does it find emails from a whole domain, or one page?",
+            a: "One page plus one linked Contact or About page per run. For a whole site, paste its main pages into Bulk scrape → Collect contacts; the merged table holds every email found.",
+        },
+        {
+            q: "Is it an online tool or an extension?",
+            a: "A Chrome extension. The pages are read in your own browser and nothing is uploaded, which is also why it works on pages you're signed in to.",
+        },
     ],
     related: ["maps-leads", "bulk-scraper", "list-scraper", "export-to-google-sheets", "ai-chat"],
 };

@@ -112,6 +112,18 @@ export const exportToGoogleSheets: FeaturePageContent = {
             q: "Is this included in the plan?",
             a: "Yes. Editing and every export format are part of the one plan, Pro.",
         },
+        {
+            q: "Can Google Sheets pull data from a website on its own?",
+            a: "For a plain HTML table on one page, Sheets' own import functions can. For a list that spans pages, a page that loads as you scroll, or a page you're signed in to, collect it with the extension and choose Google Sheets under Export as; a new sheet opens in a tab.",
+        },
+        {
+            q: "How do I get a table from a website into Google Sheets?",
+            a: "Open the page, click Collect in the side panel, then Export as → Google Sheets on the results page. Or type \"put this in Google Sheets\" in the Chat tab.",
+        },
+        {
+            q: "Can it update the sheet automatically?",
+            a: "Not yet. Each run creates a new sheet, and every collection stays in History to export again. Scheduled runs are coming with the cloud.",
+        },
     ],
     related: ["ai-chat", "list-scraper", "maps-leads", "bulk-scraper"],
 };

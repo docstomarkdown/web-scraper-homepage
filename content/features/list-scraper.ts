@@ -142,6 +142,14 @@ export const listScraper: FeaturePageContent = {
             q: "Is this included in the plan?",
             a: "Yes. There's one plan, Pro, and it includes lists from any website, every page of results, bulk runs and every export format.",
         },
+        {
+            q: "How do I use it on a page with pagination?",
+            a: "Pick the list, choose Collect more pages, confirm how the page moves on (Next page, Load more or Auto scroll), set Stop after, and click Collect from N pages. The guide How To Collect Every Page of Results walks through it.",
+        },
+        {
+            q: "Is there a tutorial?",
+            a: "Yes: How To Scrape Data from Any Website to Excel, with a screenshot for every step, and How To Collect Every Page of Results for lists that continue over pages.",
+        },
     ],
     related: ["ai-chat", "bulk-scraper", "export-to-google-sheets", "product-scraper", "maps-leads"],
 };
