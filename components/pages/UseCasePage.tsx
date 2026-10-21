@@ -88,8 +88,8 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
                     <Reveal className="mt-8">
                         <figure className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
                             <table className="w-full text-base text-left leading-snug">
-                                <thead className="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white"><tr>{c.sample.columns.map((col) => <th key={col} className="px-3 py-3 font-semibold align-bottom">{col}</th>)}</tr></thead>
-                                <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-200">{c.sample.rows.map((r, i) => <tr key={i}>{r.map((cell, j) => <td key={j} className="px-3 py-3 align-top">{cell || <span className="text-slate-400 dark:text-slate-500" aria-label="empty">—</span>}</td>)}</tr>)}</tbody>
+                                <thead className="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white"><tr>{c.sample.columns.map((col) => <th key={col} className="px-4 py-3 font-semibold whitespace-nowrap align-bottom">{col}</th>)}</tr></thead>
+                                <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-200">{c.sample.rows.map((r, i) => <tr key={i}>{r.map((cell, j) => <td key={j} className="px-4 py-3 whitespace-nowrap align-top">{cell || <span className="text-slate-400 dark:text-slate-500" aria-label="empty">—</span>}</td>)}</tr>)}</tbody>
                             </table>
                             <figcaption className="px-3 py-3 text-base text-slate-600 dark:text-slate-300 border-t border-slate-100 dark:border-slate-800">Sample data: the names and numbers are made up.</figcaption>
                         </figure>
