@@ -155,7 +155,7 @@ export const freelanceDataWork: UseCasePageContent = {
             "Decide what's allowed. Collecting personal data, or data a site's terms forbid, is on you and the client. Check before you accept the order.",
         ],
     },
-    guides: ["scrape-data-from-any-website-to-excel", "get-emails-from-a-list-of-websites", "collect-every-page-of-results", "collect-business-listings-from-yellow-pages"],
+    guides: ["clean-scraped-data-in-excel", "scrape-data-from-any-website-to-excel", "get-emails-from-a-list-of-websites", "collect-every-page-of-results", "collect-business-listings-from-yellow-pages"],
     faqs: [
         { q: "Is this free?", a: "Yes. Web Scraper Pro is free to install and use. There's no paid plan, every feature is included, and there's no account to create. There is no per-row price and no credits to count." },
         { q: "Does it work on a site that isn't in your list?", a: "Yes. On any site with a list, the List tab finds it and names the columns from the page's own labels; Choose an item on the page handles the rest. Ready-made sites come with better names." },

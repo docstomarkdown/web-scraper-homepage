@@ -187,7 +187,7 @@ export const exportToGoogleSheets: FeaturePageContent = {
             paragraphs: ["Each one shows up on the results page or in the file, and each has a one-line fix."],
             points: [
                 "A column is missing from the file. It was hidden on the results page, or it's mostly empty and the setting hid it. Click Columns and tick it.",
-                "Prices sort as text in the sheet. The collection was saved with Save prices as numbers off. Turn it on and collect again, or convert the column in the sheet.",
+                "Prices sort as text in the sheet. The collection was saved with Save prices as numbers off. Turn it on and collect again, or convert the column in the sheet; [the Excel clean-up guide](/guides/clean-scraped-data-in-excel) has the formula.",
                 "The sort covered only the first page. The collection has over 500 rows and the page showed one saved page. Click Load all, then sort.",
                 "Google Sheets export asked me to sign in. That's the one-time permission to create files in your Drive. Choose Excel or CSV if you'd rather not, or if Google refuses the sign-in for your account.",
                 "The file has rows I filtered out. Filters from chat change the view, and the download matches what you see; check the view before exporting from History.",
