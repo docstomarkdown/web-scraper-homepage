@@ -17,6 +17,7 @@ export const justdial: ScraperPageContent = {
     },
     h1: "How to scrape Justdial business listings and phone numbers",
     intro: "Search Justdial for a service in a city and get every listing as a row. Rating, address, phone and services come in named columns, page after page.",
+    allowed: "Justdial's terms restrict automated collection, and some phone numbers show only after a click or a sign-in, which the extension never does for you. This page reads the listings you have open, in your own browser, at a person's pace, for your own research or prospecting; India's rules on unsolicited calls and messages decide how you may contact the businesses. Read [Is web scraping legal?](/web-scraping-legal) first; it isn't legal advice.",
     status: "draft",
     lastVerified: "2026-10-20",
     version: "1.3.0",

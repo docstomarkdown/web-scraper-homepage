@@ -10,6 +10,8 @@ import { getPage } from "@/config/pages";
 // - Products in the site's order, leads best rated first: D-031; prices, ratings and counts as numbers: D-033
 // - 113 ready-made site packs with named columns, generic detection elsewhere: configs-prod/, lib/platform/hooks/
 // - Column names from the page's own labels on other sites, a category guessed from them: DECISIONS.md D-018, D-019
+// - Verify before publishing as ready-made: Redfin, Booking.com and Tripadvisor have setups in configs-prod/ but no
+//   verified run on 1.3.0 (2026-10-28); the copy below names them as setups to check, not as verified packs.
 // - Chat "collect the list on this page" and "collect every page" run the List tab's own run: D-025, D-027
 // - Paging slows down in a background tab: change_documentation/REFACTORING_TODO.md
 // Verify before publishing: seconds per page in a paged run ("a few seconds a page") is not measured here; the
@@ -108,14 +110,14 @@ export const listScraper: FeaturePageContent = {
             eyebrow: "Ready-made sites",
             heading: "Over 100 sites come with named columns",
             paragraphs: [
-                "Amazon, Walmart, Target, Etsy, Zillow, Rightmove, Monster, Capterra, Tripadvisor, Yellow Pages and many more have a setup that names every column the way the site does and knows the site's Next button. On any other site the list is still detected, and the columns are named from the page's own labels.",
+                "Amazon, Walmart, Etsy, eBay, Zillow, Rightmove, Yellow Pages, Hotels.com and many more have a setup that names every column the way the site does and knows the site's Next button. On any other site the list is still detected, and the columns are named from the page's own labels.",
                 "On a site without a setup, check the first page's columns before a long run. Rename what's odd once on the results page; the name is kept for the file.",
             ],
             points: [
                 "Online stores: Amazon in 21 countries, eBay, Walmart, Target, Costco, Etsy, Wayfair, Flipkart and more.",
-                "Real estate: Zillow, Redfin, Rightmove, Zoopla, Property Finder.",
+                "Real estate: Zillow and Rightmove, verified on 1.3.0; Redfin, Zoopla and Property Finder have setups not yet re-run on 1.3.0, so check the first page's columns.",
                 "Directories and reviews: Yellow Pages, Justdial, BBB, Yelp, G2, Capterra, Trustpilot.",
-                "Travel, jobs, cars and research: Booking.com, Hotels.com, Tripadvisor, Monster, Copart, CarGurus, Google Scholar.",
+                "Travel, jobs, cars and research: Hotels.com and Google Scholar, verified on 1.3.0; Booking.com, Tripadvisor, Monster, Copart and CarGurus have setups not yet re-run on 1.3.0.",
             ],
         },
         {

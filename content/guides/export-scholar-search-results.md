@@ -25,6 +25,10 @@ faq:
 
 Run the search on Google Scholar, open the side panel, choose how many pages, and click Collect. Web Scraper Pro has a ready-made Google Scholar setup, so every result arrives as a row with title, authors, publication, year, citation count and full-text link. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
+## Does Google Scholar Allow Scraping?
+
+Google's terms restrict automated queries, and Scholar shows a verification page sooner than most sites when many result pages load quickly. This guide reads the results page you have open, in your own browser, a few pages at a time, for your own literature search. Read [Is web scraping legal?](/web-scraping-legal) first; it isn't legal advice.
+
 ## Prerequisites
 
 - Google Chrome with Web Scraper Pro installed (version 1.3.0 or later).

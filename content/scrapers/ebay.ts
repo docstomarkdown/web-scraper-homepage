@@ -23,6 +23,7 @@ export const ebay: ScraperPageContent = {
     },
     h1: "How to scrape eBay listings into Excel, with sold counts and sellers",
     intro: "Run a search on eBay, pick the list in the side panel, and set how many pages. You get one row per listing with price, condition, seller, bids and sold count as named columns. Sort a whole category by price or by what sells.",
+    allowed: "eBay's user agreement restricts automated collection, and it shows a verification page when many result pages load quickly. This page reads the search results you have open, in your own browser, at a person's pace, for your own price research; listing photos and text belong to the sellers. Read [Is web scraping legal?](/web-scraping-legal) first; it isn't legal advice.",
     status: "draft",
     lastVerified: "2026-10-21",
     version: "1.3.0",

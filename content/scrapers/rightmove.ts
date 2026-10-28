@@ -17,6 +17,7 @@ export const rightmove: ScraperPageContent = {
     },
     h1: "How to scrape Rightmove listings into a spreadsheet",
     intro: "Search an area on Rightmove, for sale or to rent. Pick the results in the side panel and get one row per property, across every page. Free Chrome extension, no code.",
+    allowed: "Rightmove's terms restrict automated collection, and the listings belong to Rightmove and the agents who post them. This page reads the search results you have open, in your own browser, at a person's pace, for your own area research; don't republish the listings. Read [Is web scraping legal?](/web-scraping-legal) first; it isn't legal advice.",
     status: "draft",
     lastVerified: "2026-10-21",
     version: "1.3.0",

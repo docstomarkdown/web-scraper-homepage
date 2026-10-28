@@ -18,6 +18,7 @@ export const yellowPages: ScraperPageContent = {
     },
     h1: "How to scrape Yellow Pages listings with phone, address and website",
     intro: "Search Yellow Pages for a category in a city and get every listing as a row. Phone, address, rating, years in business and website come in named columns, page after page.",
+    allowed: "Yellow Pages' terms restrict automated collection, and the listings are public business details. This page reads the results you have open, in your own browser, at a person's pace, for your own prospecting or research; anti-spam law decides how you may contact the businesses. Read [Is web scraping legal?](/web-scraping-legal) first; it isn't legal advice.",
     status: "draft",
     lastVerified: "2026-10-20",
     version: "1.3.0",

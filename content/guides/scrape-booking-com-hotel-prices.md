@@ -34,16 +34,16 @@ faq:
 
 Search a city and your dates on Booking.com, and Web Scraper Pro collects every hotel in the results into a spreadsheet: name, price for the stay, guest rating, review count, distance from the center and link. You get the whole city for your dates in one table you can sort by price or rating, instead of scrolling through cards. This guide shows each step on version 1.3.0.
 
+## Does Booking.com Allow Scraping?
+
+Booking.com's terms restrict automated collection, and the extension collects only what the page shows you, in your own browser, at a person's pace. Collect for your own trip planning or market research, keep it to public listings, and read [Is web scraping legal?](/web-scraping-legal) before reusing anything; it isn't legal advice.
+
 ## Prerequisites
 
 To follow this tutorial, you need:
 
 - Google Chrome with [Web Scraper Pro](/) installed (version 1.3.0 or later).
 - A Booking.com search with your check-in and check-out dates, number of guests and the filters you want: price, star rating, free cancellation, district.
-
-## Does Booking.com Allow Scraping?
-
-Booking.com's terms restrict automated collection, and the extension collects only what the page shows you, in your own browser, at a person's pace. Collect for your own trip planning or market research, keep it to public listings, and read [Is web scraping legal?](/web-scraping-legal) before reusing anything; it isn't legal advice.
 
 ## What You Get
 

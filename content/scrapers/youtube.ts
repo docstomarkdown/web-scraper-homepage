@@ -18,6 +18,7 @@ export const youtube: ScraperPageContent = {
     },
     h1: "How to scrape a YouTube channel's videos into a spreadsheet",
     intro: "Open a channel's Videos tab or run a search. Pick the list in the side panel and get one row per video with title, channel, views, date, duration and link. Sort a whole topic by views in a sheet.",
+    allowed: "YouTube's terms restrict automated access, and its Data API is the route it offers developers, with a daily quota. This page reads the channel page you have open, in your own browser, at a person's pace, for your own research; titles and counts are public, and the videos stay on YouTube. Read [Is web scraping legal?](/web-scraping-legal) first; it isn't legal advice.",
     status: "draft",
     lastVerified: "2026-10-21",
     version: "1.3.0",

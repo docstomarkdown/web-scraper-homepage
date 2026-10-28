@@ -60,7 +60,7 @@ A browser extension collects from the page already open in Chrome, so what you c
 
 1. Open the page and click the Web Scraper Pro icon. The side panel opens on the right; open its **List** tab and pick the list it found.
 2. Choose **Collect more pages**, set **Stop after** (5, 10, 20 or All pages), and click **Collect from N pages**.
-3. The results page opens in a new tab. Click **Export as** and choose **Google Sheets**. A new sheet opens in your Google Drive.
+3. The results page opens in a new tab. Click **Export as** and choose **Google Sheets**. A new sheet opens in your Google Drive. If Google refuses the sign-in or warns that the app isn't verified, the Sheets export isn't open to your account yet; choose **Microsoft Excel** or **CSV** and open the file in Sheets.
 
 Or type it: `put this in Google Sheets` in the **Chat** tab does the same. The [any-website guide](/guides/scrape-data-from-any-website-to-excel) walks through it with screenshots, and the [table guide](/guides/copy-a-table-from-a-website) covers the plain-table case.
 
@@ -124,7 +124,7 @@ Three messages, three causes.
 
 **Does the extension overwrite my sheet?** No. Each export creates a new sheet in your Google Drive. Copy rows into your working sheet when you want them there.
 
-**What permission does the Google Sheets export need?** To create files in your Google Drive. It can see only the sheets it creates, not your other files; the [privacy policy](/privacy-policy) says so.
+**What permission does the Google Sheets export need?** To create files in your Google Drive. It can see only the sheets it creates, not your other files; the [privacy policy](/privacy-policy) says so. If Google refuses the sign-in for your account, export to Excel or CSV and open the file in Sheets.
 
 **Can I schedule it?** Not yet with the extension; rerun it when you want fresh rows. Scheduled runs are coming with the cloud. A formula refreshes itself; a pipeline runs on a timer you set up.
 

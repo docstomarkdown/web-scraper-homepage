@@ -25,6 +25,10 @@ faq:
 
 Search the store, pick the results in the side panel, set how many pages, and click Collect. Web Scraper Pro has a ready-made setup for eBay, Etsy and Walmart, so the columns come out named and the Next button is handled, with the same clicks on each store. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
+## Do eBay, Etsy and Walmart Allow Scraping?
+
+All three stores' terms restrict automated collection, and each shows a verification page when it sees many pages load quickly. This guide reads the search page you have open, in your own browser, at a person's pace, for your own price research; the listings' images and text belong to the stores and their sellers. Read [Is web scraping legal?](/web-scraping-legal) first; it isn't legal advice.
+
 ## Prerequisites
 
 - Google Chrome with Web Scraper Pro installed (version 1.3.0 or later).

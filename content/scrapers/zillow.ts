@@ -18,6 +18,7 @@ export const zillow: ScraperPageContent = {
     },
     h1: "How to scrape Zillow listings to Excel",
     intro: "Search a city or zip code on Zillow, for sale or for rent. Pick the results in the side panel and get one row per home, across every page. Free Chrome extension, no code.",
+    allowed: "Zillow's terms restrict automated collection, and listing data belongs to Zillow and the agents and MLSs that supply it. This page reads the search results you have open, in your own browser, at a person's pace, for your own area research; don't republish the listings. Read [Is web scraping legal?](/web-scraping-legal) first; it isn't legal advice.",
     status: "draft",
     lastVerified: "2026-10-21",
     version: "1.3.0",

@@ -27,6 +27,10 @@ faq:
 
 Open the store in Chrome, open the side panel, and click Collect products on the Shopify store card. Web Scraper Pro reads the store's own product data, so every product and variant arrives with prices, SKUs, tags, descriptions and images, as a spreadsheet or a Shopify import CSV. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
+## Does a Shopify Store Allow Scraping?
+
+Each store sets its own terms, and the products, images and text belong to the store. This guide reads the store's public product data in your own browser, for research or for a catalog you have the right to move; check the store's terms before importing anything into another shop. Read [Is web scraping legal?](/web-scraping-legal) first; it isn't legal advice.
+
 ## Prerequisites
 
 - Google Chrome with Web Scraper Pro installed (version 1.3.0 or later).

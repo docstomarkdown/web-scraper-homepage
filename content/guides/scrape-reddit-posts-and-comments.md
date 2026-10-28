@@ -3,7 +3,7 @@ title: "How To Scrape Reddit Posts and Comments into a Spreadsheet"
 description: "Collect the posts in a subreddit or a Reddit search, then the comments on a post, into Excel with title, score, comments, date and link. No code, no API key."
 status: draft
 date: 2026-10-21
-updated: 2026-10-21
+updated: 2026-10-28
 version: "1.3.0"
 author: vikram
 feature: list-scraper
@@ -21,6 +21,8 @@ faq:
     a: "As far as the page scrolls. Reddit keeps loading older posts for a long time, so click Stop when you have enough; the rows so far are kept."
   - q: "Can I search Reddit for a keyword and export the results?"
     a: "Yes. Run the search on Reddit, sort it by New, and collect the results list. For several keywords, paste the search addresses into Bulk scrape."
+  - q: "Does it still work after Reddit's 2026 JSON change?"
+    a: "Yes. In late May 2026 Reddit stopped answering its .json page addresses for anyone not signed in, which broke tools built on them. The extension reads the page you can see in your own browser, not those addresses, so the steps in this guide are unchanged."
   - q: "Is scraping Reddit allowed?"
     a: "Reddit's terms restrict automated collection. You collect public posts in your own browser, at a person's pace, for your own research. Read our plain-words explainer on web scraping and the law first; it isn't legal advice."
   - q: "Will Reddit ban my account?"
@@ -39,18 +41,22 @@ phrases, 2026-10-21).
 
 Web Scraper Pro turns a subreddit, a Reddit search or a post's comment thread into a spreadsheet, with the title, score, comment count, date and link in their own columns. You pick the list on the page and let the run scroll; there is no API key and no account. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
+## Does Reddit Allow Scraping?
+
+Reddit's terms restrict automated collection, and its official API is the route it offers to developers. This guide reads the public page you have open, in your own browser, at the pace a person scrolls, for your own research.
+
+Keep it to public communities, don't republish people's posts, and read [Is web scraping legal?](/web-scraping-legal) first. It isn't legal advice.
+
+## What Still Works After Reddit's 2026 JSON Change
+
+In late May 2026 Reddit stopped answering requests to its `.json` page addresses from anyone who isn't signed in, and the no-code scrapers and scripts built on those addresses stopped getting posts. This guide never used them. It reads the page you can see in your own browser, so every step below still works: the posts list, the comment thread, Auto scroll and Bulk scrape. What hasn't changed either: anything Reddit shows only after a sign-in or a verification stays out of reach, because the extension never signs in or completes a check for you.
+
 ## Prerequisites
 
 To follow this tutorial, you need:
 
 - Google Chrome with Web Scraper Pro installed (version 1.3.0 or later).
 - A subreddit, a Reddit search, or a post whose comments you want, open in Chrome. Signing in to Reddit isn't needed for public communities.
-
-## Does Reddit Allow Scraping?
-
-Reddit's terms restrict automated collection, and its official API is the route it offers to developers. This guide reads the public page you have open, in your own browser, at the pace a person scrolls, for your own research.
-
-Keep it to public communities, don't republish people's posts, and read [Is web scraping legal?](/web-scraping-legal) first. It isn't legal advice.
 
 ## What You Get
 

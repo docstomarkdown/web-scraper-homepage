@@ -25,6 +25,10 @@ faq:
 
 Search YouTube, pick the results in the side panel, and click Collect to end. Web Scraper Pro has a ready-made YouTube setup, so every video arrives as a row with title, channel, views, published date, duration and link, and the run scrolls the page for you. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
+## Does YouTube Allow Scraping?
+
+YouTube's terms restrict automated access, and its Data API is the route it offers developers, with a daily quota. This guide reads the search page you have open, in your own browser, at a person's pace, for your own research; titles and channel names are public, and the videos themselves stay on YouTube. Read [Is web scraping legal?](/web-scraping-legal) first; it isn't legal advice.
+
 ## Prerequisites
 
 - Google Chrome with Web Scraper Pro installed (version 1.3.0 or later).

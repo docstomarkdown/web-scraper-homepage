@@ -20,8 +20,9 @@ import { getPage } from "@/config/pages";
 // "extract data from website to excel", "can google sheets pull data from a website"): youtube-research/
 // AUTOSUGGEST.md and SEARCH_QUERIES.md in the strategy repo. The table guide owns "copy a table from a website into
 // Excel or Google Sheets"; this page owns "get data from a website into Google Sheets or Excel". Deepened 2026-10-21.
-// Google Sheets is named here as on every other page; docs/personas.md asks the owner to confirm the OAuth consent
-// screen before launch.
+// Google Sheets is named here as on every other page. Verify before relying on it: docs/personas.md holds the Sheets claim
+// until the OAuth consent screen is confirmed as published (owner decision pending, 2026-10-28). Until then the page says
+// what to do if Google refuses the sign-in, and never promises Sheets to every reader.
 
 export const exportToGoogleSheets: FeaturePageContent = {
     page: getPage("export-to-google-sheets"),
@@ -86,6 +87,7 @@ export const exportToGoogleSheets: FeaturePageContent = {
             paragraphs: [
                 "Choose Google Sheets under Export as, or say \"put this in Google Sheets\" in chat. The first time, Google asks you to sign in and allow Web Scraper Pro to create files in your Drive. It can't see files it didn't create.",
                 "The new sheet opens in a tab. Each export creates a new sheet, and the collection stays in History to export again.",
+                "If Google refuses the sign-in or warns that the app isn't verified, the Sheets export isn't open to your account yet. Export to Excel or CSV instead and open the file in Sheets; nothing else about the table changes.",
             ],
         },
         {
@@ -187,7 +189,7 @@ export const exportToGoogleSheets: FeaturePageContent = {
                 "A column is missing from the file. It was hidden on the results page, or it's mostly empty and the setting hid it. Click Columns and tick it.",
                 "Prices sort as text in the sheet. The collection was saved with Save prices as numbers off. Turn it on and collect again, or convert the column in the sheet.",
                 "The sort covered only the first page. The collection has over 500 rows and the page showed one saved page. Click Load all, then sort.",
-                "Google Sheets export asked me to sign in. That's the one-time permission to create files in your Drive. Choose Excel or CSV if you'd rather not.",
+                "Google Sheets export asked me to sign in. That's the one-time permission to create files in your Drive. Choose Excel or CSV if you'd rather not, or if Google refuses the sign-in for your account.",
                 "The file has rows I filtered out. Filters from chat change the view, and the download matches what you see; check the view before exporting from History.",
             ],
         },
@@ -197,7 +199,7 @@ export const exportToGoogleSheets: FeaturePageContent = {
         items: [
             "Collections stay in your browser's storage until you delete them. Export anything you need to keep for the long term.",
             "Collections over 500 rows show a page at a time. Click Load all to see every row before a sort or filter.",
-            "Google Sheets export needs a Google sign-in. Excel, CSV and JSON need nothing.",
+            "Google Sheets export needs a Google sign-in, and Google may refuse it for some accounts while the app's verification is pending; Excel and CSV open in Sheets too. Excel, CSV and JSON need nothing.",
         ],
     },
     useCases: {

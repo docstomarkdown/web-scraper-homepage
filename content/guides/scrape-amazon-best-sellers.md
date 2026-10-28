@@ -34,16 +34,16 @@ Draft until these are checked in a real run on 1.3.0 and the screenshots exist:
 
 Amazon's Best Sellers pages rank the top 100 products in every category and update through the day, but there's no download button. Web Scraper Pro collects the whole ranking from the page you have open, both pages of it, into a spreadsheet with rank, product name, price, rating, review count and link. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
+## Does Amazon Allow Scraping?
+
+The ranking is public and you collect it from the page you can see, in your own browser, at a person's pace. Amazon's terms restrict automated collection, and the product images and text are Amazon's, so collect for your own research and check the terms before reusing anything. Our page [Is web scraping legal?](/web-scraping-legal) explains the rules in plain words; it isn't legal advice.
+
 ## Prerequisites
 
 To follow this tutorial, you need:
 
 - Google Chrome with Web Scraper Pro installed (version 1.3.0 or later).
 - An Amazon Best Sellers category page, on any of Amazon's country stores. From the Best Sellers home, click into the category you want, as deep as you need.
-
-## Does Amazon Allow Scraping?
-
-The ranking is public and you collect it from the page you can see, in your own browser, at a person's pace. Amazon's terms restrict automated collection, and the product images and text are Amazon's, so collect for your own research and check the terms before reusing anything. Our page [Is web scraping legal?](/web-scraping-legal) explains the rules in plain words; it isn't legal advice.
 
 ## What You Get
 

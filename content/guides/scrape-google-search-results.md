@@ -38,18 +38,18 @@ run. Title targets "scrape google search results" (74 views/mo; SERP 189/mo), 20
 
 Web Scraper Pro turns a Google search into a spreadsheet with the position, title, link and snippet of each result. You pick the results list, set a few pages, and click once; for a list of keywords, Bulk scrape runs each search in turn. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
+## Does Google Allow Scraping Its Results?
+
+Google's terms restrict automated access to its search, and it shows a verification page when it sees many result pages loaded quickly. This guide reads the page you can see, in your own browser, a few pages at a time, for your own research.
+
+Keep runs small and read [Is web scraping legal?](/web-scraping-legal) first. It isn't legal advice.
+
 ## Prerequisites
 
 To follow this tutorial, you need:
 
 - Google Chrome with Web Scraper Pro installed (version 1.3.0 or later).
 - The keyword, or list of keywords, you want results for.
-
-## Does Google Allow Scraping Its Results?
-
-Google's terms restrict automated access to its search, and it shows a verification page when it sees many result pages loaded quickly. This guide reads the page you can see, in your own browser, a few pages at a time, for your own research.
-
-Keep runs small and read [Is web scraping legal?](/web-scraping-legal) first. It isn't legal advice.
 
 ## What You Get
 

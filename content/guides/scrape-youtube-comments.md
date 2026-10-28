@@ -39,18 +39,18 @@ neighbouring phrase and is answered "no" in the FAQ), 2026-10-21.
 
 Web Scraper Pro turns the comments under a YouTube video into a spreadsheet, with the author, text, likes and date in their own columns. You scroll to the comments, pick the list, and let the run scroll to the end; there is no API key and no quota. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
+## Does YouTube Allow Scraping?
+
+YouTube's terms restrict automated collection, and its Data API is the route it offers developers, with a daily quota. This guide reads the public page you have open, in your own browser, at the pace a person scrolls, for your own research.
+
+Keep it to public videos, don't republish people's comments, and read [Is web scraping legal?](/web-scraping-legal) first. It isn't legal advice.
+
 ## Prerequisites
 
 To follow this tutorial, you need:
 
 - Google Chrome with Web Scraper Pro installed (version 1.3.0 or later).
 - The YouTube video whose comments you want, open in Chrome.
-
-## Does YouTube Allow Scraping?
-
-YouTube's terms restrict automated collection, and its Data API is the route it offers developers, with a daily quota. This guide reads the public page you have open, in your own browser, at the pace a person scrolls, for your own research.
-
-Keep it to public videos, don't republish people's comments, and read [Is web scraping legal?](/web-scraping-legal) first. It isn't legal advice.
 
 ## What You Get
 

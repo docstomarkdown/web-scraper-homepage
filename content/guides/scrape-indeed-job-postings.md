@@ -37,16 +37,16 @@ faq:
 
 Search Indeed for a role in a place, and Web Scraper Pro collects every page of results into a spreadsheet: job title, company, location, salary where the posting states one, posting date and link. You get a table you can sort by company or pay, for salary research, hiring-market research or tracking who is hiring. This guide shows each step on version 1.3.0 and collects roles only, never people.
 
+## Does Indeed Allow Scraping?
+
+Indeed's terms restrict automated collection, and the extension collects only what the page shows you, in your own browser, at a person's pace. Collect the roles for your own research, keep it to public postings, and read [Is web scraping legal?](/web-scraping-legal) before reusing anything; it isn't legal advice.
+
 ## Prerequisites
 
 To follow this tutorial, you need:
 
 - Google Chrome with [Web Scraper Pro](/) installed (version 1.3.0 or later).
 - An Indeed search with the filters you want set: job title or keyword, location, date posted, salary, remote.
-
-## Does Indeed Allow Scraping?
-
-Indeed's terms restrict automated collection, and the extension collects only what the page shows you, in your own browser, at a person's pace. Collect the roles for your own research, keep it to public postings, and read [Is web scraping legal?](/web-scraping-legal) before reusing anything; it isn't legal advice.
 
 ## What You Get
 

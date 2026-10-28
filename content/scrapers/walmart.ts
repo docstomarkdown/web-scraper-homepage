@@ -20,6 +20,7 @@ export const walmart: ScraperPageContent = {
     },
     h1: "How to scrape Walmart search results to Excel, with prices and savings",
     intro: "Search Walmart, pick the results in the side panel, and set how many pages. You get one row per product with price, savings, rating and review count as named columns. Compare a category against another store in one sheet.",
+    allowed: "Walmart's terms restrict automated collection, and it shows a verification page when it sees many pages load quickly. This page reads the search results you have open, in your own browser, at a person's pace, for your own price research; product images and text stay Walmart's. Read [Is web scraping legal?](/web-scraping-legal) first; it isn't legal advice.",
     status: "draft",
     lastVerified: "2026-10-21",
     version: "1.3.0",

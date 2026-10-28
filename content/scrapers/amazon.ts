@@ -25,6 +25,7 @@ export const amazon: ScraperPageContent = {
     },
     h1: "How to scrape Amazon search results into a spreadsheet",
     intro: "Run a search on Amazon, pick the list in the side panel, and set how many pages. You get one row per product with named columns. The same setup works in Amazon's country stores, from .com to .co.jp.",
+    allowed: "Amazon's conditions of use restrict automated collection, and it shows a verification page when many result pages load quickly. This page reads the search results you have open, in your own browser, at a person's pace, for your own research; Amazon's images and text stay Amazon's. Read [Is web scraping legal?](/web-scraping-legal) first; it isn't legal advice.",
     status: "draft",
     lastVerified: "2026-10-21",
     version: "1.3.0",

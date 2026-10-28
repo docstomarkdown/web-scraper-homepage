@@ -34,16 +34,16 @@ faq:
 
 Search Yelp for a category in a city, and Web Scraper Pro collects every page of results into one spreadsheet: business name, rating, review count, category, address, phone and link. A second run adds the emails from each business's own website, so the sheet is ready for prospecting or market research. This guide shows each step on version 1.3.0.
 
+## Does Yelp Allow Scraping?
+
+Yelp's terms restrict automated collection, and the extension collects only what the page shows you, in your own browser, at a person's pace. Collect for your own research or prospecting, keep it to public business listings, and read [Is web scraping legal?](/web-scraping-legal) before reusing anything; it isn't legal advice.
+
 ## Prerequisites
 
 To follow this tutorial, you need:
 
 - Google Chrome with [Web Scraper Pro](/) installed (version 1.3.0 or later).
 - A Yelp search with the filters you want set: category, city or neighborhood, open now, price.
-
-## Does Yelp Allow Scraping?
-
-Yelp's terms restrict automated collection, and the extension collects only what the page shows you, in your own browser, at a person's pace. Collect for your own research or prospecting, keep it to public business listings, and read [Is web scraping legal?](/web-scraping-legal) before reusing anything; it isn't legal advice.
 
 ## What You Get
 

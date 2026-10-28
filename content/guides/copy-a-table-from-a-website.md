@@ -28,7 +28,7 @@ faq:
 <!--
 Facts to confirm with a verified run on 1.3.0 before this leaves draft:
 - An HTML table is detected by the List tab as a list with one column per table column (list-scraper facts: generic detection, column names from the page's own labels).
-- Google Sheets export needs a Google sign-in (drive.file scope); docs/personas.md asks to hold the Sheets claim until the OAuth consent screen is confirmed as published. Check that status before this guide publishes.
+- Google Sheets export needs a Google sign-in (drive.file scope); docs/personas.md asks to hold the Sheets claim until the OAuth consent screen is confirmed as published. Verify that status before this guide publishes (owner decision pending, 2026-10-28); the guide says what to do if Google refuses the sign-in.
 - Save prices, ratings and counts as numbers: Settings → Results (DECISIONS.md D-033).
 - New capture: ext/list-tab-table (the List tab with a page's table detected as a list).
 -->
@@ -82,7 +82,7 @@ The column names come from the table's header row. If a header was empty or the 
 
 ## Step 4 — Exporting to Google Sheets or Excel
 
-Click **Export as** and choose **Google Sheets**. The first time, Google asks you to sign in and allow Web Scraper Pro to create files in your Drive; it can only see the files it creates. A new sheet opens in a tab with the table in it.
+Click **Export as** and choose **Google Sheets**. The first time, Google asks you to sign in and allow Web Scraper Pro to create files in your Drive; it can only see the files it creates. A new sheet opens in a tab with the table in it. If Google refuses the sign-in or warns that the app isn't verified, the Sheets export isn't open to your account yet: export to **Microsoft Excel** or **CSV** and open the file in Sheets.
 
 ![](visual:ext/results-export-menu)
 
@@ -105,6 +105,8 @@ After export, the sheet looks like this. The teams are made up.
 **The table is blank until I scroll.** The page loads rows as you scroll. Choose **Collect more pages** with **Auto scroll**, and the run scrolls until nothing new loads.
 
 **Google Sheets asked me to sign in.** That's the one-time permission to create files in your Drive. Excel, CSV and JSON exports need no sign-in.
+
+**Google refused the sign-in.** The Sheets export isn't open to your account yet. Export to Excel or CSV and open the file in Sheets; the table is the same.
 
 ## Conclusion
 

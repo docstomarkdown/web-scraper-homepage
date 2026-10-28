@@ -5,6 +5,7 @@ import { scraperPages } from "@/content/scrapers";
 import { isVisible } from "@/components/pages/ScraperPage";
 import { getPage, isPublished, showPlannedPages } from "@/config/pages";
 import SectionHeading from "@/components/landing/SectionHeading";
+import { formatDate } from "@/lib/format-date";
 
 export const metadata: Metadata = {
     title: "Ready-made sites",
@@ -24,18 +25,21 @@ export default function ScrapersHub() {
                             <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
                                 {isPublished(category) ? <Link href={category.href} className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]">{category.label}</Link> : category.label}
                             </h2>
-                            <ul className="mt-4 flex flex-wrap gap-2">
+                            <ul className="mt-4 grid gap-x-8 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
                                 {sites.map((s) => {
                                     const page = s.page ? scraperPages[s.page] : null;
                                     const linkable = page && isVisible(page);
-                                    const cls = "rounded-full border px-3 py-1 text-sm";
                                     return (
-                                        <li key={s.name}>
+                                        <li key={s.name} className="flex flex-col text-base">
                                             {linkable ? (
-                                                <Link href={`/scrapers/${s.page}`} className={`${cls} border-[#2772ED]/40 bg-[#2772ED]/5 text-[#1f5ec2] dark:text-[#7aa7ff] hover:bg-[#2772ED]/10`}>{s.name}</Link>
+                                                <Link href={`/scrapers/${s.page}`} className="font-medium text-[#1f5ec2] dark:text-[#7aa7ff] underline underline-offset-2">{s.name}</Link>
                                             ) : (
-                                                <span className={`${cls} border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-200`}>{s.name}</span>
+                                                <span className="font-medium text-slate-800 dark:text-slate-100">{s.name}</span>
                                             )}
+                                            {/* Only a published site page carries a verified run; drafts and setups without a page haven't been re-run on 1.3.0. */}
+                                            <span className="text-slate-600 dark:text-slate-300">
+                                                {page && page.status === "published" ? <>Last verified on {page.version}, <time dateTime={page.lastVerified}>{formatDate(page.lastVerified)}</time></> : "Setup in the extension; not yet re-run on 1.3.0"}
+                                            </span>
                                         </li>
                                     );
                                 })}
@@ -45,6 +49,9 @@ export default function ScrapersHub() {
                 </div>
                 <p className="mt-14 text-base text-slate-600 dark:text-slate-300">
                     Not listed? Most sites with a list are detected automatically. See <Link href={getPage("list-scraper").href} className="text-[#1f5ec2] dark:text-[#7aa7ff] underline underline-offset-2">lists from any website</Link>.
+                </p>
+                <p className="mt-4 text-base text-slate-600 dark:text-slate-300">
+                    &quot;Last verified&quot; is the date the site&apos;s setup was last run on the released extension and its columns checked by hand. Need a site that isn&apos;t here, or found one that stopped working? <Link href="/support" className="text-[#1f5ec2] dark:text-[#7aa7ff] underline underline-offset-2">Request a site or report a problem</Link>, with the page&apos;s address.
                 </p>
             </div>
         </main>

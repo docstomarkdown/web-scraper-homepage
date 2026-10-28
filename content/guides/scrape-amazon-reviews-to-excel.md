@@ -35,16 +35,16 @@ Draft until these are checked in a real run on 1.3.0 and the screenshots exist:
 
 Amazon shows a product's reviews only to shoppers who are signed in, so a script that fetches the page from outside a browser gets a page with no reviews on it. Web Scraper Pro reads the reviews from the product page you have open, in the browser you're already signed in to, and pages through the review list into a table you can export to Excel. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
+## Does Amazon Allow Scraping?
+
+The reviews are public, and you collect them from the page you can see, at a person's pace, in your own browser. Amazon's terms restrict automated collection, and the review text belongs to the people who wrote it, so collect for your own research and don't republish it. Our page [Is web scraping legal?](/web-scraping-legal) explains the rules in plain words; it isn't legal advice.
+
 ## Prerequisites
 
 To follow this tutorial, you need:
 
 - Google Chrome with Web Scraper Pro installed (version 1.3.0 or later).
 - An Amazon product page, on any of Amazon's country stores. Sign in to Amazon in the same browser first, so the review pages show.
-
-## Does Amazon Allow Scraping?
-
-The reviews are public, and you collect them from the page you can see, at a person's pace, in your own browser. Amazon's terms restrict automated collection, and the review text belongs to the people who wrote it, so collect for your own research and don't republish it. Our page [Is web scraping legal?](/web-scraping-legal) explains the rules in plain words; it isn't legal advice.
 
 ## What You Get
 

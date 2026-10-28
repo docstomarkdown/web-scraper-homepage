@@ -17,6 +17,10 @@ faq:
 
 Search Yellow Pages for a category in a city, and Web Scraper Pro collects every page of results into a spreadsheet: phone, address, rating, years in business and website. A second run adds each business's emails. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
+## Does Yellow Pages Allow Scraping?
+
+Yellow Pages' terms restrict automated collection, and the listings are public business details. This guide reads the results page you have open, in your own browser, at a person's pace, for your own prospecting or research; anti-spam law decides how you may contact the businesses. Read [Is web scraping legal?](/web-scraping-legal) first; it isn't legal advice.
+
 ## Prerequisites
 
 - Google Chrome with Web Scraper Pro installed (version 1.3.0 or later).

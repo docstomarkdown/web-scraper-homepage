@@ -27,6 +27,10 @@ faq:
 
 Search a zip code on Zillow, pick the results list in the side panel, set how many pages, and click Collect. Web Scraper Pro has a ready-made Zillow setup, so every home arrives as a row with address, price, beds, baths, square footage and link, and the list panel is scrolled for you. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
+## Does Zillow Allow Scraping?
+
+Zillow's terms restrict automated collection, and listing data belongs to Zillow and the agents and MLSs that supply it. This guide reads the search page you have open, in your own browser, at a person's pace, for your own area research; don't republish the listings. Read [Is web scraping legal?](/web-scraping-legal) first; it isn't legal advice.
+
 ## Prerequisites
 
 - Google Chrome with Web Scraper Pro installed (version 1.3.0 or later).

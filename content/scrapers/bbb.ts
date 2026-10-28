@@ -17,6 +17,7 @@ export const bbb: ScraperPageContent = {
     },
     h1: "How to scrape BBB business listings with rating, accreditation and phone",
     intro: "Search the Better Business Bureau directory for a category in an area and get every listing as a row. The BBB rating and accreditation come as columns you can filter by.",
+    allowed: "BBB's terms restrict automated collection, and the listings are public business details with the bureau's own grades. This page reads the search results you have open, in your own browser, at a person's pace, for your own research or prospecting; anti-spam law decides how you may contact the businesses. Read [Is web scraping legal?](/web-scraping-legal) first; it isn't legal advice.",
     status: "draft",
     lastVerified: "2026-10-20",
     version: "1.3.0",

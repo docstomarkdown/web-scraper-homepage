@@ -15,6 +15,10 @@ const GROUPS = [
                 a: "Yes. Web Scraper Pro is free to install and use, with every feature included: chat, ready-made sites, emails and contact details, Shopify catalog export, bulk runs and every export format. There are no credits to count and no account to create. Cloud runs are coming soon.",
             },
             {
+                q: "Is it really free, or is there a catch?",
+                a: "It's free, with no paid plan, no credits and no trial that ends. Everything on this site that isn't marked \"coming soon\" is in the extension today: collecting from any site, every page of results, emails and contact details, Shopify export, bulk runs and the exports. The one limit is that chat has a daily message limit; the List and Properties tabs keep working without it. \"Coming soon\" means the feature isn't built yet, not that it's behind a plan.",
+            },
+            {
                 q: "Do I need an account?",
                 a: "The extension works right after you install it. The cloud dashboard, coming soon, will use a Google sign-in.",
             },

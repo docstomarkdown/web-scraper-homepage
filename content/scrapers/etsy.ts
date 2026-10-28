@@ -19,6 +19,7 @@ export const etsy: ScraperPageContent = {
     },
     h1: "How to scrape Etsy product listings into a spreadsheet",
     intro: "Search Etsy, pick the results in the side panel, and set how many pages. You get one row per listing with price, discount, shop and shop rating as named columns. See what a category charges, and which shops lead it, in one sheet.",
+    allowed: "Etsy's terms restrict automated collection, and listing photos and descriptions belong to the sellers. This page reads the search results you have open, in your own browser, at a person's pace, for your own product research; don't reuse the images or text. Read [Is web scraping legal?](/web-scraping-legal) first; it isn't legal advice.",
     status: "draft",
     lastVerified: "2026-10-21",
     version: "1.3.0",

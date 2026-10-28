@@ -27,6 +27,10 @@ faq:
 
 Search Amazon, pick the results in the side panel, choose how many pages, and click Collect. Web Scraper Pro has a ready-made Amazon setup, so every product arrives as a row with its name, price, rating, review count and link, and the columns are named for you. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
+## Does Amazon Allow Scraping?
+
+Amazon's conditions of use restrict automated collection, and it shows a verification page when many result pages load quickly. This guide reads the search page you have open, in your own browser, at a person's pace, for your own research; keep runs small and don't republish Amazon's images or text. Read [Is web scraping legal?](/web-scraping-legal) first; it isn't legal advice.
+
 ## Prerequisites
 
 - Google Chrome with Web Scraper Pro installed (version 1.3.0 or later).

@@ -36,16 +36,16 @@ anonymised column names after the run. Title targets "scrape trustpilot reviews"
 
 Web Scraper Pro turns a company's Trustpilot page into a spreadsheet of reviews, with the star rating, title, text, date and reviewer in their own columns. You pick the reviews list, set how many pages to go through, and click once. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
 
+## Does Trustpilot Allow Scraping?
+
+Trustpilot's terms restrict automated collection, and the reviews belong to the people who wrote them. Collecting public reviews in your own browser, at a person's pace, for your own analysis is the low-risk end of that; read [Is web scraping legal?](/web-scraping-legal) before reusing or republishing anything. It isn't legal advice.
+
 ## Prerequisites
 
 To follow this tutorial, you need:
 
 - Google Chrome with Web Scraper Pro installed (version 1.3.0 or later).
 - The Trustpilot page of the company you want to study, such as `https://www.trustpilot.com/review/example.com`.
-
-## Does Trustpilot Allow Scraping?
-
-Trustpilot's terms restrict automated collection, and the reviews belong to the people who wrote them. Collecting public reviews in your own browser, at a person's pace, for your own analysis is the low-risk end of that; read [Is web scraping legal?](/web-scraping-legal) before reusing or republishing anything. It isn't legal advice.
 
 ## What You Get
 

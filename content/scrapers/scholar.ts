@@ -22,6 +22,7 @@ export const scholar: ScraperPageContent = {
     },
     h1: "How to scrape Google Scholar results with citation counts into a spreadsheet",
     intro: "Run a search on Google Scholar and open the side panel. Every result becomes a row with title, authors, publication, year, citation count and the full-text link, across as many pages as you choose. Sort by citations or year in the sheet.",
+    allowed: "Google's terms restrict automated queries, and Scholar shows a verification page sooner than most sites when many result pages load quickly. This page reads the results you have open, in your own browser, a few pages at a time, for your own literature search. Read [Is web scraping legal?](/web-scraping-legal) first; it isn't legal advice.",
     status: "draft",
     lastVerified: "2026-10-21",
     version: "1.3.0",

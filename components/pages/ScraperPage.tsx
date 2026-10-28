@@ -28,6 +28,9 @@ export interface ScraperPageContent {
     meta: { title: string; description: string };
     h1: string;
     intro: string;
+    /** Two sentences on the site's terms and how this page stays within them, with a link to /web-scraping-legal.
+     * Renders as the first h2 after the intro: "Does <site> allow scraping?" */
+    allowed: string;
     /** Drafts render in local development only. */
     status: "draft" | "published";
     /** When the setup was last run on the released extension, and which version. */
@@ -137,6 +140,16 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
                                 <span className="font-medium text-slate-700 dark:text-slate-200">Sample data.</span> {c.sample.caption}
                             </figcaption>
                         </figure>
+                    </Reveal>
+                </div>
+            </section>
+
+            {/* The site's rules, first: the question people ask before they start */}
+            <section id="allowed" className={section}>
+                <div className={reading}>
+                    <Reveal>
+                        <h2 className={h2}>Does {c.site.name} allow scraping?</h2>
+                        <p className={`mt-5 ${body}`}><RichText text={c.allowed} /></p>
                     </Reveal>
                 </div>
             </section>
