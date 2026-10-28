@@ -23,6 +23,7 @@ import { productScraper } from "@/content/features/product-scraper";
 import { shopifyScraper } from "@/content/features/shopify-scraper";
 import type { FeaturePageContent } from "@/components/pages/FeaturePage";
 import coldRead from "@/content/review/cold-read.json";
+import { comparePages } from "@/content/compare";
 
 // Local-preview review desk: every draft on the site with its status, size, capture coverage, pre-read numbers
 // (lib/readability.ts) and the verify notes from its source header, so content can be read page by page with the
@@ -121,12 +122,11 @@ export default function ReviewDesk() {
         return { title: c.h1, metaTitle: c.meta.title, description: c.meta.description, href: c.page.href, status: c.page.comingSoon ? "coming soon" : c.page.status, captures: [ids.filter((i) => have.has(i)).length, ids.length], updated: c.lastUpdated, notes: notes(path.join(root, "content/features", `${c.page.slug}.ts`)), read: readability(proseFromObject(c)) };
     });
     const legal = fs.readFileSync(path.join(root, "content/pages/web-scraping-legal.md"), "utf8");
-    const compare = fs.readFileSync(path.join(root, "content/compare/webscraper-io.ts"), "utf8");
     const terms = fs.readFileSync(path.join(root, "content/legal/terms-of-service.md"), "utf8");
     const privacy = fs.readFileSync(path.join(root, "content/legal/privacy-policy.md"), "utf8");
     const resources: Row[] = [
         { title: "Is web scraping legal?", metaTitle: "Is web scraping legal?", description: legal.match(/description:\s*"([^"]+)"/)?.[1] ?? "", href: "/web-scraping-legal", status: "live", captures: [0, 0], updated: "", notes: ["Check each source link opens; re-read the court cases yearly."], read: readability(proseFromMarkdown(legal)) },
-        { title: "Compare: Web Scraper (webscraper.io)", metaTitle: compare.match(/title:\s*"([^"]+)"/)?.[1] ?? "", description: compare.match(/description:\s*"([^"]+)"/)?.[1] ?? "", href: "/compare/webscraper-io", status: "live", captures: [0, 0], updated: "", notes: ["Names a competitor and its prices; owner reads the tone; re-check their pricing page monthly."], read: readability(proseFromMarkdown(compare.replace(/^[^"]*"|"[^"]*$/g, ""))) },
+        ...Object.values(comparePages).map((c) => ({ title: `Compare: ${c.competitor.name}`, metaTitle: c.meta.title, description: c.meta.description, href: `/compare/${c.slug}`, status: "live", captures: [0, 0] as [number, number], updated: c.comparedOn, notes: ["Names a competitor and its prices; owner reads the tone; re-check their public pages monthly.", ...notes(path.join(root, "content/compare", `${c.slug}.ts`))], read: readability(proseFromObject(c)) })),
         { title: "Terms of Service", metaTitle: "Terms of Service", description: "", href: "/terms-of-service", status: "live", captures: [0, 0], updated: "", notes: ["Rewritten 2026-10-21 for a free, account-less product; the liability cap wording is the owner's call."], read: readability(proseFromMarkdown(terms)) },
         { title: "Privacy Policy", metaTitle: "Privacy Policy", description: "", href: "/privacy-policy", status: "live", captures: [0, 0], updated: "", notes: [], read: readability(proseFromMarkdown(privacy)) },
     ];

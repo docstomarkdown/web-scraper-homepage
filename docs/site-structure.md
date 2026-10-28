@@ -126,7 +126,7 @@ The hub at `/use-cases` lists them all.
 |---|---|---|---|
 | Guides | `/guides/<slug>` | DigitalOcean-style tutorials, one per task ("How To Scrape Yellow Pages into Excel"). Each feature and use-case page links to at least one. Maps guides live on mapsscraper.pro. | 🟢 |
 | Blog | `/blog/<slug>` | News, explainers, comparisons. Posts live under `/blog/<slug>`; the first post (1.3.0 release) is up. | ✅ 2026-10-21 |
-| Compare | `/compare/<slug>` | One page per competitor ("Web Scraper Pro vs X"), fair and dated. The list of competitors lives outside this repo. First page: webscraper.io. | ✅ 2026-10-21 |
+| Compare | `/compare/<slug>` | One page per competitor ("Web Scraper Pro vs X"), fair and dated, verdict first, with a cost-at-1,000-and-10,000-rows row. The list of competitors lives outside this repo. Pages: webscraper.io (2026-10-21), Instant Data Scraper and Ultimate Web Scraper (2026-10-28). | ✅ |
 | Free tools | `/tools` | The existing e-commerce calculators. Add scraping-related tools over time. | ✅ |
 | What's new (changelog) | `/changelog` | One entry per release, from DECISIONS.md | ✅ 2026-10-21 |
 | Is web scraping legal? | `/web-scraping-legal` | Neutral and sourced, "not legal advice" | ✅ 2026-10-21 |
