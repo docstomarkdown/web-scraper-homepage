@@ -45,7 +45,7 @@ To follow this tutorial, you need:
 
 ## When Google Sheets' Own Import Works, and When It Doesn't
 
-Google Sheets can import a plain table from a page with its import functions, and for a single, static table that is the quickest route. The functions fail in three cases: the table is built by the page's scripts after it loads, the table spans several pages, or the page is one you have to sign in to see. Collecting with the extension reads the page as your browser shows it, so all three work.
+Google Sheets can import a plain table from a page with its import functions, and for a single, static table that is the quickest route; Excel's Power Query does the same and fails in the same places, as [the Get Data from Web guide](/guides/excel-get-data-from-web-fails) explains. The functions fail in three cases: the table is built by the page's scripts after it loads, the table spans several pages, or the page is one you have to sign in to see. Collecting with the extension reads the page as your browser shows it, so all three work.
 
 ## What You Get
 

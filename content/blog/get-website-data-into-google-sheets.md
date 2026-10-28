@@ -42,7 +42,7 @@ Stronger than a Sheets formula for tables, with the same blind spot for JavaScri
 
 Power Query is the data tool built into Excel. **Get Data → From Web** fetches a page and lets you pick a table it found, then shape it: rename, filter, split columns, and refresh later with one click. For a public page with a real table, it's a good tool, and the refresh survives small changes.
 
-Where it breaks: the same places. Lists drawn by JavaScript come back empty, every extra page of results means another query, and nothing behind a sign-in is reachable. Power Query also lives in Excel, so the data reaches Google Sheets by saving and importing a file.
+Where it breaks: the same places. Lists drawn by JavaScript come back empty, every extra page of results means another query, and nothing behind a sign-in is reachable. [Excel's Get Data from Web doesn't show the table? Do this instead](/guides/excel-get-data-from-web-fails) walks through the Navigator dead end and the fixes. Power Query also lives in Excel, so the data reaches Google Sheets by saving and importing a file.
 
 ## Route 3: an automation tool such as n8n or Make
 
