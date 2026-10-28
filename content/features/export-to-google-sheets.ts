@@ -251,5 +251,5 @@ export const exportToGoogleSheets: FeaturePageContent = {
             a: "Yes. Click a cell on the results page to edit it. The change is saved to the collection and included in the export.",
         },
     ],
-    related: ["ai-chat", "list-scraper", "maps-leads", "bulk-scraper"],
+    related: ["ai-chat", "list-scraper", "email-extractor", "bulk-scraper"],
 };

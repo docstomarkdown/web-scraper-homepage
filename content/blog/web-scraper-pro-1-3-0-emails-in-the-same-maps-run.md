@@ -25,7 +25,7 @@ Google Maps itself never lists an email. Until now you collected the businesses,
 
 Two honest notes. Many small businesses publish no email at all; those rows keep their phone and website from Google Maps and leave Emails empty. And reading each site takes time: 20 businesses with emails take about a minute and a half, 50 about four minutes, 200 about fifteen. It's on by default. To turn it off, open the side panel's Settings (the gear icon), then **Results**, and switch off **Add emails from their websites**, or add "no emails" to a chat request.
 
-The same reader now works on any saved table with a Website column: open it from **History** and click **Add contact details** on its results page. The [Google Maps leads page](/maps-leads) and the [emails and contacts page](/email-extractor) have the details.
+The same reader now works on any saved table with a Website column: open it from **History** and click **Add contact details** on its results page. The [emails and contacts page](/email-extractor) has the details. If Google Maps is the only site you collect from, [Maps Scraper Pro](https://mapsscraper.pro/) is the same engine, Maps only, with its own guides for Maps lead lists.
 
 ## Try it in two minutes
 

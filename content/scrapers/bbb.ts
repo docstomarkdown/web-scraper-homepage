@@ -9,7 +9,7 @@ import type { ScraperPageContent } from "@/components/pages/ScraperPage";
 
 export const bbb: ScraperPageContent = {
     slug: "bbb",
-    category: "maps-and-directories",
+    category: "business-directories",
     site: { name: "BBB", url: "https://www.bbb.org" },
     meta: {
         title: "How to Scrape BBB Business Listings with Rating and Phone",
@@ -58,14 +58,14 @@ export const bbb: ScraperPageContent = {
             {
                 title: "Export",
                 body: "Export to Excel, CSV, JSON or Google Sheets. For emails, add each business's website first, then run Bulk scrape → Collect contacts with Use saved data.",
-                points: ["The listing cards don't show websites. Open a business's BBB profile, or its Google Maps listing, for the site."],
+                points: ["The listing cards don't show websites. Open a business's BBB profile for the site, or match the table on Phone against a Yellow Pages run, which has a Website column."],
             },
         ],
     },
     notes: {
         heading: "Specific to BBB",
         items: [
-            "The listing cards don't show websites. Open each business's BBB profile for that, or use its Google Maps listing to get the site and contact details.",
+            "The listing cards don't show websites. Open each business's BBB profile for that, or match on Phone against a directory run that has a Website column.",
             "BBB ratings are the bureau's grades, collected as shown. Web Scraper Pro doesn't verify them.",
             "Accredited is filled for accredited businesses and left blank for the rest, not set to No.",
         ],
@@ -121,7 +121,7 @@ export const bbb: ScraperPageContent = {
                 "The referral list: Filter rows, BBB Rating is A+ and Accredited is not empty. Export it for a homeowner guide or a partner list.",
                 "The prospect list for a reputation service: sort by BBB Rating ascending and keep the C and below rows. Those businesses have a problem you can help with.",
                 "The market map: keep Categories and Address, export to Google Sheets, and count businesses per category per town with a pivot table.",
-                "The cross-check: run the same category on Google Maps, export both, match on Phone. A business on BBB with no Google Maps listing has a gap worth a call.",
+                "The cross-check: match the table on Phone against a Google Maps list of the same category; a BBB business with no Maps listing has a gap worth a call. For that list, [Maps Scraper Pro](https://mapsscraper.pro/) is the same engine, Maps only.",
             ],
         },
         {
@@ -133,7 +133,7 @@ export const bbb: ScraperPageContent = {
                 columns: ["What", "On BBB", "In your table"],
                 rows: [
                     ["Listings per page", "About 15, with a Next link", "All of them, for as many pages as you set"],
-                    ["Website", "On the profile page only", "Not on the card; open the BBB Profile URL or use Google Maps"],
+                    ["Website", "On the profile page only", "Not on the card; open the BBB Profile URL"],
                     ["Complaints and reviews", "On the profile page", "Not collected in a list run; use the Properties tab on one profile"],
                     ["Accreditation", "A badge on accredited cards", "Accredited filled for those rows, blank for the rest"],
                 ],
@@ -161,12 +161,12 @@ export const bbb: ScraperPageContent = {
     screenshots: ["ext/list-tab-bbb"],
     feature: "list-scraper",
     useCase: "lead-generation",
-    related: ["maps", "yellow-pages", "justdial"],
+    related: ["yellow-pages", "justdial"],
     faqs: [
         { q: "Is this BBB scraper free?", a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create." },
         { q: "Does Accredited mean BBB-approved?", a: "It means the business pays for BBB accreditation and meets its standards. The column is filled for accredited businesses and blank for the rest." },
         { q: "Can I get only accredited businesses?", a: "Yes. Filter to Accredited on BBB before collecting, or collect everything and keep the rows where Accredited is filled with Filter rows." },
-        { q: "Can I get websites and emails?", a: "Not from the listing cards; they don't show websites. Open the business's BBB profile or its Google Maps listing for the site, then run Collect contacts over the websites." },
+        { q: "Can I get websites and emails?", a: "Not from the listing cards; they don't show websites. Open the business's BBB profile for the site, then run Collect contacts over the websites." },
         { q: "Can I get the full profile for each business?", a: "The results card gives the summary. Open a profile and use the Properties tab for the details on that page." },
         { q: "Can I export to Excel or Google Sheets?", a: "Yes. Export as offers Excel, CSV, JSON and Google Sheets." },
         { q: "Does it collect BBB complaints or reviews?", a: "No. Complaints and customer reviews are on each profile page, not on the search cards. For one business, open its profile and use the Properties tab." },

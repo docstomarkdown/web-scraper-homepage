@@ -9,7 +9,7 @@ import type { ScraperPageContent } from "@/components/pages/ScraperPage";
 
 export const justdial: ScraperPageContent = {
     slug: "justdial",
-    category: "maps-and-directories",
+    category: "business-directories",
     site: { name: "Justdial", url: "https://www.justdial.com" },
     meta: {
         title: "How to Scrape Justdial Business Listings and Phone Numbers",
@@ -86,7 +86,7 @@ export const justdial: ScraperPageContent = {
             eyebrow: "Where to start",
             heading: "Three searches worth running",
             paragraphs: [
-                "Justdial is a service plus an Indian city, and it goes deeper into local trades than Google Maps does in many towns. The Services and Highlights columns are the reason to use it: they say what each business does, not only what it's called.",
+                "Justdial is a service plus an Indian city, and it goes deeper into local trades than most directories do in many towns. The Services and Highlights columns are the reason to use it: they say what each business does, not only what it's called.",
                 "These three shapes cover most jobs. Change the trade and the city to yours.",
             ],
             table: {
@@ -121,7 +121,7 @@ export const justdial: ScraperPageContent = {
                 "Keep the ones you can call now: Filter rows, Phone is not empty. Hidden numbers can be fetched by hand later from the URL column.",
                 "Rank by ratings: click the Rating Count header to sort, then keep the top twenty. A high count with a low rating is a business with unhappy customers and a reason to switch.",
                 "Split by service: Filter rows on the Services column for the one you sell to, such as gas refill, and export that slice.",
-                "Compare with Google Maps: run the same service on Google Maps, export both, and match on Business Name. Justdial often lists trades that have no Google Maps listing at all.",
+                "Compare with a Google Maps list: export both and match on Business Name; Justdial often lists trades with no Maps listing at all. For the Maps list, [Maps Scraper Pro](https://mapsscraper.pro/) is the same engine, Maps only.",
             ],
         },
         {
@@ -161,7 +161,7 @@ export const justdial: ScraperPageContent = {
     screenshots: ["ext/list-tab-justdial"],
     feature: "list-scraper",
     useCase: "lead-generation",
-    related: ["maps", "yellow-pages", "bbb"],
+    related: ["yellow-pages", "bbb"],
     faqs: [
         { q: "Is this Justdial scraper free?", a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create." },
         { q: "Why are some phone numbers missing?", a: "Justdial shows some numbers only after a click or a sign-in. The extension collects the numbers shown on the card; it doesn't click through or sign in for you." },

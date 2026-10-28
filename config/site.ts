@@ -3,14 +3,14 @@ import { publishedPages } from "./pages"
 // Site configuration
 export const siteConfig = {
   name: "Web Scraper Pro",
-  description: "Turn any web page into a spreadsheet. A free Chrome extension: collect Google Maps leads, Amazon products and Zillow listings, then export to Google Sheets, Excel or CSV.",
-  metaDescription: "Turn any web page into a spreadsheet with Web Scraper Pro, a free Chrome extension. Collect Google Maps leads, Amazon products and Zillow listings, then export to Google Sheets, Excel or CSV.",
+  description: "Turn any web page into a spreadsheet. A free Chrome extension: collect Amazon products, Zillow listings and any list on any site, then export to Google Sheets, Excel or CSV.",
+  metaDescription: "Turn any web page into a spreadsheet with Web Scraper Pro, a free Chrome extension. Collect Amazon products, Zillow listings and any list on any site, then export to Google Sheets, Excel or CSV.",
   url: "https://www.webscraper.pro/",
   links: {
     twitter: "https://x.com/vikramaruchamy",
     linkedin: "https://www.linkedin.com/in/vikramaruchamy/",
   },
-  keywords: ["web scraper", "web scraping", "chrome extension", "data extraction", "no code", "Google Maps leads", "email extractor"],
+  keywords: ["web scraper", "web scraping", "chrome extension", "data extraction", "no code", "lead list", "email extractor"],
 }
 
 // Tools groups configuration (exported separately for tools page)

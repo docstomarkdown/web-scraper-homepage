@@ -58,7 +58,6 @@ Template: **feature page**. It covers:
 | Page | URL | Feature (extension) | Status |
 |---|---|---|---|
 | Lists from any website | `/list-scraper` | Auto-detects lists; collects every page of results, load-more, infinite scroll | 🟢 |
-| Google Maps leads | `/maps-leads` | Collects places from Google Maps and Bing Maps, up to a chosen count | ✅ |
 | Emails and contacts | `/email-extractor` | Emails, phones and social links from a page or many sites; optional deep scan of the Contact/About page | 🟢 |
 | Bulk URLs | `/bulk-scraper` | Paste or upload URLs, or reuse a saved table; list, maps, contacts or text mode per site | 🟢 |
 | Product details and reviews | `/product-scraper` | One product page's details, variants, images and videos; all reviews across pages | 🟢 |
@@ -85,7 +84,7 @@ Each page's persona is from `docs/personas.md`.
 
 | Page | URL | Persona | Features involved | Status |
 |---|---|---|---|---|
-| Lead generation | `/use-cases/lead-generation` | Arjun | Google Maps leads, then contacts on those websites, bulk runs, directories (Yelp, YellowPages, BBB, Manta, Clutch…) | 🟡 drafted 2026-10-21 |
+| Lead generation | `/use-cases/lead-generation` | Arjun | Directories (Yellow Pages, Yelp, Justdial, BBB), contacts from a list of websites, careers pages, member lists; one paragraph points Maps readers at mapsscraper.pro | 🟡 drafted 2026-10-21, rewritten 2026-10-28 |
 | Real estate | `/use-cases/real-estate` | Maria | Listings from Zillow, Redfin, Realtor, Rightmove, Zoopla, Property Finder | 🟡 drafted 2026-10-21 |
 | E-commerce and price research | `/use-cases/ecommerce` | Priya | Marketplace lists, product details, reviews, bulk | 🟡 drafted 2026-10-21 (no scheduled price checks until cloud) |
 | Freelance data work | `/use-cases/freelance-data-work` | Rina | Lists from any website, contacts, bulk runs, column clean-up, exports | 🟡 drafted 2026-10-21 |
@@ -100,7 +99,11 @@ The hub at `/use-cases` lists them all.
 ## 4. Scrapers directory and per-site pages
 
 - `/scrapers` is the hub. It's grouped by category, as in the homepage `Sites.tsx`, and becomes the
-  shared data source for both.
+  shared data source for both. Google Maps is listed as a ready-made site, with no page of its own.
+- **Google Maps pages live on mapsscraper.pro** (2026-10-28): the former `/maps-leads` feature page, the
+  `/scrapers/maps` draft and the three Maps guides were removed and redirect there (`next.config.js`).
+  This site keeps one line per page where Maps is a product fact ("also collects from Google Maps"), and
+  never a Maps how-to, feature page or guide.
 - `/scrapers/<site>` gets a page **only for sites with a tuned, verified setup** (see
   `content-standards.md` §3, scaled content abuse).
 - **Template:**
@@ -121,7 +124,7 @@ The hub at `/use-cases` lists them all.
 
 | Section | URL | What | Status |
 |---|---|---|---|
-| Guides | `/guides/<slug>` | DigitalOcean-style tutorials, one per task ("How To Build a Lead List of Plumbers from Google Maps"). Each feature and use-case page links to at least one. | 🟢 |
+| Guides | `/guides/<slug>` | DigitalOcean-style tutorials, one per task ("How To Scrape Yellow Pages into Excel"). Each feature and use-case page links to at least one. Maps guides live on mapsscraper.pro. | 🟢 |
 | Blog | `/blog/<slug>` | News, explainers, comparisons. Posts live under `/blog/<slug>`; the first post (1.3.0 release) is up. | ✅ 2026-10-21 |
 | Compare | `/compare/<slug>` | One page per competitor ("Web Scraper Pro vs X"), fair and dated. The list of competitors lives outside this repo. First page: webscraper.io. | ✅ 2026-10-21 |
 | Free tools | `/tools` | The existing e-commerce calculators. Add scraping-related tools over time. | ✅ |
@@ -141,7 +144,7 @@ The hub at `/use-cases` lists them all.
 
 ## 7. Build order
 
-1. Nav and footer for the new menus, plus the **feature page template**, starting with Google Maps leads.
+1. Nav and footer for the new menus, plus the **feature page template**.
 2. The other 🟢 feature pages.
 3. The use-case template and the 🟢 use-case pages.
 4. The `/scrapers` hub, a shared sites data file, and the first per-site pages.

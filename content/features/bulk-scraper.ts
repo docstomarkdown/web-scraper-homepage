@@ -27,7 +27,7 @@ export const bulkScraper: FeaturePageContent = {
     meta: {
         title: "How to Scrape Multiple Pages or URLs of a Website at Once",
         description:
-            "Paste or upload a list of web addresses, say what to collect from each site, and the extension works through them one by one in your browser: lists, Google Maps searches, contacts or page text, in one merged table.",
+            "Paste or upload a list of web addresses, say what to collect from each site, and the extension works through them one by one in your browser: lists, contacts or page text, in one merged table.",
     },
     eyebrow: "Bulk scraper",
     h1: "How to scrape multiple pages or URLs of a website at once",
@@ -53,7 +53,7 @@ export const bulkScraper: FeaturePageContent = {
                 title: "Add the addresses",
                 body: "Click the Bulk scrape icon at the top of the side panel. Choose Bulk scrape, Collect contacts or Collect page text. Then drop a CSV or TXT file with one address per line onto the page, or paste the addresses in.",
                 points: [
-                    "Use saved data takes the addresses from a table you collected earlier; the step then reads Reuse URLs from a saved table. The Website column of a Google Maps list is the usual one.",
+                    "Use saved data takes the addresses from a table you collected earlier; the step then reads Reuse URLs from a saved table. The Website column of a directory list is the usual one.",
                     "Paste a list of addresses into the Chat tab and it offers to open a bulk run with them filled in.",
                     "A chip reads N valid URLs detected. Each address needs to start with http or https.",
                 ],
@@ -69,8 +69,7 @@ export const bulkScraper: FeaturePageContent = {
                 body: "For a list site, confirm the list it found or click Pick area to choose part of the page. For contacts, choose emails, phones and social links. For page text, choose clean text, page details or both.",
                 points: [
                     "If a list goes on over many pages, choose Next page, Load more or Auto scroll and set a page limit.",
-                    "Google Maps and Google Scholar searches set themselves up; there's nothing to pick.",
-                    "Google Maps searches collect each business's contact details during the run.",
+                    "Google Scholar and Google Maps searches set themselves up; there's nothing to pick.",
                 ],
                 screenshot: "ext/bulk-contacts-config",
             },
@@ -88,7 +87,7 @@ export const bulkScraper: FeaturePageContent = {
         intro: "Each address in the list is set up with one of these.",
         items: [
             { name: "Lists", description: "The list on each page, or an area you point at, across the next pages if you want them." },
-            { name: "Google Maps searches", description: "Every business from each search, with its contact details added during the run." },
+            { name: "Google Maps searches", description: "Every business from each search, with its contact details added during the run. For Maps runs across many cities, [Maps Scraper Pro's bulk page](https://mapsscraper.pro/bulk) is the same engine, Maps only." },
             { name: "Contact details", description: "Emails, phone numbers and social links from each website, one row per site." },
             { name: "Page text", description: "The readable text and details of each page: title, description, author, date and word count." },
             { name: "Research papers", description: "Google Scholar result pages, with every paper's title, authors, source, year and citations." },
@@ -96,15 +95,6 @@ export const bulkScraper: FeaturePageContent = {
         ],
     },
     sections: [
-        {
-            id: "many-cities",
-            eyebrow: "Google Maps",
-            heading: "How to scrape Google Maps for many cities at once",
-            paragraphs: [
-                "Paste one Google Maps search link per town into the Bulk page. Each search runs in turn, with emails and social links read from each business's website during the run, and the merged table holds every town.",
-                "Google Maps shows a limited number of results per search, so a big city works better as several neighbourhood or zip-code searches than as one. Ten searches of 100 businesses each beat one search that stops at 120.",
-            ],
-        },
         {
             id: "worked-example",
             eyebrow: "A worked example",
@@ -143,7 +133,7 @@ export const bulkScraper: FeaturePageContent = {
                 columns: ["Setting", "Default", "Change it when"],
                 rows: [
                     ["Pages to go through", "5", "A category runs to 20 pages and you want all of them; set it on the Configure card for that site"],
-                    ["Add emails from their websites", "On", "You want a quick list of Google Maps names and phones without the extra seconds per business"],
+                    ["Add emails from their websites", "On", "You want a quick list of names and phones without the extra seconds per business"],
                     ["Remove duplicates", "On", "Two pages of a list repeat an item on purpose and you want both rows"],
                     ["Hide mostly empty columns", "On", "A column that only a few sites fill matters to you; show it again on the results page"],
                     ["Save prices, ratings and counts as numbers", "On", "You need the price exactly as the page shows it, with its currency sign"],
@@ -218,7 +208,7 @@ export const bulkScraper: FeaturePageContent = {
     useCases: {
         heading: "What people use it for",
         items: [
-            { title: "Many cities, one list", body: "Ten Google Maps searches, one per town, and every business with its contact details in one table." },
+            { title: "Many towns, one list", body: "Ten directory category pages, one per town, and every business in one table with a Source URL column saying which town it came from." },
             { title: "Emails for a client list", body: "A client's list of company websites, handed back with emails and phones." },
             { title: "A catalog across categories", body: "Every category page of a store in one run, merged into a single product sheet." },
             { title: "Articles for research", body: "A reading list of pages as clean text with titles and dates, ready for a report or an AI tool." },
@@ -247,7 +237,7 @@ export const bulkScraper: FeaturePageContent = {
         },
         {
             q: "Can I use a list I already collected as the input?",
-            a: "Yes. On the Upload step, click Use saved data and pick the table and its address column. The Website column of a Google Maps list or the Product URL column of a category both work.",
+            a: "Yes. On the Upload step, click Use saved data and pick the table and its address column. The Website column of a directory list or the Product URL column of a category both work.",
         },
         {
             q: "What file format does the URL list need?",
@@ -266,5 +256,5 @@ export const bulkScraper: FeaturePageContent = {
             a: "No. A site that stops answering is skipped after about a minute and a half without progress. Its rows so far are kept, and the run moves to the next site.",
         },
     ],
-    related: ["email-extractor", "maps-leads", "list-scraper", "page-text", "export-to-google-sheets"],
+    related: ["email-extractor", "list-scraper", "page-text", "export-to-google-sheets"],
 };

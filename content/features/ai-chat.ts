@@ -45,9 +45,9 @@ export const aiChat: FeaturePageContent = {
         heading: "Eight things you can ask for",
         intro: "Say it the way you'd ask a colleague. Chat picks the right tool and runs it on the page you're on.",
         items: [
-            { name: "Find businesses", example: "Find plumbers in Denver", description: "Searches Google Maps and collects 20 businesses, or up to 200 if you ask, with their emails." },
-            { name: "Collect this map", example: "Collect the first 20", description: "Collects the Google Maps results you're already looking at." },
             { name: "Collect a list", example: "Collect the products on this page", description: "Products, listings or results on this page, with named columns." },
+            { name: "Collect every page", example: "Collect every listing, all pages", description: "The list on this page, then Next page, Load more or scrolling until the list ends or your number is reached." },
+            { name: "Find businesses", example: "Find plumbers in Denver", description: "Searches Google Maps and collects 20 businesses, or up to 200 if you ask, with their emails." },
             { name: "Copy a Shopify store", example: "Every product, one row per size", description: "The whole catalog or one collection, not only what's on screen." },
             { name: "Get product details", example: "Collect this product", description: "Everything on the product page you're on, except reviews." },
             { name: "Find contact details", example: "Find contact emails on this site", description: "Emails, phone numbers and social links on this page and its Contact page." },
@@ -61,10 +61,10 @@ export const aiChat: FeaturePageContent = {
         items: [
             {
                 title: "Type your request",
-                body: "Open the side panel and type what you want, or click one of the idea cards for the page you're on. On a Google Maps search, a card asks how many businesses to collect.",
+                body: "Open the side panel and type what you want, or click one of the idea cards for the page you're on. Chat picks the tool from your words.",
                 points: [
-                    "Examples: Find dentists in Austin · Collect the products on this page · Find contact emails on this site.",
-                    "The count card starts on 20, offers 50, 100 and 200, and has a box for any number. Click Start; your choice is remembered.",
+                    "Examples: Collect every plumber in this list · Collect the products on this page · Find contact emails on this site.",
+                    "If it picks the wrong list, say which one in plain words, such as \"the main results, not the sidebar\".",
                 ],
                 screenshot: "ext/panel-chat-empty",
             },
@@ -75,7 +75,7 @@ export const aiChat: FeaturePageContent = {
                     "Esc stops a run too. What's collected so far is kept.",
                     "When a list continues on more pages, a What next card offers Collect every page.",
                 ],
-                screenshot: "ext/chat-maps-progress",
+                screenshot: "ext/chat-collect-list-progress",
             },
             {
                 title: "Ask for the file",
@@ -84,7 +84,7 @@ export const aiChat: FeaturePageContent = {
                     "Example: Only name and phone, as CSV.",
                     "The buttons under a card are the same as the results page: Google Sheets, Excel, CSV and JSON. View results opens the table.",
                 ],
-                screenshot: "ext/chat-maps-result-card",
+                screenshot: "ext/chat-collect-list-result",
             },
         ],
     },
@@ -92,13 +92,13 @@ export const aiChat: FeaturePageContent = {
         {
             id: "worked-example",
             eyebrow: "A worked example",
-            heading: "From \"Find dentists in Austin\" to an Excel file, in two sentences",
-            paragraphs: ["Here is a whole chat, with what appears after each line. The times are from measured runs on 1.3.0."],
+            heading: "From \"Collect every plumber in this list\" to an Excel file, in three sentences",
+            paragraphs: ["Here is a whole chat on a Yellow Pages search for plumbers in Denver, with what appears after each line. The steps are as 1.3.0 shows them; the counts are an example, and yours will differ by directory and city."],
             steps: [
-                { title: "You: Find dentists in Austin.", body: "A card appears: 20, 50, 100, 200, a box to type a number, and Start. You click Start with 20." },
-                { title: "Chat: collecting.", body: "A Google Maps tab opens and scrolls. The progress line counts businesses, then how many have an email. After about a minute and a half, a result card shows 20 rows with name, rating, phone, website and emails, and a button Collect up to 50 of these." },
-                { title: "You: Only name, phone, website and rating, sorted by rating.", body: "A new, tidied collection is saved with those four columns, best rated first. The card under it has the download buttons." },
-                { title: "You: Find dentists in Round Rock.", body: "Same card, same run. The second result card now also offers Combine the 2 searches into one table; click it and a Location column says which rows came from which city." },
+                { title: "You: Collect every plumber in this list.", body: "Chat collects the page, finds the directory's Next page link, and pages through the list the way the List tab does. The progress line counts the rows as they arrive." },
+                { title: "Chat: done.", body: "A result card shows 96 rows with business name, phone, address, rating and website in named columns. Under it, a card offers Add emails and social links, because the rows have a Website column." },
+                { title: "You: click Add emails and social links.", body: "Each business's website and one linked Contact or About page are read, and Emails, Website phones and one column per social network fill in on the same rows. A business that publishes no email keeps an empty cell." },
+                { title: "You: Only name, phone, website and emails, sorted by rating.", body: "A new, tidied collection is saved with those columns, best rated first. The card under it has the download buttons." },
                 { title: "You: As Excel.", body: "The file downloads with ratings as numbers. The same table sits in History and on the results page." },
             ],
         },
@@ -131,19 +131,18 @@ export const aiChat: FeaturePageContent = {
             eyebrow: "Several jobs at once",
             heading: "A separate chat for each tab",
             paragraphs: [
-                "Collect Google Maps leads in one tab and a product list in another. Each tab keeps its own conversation, and you switch between them from the chat bar.",
+                "Collect a directory list in one tab and a product list in another. Each tab keeps its own conversation, and you switch between them from the chat bar.",
             ],
         },
         {
             id: "settings",
             eyebrow: "Settings",
-            heading: "Three settings chat follows",
+            heading: "Two settings chat follows",
             paragraphs: ["They sit under Settings → Results. Words in your request override them for one run."],
             table: {
                 columns: ["Setting", "Default", "Change it when"],
                 rows: [
-                    ["Businesses per chat search", "20 on the first card, then what you picked last time", "You always want 100 or 200; or say a number in the request to change it once"],
-                    ["Add emails from their websites", "On", "You want a fast list without emails; or say \"no emails\" in a Google Maps request to skip them once"],
+                    ["Add emails from their websites", "On", "You want a fast list without emails; or say \"no emails\" in a request to skip them once"],
                     ["Suggested format", "The format you exported last", "You always want CSV for your email tool, say"],
                 ],
             },
@@ -158,7 +157,7 @@ export const aiChat: FeaturePageContent = {
             table: {
                 columns: ["Method", "What you do", "Time for 100 rows", "Where it breaks"],
                 rows: [
-                    ["Web Scraper Pro chat", "Type one sentence, click Start", "A minute or two; Google Maps with emails, about eight minutes", "Pages that need a sign-in you don't have; the daily message limit"],
+                    ["Web Scraper Pro chat", "Type one sentence, press Enter", "A minute or two; adding emails from each website takes longer, about four minutes per 50 sites", "Pages that need a sign-in you don't have; the daily message limit"],
                     ["Paste into a chat assistant", "Copy the page text, paste, ask for a table", "Minutes per page, by hand, for every page", "Pages too long to paste; numbers it changes or invents; no next page"],
                     ["Ask an assistant for a script", "Run and fix the code it writes", "Hours the first time", "Sites that render with JavaScript; blocks; every redesign"],
                     ["A paid API", "Sign up, pay per page", "Minutes", "Per-page costs; no view of your signed-in pages"],
@@ -186,7 +185,7 @@ export const aiChat: FeaturePageContent = {
                 "It doesn't make up rows or fill gaps. A detail the page doesn't show stays empty.",
                 "It doesn't sign in, solve a verification or open a page you can't open yourself.",
                 "It doesn't run while you're offline or when the daily message limit is reached; the side panel tabs still do.",
-                "It doesn't collect more than 200 Google Maps businesses in one request. Split the area, then combine the searches.",
+                "It doesn't open each row's own page after collecting a list. For details from those pages, paste the link column into Bulk scrape (lists, contacts or page text).",
                 "It doesn't send the page to the AI. Your request and the kind of page go; the rows are read in your browser.",
             ],
         },
@@ -209,14 +208,14 @@ export const aiChat: FeaturePageContent = {
         items: [
             "Chat collects the page you're on. When a list goes on over more pages, it offers Collect every page.",
             "Chat doesn't collect reviews. Use Collect reviews in the side panel.",
-            "A Google Maps search collects up to 200 businesses, with emails from each business's website on by default.",
+            "It also searches Google Maps, up to 200 businesses per request. For Maps-only lead lists, [Maps Scraper Pro's chat](https://mapsscraper.pro/chat) is the same engine, Maps only.",
             "Chat has a daily message limit and needs an internet connection.",
         ],
     },
     useCases: {
         heading: "What people use it for",
         items: [
-            { title: "A lead list in two sentences", body: "\"Find roofers in Phoenix\", then \"Excel with name, phone and website\"." },
+            { title: "A lead list in two sentences", body: "\"Collect every roofer in this list\" on a directory search, then \"Add emails and social links\" from the card that follows." },
             { title: "Data without learning a tool", body: "Describe what you want instead of hunting for buttons." },
             { title: "The exact columns a client asked for", body: "Name them when you export, and skip the spreadsheet clean-up." },
             { title: "Several cities as one list", body: "Search each city in one conversation, then combine the searches into one table from the card." },
@@ -264,5 +263,5 @@ export const aiChat: FeaturePageContent = {
             a: "Chat answers again the next day. Until then, the List tab, the Properties tab and Bulk scrape work without chat.",
         },
     ],
-    related: ["maps-leads", "shopify-scraper", "list-scraper", "export-to-google-sheets", "mcp"],
+    related: ["list-scraper", "shopify-scraper", "email-extractor", "export-to-google-sheets", "mcp"],
 };

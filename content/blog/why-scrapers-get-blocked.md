@@ -128,4 +128,4 @@ Slow down, narrow the job, complete the check yourself, or accept the no.
 
 - Robots Exclusion Protocol, RFC 9309 (2022), the standard for the robots.txt file sites use to say what may be crawled: [rfc-editor.org](https://www.rfc-editor.org/rfc/rfc9309)
 - *hiQ Labs v. LinkedIn*, 9th Cir. 2022, on scraping public pages: [ca9.uscourts.gov](https://cdn.ca9.uscourts.gov/datastore/opinions/2022/04/18/17-16783.pdf)
-- Web Scraper Pro's own behaviour on verifications and pacing: the [Google Maps leads](/maps-leads) and [bulk runs](/bulk-scraper) pages, checked against release 1.3.0.
+- Web Scraper Pro's own behaviour on verifications and pacing: the [bulk runs](/bulk-scraper) page and the [1.3.0 release note](/blog/web-scraper-pro-1-3-0-emails-in-the-same-maps-run), checked against release 1.3.0.

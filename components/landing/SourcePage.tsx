@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Anchor, Backpack, BadgeCheck, Bath, BedDouble, Clock, Fish, Footprints, Home, MapPin, Maximize2, Moon, Mountain, Shirt, ShoppingCart, Star, Wind } from "lucide-react";
+import { Anchor, Backpack, BadgeCheck, Bath, BedDouble, Clock, Fish, Footprints, Globe, Home, Maximize2, Moon, Mountain, Phone, Search, Shirt, ShoppingCart, Star, Wind } from "lucide-react";
 
 // The fake "web page" on the left of the hero demo, one layout per scenario.
 // Illustrative sample data only: generic names, no real brands.
@@ -42,58 +42,40 @@ function Stars({ value, size = "w-2.5 h-2.5" }: { value: number; size?: string }
 
 const card = "rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm";
 
-/* ---------------------------------- Google Maps ---------------------------------- */
+/* ----------------------------- Business directory ----------------------------- */
 
-const PLACES = [
-    { name: "Bright Smile Dental", rating: 4.9, count: 312, addr: "Congress Ave", open: "Open · Closes 6 PM" },
-    { name: "Lakeside Family Dentistry", rating: 4.8, count: 187, addr: "Lake Austin Blvd", open: "Open · Closes 5 PM" },
-    { name: "Congress Ave Dental Care", rating: 4.7, count: 96, addr: "S Congress Ave", open: "Closed · Opens 8 AM" },
-];
-const PINS = [
-    { x: 24, y: 38 },
-    { x: 58, y: 24 },
-    { x: 72, y: 60 },
-    { x: 40, y: 72 },
-    { x: 86, y: 34 },
+const LISTINGS = [
+    { name: "Sample Plumbing Co.", rating: 4.5, count: 212, trade: "Plumbers", years: "22 years in business", phone: "(303) 555-0142", site: "sampleplumbing.example" },
+    { name: "Riverside Pipe & Drain", rating: 4.0, count: 87, trade: "Plumbers · Drain cleaning", years: "9 years in business", phone: "(303) 555-0187", site: "riversidepipe.example" },
+    { name: "Quick Fix Plumbing", rating: 3.5, count: 41, trade: "Plumbers · Water heaters", years: "4 years in business", phone: "(303) 555-0123", site: "quickfixplumbing.example" },
 ];
 
-function MapsPage({ stage, reduceMotion }: { stage: number; reduceMotion: boolean }) {
+function DirectoryPage({ stage, reduceMotion }: { stage: number; reduceMotion: boolean }) {
     return (
         <div className="flex flex-col h-full">
-            {/* Mini map */}
-            <div className="relative h-28 shrink-0 overflow-hidden bg-emerald-50/70 dark:bg-emerald-950/20 border-b border-slate-200 dark:border-slate-800">
-                <div className="absolute inset-0 text-slate-200/80 dark:text-slate-800">
-                    <div className="absolute left-0 right-0 top-[45%] h-2 bg-current" />
-                    <div className="absolute top-0 bottom-0 left-[35%] w-2 bg-current" />
-                    <div className="absolute top-0 bottom-0 left-[68%] w-1.5 bg-current rotate-12 origin-top" />
-                    <div className="absolute left-0 right-0 top-[18%] h-1 bg-current" />
+            {/* Directory header: the search and its count */}
+            <div className="px-2.5 py-2 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+                <div className="flex items-center gap-1.5 rounded-md border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 px-2 py-1 text-sm text-slate-600 dark:text-slate-300">
+                    <Search className="w-3 h-3 shrink-0" />
+                    <span className="truncate">Plumbers · Denver, CO</span>
                 </div>
-                <div className="absolute right-2 bottom-2 w-10 h-6 rounded bg-sky-200/70 dark:bg-sky-900/40" />
-                {PINS.map((p, i) => (
-                    <motion.span
-                        key={i}
-                        className="absolute -translate-x-1/2 -translate-y-full"
-                        style={{ left: `${p.x}%`, top: `${p.y}%` }}
-                        animate={stage === 1 && !reduceMotion ? { y: [0, -4, 0] } : { y: 0 }}
-                        transition={{ duration: 0.6, delay: i * 0.25 }}
-                    >
-                        <MapPin className="w-4 h-4 text-rose-700 dark:text-rose-300 fill-rose-500/90 drop-shadow-sm" strokeWidth={1.5} />
-                    </motion.span>
-                ))}
+                <p className="mt-1.5 text-sm text-slate-600 dark:text-slate-300">96 results · page 1 of 4</p>
             </div>
-            {/* Results list */}
+            {/* Listings */}
             <div className="p-2.5 space-y-2">
-                <p className="text-sm font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wide">Results</p>
-                {PLACES.map((p, idx) => (
-                    <Item key={p.name} idx={idx} stage={stage} reduceMotion={reduceMotion} className={`${card} p-2`}>
-                        <p className="text-sm font-semibold text-slate-800 dark:text-slate-100 truncate">{p.name}</p>
+                {LISTINGS.map((l, idx) => (
+                    <Item key={l.name} idx={idx} stage={stage} reduceMotion={reduceMotion} className={`${card} p-2`}>
+                        <p className="text-sm font-semibold text-slate-800 dark:text-slate-100 truncate">{l.name}</p>
                         <p className="flex items-center gap-1 text-sm text-slate-600 dark:text-slate-300">
-                            {p.rating}
-                            <Stars value={p.rating} />
-                            <span className="text-slate-600 dark:text-slate-300">({p.count})</span>
+                            <Stars value={l.rating} />
+                            <span>({l.count})</span>
+                            <span className="truncate">· {l.years}</span>
                         </p>
-                        <p className="text-sm text-slate-600 dark:text-slate-300 truncate">Dentist · {p.addr}</p>
-                        <p className={`text-sm truncate ${p.open.startsWith("Open") ? "text-emerald-700 dark:text-emerald-300" : "text-rose-700 dark:text-rose-300"}`}>{p.open}</p>
+                        <p className="text-sm text-slate-600 dark:text-slate-300 truncate">{l.trade}</p>
+                        <p className="flex items-center gap-2 text-sm truncate">
+                            <span className="inline-flex items-center gap-0.5 text-slate-700 dark:text-slate-200"><Phone className="w-2.5 h-2.5" />{l.phone}</span>
+                            <span className="inline-flex items-center gap-0.5 text-[#1f5ec2] dark:text-[#7aa7ff] truncate"><Globe className="w-2.5 h-2.5 shrink-0" />{l.site}</span>
+                        </p>
                     </Item>
                 ))}
             </div>
@@ -303,8 +285,8 @@ function ShopifyPage({ stage, reduceMotion }: { stage: number; reduceMotion: boo
 export default function SourcePage({ id, stage, reduceMotion }: Props) {
     const p = { stage, reduceMotion };
     switch (id) {
-        case "local":
-            return <MapsPage {...p} />;
+        case "directory":
+            return <DirectoryPage {...p} />;
         case "shopify":
             return <ShopifyPage {...p} />;
         case "products":

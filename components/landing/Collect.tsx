@@ -1,12 +1,12 @@
 import React from "react";
 import Link from "next/link";
-import { BookOpen, Briefcase, Calendar, Car, FileText, Home, Image, ListChecks, Mail, MapPin, MessageSquareQuote, Plane, ShoppingBag } from "lucide-react";
+import { BookOpen, BookUser, Briefcase, Calendar, Car, FileText, Home, Image, ListChecks, Mail, MessageSquareQuote, Plane, ShoppingBag } from "lucide-react";
 import SectionHeading from "@/components/landing/SectionHeading";
 import Reveal from "@/components/landing/Reveal";
 import { publishedHref, type PageKind } from "@/config/pages";
 
 const TYPES: {
-    icon: typeof MapPin;
+    icon: typeof ListChecks;
     title: string;
     body: string;
     fields: string[];
@@ -16,13 +16,13 @@ const TYPES: {
     link?: { slug: string; kind?: PageKind; text: string };
 }[] = [
     {
-        icon: MapPin,
-        title: "Local business leads",
-        body: "Search Google Maps or a business directory and get every result as a row, with the emails and social links from each business's own website added in the same run.",
-        fields: ["Name", "Category", "Address", "Phone", "Website", "Rating", "Email"],
-        goodFor: "building prospect lists by city and business type, finding local partners, sizing up competitors nearby.",
-        tint: "text-rose-700 dark:text-rose-300 bg-rose-50 dark:bg-rose-950/40",
-        link: { slug: "maps-leads", text: "Collect local business leads from Google Maps" },
+        icon: ListChecks,
+        title: "Any list on any page",
+        body: "On sites without a ready-made setup, it spots the lists on the page for you. Pick one and it names the columns and follows every page.",
+        fields: ["Automatic columns", "Next page", "Load more", "Infinite scroll"],
+        goodFor: "directories, event lists, catalogues and tables on any other site.",
+        tint: "text-[#1f5ec2] dark:text-[#7aa7ff] bg-[#2772ED]/10",
+        link: { slug: "list-scraper", text: "Collect lists from any website" },
     },
     {
         icon: ShoppingBag,
@@ -61,18 +61,18 @@ const TYPES: {
         link: { slug: "email-extractor", text: "Get emails from a list of websites" },
     },
     {
-        icon: ListChecks,
-        title: "Any list on any page",
-        body: "On sites without a ready-made setup, it spots the lists on the page for you. Pick one and it names the columns and follows every page.",
-        fields: ["Automatic columns", "Next page", "Load more", "Infinite scroll"],
-        goodFor: "directories, event lists, catalogues and tables on any other site.",
-        tint: "text-[#1f5ec2] dark:text-[#7aa7ff] bg-[#2772ED]/10",
-        link: { slug: "list-scraper", text: "Collect lists from any website" },
+        icon: BookUser,
+        title: "Business directory leads",
+        body: "Search Yellow Pages, Justdial, BBB or any business directory and get every listing as a row, then add the emails and social links from each business's own website.",
+        fields: ["Name", "Category", "Address", "Phone", "Website", "Rating", "Email"],
+        goodFor: "building prospect lists by city and business type, finding local partners, sizing up competitors nearby.",
+        tint: "text-rose-700 dark:text-rose-300 bg-rose-50 dark:bg-rose-950/40",
+        link: { slug: "lead-generation", kind: "use-case", text: "Build a lead list from directories" },
     },
 ];
 
 // Smaller data types, one line each (all supported by the extension today).
-const MORE: { icon: typeof MapPin; title: string; body: string; slug?: string }[] = [
+const MORE: { icon: typeof ListChecks; title: string; body: string; slug?: string }[] = [
     { icon: MessageSquareQuote, title: "Reviews", body: "Ratings, titles and review text, across every page of reviews." },
     { icon: Plane, title: "Hotels and travel", body: "Hotel names, prices, ratings and locations from travel sites." },
     { icon: Car, title: "Cars", body: "Car listings with their prices and details." },
@@ -128,6 +128,16 @@ export default function Collect() {
                         </Reveal>
                     ))}
                 </div>
+
+                <Reveal className="mt-8">
+                    <p className="text-center text-base text-slate-700 dark:text-slate-200 leading-[1.65]">
+                        Also collects from Google Maps. For Maps-only lead lists,{" "}
+                        <a href="https://mapsscraper.pro/" target="_blank" rel="noopener" className="font-semibold text-[#1f5ec2] dark:text-[#7aa7ff] underline underline-offset-2">
+                            Maps Scraper Pro
+                        </a>{" "}
+                        is the same engine, Maps only.
+                    </p>
+                </Reveal>
 
                 <Reveal className="mt-14">
                     <h3 className="text-center text-sm font-semibold text-slate-900 dark:text-white">More you can collect</h3>

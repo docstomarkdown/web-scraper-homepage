@@ -6,6 +6,7 @@ import CTA from "@/components/landing/CTA";
 import { Screenshot } from "@/components/Screenshot";
 import ProseSection, { type ContentSection } from "@/components/pages/ProseSection";
 import Glossary from "@/components/pages/Glossary";
+import RichText from "@/components/pages/RichText";
 import { productConfig } from "@/config/product";
 import { siteConfig } from "@/config/site";
 import { getPage, showPlannedPages, type SitePage } from "@/config/pages";
@@ -101,7 +102,7 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
                     <Reveal>
                         <p className="text-base font-semibold text-[#1f5ec2] dark:text-[#7aa7ff]">The job</p>
                         <h2 className="mt-2 text-[1.75rem] font-semibold tracking-tight text-slate-800 dark:text-white">{c.job.heading}</h2>
-                        <div className={`mt-6 space-y-5 ${body}`}>{c.job.paragraphs.map((p) => <p key={p}>{p}</p>)}</div>
+                        <div className={`mt-6 space-y-5 ${body}`}>{c.job.paragraphs.map((p) => <p key={p}><RichText text={p} /></p>)}</div>
                     </Reveal>
                 </div>
             </section>
@@ -124,11 +125,11 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
                                             <span className="mt-0.5 inline-flex w-9 h-9 shrink-0 items-center justify-center rounded-full bg-[#2772ED]/10 text-base font-semibold text-[#1f5ec2] dark:text-[#7aa7ff]" aria-hidden="true">{i + 1}</span>
                                             <div className="min-w-0">
                                                 <h3 className="text-xl font-semibold text-slate-800 dark:text-white leading-snug"><span className="sr-only">Step {i + 1}: </span>{s.title}</h3>
-                                                <p className={`mt-3 ${body}`}>{s.body}</p>
+                                                <p className={`mt-3 ${body}`}><RichText text={s.body} /></p>
                                                 {s.points && s.points.length > 0 && (
                                                     <ul className={`mt-4 space-y-2 ${body}`}>
                                                         {s.points.map((p) => (
-                                                            <li key={p} className="flex gap-3"><span className="mt-[0.7em] h-2 w-2 shrink-0 rounded-full bg-[#1f5ec2]" aria-hidden="true" /><span>{p}</span></li>
+                                                            <li key={p} className="flex gap-3"><span className="mt-[0.7em] h-2 w-2 shrink-0 rounded-full bg-[#1f5ec2]" aria-hidden="true" /><span><RichText text={p} /></span></li>
                                                         ))}
                                                     </ul>
                                                 )}
@@ -170,7 +171,7 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
                             {c.cantDo.items.map((n) => (
                                 <li key={n} className={`flex gap-3 ${body}`}>
                                     <span className="mt-[0.35em] inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-100" aria-hidden="true"><Minus className="w-4 h-4" /></span>
-                                    <span>{n}</span>
+                                    <span><RichText text={n} /></span>
                                 </li>
                             ))}
                         </ul>
@@ -198,7 +199,7 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
                             {c.faqs.map((f) => (
                                 <details key={f.q} className="group py-5" open>
                                     <summary className="cursor-pointer list-none font-semibold text-slate-800 dark:text-white [&::-webkit-details-marker]:hidden"><h3 className="text-xl leading-snug">{f.q}</h3></summary>
-                                    <p className={`mt-3 ${body}`}>{f.a}</p>
+                                    <p className={`mt-3 ${body}`}><RichText text={f.a} /></p>
                                 </details>
                             ))}
                         </div>

@@ -10,7 +10,7 @@ import type { ScraperPageContent } from "@/components/pages/ScraperPage";
 
 export const yellowPages: ScraperPageContent = {
     slug: "yellow-pages",
-    category: "maps-and-directories",
+    category: "business-directories",
     site: { name: "Yellow Pages", url: "https://www.yellowpages.com" },
     meta: {
         title: "How to Scrape Yellow Pages Listings with Phone and Website",
@@ -60,8 +60,8 @@ export const yellowPages: ScraperPageContent = {
             },
             {
                 title: "Add emails, then export",
-                body: "Export as gives Excel, CSV, JSON or Google Sheets. For emails and social links, run Bulk scrape → Collect contacts and choose Use saved data to read each website in the table.",
-                points: ["The Add contact details button on the results page needs a Google Maps style Website column, so use Bulk scrape for Yellow Pages tables."],
+                body: "Export as gives Excel, CSV, JSON or Google Sheets. For emails and social links, click Add contact details on the results page; each website in the table is read for emails, phones and social links.",
+                points: ["The button is enabled because Yellow Pages tables have a Website column. Bulk scrape → Collect contacts → Use saved data does the same from the Bulk page."],
             },
         ],
     },
@@ -90,7 +90,7 @@ export const yellowPages: ScraperPageContent = {
             eyebrow: "Where to start",
             heading: "Three searches worth running",
             paragraphs: [
-                "Yellow Pages is a category plus a city or a zip code. It lists businesses that may never have claimed a Google Maps listing, which is why agencies run both and compare.",
+                "Yellow Pages is a category plus a city or a zip code. It lists businesses that other directories and map services miss, which is why agencies run more than one source and compare.",
                 "Years in Business is the column you won't get anywhere else. It separates a twenty-year firm from one that opened last spring.",
             ],
             table: {
@@ -125,7 +125,7 @@ export const yellowPages: ScraperPageContent = {
                 "Keep the established firms: click the Years in Business header to sort, then Filter rows to keep 10 or more. Those are the businesses with budgets.",
                 "Find the ones without a website: Filter rows, Website is empty. For a web-design or marketing pitch, that's the list.",
                 "Drop the paid rows: Filter rows on the Sponsored label, or turn on Skip sponsored products in Settings → Results before the run.",
-                "Compare with Google Maps: run the same category on Google Maps, export both, and match on Phone. Businesses on one list and not the other are the ones competitors miss.",
+                "Compare with a Google Maps list: export both and match on Phone; businesses on one list and not the other are the ones competitors miss. For the Maps list, [Maps Scraper Pro](https://mapsscraper.pro/) is the same engine, Maps only.",
             ],
         },
         {
@@ -166,16 +166,16 @@ export const yellowPages: ScraperPageContent = {
     feature: "list-scraper",
     guide: "collect-business-listings-from-yellow-pages",
     useCase: "lead-generation",
-    related: ["maps", "justdial", "bbb"],
+    related: ["justdial", "bbb"],
     faqs: [
         { q: "Is this Yellow Pages scraper free?", a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create." },
-        { q: "Can I get emails for the businesses?", a: "Yes, in a second step. Open Bulk scrape → Collect contacts, choose Use saved data, and pick this collection. Each website is read for emails, phones and social links." },
+        { q: "Can I get emails for the businesses?", a: "Yes, in a second step. Click Add contact details on the results page, or open Bulk scrape → Collect contacts and choose Use saved data. Each website is read for emails, phones and social links." },
         { q: "How many pages can I scrape at once?", a: "As many as you set under Stop after. Keep the tab in front, and click Stop if you have enough; the rows so far are kept." },
         { q: "Does it work on other countries' Yellow Pages?", a: "The ready-made setup is for yellowpages.com. Other directories are detected as lists, with columns named from the page." },
         { q: "Why are there sponsored rows?", a: "Yellow Pages mixes paid listings into results. They're kept and marked Sponsored so you can filter them, or turn on Skip sponsored products to leave them out." },
         { q: "Can I export to Google Sheets?", a: "Yes. Export as offers Google Sheets, Excel, CSV and JSON." },
         { q: "Can I scrape Yellow Pages by zip code?", a: "Yes. Search the category with a zip code instead of a city. ZIP also comes as its own column, so a city-wide run can be filtered by zip afterwards." },
-        { q: "What's the difference from a Google Maps run?", a: "Google Maps gives opening hours and reads emails in the same run; Yellow Pages gives years in business and lists some businesses Google Maps doesn't. Run both and match on Phone." },
+        { q: "Which directory should I start with?", a: "Yellow Pages for US trades and the Years in Business column; BBB for the bureau's grade and accreditation; Justdial for India. Run two and match on Phone to find the businesses only one of them lists." },
         { q: "Is scraping Yellow Pages allowed?", a: "You collect public listings in your own browser, at a person's pace. The site's terms and anti-spam laws decide what you can do with them; our explainer at /web-scraping-legal covers the rules in plain words. It isn't legal advice." },
     ],
 };

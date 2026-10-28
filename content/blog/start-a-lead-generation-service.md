@@ -30,7 +30,7 @@ A business type plus a place is a search, and a search is a list.
 
 ## Step 2: build the first list
 
-One Google Maps search, with contact details on, gives you the list with emails in the same run.
+One Google Maps search, with contact details on, gives you the list with emails in the same run. For an agency that works from Google Maps alone, [Maps Scraper Pro](https://mapsscraper.pro/) is the same engine, Maps only.
 
 Click the Web Scraper Pro icon in Chrome. The side panel opens on the right; open its **Chat** tab, the one where you type what you want. Type `Find dentists in Austin`, pick how many on the card (up to 200 per run) and click **Start**. The extension collects every business with its phone, website, rating and address, and while it runs it reads each business's own website for emails, website phone numbers and social links.
 
@@ -40,7 +40,7 @@ Click the Web Scraper Pro icon in Chrome. The side panel opens on the right; ope
 | 200 businesses with emails | about fifteen minutes |
 | Either, without emails | a minute or two |
 
-For a bigger area, run a search per neighbourhood or zip code; chat offers to combine the conversation's searches into one table. If a client prefers a directory, Yellow Pages and similar sites collect the same way. To add emails to a list that has none, run the extension a second time over its websites: **Bulk scrape** → **Collect contacts** → **Use saved data**, pick the table and its Website column. The [emails from Google Maps guide](/guides/get-maps-leads-with-emails) shows each click.
+For a bigger area, run a search per neighbourhood or zip code; chat offers to combine the conversation's searches into one table. If a client prefers a directory, Yellow Pages and similar sites collect the same way. To add emails to a list that has none, run the extension a second time over its websites: **Bulk scrape** → **Collect contacts** → **Use saved data**, pick the table and its Website column. The [emails from a list of websites guide](/guides/get-emails-from-a-list-of-websites) shows each click.
 
 ## Step 3: clean it to the client's spec
 

@@ -80,12 +80,13 @@ investors and analysts pulling market data.
 - **Who:** runs a small agency or sales team building lead lists for clients. Moves fast, compares
   prices closely, and learns tools from YouTube.
 - **What starts the search:** a new client or niche, or a cheap tool or gig that broke or went stale.
-- **Words he uses:** "leads", "emails", "niche + city", "Google Maps leads", "export to Excel/CSV",
+- **Words he uses:** "leads", "emails", "niche + city", "business directory", "export to Excel/CSV",
   "unlimited".
 - **Today:** a mix of cheap tools, freelancers and manual copying. Emails are the hard part.
 - **Success:** a CRM-ready CSV with name, category, address, phone, website, rating and email,
   deduplicated, repeatable city by city.
-- **Installs when:** he sees Google Maps leads and contact collection working together.
+- **Installs when:** he sees a directory list and contact collection working together: every listing as a row,
+  then the emails from each business's website on the same rows.
 - **Pays when:** he needs volume: bulk runs, contact collection across many sites, a flat price with
   no per-row cost.
 - **Can't serve (never imply):** LinkedIn leads, social media groups, guaranteed or verified emails,
@@ -94,8 +95,9 @@ investors and analysts pulling market data.
   niche, their own city, a few hundred rows, bought rarely. As new to tools as Dana and more
   price-sensitive than an agency. Searches for the task ("local business leads to Excel"), not their
   role.
-- **Second list source:** sales reps and agencies selling to other businesses also build company lists
-  from business directories and software review sites, not only Google Maps.
+- **Sources on this site:** business directories (Yellow Pages, Yelp, Justdial, BBB), a client's list of
+  websites, careers pages, member lists and software review sites. Google Maps is a product fact here, named
+  in one line per page; the Maps how-tos and the Maps-first reader belong to mapsscraper.pro (2026-10-28).
 
 **Review questions:**
 - Is it clear that emails come from each business's own website, and that some businesses have none?

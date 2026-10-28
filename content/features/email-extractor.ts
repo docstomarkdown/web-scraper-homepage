@@ -120,7 +120,7 @@ export const emailExtractor: FeaturePageContent = {
             heading: "How to add emails to a list of businesses",
             paragraphs: [
                 "Any saved table with a column named Website gets an Add contact details button on its results page. The emails, phones and social links land in new columns on the same rows, so there's nothing to join by hand.",
-                "A Google Maps search does this during the run, on by default. A table without a Website column shows the button disabled, with a one-line reason, rather than hiding it.",
+                "A table without a Website column shows the button disabled, with a one-line reason, rather than hiding it. Directory tables from Yellow Pages have one; for other tables, Bulk scrape → Collect contacts → Use saved data lets you pick the column.",
             ],
         },
         {
@@ -142,12 +142,11 @@ export const emailExtractor: FeaturePageContent = {
             id: "settings",
             eyebrow: "Settings",
             heading: "Where contact collection is switched on and off",
-            paragraphs: ["Contact collection runs in four places. Three have a switch; the single-site run has none, because it reads everything."],
+            paragraphs: ["Contact collection runs in three places. Bulk runs have a switch per detail; the other two read everything."],
             table: {
                 columns: ["Where", "What's collected", "Change it when"],
                 rows: [
                     ["Properties tab, Collect contacts", "Emails, phones, faxes and social links, always", "Never; remove columns you don't need on the results page"],
-                    ["Google Maps searches", "Settings → Results → Add emails from their websites, on by default", "You want a quick list of names and phones; or say \"no emails\" in a chat request"],
                     ["Bulk runs", "Email addresses, Phone numbers and Social media links, ticked per site on the Configure step", "A client asked for emails only"],
                     ["A saved table", "Add contact details runs with everything on; it reads Update contact details when the table already has them", "You want to refresh an older list"],
                 ],
@@ -220,7 +219,7 @@ export const emailExtractor: FeaturePageContent = {
         heading: "What people use it for",
         items: [
             { title: "Outreach lists", body: "A list of company websites becomes a sheet with an email and phone for each, ready for your email tool." },
-            { title: "Local business leads", body: "Collect businesses from Google Maps or a directory, then get each one's email from its own site, in the same run." },
+            { title: "Local business leads", body: "Collect businesses from a directory such as Yellow Pages, then get each one's email from its own site. Also works on Google Maps; for Maps-only lead lists, [Maps Scraper Pro's email extractor](https://mapsscraper.pro/email-extractor) is the same engine, Maps only." },
             { title: "Partner and supplier research", body: "Find the right contact on dozens of supplier sites without opening each one." },
             { title: "Keeping records current", body: "Re-run the same list later with Update contact details and compare which contacts changed." },
         ],
@@ -243,12 +242,12 @@ export const emailExtractor: FeaturePageContent = {
             a: "As many as you paste or upload. Sites are visited one at a time, so a list of 200 websites takes a few minutes. You can stop at any point and keep the rows.",
         },
         {
-            q: "Can it get emails from Google Maps?",
-            a: "Yes. A Google Maps search reads each business's website while it collects, so the Emails column fills in the same run. For a list you saved earlier, click Add contact details on its results page.",
+            q: "Can it get emails for a directory list?",
+            a: "Yes. Collect the directory pages, then click Add contact details on the results page when the table has a Website column, or run Bulk scrape → Collect contacts with Use saved data. Each business's website is read for emails, phones and social links.",
         },
         {
             q: "Does it find phone numbers too?",
-            a: "Yes. Phone numbers and fax numbers found as text come in their own columns, each with a count, next to the phone a directory or Google Maps listed.",
+            a: "Yes. Phone numbers and fax numbers found as text come in their own columns, each with a count, next to the phone the directory listed.",
         },
         {
             q: "Does it verify the emails?",
@@ -267,5 +266,5 @@ export const emailExtractor: FeaturePageContent = {
             a: "Reading a published business address is generally allowed; what you do with it is regulated. Anti-spam and privacy laws apply to outreach in most countries. Collect only what you need, and read our plain-words explainer on web scraping and the law. It isn't legal advice.",
         },
     ],
-    related: ["maps-leads", "bulk-scraper", "list-scraper", "export-to-google-sheets", "ai-chat"],
+    related: ["bulk-scraper", "list-scraper", "export-to-google-sheets", "ai-chat"],
 };

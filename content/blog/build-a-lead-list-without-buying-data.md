@@ -1,24 +1,24 @@
 ---
 title: "How To Build a Lead List Without Buying Data"
-description: "Google Maps, directories, member lists and careers pages already list the businesses you want. One afternoon turns them into a sheet with phones and emails."
+description: "Business directories, member lists, careers pages and review sites already list the businesses you want. One afternoon turns them into a sheet with phones and emails."
 status: draft
 date: 2026-10-21
-updated: 2026-10-21
+updated: 2026-10-28
 author: vikram
 category: Playbooks
-tags: [lead generation, maps leads, directories, no code]
+tags: [lead generation, directories, no code]
 ---
 
-You can build a lead list of local businesses in an afternoon without paying a data vendor, because the businesses are already listed in public places. Google Maps, business directories, trade association member lists and company careers pages each hold part of the list, and Web Scraper Pro, a free Chrome extension, turns what they show into a spreadsheet with phones, websites and emails. This playbook starts with the first click, then walks the five sources, the gaps each one leaves, and the rules for using the list.
+You can build a lead list of local businesses in an afternoon without paying a data vendor, because the businesses are already listed in public places. Business directories, trade association member lists, company careers pages and the review sites of your line of work each hold part of the list, and Web Scraper Pro, a free Chrome extension, turns what they show into a spreadsheet with phones, websites and emails. This playbook starts with the first click, then walks the five sources, the gaps each one leaves, and the rules for using the list.
 
-## Start with one search
+## Start with one directory search
 
-The first list is one Google Maps search, and it takes a few minutes.
+The first list is one Yellow Pages search, and it takes a few minutes.
 
 1. Install Web Scraper Pro in Chrome. It's free, with no paid plan and no account.
-2. Click its icon. The side panel opens on the right of the browser. Open the **Chat** tab, the one where you type what you want.
-3. Type `Find dentists in Austin`. A card asks how many businesses you want: 20, 50, 100 or 200. Pick **50** and click **Start**.
-4. In about four minutes, click **View results**. Every dentist is a row with its name, phone, website, rating, address and, where the business publishes one, its email.
+2. Search Yellow Pages for `plumbers` in `Denver, CO`. Click the extension's icon; the side panel opens on the right of the browser. Open the **List** tab, and the listings show under **Choose from lists we found**.
+3. Choose **Collect more pages**, confirm **Next page**, set **Stop after** to **4**, and click **Collect**. About 120 businesses arrive with name, phone, address, rating, years in business and website in named columns.
+4. Click **View results**, then **Add contact details** at the top of the results page. In about ten minutes each business's own website has been read, and an Emails column holds the addresses the businesses publish.
 
 That's a lead list. Everything below is about making it bigger, matching it to your buyer, and keeping it honest.
 
@@ -36,36 +36,34 @@ Vendor lists are broad and they age from the day they're compiled. A list you bu
 | Decision-maker names | Sometimes | No; the business is the contact |
 | Emails | Often "verified" for a fee | The ones the business publishes |
 
-## Source 1: Google Maps
+## Source 1: business directories
 
-The richest source for local businesses, with contact details read from each business's website in the same run.
+Yellow Pages, Yelp, Justdial, BBB and their regional equivalents: a category plus a place, with phone, address and often a website.
 
-A search such as `dentists in Austin` lists every dentist with a Google Maps listing: name, category, rating, review count, address, opening hours, phone and website. Google Maps never shows emails, so Web Scraper Pro reads each business's own website and its Contact or About page during the run, and adds an Emails column, the phone numbers from the site and its social links to the row.
+Directories list businesses by category and place, and some add years in business or accreditation. Web Scraper Pro has ready-made columns for [Yellow Pages](/scrapers/yellow-pages), [Justdial](/scrapers/justdial) and [BBB](/scrapers/bbb). On Yelp or any other directory with a list, the **List** tab finds the list on the page and names the columns from what the cards show. Set **Stop after** to the pages you want, and every page lands in one table.
 
 | Fact | What to expect |
 |---|---|
-| Businesses per search | Up to 200 from the Chat tab; the side panel's List tab keeps going until Google Maps runs out |
-| Time | 50 businesses about four minutes with emails; 200 about fifteen; a minute or two without |
-| Big cities | Search by neighbourhood or zip code, then let chat combine the searches into one table |
-| Emails | Only for businesses that publish one; many small businesses don't |
+| Listings per page | About 30 on Yellow Pages, about 10 on Yelp; set Stop after to the pages you want |
+| Websites | Yellow Pages and Yelp show them on most cards; BBB shows them on the profile page only |
+| Emails | Never on the directory; read from each business's website in the next step |
+| Sponsored rows | Marked, so you can filter them out |
+
+To add emails, click **Add contact details** on the results page when the table has a Website column (Yellow Pages tables do). For a table whose website column has another name, click **Bulk scrape** at the top of the side panel, choose **Collect contacts**, click **Use saved data**, pick the table and its website column, and click **Start collecting**. Either way, each website is read in turn and its emails, phone numbers and social links become new columns on the same rows.
 
 What you get: a complete local list with phones and most websites, and emails for the businesses that publish one. What you won't: an email for every business.
 
-## Source 2: business directories
+## Source 2: Google Maps
 
-Yellow Pages, Justdial, BBB and their regional equivalents, strongest where Google Maps coverage is thin.
+Web Scraper Pro collects from Google Maps too, and for Maps-only lists there's a site that covers nothing else.
 
-Directories list businesses by category and place with phone, address and website, and some add years in business or accreditation. Web Scraper Pro has ready-made columns for [Yellow Pages](/scrapers/yellow-pages), [Justdial](/scrapers/justdial) and [BBB](/scrapers/bbb). On any other directory with a list, the **List** tab finds the list on the page and names the columns from what it sees.
-
-To add emails to a directory list, you run the extension a second time over the websites it collected. Click **Bulk scrape** at the top of the side panel, choose **Collect contacts**, click **Use saved data**, pick the directory table and its Website column, and click **Start collecting**. Each website is read in turn and its emails, phone numbers and social links become new columns on the same rows.
-
-What you get: a second list to compare with Google Maps, often with businesses that never claimed a Google Maps listing. What you won't: Google Maps ratings, and some directories pad categories with sponsored rows, which the extension labels so you can filter them out.
+A Google Maps search for a business type in a city returns every business with phone, website, rating and address, and the extension reads each business's website for emails in the same run. If Google Maps is your only source, [Maps Scraper Pro](https://mapsscraper.pro/) is the same engine, Maps only, with its own guides for city-by-city lead lists, emails and phone numbers. The rest of this playbook stays with the sources that aren't a map.
 
 ## Source 3: association and chamber member lists
 
 The best lists for a profession, published by the bodies that represent it.
 
-Trade associations, licensing boards, chambers of commerce and franchise locators publish member directories: name, firm, city, often a website. They're narrower than Google Maps and far more precise about who belongs to the profession. Most are a list on a page, which the List tab collects across every page. A few need a sign-in; those come with terms you should read first, and the extension never signs in for you.
+Trade associations, licensing boards, chambers of commerce and franchise locators publish member directories: name, firm, city, often a website. They're narrower than a general directory and far more precise about who belongs to the profession. Most are a list on a page, which the List tab collects across every page. A few need a sign-in; those come with terms you should read first, and the extension never signs in for you.
 
 What you get: the right businesses, verified by the body. What you won't: phones and emails on many of them, which the second run over their websites adds.
 
@@ -87,8 +85,8 @@ Say the target is plumbers in Denver. Here are the four sources in order, with w
 
 | Source | What you type or open | Rows | What the rows carry |
 |---|---|---|---|
-| Google Maps | `Find plumbers in Denver`, pick 200 | up to 200 per search | name, phone, website, rating, address, emails and social links from each site |
-| Yellow Pages | the plumbers category for Denver, five pages | about 30 per page | name, phone, address, website, years in business |
+| Yellow Pages | the plumbers category for Denver, four pages | about 30 per page | name, phone, address, website, rating, years in business; emails and social links after Add contact details |
+| Yelp | the same search, as many pages as it shows | about 10 per page | name, rating, review count, phone, website; emails after a second run |
 | The plumbers' trade association | its member directory | one page per letter or city | firm, city, website |
 | Careers pages | a plumbing company's jobs page | one per company | roles, which tell you who's growing |
 
@@ -99,7 +97,7 @@ Put the tables in one sheet, remove businesses that appear twice by comparing th
 One sheet, one row per business, one column saying when it was collected.
 
 1. Collect each source into its own table. The extension keeps every run in **History**, so nothing is lost.
-2. Export each table to Excel or Google Sheets and paste them into one sheet.
+2. Export each table to Excel or CSV and paste them into one sheet.
 3. Where two sources list the same business, keep one row. The website address is the easiest thing to match on, because the business name is often written two ways.
 4. Keep the columns you'll use: name, phone, website, email, city, source, collected on.
 5. Note the email coverage honestly. Many local businesses publish no email, so a list where a third of the rows have none is normal.
@@ -119,8 +117,8 @@ Public listings name the business, not the owner; for that you read the About pa
 
 ## What this means for you
 
-- **The first list costs you four minutes, not a budget.** One Google Maps search with 50 businesses is a real list with phones and emails. Try that before deciding whether a vendor's list was ever the right buy.
-- **Stack sources for coverage, then remove the repeats.** Google Maps for breadth, a directory for the businesses Google Maps missed, a member list for precision.
+- **The first list costs you fifteen minutes, not a budget.** One directory search with a hundred businesses is a real list with phones and emails. Try that before deciding whether a vendor's list was ever the right buy.
+- **Stack sources for coverage, then remove the repeats.** A directory for breadth, a member list for precision, a careers page for timing.
 - **Label the list honestly and keep the rules.** The collected-on date, the email coverage, and the anti-spam law where you send are what make a list you'd put your name to.
 
-The [Google Maps leads guide](/guides/get-local-business-leads-from-maps) takes you from the first search to the Excel file, click by click.
+The [Yellow Pages guide](/guides/collect-business-listings-from-yellow-pages) takes you from the first search to the Excel file, click by click, and the [lead generation page](/use-cases/lead-generation) has the whole workflow with its numbers.

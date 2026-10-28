@@ -17,7 +17,6 @@ import { emailExtractor } from "@/content/features/email-extractor";
 import { imageDownloader } from "@/content/features/image-downloader";
 import { exportToGoogleSheets } from "@/content/features/export-to-google-sheets";
 import { listScraper } from "@/content/features/list-scraper";
-import { mapsLeads } from "@/content/features/maps-leads";
 import { pageText } from "@/content/features/page-text";
 import { mcp } from "@/content/features/mcp";
 import { productScraper } from "@/content/features/product-scraper";
@@ -32,7 +31,7 @@ import coldRead from "@/content/review/cold-read.json";
 export const metadata = { title: "Review desk", robots: { index: false, follow: false } };
 
 const have = new Set(captureIds());
-const featureContent: FeaturePageContent[] = [aiChat, mapsLeads, listScraper, shopifyScraper, productScraper, emailExtractor, pageText, imageDownloader, bulkScraper, exportToGoogleSheets, mcp, cloud];
+const featureContent: FeaturePageContent[] = [aiChat, listScraper, shopifyScraper, productScraper, emailExtractor, pageText, imageDownloader, bulkScraper, exportToGoogleSheets, mcp, cloud];
 
 /** The "verify" or "Draft until" sentences from a content file's header comment. */
 function notes(file: string): string[] {

@@ -9,7 +9,7 @@ import { productConfig } from "@/config/product";
 const INCLUDED = [
     "Chat or click Collect on any page",
     "Ready-made sites and automatic lists",
-    "Google Maps leads and contact details",
+    "Emails and contact details from a list of websites",
     "Shopify store catalog export",
     "Bulk runs on hundreds of URLs",
     "Excel, CSV, JSON and Google Sheets export",

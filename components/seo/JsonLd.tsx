@@ -1,3 +1,5 @@
+import { plainText } from "@/components/pages/RichText";
+
 // Structured data (schema.org JSON-LD) for a page. Pass one object or several; each gets "@context".
 // Only facts that are true and visible on the page go in here: no ratings, counts or offers we don't show.
 export function JsonLd({ data }: { data: Record<string, unknown> | Record<string, unknown>[] }) {
@@ -17,8 +19,8 @@ export function faqJsonLd(faqs: { q: string; a: string }[]) {
         "@type": "FAQPage",
         mainEntity: faqs.map((f) => ({
             "@type": "Question",
-            name: f.q,
-            acceptedAnswer: { "@type": "Answer", text: f.a },
+            name: plainText(f.q),
+            acceptedAnswer: { "@type": "Answer", text: plainText(f.a) },
         })),
     };
 }

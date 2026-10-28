@@ -48,7 +48,7 @@ export function proseFromObject(o: unknown): string {
             if (/^(ext\/|https?:|\/|[a-z0-9-]+$)/.test(v)) return;
             if (["id", "slug", "page", "feature", "hero", "screenshot", "campaign", "category", "status", "version", "lastUpdated", "lastVerified", "eyebrow", "name", "column", "label"].includes(key)) return;
             if (v.length < 25) return;
-            out.push(v);
+            out.push(v.replace(/\[([^\]]+)\]\([^)]*\)/g, "$1"));
         } else if (Array.isArray(v)) v.forEach((x) => walk(x, key));
         else if (v && typeof v === "object") Object.entries(v as Record<string, unknown>).forEach(([k, x]) => walk(x, k));
     };

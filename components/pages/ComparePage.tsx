@@ -9,6 +9,7 @@ import { siteConfig } from "@/config/site";
 import { formatDate } from "@/lib/format-date";
 import { ogImageUrl } from "@/lib/og";
 import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/components/seo/JsonLd";
+import RichText from "@/components/pages/RichText";
 
 /** One comparison page: verdict first, a disclosure line, the at-a-glance table, then the detail. Copy rules: docs/content-standards.md §7. */
 export interface ComparePageContent {
@@ -91,8 +92,8 @@ export default function ComparePage({ content: c }: { content: ComparePageConten
                                 {c.rows.map((r) => (
                                     <tr key={r.area} className="border-b border-slate-100 dark:border-slate-800/60">
                                         <th scope="row" className={`${cell} font-semibold text-slate-900 dark:text-white`}>{r.area}</th>
-                                        <td className={`${cell} text-slate-700 dark:text-slate-200`}>{r.ours}</td>
-                                        <td className={`${cell} pr-0 text-slate-700 dark:text-slate-200`}>{r.theirs}</td>
+                                        <td className={`${cell} text-slate-700 dark:text-slate-200`}><RichText text={r.ours} /></td>
+                                        <td className={`${cell} pr-0 text-slate-700 dark:text-slate-200`}><RichText text={r.theirs} /></td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -108,7 +109,7 @@ export default function ComparePage({ content: c }: { content: ComparePageConten
                         <Reveal>
                             <h2 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">{s.heading}</h2>
                             {s.paragraphs.map((p) => (
-                                <p key={p} className="mt-4 text-lg text-slate-700 dark:text-slate-200 leading-[1.65]">{p}</p>
+                                <p key={p} className="mt-4 text-lg text-slate-700 dark:text-slate-200 leading-[1.65]"><RichText text={p} /></p>
                             ))}
                         </Reveal>
                     </div>
@@ -123,7 +124,7 @@ export default function ComparePage({ content: c }: { content: ComparePageConten
                             {c.faqs.map((f) => (
                                 <details key={f.q} className="group py-4">
                                     <summary className="cursor-pointer list-none font-semibold text-slate-900 dark:text-white [&::-webkit-details-marker]:hidden"><h3 className="inline text-base">{f.q}</h3></summary>
-                                    <p className="mt-3 text-base text-slate-700 dark:text-slate-200 leading-[1.65]">{f.a}</p>
+                                    <p className="mt-3 text-base text-slate-700 dark:text-slate-200 leading-[1.65]"><RichText text={f.a} /></p>
                                 </details>
                             ))}
                         </div>

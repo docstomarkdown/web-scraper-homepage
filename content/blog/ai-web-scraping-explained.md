@@ -82,7 +82,7 @@ Fifty dentists in Austin with their emails, in the chat extension. Real timings 
 | Lakeside Family Dentistry | (555) 010-4410 | info@lakesidefd.example | lakesidefd.example |
 | Northside Orthodontics | (555) 010-7782 | | northsideortho.example |
 
-What the AI saw: the two sentences you typed and the fact that you were on an ordinary page. What it didn't see: any of the fifty businesses. The [emails from Google Maps guide](/guides/get-maps-leads-with-emails) has a screenshot of each step.
+What the AI saw: the two sentences you typed and the fact that you were on an ordinary page. What it didn't see: any of the fifty businesses. The [emails and contacts page](/email-extractor) explains what the reader collects from each website.
 
 ## What each kind costs, and what it can reach
 

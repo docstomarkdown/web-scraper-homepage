@@ -15,13 +15,14 @@ export interface ReadyMadeSite {
 }
 
 export const readyMadeSites: ReadyMadeSite[] = [
-    // Google Maps and directories
-    { name: "Google Maps", category: "maps-and-directories", page: "maps" },
-    { name: "Yellow Pages", category: "maps-and-directories", page: "yellow-pages" },
-    { name: "Justdial", category: "maps-and-directories", page: "justdial" },
-    { name: "BBB", category: "maps-and-directories", page: "bbb" },
+    // Business directories. Google Maps has a tuned setup too and is listed as a fact, with no page of its own:
+    // Maps how-tos live on mapsscraper.pro (the same engine, Maps only), and /maps-leads redirects there (next.config.js).
+    { name: "Yellow Pages", category: "business-directories", page: "yellow-pages" },
+    { name: "Justdial", category: "business-directories", page: "justdial" },
+    { name: "BBB", category: "business-directories", page: "bbb" },
+    { name: "Google Maps", category: "business-directories" },
     // configs-prod/manta.com.json is the generic default with no site-specific selectors: nothing is tuned yet.
-    { name: "Manta", category: "maps-and-directories", hidden: true },
+    { name: "Manta", category: "business-directories", hidden: true },
     // Shopify
     { name: "Any Shopify store: full catalog", category: "shopify-stores" },
     // Online stores

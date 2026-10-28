@@ -14,6 +14,7 @@ import Glossary from "@/components/pages/Glossary";
 import { getAllGuides } from "@/lib/guides";
 import { useCasePages } from "@/content/use-cases";
 import { getCapture } from "@/lib/visuals";
+import RichText from "@/components/pages/RichText";
 
 /** Content for one product feature page. Copy rules: docs/content-standards.md and docs/writing-style.md. */
 export interface FeaturePageContent {
@@ -147,13 +148,13 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                                                 <span className="sr-only">Step {i + 1}: </span>
                                                 {s.title}
                                             </h3>
-                                            <p className={`mt-3 ${body}`}>{s.body}</p>
+                                            <p className={`mt-3 ${body}`}><RichText text={s.body} /></p>
                                             {s.points && s.points.length > 0 && (
                                                 <ul className={`mt-4 space-y-2 ${body}`}>
                                                     {s.points.map((pt) => (
                                                         <li key={pt} className="flex gap-3">
                                                             <span className="mt-[0.7em] h-2 w-2 shrink-0 rounded-full bg-[#1f5ec2] dark:bg-[#7aa7ff]" aria-hidden="true" />
-                                                            <span>{pt}</span>
+                                                            <span><RichText text={pt} /></span>
                                                         </li>
                                                     ))}
                                                 </ul>
@@ -185,7 +186,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                                         {f.example && (
                                             <p className="mt-3 inline-block rounded-2xl rounded-br-sm bg-[#1f5ec2] px-3 py-1.5 text-base text-white">{f.example}</p>
                                         )}
-                                        <p className="mt-3 text-base text-slate-700 dark:text-slate-200 leading-[1.65]">{f.description}</p>
+                                        <p className="mt-3 text-base text-slate-700 dark:text-slate-200 leading-[1.65]"><RichText text={f.description} /></p>
                                     </div>
                                 </Reveal>
                             ))}
@@ -203,7 +204,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                                     {c.fields.items.map((f) => (
                                         <tr key={f.name} className="border-b border-slate-100 dark:border-slate-800/60 align-top">
                                             <th scope="row" className="py-3 pr-5 text-lg font-semibold text-slate-800 dark:text-white whitespace-nowrap">{f.name}</th>
-                                            <td className={`py-3 ${body}`}>{f.description}</td>
+                                            <td className={`py-3 ${body}`}><RichText text={f.description} /></td>
                                         </tr>
                                     ))}
                                 </tbody>
@@ -225,7 +226,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                             {c.useCases.items.map((u) => (
                                 <li key={u.title}>
                                     <h3 className="text-xl font-semibold text-slate-800 dark:text-white">{u.title}</h3>
-                                    <p className={`mt-2 ${body}`}>{u.body}</p>
+                                    <p className={`mt-2 ${body}`}><RichText text={u.body} /></p>
                                 </li>
                             ))}
                         </ul>
@@ -242,7 +243,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                             {c.limits.items.map((l) => (
                                 <li key={l} className="flex gap-3">
                                     <span className="mt-[0.7em] h-2 w-2 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500" aria-hidden="true" />
-                                    <span>{l}</span>
+                                    <span><RichText text={l} /></span>
                                 </li>
                             ))}
                         </ul>
@@ -263,7 +264,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                                     <h3 className="text-xl font-semibold text-slate-800 dark:text-white leading-snug">{f.q}</h3>
                                     <span className="mt-1 text-2xl leading-none text-slate-500 dark:text-slate-400 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
                                 </summary>
-                                <p className={`mt-3 ${body}`}>{f.a}</p>
+                                <p className={`mt-3 ${body}`}><RichText text={f.a} /></p>
                             </details>
                         ))}
                     </div>

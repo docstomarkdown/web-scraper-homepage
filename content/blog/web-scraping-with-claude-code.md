@@ -23,9 +23,9 @@ Claude Code is a strong way to write a web scraper: describe the page, paste its
 
 ## The job
 
-Every business from a Google Maps search for plumbers in Denver, with phone, website and the email from each business's own site, in Excel.
+Every plumber in Denver from a business directory such as Yellow Pages, across every page of results, with phone, website and the email from each business's own site, in Excel.
 
-It's the most searched scraping job on YouTube, and the one where the two routes differ most.
+It's the lead-list job every agency starts with, and the one where the two routes differ most. (The Google Maps version of the same job, with Claude or ChatGPT, is on [Maps Scraper Pro's AI guide](https://mapsscraper.pro/guides/get-maps-leads-with-ai); Maps Scraper Pro is the same engine, Maps only.)
 
 ## Route 1: Claude Code writes the scraper
 
@@ -34,17 +34,17 @@ A script in minutes, then the real work.
 A prompt like this gets a start:
 
 ```
-Write a Python script that takes a Google Maps search URL for "plumbers in Denver", collects each business's name, rating, phone and website, then visits each website and finds email addresses on it and its contact page. Save everything as an Excel file.
+Write a Python script that takes a Yellow Pages search URL for plumbers in Denver, follows the Next page link to the end, collects each business's name, rating, phone and website, then visits each website and finds email addresses on it and its contact page. Save everything as an Excel file.
 ```
 
-Claude Code will produce something sensible: a headless browser to load Google Maps, a scroll routine to load the results, a selector for each card, a second pass over the websites with an email regex, and a spreadsheet writer. For a developer, that's a good first draft.
+Claude Code will produce something sensible: a fetch for each results page, a loop that follows the Next page link, a selector for each listing card, a second pass over the websites with an email regex, and a spreadsheet writer. For a developer, that's a good first draft.
 
 Then the fix loop starts. Each of these is one round of "run it, paste the error, apply the fix":
 
-1. **The list comes back empty.** Google Maps draws its results with JavaScript and only shows cards as the list scrolls, so the script needs the headless browser and the scroll routine to work together. Claude Code adds them when you paste the empty output.
-2. **A verification page appears after a few dozen businesses.** Google Maps slows automated browsers and then asks "are you a person?". Slowing the script helps; it doesn't make the check go away, because the script can't answer it.
-3. **The emails are patchy.** Every business website is different. The regex finds addresses written as "hello [at] example.com", addresses shown as images, and none at all, and some sites refuse headless browsers outright.
-4. **Next month it breaks.** A Google Maps layout change moves a selector, and you're back at step 1.
+1. **The list comes back empty or half full.** The directory draws some of each card after the page loads, and the selectors Claude Code guessed don't match the ones on the live page. You paste the HTML of one results page and the script gets its first rows.
+2. **A verification page appears after a few dozen pages.** Directories slow down fetches that arrive faster than a person reads, then ask "are you a person?". Slowing the script helps; it doesn't make the check go away, because the script can't answer it.
+3. **The emails are patchy.** Every business website is different. The regex finds addresses written as "hello [at] example.com", addresses shown as images, and none at all, and some sites refuse scripts outright.
+4. **Next month it breaks.** The directory moves a class name, and you're back at step 1.
 
 None of this is a mark against Claude Code. It's the cost of any script: it reads the page without a person, and the page can tell.
 
@@ -52,13 +52,13 @@ None of this is a mark against Claude Code. It's the cost of any script: it read
 
 The same request as a sentence, run in your own browser, with the emails read in the same run.
 
-1. Open Chrome and click the Web Scraper Pro icon. The side panel opens on the right of the page; open its **Chat** tab.
-2. Type `Find plumbers in Denver` and press Enter. A card asks how many businesses: 20, 50, 100 or 200, with a box to type another number. Click **Start**.
-3. Google Maps opens in a tab. The extension scrolls the results and opens each place for its phone, website, address and hours. Because the run happens in your browser, Google Maps sees you browsing, not a script.
-4. While it collects, it reads each business's website and one linked Contact page, and adds Emails, Website phones and social links to the row.
+1. Open the Yellow Pages search for plumbers in Denver in Chrome and click the Web Scraper Pro icon. The side panel opens on the right of the page; open its **Chat** tab.
+2. Type `Collect every plumber in this list` and press Enter. The extension collects the page, finds the Next page link, and pages through the list. Because the run happens in your browser, the directory sees you browsing, not a script.
+3. A result card shows the rows with business name, phone, address, rating and website in named columns. Under it, click **Add emails and social links**.
+4. Each business's website and one linked Contact page are read, and Emails, Website phones and social links are added to the same rows.
 5. When it's done, click **Export as** and choose **Microsoft Excel**.
 
-Fifty businesses with emails take about four minutes; 200 take about fifteen. The [emails from Google Maps guide](/guides/get-maps-leads-with-emails) has a screenshot of each step.
+Adding emails takes about four minutes per 50 websites. The [Yellow Pages guide](/guides/collect-business-listings-from-yellow-pages) has a screenshot of each step.
 
 | Business Name | Phone | Emails | Website |
 |---|---|---|---|
@@ -72,11 +72,11 @@ The names and numbers are made up; the columns are what a real run gives you.
 
 | | Claude Code script | Web Scraper Pro |
 |---|---|---|
-| Time to first rows | 10 to 60 minutes, depending on the fixes | About 4 minutes for 50 businesses |
+| Time to first rows | 10 to 60 minutes, depending on the fixes | A few minutes for the list; about 4 minutes per 50 websites for the emails |
 | Pages drawn by JavaScript | With a headless browser added | Yes, it's your browser |
 | Verification pages | Stop the script; you slow it down or give up | The run stops and asks you to complete the check in the tab, then carries on |
 | Emails from each website | A second pass you write and tune | Same run, built in |
-| When Google Maps changes its layout | Fix the selectors | Nothing to do; the setup updates on its own |
+| When the directory changes its layout | Fix the selectors | Nothing to do; the setup updates on its own |
 | Rules of your own (score leads, merge with another list) | Anything you can code | Rename, filter, sort and export; the rest in your sheet |
 | Runs without you on a schedule | Yes, with a scheduler you set up | Coming with the cloud |
 | Price | Your Claude subscription | Free, no paid plan |
@@ -123,7 +123,7 @@ Not every job is a lead list. These are the ones to script.
 
 ## Questions people ask
 
-**Can Claude Code scrape Google Maps?** It can write a script that tries, and the script will work until Google Maps shows a verification page, which it does after a few dozen businesses from an automated browser. The extension avoids that because the run happens in your own browser.
+**Can Claude Code scrape a business directory?** It can write a script that tries, and the script will work until the directory shows a verification page, which most do after a few dozen fast page loads from a script. The extension avoids that because the run happens in your own browser, at a person's pace.
 
 **Is it legal to scrape with Claude Code?** The same as with any tool: public pages, your own research, no personal profiles, and the site's terms. The tool doesn't change the rules; the [legal guide](/web-scraping-legal) covers them.
 

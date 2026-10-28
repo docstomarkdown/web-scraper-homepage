@@ -6,6 +6,7 @@ import CTA from "@/components/landing/CTA";
 import { Screenshot } from "@/components/Screenshot";
 import ProseSection, { type ContentSection } from "@/components/pages/ProseSection";
 import Glossary from "@/components/pages/Glossary";
+import RichText from "@/components/pages/RichText";
 import { getAllGuides } from "@/lib/guides";
 import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/components/seo/JsonLd";
 import { productConfig } from "@/config/product";
@@ -154,11 +155,11 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
                                     <span className="mt-0.5 inline-flex w-9 h-9 shrink-0 items-center justify-center rounded-full bg-[#2772ED]/10 text-base font-semibold text-[#1f5ec2] dark:text-[#7aa7ff]" aria-hidden="true">{i + 1}</span>
                                     <div className="min-w-0">
                                         <h3 className={h3}><span className="sr-only">Step {i + 1}: </span>{s.title}</h3>
-                                        <p className={`mt-3 ${body}`}>{s.body}</p>
+                                        <p className={`mt-3 ${body}`}><RichText text={s.body} /></p>
                                         {s.points && s.points.length > 0 && (
                                             <ul className={`mt-4 space-y-2 ${body}`}>
                                                 {s.points.map((pt) => (
-                                                    <li key={pt} className="flex gap-3"><span className="mt-[0.7em] h-2 w-2 shrink-0 rounded-full bg-[#1f5ec2] dark:bg-[#7aa7ff]" aria-hidden="true" /><span>{pt}</span></li>
+                                                    <li key={pt} className="flex gap-3"><span className="mt-[0.7em] h-2 w-2 shrink-0 rounded-full bg-[#1f5ec2] dark:bg-[#7aa7ff]" aria-hidden="true" /><span><RichText text={pt} /></span></li>
                                                 ))}
                                             </ul>
                                         )}
@@ -189,7 +190,7 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
                                 {c.fields.items.map((f) => (
                                     <tr key={f.name} className="border-b border-slate-100 dark:border-slate-800/60 align-top">
                                         <th scope="row" className="py-3 pr-5 text-lg font-semibold text-slate-800 dark:text-white">{f.name}</th>
-                                        <td className={`py-3 ${body}`}>{f.description}</td>
+                                        <td className={`py-3 ${body}`}><RichText text={f.description} /></td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -210,7 +211,7 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
                                     {c.emptyWhen.map((r) => (
                                         <tr key={r.column} className="border-b border-slate-100 dark:border-slate-800/60 align-top">
                                             <th scope="row" className="py-3 pr-5 text-lg font-semibold text-slate-800 dark:text-white">{r.column}</th>
-                                            <td className={`py-3 ${body}`}>{r.when}</td>
+                                            <td className={`py-3 ${body}`}><RichText text={r.when} /></td>
                                         </tr>
                                     ))}
                                 </tbody>
@@ -227,7 +228,7 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
                         <h2 className={h2}>{c.notes.heading}</h2>
                         <ul className={`mt-6 space-y-3 ${body}`}>
                             {c.notes.items.map((n) => (
-                                <li key={n} className="flex gap-3"><span className="mt-[0.7em] h-2 w-2 shrink-0 rounded-full bg-[#1f5ec2] dark:bg-[#7aa7ff]" aria-hidden="true" /><span>{n}</span></li>
+                                <li key={n} className="flex gap-3"><span className="mt-[0.7em] h-2 w-2 shrink-0 rounded-full bg-[#1f5ec2] dark:bg-[#7aa7ff]" aria-hidden="true" /><span><RichText text={n} /></span></li>
                             ))}
                         </ul>
                         {c.pushback && c.pushback.length > 0 && (
@@ -235,7 +236,7 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
                                 <h3 className={`mt-10 ${h3}`}>When the site pushes back</h3>
                                 <ul className={`mt-4 space-y-3 ${body}`}>
                                     {c.pushback.map((n) => (
-                                        <li key={n} className="flex gap-3"><span className="mt-[0.7em] h-2 w-2 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500" aria-hidden="true" /><span>{n}</span></li>
+                                        <li key={n} className="flex gap-3"><span className="mt-[0.7em] h-2 w-2 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500" aria-hidden="true" /><span><RichText text={n} /></span></li>
                                     ))}
                                 </ul>
                             </>
@@ -260,7 +261,7 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
                                         <h3 className={h3}>{f.q}</h3>
                                         <span className="mt-1 text-2xl leading-none text-slate-500 dark:text-slate-400 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
                                     </summary>
-                                    <p className={`mt-3 ${body}`}>{f.a}</p>
+                                    <p className={`mt-3 ${body}`}><RichText text={f.a} /></p>
                                 </details>
                             ))}
                         </div>

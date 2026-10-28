@@ -4,7 +4,7 @@ import path from "node:path";
 const root = new URL("..", import.meta.url).pathname;
 const slugs = (dir, ext) => fs.existsSync(path.join(root, dir)) ? fs.readdirSync(path.join(root, dir)).filter((f) => f.endsWith(ext) && !f.startsWith("index")).map((f) => f.slice(0, -ext.length)) : [];
 const r = ["/", "/support", "/privacy-policy", "/terms-of-service", "/changelog", "/compare", "/web-scraping-legal", "/use-cases", "/scrapers", "/guides", "/blog", "/blog/author/vikram", "/tools"];
-for (const f of ["ai-chat", "mcp", "maps-leads", "list-scraper", "shopify-scraper", "product-scraper", "email-extractor", "page-text", "image-downloader", "bulk-scraper", "export-to-google-sheets", "cloud"]) r.push("/" + f);
+for (const f of ["ai-chat", "mcp", "list-scraper", "shopify-scraper", "product-scraper", "email-extractor", "page-text", "image-downloader", "bulk-scraper", "export-to-google-sheets", "cloud"]) r.push("/" + f);
 for (const s of slugs("content/use-cases", ".ts")) r.push("/use-cases/" + s);
 for (const s of slugs("content/scrapers", ".ts")) r.push("/scrapers/" + s);
 for (const s of slugs("content/compare", ".ts")) r.push("/compare/" + s);

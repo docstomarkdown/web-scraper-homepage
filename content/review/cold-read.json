@@ -41,25 +41,6 @@
   "would_install": "yes — typing a sentence and getting Excel is exactly what I want",
   "one_fix": "In step 1 say how to open the side panel (click the icon in Chrome's toolbar) and state the daily message limit as a number."
  },
- "/maps-leads": {
-  "route": "/maps-leads",
-  "understood": 5,
-  "first_screen": "Search Google Maps for a type of business in a city, click once, and every result becomes a row with phone, website, rating and email.",
-  "unclear_words": [
-   "API key",
-   "JSON",
-   "Map URL",
-   "verification page",
-   "scrape"
-  ],
-  "stuck_steps": [
-   "Then click the Web Scraper Pro icon to open the side panel.",
-   "Google's terms restrict automated collection, and anti-spam and privacy laws apply to how you contact people."
-  ],
-  "open_question": "Could Google block or ban my Google account for doing this?",
-  "would_install": "yes — one click, phone numbers and emails in Excel, free",
-  "one_fix": "Answer 'will Google ban my account?' directly in the FAQ in plain words rather than 'Google's terms restrict automated collection'."
- },
  "/list-scraper": {
   "route": "/list-scraper",
   "understood": 4,
@@ -665,25 +646,6 @@
   "open_question": "How many of the phone numbers will actually come through, since some are hidden behind 'Show number'?",
   "would_install": "maybe; useful for calling lists, email step confusing",
   "one_fix": "Give a rough number for how many phone numbers come through on a typical Justdial search, since that's the whole reason to use it."
- },
- "/scrapers/maps": {
-  "route": "/scrapers/maps",
-  "understood": 4,
-  "first_screen": "A free Chrome add-on that turns a Google Maps search into a list of businesses with phone, website and email.",
-  "unclear_words": [
-   "Google Maps API key",
-   "Map URL",
-   "Bulk",
-   "JSON",
-   "Settings → Results"
-  ],
-  "stuck_steps": [
-   "Then click the Web Scraper Pro icon and open the List tab.",
-   "Screenshot to capture: ext/list-tab-maps-collect"
-  ],
-  "open_question": "Is it OK to email businesses from a list I made this way, or is that spam?",
-  "would_install": "yes; typing 'Find dentists in Austin' is something I can do",
-  "one_fix": "Lead with the chat route ('Find dentists in Austin') as Step 1 and show the actual screen, since that's the simplest way in."
  },
  "/scrapers/rightmove": {
   "route": "/scrapers/rightmove",
@@ -1356,61 +1318,6 @@
   "open_question": "How many websites can I paste, and does that cost anything?",
   "would_install": "maybe: I'd want to see it work on one site first",
   "one_fix": "Show a worked example of five pasted addresses and the finished sheet before the steps."
- },
- "/guides/get-local-business-leads-from-maps": {
-  "route": "/guides/get-local-business-leads-from-maps",
-  "understood": 5,
-  "first_screen": "Type 'dentists in Austin' into a chat box and get every Maps result as a row in Excel with phone and website.",
-  "unclear_words": [
-   "no API key",
-   "idea cards",
-   "History",
-   "Businesses per chat search",
-   "Bulk runs"
-  ],
-  "stuck_steps": [
-   "Click the round Stop button, or press Esc, at any time to keep what it has.",
-   "Is there a free way to try this? Install the extension from the Chrome Web Store and run a search."
-  ],
-  "open_question": "Is it free, and how many searches do I get before paying?",
-  "would_install": "yes: one sentence in, a list out, I'd try it",
-  "one_fix": "Answer 'Is there a free way to try this?' with the actual free limit instead of 'install it'."
- },
- "/guides/get-maps-leads-with-emails": {
-  "route": "/guides/get-maps-leads-with-emails",
-  "understood": 4,
-  "first_screen": "It collects businesses from a Maps search and visits each one's website to find their email.",
-  "unclear_words": [
-   "History tab",
-   "Add contact details",
-   "+N more button",
-   "Settings → Results",
-   "Bulk scrape → Collect contacts → Use saved data",
-   "untick the box on the List tab"
-  ],
-  "stuck_steps": [
-   "The button needs a column whose name is exactly Website. Rename the website column on the results page",
-   "Say no on the card, or untick the box on the List tab."
-  ],
-  "open_question": "Is it okay to email these businesses once I have the list?",
-  "would_install": "maybe: I get the idea, the fix-it section is confusing",
-  "one_fix": "Cut the 'Add contact details is greyed out' fix to one sentence or move it to a help page."
- },
- "/guides/get-phone-numbers-from-maps": {
-  "route": "/guides/get-phone-numbers-from-maps",
-  "understood": 5,
-  "first_screen": "Search a trade and city, keep only names and phone numbers, and export a call list to Excel.",
-  "unclear_words": [
-   "HVAC contractors",
-   "Clear filters",
-   "History"
-  ],
-  "stuck_steps": [
-   "Only name, phone and website phones, rows with a phone"
-  ],
-  "open_question": "Do I type that filter sentence word for word, and is this free?",
-  "would_install": "yes: short, clear, I could do it now",
-  "one_fix": "Say that the filter sentence is just plain words and you can phrase it your own way."
  },
  "/guides/save-a-pages-text-as-a-document": {
   "route": "/guides/save-a-pages-text-as-a-document",

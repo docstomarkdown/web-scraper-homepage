@@ -1,6 +1,7 @@
 import { Check } from "lucide-react";
 import Reveal from "@/components/landing/Reveal";
 import { Screenshot } from "@/components/Screenshot";
+import RichText from "@/components/pages/RichText";
 
 /**
  * One section of reading text on a feature, site or use-case page: a heading, two or three short paragraphs, and
@@ -34,14 +35,14 @@ export default function ProseSection({ s }: { s: ContentSection }) {
                     <h2 className={`${s.eyebrow ? "mt-2 " : ""}${h2}`}>{s.heading}</h2>
                     <div className={`mt-5 space-y-5 ${body}`}>
                         {s.paragraphs.map((p) => (
-                            <p key={p}>{p}</p>
+                            <p key={p}><RichText text={p} /></p>
                         ))}
                         {s.points && s.points.length > 0 && (
                             <ul className="space-y-3">
                                 {s.points.map((pt) => (
                                     <li key={pt} className="flex gap-3">
                                         <Check className="w-5 h-5 mt-[0.3em] shrink-0 text-[#1f5ec2] dark:text-[#7aa7ff]" aria-hidden="true" />
-                                        <span>{pt}</span>
+                                        <span><RichText text={pt} /></span>
                                     </li>
                                 ))}
                             </ul>
@@ -51,7 +52,7 @@ export default function ProseSection({ s }: { s: ContentSection }) {
                                 {s.steps.map((st, i) => (
                                     <li key={st.title} className="flex gap-4">
                                         <span className="mt-0.5 inline-flex w-8 h-8 shrink-0 items-center justify-center rounded-full bg-[#2772ED]/10 text-base font-semibold text-[#1f5ec2] dark:text-[#7aa7ff]" aria-hidden="true">{i + 1}</span>
-                                        <span><strong className="font-semibold text-slate-800 dark:text-white">{st.title}</strong> {st.body}</span>
+                                        <span><strong className="font-semibold text-slate-800 dark:text-white">{st.title}</strong> <RichText text={st.body} /></span>
                                     </li>
                                 ))}
                             </ol>
@@ -67,12 +68,12 @@ export default function ProseSection({ s }: { s: ContentSection }) {
                                     <tbody>
                                         {s.table.rows.map((row, i) => (
                                             <tr key={i} className="border-b border-slate-100 dark:border-slate-800/60 align-top">
-                                                {row.map((cell, j) => <td key={j} className="py-3 pr-5 text-slate-700 dark:text-slate-200">{cell}</td>)}
+                                                {row.map((cell, j) => <td key={j} className="py-3 pr-5 text-slate-700 dark:text-slate-200"><RichText text={cell} /></td>)}
                                             </tr>
                                         ))}
                                     </tbody>
                                 </table>
-                                {s.table.caption && <figcaption className="mt-2 text-base text-slate-600 dark:text-slate-300">{s.table.caption}</figcaption>}
+                                {s.table.caption && <figcaption className="mt-2 text-base text-slate-600 dark:text-slate-300"><RichText text={s.table.caption} /></figcaption>}
                             </figure>
                         )}
                     </div>

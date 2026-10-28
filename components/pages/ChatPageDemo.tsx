@@ -1,29 +1,29 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import { MapPin, ShoppingBag, Store } from "lucide-react";
+import { BookUser, ShoppingBag, Store } from "lucide-react";
 import ChatDemo, { type Scenario } from "@/components/landing/ChatDemo";
 
-// Only what chat really does (see content/features/ai-chat.ts): a Google Maps search, a whole Shopify
-// catalog, and the list on the open page (one page, not every page). Sample data only.
+// Only what chat really does (see content/features/ai-chat.ts): a directory list across its pages, a whole Shopify
+// catalog, and the list on the open page (one page). Sample data only.
 const CHAT_SCENARIOS: Scenario[] = [
     {
-        id: "local",
-        chip: "Google Maps search",
-        icon: MapPin,
-        source: "Google Maps · dentists in Austin",
-        prompt: "Find dentists in Austin",
-        working: "Searching Google Maps for dentists in Austin…",
-        found: "Found 50 businesses · reading details…",
-        total: "50",
-        columns: ["Name", "Phone", "Website"],
+        id: "directory",
+        chip: "Directory, every page",
+        icon: BookUser,
+        source: "Business directory · plumbers in Denver",
+        prompt: "Collect every plumber in this list",
+        working: "Collecting the list, page after page…",
+        found: "Found 96 businesses · naming columns…",
+        total: "96",
+        columns: ["Business", "Phone", "Website"],
         rows: [
-            ["Bright Smile Dental", "(555) 010-2231", "brightsmile.example"],
-            ["Lakeside Family Dentistry", "(555) 010-4410", "lakesidefd.example"],
-            ["Northside Orthodontics", "(555) 010-7782", "northsideortho.example"],
-            ["Austin Kids Dental", "(555) 010-9043", "austinkidsdental.example"],
+            ["Sample Plumbing Co.", "(555) 010-2231", "sampleplumbing.example"],
+            ["Riverside Pipe & Drain", "(555) 010-4410", "riversidepipe.example"],
+            ["Quick Fix Plumbing", "(555) 010-7782", "quickfixplumbing.example"],
+            ["Mile High Drain Pros", "(555) 010-9043", "milehighdrain.example"],
         ],
-        file: "dentists-austin.xlsx",
+        file: "plumbers-denver.xlsx",
     },
     {
         id: "shopify",

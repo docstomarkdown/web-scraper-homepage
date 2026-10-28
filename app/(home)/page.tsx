@@ -14,7 +14,7 @@ export const metadata = {
     title: { absolute: "Web Scraper Pro: Free Web Scraper Chrome Extension, No Code" },
     alternates: { canonical: "/" },
     description:
-        "Turn any web page into a spreadsheet. Collect Google Maps leads, Amazon products and Zillow listings in one click, then export to Google Sheets, Excel or CSV. Free Chrome extension, no code.",
+        "Turn any web page into a spreadsheet. Collect Amazon products, Zillow listings and any list on any site in one click, then export to Google Sheets, Excel or CSV. Free Chrome extension, no code.",
 };
 
 export default function Home() {

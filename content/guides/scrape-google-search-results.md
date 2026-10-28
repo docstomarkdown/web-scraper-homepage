@@ -57,10 +57,10 @@ Google has no ready-made setup in the extension, so the columns are named from t
 
 | Column | Example |
 |---|---|
-| Title | How to scrape Google Maps for business leads |
-| Link | https://www.webscraper.pro/maps-leads |
+| Title | How to Extract Email Addresses from Any Website, Free |
+| Link | https://www.webscraper.pro/email-extractor |
 | Site | webscraper.pro |
-| Snippet | Search Google Maps for a type of business in a city. Click once… |
+| Snippet | Open a company's website, click once, and get its email addresses… |
 
 The row number is the position. Column names differ a little between result layouts; rename them on the results page.
 

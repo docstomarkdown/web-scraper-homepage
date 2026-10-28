@@ -4,8 +4,8 @@ import { productConfig } from "@/config/product";
 // Tracking links for videos, guides and store slides: /go/<campaign> or /go/<medium>/<campaign>.
 // Each one redirects to the Chrome Web Store listing with UTM parameters, so installs can be read per
 // campaign in the store dashboard without typing a long store URL into a video description.
-//   /go/get-maps-leads-with-emails            → utm_medium=link,  utm_campaign=get-maps-leads-with-emails
-//   /go/shorts/get-maps-leads-with-emails     → utm_medium=shorts, utm_campaign=get-maps-leads-with-emails
+//   /go/scrape-yellow-pages                   → utm_medium=link,  utm_campaign=scrape-yellow-pages
+//   /go/shorts/scrape-yellow-pages            → utm_medium=shorts, utm_campaign=scrape-yellow-pages
 // Mediums match the content plan: guide, longform, shorts, slides, email, link. Anything else, or a slug
 // with characters outside a-z 0-9 and hyphens, redirects to the listing with no campaign.
 
