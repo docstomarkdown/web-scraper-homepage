@@ -33,6 +33,8 @@ Each store sets its own terms, and the products, images and text belong to the s
 
 ## Prerequisites
 
+Not a Shopify store? [How To Scrape Products from Any Online Store](/guides/scrape-products-from-any-online-store) covers category pages on any store, WooCommerce included.
+
 - Google Chrome with Web Scraper Pro installed (version 1.3.0 or later).
 - A public Shopify store. A store that asks for a password before showing products can't be read.
 - The right to use the data. The products, images and text belong to the store; check its terms before reusing them.

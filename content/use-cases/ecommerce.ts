@@ -153,7 +153,7 @@ export const ecommerce: UseCasePageContent = {
             "Give you the right to reuse product photos, descriptions or reviews. They belong to the store and its reviewers; collect them for your own analysis.",
         ],
     },
-    guides: ["collect-amazon-search-results", "collect-store-listings-to-excel", "export-a-shopify-store-catalog", "scrape-data-from-any-website-to-excel"],
+    guides: ["scrape-products-from-any-online-store", "collect-amazon-search-results", "collect-store-listings-to-excel", "export-a-shopify-store-catalog", "scrape-data-from-any-website-to-excel"],
     faqs: [
         { q: "Is this free?", a: "Yes. Web Scraper Pro is free to install and use. There's no paid plan, every feature is included, and there's no account to create." },
         { q: "How do I track competitor prices without a tool subscription?", a: "Collect the competitor's category into a table, export it, and run the same collection when you want fresh numbers. History keeps each run with its date, so two exports side by side show what changed." },
