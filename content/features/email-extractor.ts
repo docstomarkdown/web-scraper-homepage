@@ -244,7 +244,7 @@ export const emailExtractor: FeaturePageContent = {
         items: [
             { title: "Outreach lists", body: "A list of company websites becomes a sheet with an email and phone for each, ready for your email tool." },
             { title: "Local business leads", body: "Collect businesses from a directory such as Yellow Pages, then get each one's email from its own site. Also works on Google Maps; for Maps-only lead lists, [Maps Scraper Pro's email extractor](https://mapsscraper.pro/email-extractor) is the same engine, Maps only." },
-            { title: "Partner and supplier research", body: "Find the right contact on dozens of supplier sites without opening each one." },
+            { title: "Partner and supplier research", body: "Find the right contact on dozens of supplier sites without opening each one. [Social media links for a list of websites](/guides/get-social-links-for-a-list-of-websites) shows the run with one column per network." },
             { title: "Keeping records current", body: "Re-run the same list later with Update contact details and compare which contacts changed." },
         ],
     },
