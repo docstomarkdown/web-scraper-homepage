@@ -16,7 +16,7 @@ export const leadGeneration: UseCasePageContent = {
     page: getPage("lead-generation", "use-case"),
     meta: {
         title: "How to Use Web Scraping for Lead Generation, Free",
-        description: "Build a lead list of businesses by type and city from Yellow Pages, Yelp, Justdial, BBB or any directory, with phone, website, email and social links. Free Chrome extension, no code.",
+        description: "Build a lead list of businesses by type and city from Yellow Pages, Yelp, Justdial, BBB or any directory, with phone, website and email. Free, no code.",
     },
     h1: "How to use web scraping for lead generation",
     intro: "Lead generation means building a list of businesses to contact. Open a business directory in Chrome, collect every listing with Web Scraper Pro, a free extension, and let it read each business's website for its email. In under an hour you have a spreadsheet with one business per row.",
@@ -182,7 +182,7 @@ export const leadGeneration: UseCasePageContent = {
             "Collect people's personal details. It collects businesses and the contact details they publish.",
         ],
     },
-    guides: ["collect-business-listings-from-yellow-pages", "scrape-yelp-business-listings", "get-emails-from-a-list-of-websites", "collect-job-postings-from-a-careers-page"],
+    guides: ["collect-business-listings-from-yellow-pages", "scrape-a-member-directory-into-a-lead-list", "get-emails-from-a-list-of-websites", "get-emails-from-google-search-results", "get-social-links-for-a-list-of-websites", "collect-job-postings-from-a-careers-page"],
     faqs: [
         { q: "Is this free?", a: "Yes. Web Scraper Pro is free to install and use. There's no paid plan, every feature is included, and there's no account to create." },
         { q: "Do I need to know anything technical?", a: "No. You open a directory search, click the list in the side panel, and click a few buttons. There is nothing to set up and no code." },

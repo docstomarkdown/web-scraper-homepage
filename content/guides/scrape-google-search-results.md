@@ -130,4 +130,4 @@ After export the sheet looks like this. Sample data; the titles and links are ma
 
 ## Conclusion
 
-You collected a Google search into a spreadsheet with the position, title, link and snippet of each result, and the same for a list of keywords in one run. For the sites in your Link column, How To Scrape Emails from a Website into Excel shows how to get their contact details. For what people type into Google in the first place, use Google's own autocomplete and Trends; the extension collects pages, not search volumes.
+You collected a Google search into a spreadsheet with the position, title, link and snippet of each result, and the same for a list of keywords in one run. For the sites in your Link column, [How To Get Emails from Google Search Results](/guides/get-emails-from-google-search-results) adds their emails, phones and social links to the same table. For what people type into Google in the first place, use Google's own autocomplete and Trends; the extension collects pages, not search volumes.
