@@ -1,6 +1,6 @@
 ---
 title: "How To Build a Lead List Without Buying Data"
-description: "Business directories, member lists, careers pages and review sites already list the businesses you want. One afternoon turns them into a sheet with phones and emails."
+description: "Directories, member lists, careers pages and review sites already list the businesses you want. One afternoon turns them into a sheet with phones and emails."
 status: draft
 date: 2026-10-21
 updated: 2026-10-28
@@ -63,7 +63,7 @@ A Google Maps search for a business type in a city returns every business with p
 
 The best lists for a profession, published by the bodies that represent it.
 
-Trade associations, licensing boards, chambers of commerce and franchise locators publish member directories: name, firm, city, often a website. They're narrower than a general directory and far more precise about who belongs to the profession. Most are a list on a page, which the List tab collects across every page. A few need a sign-in; those come with terms you should read first, and the extension never signs in for you.
+Trade associations, licensing boards, chambers of commerce and franchise locators publish member directories: name, firm, city, often a website. They're narrower than a general directory and far more precise about who belongs to the profession. Most are a list on a page, which the List tab collects across every page; the [member directory guide](/guides/scrape-a-member-directory-into-a-lead-list) shows each click. A few need a sign-in; those come with terms you should read first, and the extension never signs in for you.
 
 What you get: the right businesses, verified by the body. What you won't: phones and emails on many of them, which the second run over their websites adds.
 
