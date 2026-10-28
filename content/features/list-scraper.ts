@@ -290,7 +290,7 @@ export const listScraper: FeaturePageContent = {
         },
         {
             q: "Is there a tutorial?",
-            a: "Yes: How To Scrape Data from Any Website into Excel, No Code, with a screenshot for every step, and How To Scrape Every Page of a List, Not Only the First for lists that continue over pages.",
+            a: "[How To Use a Web Scraper Chrome Extension](/guides/use-a-web-scraper-chrome-extension) walks through a first run from the install to the Excel file. Yes: How To Scrape Data from Any Website into Excel, No Code, with a screenshot for every step, and How To Scrape Every Page of a List, Not Only the First for lists that continue over pages.",
         },
     ],
     related: ["ai-chat", "bulk-scraper", "export-to-google-sheets", "product-scraper", "email-extractor"],

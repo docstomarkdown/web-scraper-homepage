@@ -29,7 +29,7 @@ Any list on a web page, such as products, listings or search results, becomes an
 
 ## Prerequisites
 
-- Google Chrome with Web Scraper Pro installed (version 1.3.0 or later).
+- Google Chrome with Web Scraper Pro installed (version 1.3.0 or later). First time? [How To Use a Web Scraper Chrome Extension](/guides/use-a-web-scraper-chrome-extension) starts from the install.
 - A page with a list: a store category, a directory or a job board.
 
 ## Step 1 — Opening the List tab
