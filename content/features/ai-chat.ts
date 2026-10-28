@@ -228,7 +228,7 @@ export const aiChat: FeaturePageContent = {
         },
         {
             q: "Can I scrape a website with ChatGPT or Claude instead?",
-            a: "You can paste a page into ChatGPT and get a table, but it can't page through a site, sign in, or guarantee the numbers. Chat is built into the extension, so you don't need either. Connecting Claude and other MCP clients to collect through your browser is coming soon.",
+            a: "You can paste a page into ChatGPT or Claude and get a table, but neither pages through a site, signs in, or guarantees the numbers; [the Claude guide](/guides/scrape-a-website-with-claude) and [the ChatGPT guide](/guides/scrape-a-website-with-chatgpt) show where each stops. Chat is built into the extension, so you don't need either. Connecting Claude and other MCP clients to collect through your browser is coming soon.",
         },
         {
             q: "Do I need an account or an API key?",

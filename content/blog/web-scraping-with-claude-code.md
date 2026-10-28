@@ -99,7 +99,7 @@ Collect with the extension, process with the code.
 
 A pattern that works: the extension does the browsing, because browsers are what sites expect, and exports a CSV, a plain spreadsheet file any tool opens. A script Claude Code wrote then does the enrichment, the scoring and the upload to your sales tool. Each tool does the part it's good at.
 
-When Web Scraper Pro's MCP connection ships, Claude will be able to call the collector directly from the conversation. The [MCP page](/mcp) says what's planned and that it isn't shipped yet.
+When Web Scraper Pro's MCP connection ships, Claude will be able to call the collector directly from the conversation. The [MCP page](/mcp) says what's planned and that it isn't shipped yet. For the Claude app and Cowork, which take a different route from Claude Code, see the [Claude guide](/guides/scrape-a-website-with-claude).
 
 ## What a good prompt includes
 

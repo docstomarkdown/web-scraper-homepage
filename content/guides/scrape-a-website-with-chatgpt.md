@@ -22,7 +22,7 @@ faq:
   - q: "Can ChatGPT do web scraping with a prompt?"
     a: "A prompt gets you a table from text you paste, or a script to run yourself. Neither pages through a site or opens each item, and the pasted route rewrites values. The prompts above show both."
   - q: "Is Claude any different for web scraping?"
-    a: "Claude has the same two routes and the same limits: it reads what you paste or fetches a page's text, and it can write a script. The gap is the same one: a model generates text; it doesn't copy a page's values."
+    a: "Claude has the same two routes and the same limits, plus Cowork, a desktop agent with its own browser. The gap is the same one: a model generates text; it doesn't copy a page's values. How To Scrape a Website with Claude, and What It Can't Do walks through all three."
   - q: "What about ChatGPT's browsing or agent mode?"
     a: "Browsing fetches a page's text, which is enough for a short public list and not for a paged catalog or a signed-in page. Values still pass through the model, so check them."
 ---
@@ -124,4 +124,4 @@ Because it runs in your Chrome window, it reads pages you're signed in to, and a
 
 ## Conclusion
 
-ChatGPT is a good way to tidy a short list you've pasted, and a fair way to get a starter script if you're a developer. For a list that spans pages, lives behind a sign-in, or has to be right to the digit, ask Web Scraper Pro instead; the request is the same sentence, and the rows come from the page. See How To Scrape a Website Without Coding, by Asking for the full walkthrough.
+ChatGPT is a good way to tidy a short list you've pasted, and a fair way to get a starter script if you're a developer. For a list that spans pages, lives behind a sign-in, or has to be right to the digit, ask Web Scraper Pro instead; the request is the same sentence, and the rows come from the page. See How To Scrape a Website Without Coding, by Asking for the full walkthrough, and [How To Scrape a Website with Claude, and What It Can't Do](/guides/scrape-a-website-with-claude) for the same comparison on Claude.
