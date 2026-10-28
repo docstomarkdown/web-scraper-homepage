@@ -3,7 +3,7 @@ title: "How To Download All Images from a Web Page at Once"
 description: "Save every image on a web page as one ZIP file in three clicks. Images are grouped by their size, so you take the photos and leave the icons behind."
 status: draft
 date: 2026-10-21
-updated: 2026-10-21
+updated: 2026-10-28
 version: "1.3.0"
 author: vikram
 feature: image-downloader
@@ -19,6 +19,8 @@ faq:
     a: "There's no limit on the page. A ZIP holds up to 5,000 files; a bigger collection is split into part-1, part-2 and so on."
   - q: "Can I download the images from a website's subpages too?"
     a: "One page at a time. Open each page and collect, or, for a Shopify store, use the Shopify store export, which downloads every product's images in one go."
+  - q: "Can I download images from Google Images with it?"
+    a: "You get the preview thumbnails the results page shows, grouped by size, which are small. The full-size image lives on each result's source site; open that page and collect there for the original."
   - q: "Is there a Chrome extension for this?"
     a: "Yes, this one. The Images tab is part of Web Scraper Pro; install it from the Chrome Web Store and the tab is there on every page."
 ---
@@ -52,6 +54,12 @@ Icons, logos, sprites and tracking pixels are left out, and an image that appear
 Click **Download** on a group for only that size, or **Download all** at the top for every image. The ZIP file saves to your Downloads folder, named after the site, such as `store.example-images.zip`. A download of more than 5,000 files is split into `…-part-1.zip`, `…-part-2.zip` and so on.
 
 If the page changed, or you scrolled further and more images loaded, click **Find images again** to collect again.
+
+## Google Images: what you get, and where the originals are
+
+A Google Images results page is a page like any other, so the Images tab collects what it shows: the preview thumbnails, grouped by their sizes, which are small. The full-size image is never on that page; it lives on the site each result links to, and Google shows only a preview of it. Scroll the results first so the previews load, then collect, and you have a ZIP of thumbnails at the sizes Google served them.
+
+For the originals, open the source page of each image you want and collect there, where the gallery group is the large one. A list of source pages can be collected with the List tab (the results grid is a list, with each result's link) and then opened one by one; images aren't collected from a list of addresses in a bulk run today, so the full-size files are one page at a time.
 
 ## When it goes wrong
 

@@ -233,6 +233,22 @@ export const shopifyScraper: FeaturePageContent = {
             a: "Yes. Pick the collection on the store card before you click Collect products. One collection at a time.",
         },
         {
+            q: "Which columns does the export have?",
+            a: "One row per product: Title, Vendor, Type, Price, Compare At Price, Available, Variants, SKU, Tags, Images, Description, URL, Handle, Published At and Product ID. One row per variant adds each option's name and value (up to three, such as Size and Colour), Barcode, Grams, Requires Shipping, Taxable, Variant Image and Variant ID. The Shopify import CSV is a separate download in Shopify's own 48-column layout.",
+        },
+        {
+            q: "Does it get the product description and tags?",
+            a: "Yes. Description holds the full product description as the store publishes it, and Tags holds the store's tags, separated by commas. Both come from the store's own product data, so they match what the store's admin holds.",
+        },
+        {
+            q: "Does it get each variant's SKU, barcode and weight?",
+            a: "SKU and Grams come with every variant row. Barcode needs the setting Include barcodes and image descriptions (slower), which reads each product's page as well as the store data and roughly doubles the run. Requires Shipping and Taxable come as yes or no.",
+        },
+        {
+            q: "Does each variant get its own image?",
+            a: "Yes, when the store assigns one: the Variant Image column holds that variant's picture, and falls back to the product's first image when a variant has none. The Images column lists every image of the product, and Download images saves the files as a ZIP.",
+        },
+        {
             q: "Does it get every variant's price?",
             a: "Yes. Choose One row per variant and each size or colour gets its own row with its own price, SKU and stock.",
         },

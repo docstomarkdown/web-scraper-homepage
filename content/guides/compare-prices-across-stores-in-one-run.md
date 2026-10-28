@@ -3,7 +3,7 @@ title: "How To Compare Prices Across Stores in One Run"
 description: "Search the same product on Amazon, eBay, Walmart, Etsy or any store, paste the search pages into Bulk scrape, and get every store's prices in one merged table. Free, no code."
 status: draft
 date: 2026-10-21
-updated: 2026-10-21
+updated: 2026-10-28
 version: "1.3.0"
 author: vikram
 feature: bulk-scraper
@@ -21,6 +21,8 @@ faq:
     a: "Not today. A run happens in your open browser, so you start it when you want fresh numbers, and each run is saved in History with its date. Scheduled runs are coming with the cloud."
   - q: "How many pages of each store's results does it collect?"
     a: "As many as you set on the Configure step for that store. For a price check, the first page or two is usually enough; for a whole category, set a higher limit or All pages."
+  - q: "Does it tell me whether the product is in stock?"
+    a: "When the store's card says so. Amazon's Stock column, a WooCommerce shop's Stock column and any page-labelled Availability column carry what the card shows; an empty cell means the card said nothing. For the exact state, open the product and use the Properties tab, whose Availability field reads the product page."
   - q: "Can I compare this week's prices with last week's?"
     a: "Export each run with the date in the file name. The Product URL column is the same in every run, so you can match rows between the two files in your spreadsheet."
 ---
@@ -98,6 +100,14 @@ Each store's columns sit side by side, so a Walmart row has empty cells under Et
 Only product name, price, rating and source URL, sorted by price
 ```
 
+## Adding a Stock Column
+
+A price is only useful when the item can be bought, so check what each store's card says about stock before you compare. Stores with a ready-made setup carry it as a named column when the card shows it: Amazon's **Stock** holds the "Only 3 left" or "Currently unavailable" line, Walmart's cards show it in their badges, and a WooCommerce shop's **Stock** column holds its out-of-stock note. On a store without a setup, the column carries the page's own label, such as **Availability** or **In stock**, and only when the card shows one.
+
+An empty stock cell means the card said nothing, not that the item is available. For the exact state, open that product and click **Collect details on this page** in the **Properties** tab; **Availability** is one of its fifteen fields. On the merged table, click **Filter rows** to hide rows whose stock column says unavailable, so the comparison holds only prices you can act on.
+
+Shopify stores are the exception: they don't go through a bulk run, and their store export carries **Available** as yes or no per variant, never a count, because stores don't publish one.
+
 ## Step 6 — Exporting and Comparing Runs
 
 Click **Export as** and choose **Microsoft Excel**, **CSV**, **JSON** or **Google Sheets**. Prices are saved as numbers, so the sheet sorts and compares them without clean-up. Name the file with the date.
@@ -108,11 +118,11 @@ Run the same list again next week. The Product URL column is the same in both fi
 
 The merged table after export looks like this. Sample data: the products, stores and prices are made up.
 
-| Product Name | Price | Rating | Product URL | Source URL |
-|---|---|---|---|---|
-| Trail Runner 2 Men's Shoes | 89.00 | 4.6 | storeone.example/trail-runner-2 | storeone.example/s?k=trail+runner+2 |
-| Trail Runner 2 Men's Shoes | 94.50 | 4.5 | storetwo.example/p/trail-runner-2 | storetwo.example/search?q=trail+runner+2 |
-| Trail Runner 2 Men's Shoes, 2 pack | 169.00 | 4.4 | storethree.example/listing/88120 | storethree.example/search?q=trail+runner+2 |
+| Product Name | Price | Rating | Stock | Product URL | Source URL |
+|---|---|---|---|---|---|
+| Trail Runner 2 Men's Shoes | 89.00 | 4.6 | Only 3 left | storeone.example/trail-runner-2 | storeone.example/s?k=trail+runner+2 |
+| Trail Runner 2 Men's Shoes | 94.50 | 4.5 | | storetwo.example/p/trail-runner-2 | storetwo.example/search?q=trail+runner+2 |
+| Trail Runner 2 Men's Shoes, 2 pack | 169.00 | 4.4 | In stock | storethree.example/listing/88120 | storethree.example/search?q=trail+runner+2 |
 
 ## When It Goes Wrong
 

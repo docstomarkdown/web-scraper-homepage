@@ -22,7 +22,7 @@ export const research: UseCasePageContent = {
     h1: "How to collect research data from websites into a clean dataset",
     intro: "Collect Google Scholar results into a citation sheet, save the readable text of the pages you cite, and turn any list on the web into a dated table. Web Scraper Pro does all three in your Chrome browser, with no code and nothing uploaded.",
     status: "draft",
-    lastUpdated: "2026-10-21",
+    lastUpdated: "2026-10-28",
     job: {
         heading: "The collecting part of research, done in an afternoon",
         paragraphs: [
@@ -95,9 +95,24 @@ export const research: UseCasePageContent = {
                     ["A reading list as clean text", "A list of page addresses, one per line", "Bulk scrape → Collect page text reads each page in turn. The merged table holds one row per page, with its text, author, date and word count."],
                     ["A directory or table as a dataset", "Any page where the rows repeat", "The List tab finds the list and names the columns from the page. Choose Collect more pages for a list that continues."],
                     ["Videos on a topic", "A YouTube search or a channel's Videos tab", "YouTube has ready-made columns: Title, Channel, Views as a number, Published, Duration, Type. The run scrolls until nothing new loads."],
+                    ["Text for an AI tool", "The addresses of the pages you want it to know: documentation, a help centre, a set of articles", "Bulk scrape → Collect page text with Clean page text on. Export the merged table as a Word document, one heading per page, or as JSON, and add the file to the tool the way its own help describes."],
                 ],
                 caption: "Every run is saved in History with its date, whichever job it was.",
             },
+        },
+        {
+            id: "text-for-ai",
+            eyebrow: "Text for an AI tool",
+            heading: "Thirty pages of documentation into one clean file",
+            paragraphs: [
+                "A knowledge base, a ChatGPT project or a Claude project wants the text of the pages, not the pages: no menus, cookie banners or footers, and a title and date on each so you know what the tool was given. That is a bulk page-text run.",
+                "Paste the page addresses into Bulk scrape, choose Collect page text, and leave Clean page text and Page details on. Each page becomes a row with Source URL, Page title, Description, Page text, Word count, Author and Publish date. Export the merged table as a Word document, which puts one heading per page with its details under it, or as JSON if the tool takes structured files. What the tool does with the file is the tool's business; the extension gives you clean, dated text and nothing more.",
+            ],
+            points: [
+                "Keep the Word count column: it tells you at once which pages are a paragraph and which are the manual.",
+                "Rerun the same list when the documentation changes; History keeps each run with its date, so you know which version the tool holds.",
+                "For a site's every page, collect the links from its sitemap or index page with the List tab first, then paste the link column into the bulk run.",
+            ],
         },
         {
             id: "worked-example",
@@ -159,6 +174,7 @@ export const research: UseCasePageContent = {
         { q: "How do I scrape Google Scholar search results?", a: "Run the search, open the panel's List tab, choose how many pages, and click Collect. You get one row per result with title, authors, publication, year, citations and links, ready for Excel or Google Sheets." },
         { q: "How many Google Scholar results can I collect?", a: "As many pages as Google Scholar offers, up to its own limit of 100 pages, or 1,000 results. The panel's default is 10 pages; choose a number or every page." },
         { q: "Is the collected text clean enough for an AI tool?", a: "It's the page's main text in reading order, without menus, ads, cookie banners, sidebars or comments. The title, description, author and date sit in their own columns. Save it as a Word document, or as CSV or JSON for a pipeline." },
+        { q: "Can I build a knowledge base for ChatGPT or Claude from a website?", a: "You can collect the text for one. Paste the pages' addresses into Bulk scrape → Collect page text, export the merged table as a Word document or JSON, and add the file to the tool the way its own help describes. The extension gives you clean, dated page text; it doesn't connect to the tool or know what it does with the file." },
         { q: "Can I combine several searches into one table?", a: "Yes, from the Chat tab. When a conversation has collected two or more searches of the same kind, the latest result offers to combine them into one table, with a first column saying which search each row came from. The separate collections stay in History too." },
         { q: "Does every row carry the date it was collected?", a: "Every collection is saved in History with its date, and bulk runs record the source address per row. Add the date as a column in the sheet when the dataset needs it on each row." },
         { q: "Can I collect videos on a topic from YouTube?", a: "Yes. Run the search or open a channel's Videos tab, pick the list in the panel, and let it scroll to the end. Views are saved as numbers, so the sheet sorts a whole topic by views." },
