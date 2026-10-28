@@ -265,6 +265,10 @@ export const listScraper: FeaturePageContent = {
             a: "Choose Collect more pages and then Auto scroll. The run scrolls until nothing new loads, or until you stop it.",
         },
         {
+            q: "Does it work on pages that load with JavaScript, or behind Cloudflare?",
+            a: "It reads what your browser shows, so a list drawn by JavaScript works, including one that loads more as you scroll (Auto scroll). A Cloudflare or other verification page stops the run until you complete the check in the tab yourself; the extension never gets past one for you.",
+        },
+        {
             q: "Is this free?",
             a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create. That includes lists from any website, every page of results, bulk runs and every export format.",
         },

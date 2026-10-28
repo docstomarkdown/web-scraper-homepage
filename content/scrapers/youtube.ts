@@ -145,6 +145,24 @@ export const youtube: ScraperPageContent = {
             },
         },
         {
+            id: "channels",
+            eyebrow: "Many channels",
+            heading: "A list of channels at once",
+            paragraphs: [
+                "For ten channels, paste each channel's Videos tab address into Bulk scrape, one per line, and choose Bulk scrape. The YouTube setup applies to every one, so the columns match across channels, and the merged table carries a Source URL column saying which channel each video came from.",
+                "On the Configure step, choose Auto scroll with the page limit you want per channel; a channel with hundreds of videos takes a few minutes. The run happens in your browser, one channel after another, and Stop keeps what has arrived.",
+            ],
+        },
+        {
+            id: "api",
+            eyebrow: "Compared",
+            heading: "The YouTube Data API's quota, or the extension",
+            paragraphs: [
+                "YouTube's Data API gives developers exact counts and the full description through an API key, inside a default quota of 10,000 units a day; a search costs 100 units, so about 100 searches a day before it stops answering. The extension needs no key and has no quota: it reads the public cards you can see, with the rounded views and relative dates they show, and nothing more than the page shows.",
+                "If you need exact view counts for a few videos, the Properties tab on each video's page reads them. If you need thousands of exact counts every day, the API is the right tool, quota and all.",
+            ],
+        },
+        {
             id: "compared",
             eyebrow: "Compared",
             heading: "Compared with YouTube's own tools",

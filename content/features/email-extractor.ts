@@ -124,6 +124,15 @@ export const emailExtractor: FeaturePageContent = {
             ],
         },
         {
+            id: "ask-in-chat",
+            eyebrow: "Or ask",
+            heading: "Ask for emails in chat",
+            paragraphs: [
+                "On a company's site, type Find contact emails on this site in the Chat tab. The same contact run starts: emails, phone numbers and social links from the page and its Contact or About page, in one row on the results page.",
+                "After chat collects a list whose rows have a Website column, the card under the result offers Add emails and social links. Click it and each row's site is read, with the new columns added to the same rows.",
+            ],
+        },
+        {
             id: "what-to-do-with-the-table",
             eyebrow: "After the run",
             heading: "What you can do with the table before you export",
@@ -168,6 +177,21 @@ export const emailExtractor: FeaturePageContent = {
                     ["An email finder", "Upload company names, spend credits", "Minutes", "Guessed addresses that bounce; per-lookup pricing; no phones or social links"],
                 ],
             },
+        },
+        {
+            id: "rules",
+            eyebrow: "Before you send",
+            heading: "Using the emails you collected: the rules",
+            paragraphs: [
+                "A published business email is permission to write to the business about business, within the anti-spam rules where you send and where they are. These are the points that keep an outreach list on the right side of them; the [explainer on web scraping and the law](/web-scraping-legal) has the sources, and none of this is legal advice.",
+            ],
+            points: [
+                "Write to businesses about business. A generic or role address on a company site is the usual case; a named person's address is personal data in many countries, so collect it only when the job needs it.",
+                "Say who you are and what you offer, and honour every request to stop, in every country.",
+                "Some countries ask for consent first, for people and sometimes for businesses. Check the rule for the country you send to, not only your own.",
+                "Keep the list no longer than the job needs, and don't build profiles of individuals from it.",
+                "Verify before volume. The extension collects what a site publishes and doesn't check that an address still works; a bounce-heavy send gets your domain blocked.",
+            ],
         },
         {
             id: "pushback",

@@ -68,6 +68,8 @@ In this step you shape the list, because the extension collects what the page sh
 
 Narrow the search before collecting. A broad keyword in a large city runs to hundreds of pages, and Indeed checks visitors more often after many pages in a row. With the results on screen, you're ready to pick the list.
 
+Glassdoor's job search is a list of the same shape, so the steps here apply to it too. It asks you to sign in sooner than Indeed does, and the extension reads only what you can see once you've signed in yourself.
+
 ## Step 2 — Picking the List in the Side Panel
 
 Here you tell the extension which list on the page to collect. Click the Web Scraper Pro icon and open the **List** tab. Under **Choose from lists we found**, the postings show as **List 1** with the number of postings on this page.

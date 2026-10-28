@@ -158,6 +158,24 @@ export const walmart: ScraperPageContent = {
             ],
         },
         {
+            id: "reviews",
+            eyebrow: "Reviews",
+            heading: "Reviews: the count from the search, the text from the product page",
+            paragraphs: [
+                "A search card shows the star rating and the number of reviews, and those come through as Rating and Review Count. The reviews themselves are on the product page: open it, click View all reviews in the Properties tab, then Collect reviews, and every review across the pages lands in its own table.",
+                "Review text belongs to the people who wrote it. Keep it for your own analysis, such as reading the one- to three-star rows before you list a rival product.",
+            ],
+            table: {
+                columns: ["Rating", "Title", "Text", "Date"],
+                rows: [
+                    ["5", "Does the job", "Set up in ten minutes and has run every day since.", "14 August 2026"],
+                    ["1", "Arrived damaged", "The box was crushed and the lid cracked; the return was quick.", "6 August 2026"],
+                    ["3", "Fine, but loud", "Works as described, louder than the one it replaced.", "30 July 2026"],
+                ],
+                caption: "Sample data: a review table after export. The product's fields and its reviews export as separate files.",
+            },
+        },
+        {
             id: "compared",
             eyebrow: "Other ways",
             heading: "Compared with Walmart's own tools and copying by hand",

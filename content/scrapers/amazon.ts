@@ -123,6 +123,21 @@ export const amazon: ScraperPageContent = {
             },
         },
         {
+            id: "rank",
+            eyebrow: "Your own listing",
+            heading: "Find where your product ranks",
+            paragraphs: [
+                "Search your keyword the way a shopper would, collect the first few pages, and your listing's row number is its position. Sponsored rows are kept and labelled, so you can see which rows above you are ads and which rank on their own.",
+            ],
+            steps: [
+                { title: "Search the keyword on Amazon with no filters.", body: "Use the country store your buyers use. Filters change the order, so leave them off for a rank check." },
+                { title: "Collect 3 pages.", body: "Open the List tab, pick the results, choose Collect more pages, set Stop after to 3 and click Collect. About 150 rows arrive in the order Amazon showed them." },
+                { title: "Find your ASIN.", body: "On the results page, type the ASIN into Search in table. The row number is the position; the Sponsored cell says whether the row is an ad." },
+                { title: "Get the organic position.", body: "Click Filter rows and hide the rows where Sponsored is filled. The row number is now the position among the results that rank on their own." },
+                { title: "Repeat weekly.", body: "History keeps each run with its date, so the same search next week shows the move, and the Price and Badge columns say who moved around you." },
+            ],
+        },
+        {
             id: "worked-example",
             eyebrow: "Worked example",
             heading: "A worked example: five pages of trail running shoes",
@@ -170,6 +185,24 @@ export const amazon: ScraperPageContent = {
             ],
         },
         {
+            id: "reviews",
+            eyebrow: "Reviews",
+            heading: "Reviews: the count from the search, the text from the product page",
+            paragraphs: [
+                "A search card shows a product's star rating and how many ratings it has, and those come through as Rating and Review Count. The reviews themselves live on the product page. Open it, click View all reviews in the Properties tab, then Collect reviews, and every review across the review pages lands in its own table.",
+                "Review text belongs to the people who wrote it. Keep it for your own analysis, such as sorting by Rating to read what one- and two-star buyers say.",
+            ],
+            table: {
+                columns: ["Rating", "Title", "Text", "Date"],
+                rows: [
+                    ["5", "Light and grippy", "Took them on a wet trail the first weekend and never slipped.", "12 August 2026"],
+                    ["2", "Runs small", "Half a size smaller than my road shoes; returned them.", "3 August 2026"],
+                    ["4", "Good for the price", "Cushioning is firmer than the photos suggest, but it lasts.", "29 July 2026"],
+                ],
+                caption: "Sample data: a review table after export. The product's fields and its reviews export as separate files.",
+            },
+        },
+        {
             id: "compared",
             eyebrow: "Other ways",
             heading: "Compared with Amazon's own tools and copying by hand",
@@ -200,6 +233,7 @@ export const amazon: ScraperPageContent = {
         { q: "Can I scrape several Amazon searches at once?", a: "Yes. Paste the search addresses into Bulk scrape and each is collected in turn with the same page settings. View merged table puts them in one sheet with a Source URL column." },
         { q: "Does it work on Amazon.in, Amazon.co.uk and other country stores?", a: "Yes. The setup covers every country store, and the ASIN column is the same product id in each, so you can compare prices across stores." },
         { q: "Does it work on Amazon Fresh or Amazon Business?", a: "The setup is for the main store's search and category pages. Other storefronts are detected as a plain list; check the columns on the first page." },
+        { q: "Will Amazon block me?", a: "Amazon can show a verification page when many result pages load quickly. The run stops and the panel says so; complete the check in the tab, click Rescan, and collect again. You browse as yourself at a person's pace, so most runs see none; keep to a few pages per run on a busy day. Nothing happens to your Amazon account: the extension never signs in or acts for you." },
         { q: "Is scraping Amazon allowed?", a: "Amazon's terms restrict automated collection, and the product text and images belong to Amazon and its sellers. Collect for your own research, keep it to what the public page shows, and read our plain-words explainer on web scraping and the law at /web-scraping-legal. It isn't legal advice." },
     ],
 };

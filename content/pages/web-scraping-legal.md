@@ -48,7 +48,7 @@ Under the EU's General Data Protection Regulation (GDPR), and the UK version of 
 
 In the United States, there is no single privacy law, but the California Consumer Privacy Act and the laws modelled on it give residents rights over data about them, including data collected from public sources. California's attorney general publishes the rules at [oag.ca.gov](https://oag.ca.gov/privacy/ccpa). Anti-spam rules add their own limits on what you can do with an email address you collected: the CAN-SPAM Act in the US, the Privacy and Electronic Communications Regulations in the UK, and national rules under the ePrivacy Directive in the EU.
 
-Practical rule: collect business listings and their published contact details for business outreach, keep the data no longer than the job needs, and never build profiles of private individuals.
+Practical rule: collect business listings and their published contact details for business outreach, keep the data no longer than the job needs, and never build profiles of private individuals. The [emails and contacts page](/email-extractor#rules) lists the rules for using a collected email list.
 
 ## Copyright and database rights
 

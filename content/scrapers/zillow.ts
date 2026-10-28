@@ -8,6 +8,10 @@ import type { ScraperPageContent } from "@/components/pages/ScraperPage";
 // Title and headings target search phrases ("how to scrape zillow data", "scrape zillow listings"), 2026-10-21.
 
 // Verify on a real run before publishing (added with the deeper sections, 2026-10-21): rows per zip-code page (about 40 per page is assumed in the worked example), run time for 5 pages, and whether a bulk run over Property URL reads a listing page's price history.
+
+// Verify on a real run: the agent directory's columns (configs-prod/site-column-mappings/zillow.com.json names Agent Name,
+// Brokerage, Rating, Review Count, Price Range and Sales Last 12 Months) before the "Agent and owner contact fields" section publishes.
+
 export const zillow: ScraperPageContent = {
     slug: "zillow",
     category: "real-estate",
@@ -144,6 +148,15 @@ export const zillow: ScraperPageContent = {
                     ["Every home in a city", "More than 20 pages", "Split by zip code or price band and combine in chat"],
                 ],
             },
+        },
+        {
+            id: "agents",
+            eyebrow: "Contacts",
+            heading: "Agent and owner contact fields",
+            paragraphs: [
+                "A results card names who listed the home in Listed By and shows no phone or email, so a list of homes never carries the agent's contact details. Zillow's agent directory is a list too, and its setup names Agent Name, Agent Profile URL, Agent Type, Brokerage, Rating, Review Count, Price Range and Sales Last 12 Months: open the directory for your area, pick its list in the List tab, and check the first page's columns before a long run.",
+                "Owners' contact details aren't collected at all. A for-sale-by-owner card shows the same fields as any other, and the extension collects businesses' published details, not people's. For an agent's phone, open the profile and read what that page shows.",
+            ],
         },
         {
             id: "compared",

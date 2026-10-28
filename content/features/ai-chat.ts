@@ -259,6 +259,10 @@ export const aiChat: FeaturePageContent = {
             a: "Yes. After two or more searches or lists of the same kind in one conversation, the last result card offers Combine the N searches into one table. The combined table gets a column saying where each row came from.",
         },
         {
+            q: "Which model does the chat use, and does it matter?",
+            a: "Chat sends your words, the kind of page you're on and the list of tools to our server, which asks a Claude model (Claude Haiku 5.5 on release 1.3.0; the server can change it without an extension update) to pick the tool and its settings. The model never sees the page or your rows and never writes them: the extension copies the values from the page. So the model decides what runs; it doesn't decide what the numbers are.",
+        },
+        {
             q: "What happens when I reach the daily message limit?",
             a: "Chat answers again the next day. Until then, the List tab, the Properties tab and Bulk scrape work without chat.",
         },

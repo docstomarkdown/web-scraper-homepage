@@ -48,7 +48,7 @@ export default function ScrapersHub() {
                     ))}
                 </div>
                 <p className="mt-14 text-base text-slate-600 dark:text-slate-300">
-                    Not listed? Most sites with a list are detected automatically. See <Link href={getPage("list-scraper").href} className="text-[#1f5ec2] dark:text-[#7aa7ff] underline underline-offset-2">lists from any website</Link>.
+                    Not listed? Most sites with a list are detected automatically, including directories such as Hotfrog, Angi, Houzz, Manta and canada411, with the columns named from the page. See <Link href={getPage("list-scraper").href} className="text-[#1f5ec2] dark:text-[#7aa7ff] underline underline-offset-2">lists from any website</Link>.
                 </p>
                 <p className="mt-4 text-base text-slate-600 dark:text-slate-300">
                     &quot;Last verified&quot; is the date the site&apos;s setup was last run on the released extension and its columns checked by hand. Need a site that isn&apos;t here, or found one that stopped working? <Link href="/support" className="text-[#1f5ec2] dark:text-[#7aa7ff] underline underline-offset-2">Request a site or report a problem</Link>, with the page&apos;s address.

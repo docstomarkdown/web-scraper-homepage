@@ -42,6 +42,8 @@ Click the Web Scraper Pro icon, then the **Bulk scrape** icon (the layers icon a
 
 A bulk page opens in a new tab. In the Chat tab, pasting several addresses offers the same thing with the list already filled in.
 
+One thing a bulk run doesn't do: open product pages for their fields. It collects lists, contact details and page text (and Scholar and Google Maps searches). For a product page's price, variants and reviews, open the product and use the **Properties** tab, one page at a time.
+
 ![](visual:ext/bulk-menu)
 
 ## Step 2 — Adding the addresses
@@ -51,6 +53,18 @@ On the **Upload** step, drop a CSV or TXT file onto the page, or choose **Paste 
 Click **Continue →**.
 
 ![](visual:ext/bulk-upload)
+
+## Generating Page Addresses in Excel (page=1, 2, 3)
+
+When a site numbers its pages in the address, such as `https://example.com/category?page=2`, you can make the whole list in a spreadsheet instead of clicking through. In cell A1 of a new sheet, type a formula that builds the address from the row number, then fill it down as far as you need:
+
+```
+="https://example.com/category?page="&ROW()
+```
+
+Fill the formula down to row 30 and you have page 1 to page 30. Copy the column, choose **Paste URLs** on the Upload step, and paste. Replace `example.com/category` with the real address, and check page 2 in your browser first to see which part of the address changes; some sites use `p=2`, `start=20` or `/page/2/` instead.
+
+This replaces **Collect more pages** for a site whose Next link the extension can't find, and it lets you collect pages 11 to 20 without starting at page 1.
 
 ## Step 3 — Reviewing the sites
 
