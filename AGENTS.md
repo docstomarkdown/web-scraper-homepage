@@ -40,10 +40,12 @@ Build every section so a later SEO pass only has to tune it, not restructure it:
 
 ## Copy rules
 
-- **Before writing or changing any page or post**, read `docs/content-standards.md` (helpful content,
-  spam policies, duplicates, internal/external links, per-page-type rules, pre-publish checklist) and
-  `docs/writing-style.md` (voice, word list, structure). Both are binding. New pages go where
-  `docs/site-structure.md` says; update its status column when a page ships.
+- **Before writing or changing any page or post**, get the writing rules from the Thinksolv writing system
+  (`thinksolv-writing-system`, beside this repo): `get_learnings` for `web-scraper` with the format and step, or read
+  `standards/house.md`, `standards/formats/` and `sites/web-scraper/profile.md` there. They are binding, and a writing
+  rule is changed there, not here. Then `docs/content-standards.md` (how they apply to this site's pages: per-site pages,
+  canonicals, links, page types, the pre-publish checklist) and `docs/writing-style.md` (§8 marketing pages, §11
+  readability). New pages go where `docs/site-structure.md` says; update its status column when a page ships.
 - Review new or changed copy by walking the page as each persona in `docs/personas.md`, and keep copy
   consistent with the product facts listed there.
 

@@ -5,8 +5,14 @@ page, a use-case page, a per-site scraper page, a comparison page, a blog post o
 come from Google's published guidance, applied to this site. Anyone writing here, human or AI, has to
 follow them.
 
-For how to write sentences, see `docs/writing-style.md`. To check copy against real readers, see
-`docs/personas.md`. For design and code rules, see `AGENTS.md`.
+**The writing rules every page and post follows now live in the Thinksolv writing system**
+(`thinksolv-writing-system`, beside this repo): `standards/house.md`, the format playbooks in `standards/formats/` and
+this site's profile, `sites/web-scraper/profile.md` — compiled for a step by `get_learnings` for `web-scraper`. Its Spider
+checks every post for thin, duplicate, doorway and stuffed content as the Editor runs its checks. What stays here is how
+those rules apply to this site's own pages: which per-site pages may exist, canonicals, the link structure, what each page
+type needs, and the checklist. Change a writing rule there, once. Section numbers are kept because the code cites them.
+
+To check copy against real readers, see `docs/personas.md`. For design and code rules, see `AGENTS.md`.
 
 Sources (re-read them if this file is more than six months old):
 - Creating helpful, reliable, people-first content: https://developers.google.com/search/docs/fundamentals/creating-helpful-content
@@ -18,43 +24,11 @@ Sources (re-read them if this file is more than six months old):
 ---
 
 ## 1. The one test
-
-Before publishing, ask: **would we still publish this page if search engines didn't exist?**
-
-It has to pass for a real visitor, like someone arriving from the Chrome Web Store, a YouTube video
-or a link a colleague sent. If a page exists only because a keyword has search volume, don't publish
-it. Either give it a reason to exist or drop it.
+Moved: the house standards ("Reason to exist").
 
 ## 2. Helpful content (people-first)
-
-Google's helpful-content signals are now part of its core ranking. Poor pages can pull down how Google
-judges the whole site, not only themselves. Every page must meet all of these:
-
-- **Original value.** It shows something the reader can't get by skimming the top five results. That
-  could be a real run of the extension, real output columns, a real limitation, or a real time
-  measurement.
-- **First-hand experience.** If a page says how to collect X from site Y, someone actually did it with
-  the extension and the page shows what happened, using screenshots or sample output. No hypothetical
-  walkthroughs.
-- **Complete for its job.** The reader finishes knowing whether it works for them and what to do
-  next. They shouldn't need to go back to search.
-- **Accurate and current.** Every product claim matches the product facts in `docs/personas.md`,
-  checked against the released extension, not a feature branch. Pages that describe the product carry
-  a "Last updated" date and are re-checked when the product changes.
-- **Clear who, how and why:**
-  - **Who:** blog posts and guides have a named author with a short bio. Product pages are authored by
-    the company.
-  - **How:** if AI helped write a page, a person who knows the topic reviews and fact-checks every
-    claim before it ships. If a page has test results, say how the test was run: the date, the site,
-    the steps and the volume.
-  - **Why:** to help someone get data they need. Ranking is a side effect.
-
-**Warning signs.** If any of these is true, stop and rethink the page:
-- It was written to hit a word count. Google has no preferred length.
-- It targets a topic we have no product or first-hand experience with, just because it's trending.
-- It restates what other sites say without adding anything.
-- The title promises something the page doesn't deliver.
-- The page would still make sense with a different product name swapped in.
+Moved: the house standards ("What the page adds", "Honesty"). Here: guides and posts carry a named author and a
+"Last updated" date, and a page with test results says how the test was run (the date, the site, the steps, the volume).
 
 ## 3. Spam policies that apply to this site
 
@@ -82,9 +56,7 @@ and not helping users." It applies whether the pages are made by AI, templates o
   too big.
 
 ### Doorway pages
-These are pages that exist only to funnel searchers somewhere else, with little use of their own.
-Every page must be useful on its own. A page that's just an H1, a paragraph and a big "Add to Chrome"
-button is a doorway page.
+Moved: the house standards ("Reason to exist"); the Spider flags doorway pages.
 
 ### Thin content
 This includes a page with a template and a few swapped nouns, a tag or category archive with one post,
@@ -95,10 +67,7 @@ and noindex it. The empty blog archives (`/author/*`, `/category/*`) count as th
 real posts.
 
 ### Scraped or copied content
-The site sells a scraper, so this matters twice as much. Never publish text copied from another site,
-from a competitor's docs, or from our own scrape output of someone else's content. Rewriting with
-synonyms or translating doesn't make it original. Quotes are fine when they're short, credited and
-linked.
+Moved: the house standards ("Honesty"): never copy text, from anyone, including our own scrape output of someone else's content; the Spider flags duplicates.
 
 ### Link spam
 - Never buy, sell or trade links. That includes "guest post with a dofollow link" deals, link
@@ -109,9 +78,7 @@ linked.
 - If we sponsor something, the link on their side should be `sponsored` or `nofollow`.
 
 ### Keyword stuffing and hidden text
-Write for the reader. Don't repeat a phrase unnaturally, don't use lists of cities or keywords, and
-don't hide text (off-screen CSS, text coloured like the background, tiny fonts). Collapsed FAQ answers
-and tabs are fine because users can open them.
+Moved: the house standards; the Spider flags stuffing. Never hide text (off-screen CSS, text coloured like the background, tiny fonts); collapsed FAQ answers and tabs are fine.
 
 ### Misleading functionality
 A free tool must actually do what its title says. A "Shopify store exporter" page must export, not
@@ -163,19 +130,11 @@ Internal links are how visitors and Google understand what the site is about and
 
 ## 6. External links
 
-Linking out to good sources builds trust. It doesn't leak rank.
-
-- **Cite sources** for any claim we didn't produce ourselves: laws, statistics, platform policies,
-  third-party documentation. Link the primary source, not a blog summarising it.
-- Link to official docs when telling users to do something on another platform, such as Google Sheets
-  import or Shopify product CSV import.
-- Plain links by default. `rel="sponsored"` for paid or affiliate links. `rel="nofollow"` only for
-  sources we can't vouch for but have to mention.
-- External links that leave a task flow open in a new tab and include `rel="noopener"`.
-- Check external links quarterly. Fix or remove any that are dead.
-- **Competitors:** name them only on comparison or alternative pages. There, keep claims factual,
-  dated, linked to their own public page, and fair. Say what they do better too. Never make
-  unverifiable claims about another product.
+The house standards hold the rules (cite primary sources, official docs, `rel="sponsored"`, competitors only on comparison
+pages). Here:
+- External links that leave a task flow open in a new tab with `rel="noopener"`.
+- `rel="nofollow"` only for sources we can't vouch for but have to mention.
+- Check external links quarterly; fix or remove dead ones.
 
 ## 7. Page types: what each needs
 
@@ -190,13 +149,7 @@ Linking out to good sources builds trust. It doesn't leak rank.
 | **Legal / scraping-ethics content** | Neutral, sourced, "not legal advice" | Telling users something is legal to scrape |
 
 ## 8. Trust and honesty (site-wide)
-
-These repeat the `AGENTS.md` rules because they're content rules too:
-- No invented proof: no user counts, ratings, testimonials or logos unless they're real and sourced.
-- Sample data is clearly fake and labelled "Sample data".
-- Write "Google Maps" (the plain name of the site; no logo, nothing implying affiliation).
-- Never market collecting candidate or personal profiles (see `personas.md`).
-- If something is planned, say "coming soon". Never describe it as available.
+Moved: the house standards ("Honesty") and this site's profile ("Product and calls to action", Google Maps).
 
 ## 9. Pre-publish checklist
 
@@ -213,5 +166,5 @@ Copy this into the PR description for any new page or post:
 - [ ] External claims cited to primary sources; sponsored links marked
 - [ ] Images have useful `alt` text; screenshots are current
 - [ ] Author and "Last updated" date (for guides and posts)
-- [ ] Reviewed against `docs/writing-style.md` and at least two personas
+- [ ] Reviewed against the writing system's standards (`get_learnings` for `web-scraper`, or the Editor's checks) and at least two personas
 - [ ] Added to the sitemap (if indexable); light and dark mode checked at 375px

@@ -2,7 +2,8 @@
 
 This is the plan for every section of webscraper.pro beyond the homepage: which pages exist, what
 each one is for, and in what order to build them. Quality rules are in `docs/content-standards.md`,
-writing rules in `docs/writing-style.md`, and product facts in `docs/personas.md`.
+writing rules in the Thinksolv writing system (`sites/web-scraper/profile.md` and its standards; see `AGENTS.md`), and
+product facts in `docs/personas.md`.
 
 **Status key:**
 
