@@ -9,6 +9,8 @@ export const metadata: Metadata = {
     title: "Amazon Storage Fee Calculator: Free FBA Inventory Cost",
     description: "Estimate Amazon's monthly FBA storage fee from box size, units and months stored, with the peak-season rate and the long-term surcharge included.",
     alternates: { canonical: "/tools/amazon-storage-fee-calculator" },
+    // Out of search until the rates are checked in Seller Central (config/site.ts).
+    robots: { index: false, follow: true },
 }
 export default function AmazonStorageFeeCalculatorPage() {
     return (

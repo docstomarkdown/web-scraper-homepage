@@ -5,7 +5,6 @@ import { Twitter, Linkedin, ArrowRight } from "lucide-react";
 
 const popularTools = [
     { title: "Dropshipping Profit Calculator", href: "/tools/dropshipping-profit-calculator" },
-    { title: "Amazon FBA Fee Calculator", href: "/tools/amazon-fba-fee-calculator" },
     { title: "Profit Margin Calculator", href: "/tools/profit-margin-calculator" },
     { title: "Net Profit Calculator", href: "/tools/net-profit-calculator" },
 ];

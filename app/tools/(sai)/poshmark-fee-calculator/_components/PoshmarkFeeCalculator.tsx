@@ -1,4 +1,6 @@
 "use client"
+import { POSHMARK } from "@/app/tools/_data/feeRates";
+import { RatesChecked } from "@/app/tools/_shared/components";
 import React, { useState, useEffect } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tag, Truck, DollarSign, TrendingUp, Percent } from "lucide-react"
@@ -37,13 +39,12 @@ export function PoshmarkFeeCalculator() {
         }
 
         // Poshmark Fee Logic
-        // Sales under $15: Flat $2.95
-        // Sales $15+: 20%
+        // $15 and under: flat $2.95; above $15: 20% (Poshmark's terms, app/tools/_data/feeRates.ts)
         let fee = 0
-        if (price < 15) {
-            fee = 2.95
+        if (price <= POSHMARK.flatUpTo) {
+            fee = POSHMARK.flatFee
         } else {
-            fee = price * 0.20
+            fee = price * POSHMARK.percent
         }
 
         // Net Earnings = Price - Fee - Shipping Discount (paid by seller)
@@ -163,7 +164,7 @@ export function PoshmarkFeeCalculator() {
                                 value: poshFee,
                                 isCurrency: true,
                                 icon: DollarSign,
-                                tooltip: price < 15 ? "Flat fee of $2.95 for sales under $15." : "20% commission on sales of $15+."
+                                tooltip: price <= POSHMARK.flatUpTo ? "Flat fee of $2.95 on sales of $15 and under." : "20% commission on sales over $15."
                             },
                             {
                                 key: "margin",
@@ -175,6 +176,7 @@ export function PoshmarkFeeCalculator() {
                             }
                         ]}
                     />
+                    <RatesChecked source={POSHMARK.source} />
                 </div>
             </div>
         </FadeIn>

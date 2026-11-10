@@ -56,6 +56,22 @@ discount "15 points" vs 20%; dropshipping "returns pay shipping twice" vs once i
 | Proof | No fee page says when its rates were checked | Every fact names its source and date |
 | Link to the product | None of the 60 links to the extension feature it relates to | Each page links the page that does the next step |
 
+## Phase 0 status (2026-11-10)
+
+Done; each checked in the browser or with a script against the code:
+- Mercari (10% on item price plus buyer-paid shipping, no processing fee), PayPal (3.49%/2.99% + $0.49 tiers, a Cards
+  tier, Reset clears), eBay (13.6% up to $7,500 then 2.35%; $0.30/$0.40 order fee by order size), Poshmark ($15 and
+  under is the flat $2.95). Their worked examples match the screen: Mercari $25.00, PayPal "ask for $104.12", eBay $44.44.
+- `app/tools/_data/feeRates.ts` holds every rate with its source and check date; `RatesChecked` shows it under each fee
+  tool. Etsy's page refuses automated reads, so its tool says its rates weren't checked.
+- GTIN converter: GS1 padding rules, and "not available" where a shorter form doesn't exist. Time-zone planner: offsets
+  for the date picked. Free shipping: uses the threshold, no verdict on a blank form. Pallet: unit switch converts and
+  labels heights. Container: custom volume, cleared on bad sizes, example 392, 40ft payload 28,750 kg (Hapag-Lloyd; the
+  40HC 28,600 kg was already right). FBA removal: the smaller loss wins.
+- Amazon FBA fee and storage: referral fees follow sell.amazon.com (Beauty, Health and Baby 8% to $10, then 15%); the
+  "2026 Rates" badge is gone. Their fulfilment and storage rates can't be checked without Seller Central, so both are off
+  the tools list and the footer and set to `noindex` until someone checks them there.
+
 ## Plan
 
 **Phase 0: stop the wrong answers (first, small).** Fix the 11 tools in the table above, or take each off the

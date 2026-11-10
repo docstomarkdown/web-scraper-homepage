@@ -1,4 +1,6 @@
 "use client"
+import { ETSY } from "@/app/tools/_data/feeRates";
+import { RatesChecked } from "@/app/tools/_shared/components";
 import React, { useState, useEffect } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tag, DollarSign, Percent, ChevronDown, ChevronUp, Settings2, CreditCard, Megaphone } from "lucide-react"
@@ -376,6 +378,7 @@ export function EtsyFeeCalculator() {
                             totalRevenue={totalRevenue}
                             currency={currency}
                         />
+                        <RatesChecked source={ETSY.source} />
                     </div>
                 </div>
             </div>

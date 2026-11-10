@@ -11,7 +11,7 @@ export function FBARemovalOverview() {
             facts={[
                 { stat: "5 inputs", label: "What you enter", detail: "Units, removal fee, disposal fee, expected selling price and other costs per unit." },
                 { stat: "Same fee", label: "Removal vs disposal", detail: "In the current US schedule the per-unit fee is the same for both, so the resale value decides." },
-                { stat: "Remove, dispose or hold", label: "What you get", detail: "The profit or loss of each path and the better choice." }
+                { stat: "Remove or dispose", label: "What you get", detail: "The profit or loss of each path and the better choice." }
             ]}
             accent="red"
         />

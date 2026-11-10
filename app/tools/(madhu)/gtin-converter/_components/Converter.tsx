@@ -25,11 +25,33 @@ import { motion, AnimatePresence } from "framer-motion"
 
 type BarcodeFormat = "GTIN-8" | "UPC-A" | "EAN-13" | "GTIN-14" | "Unknown"
 
+/** null means the number can't be written in that form. */
 interface ConversionResult {
-    gtin8: string
-    gtin12: string
-    gtin13: string
+    gtin8: string | null
+    gtin12: string | null
+    gtin13: string | null
     gtin14: string
+}
+
+const NOT_AVAILABLE: Record<"gtin8" | "gtin12" | "gtin13", string> = {
+    gtin8: "Not available: GTIN-8 is a separate number assigned by GS1",
+    gtin12: "Not available: this number needs 13 or 14 digits",
+    gtin13: "Not available: this number needs 14 digits",
+}
+
+/**
+ * GS1 rule: every GTIN is the same number right-aligned in 14 digits with leading zeros.
+ * A shorter form exists only when the digits it drops are all zero, so the check digit never changes.
+ */
+export function convertGtin(clean: string): ConversionResult {
+    const base14 = clean.padStart(14, "0")
+    const shorter = (len: number) => (/^0*$/.test(base14.slice(0, 14 - len)) ? base14.slice(-len) : null)
+    return {
+        gtin8: shorter(8),
+        gtin12: shorter(12),
+        gtin13: shorter(13),
+        gtin14: base14,
+    }
 }
 
 interface ValidationStatus {
@@ -130,13 +152,7 @@ export function Converter() {
             }
         }
 
-        const base14 = clean.padStart(14, "0")
-        const conversionResult = {
-            gtin8: clean.length === 8 ? clean : base14.slice(-8),
-            gtin12: base14.slice(-12),
-            gtin13: base14.slice(-13),
-            gtin14: base14,
-        }
+        const conversionResult = convertGtin(clean)
 
         return {
             status: {
@@ -353,10 +369,10 @@ export function Converter() {
 
                                                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                                                 {[
-                                                                    { label: "GTIN-8", value: results.gtin8, icon: BarcodeIcon, delay: 0.15 },
-                                                                    { label: "GTIN-12", value: results.gtin12, icon: BarcodeIcon, delay: 0.2 },
-                                                                    { label: "GTIN-13", value: results.gtin13, icon: BarcodeIcon, delay: 0.25 },
-                                                                    { label: "GTIN-14", value: results.gtin14, icon: BarcodeIcon, delay: 0.3 }
+                                                                    { label: "GTIN-8", value: results.gtin8, missing: NOT_AVAILABLE.gtin8, icon: BarcodeIcon, delay: 0.15 },
+                                                                    { label: "GTIN-12", value: results.gtin12, missing: NOT_AVAILABLE.gtin12, icon: BarcodeIcon, delay: 0.2 },
+                                                                    { label: "GTIN-13", value: results.gtin13, missing: NOT_AVAILABLE.gtin13, icon: BarcodeIcon, delay: 0.25 },
+                                                                    { label: "GTIN-14", value: results.gtin14, missing: "", icon: BarcodeIcon, delay: 0.3 }
                                                                 ].map((item) => (
                                                                     <motion.div
                                                                         key={item.label}
@@ -370,13 +386,18 @@ export function Converter() {
                                                                             <span className="text-sm font-bold text-slate-600 dark:text-slate-300">{item.label}</span>
                                                                         </div>
                                                                         <div className="pl-6 flex items-center justify-between gap-3">
-                                                                            <span className="text-[15px] font-mono font-bold text-slate-700 break-all dark:text-slate-200">{item.value}</span>
+                                                                            {item.value ? (
+                                                                                <span className="text-[15px] font-mono font-bold text-slate-700 break-all dark:text-slate-200">{item.value}</span>
+                                                                            ) : (
+                                                                                <span className="text-sm font-medium text-slate-600 dark:text-slate-300">{item.missing}</span>
+                                                                            )}
                                                                             <button
+                                                                                disabled={!item.value}
                                                                                 onClick={() => {
-                                                                                    navigator.clipboard.writeText(item.value)
+                                                                                    if (item.value) navigator.clipboard.writeText(item.value)
                                                                                 }}
-                                                                                className="text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors p-1 rounded-md hover:bg-blue-50/80 active:bg-blue-100 flex-shrink-0 dark:hover:text-blue-400 dark:hover:bg-blue-950/40 dark:active:bg-blue-900/40"
-                                                                                title="Copy to clipboard"
+                                                                                className="disabled:opacity-40 disabled:cursor-not-allowed text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors p-1 rounded-md hover:bg-blue-50/80 active:bg-blue-100 flex-shrink-0 dark:hover:text-blue-400 dark:hover:bg-blue-950/40 dark:active:bg-blue-900/40"
+                                                                                title={item.value ? "Copy to clipboard" : "Nothing to copy for this form"}
                                                                             >
                                                                                 <Copy className="w-3.5 h-3.5" />
                                                                             </button>

@@ -9,8 +9,8 @@ export function MercariFeeGuide() {
             icon={BookOpen}
             items={[
                 {
-                    title: "Two fees on every sale",
-                    description: "Mercari takes a 10% selling fee on the sale price, then a payment fee of 2.9% plus $0.50. Together they come to about 13% of the price on a typical item.",
+                    title: "One fee on every sale",
+                    description: "Mercari takes a 10% selling fee on the item price plus any shipping the buyer pays. Since 6 January 2025 there is no separate payment fee for sellers.",
                     icon: Receipt,
                     iconBg: "bg-blue-50 dark:bg-blue-950/40",
                     iconColor: "text-blue-700 dark:text-blue-300",
@@ -24,14 +24,14 @@ export function MercariFeeGuide() {
                 },
                 {
                     title: "Pricing to a target profit",
-                    description: "List price = (item cost + shipping + other costs + profit you want) ÷ 0.869. The 0.869 accounts for the combined fees; add the $0.50 fixed part separately for low-priced items.",
+                    description: "List price = (item cost + shipping + other costs + profit you want) ÷ 0.9. The 0.9 is what is left after the 10% fee.",
                     icon: Calculator,
                     iconBg: "bg-violet-50 dark:bg-violet-950/40",
                     iconColor: "text-violet-700 dark:text-violet-300",
                 },
                 {
                     title: "A worked example",
-                    description: "A $50 sale with a $20 item cost and no shipping: selling fee $5.00, payment fee $1.95, net profit $23.05, a 46.1% margin. Ten of them is $230.50.",
+                    description: "A $50 sale with a $20 item cost and no shipping: selling fee $5.00, net profit $25.00, a 50.0% margin. Ten of them is $250.00.",
                     icon: TrendingUp,
                     iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
                     iconColor: "text-emerald-700 dark:text-emerald-300",

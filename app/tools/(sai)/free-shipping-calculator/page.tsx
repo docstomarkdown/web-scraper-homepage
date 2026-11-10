@@ -38,7 +38,7 @@ export default function FreeShippingCalculatorPage() {
                                     },
                                     {
                                         question: "How much do sales need to rise to pay for free shipping?",
-                                        answer: "Gross profit per order divided by profit after shipping, minus one. At $24 of gross profit and $7 of shipping that's 41% more orders to keep the same total profit."
+                                        answer: "Profit per order today divided by profit on a free-shipping order after shipping, minus one. With a $60 average order, a 40% margin, a $60 threshold and $7 of shipping, that's 24 ÷ 17 − 1, or 41% more orders to keep the same total profit."
                                     },
                                     {
                                         question: "Should I offer free shipping on everything?",

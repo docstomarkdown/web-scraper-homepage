@@ -7,7 +7,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "eBay Fee Calculator: Free Final Value Fee and Profit",
+    title: "eBay Fee Calculator: Final Value Fee and Profit",
     description: "Enter the item price, shipping charged, your costs and eBay's fee rates to see the final value fee, promoted listings fee, profit and margin.",
     alternates: { canonical: "/tools/ebay-fee-calculator" },
 }
@@ -40,7 +40,7 @@ export default function EbayFeeCalculatorPage() {
                             faqs={[
                                     {
                                         question: "How much does eBay charge per sale?",
-                                        answer: "A final value fee, 13.25% of the item price plus shipping in most categories, plus a fixed $0.30 per order in the US, plus a promoted listings fee if you use ads. Rates vary by category and store level."
+                                        answer: "A final value fee, 13.6% of the item price plus shipping in most categories (2.35% on the part over $7,500), plus $0.30 per order of $10 or less or $0.40 above in the US, plus a promoted listings fee if you use ads. Rates vary by category and store level."
                                     },
                                     {
                                         question: "Is the eBay fee charged on shipping?",

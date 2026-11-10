@@ -10,7 +10,7 @@ export function PoshmarkFeeGuide() {
             items={[
                 {
                     title: "The fee has two levels",
-                    description: "Sales under $15 pay a flat $2.95. Sales of $15 and over pay 20% of the price. A $10 item loses nearly 30% to the fee; a $50 item loses 20%.",
+                    description: "Sales of $15 and under pay a flat $2.95. Sales over $15 pay 20% of the price. A $10 item loses nearly 30% to the fee; a $50 item loses 20%.",
                     icon: Receipt,
                     iconBg: "bg-blue-50 dark:bg-blue-950/40",
                     iconColor: "text-blue-700 dark:text-blue-300",

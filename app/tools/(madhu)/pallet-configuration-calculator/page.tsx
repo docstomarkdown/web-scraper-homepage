@@ -44,7 +44,7 @@ export default function PalletConfigurationCalculatorPage() {
                                 },
                                 {
                                     question: "What is the standard pallet size?",
-                                    answer: "48 by 40 inches in North America (GMA). Europe uses 1200 by 800 mm (EUR) and 1200 by 1000 mm. The calculator has presets for each.",
+                                    answer: "48 by 40 inches in North America (GMA). Europe uses 1200 by 800 mm (EUR), and 1200 by 1000 mm is common in the UK and Asia. The calculator has presets for 48 by 40 and EUR. For 1200 by 1000 mm, switch to cm and enter 120 by 100 under Custom.",
                                 },
                                 {
                                     question: "Why is 5.5 inches taken off the height?",

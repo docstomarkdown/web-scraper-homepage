@@ -24,7 +24,7 @@ export function MeetingPlannerGuide() {
                 },
                 {
                     title: "Daylight saving",
-                    description: "The planner uses each city's current offset, including daylight saving where it applies. Check again near the dates clocks change, since countries switch on different days.",
+                    description: "The planner uses each country's offset on the date you pick, including daylight saving where it applies. Countries change their clocks on different days, so pick the real meeting date. Each country uses one time zone, its capital's or main business hub's, so countries with several zones show only that one.",
                     icon: ShieldCheck,
                     iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
                     iconColor: "text-emerald-700 dark:text-emerald-300",

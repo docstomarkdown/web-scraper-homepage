@@ -7,8 +7,8 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "Mercari Fee Calculator: Free Profit After Fees",
-    description: "See what you keep from a Mercari sale after the 10% selling fee and the 2.9% + $0.50 payment fee, with your item cost and shipping taken out.",
+    title: "Mercari Fee Calculator: Profit After Fees",
+    description: "See what you keep from a Mercari sale after the 10% selling fee on the item price and buyer-paid shipping, with your item cost and shipping taken out.",
     alternates: { canonical: "/tools/mercari-fee-calculator" },
 }
 
@@ -22,16 +22,16 @@ const faqs = [
         answer: "No. Listing is free; you pay fees only when an item sells.",
     },
     {
-        question: "What is Mercari's payment processing fee?",
-        answer: "2.9% plus $0.50 on the amount the buyer pays, charged on top of the 10% selling fee. The calculator applies both.",
+        question: "Does Mercari still charge a payment processing fee?",
+        answer: "Not to sellers. Since 6 January 2025 Mercari charges a 10% selling fee on the item price plus buyer-paid shipping, and no separate payment fee.",
     },
     {
         question: "Should I include shipping?",
-        answer: "Only if you pay the label. When the listing is buyer-pays shipping, leave the field blank.",
+        answer: "Enter the label cost if you pay it. If the buyer pays shipping, enter that amount under Shipping the Buyer Pays, because Mercari's 10% applies to it too.",
     },
     {
         question: "What is a good margin on Mercari?",
-        answer: "After fees of roughly 13%, many resellers aim for a 20% to 40% net margin on the sale price. Below 15%, check whether the listing is worth the time.",
+        answer: "After the 10% fee, many resellers aim for a 20% to 40% net margin on the sale price. Below 15%, check whether the listing is worth the time.",
     },
     {
         question: "Are these fees exact?",

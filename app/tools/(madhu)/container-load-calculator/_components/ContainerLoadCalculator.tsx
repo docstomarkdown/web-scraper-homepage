@@ -36,10 +36,12 @@ const CONTAINERS = {
     },
     "40ft": {
         name: "40ft Standard",
+        // Inside size and max payload 28,750 kg (32,500 kg gross, 3,750 kg tare), per Hapag-Lloyd's 40' Standard spec:
+        // https://www.hapag-lloyd.com/en/services-information/cargo-fleet/container/40-standard.html (checked 2026-11-10)
         length: 12032,
         width: 2352,
-        height: 2393,
-        maxWeight: 26600,
+        height: 2395,
+        maxWeight: 28750,
         volume: 67.7 // m3
     },
     "40hc": {
@@ -47,6 +49,8 @@ const CONTAINERS = {
         length: 12032,
         width: 2352,
         height: 2698,
+        // Max payload 28,600 kg (32,500 kg gross, 3,900 kg tare), per Hapag-Lloyd's 40' Standard High Cube spec:
+        // https://www.hapag-lloyd.com/en/services-information/cargo-fleet/container/40-standard-high-cube.html
         maxWeight: 28600,
         volume: 76.4 // m3
     },
@@ -144,7 +148,19 @@ export function ContainerLoadCalculator() {
         const cartonW = Number(width)
         const cartonH = Number(height)
         const cartonWt = Number(weight) || 0
-        if (cartonL <= 0 || cartonW <= 0 || cartonH <= 0) return
+        // Zero or negative sizes can't be packed: clear any earlier result instead of leaving it on screen
+        if (cartonL <= 0 || cartonW <= 0 || cartonH <= 0 || cartonWt < 0) {
+            setResult(null)
+            return
+        }
+        if (loadType === "pallet" && (Number(palletLength) <= 0 || Number(palletWidth) <= 0 || Number(palletHeight) <= 0)) {
+            setResult(null)
+            return
+        }
+        if (selectedContainer === "custom" && (Number(customCLength) <= 0 || Number(customCWidth) <= 0 || Number(customCHeight) <= 0 || Number(customCWeight) <= 0)) {
+            setResult(null)
+            return
+        }
         let cL_mm, cW_mm, cH_mm, cWt_kg
         let pL_mm, pW_mm, pH_mm
         if (unitSystem === "metric") {
@@ -177,6 +193,8 @@ export function ContainerLoadCalculator() {
                 container.height = Math.round(Number(customCHeight) * 25.4)
                 container.maxWeight = Math.round(Number(customCWeight) * 0.453592)
             }
+            // Inside volume in m³ from the mm dimensions, so utilisation works for custom containers
+            container.volume = (container.length * container.width * container.height) / 1e9
         }
         const calculateMaxFit = (containerL: number, containerW: number, containerH: number, itemL: number, itemW: number, itemH: number) => {
             let maxCount = 0

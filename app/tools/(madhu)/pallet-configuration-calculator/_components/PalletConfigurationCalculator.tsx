@@ -41,6 +41,14 @@ const PALLET_PRESETS: Record<Exclude<PalletPreset, "custom">, PalletDimensions> 
 
 const PALLET_HEIGHT = 5.5 // Standard pallet thickness in inches
 
+// Converts a typed dimension between in and cm, rounded to 2 decimals. Blank or invalid input stays as typed.
+function convertDimension(value: string, to: DimensionUnit): string {
+    const n = parseFloat(value)
+    if (value.trim() === "" || isNaN(n)) return value
+    const converted = to === "cm" ? n * 2.54 : n / 2.54
+    return parseFloat(converted.toFixed(2)).toString()
+}
+
 export function PalletConfigurationCalculator() {
     // Box
     const [boxDimensions, setBoxDimensions] = useState<BoxDimensions>({ length: "", width: "", height: "" })
@@ -97,9 +105,10 @@ export function PalletConfigurationCalculator() {
         const boxLIn = convertToInches(boxL)
         const boxWIn = convertToInches(boxW)
         const boxHIn = convertToInches(boxH)
-        const palL = convertToInches(parseFloat(palletLength || "48"))
-        const palW = convertToInches(parseFloat(palletWidth || "40"))
-        const maxH = convertToInches(parseFloat(maxStackHeight || "72"))
+        // Blank fields fall back to the 48 × 40 in pallet and 72 in stack limit, whatever the unit
+        const palL = palletLength ? convertToInches(parseFloat(palletLength)) : 48
+        const palW = palletWidth ? convertToInches(parseFloat(palletWidth)) : 40
+        const maxH = maxStackHeight ? convertToInches(parseFloat(maxStackHeight)) : 72
 
         const availableHeight = maxH - PALLET_HEIGHT
 
@@ -207,9 +216,9 @@ export function PalletConfigurationCalculator() {
                             onReset={() => {
                                 setBoxDimensions({ length: "", width: "", height: "" })
                                 setPalletPreset("standard")
-                                setPalletLength("48")
-                                setPalletWidth("40")
-                                setMaxStackHeight("72")
+                                setPalletLength(unit === "cm" ? convertDimension("48", "cm") : "48")
+                                setPalletWidth(unit === "cm" ? convertDimension("40", "cm") : "40")
+                                setMaxStackHeight(unit === "cm" ? convertDimension("72", "cm") : "72")
                                 setAllowRotation(true)
                                 setBoxWeight("")
                                 setMaxPalletWeight("")
@@ -238,9 +247,19 @@ export function PalletConfigurationCalculator() {
                                                     <button
                                                         key={u}
                                                         onClick={() => {
+                                                            if (u === unit) return
                                                             setUnit(u)
-                                                            // Re-fill pallet dims in new unit
-                                                            if (palletPreset !== "custom") {
+                                                            // Convert every typed dimension to the new unit
+                                                            setBoxDimensions(prev => ({
+                                                                length: convertDimension(prev.length, u),
+                                                                width: convertDimension(prev.width, u),
+                                                                height: convertDimension(prev.height, u),
+                                                            }))
+                                                            setMaxStackHeight(prev => convertDimension(prev, u))
+                                                            if (palletPreset === "custom") {
+                                                                setPalletLength(prev => convertDimension(prev, u))
+                                                                setPalletWidth(prev => convertDimension(prev, u))
+                                                            } else {
                                                                 const dims = PALLET_PRESETS[palletPreset]
                                                                 setPalletLength(u === "cm" ? (dims.length * 2.54).toFixed(1) : dims.length.toString())
                                                                 setPalletWidth(u === "cm" ? (dims.width * 2.54).toFixed(1) : dims.width.toString())
@@ -548,8 +567,9 @@ export function PalletConfigurationCalculator() {
                             {
                                 key: "loadHeight",
                                 label: "Used Height",
-                                value: results ? parseFloat(results.loadHeight.toFixed(1)) : 0,
-                                unit: "/ " + (results ? parseFloat(results.maxH.toFixed(0)) : "72") + (unit === "cm" ? " cm" : " in"),
+                                // Heights are computed in inches; show them in the selected unit
+                                value: results ? parseFloat((results.loadHeight * (unit === "cm" ? 2.54 : 1)).toFixed(1)) : 0,
+                                unit: "/ " + (results ? parseFloat((results.maxH * (unit === "cm" ? 2.54 : 1)).toFixed(1)) : (unit === "cm" ? "182.9" : "72")) + (unit === "cm" ? " cm" : " in"),
                                 tooltip: "Load height vs. max allowed stack height",
                                 icon: Ruler,
                             },

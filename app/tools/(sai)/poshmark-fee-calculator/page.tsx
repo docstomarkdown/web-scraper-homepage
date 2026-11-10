@@ -8,14 +8,14 @@ import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
     title: "Poshmark Fee Calculator: Free Seller Fee and Profit",
-    description: "See Poshmark's fee on a sale, flat $2.95 under $15 or 20% above, and your net profit after the item cost and any shipping discount you offer.",
+    description: "See Poshmark's fee on a sale, flat $2.95 at $15 and under or 20% above, and your net profit after the item cost and any shipping discount you offer.",
     alternates: { canonical: "/tools/poshmark-fee-calculator" },
 }
 
 const faqs = [
     {
         question: "What is Poshmark's fee?",
-        answer: "A flat $2.95 on sales under $15 and 20% on sales of $15 or more. There are no listing fees.",
+        answer: "A flat $2.95 on sales of $15 and under, and 20% on sales over $15. There are no listing fees.",
     },
     {
         question: "Who pays shipping on Poshmark?",

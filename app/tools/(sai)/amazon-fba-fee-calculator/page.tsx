@@ -8,6 +8,8 @@ export const metadata: Metadata = {
     title: "Amazon FBA Fee Calculator: Free Fee and Profit Estimate",
     description: "Estimate Amazon's FBA fulfilment and referral fees from price, weight, size and category in the US, UK, EU, Canada and India, and see what's left.",
     alternates: { canonical: "/tools/amazon-fba-fee-calculator" },
+    // Out of search until the rates are checked in Seller Central (config/site.ts).
+    robots: { index: false, follow: true },
 }
 export default function FbaCalculatorPage() {
     return (

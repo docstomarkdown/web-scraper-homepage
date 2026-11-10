@@ -7,26 +7,26 @@ import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
     title: "Time Zone Meeting Planner: Free Overlap Finder",
-    description: "Pick your city and the cities of your suppliers or team, and see which hours fall inside everyone's working day before you set a call time.",
+    description: "Pick your country and the countries of your suppliers or team, choose a date, and see which hours fall inside everyone's working day before you set a call time.",
     alternates: { canonical: "/tools/time-zone-meeting-planner" },
 }
 
 const faqs = [
     {
         question: "Does the planner adjust for daylight saving?",
-        answer: "Yes. It uses each time zone's current offset from your browser, so it follows daylight saving automatically.",
+        answer: "Yes. It works out each country's offset for the date and time you pick, so a meeting after the clocks change shows the new local times.",
     },
     {
         question: "Which time zone is CST?",
-        answer: "The abbreviation is used for both US Central and China Standard Time. Pick the city rather than the abbreviation to avoid the mix-up.",
+        answer: "The abbreviation is used for both US Central and China Standard Time. Pick the country rather than the abbreviation to avoid the mix-up.",
     },
     {
-        question: "Can I add more than three cities?",
+        question: "Can I add more than three countries?",
         answer: "Yes. Add as many as you need; each one shows its local time and whether it is in business hours.",
     },
     {
         question: "What counts as business hours?",
-        answer: "9 am to 5 pm in each city's local time. Adjust for your own contacts if they work different hours.",
+        answer: "9 am to 5 pm in each country's local time. Adjust for your own contacts if they work different hours.",
     },
 ]
 

@@ -118,7 +118,7 @@ type CountryInfo = {
     code: string;
     timezone: string; // IANA timezone ID
     isPriority?: boolean;
-    offset: number; // Current offset in minutes
+    offset: number; // Offset in minutes at the meeting's date and time
     offsetStr: string; // e.g. "UTC+5:30"
     label: string; // Full label for search: "🇮🇳 India (UTC+5:30)"
 };
@@ -132,17 +132,41 @@ const Flag = ({ code, className }: { code: string; className?: string }) => (
     </div>
 );
 // --- Helpers ---
-// Compute offsets for all countries
-const getCountries = (): CountryInfo[] => {
-    const now = new Date();
+// Offset (minutes) of an IANA time zone at a given instant, read from Intl so daylight saving follows the date.
+export const offsetAt = (timeZone: string, instant: number): number => {
+    const parts = new Intl.DateTimeFormat("en-US", {
+        timeZone, hourCycle: "h23", year: "numeric", month: "2-digit", day: "2-digit",
+        hour: "2-digit", minute: "2-digit", second: "2-digit",
+    }).formatToParts(new Date(instant));
+    const get = (t: string) => Number(parts.find(p => p.type === t)?.value);
+    const asUtc = Date.UTC(get("year"), get("month") - 1, get("day"), get("hour"), get("minute"), get("second"));
+    return Math.round((asUtc - Math.floor(instant / 1000) * 1000) / 60000);
+};
+// The UTC instant of a wall-clock date ("2026-03-10") and time ("09:00") in a time zone.
+export const zonedToInstant = (date: string, time: string, timeZone: string): number => {
+    const [y, mo, d] = date.split("-").map(Number);
+    const [h, mi] = time.split(":").map(Number);
+    const guess = Date.UTC(y, mo - 1, d, h, mi);
+    const first = guess - offsetAt(timeZone, guess) * 60000;
+    const second = guess - offsetAt(timeZone, first) * 60000;
+    return second;
+};
+// Local date ("YYYY-MM-DD") and minutes since midnight of an instant in a time zone.
+export const localAt = (timeZone: string, instant: number) => {
+    const local = new Date(instant + offsetAt(timeZone, instant) * 60000);
+    return { date: local.toISOString().slice(0, 10), minutes: local.getUTCHours() * 60 + local.getUTCMinutes() };
+};
+const formatOffset = (offsetMinutes: number) => {
+    const h = Math.floor(Math.abs(offsetMinutes) / 60);
+    const m = Math.abs(offsetMinutes) % 60;
+    const sign = offsetMinutes >= 0 ? "+" : "-";
+    return `UTC${sign}${h}${m ? ":" + m : ""}`;
+};
+// Compute every country's offset at the meeting instant (selected date and time), not today.
+const getCountries = (instant: number): CountryInfo[] => {
     return COUNTRY_LIST.map(c => {
-        const tzDate = new Date(now.toLocaleString("en-US", { timeZone: c.timezone }));
-        const utcDate = new Date(now.toLocaleString("en-US", { timeZone: "UTC" }));
-        const offsetMinutes = (tzDate.getTime() - utcDate.getTime()) / 60000;
-        const h = Math.floor(Math.abs(offsetMinutes) / 60);
-        const m = Math.abs(offsetMinutes) % 60;
-        const sign = offsetMinutes >= 0 ? "+" : "-";
-        const offsetStr = `UTC${sign}${h}${m ? ":" + m : ""}`;
+        const offsetMinutes = offsetAt(c.timezone, instant);
+        const offsetStr = formatOffset(offsetMinutes);
         return {
             name: c.name,
             flag: c.flag,
@@ -179,31 +203,32 @@ export function TimeZonePlanner() {
     const [baseTimezone, setBaseTimezone] = useState(initialCountry?.timezone || "Asia/Kolkata");
     const [compareTimezones, setCompareTimezones] = useState<string[]>(["Europe/London", "Asia/Tokyo", "America/New_York"]);
     const [activeCompareIndex, setActiveCompareIndex] = useState(0);
-    const [countries, setCountries] = useState<CountryInfo[]>([]);
+    const [isMounted, setIsMounted] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     useEffect(() => {
-        setCountries(getCountries());
+        setIsMounted(true);
     }, []);
+    // The meeting as one instant: the selected date and start time in the base time zone.
+    const meetingInstant = useMemo(() => {
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(selectedDate) || !/^\d{1,2}:\d{2}$/.test(baseTime)) return null;
+        const instant = zonedToInstant(selectedDate, baseTime, baseTimezone);
+        return Number.isFinite(instant) ? instant : null;
+    }, [selectedDate, baseTime, baseTimezone]);
+    // Computed after mount so the server render and the browser render match.
+    const countries = useMemo(
+        () => (isMounted ? getCountries(meetingInstant ?? Date.now()) : []),
+        [isMounted, meetingInstant]
+    );
     const baseCountry = useMemo(() => countries.find((c: CountryInfo) => c.timezone === baseTimezone), [countries, baseTimezone]);
     const calculateTargetTime = (targetTimezone: string) => {
         if (!baseCountry) return null;
         const targetCountry = countries.find((c: CountryInfo) => c.timezone === targetTimezone);
         if (!targetCountry) return null;
-        const [h, m] = baseTime.split(":").map(Number);
-        const baseTotalMinutes = h * 60 + m;
-        // Offset difference
-        const diff = targetCountry.offset - baseCountry.offset;
-        const targetTotalMinutes = baseTotalMinutes + diff;
-        // Day offset
-        let dayOffset = 0;
-        let normalizedMinutes = targetTotalMinutes;
-        if (targetTotalMinutes >= 1440) {
-            dayOffset = 1;
-            normalizedMinutes = targetTotalMinutes % 1440;
-        } else if (targetTotalMinutes < 0) {
-            dayOffset = -1;
-            normalizedMinutes = 1440 + (targetTotalMinutes % 1440);
-        }
+        if (meetingInstant === null) return null;
+        // Convert the meeting instant into the target zone's wall clock for that date.
+        const target = localAt(targetTimezone, meetingInstant);
+        const normalizedMinutes = target.minutes;
+        const dayOffset = Math.round((Date.parse(target.date) - Date.parse(selectedDate)) / 86400000);
         const targetHour = (Math.floor(normalizedMinutes / 60)) % 24;
         const status = getTimeOfDayStatus(targetHour);
         return {
@@ -279,7 +304,7 @@ export function TimeZonePlanner() {
                                         <Button
                                             variant={"outline"}
                                             role={"combobox"}
-                                            aria-label="Choose a city"
+                                            aria-label="Choose a country"
                                             className="w-full h-14 justify-between bg-white border-slate-200 hover:border-blue-400 hover:bg-white rounded-2xl px-4 font-bold text-slate-800 shadow-sm transition-all group focus:ring-4 focus:ring-blue-500/5 group dark:bg-slate-900 dark:border-slate-800 dark:hover:bg-slate-900 dark:text-slate-100"
                                         >
                                             <div className="flex items-center gap-3">
@@ -476,8 +501,8 @@ export function TimeZonePlanner() {
                                         <button
                                             onClick={() => removeCountry(tz)}
                                             className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all p-2 bg-white/90 hover:bg-red-500 hover:text-white shadow-md rounded-xl text-slate-600 dark:text-slate-300 z-20 hover:scale-110 active:scale-90 dark:bg-slate-900/90"
-                                            title="Remove this city"
-                                            aria-label="Remove this city"
+                                            title="Remove this country"
+                                            aria-label="Remove this country"
                                         >
                                             <Trash2 className="h-4 w-4" />
                                         </button>

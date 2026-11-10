@@ -29,9 +29,9 @@ export function ContainerLoadGuide() {
                     statColor: "text-amber-700 dark:text-amber-300",
                 },                {
                     title: "A worked example",
-                    description: "A 20ft container is 5.9 m by 2.35 m by 2.39 m. A carton 50 cm by 40 cm by 30 cm fits 11 by 5 by 7, which is 385 cartons. At 20 kg each that's 7,700 kg, under the limit, filling about 69% of the space.",
+                    description: "A 20ft container is 5.9 m by 2.35 m by 2.39 m. A carton 50 cm by 40 cm by 30 cm, turned so its 40 cm side runs along the length, fits 14 by 4 by 7, which is 392 cartons. At 20 kg each that's 7,840 kg, under the limit, filling about 71% of the space.",
                     icon: Table,
-                    stat: "385",
+                    stat: "392",
                     statLabel: "cartons in a 20ft",
                     iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
                     iconColor: "text-emerald-700 dark:text-emerald-300",

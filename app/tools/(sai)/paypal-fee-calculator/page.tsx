@@ -6,15 +6,15 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "PayPal Fee Calculator: Free Fee and Payout Check",
-    description: "See the PayPal fee on a payment, what you receive after it, and what to charge to receive a set amount, at standard, international, micro and nonprofit rates.",
+    title: "PayPal Fee Calculator: Fee and Payout Check",
+    description: "See the PayPal fee on a payment, what you receive after it, and what to charge to receive a set amount, at checkout, card, international, micro and nonprofit rates.",
     alternates: { canonical: "/tools/paypal-fee-calculator" },
 }
 
 const faqs = [
     {
         question: "How much does PayPal charge?",
-        answer: "For a standard US commercial payment, 2.9% of the amount plus $0.30. International, micropayment and nonprofit rates differ; the calculator has each.",
+        answer: "For a US PayPal Checkout payment, 3.49% of the amount plus $0.49. Card, international, micropayment and charity rates differ; the calculator has each.",
     },
     {
         question: "What is the friends and family rate?",
@@ -22,7 +22,7 @@ const faqs = [
     },
     {
         question: "How do I receive exactly $100?",
-        answer: "Ask for ($100 + $0.30) ÷ 0.971, which is $103.40 at the standard rate. The calculator's \"ask for\" figure does this for any amount.",
+        answer: "Ask for ($100 + $0.49) ÷ 0.9651, which is $104.12 at the checkout rate. The calculator's \"ask for\" figure does this for any amount.",
     },
     {
         question: "Did PayPal's fees change recently?",

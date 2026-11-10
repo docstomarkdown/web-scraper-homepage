@@ -1,4 +1,6 @@
 "use client";
+import { PAYPAL } from "@/app/tools/_data/feeRates";
+import { RatesChecked } from "@/app/tools/_shared/components";
 import React, { useState } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -7,21 +9,17 @@ import { CalculatorCardHeader, CalculatorInput, Counter, CurrencyCombobox, FadeI
 export function PayPalFeeCalculator() {
     const [currency, setCurrency] = useState("USD");
     const [amount, setAmount] = useState<number | "">("");
-    const [feeType, setFeeType] = useState<"standard" | "international" | "micropayment" | "nonprofit">("standard");
+    const [feeType, setFeeType] = useState<keyof typeof PAYPAL.tiers>("checkout");
     const handleReset = () => {
-        setAmount(100)
-        setFeeType("standard")
+        setAmount("")
+        setFeeType("checkout")
     }
     const val = (v: number | "") => (v === "" ? 0 : v);
     const amountVal = val(amount);
-    let ratePercent = 2.9;
-    let fixedFee = 0.30;
-    switch (feeType) {
-        case "international": ratePercent = 4.4; fixedFee = 0.30; break;
-        case "micropayment": ratePercent = 5.0; fixedFee = 0.05; break;
-        case "nonprofit": ratePercent = 2.2; fixedFee = 0.30; break;
-        default: ratePercent = 2.9; fixedFee = 0.30;
-    }
+    // US commercial rates from PayPal's fee page (app/tools/_data/feeRates.ts). The fixed fee is the USD one; PayPal
+    // sets a different fixed fee for each currency.
+    const ratePercent = PAYPAL.tiers[feeType].percent;
+    const fixedFee = PAYPAL.tiers[feeType].fixed;
     const totalFee = (amountVal * (ratePercent / 100)) + fixedFee;
     const netAmount = amountVal - totalFee;
     const toReceiveAmount = (amountVal + fixedFee) / (1 - (ratePercent / 100));
@@ -50,13 +48,12 @@ export function PayPalFeeCalculator() {
                                 <div className="space-y-2">
                                     <label className="text-xs font-black tracking-widest text-slate-600 dark:text-slate-300">Fee Tier</label>
                                     <Tabs value={feeType} onValueChange={(v) => setFeeType(v as any)} className="w-full">
-                                        <TabsList className="grid w-full grid-cols-4 h-12 bg-slate-100/50 p-1 dark:bg-slate-800">
-                                            <TabsTrigger value="standard" className="text-xs font-bold data-[state=active]:bg-white data-[state=active]:text-emerald-700">Standard</TabsTrigger>
-                                            <TabsTrigger value="international" className="text-xs font-bold data-[state=active]:bg-white data-[state=active]:text-emerald-700">Intl.</TabsTrigger>
-                                            <TabsTrigger value="micropayment" className="text-xs font-bold data-[state=active]:bg-white data-[state=active]:text-emerald-700">Micro</TabsTrigger>
-                                            <TabsTrigger value="nonprofit" className="text-xs font-bold data-[state=active]:bg-white data-[state=active]:text-emerald-700">Charity</TabsTrigger>
+                                        <TabsList className="grid w-full grid-cols-5 h-12 bg-slate-100/50 p-1 dark:bg-slate-800">
+                                            {(Object.keys(PAYPAL.tiers) as (keyof typeof PAYPAL.tiers)[]).map((k) => (
+                                                <TabsTrigger key={k} value={k} className="text-xs font-bold data-[state=active]:bg-white data-[state=active]:text-[#1f5ec2]">{PAYPAL.tiers[k].label}</TabsTrigger>
+                                            ))}
                                         </TabsList>
-                                        {["standard", "international", "micropayment", "nonprofit"].map((v) => <TabsContent key={v} value={v} className="sr-only" />)}
+                                        {Object.keys(PAYPAL.tiers).map((v) => <TabsContent key={v} value={v} className="sr-only" />)}
                                     </Tabs>
                                 </div>
                                 <CalculatorInput
@@ -163,6 +160,10 @@ export function PayPalFeeCalculator() {
                         {/* Decorative background element */}
                         <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-blue-50/50 rounded-full blur-2xl z-0 dark:bg-blue-950/40" />
                     </Card>
+                    <RatesChecked source={PAYPAL.source} />
+                    {currency !== "USD" && (
+                        <p className="text-sm text-slate-600 dark:text-slate-300">The fixed fee shown is PayPal&apos;s US dollar fee; each currency has its own.</p>
+                    )}
                 </div>
             </div>
         </FadeIn>

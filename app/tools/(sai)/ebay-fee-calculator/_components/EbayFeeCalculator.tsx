@@ -1,4 +1,6 @@
 "use client"
+import { EBAY } from "@/app/tools/_data/feeRates";
+import { RatesChecked } from "@/app/tools/_shared/components";
 import React, { useState, useEffect } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tag, DollarSign, Percent } from "lucide-react"
@@ -22,8 +24,7 @@ export function EbayFeeCalculator() {
     const [adRate, setAdRate] = useState<number | "">("")
 
     useEffect(() => {
-        if (feeRate === "") setFeeRate(13.25)
-        if (fixedFee === "") setFixedFee(0.30)
+        if (feeRate === "") setFeeRate(EBAY.finalValuePercent)
     }, [])
 
     const handleReset = () => {
@@ -31,8 +32,8 @@ export function EbayFeeCalculator() {
         setShippingCharged("")
         setItemCost("")
         setShippingCost("")
-        setFeeRate(13.25)
-        setFixedFee(0.30)
+        setFeeRate(EBAY.finalValuePercent)
+        setFixedFee("")
         setAdRate("")
     }
 
@@ -50,7 +51,9 @@ export function EbayFeeCalculator() {
         const cost = Number(itemCost) || 0
         const shipCost = Number(shippingCost) || 0
         const rate = Number(feeRate) || 0
-        const fixed = Number(fixedFee) >= 0 && fixedFee !== "" ? Number(fixedFee) : 0
+        // Left blank, the order fee follows eBay's rule: $0.30 on orders of $10 or less, $0.40 above (feeRates.ts).
+        const revenueForFee = price + charge
+        const fixed = fixedFee !== "" && Number(fixedFee) >= 0 ? Number(fixedFee) : revenueForFee > EBAY.perOrderThreshold ? EBAY.perOrderLarge : EBAY.perOrderSmall
         const ad = Number(adRate) || 0
 
         const revenue = price + charge
@@ -65,7 +68,12 @@ export function EbayFeeCalculator() {
             return
         }
 
-        const fvf = (revenue * (rate / 100)) + fixed
+        // At eBay's standard rate, the part of a sale over $7,500 is charged at 2.35%. A custom rate applies to the whole sale.
+        const atStandardRate = rate === EBAY.finalValuePercent
+        const tiered = atStandardRate && revenue > EBAY.tierLimit
+            ? EBAY.tierLimit * (rate / 100) + (revenue - EBAY.tierLimit) * (EBAY.aboveTierPercent / 100)
+            : revenue * (rate / 100)
+        const fvf = tiered + fixed
         const adFee = revenue * (ad / 100)
         const fees = fvf + adFee
 
@@ -81,7 +89,7 @@ export function EbayFeeCalculator() {
         setAdFeeAmount(adFee)
     }, [soldPrice, shippingCharged, itemCost, shippingCost, feeRate, fixedFee, adRate])
 
-    const isValid = soldPrice !== "" && itemCost !== "" && feeRate !== "" && (fixedFee !== "" && Number(fixedFee) >= 0)
+    const isValid = soldPrice !== "" && itemCost !== "" && feeRate !== ""
     const isLive = totalRevenue > 0
 
     return (
@@ -169,26 +177,26 @@ export function EbayFeeCalculator() {
                                         label="eBay Fee"
                                         value={feeRate}
                                         onChange={setFeeRate}
-                                        placeholder="13.25"
+                                        placeholder="13.6"
                                         suffix="%"
                                         step={0.01}
                                         min={0}
                                         max={100}
                                         tooltip="eBay's Final Value Fee percentage based on your item's category."
-                                        hint={feeRate === 13.25 ? "Industry standard range: 10% – 15%" : undefined}
+                                        hint={feeRate === EBAY.finalValuePercent ? "eBay's rate for most categories; 2.35% on the part over $7,500" : undefined}
                                     />
                                     <CalculatorInput
                                         label="Order Fee"
                                         value={fixedFee}
                                         onChange={setFixedFee}
-                                        placeholder="0.30"
+                                        placeholder="0.40"
                                         step={0.01}
                                         min={0}
                                         max={10000}
-                                        tooltip="eBay's standard fixed transaction fee per order (usually $0.30)."
+                                        tooltip="eBay's fixed fee per order. Leave it blank to use eBay's rule: $0.30 on orders of $10 or less, $0.40 above."
                                         isCurrency
                                         currency={currency}
-                                        hint={fixedFee === 0.30 ? "Standard fixed fee: $0.30" : undefined}
+                                        hint={fixedFee === "" ? "Auto: $0.30 up to $10, $0.40 above" : undefined}
                                     />
                                     <CalculatorInput
                                         label="Promoted Listings"
@@ -278,6 +286,7 @@ export function EbayFeeCalculator() {
                             totalRevenue={totalRevenue}
                             currency={currency}
                         />
+                        <RatesChecked source={EBAY.source} />
                     </div>
                 </div>
             </div>

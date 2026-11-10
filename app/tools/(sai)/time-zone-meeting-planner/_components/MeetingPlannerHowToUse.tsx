@@ -8,18 +8,18 @@ export function MeetingPlannerHowToUse() {
             title="How to use this tool"
             steps={[
                 {
-                    title: "Set your own city and time",
-                    description: "Choose your time zone and the time you have in mind.",
+                    title: "Set your country, date and time",
+                    description: "Choose your country, the meeting date and the time you have in mind.",
                     icon: MapPin,
                 },
                 {
-                    title: "Add the other cities",
-                    description: "Add the time zones of the people you need: a supplier in Shenzhen, an assistant in Manila, a customer in London.",
+                    title: "Add the other countries",
+                    description: "Add the countries of the people you need: a supplier in China, an assistant in the Philippines, a customer in the United Kingdom.",
                     icon: Globe,
                 },
                 {
                     title: "Find the overlap",
-                    description: "Each city shows its local time and whether it falls in business hours or off hours. Move your time until every city is in a workable slot.",
+                    description: "Each country shows its local time and whether it falls in business hours or off hours. Move your time until every country is in a workable slot.",
                     icon: Clock,
                 },
             ]}

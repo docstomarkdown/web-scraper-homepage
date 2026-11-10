@@ -14,7 +14,7 @@ export function PayPalHowToUse() {
                 },
                 {
                     title: "Pick the rate",
-                    description: "Choose standard, international, micropayment or nonprofit. Each has its own percentage and fixed fee.",
+                    description: "Choose checkout, cards, international, micropayment or charity. Each has its own percentage and fixed fee.",
                     icon: Globe,
                 },
                 {

@@ -14,6 +14,9 @@ export const siteConfig = {
 }
 
 // Tools groups configuration (exported separately for tools page)
+// The Amazon FBA fee and storage calculators are off this list, and out of search, until their fulfilment and storage
+// rates are checked against Amazon's rate card in Seller Central; Amazon doesn't publish it openly (calculator plan,
+// 2026-11-10). Their pages still load for anyone with the link.
 export const toolsGroups = [
   {
     title: "E-commerce Tools",
@@ -22,10 +25,6 @@ export const toolsGroups = [
       {
         title: "Dropshipping Profit Calculator",
         href: "/tools/dropshipping-profit-calculator",
-      },
-      {
-        title: "Amazon FBA Fee Calculator",
-        href: "/tools/amazon-fba-fee-calculator",
       },
       {
         title: "Profit Margin Calculator",
@@ -183,10 +182,6 @@ export const toolsGroups = [
       {
         title: "A/B Test Duration Calculator",
         href: "/tools/ab-test-duration-calculator",
-      },
-      {
-        title: "Amazon Storage Fee Calculator",
-        href: "/tools/amazon-storage-fee-calculator",
       },
 
       {

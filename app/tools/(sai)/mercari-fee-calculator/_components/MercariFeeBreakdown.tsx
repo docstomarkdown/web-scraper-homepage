@@ -11,7 +11,6 @@ interface MercariFeeBreakdownProps {
     ship: number;
     other: number;
     sellingFee: number;
-    processingFee: number;
     netProfit: number;
     currency?: string;
     className?: string;
@@ -23,7 +22,6 @@ export function MercariFeeBreakdown({
     ship,
     other,
     sellingFee,
-    processingFee,
     netProfit,
     currency = "USD",
     className
@@ -37,7 +35,6 @@ export function MercariFeeBreakdown({
     const rawData = [
         { name: netProfit >= 0 ? "Net Profit" : "Net Loss", value: netProfit, color: "#10b981", isCost: false, isMandatory: true },
         { name: "Mercari Fee", value: sellingFee, color: "#f43f5e", isCost: true, isMandatory: true },
-        { name: "Processing Fee", value: processingFee, color: "#f59e0b", isCost: true, isMandatory: true },
         { name: "Item Cost", value: cost, color: "#3b82f6", isCost: true, isMandatory: false },
         { name: "Shipping Cost", value: ship, color: "#8b5cf6", isCost: true, isMandatory: false },
         { name: "Other Expenses", value: other, color: "#0ea5e9", isCost: true, isMandatory: false }

@@ -20,7 +20,7 @@ export function GTINGuide() {
                     statColor: "text-blue-700 dark:text-blue-300",
                 },                {
                     title: "How the forms relate",
-                    description: "A 12-digit UPC becomes a 13-digit EAN with a leading zero. A 13-digit EAN becomes a GTIN-14 with a leading packaging indicator, usually 0 for a single unit. GTIN-8 is a separate short form for small packs and can't be made from the others.",
+                    description: "Every form is the same number padded to 14 digits with leading zeros, so the check digit stays the same. A 12-digit UPC becomes a 13-digit EAN with a leading zero, and an EAN becomes a UPC only if it starts with 0. GTIN-8 is a separate number GS1 assigns to small packs and can't be made from the others.",
                     icon: Layers,
                     stat: "0 + UPC",
                     statLabel: "= EAN-13",

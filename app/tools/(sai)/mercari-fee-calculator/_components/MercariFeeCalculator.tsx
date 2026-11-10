@@ -7,13 +7,16 @@ import {
 } from "lucide-react";
 import {
     FadeIn, CalculatorInput, CalculatorCardHeader, ResultSummaryCard
+    , RatesChecked
 } from "@/app/tools/_shared/components";
+import { MERCARI } from "@/app/tools/_data/feeRates";
 import { MercariFeeBreakdown } from "./MercariFeeBreakdown";
 
 export function MercariFeeCalculator() {
     const [salePrice, setSalePrice] = useState<number | "">("")
     const [itemCost, setItemCost] = useState<number | "">("")
     const [shippingCost, setShippingCost] = useState<number | "">("")
+    const [buyerShipping, setBuyerShipping] = useState<number | "">("")
     const [otherCosts, setOtherCosts] = useState<number | "">("")
     const [soldQuantity, setSoldQuantity] = useState<number | "">(1)
 
@@ -21,6 +24,7 @@ export function MercariFeeCalculator() {
         setSalePrice("")
         setItemCost("")
         setShippingCost("")
+        setBuyerShipping("")
         setOtherCosts("")
         setSoldQuantity(1)
     }
@@ -33,13 +37,15 @@ export function MercariFeeCalculator() {
     const other = val(otherCosts);
     const quantity = Math.max(val(soldQuantity) || 1, 1);
 
-    // Mercari Fees: 10% selling fee + 2.9% + $0.50 processing fee
-    const sellingFee = price * 0.10;
-    const processingFee = price > 0 ? (price * 0.029) + 0.50 : 0;
-    const totalFees = sellingFee + processingFee;
+    const buyerShip = val(buyerShipping);
+    // Mercari's 10% selling fee is on the item price plus the shipping the buyer pays, with no seller processing
+    // fee (since 6 January 2025; app/tools/_data/feeRates.ts).
+    const revenue = price + buyerShip;
+    const sellingFee = revenue * MERCARI.sellingFee;
+    const totalFees = sellingFee;
     const totalExpenses = cost + ship + other + totalFees;
-    const netProfit = price - totalExpenses;
-    const margin = price > 0 ? (netProfit / price) * 100 : 0;
+    const netProfit = revenue - totalExpenses;
+    const margin = revenue > 0 ? (netProfit / revenue) * 100 : 0;
     const batchProfit = netProfit * quantity;
 
     const isCalculated = salePrice !== "";
@@ -70,7 +76,7 @@ export function MercariFeeCalculator() {
                                             isCurrency
                                             currency="USD"
                                             autoFocus
-                                            tooltip="The amount the buyer pays for your item. Mercari's 10% fee and the payment processing fee are both calculated from this number."
+                                            tooltip="The price of your item. Mercari's 10% selling fee is worked out on this plus any shipping the buyer pays."
                                             groupingTitle="Revenue"
                                             groupingIcon={Tag}
                                             hideSeparator={true}
@@ -106,7 +112,17 @@ export function MercariFeeCalculator() {
                                             placeholder="0.00"
                                             isCurrency
                                             currency="USD"
-                                            tooltip="Only enter this if YOU are paying for the shipping label. Leave blank if the buyer pays shipping."
+                                            tooltip="What you pay for the shipping label. Leave it blank if the buyer pays shipping."
+                                        />
+                                        <CalculatorInput
+                                            label="Shipping the Buyer Pays"
+                                            value={buyerShipping}
+                                            onChange={setBuyerShipping}
+                                            placeholder="0.00"
+                                            isCurrency
+                                            currency="USD"
+                                            tooltip="If the buyer pays for shipping, enter that amount. Mercari's 10% fee applies to it too."
+                                            isOptional
                                         />
                                         <CalculatorInput
                                             label="Other Expenses"
@@ -156,7 +172,7 @@ export function MercariFeeCalculator() {
                                     value: totalFees,
                                     isCurrency: true,
                                     icon: DollarSign,
-                                    tooltip: `Mercari's 10% selling fee (${formatCurrency(sellingFee)}) plus payment processing of 2.9% + $0.50 (${formatCurrency(processingFee)}).`
+                                    tooltip: `Mercari's 10% selling fee on the item price plus buyer-paid shipping: ${formatCurrency(sellingFee)}. Mercari charges sellers no separate processing fee.`
                                 },
                                 {
                                     key: "margin",
@@ -164,7 +180,7 @@ export function MercariFeeCalculator() {
                                     value: margin.toFixed(1),
                                     unit: "%",
                                     icon: Percent,
-                                    tooltip: `(Net Profit ÷ Sale Price) × 100. A margin of ${margin.toFixed(1)}% means you keep ${formatCurrency(netProfit)} for every ${formatCurrency(price)} sold.`
+                                    tooltip: `(Net Profit ÷ what the buyer pays) × 100. A margin of ${margin.toFixed(1)}% means you keep ${formatCurrency(netProfit)} of every ${formatCurrency(revenue)} the buyer pays.`
                                 },
                                 ...(quantity > 1 ? [{
                                     key: "batchProfit",
@@ -182,15 +198,15 @@ export function MercariFeeCalculator() {
                         />
 
                         <MercariFeeBreakdown
-                            price={price}
+                            price={revenue}
                             cost={cost}
                             ship={ship}
                             other={other}
                             sellingFee={sellingFee}
-                            processingFee={processingFee}
                             netProfit={netProfit}
                             currency="USD"
                         />
+                        <RatesChecked source={MERCARI.source} />
                     </FadeIn>
                 </div>
             </div>

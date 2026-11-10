@@ -23,7 +23,7 @@ export function FBARemovalCalculator() {
     const [profitRemoval, setProfitRemoval] = useState(0)
     const [lossDisposal, setLossDisposal] = useState(0)
     const [netDifference, setNetDifference] = useState(0)
-    const [bestOption, setBestOption] = useState<"REMOVE" | "DISPOSE" | "HOLD" | null>(null)
+    const [bestOption, setBestOption] = useState<"REMOVE" | "DISPOSE" | null>(null)
 
     const handleReset = () => {
         setNumberOfUnits("")
@@ -56,27 +56,14 @@ export function FBARemovalCalculator() {
         setProfitRemoval(profitRem)
         setLossDisposal(lossDisp) // Keeping this positive per user example "Loss if Disposed: 800"
 
-        if (profitRem > 0) {
+        // Compare the two outcomes: removal earns profitRem, disposal earns -lossDisp.
+        // The better (or less bad) one wins. On an exact tie, disposal wins: same money, no stock to handle.
+        if (profitRem > -lossDisp) {
             setBestOption("REMOVE")
-            setNetDifference(profitRem - (-lossDisp)) // e.g. 1200 - (-800) = 2000
-        } else if (profitRem <= -lossDisp && profitRem <= 0) {
-            // Both bad, but disposal might be less bad (e.g., profitRem=-1000, lossDisp=800 => -1000 <= -800)
-            // Or both are equal
-            if (profitRem === -lossDisp && lossDisp > 0) {
-                // If they are exactly the same loss
-                setBestOption("HOLD")
-                setNetDifference(0)
-            } else if (profitRem < -lossDisp) {
-                setBestOption("DISPOSE")
-                setNetDifference(-lossDisp - profitRem) // e.g. -800 - (-1000) = 200
-            } else {
-                setBestOption("HOLD")
-                setNetDifference(0)
-            }
+            setNetDifference(profitRem + lossDisp) // e.g. 1200 - (-800) = 2000
         } else {
-            // Both bad, but removal is less of a loss, wait, "HOLD -> When both options are bad Both removing and disposing result in a loss."
-            setBestOption("HOLD")
-            setNetDifference(profitRem - (-lossDisp))
+            setBestOption("DISPOSE")
+            setNetDifference(-lossDisp - profitRem) // e.g. -800 - (-1000) = 200
         }
     }, [numberOfUnits, removalFee, disposalFee, expectedSellingPrice, otherCosts])
 
@@ -95,9 +82,9 @@ export function FBARemovalCalculator() {
     // Dynamic result primary message
     let primaryMessage = ""
     if (isValid && bestOption) {
-        if (bestOption === "REMOVE") primaryMessage = `You gain ${formatCurrency(netDifference)} more by removing instead of disposing.`
-        else if (bestOption === "DISPOSE") primaryMessage = `You save ${formatCurrency(netDifference)} by disposing instead of removing.`
-        else if (bestOption === "HOLD") primaryMessage = `Both choices result in a loss.`
+        if (bestOption === "REMOVE") primaryMessage = `You come out ${formatCurrency(netDifference)} ahead by removing instead of disposing.`
+        else if (netDifference === 0) primaryMessage = `Both choices cost the same. Disposal saves handling the stock.`
+        else primaryMessage = `You save ${formatCurrency(netDifference)} by disposing instead of removing.`
     }
 
     return (
@@ -202,7 +189,7 @@ export function FBARemovalCalculator() {
                             isValid
                                 ? bestOption === "REMOVE" ? "Remove Recommended"
                                   : bestOption === "DISPOSE" ? "Dispose Recommended"
-                                  : "Hold Recommended"
+                                  : "Draft"
                                 : "Draft"
                         }
                         liveBadgeColor={
@@ -285,7 +272,7 @@ export function FBARemovalCalculator() {
                                 )}>
                                     {bestOption === "REMOVE" ? "Action: REMOVE ✅" :
                                      bestOption === "DISPOSE" ? "Action: DISPOSE ❌" :
-                                     "Action: HOLD ⚠️"}
+                                     ""}
                                 </h4>
                                 <p className={cn(
                                     "text-sm leading-relaxed",
@@ -293,9 +280,8 @@ export function FBARemovalCalculator() {
                                     bestOption === "DISPOSE" ? "text-blue-700 dark:text-blue-400" :
                                     "text-amber-700 dark:text-amber-400"
                                 )}>
-                                    {bestOption === "REMOVE" && `The net difference is ${formatCurrency(netDifference)} better if you REMOVE. When profit after removal is positive, removal is the ideal choice.`}
-                                    {bestOption === "DISPOSE" && `The net difference is ${formatCurrency(netDifference)} better if you DISPOSE. Removal gives more loss than disposal in this scenario.`}
-                                    {bestOption === "HOLD" && `Both removing and disposing result in a loss. Consider keeping inventory, holding off, or re-evaluating pricing.`}
+                                    {bestOption === "REMOVE" && `The net difference is ${formatCurrency(netDifference)} better if you REMOVE. Removal earns more, or loses less, than disposal here.`}
+                                    {bestOption === "DISPOSE" && (netDifference === 0 ? `Both choices cost the same, so disposal wins: it saves handling the stock.` : `The net difference is ${formatCurrency(netDifference)} better if you DISPOSE. Removal loses more than disposal here.`)}
                                 </p>
                             </div>
                         </div>

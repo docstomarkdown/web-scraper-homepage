@@ -50,7 +50,7 @@ export default function ContainerLoadCalculatorPage() {
                             faqs={[
                                 {
                                     question: "How many cartons fit in a 20ft container?",
-                                    answer: "It depends on the carton. The calculator divides the container's interior along each edge by the carton's size, multiplies the three counts, and checks the weight limit. For a 50 by 40 by 30 cm carton it's 385.",
+                                    answer: "It depends on the carton. The calculator divides the container's interior along each edge by the carton's size, multiplies the three counts, and checks the weight limit. For a 50 by 40 by 30 cm carton in a 20ft container it's 392, with rotation on.",
                                 },
                                 {
                                     question: "What's the difference between loose and pallet loading?",

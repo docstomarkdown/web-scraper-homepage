@@ -1,4 +1,5 @@
 "use client"
+import { AMAZON_REFERRAL } from "@/app/tools/_data/feeRates";
 import React, { useState, useEffect } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -67,8 +68,13 @@ const markets: Record<string, MarketConfig> = {
         },
         getReferralFee: (price, category) => {
             if (!price) return 0;
-            const rate = category && categories[category] ? categories[category] : 0.15;
-            return Math.max(0.30, price * rate);
+            // Beauty, Health & Personal Care and Baby: 8% at $10 and under, 15% above (sell.amazon.com/pricing,
+            // checked 2026-11-10; app/tools/_data/feeRates.ts). Minimum $0.30.
+            const tiered = category === "Beauty" || category === "Baby Products"
+            const rate = tiered
+                ? (price <= AMAZON_REFERRAL.lowPriceThreshold ? AMAZON_REFERRAL.lowPriceCategoryPercent : AMAZON_REFERRAL.standardPercent) / 100
+                : category && categories[category] ? categories[category] : AMAZON_REFERRAL.standardPercent / 100;
+            return Math.max(AMAZON_REFERRAL.minimum, price * rate);
         },
     },
     // === INDIA (Metric) ===
@@ -467,7 +473,7 @@ export function FBACalculator() {
                     <FadeIn delay={0.4} direction="left" className="h-full">
                         <ResultSummaryCard
                             title="Total Amazon Fees"
-                            liveBadgeText="Estimated (2026 Rates)"
+                            liveBadgeText="Estimate"
                             currency={currency}
                             primaryResult={{
                                 value: totalFees,
@@ -478,7 +484,7 @@ export function FBACalculator() {
                             secondaryResults={[
                                 {
                                     key: "referral_fee",
-                                    label: `Referral Fee (${(categories?.[category] || (currency === 'INR' ? 0.12 : 0.15)) * 100}%)`,
+                                    label: salesPriceVal > 0 ? `Referral Fee (${((referralFee / salesPriceVal) * 100).toFixed(1)}%)` : "Referral Fee",
                                     value: referralFee,
                                     isCurrency: true,
                                     icon: Tag
