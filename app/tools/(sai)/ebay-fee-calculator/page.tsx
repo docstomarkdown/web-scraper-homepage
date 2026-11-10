@@ -3,7 +3,7 @@ import { EbayFeeCalculator } from "./_components/EbayFeeCalculator"
 import { EbayFeeGuide } from "./_components/EbayFeeGuide"
 import { EbayFeeHowToUse } from "./_components/EbayFeeHowToUse"
 import { EbayOverview } from "./_components/EbayOverview"
-import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
+import { FadeIn, RelatedProduct, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
@@ -16,10 +16,13 @@ export default function EbayFeeCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="eBay Fee Calculator" direction="down" duration={0.6} />
+                <ToolPageTitle title="eBay fee calculator" direction="down" duration={0.6} />
                 
                 <div className="mb-20">
                     <EbayFeeCalculator />
+                </div>
+                <div className="mb-16">
+                    <RelatedProduct before="To price against competitors, collect their listings and prices into a spreadsheet with" linkText="Web Scraper Pro's product details and reviews" href="/product-scraper" after="." />
                 </div>
                 
                 <div className="max-w-5xl mx-auto space-y-16" id="ebay-fee-guide">

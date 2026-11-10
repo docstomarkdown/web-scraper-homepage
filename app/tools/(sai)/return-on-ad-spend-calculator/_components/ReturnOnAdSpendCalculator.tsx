@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { TrendingUp, DollarSign, Percent, BarChart3, AlertCircle } from "lucide-react"
 import { FadeIn, Counter, CalculatorInput, ResultFeedbackCard, CalculatorCardHeader } from "@/app/tools/_shared/components"
 import { cn } from "@/lib/utils"
+import { roasFromRevenue, revenueForTarget } from "./calc"
 export function ReturnOnAdSpendCalculator() {
     const [currency, setCurrency] = useState("USD")
     const [mode, setMode] = useState<"calculate-roas" | "calculate-revenue">("calculate-roas")
@@ -13,10 +14,13 @@ export function ReturnOnAdSpendCalculator() {
     const [revenueFromAds, setRevenueFromAds] = useState<number | "">("")
     // Mode: Calculate Revenue (Planning)
     const [targetROAS, setTargetROAS] = useState<number | "">("")
+    // Optional: profit margin before ads, for break-even ROAS and a verdict
+    const [profitMargin, setProfitMargin] = useState<number | "">("")
     const handleReset = () => {
         setAdSpend("")
         setRevenueFromAds("")
         setTargetROAS("")
+        setProfitMargin("")
         setMode("calculate-roas")
     }
     const val = (v: number | "") => (v === "" ? 0 : v)
@@ -30,15 +34,10 @@ export function ReturnOnAdSpendCalculator() {
     const symbol = currencySymbols[currency] || "$"
     // --- Calculations ---
     const spend = val(adSpend)
-    // Standard Mode Results
-    const revenue = val(revenueFromAds)
-    const roas = spend > 0 ? revenue / spend : 0
-    const roasPercent = roas * 100
-    const profit = revenue - spend
-    // Planning Mode Results
-    const targetRoasVal = val(targetROAS)
-    const calculatedRevenue = spend * targetRoasVal
-    const plannedProfit = calculatedRevenue - spend
+    const result = mode === "calculate-roas"
+        ? roasFromRevenue(adSpend, revenueFromAds, profitMargin)
+        : revenueForTarget(adSpend, targetROAS, profitMargin)
+    const roas = result?.roas ?? 0
     const formatCurrency = (val: number) => {
         return new Intl.NumberFormat('en-US', {
             style: 'currency',
@@ -46,21 +45,9 @@ export function ReturnOnAdSpendCalculator() {
             maximumFractionDigits: 2
         }).format(val)
     }
-    // Determine ROAS health (shared logic)
-    const getROASHealth = (roasValue: number, hasInput: boolean) => {
-        if (!hasInput) {
-            return { color: "text-slate-600 dark:text-slate-300", bg: "bg-slate-800 dark:bg-slate-700", label: "---" }
-        }
-        let label = "High Performance"
-        if (roasValue < 1) label = "Loss Making"
-        else if (roasValue < 2) label = "Break Even / Low Profit"
-        else if (roasValue < 4) label = "Profitable"
-        let color = "text-blue-400"
-        if (roasValue < 1) color = "text-red-400"
-        else if (roasValue < 2) color = "text-amber-400"
-        return { color, bg: "bg-slate-900 dark:bg-slate-800", label }
-    }
-    const currentHealth = mode === "calculate-roas" ? getROASHealth(roas, spend > 0) : getROASHealth(targetRoasVal, targetRoasVal > 0)
+    // A verdict only when the margin is known: ROAS has to beat 1 ÷ margin to make money.
+    const statusLabel = result?.status === "profitable" ? "Profitable" : result?.status === "loss" ? "Loss-making" : result?.status === "break-even" ? "Break-even" : undefined
+    const statusColor = result?.status === "profitable" ? "text-blue-400" : result?.status === "loss" ? "text-red-400" : "text-amber-400"
     return (
         <FadeIn className="w-full max-w-6xl mx-auto py-8 px-4" duration={0.6}>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -130,6 +117,17 @@ export function ReturnOnAdSpendCalculator() {
                                     </div>
                                 )}
                             </div>
+                            <CalculatorInput
+                                label="Profit Margin"
+                                suffix="%"
+                                isOptional
+                                value={profitMargin}
+                                onChange={setProfitMargin}
+                                placeholder="40.0"
+                                min={0}
+                                max={100}
+                                tooltip="Your profit margin before ads, as a percentage of the sale price. Used for break-even ROAS and the verdict."
+                            />
                         </CardContent>
                     </Card>
                 </div>
@@ -138,30 +136,33 @@ export function ReturnOnAdSpendCalculator() {
                     {/* Main Card */}
                     <ResultFeedbackCard
                         title={mode === "calculate-roas" ? "Return on Ad Spend (ROAS)" : "Target Revenue Required"}
-                        titleLabel={currentHealth.label}
-                        labelClassName={currentHealth.color}
+                        titleLabel={statusLabel}
+                        labelClassName={statusColor}
                         mainValue={
                             mode === "calculate-roas" ? (
                                 <Counter value={roas} formatter={(v) => `${v.toFixed(2)}x`} />
                             ) : (
-                                <Counter value={calculatedRevenue} formatter={formatCurrency} key={currency} />
+                                <Counter value={result?.revenue ?? 0} formatter={formatCurrency} key={currency} />
                             )
                         }
-                        valueColor={mode === "calculate-roas" ? (spend > 0 ? (roas > 1 ? "text-blue-400" : (roas < 1 ? "text-red-400" : "text-white")) : "text-white") : "text-white"}
+                        valueColor="text-white"
                         secondaryMetrics={[
                             {
                                 label: mode === "calculate-roas" ? "ROAS %" : "Target ROAS (x)",
                                 value: mode === "calculate-roas" ? (
-                                    <Counter value={roasPercent} formatter={(v) => `${v.toFixed(0)}%`} />
+                                    <Counter value={result?.roasPercent ?? 0} formatter={(v) => `${v.toFixed(0)}%`} />
                                 ) : (
                                     <Counter value={val(targetROAS)} formatter={(v) => `${v.toFixed(2)}x`} />
-                                ),
-                                color: currentHealth.color
+                                )
+                            },
+                            {
+                                label: "Break-even ROAS",
+                                value: result?.breakEvenRoas != null ? `${result.breakEvenRoas.toFixed(2)}x` : "Add margin"
                             }
                         ]}
                     />
                     {/* Performance Breakdown Card */}
-                    {spend > 0 ? (
+                    {result ? (
                         <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500 dark:bg-slate-900 dark:border-slate-800">
                             <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800">
                                 <p className="text-xs font-bold text-slate-600 tracking-wider dark:text-slate-300">Performance Breakdown</p>
@@ -173,19 +174,23 @@ export function ReturnOnAdSpendCalculator() {
                                 </div>
                                 <div className="flex justify-between items-center px-5 py-3.5">
                                     <span className="text-sm text-slate-600 dark:text-slate-300">Revenue Generated</span>
-                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{formatCurrency(mode === "calculate-roas" ? revenue : calculatedRevenue)}</span>
+                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{formatCurrency(result.revenue)}</span>
                                 </div>
                                 <div className="flex justify-between items-center px-5 py-4 bg-slate-50 dark:bg-slate-800/60">
-                                    <span className="text-sm font-bold text-blue-600 dark:text-blue-400">Net Profit (Ads)</span>
-                                    <span className={cn("text-base font-bold", (mode === "calculate-roas" ? profit : plannedProfit) >= 0 ? "text-blue-600 dark:text-blue-400" : "text-red-700 dark:text-red-300")}>
-                                        {formatCurrency(mode === "calculate-roas" ? profit : plannedProfit)}
+                                    <span className="text-sm font-bold text-blue-600 dark:text-blue-400">Revenue Above Ad Spend</span>
+                                    <span className={cn("text-base font-bold", result.revenueAboveSpend >= 0 ? "text-blue-600 dark:text-blue-400" : "text-red-700 dark:text-red-300")}>
+                                        {formatCurrency(result.revenueAboveSpend)}
                                     </span>
+                                </div>
+                                <div className="flex justify-between items-center px-5 py-3.5">
+                                    <span className="text-sm text-slate-600 dark:text-slate-300">Profit After Product Costs and Ads</span>
+                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{result.profitAfterAds != null ? formatCurrency(result.profitAfterAds) : "Add your margin"}</span>
                                 </div>
                             </div>
                         </div>
                     ) : (
                         <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center dark:bg-slate-900 dark:border-slate-800">
-                            <p className="text-sm text-slate-600 dark:text-slate-300">Enter ad spend details to calculate performance.</p>
+                            <p className="text-sm text-slate-600 dark:text-slate-300">Ready when you are: enter your ad spend and revenue to see the breakdown.</p>
                         </div>
                     )}
                 </div>

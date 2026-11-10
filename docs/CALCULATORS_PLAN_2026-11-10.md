@@ -56,6 +56,25 @@ discount "15 points" vs 20%; dropshipping "returns pay shipping twice" vs once i
 | Proof | No fee page says when its rates were checked | Every fact names its source and date |
 | Link to the product | None of the 60 links to the extension feature it relates to | Each page links the page that does the next step |
 
+## Status: phases 0–4 done (2026-11-10)
+
+- **Phase 1 (shared kit):** inputs hold to their range with a one-line message; no autofocus; nothing starts at opacity 0
+  (FadeIn, overview and result cards, tool components); counters keep two decimals; one animation library (`motion`
+  removed); decorative colours on the brand blue; no all-caps, no exclamation verdicts; "Free" out of every tool title.
+- **Phase 2 (every page true):** each tool's maths is in `_components/calc.ts`, its worked examples are tested in
+  `calc.test.ts` (`npm run test:tools`: 234 tests, all passing), promised figures are built or the promise removed, h1s
+  are the search phrase in sentence case with no repeated card title, no verdict on a blank form, and the price and
+  barcode tools link the product page that does the next step (`RelatedProduct`).
+- **Phase 3 (fewer tools):** merged tacos → acos, cpa → customer-acquisition-cost, gross-margin → profit-margin,
+  inventory-reorder → reorder-point, days-of-inventory → inventory-turnover, dimension-converter → cubic-feet; retired the
+  time-zone planner. Each old address 301s (`next.config.js`). 60 tools are now 53; 51 are listed (the two Amazon tools
+  stay unlisted until their rates are checked in Seller Central). The promo-code and SKU generators were fixed rather than
+  retired (crypto random, no duplicates).
+- **Phase 4 (keep them right):** `npm run test:tools` runs every worked example; `npm run check:rates` fails when a fee
+  source is over 90 days old.
+- Still open for a person: the Amazon FBA and storage rate card (Seller Central); Etsy's fee page (blocks automated reads).
+  Whether the calculators stay on this site is still the owner's call (`docs/SPAM_REVIEW_2026-11-10.md`, item 1).
+
 ## Phase 0 status (2026-11-10)
 
 Done; each checked in the browser or with a script against the code:

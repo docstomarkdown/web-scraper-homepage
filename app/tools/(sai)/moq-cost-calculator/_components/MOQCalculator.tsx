@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { CalculatorInput } from "@/app/tools/_shared/components/CalculatorInput";
 import { ResultSummaryCard } from "@/app/tools/_shared/components/ResultSummaryCard";
@@ -7,6 +7,7 @@ import { FadeIn } from "@/app/tools/_shared/components/FadeIn";
 import { AlertTriangle, Tag, Truck, TrendingUp, Package, Calculator } from "lucide-react";
 import { CalculatorCardHeader } from "@/app/tools/_shared/components/CalculatorCardHeader";
 import { MOQBreakdown } from "./MOQBreakdown";
+import { moqCost } from "./calc";
 
 export function MOQCalculator() {
     const [currency, setCurrency] = useState("USD");
@@ -26,51 +27,14 @@ export function MOQCalculator() {
 
     const val = (v: number | "") => (v === "" ? 0 : v);
 
-    const [totalInvestment, setTotalInvestment] = useState<number>(0);
-    const [effectiveCostPerUnit, setEffectiveCostPerUnit] = useState<number>(0);
-    const [monthsInventory, setMonthsInventory] = useState<number>(0);
-    const [riskAssessment, setRiskAssessment] = useState<{
-        level: "good" | "bad" | "neutral";
-        text: string;
-        color: string;
-    }>({ level: "neutral", text: "Enter details", color: "text-slate-600 dark:text-slate-300" });
-
-    useEffect(() => {
-        const p = val(unitPrice);
-        const m = val(moq);
-        const s = val(shippingCost);
-        const c = val(miscCost);
-        const v = val(monthlySales);
-
-        // 1. Total Investment
-        const investment = (p * m) + s + c;
-        setTotalInvestment(investment);
-
-        // 2. Effective Cost Per Unit
-        if (m > 0) {
-            setEffectiveCostPerUnit(investment / m);
-        } else {
-            setEffectiveCostPerUnit(0);
-        }
-
-        // 3. Months of Inventory & Risk
-        if (v > 0 && m > 0) {
-            const months = m / v;
-            setMonthsInventory(months);
-            if (months <= 3) {
-                setRiskAssessment({ level: "good", text: "Low Risk", color: "text-blue-500 dark:text-blue-400" });
-            } else if (months <= 6) {
-                setRiskAssessment({ level: "neutral", text: "Moderate Risk", color: "text-amber-700 dark:text-amber-300" });
-            } else {
-                setRiskAssessment({ level: "bad", text: "High Risk", color: "text-rose-700 dark:text-rose-300" });
-            }
-        } else {
-            setMonthsInventory(0);
-            setRiskAssessment({ level: "neutral", text: "Enter Sales", color: "text-slate-600 dark:text-slate-300" });
-        }
-    }, [unitPrice, moq, shippingCost, miscCost, monthlySales]);
-
-    const isCalculated = val(unitPrice) > 0 && val(moq) > 0;
+    const n = (v: number | "") => (v === "" ? null : v);
+    const result = moqCost({ unitPrice: n(unitPrice), moq: n(moq), shippingCost: n(shippingCost), otherCost: n(miscCost), monthlySales: n(monthlySales) });
+    const isCalculated = result !== null;
+    const totalInvestment = result?.totalInvestment ?? 0;
+    const effectiveCostPerUnit = result?.landedCostPerUnit ?? 0;
+    const monthsInventory = result?.monthsOfStock ?? 0;
+    const band = result?.band ?? null;
+    const riskAssessment = { level: band === "low" ? "good" : band === "high" ? "bad" : "neutral" };
 
     return (
         <FadeIn className="w-full max-w-6xl mx-auto py-8 px-4" duration={0.6}>
@@ -168,7 +132,7 @@ export function MOQCalculator() {
                             {
                                 key: "inventoryCoverage",
                                 label: "Inventory Coverage (Months)",
-                                value: `${monthsInventory.toFixed(1)} Months`,
+                                value: band ? `${monthsInventory.toFixed(1)} Months` : "Add monthly sales",
                                 icon: Package,
                                 tooltip: "How long your stock will last based on your monthly sales"
                             }
@@ -176,8 +140,9 @@ export function MOQCalculator() {
                         currency={currency}
                         isCalculated={isCalculated}
                         emptyMessage="Total Investment"
-                        liveBadgeText={riskAssessment.level === "good" ? "Low Risk" : riskAssessment.level === "bad" ? "High Risk" : riskAssessment.level === "neutral" && isCalculated ? "Moderate Risk" : "Review Inputs"}
-                        liveBadgeColor={riskAssessment.level === "good" ? "blue" : riskAssessment.level === "bad" ? "rose" : riskAssessment.level === "neutral" && isCalculated ? "amber" : "amber"}
+                        showLiveBadge={band !== null}
+                        liveBadgeText={band === "low" ? "Low Risk" : band === "high" ? "High Risk" : "Moderate Risk"}
+                        liveBadgeColor={band === "low" ? "emerald" : band === "high" ? "rose" : "amber"}
                     >
                         <FadeIn delay={0.1}>
                             <div className="bg-white p-5 rounded-xl border border-slate-200/80 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] space-y-3 mt-4 dark:bg-slate-900 dark:border-slate-800">
@@ -188,7 +153,7 @@ export function MOQCalculator() {
                                             Investment Insight
                                         </h2>
                                         <p className="text-sm text-slate-600 leading-relaxed dark:text-slate-300">
-                                            {isCalculated && val(monthlySales) > 0 ? (
+                                            {isCalculated && band !== null ? (
                                                 riskAssessment.level === "bad"
                                                     ? <><strong>{moq} units</strong> covers <strong>{monthsInventory.toFixed(1)} months</strong> of stock — too long. Cash is locked up; negotiate a lower MOQ.</>
                                                     : riskAssessment.level === "good"

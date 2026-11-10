@@ -14,7 +14,7 @@ export function PackagingHowToUse() {
                 },
                 {
                     title: "Add the extras",
-                    description: "Enter padding, tape, the shipping label and any branded inserts, each as a cost per order.",
+                    description: "Open Advanced settings and enter padding, tape, the shipping label and any branded inserts, each as a cost per order. They count only while the panel is open.",
                     icon: Layers,
                 },
                 {

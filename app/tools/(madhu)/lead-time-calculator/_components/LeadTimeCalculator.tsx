@@ -10,7 +10,7 @@ import {
     CalculatorCardHeader,
     ResultDateCard 
 } from "@/app/tools/_shared/components"
-import { cn } from "@/lib/utils"
+import { leadTime, arrivalDate } from "./calc"
 import { Card, CardContent } from "@/components/ui/card"
 
 interface LeadTimeState {
@@ -37,42 +37,22 @@ export function LeadTimeCalculator() {
         setValues(prev => ({ ...prev, [field]: value === "" ? "" : Number(value) }))
     }
 
-    const hasInputs = useMemo(() => {
-        return values.supplier !== "" && values.shipping !== ""
-    }, [values])
-
-    const totals = useMemo(() => {
-        const sup = Number(values.supplier) || 0
-        const shp = Number(values.shipping) || 0
-        const buf = Number(values.buffer) || 0
-        const total = sup + shp + buf
-        const getPct = (val: number) => total > 0 ? (val / total) * 100 : 0
-        
-        return {
-            total,
-            totalFormatted: total.toString(),
-            supplier: sup,
-            shipping: shp,
-            buffer: buf,
-            pct: {
-                supplier: getPct(sup),
-                shipping: getPct(shp),
-                buffer: getPct(buf)
-            }
-        }
-    }, [values])
+    const result = useMemo(() => leadTime({
+        supplierDays: values.supplier === "" ? null : values.supplier,
+        shippingDays: values.shipping === "" ? null : values.shipping,
+        bufferDays: values.buffer === "" ? null : values.buffer,
+    }), [values])
+    const hasInputs = result !== null
 
     const deliveryDate = useMemo(() => {
-        if (!mounted || totals.total === 0) return "Waiting for inputs..."
-        const date = new Date()
-        date.setDate(date.getDate() + totals.total)
-        return date.toLocaleDateString('en-US', {
+        if (!mounted || !result) return "Waiting for inputs..."
+        return arrivalDate(new Date(), result.totalDays).toLocaleDateString('en-US', {
             weekday: 'short',
             year: 'numeric',
             month: 'long',
             day: 'numeric'
         })
-    }, [totals.total, mounted])
+    }, [result, mounted])
 
     const handleReset = () => setValues(DEFAULT_STATE)
 
@@ -122,19 +102,14 @@ export function LeadTimeCalculator() {
                     <ResultDateCard
                         title="Total lead time"
                         isCalculated={hasInputs}
-                        customBadge={hasInputs ? {
-                            text: totals.total > 60 ? "Long Lead Time" : totals.buffer > 0 ? "Protected Transit" : "Standard Delivery",
-                            bgClass: totals.total > 60 ? "bg-amber-100/80 dark:bg-amber-900/40" : "bg-emerald-100/80 dark:bg-emerald-900/40",
-                            textClass: totals.total > 60 ? "text-amber-700 dark:text-amber-400" : "text-emerald-700 dark:text-emerald-400",
-                            icon: <Clock className="w-3.5 h-3.5" />
-                        } : undefined}
+                        showLiveBadge={false}
                         checklistItems={[
                             { label: "Enter Supplier Time", isComplete: values.supplier !== "" },
                             { label: "Enter Shipping Time", isComplete: values.shipping !== "" }
                         ]}
                         primaryResult={{
-                            label: "Total Lead Time",
-                            value: totals.totalFormatted,
+                            label: "Total Lead Time (part days round up)",
+                            value: result ? result.totalDays : 0,
                             unit: "Days"
                         }}
                         dateSection={{
@@ -146,14 +121,18 @@ export function LeadTimeCalculator() {
                             title: "",
                             children: (
                                 <div className="space-y-4 pt-1">
-                                    <div className="grid grid-cols-2 gap-4">
+                                    <div className="grid grid-cols-3 gap-2">
                                         <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 dark:bg-slate-800/60 dark:border-slate-800">
                                             <p className="text-xs font-bold text-slate-600 dark:text-slate-300 mb-1 tracking-wider">Supplier Time</p>
-                                            <p className="text-xl font-bold text-blue-600 dark:text-blue-400">{hasInputs ? Math.round(totals.pct.supplier) : 0}%</p>
+                                            <p className="text-xl font-bold text-blue-600 dark:text-blue-400">{result ? Math.round(result.share.supplier) : 0}%</p>
                                         </div>
                                         <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 dark:bg-slate-800/60 dark:border-slate-800">
                                             <p className="text-xs font-bold text-slate-600 dark:text-slate-300 mb-1 tracking-wider">Shipping Time</p>
-                                            <p className="text-xl font-bold text-blue-600 dark:text-blue-400">{hasInputs ? Math.round(totals.pct.shipping) : 0}%</p>
+                                            <p className="text-xl font-bold text-blue-600 dark:text-blue-400">{result ? Math.round(result.share.shipping) : 0}%</p>
+                                        </div>
+                                        <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 dark:bg-slate-800/60 dark:border-slate-800">
+                                            <p className="text-xs font-bold text-slate-600 dark:text-slate-300 mb-1 tracking-wider">Safety Buffer</p>
+                                            <p className="text-xl font-bold text-blue-600 dark:text-blue-400">{result ? Math.round(result.share.buffer) : 0}%</p>
                                         </div>
                                     </div>
                                 </div>

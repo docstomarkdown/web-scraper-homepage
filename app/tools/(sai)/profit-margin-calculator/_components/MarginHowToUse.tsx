@@ -8,18 +8,18 @@ export function MarginHowToUse() {
             title="How to use this tool"
             steps={[
                 {
-                    title: "Enter the selling price",
-                    description: "Type the price the customer pays for one unit.",
+                    title: "Choose what to find",
+                    description: "Find margin from a price and a cost, find the price for a target margin, or find the most the goods can cost. Then type the two numbers you know.",
                     icon: CircleDollarSign,
                 },
                 {
-                    title: "Enter the cost",
-                    description: "Type what one unit costs you: the product plus shipping, packaging and any fees you pay to sell it.",
+                    title: "Add shipping, fees and tax if you want net margin",
+                    description: "Under advanced settings, add the shipping and fees you pay per unit, and the tax rate if your price includes tax. They count only while the panel is open.",
                     icon: Calculator,
                 },
                 {
                     title: "Read margin, markup and profit",
-                    description: "The calculator shows gross margin as a share of the price, markup as a share of the cost, and the profit per unit.",
+                    description: "The calculator shows gross margin as a share of the price, markup as a share of the cost, and the profit per unit, or the price or cost that hits your target.",
                     icon: TrendingUp,
                 },
             ]}

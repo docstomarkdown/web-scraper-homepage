@@ -11,6 +11,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { toast } from "sonner"
 import { CalculatorCardHeader, CalculatorInput, FadeIn, ResultFeedbackCard } from "@/app/tools/_shared/components"
+import { buildSku, isDuplicate, nextSequence, toCsv, type SkuCase } from "./calc"
 interface SKUEntry {
     id: string
     productName: string
@@ -28,31 +29,24 @@ export function SKUGenerator() {
     const [attribute1, setAttribute1] = useState("")
     const [attribute2, setAttribute2] = useState("")
     const [sequentialStart, setSequentialStart] = useState("001")
-    const [charLimit, setCharLimit] = useState("3")
+    const [charLimit, setCharLimit] = useState("4")
     const [separator, setSeparator] = useState("-")
-    const [caseType, setCaseType] = useState("")
+    const [caseType, setCaseType] = useState<SkuCase>("upper")
     const [generatedSKU, setGeneratedSKU] = useState("")
     const [copied, setCopied] = useState(false)
     const [isAdvancedOpen, setIsAdvancedOpen] = useState(false)
     const [entries, setEntries] = useState<SKUEntry[]>([])
-    // Handle SKU generation logic (pulling X characters from each part)
+    // Build the SKU (see calc.ts: letters and digits only, then X characters from each part)
     useEffect(() => {
-        const limit = parseInt(charLimit) || 3
-        const parts = [brand, category, product, attribute1, attribute2]
-            .map(p => p.trim().substring(0, limit))
-            .filter(p => p !== "")
-        if (sequentialStart) {
-            parts.push(sequentialStart)
-        }
-        const sep = separator === "none" ? "" : separator
-        let sku = parts.join(sep)
-        if (caseType === "") {
-            sku = sku.toUpperCase()
-        } else if (caseType === "lowercase") {
-            sku = sku.toLowerCase()
-        }
-        setGeneratedSKU(sku)
+        setGeneratedSKU(buildSku({
+            parts: [brand, category, product, attribute1, attribute2],
+            charLimit: parseInt(charLimit) || 4,
+            separator: separator === "none" ? "" : separator,
+            sequence: sequentialStart,
+            caseType,
+        }))
     }, [brand, category, product, attribute1, attribute2, sequentialStart, separator, caseType, charLimit])
+    const alreadyInList = generatedSKU !== "" && isDuplicate(generatedSKU, entries.map(e => e.sku))
     const copyToClipboard = () => {
         if (!generatedSKU) return
         navigator.clipboard.writeText(generatedSKU)
@@ -68,12 +62,16 @@ export function SKUGenerator() {
         setAttribute2("")
         setSequentialStart("001")
         setSeparator("-")
-        setCaseType("")
-        setCharLimit("3")
+        setCaseType("upper")
+        setCharLimit("4")
     }
     const addItemToList = (retain: boolean = false) => {
         if (!generatedSKU) {
-            toast.error("Please enter item information first")
+            toast.error("Enter a brand, category or product first")
+            return
+        }
+        if (alreadyInList) {
+            toast.error(`${generatedSKU} is already in your list. Change a part, the running number, or raise Char Pull Count.`)
             return
         }
         const newEntry: SKUEntry = {
@@ -91,12 +89,9 @@ export function SKUGenerator() {
             setProduct("")
             setAttribute1("")
             setAttribute2("")
-            // Increment sequence
-            const seq = parseInt(sequentialStart)
-            if (!isNaN(seq)) {
-                setSequentialStart((seq + 1).toString().padStart(sequentialStart.length, '0'))
-            }
         }
+        // Step the running number either way, so "Add & keep" never re-adds the same SKU
+        setSequentialStart(nextSequence(sequentialStart))
     }
     const removeEntry = (id: string) => {
         setEntries(entries.filter(e => e.id !== id))
@@ -104,15 +99,7 @@ export function SKUGenerator() {
     const downloadCSV = () => {
         if (entries.length === 0) return
         const headers = ["Product Name", "Brand", "Category", "Color", "Size", "SKU"]
-        const data = entries.map(e => [
-            `"${e.productName}"`,
-            `"${e.brand}"`,
-            `"${e.category}"`,
-            `"${e.color}"`,
-            `"${e.size}"`,
-            `"${e.sku}"`
-        ].join(","))
-        const csvContent = [headers.join(","), ...data].join("\n")
+        const csvContent = toCsv(entries.map(e => [e.productName, e.brand, e.category, e.color, e.size, e.sku]), headers)
         const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' })
         const url = URL.createObjectURL(blob)
         const link = document.createElement("a")
@@ -141,7 +128,7 @@ export function SKUGenerator() {
                                 onChange={setBrand}
                                 placeholder="NIKE"
                                 icon={Tag}
-                                tooltip="A short code for the brand name (e.g., NK for Nike)."
+                                tooltip="A short code for the brand name (e.g., NIKE). Spaces and symbols are removed."
                             />
                             <SKUInput
                                 label="Category"
@@ -172,7 +159,7 @@ export function SKUGenerator() {
                                     onClick={() => addItemToList(true)}
                                     className="border-blue-200 text-blue-600 hover:bg-blue-50 h-12 font-bold dark:border-blue-900/50 dark:text-blue-400 dark:hover:bg-blue-950/40"
                                 >
-                                    Add & Retain
+                                    Add & Keep Fields
                                 </Button>
                             </div>
                             {/* Advanced Settings Toggle */}
@@ -250,7 +237,7 @@ export function SKUGenerator() {
                                                     onChange={setSequentialStart}
                                                     placeholder="001"
                                                     icon={Hash}
-                                                    tooltip="Unique numeric identifier."
+                                                    tooltip="Running number. It steps up by 1 each time you add an item, keeping leading zeros."
                                                 />
                                             </div>
                                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -270,12 +257,12 @@ export function SKUGenerator() {
                                                 </div>
                                                 <div className="flex items-center justify-between gap-4">
                                                     <span className="text-sm font-semibold text-slate-700 dark:text-slate-200">Letter Case</span>
-                                                    <Select value={caseType} onValueChange={setCaseType}>
+                                                    <Select value={caseType} onValueChange={(v) => setCaseType(v as SkuCase)}>
                                                         <SelectTrigger className="w-32 bg-white border-slate-200 h-10 dark:bg-slate-900 dark:border-slate-800">
                                                             <SelectValue placeholder="Select" />
                                                         </SelectTrigger>
                                                         <SelectContent>
-                                                            <SelectItem value="">UPPER</SelectItem>
+                                                            <SelectItem value="upper">Upper</SelectItem>
                                                             <SelectItem value="lowercase">lower</SelectItem>
                                                             <SelectItem value="original">Original</SelectItem>
                                                         </SelectContent>
@@ -298,6 +285,8 @@ export function SKUGenerator() {
                                 {generatedSKU || "---"}
                             </div>
                         }
+                        mainMetricLabel={alreadyInList ? "Already in your list" : undefined}
+                        mainMetricValue={alreadyInList ? "Change a part or the running number" : undefined}
                     >
                         <div className="grid grid-cols-2 gap-3 w-full">
                             <Button
@@ -313,7 +302,7 @@ export function SKUGenerator() {
                             </Button>
                             <Button
                                 onClick={() => addItemToList(false)}
-                                disabled={!generatedSKU}
+                                disabled={!generatedSKU || alreadyInList}
                                 className="py-6 text-sm font-bold bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-500/20"
                             >
                                 <Plus className="w-4 h-4 mr-2" />

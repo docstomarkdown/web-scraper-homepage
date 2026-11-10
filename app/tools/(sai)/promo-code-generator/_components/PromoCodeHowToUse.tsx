@@ -14,7 +14,7 @@ export function PromoCodeHowToUse() {
                 },
                 {
                     title: "Add a prefix or suffix",
-                    description: "Open the advanced options to add text such as SAVE- at the start or -2026 at the end, and choose whether to include numbers or symbols.",
+                    description: "Open the advanced options to add text such as SAVE- at the start or -2026 at the end, choose whether to include numbers or symbols, and leave out look-alike characters.",
                     icon: Tag,
                 },
                 {

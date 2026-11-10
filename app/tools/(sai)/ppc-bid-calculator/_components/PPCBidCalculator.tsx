@@ -1,11 +1,12 @@
 "use client"
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { motion, AnimatePresence } from "framer-motion"
 import { Target, DollarSign, TrendingUp, BarChart2, MousePointerClick } from "lucide-react"
 import { CalculatorCardHeader, CalculatorInput, FadeIn } from "@/app/tools/_shared/components"
 import { ResultSummaryCard } from "@/app/tools/_shared/components/ResultSummaryCard"
 import { cn } from "@/lib/utils"
+import { calculateBids } from "./calc"
 
 export function PPCBidCalculator() {
     const [currency, setCurrency] = useState<string>("USD")
@@ -13,30 +14,11 @@ export function PPCBidCalculator() {
     const [conversionRate, setConversionRate] = useState<number | "">("")
     const [profitMargin, setProfitMargin] = useState<number | "">("")
     const [targetACoS, setTargetACoS] = useState<number | "">("")
-    const [recommendedBid, setRecommendedBid] = useState<number>(0)
-    const [breakevenBid, setBreakevenBid] = useState<number>(0)
-
-    useEffect(() => {
-        const p = price === "" ? 0 : price
-        const cr = (conversionRate === "" ? 0 : conversionRate) / 100
-        const pm = (profitMargin === "" ? 0 : profitMargin) / 100
-        
-        // Use Target ACoS if provided, otherwise default to a "safe" 75% of profit margin
-        const acos = targetACoS !== "" ? (targetACoS / 100) : (pm * 0.75)
-        
-        if (p > 0 && cr > 0) {
-            setBreakevenBid(p * cr * pm)
-            // Only show recommended bid if we have some target (either ACoS or Profit Margin)
-            if (targetACoS !== "" || pm > 0) {
-                setRecommendedBid(p * cr * acos)
-            } else {
-                setRecommendedBid(0)
-            }
-        } else {
-            setRecommendedBid(0)
-            setBreakevenBid(0)
-        }
-    }, [price, conversionRate, profitMargin, targetACoS])
+    const result = calculateBids(price, conversionRate, profitMargin, targetACoS)
+    const recommendedBid = result?.recommendedBid ?? 0
+    const breakevenBid = result?.breakEvenBid ?? 0
+    const acosUsed = result?.acosUsed ?? 0
+    const aboveMargin = result?.aboveMargin ?? false
 
     const handleReset = () => {
         setPrice("")
@@ -45,7 +27,7 @@ export function PPCBidCalculator() {
         setTargetACoS("")
     }
 
-    const isCalculated = Number(price) > 0 && Number(conversionRate) > 0 && (Number(profitMargin) > 0 || Number(targetACoS) > 0)
+    const isCalculated = result !== null
 
     return (
         <FadeIn className="w-full max-w-6xl mx-auto py-8 px-4" duration={0.6}>
@@ -54,7 +36,6 @@ export function PPCBidCalculator() {
                 <div className="lg:col-span-7 space-y-3 lg:sticky lg:top-8">
                     <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            title="PPC Bid Details"
                             description="Enter your product price and campaign targets."
                             onReset={handleReset}
                             currency={currency}
@@ -97,7 +78,7 @@ export function PPCBidCalculator() {
                                     min={0}
                                     max={100}
                                     step={0.1}
-                                    tooltip="Your profit percentage after all costs (used to calculate a safe bid)."
+                                    tooltip="Your profit margin before ad spend, as a percentage of the price. Sets the break-even bid."
                                 />
                             </div>
                             {/* Group 2: Campaign Goals */}
@@ -161,18 +142,18 @@ export function PPCBidCalculator() {
                             {isCalculated && (
                                 <AnimatePresence mode="wait">
                                     <motion.div
-                                        key={Number(targetACoS || (Number(profitMargin) * 0.75)) > Number(profitMargin) ? 'warning' : 'strategy'}
-                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        key={aboveMargin ? 'warning' : 'strategy'}
+                                        initial={{ scale: 0.9 }}
                                         animate={{ opacity: 1, scale: 1 }}
                                         exit={{ opacity: 0, scale: 0.9 }}
                                         className={cn(
                                             "flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-semibold tracking-wide shrink-0",
-                                            Number(targetACoS || (Number(profitMargin) * 0.75)) > Number(profitMargin)
+                                            aboveMargin
                                                 ? "bg-rose-100/80 text-rose-700 border-rose-200/50 dark:bg-rose-900/40 dark:text-rose-400 dark:border-rose-900/50"
                                                 : "bg-blue-100/50 text-blue-700 border-blue-200/50 dark:bg-blue-900/40 dark:text-blue-400 dark:border-blue-900/50"
                                         )}
                                     >
-                                        {Number(targetACoS || (Number(profitMargin) * 0.75)) > Number(profitMargin) ? "Profit warning" : "Active strategy"}
+                                        {aboveMargin ? "Profit warning" : "Active strategy"}
                                     </motion.div>
                                 </AnimatePresence>
                             )}
@@ -184,11 +165,11 @@ export function PPCBidCalculator() {
                                 {isCalculated && (
                                     <span className={cn(
                                         "px-2 py-0.5 rounded-md border",
-                                        Number(targetACoS || (Number(profitMargin) * 0.75)) > Number(profitMargin)
+                                        aboveMargin
                                             ? "text-rose-600 bg-rose-50 border-rose-100 dark:text-rose-400 dark:bg-rose-950/40 dark:border-rose-900/50"
                                             : "text-blue-600 bg-blue-50 border-blue-100 dark:text-blue-400 dark:bg-blue-950/40 dark:border-blue-900/50"
                                     )}>
-                                        {Number(targetACoS || (Number(profitMargin) * 0.75)).toFixed(1)}% ACoS
+                                        {acosUsed.toFixed(1)}% ACoS
                                     </span>
                                 )}
                             </div>
@@ -202,11 +183,11 @@ export function PPCBidCalculator() {
                                     <motion.div
                                         initial={{ left: 0 }}
                                         animate={{ 
-                                            left: `${Math.min(Math.max((Number(targetACoS || (Number(profitMargin) * 0.75)) / (Number(profitMargin) * 1.5)) * 100, 0), 100)}%` 
+                                            left: `${Math.min(Math.max((acosUsed / (Number(profitMargin) * 1.5)) * 100, 0), 100)}%` 
                                         }}
                                         className={cn(
                                             "absolute top-0 -mt-0.5 w-4 h-4 bg-white border-2 rounded-full shadow-md z-10 -ml-2 dark:bg-slate-900",
-                                            Number(targetACoS || (Number(profitMargin) * 0.75)) > Number(profitMargin)
+                                            aboveMargin
                                                 ? "border-rose-600 ring-2 ring-rose-100"
                                                 : "border-slate-800 dark:border-slate-700"
                                         )}
@@ -218,12 +199,12 @@ export function PPCBidCalculator() {
                                 <span>Conservative</span>
                                 <span>Balanced</span>
                                 <span className={cn(
-                                    Number(targetACoS || (Number(profitMargin) * 0.75)) > Number(profitMargin) && "text-rose-700 dark:text-rose-300"
+                                    isCalculated && aboveMargin && "text-rose-700 dark:text-rose-300"
                                 )}>
-                                    {Number(targetACoS || (Number(profitMargin) * 0.75)) > Number(profitMargin) ? "Loss-Making" : "Aggressive"}
+                                    {isCalculated && aboveMargin ? "Loss-Making" : "Aggressive"}
                                 </span>
                             </div>
-                            {isCalculated && Number(targetACoS) > Number(profitMargin) && (
+                            {isCalculated && aboveMargin && (
                                 <p className="mt-4 text-xs text-rose-600 font-medium leading-normal bg-white border border-rose-100 p-3 rounded-xl shadow-sm dark:text-rose-400 dark:bg-slate-900 dark:border-rose-900/50">
                                     <strong className="block mb-1">Caution: Unprofitable Bid</strong>
                                     Your target ACoS is higher than your profit margin, which means you are spending more on ads than you earn on the product.

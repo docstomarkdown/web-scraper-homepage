@@ -1,5 +1,6 @@
 "use client"
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
+import { compareRemoval } from "./calc"
 import { Card, CardContent } from "@/components/ui/card"
 import { Package, Truck, DollarSign, HandCoins, AlertTriangle, CheckCircle2, } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -19,55 +20,27 @@ export function FBARemovalCalculator() {
     const [expectedSellingPrice, setExpectedSellingPrice] = useState<number | "">("")
     const [otherCosts, setOtherCosts] = useState<number | "">("")
 
-    // Result States
-    const [profitRemoval, setProfitRemoval] = useState(0)
-    const [lossDisposal, setLossDisposal] = useState(0)
-    const [netDifference, setNetDifference] = useState(0)
-    const [bestOption, setBestOption] = useState<"REMOVE" | "DISPOSE" | null>(null)
-
     const handleReset = () => {
         setNumberOfUnits("")
         setRemovalFee("")
         setDisposalFee("")
         setExpectedSellingPrice("")
         setOtherCosts("")
-        setBestOption(null)
     }
 
-    useEffect(() => {
-        const units = Number(numberOfUnits) || 0
-        const rFee = Number(removalFee) || 0
-        const dFee = Number(disposalFee) || 0
-        const price = Number(expectedSellingPrice) || 0
-        const costs = Number(otherCosts) || 0
+    const result = compareRemoval({
+        units: Number(numberOfUnits) || 0,
+        removalFee: Number(removalFee) || 0,
+        disposalFee: Number(disposalFee) || 0,
+        sellingPrice: Number(expectedSellingPrice) || 0,
+        otherCosts: Number(otherCosts) || 0,
+    })
+    const profitRemoval = result?.profitIfRemoved ?? 0
+    const lossDisposal = result?.lossIfDisposed ?? 0
+    const netDifference = result?.difference ?? 0
+    const bestOption = result ? (result.best === "remove" ? "REMOVE" : "DISPOSE") : null
 
-        // Incomplete Data
-        if (units === 0 || (rFee === 0 && dFee === 0 && price === 0)) {
-            setProfitRemoval(0)
-            setLossDisposal(0)
-            setNetDifference(0)
-            setBestOption(null)
-            return
-        }
-
-        const profitRem = (price - rFee - costs) * units
-        const lossDisp = dFee * units
-
-        setProfitRemoval(profitRem)
-        setLossDisposal(lossDisp) // Keeping this positive per user example "Loss if Disposed: 800"
-
-        // Compare the two outcomes: removal earns profitRem, disposal earns -lossDisp.
-        // The better (or less bad) one wins. On an exact tie, disposal wins: same money, no stock to handle.
-        if (profitRem > -lossDisp) {
-            setBestOption("REMOVE")
-            setNetDifference(profitRem + lossDisp) // e.g. 1200 - (-800) = 2000
-        } else {
-            setBestOption("DISPOSE")
-            setNetDifference(-lossDisp - profitRem) // e.g. -800 - (-1000) = 200
-        }
-    }, [numberOfUnits, removalFee, disposalFee, expectedSellingPrice, otherCosts])
-
-    const isValid = numberOfUnits !== "" && removalFee !== "" && disposalFee !== "" && expectedSellingPrice !== ""
+    const isValid = result !== null && numberOfUnits !== "" && removalFee !== "" && disposalFee !== "" && expectedSellingPrice !== ""
 
     // Formatters
     const formatCurrency = (val: number) => {
@@ -94,7 +67,6 @@ export function FBARemovalCalculator() {
                 <div className="lg:col-span-7 space-y-3">
                     <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            title="Removal vs Disposal Details"
                             description="Enter your inventory and fee details to determine the most profitable action."
                             onReset={handleReset}
                             guideId="fba-removal-guide"
@@ -134,7 +106,7 @@ export function FBARemovalCalculator() {
                                         prefix={getCurrencySymbol(currency)}
                                         step={0.01}
                                         min={0}
-                                        tooltip="Fee charged by Amazon to return one item to you."
+                                        tooltip="Amazon's removal fee per unit. Enter the fee from Seller Central; it depends on the size tier and weight."
                                     />
                                     <CalculatorInput
                                         label="Disposal Fee"
@@ -144,7 +116,7 @@ export function FBARemovalCalculator() {
                                         prefix={getCurrencySymbol(currency)}
                                         step={0.01}
                                         min={0}
-                                        tooltip="Fee charged by Amazon to discard one item."
+                                        tooltip="Amazon's disposal fee per unit. Enter the fee from Seller Central."
                                     />
                                 </div>
 
@@ -205,7 +177,7 @@ export function FBARemovalCalculator() {
                             neutral: primaryMessage
                         }}
                         primaryResult={{
-                            value: bestOption || "—",
+                            value: bestOption === "REMOVE" ? "Remove" : bestOption === "DISPOSE" ? "Dispose" : "—",
                             label: "Best Option",
                             isCurrency: false,
                             key: "bestOption"
@@ -270,8 +242,8 @@ export function FBARemovalCalculator() {
                                     bestOption === "DISPOSE" ? "text-blue-900 dark:text-blue-400" :
                                     "text-amber-900 dark:text-amber-400"
                                 )}>
-                                    {bestOption === "REMOVE" ? "Action: REMOVE ✅" :
-                                     bestOption === "DISPOSE" ? "Action: DISPOSE ❌" :
+                                    {bestOption === "REMOVE" ? "Action: remove" :
+                                     bestOption === "DISPOSE" ? "Action: dispose" :
                                      ""}
                                 </h4>
                                 <p className={cn(
@@ -280,8 +252,8 @@ export function FBARemovalCalculator() {
                                     bestOption === "DISPOSE" ? "text-blue-700 dark:text-blue-400" :
                                     "text-amber-700 dark:text-amber-400"
                                 )}>
-                                    {bestOption === "REMOVE" && `The net difference is ${formatCurrency(netDifference)} better if you REMOVE. Removal earns more, or loses less, than disposal here.`}
-                                    {bestOption === "DISPOSE" && (netDifference === 0 ? `Both choices cost the same, so disposal wins: it saves handling the stock.` : `The net difference is ${formatCurrency(netDifference)} better if you DISPOSE. Removal loses more than disposal here.`)}
+                                    {bestOption === "REMOVE" && `The net difference is ${formatCurrency(netDifference)} better if you remove. Removal earns more, or loses less, than disposal here.`}
+                                    {bestOption === "DISPOSE" && (netDifference === 0 ? `Both choices cost the same, so disposal wins: it saves handling the stock.` : `The net difference is ${formatCurrency(netDifference)} better if you dispose. Removal loses more than disposal here.`)}
                                 </p>
                             </div>
                         </div>

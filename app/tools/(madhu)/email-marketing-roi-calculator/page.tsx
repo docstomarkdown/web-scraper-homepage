@@ -8,7 +8,7 @@ import { Metadata } from "next"
 import { BookOpen } from "lucide-react"
 export const metadata: Metadata = {
     title: "Email Marketing ROI Calculator: Campaign Return",
-    description: "From list size, open rate, click rate, conversion rate and order value to revenue, profit and return on investment for one email campaign.",
+    description: "From list size, open rate, click rate, conversion rate and order value to revenue, profit, return on investment and the break-even list size for one email campaign.",
     alternates: { canonical: "/tools/email-marketing-roi-calculator" },
 }
 export default function EmailROICalculatorPage() {
@@ -16,7 +16,7 @@ export default function EmailROICalculatorPage() {
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
                 {/* Page Title */}
-                <ToolPageTitle title="Email Marketing ROI Calculator" direction="down" duration={0.6} />
+                <ToolPageTitle title="Email marketing ROI calculator" direction="down" duration={0.6} />
                 {/* Calculator Tool */}
                 <div className="mb-20">
                     <EmailROICalculator />
@@ -45,7 +45,7 @@ export default function EmailROICalculatorPage() {
                                 },
                                 {
                                     question: "What is a good open rate?",
-                                    answer: "Around 20% is typical across industries; a clean, engaged list can see 30% or more. Use your own last few campaigns rather than an average.",
+                                    answer: "It depends on your list and how you measure opens, so published averages vary. Use the rate from your own last few campaigns.",
                                 },
                                 {
                                     question: "Why is the conversion rate so important?",
@@ -57,7 +57,7 @@ export default function EmailROICalculatorPage() {
                                 },
                                 {
                                     question: "Why can ROI be negative?",
-                                    answer: "When revenue is below cost. Small lists with average rates often lose money on a single send; the calculator shows the list size where that changes.",
+                                    answer: "When revenue is below cost. Small lists often lose money on a single send; the calculator shows the break-even list size, where revenue equals the cost at your rates.",
                                 },
                             ]}
                         />

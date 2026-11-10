@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const faqs = [
     {
         question: "How many codes can I make at once?",
-        answer: "Up to 50 per batch. Run it again for more; each batch is random.",
+        answer: "Up to 50 per batch. Run it again for more; each batch is random, so check a new batch against codes you already use.",
     },
     {
         question: "Where can I use the codes?",
@@ -22,11 +22,11 @@ const faqs = [
     },
     {
         question: "Do the prefix and suffix affect the randomness?",
-        answer: "No. The random part stays random; the prefix and suffix are added around it unchanged.",
+        answer: "No. The random part comes from your browser's cryptographic random generator; the prefix and suffix are added around it exactly as you typed them.",
     },
     {
         question: "Are the codes unique?",
-        answer: "With eight or more random characters, repeats within a batch are very unlikely. Your store will reject a duplicate if one ever appears.",
+        answer: "Yes, within a batch: the generator never repeats a code. If the length and characters you chose allow fewer codes than you asked for, such as 1 character, it makes every possible code once and tells you.",
     },
 ]
 
@@ -34,7 +34,7 @@ export default function PromoCodeGeneratorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Promo Code Generator" direction="down" duration={0.6} />
+                <ToolPageTitle title="Promo code generator" direction="down" duration={0.6} />
                 <div className="mb-20">
                     <PromoCodeCalculator />
                 </div>

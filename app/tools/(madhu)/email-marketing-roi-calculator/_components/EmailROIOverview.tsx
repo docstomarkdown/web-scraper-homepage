@@ -12,7 +12,7 @@ export function EmailROIOverview() {
                 facts={[
                     { stat: "Funnel", label: "step by step", detail: "Subscribers to opens to clicks to orders, each a share of the one before." },
                     { stat: "Revenue", label: "and profit", detail: "Orders multiplied by the average order value, minus the campaign cost." },
-                    { stat: "ROI", label: "as a percentage", detail: "Profit divided by cost, so 300% means three dollars back for each one spent." },
+                    { stat: "ROI", label: "as a percentage", detail: "Profit divided by cost, so 300% means three dollars of profit for each one spent." },
                 ]}
             />
         </div>

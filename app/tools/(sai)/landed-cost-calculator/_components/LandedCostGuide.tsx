@@ -10,7 +10,7 @@ export function LandedCostGuide() {
             items={[
                 {
                     title: "What goes in",
-                    description: "Landed cost = product cost + shipping + duty + insurance + other fees. Duty is a percentage of the product cost; everything else is a flat amount for the shipment.",
+                    description: "Landed cost = product cost + shipping + duty + insurance + other fees. Duty is a percentage of the dutiable value: goods + freight + insurance (CIF) in the EU, UK and India, or the goods alone (FOB) in the US. Everything else is a flat amount for the shipment.",
                     icon: CircleDollarSign,
                     iconBg: "bg-[#2772ED]/10 dark:bg-[#2772ED]/20",
                     iconColor: "text-[#1f5ec2] dark:text-[#7aa7ff]",
@@ -31,7 +31,7 @@ export function LandedCostGuide() {
                 },
                 {
                     title: "A worked example",
-                    description: "100 units at $25 is $2,500. Add $150 shipping, 5% duty ($125), $50 insurance and $25 fees: $2,850 in total. That is $28.50 per unit, 14% above the supplier's price.",
+                    description: "100 units at $25 is $2,500. Add $150 shipping and $50 insurance, and on a CIF basis 5% duty is charged on $2,700: $135. With $25 fees that's $2,860 in total, $28.60 per unit, 14.4% above the supplier's price. On a FOB basis the duty is $125 and the unit cost $28.50.",
                     icon: TrendingDown,
                     iconBg: "bg-[#2772ED]/10 dark:bg-[#2772ED]/20",
                     iconColor: "text-[#1f5ec2] dark:text-[#7aa7ff]",

@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Target, MousePointer2, Calendar, MousePointerClick, ShoppingBag } from "lucide-react";
+import { Target, MousePointer2, Calendar, MousePointerClick, ShoppingBag, Receipt } from "lucide-react";
 import { FadeIn, CalculatorInput, CalculatorCardHeader, ResultSummaryCard } from "@/app/tools/_shared/components";
+import { planBudget } from "./calc";
 
 export function AdBudgetCalculator() {
     const [currency, setCurrency] = useState("USD");
@@ -15,43 +16,8 @@ export function AdBudgetCalculator() {
     const [avgCPC, setAvgCPC] = useState<number | "">("")
     const [conversionRate, setConversionRate] = useState<number | "">("")
 
-    const [requiredAdSpend, setRequiredAdSpend] = useState<number>(0);
-    const [dailySpend, setDailySpend] = useState<number>(0);
-    const [estClicks, setEstClicks] = useState<number>(0);
-    const [estOrders, setEstOrders] = useState<number>(0);
-
-    const val = (v: number | "") => (v === "" ? 0 : v);
-    const goal = val(revenueGoal);
-    const roas = val(targetROAS);
-    const cpc = val(avgCPC);
-    const cvr = val(conversionRate);
-
-    useEffect(() => {
-        if (goal > 0 && roas > 0) {
-            const spend = goal / roas;
-            setRequiredAdSpend(spend);
-            setDailySpend(spend / 30); // Monthly / 30
-
-            // Traffic Potential Logic
-            if (cpc > 0) {
-                const clicks = spend / cpc;
-                setEstClicks(clicks);
-                if (cvr > 0) {
-                    setEstOrders(clicks * (cvr / 100));
-                } else {
-                    setEstOrders(0);
-                }
-            } else {
-                setEstClicks(0);
-                setEstOrders(0);
-            }
-        } else {
-            setRequiredAdSpend(0);
-            setDailySpend(0);
-            setEstClicks(0);
-            setEstOrders(0);
-        }
-    }, [goal, roas, cpc, cvr]);
+    const result = planBudget(revenueGoal, targetROAS, avgCPC, conversionRate);
+    const requiredAdSpend = result?.monthlySpend ?? 0;
 
     const handleReset = () => {
         setRevenueGoal("");
@@ -60,15 +26,6 @@ export function AdBudgetCalculator() {
         setConversionRate("");
     };
 
-    const currencySymbols: Record<string, string> = {
-        USD: '$', EUR: '€', GBP: '£', INR: '₹', AUD: 'A$', CAD: 'C$', JPY: '¥', CNY: '¥',
-        AED: 'AED', SGD: 'S$', HKD: 'HK$', CHF: 'Fr', MXN: 'MX$', BRL: 'R$', KRW: '₩',
-        RUB: '₽', ZAR: 'R', SEK: 'kr', NOK: 'kr', DKK: 'kr', PLN: 'zł', THB: '฿',
-        IDR: 'Rp', MYR: 'RM', PHP: '₱', VND: '₫', TRY: '₺', SAR: '﷼', NZD: 'NZ$',
-        EGP: 'E£', PKR: '₨', BDT: '৳', NGN: '₦', KES: 'KSh'
-    }
-    const symbol = currencySymbols[currency] || "$"
-
     return (
         <FadeIn className="w-full max-w-6xl mx-auto py-8 px-4" duration={0.6}>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -76,7 +33,6 @@ export function AdBudgetCalculator() {
                 <div className="lg:col-span-7 space-y-3">
                     <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden pb-4 dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            title="Campaign Goals"
                             description="Enter your monthly revenue goal and target ROAS."
                             onReset={handleReset}
                             currency={currency}
@@ -103,7 +59,7 @@ export function AdBudgetCalculator() {
                                     value={targetROAS}
                                     onChange={setTargetROAS}
                                     placeholder="4.0"
-                                    tooltip="Desired ratio of revenue generated to ad spend (e.g., ROAS 4.0 returns $4 for every $1 spent)."
+                                    tooltip="Desired ratio of revenue generated to ad spend (for example, ROAS 4.0 means 4 of revenue for every 1 spent)."
                                 />
                             </div>
 
@@ -146,8 +102,8 @@ export function AdBudgetCalculator() {
                         title="Monthly Ad Budget"
                         panelTitle="Result Panel"
                         showLiveBadge={true}
-                        liveBadgeText={requiredAdSpend > 0 ? "Budget Set" : "Live"}
-                        liveBadgeColor={requiredAdSpend > 0 ? "emerald" : "blue"}
+                        liveBadgeText="Budget set"
+                        liveBadgeColor="blue"
                         primaryResult={{
                             value: requiredAdSpend,
                             label: "Required Ad Spend",
@@ -159,7 +115,7 @@ export function AdBudgetCalculator() {
                             {
                                 key: "daily_spend",
                                 label: "Daily Ad Spend Required",
-                                value: dailySpend,
+                                value: result?.dailySpend ?? 0,
                                 isCurrency: true,
                                 icon: Calendar,
                                 tooltip: "The distributed daily budget necessary to meet the total monthly advertising objective."
@@ -167,25 +123,33 @@ export function AdBudgetCalculator() {
                             {
                                 key: "est_clicks",
                                 label: "Estimated Clicks",
-                                value: Math.round(estClicks),
+                                value: result?.clicks != null ? Math.round(result.clicks) : "—",
                                 icon: MousePointerClick,
-                                tooltip: "The total number of visitors expected based on the allocated budget and CPC."
+                                tooltip: result?.clicks != null ? "Monthly budget divided by your average cost per click." : "Enter your average cost per click to see this."
                             },
                             {
                                 key: "est_orders",
                                 label: "Estimated Orders",
-                                value: Math.round(estOrders),
+                                value: result?.orders != null ? Math.round(result.orders) : "—",
                                 icon: ShoppingBag,
-                                tooltip: "The total number of purchases projected based on traffic volume and conversion rate."
+                                tooltip: result?.orders != null ? "Estimated clicks times your conversion rate." : "Enter your cost per click and conversion rate to see this."
+                            },
+                            {
+                                key: "revenue_per_order",
+                                label: "Revenue Needed per Order",
+                                value: result?.revenuePerOrder != null ? result.revenuePerOrder : "—",
+                                isCurrency: result?.revenuePerOrder != null,
+                                icon: Receipt,
+                                tooltip: result?.revenuePerOrder != null ? "Revenue goal divided by estimated orders. Compare it with your average order value today." : "Enter your cost per click and conversion rate to see this."
                             },
                         ]}
                         currency={currency}
                         isCalculated={requiredAdSpend > 0}
                         emptyMessage="Required Ad Spend"
                         dynamicMessages={{
-                            neutral: "The precise advertising investment required to reach your target revenue goals.",
-                            positive: "The precise advertising investment required to reach your target revenue goals.",
-                            negative: "The precise advertising investment required to reach your target revenue goals."
+                            neutral: "The ad spend needed to reach your monthly revenue goal at your target ROAS.",
+                            positive: "The ad spend needed to reach your monthly revenue goal at your target ROAS.",
+                            negative: "The ad spend needed to reach your monthly revenue goal at your target ROAS."
                         }}
                     />
                 </div>

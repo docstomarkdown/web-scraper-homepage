@@ -5,7 +5,6 @@ import { ConversionHowToUse } from "./_components/ConversionHowToUse"
 import { ConversionOverview } from "./_components/ConversionOverview"
 import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
-import { Lightbulb } from "lucide-react"
 
 export const metadata: Metadata = {
     title: "Conversion Rate Calculator: Rate from Visitors and Orders",
@@ -17,7 +16,7 @@ export default function ConversionCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Conversion Rate Calculator" />
+                <ToolPageTitle title="Conversion rate calculator" />
                 <div className="text-center mb-10 -mt-6">
                     <FadeIn direction="down" duration={0.6} delay={0.1}>
                         <p className="text-lg text-slate-600 max-w-2xl mx-auto dark:text-slate-300">

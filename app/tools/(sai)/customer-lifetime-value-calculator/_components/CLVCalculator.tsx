@@ -1,9 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card"
-import { User, TrendingUp, DollarSign } from "lucide-react"
+import { User, TrendingUp, DollarSign, Scale, Wallet } from "lucide-react"
 import { FadeIn, CalculatorInput, CalculatorCardHeader, ResultSummaryCard, formatCurrencyValue } from "@/app/tools/_shared/components"
 import { CLVBreakdown } from "./CLVBreakdown";
+import { calculateClv } from "./calc";
 
 export function CLVCalculator() {
     const [currency, setCurrency] = useState("USD");
@@ -25,25 +26,24 @@ export function CLVCalculator() {
         setCac("");
     };
 
-    const val = (v: number | "") => (v === "" ? 0 : v);
+    const result = calculateClv(aov, frequency, lifespan, grossMargin, cac);
+    const clv = result?.lifetimeRevenue ?? 0;
+    const grossProfit = result?.lifetimeProfit ?? 0;
+    const cacVal = result?.profitAfterCac != null ? Number(cac) : 0;
+    const hasMargin = result?.lifetimeProfit != null;
+    const ratio = result?.ltvToCac ?? null;
+    const isCalculated = result !== null;
 
-    const aovVal = val(aov);
-    const freqVal = val(frequency);
-    const lifespanVal = val(lifespan);
-    const marginVal = val(grossMargin);
-    const cacVal = val(cac);
+    // A verdict only when the ratio can be worked out.
+    let badgeText = "";
+    let badgeColor: "emerald" | "amber" | "rose" = "emerald";
+    if (ratio !== null) {
+        if (ratio >= 3) { badgeText = "3:1 or better"; badgeColor = "emerald"; }
+        else if (ratio >= 1) { badgeText = "Below 3:1"; badgeColor = "amber"; }
+        else { badgeText = "Costs more than it earns"; badgeColor = "rose"; }
+    }
 
-    // CLV = AOV × Frequency × Lifespan (revenue-based)
-    const clv = aovVal * freqVal * lifespanVal;
-    // Lifetime Profit = CLV × Margin% − CAC (only meaningful when margin is entered)
-    const grossProfit = clv * (marginVal / 100);
-    const lifetimeProfit = grossProfit - cacVal;
-    const hasMargin = grossMargin !== "";
-
-    // Requires only the 3 core behavior fields
-    const isCalculated = aov !== "" && frequency !== "" && lifespan !== "";
-
-    const formatCurrency = (v: number) => formatCurrencyValue(v, currency, 0);
+    const formatCurrency = (v: number) => formatCurrencyValue(v, currency, 2);
 
     return (
         <FadeIn className="w-full max-w-6xl mx-auto py-8 px-4" duration={0.6}>
@@ -53,7 +53,6 @@ export function CLVCalculator() {
                     <FadeIn delay={0.2} direction="right" className="h-full">
                         <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                             <CalculatorCardHeader
-                                title="Customer Metrics"
                                 description="Define your customer's behavior and unit economics."
                                 onReset={handleReset}
                                 currency={currency}
@@ -71,7 +70,6 @@ export function CLVCalculator() {
                                             placeholder="50"
                                             isCurrency
                                             currency={currency}
-                                            autoFocus
                                             tooltip="The average amount a customer spends each time they buy. Use your store's average if you're unsure."
                                             groupingTitle="Customer Behavior"
                                             groupingIcon={User}
@@ -92,7 +90,7 @@ export function CLVCalculator() {
                                             onChange={setLifespan}
                                             placeholder="3"
                                             min={1}
-                                            tooltip="How many years a typical customer stays active before they stop buying. Most businesses average 2–5 years."
+                                            tooltip="How many years a typical customer stays active before they stop buying."
                                         />
                                     </div>
 
@@ -136,14 +134,14 @@ export function CLVCalculator() {
                             isCalculated={isCalculated}
                             currency={currency}
                             emptyMessage="Customer Lifetime Value"
-                            showLiveBadge={true}
-                            liveBadgeText={isCalculated ? "Calculated" : "Live"}
-                            liveBadgeColor={isCalculated ? "emerald" : "blue"}
+                            showLiveBadge={badgeText !== ""}
+                            liveBadgeText={badgeText}
+                            liveBadgeColor={badgeColor}
                             description={
                                 isCalculated
                                     ? hasMargin
                                         ? "Total expected revenue generated by a single customer."
-                                        : "Add Gross Margin % to unlock Lifetime Profit."
+                                        : "Add Gross Margin to see lifetime profit."
                                     : undefined
                             }
                             primaryResult={{
@@ -159,16 +157,31 @@ export function CLVCalculator() {
                                     value: clv,
                                     isCurrency: true,
                                     icon: DollarSign,
-                                    tooltip: `AOV (${formatCurrency(aovVal)}) × Frequency (${freqVal}×/yr) × Lifespan (${lifespanVal} yrs) = ${formatCurrency(clv)} total revenue over the customer relationship.`
+                                    tooltip: "Avg. order value × purchases a year × lifespan in years."
                                 },
-                                ...(hasMargin ? [{
+                                {
                                     key: "lifetimeProfit",
                                     label: "Lifetime Profit",
-                                    value: lifetimeProfit,
-                                    isCurrency: true,
+                                    value: hasMargin ? grossProfit : "—",
+                                    isCurrency: hasMargin,
                                     icon: TrendingUp,
-                                    tooltip: `Gross Profit (${formatCurrency(grossProfit)}) − CAC (${formatCurrency(cacVal)}) = ${formatCurrency(lifetimeProfit)}. This is the actual profit earned after product costs and acquisition spend.`
-                                }] : [])
+                                    tooltip: hasMargin ? "Lifetime revenue × gross margin, before acquisition cost." : "Enter your gross margin to see this."
+                                },
+                                {
+                                    key: "profitAfterCac",
+                                    label: "Profit After Acquisition Cost",
+                                    value: result?.profitAfterCac != null ? result.profitAfterCac : "—",
+                                    isCurrency: result?.profitAfterCac != null,
+                                    icon: Wallet,
+                                    tooltip: result?.profitAfterCac != null ? `Lifetime profit (${formatCurrency(grossProfit)}) − CAC (${formatCurrency(cacVal)}).` : "Enter your gross margin and acquisition cost to see this."
+                                },
+                                {
+                                    key: "ltvCac",
+                                    label: "LTV:CAC Ratio",
+                                    value: ratio !== null ? `${ratio.toFixed(2)} : 1` : "—",
+                                    icon: Scale,
+                                    tooltip: ratio !== null ? "Lifetime profit divided by acquisition cost." : "Enter your gross margin and acquisition cost to see this."
+                                }
                             ]}
                             checklistItems={[
                                 { key: "aov", label: "Avg. Order Value", isComplete: aov !== "" },
@@ -178,11 +191,11 @@ export function CLVCalculator() {
                         />
 
                         <CLVBreakdown
-                            clvRevenue={clv}
+                            clvRevenue={hasMargin ? clv : 0}
                             grossProfit={grossProfit}
                             cacVal={cacVal}
-                            netProfit={lifetimeProfit}
-                            marginVal={marginVal}
+                            netProfit={grossProfit - cacVal}
+                            marginVal={hasMargin ? Number(grossMargin) : 0}
                             currency={currency}
                         />
                     </FadeIn>

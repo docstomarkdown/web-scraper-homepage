@@ -20,7 +20,7 @@ export default function ContainerLoadCalculatorPage() {
             <div className="container mx-auto px-4">
                 <FadeIn>
                     <ToolPageTitle
-                        title="Container Load Calculator"
+                        title="Container load calculator"
                     />
                 </FadeIn>
 
@@ -50,7 +50,7 @@ export default function ContainerLoadCalculatorPage() {
                             faqs={[
                                 {
                                     question: "How many cartons fit in a 20ft container?",
-                                    answer: "It depends on the carton. The calculator divides the container's interior along each edge by the carton's size, multiplies the three counts, and checks the weight limit. For a 50 by 40 by 30 cm carton in a 20ft container it's 392, with rotation on.",
+                                    answer: "It depends on the carton. The calculator divides the container's interior along each edge by the carton's size, multiplies the three counts, and checks the weight limit. For a 50 by 40 by 30 cm carton in a 20ft container it's 392.",
                                 },
                                 {
                                     question: "What's the difference between loose and pallet loading?",
@@ -58,15 +58,15 @@ export default function ContainerLoadCalculatorPage() {
                                 },
                                 {
                                     question: "Do I have to enter the carton weight?",
-                                    answer: "No. Without it the count is by space alone. With it the calculator also checks the container's weight limit, which often matters for dense goods.",
+                                    answer: "No. Without it the count is by space alone. With it the calculator also checks the container's weight limit, which often matters for dense goods. For pallet loading, add the empty pallet's weight too: it counts toward the limit.",
                                 },
                                 {
                                     question: "What does space utilisation mean?",
-                                    answer: "The share of the container's interior volume your cartons fill. 100% is impossible in practice; 70% to 85% is typical for well-matched cartons.",
+                                    answer: "The share of the container's interior volume your cartons fill. 100% is rarely reachable, because cartons seldom divide the interior exactly. The 392 cartons in the example above fill 70.8%.",
                                 },
                                 {
                                     question: "Which container should I choose?",
-                                    answer: "Pick the one your forwarder quoted. A 40ft high cube holds about 76 cubic metres, a 40ft about 67 and a 20ft about 33.",
+                                    answer: "Pick the one your forwarder quoted. A 40ft high cube holds about 76 cubic metres, a 40ft about 67 and a 20ft about 33. The 20ft and 40ft sizes and weight limits follow Hapag-Lloyd's published specs.",
                                 },
                                 {
                                     question: "Are the interior sizes exact?",

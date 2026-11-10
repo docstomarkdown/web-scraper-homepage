@@ -10,8 +10,8 @@ export function StorageFeeOverview() {
             definition="Amazon charges for the space your inventory takes each month, at a rate that more than doubles from October to December. This calculator turns a box's dimensions, the units you keep in stock and the months they stay into the monthly fee and the total, including the long-term surcharge after six months."
             facts={[
                 { stat: "Per cubic foot", label: "How it's charged", detail: "Length × width × height ÷ 1,728, times the units, times the month's rate." },
-                { stat: "$0.87 → $2.40", label: "The seasonal jump", detail: "Standard-size rates for January to September and October to December." },
-                { stat: "+$1.50 / month", label: "After six months", detail: "Long-term storage adds a surcharge per cubic foot for every extra month." }
+                { stat: "$0.87 → $2.40", label: "The seasonal jump", detail: "The estimated standard-size rates for January to September and October to December. Check Seller Central for current ones." },
+                { stat: "After six months", label: "Aged-inventory surcharge", detail: "Estimated here at a flat $1.50 per cubic foot for every extra month; Amazon's real surcharge rises in tiers." }
             ]}
             accent="amber"
         />

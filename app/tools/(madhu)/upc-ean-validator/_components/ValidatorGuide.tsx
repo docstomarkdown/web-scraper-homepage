@@ -20,7 +20,7 @@ export function ValidatorGuide() {
                     statColor: "text-blue-700 dark:text-blue-300",
                 },                {
                     title: "Which formats it checks",
-                    description: "UPC-A (12 digits), EAN-13 (13 digits), EAN-8 (8 digits) and GTIN-14 (14 digits) all use the same rule. UPC-E, the short 6-digit form, has to be expanded first and isn't checked here.",
+                    description: "UPC-A (12 digits), EAN-13 (13 digits), EAN-8 (8 digits) and GTIN-14 (14 digits) all use the same rule. An 8-digit number is checked as EAN-8. UPC-E, the short form printed on small packs, has to be expanded to UPC-A first and isn't checked here.",
                     icon: Layers,
                     stat: "4 lengths",
                     statLabel: "same rule",
@@ -29,7 +29,7 @@ export function ValidatorGuide() {
                     statColor: "text-emerald-700 dark:text-emerald-300",
                 },                {
                     title: "A worked example",
-                    description: "For 036000291452, the digits 0 3 6 0 0 0 2 9 1 4 5 give a weighted sum of 48. The next multiple of 10 is 50, so the check digit is 2, which matches the last digit. The number is valid.",
+                    description: "For 036000291452, the digits 0 3 6 0 0 0 2 9 1 4 5 give a weighted sum of 58. The next multiple of 10 is 60, so the check digit is 2, which matches the last digit. The number is valid.",
                     icon: Table,
                     stat: "2",
                     statLabel: "the check digit",

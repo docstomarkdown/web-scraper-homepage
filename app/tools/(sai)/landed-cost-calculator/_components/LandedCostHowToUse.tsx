@@ -14,7 +14,7 @@ export function LandedCostHowToUse() {
                 },
                 {
                     title: "Add what it costs to bring it in",
-                    description: "Enter the shipping cost, your import duty rate, insurance, and any other fees such as brokerage or port handling.",
+                    description: "Enter the shipping cost, insurance, your import duty rate and whether it's charged on CIF or FOB value, and any other fees such as brokerage or port handling.",
                     icon: Ship,
                 },
                 {

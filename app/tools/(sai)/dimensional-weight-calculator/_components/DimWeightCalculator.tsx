@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useMemo } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import {
     Select,
@@ -18,45 +18,35 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { CalculatorCardHeader, CalculatorInput, Counter, FadeIn } from "@/app/tools/_shared/components"
 import { ResultSummaryCard } from "@/app/tools/_shared/components/ResultSummaryCard"
 import { DimWeightBreakdown } from "./DimWeightBreakdown"
+import { dimensionalWeight, DEFAULT_DIVISOR } from "./calc"
 export function DimWeightCalculator() {
     const [length, setLength] = useState<number | "">("");
     const [width, setWidth] = useState<number | "">("");
     const [height, setHeight] = useState<number | "">("");
     const [divisor, setDivisor] = useState<string>("139");
     const [actualWeight, setActualWeight] = useState<number | "">("");
-    const [dimWeight, setDimWeight] = useState<number>(0);
-    const [billableWeight, setBillableWeight] = useState<number>(0);
     const [dimUnit, setDimUnit] = useState<"in" | "cm">("in");
-    const [weightUnit, setWeightUnit] = useState<"lb" | "kg">("lb");
+    const weightUnit: "lb" | "kg" = dimUnit === "in" ? "lb" : "kg";
+    const setSystem = (u: "in" | "cm") => {
+        setDimUnit(u);
+        setDivisor(String(DEFAULT_DIVISOR[u === "in" ? "imperial" : "metric"]));
+    };
     const handleReset = () => {
         setLength("");
         setWidth("");
         setHeight("");
         setActualWeight("");
-        setDimUnit("in");
-        setWeightUnit("lb");
-        setDivisor("139");
+        setSystem("in");
     }
-    const calculate = useCallback(() => {
-        const l = length === "" ? 0 : length;
-        const w = width === "" ? 0 : width;
-        const h = height === "" ? 0 : height;
-        const div = parseFloat(divisor);
-        const weight = actualWeight === "" ? 0 : actualWeight;
-        if (div > 0) {
-            let calculatedDimWeight = (l * w * h) / div;
-            // Round up to the next whole number (standard carrier practice)
-            calculatedDimWeight = Math.ceil(calculatedDimWeight);
-            setDimWeight(calculatedDimWeight);
-            setBillableWeight(Math.max(calculatedDimWeight, Math.ceil(weight)));
-        } else {
-            setDimWeight(0);
-            setBillableWeight(0);
-        }
-    }, [length, width, height, divisor, actualWeight]);
-    useEffect(() => {
-        calculate();
-    }, [calculate]);
+    const result = useMemo(() => dimensionalWeight({
+        length: length === "" ? 0 : length,
+        width: width === "" ? 0 : width,
+        height: height === "" ? 0 : height,
+        actualWeight: actualWeight === "" ? 0 : actualWeight,
+        divisor: parseFloat(divisor),
+    }), [length, width, height, actualWeight, divisor]);
+    const dimWeight = result?.dimWeight ?? 0;
+    const billableWeight = result?.billableWeight ?? 0;
     const scrollToGuide = () => {
         const element = document.getElementById('how-to-use'); // Ideally ID matches ToolSteps wrapper
         if (element) {
@@ -74,11 +64,20 @@ export function DimWeightCalculator() {
                     <FadeIn delay={0.2} direction="right" className="h-full">
                         <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                             <CalculatorCardHeader
-                                title="Package Details"
-                                description="Enter dimensions and weight."
+                                title="Package details"
+                                description="Enter the box's dimensions and its weight on a scale."
                                 onReset={handleReset}
                             />
                             <CardContent className="space-y-3 pt-6">
+                                <div className="flex items-center justify-between gap-3">
+                                    <Label className="text-sm font-medium text-slate-600/90 dark:text-slate-300">Units</Label>
+                                    <Tabs value={dimUnit} onValueChange={(v) => setSystem(v as "in" | "cm")}>
+                                        <TabsList aria-label="Units">
+                                            <TabsTrigger value="in">in / lb</TabsTrigger>
+                                            <TabsTrigger value="cm">cm / kg</TabsTrigger>
+                                        </TabsList>
+                                    </Tabs>
+                                </div>
                                 <CalculatorInput
                                     label="Length"
                                     suffix={dimUnit}
@@ -115,7 +114,7 @@ export function DimWeightCalculator() {
                                                     </button>
                                                 </TooltipTrigger>
                                                 <TooltipContent side="top" className="max-w-xs text-xs font-normal bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
-                                                    The factor used by carriers to determine dimensional weight. 139 is standard for UPS/FedEx Daily Rates.
+                                                    The factor used by carriers to determine dimensional weight. 139 for UPS and FedEx daily rates in the US, 166 for USPS, 5,000 for most carriers that use centimetres and kilograms.
                                                 </TooltipContent>
                                             </Tooltip>
                                         </TooltipProvider>
@@ -127,39 +126,33 @@ export function DimWeightCalculator() {
                                         <SelectContent className="rounded-xl border-slate-200 shadow-lg dark:border-slate-800">
                                             {dimUnit === "in" ? (
                                                 <SelectGroup>
-                                                    <SelectLabel className="text-xs font-bold text-slate-400 tracking-wider px-3 py-2 bg-slate-50 dark:text-slate-500 dark:bg-slate-800/60">Imperial — Inches / Lbs</SelectLabel>
+                                                    <SelectLabel className="text-xs font-bold text-slate-400 tracking-wider px-3 py-2 bg-slate-50 dark:text-slate-500 dark:bg-slate-800/60">Inches and pounds</SelectLabel>
                                                     <SelectItem value="139" className="py-3 px-3 cursor-pointer">
                                                         <div className="flex items-center justify-between w-full gap-6">
-                                                            <span className="font-medium text-slate-700 dark:text-slate-200">UPS / FedEx Daily Rates</span>
+                                                            <span className="font-medium text-slate-700 dark:text-slate-200">UPS and FedEx daily rates</span>
                                                             <span className="ml-auto bg-blue-50 text-blue-700 text-xs px-2.5 py-0.5 rounded-lg font-mono font-bold dark:bg-blue-950/40 dark:text-blue-400">139</span>
                                                         </div>
                                                     </SelectItem>
                                                     <SelectItem value="166" className="py-3 px-3 cursor-pointer">
                                                         <div className="flex items-center justify-between w-full gap-6">
-                                                            <span className="font-medium text-slate-700 dark:text-slate-200">Retail / USPS</span>
+                                                            <span className="font-medium text-slate-700 dark:text-slate-200">USPS and retail rates</span>
                                                             <span className="ml-auto bg-slate-100 text-slate-600 text-xs px-2.5 py-0.5 rounded-lg font-mono font-bold dark:bg-slate-800 dark:text-slate-300">166</span>
-                                                        </div>
-                                                    </SelectItem>
-                                                    <SelectItem value="194" className="py-3 px-3 cursor-pointer">
-                                                        <div className="flex items-center justify-between w-full gap-6">
-                                                            <span className="font-medium text-slate-700 dark:text-slate-200">Domestic Ground</span>
-                                                            <span className="ml-auto bg-slate-100 text-slate-600 text-xs px-2.5 py-0.5 rounded-lg font-mono font-bold dark:bg-slate-800 dark:text-slate-300">194</span>
                                                         </div>
                                                     </SelectItem>
                                                 </SelectGroup>
                                             ) : (
                                                 <SelectGroup>
-                                                    <SelectLabel className="text-xs font-bold text-slate-400 tracking-wider px-3 py-2 bg-slate-50 dark:text-slate-500 dark:bg-slate-800/60">Metric — Cm / Kg</SelectLabel>
+                                                    <SelectLabel className="text-xs font-bold text-slate-400 tracking-wider px-3 py-2 bg-slate-50 dark:text-slate-500 dark:bg-slate-800/60">Centimetres and kilograms</SelectLabel>
                                                     <SelectItem value="5000" className="py-3 px-3 cursor-pointer">
                                                         <div className="flex items-center justify-between w-full gap-6">
-                                                            <span className="font-medium text-slate-700 dark:text-slate-200">International Standard</span>
-                                                            <span className="ml-auto bg-slate-100 text-slate-600 text-xs px-2.5 py-0.5 rounded-lg font-mono font-bold dark:bg-slate-800 dark:text-slate-300">5000</span>
+                                                            <span className="font-medium text-slate-700 dark:text-slate-200">Most metric carriers</span>
+                                                            <span className="ml-auto bg-slate-100 text-slate-600 text-xs px-2.5 py-0.5 rounded-lg font-mono font-bold dark:bg-slate-800 dark:text-slate-300">5,000</span>
                                                         </div>
                                                     </SelectItem>
                                                     <SelectItem value="6000" className="py-3 px-3 cursor-pointer">
                                                         <div className="flex items-center justify-between w-full gap-6">
-                                                            <span className="font-medium text-slate-700 dark:text-slate-200">Legacy Metric</span>
-                                                            <span className="ml-auto bg-slate-100 text-slate-600 text-xs px-2.5 py-0.5 rounded-lg font-mono font-bold dark:bg-slate-800 dark:text-slate-300">6000</span>
+                                                            <span className="font-medium text-slate-700 dark:text-slate-200">Some metric rates</span>
+                                                            <span className="ml-auto bg-slate-100 text-slate-600 text-xs px-2.5 py-0.5 rounded-lg font-mono font-bold dark:bg-slate-800 dark:text-slate-300">6,000</span>
                                                         </div>
                                                     </SelectItem>
                                                 </SelectGroup>
@@ -192,9 +185,9 @@ export function DimWeightCalculator() {
                             {
                                 key: "actualWeight",
                                 label: "Actual Weight",
-                                value: actualWeight || 0,
+                                value: result?.actualRounded ?? 0,
                                 unit: weightUnit === "lb" ? "lbs" : "kg",
-                                tooltip: "The physical weight of the package on a scale.",
+                                tooltip: "The weight on a scale, rounded up to the next whole unit.",
                                 icon: Scale
                             },
                             {
@@ -206,15 +199,15 @@ export function DimWeightCalculator() {
                                 icon: Box
                             }
                         ]}
-                        isCalculated={dimWeight > 0 || actualWeight !== ""}
+                        isCalculated={result !== null}
                         emptyMessage="Billable Weight"
                         liveBadgeText={
-                            dimWeight > Number(actualWeight || 0)
+                            result?.dimBilled
                                 ? "DIM Billed"
                                 : "Actual Billed"
                         }
                         liveBadgeColor={
-                            dimWeight > Number(actualWeight || 0)
+                            result?.dimBilled
                                 ? "amber"
                                 : "blue"
                         }
@@ -235,7 +228,7 @@ export function DimWeightCalculator() {
                     {/* Breakdown Chart */}
                     <FadeIn delay={0.1}>
                         <DimWeightBreakdown
-                            actualWeight={Number(actualWeight) || 0}
+                            actualWeight={result?.actualRounded ?? 0}
                             dimWeight={dimWeight}
                             billableWeight={billableWeight}
                             weightUnit={weightUnit === "lb" ? "lbs" : "kg"}

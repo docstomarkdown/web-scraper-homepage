@@ -98,7 +98,7 @@ export function MercariFeeBreakdown({
                     {pieTotal > 0 && (
                         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
                             <span className="text-xs sm:text-xs font-medium text-slate-600 dark:text-slate-300 text-center leading-tight mb-0.5 mt-0.5">
-                                Sale Price
+                                Buyer pays
                             </span>
                             <span className="text-xs sm:text-sm font-bold text-slate-900 tracking-tight dark:text-white">
                                 {formatCurrency(pieTotal)}

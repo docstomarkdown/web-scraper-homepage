@@ -19,7 +19,7 @@ export function MercariFeeHowToUse() {
                 },
                 {
                     title: "Read your profit",
-                    description: "The calculator takes off Mercari's two fees and your costs and shows net profit, margin, and the total for several identical items.",
+                    description: "The calculator takes off Mercari's 10% fee and your costs and shows net profit, margin, and the total for several identical items.",
                     icon: TrendingUp,
                 },
             ]}

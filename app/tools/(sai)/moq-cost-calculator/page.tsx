@@ -3,7 +3,7 @@ import { MOQCalculator } from "./_components/MOQCalculator"
 import { MOQHowToUse } from "./_components/MOQHowToUse"
 import { MOQGuide } from "./_components/MOQGuide"
 import { MOQOverview } from "./_components/MOQOverview"
-import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
+import { FadeIn, RelatedProduct, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
@@ -39,9 +39,12 @@ export default function MoqCostCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Minimum Order Quantity (MOQ) Cost Calculator" direction="down" duration={0.6} />
+                <ToolPageTitle title="Minimum order quantity (MOQ) cost calculator" direction="down" duration={0.6} />
                 <div className="mb-20">
                     <MOQCalculator />
+                </div>
+                <div className="mb-16">
+                    <RelatedProduct before="To compare supplier prices, collect a supplier's product list into a spreadsheet with" linkText="Web Scraper Pro's list scraper" href="/list-scraper" after="." />
                 </div>
                 <div className="max-w-5xl mx-auto space-y-16">
                     <FadeIn delay={0.2}>

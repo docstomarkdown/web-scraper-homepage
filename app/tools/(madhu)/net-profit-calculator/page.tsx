@@ -17,7 +17,7 @@ export default function NetProfitCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Net Profit Calculator" />
+                <ToolPageTitle title="Net profit calculator" />
                 <div className="mb-20">
                     <NetProfitCalculator />
                 </div>

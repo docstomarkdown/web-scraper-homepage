@@ -15,7 +15,7 @@ export default function LeadTimeCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Lead Time Calculator" />
+                <ToolPageTitle title="Lead time calculator" />
                 <div className="mb-20">
                     <LeadTimeCalculator />
                 </div>

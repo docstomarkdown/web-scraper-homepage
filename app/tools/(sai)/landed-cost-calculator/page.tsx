@@ -3,7 +3,7 @@ import { LandedCostCalculator } from "./_components/LandedCostCalculator"
 import { LandedCostHowToUse } from "./_components/LandedCostHowToUse"
 import { LandedCostGuide } from "./_components/LandedCostGuide"
 import { LandedCostOverview } from "./_components/LandedCostOverview"
-import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
+import { FadeIn, RelatedProduct, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
@@ -20,6 +20,10 @@ const faqs = [
     {
         question: "How do I find my import duty rate?",
         answer: "Search your product's HS (Harmonized System) code on your customs authority's website, or ask your freight forwarder. Enter the rate as a percentage.",
+    },
+    {
+        question: "Is duty charged on the shipping too?",
+        answer: "In the EU, UK and India, yes: duty is charged on the CIF value, the goods plus freight and insurance. The US charges it on the goods value, close to FOB. The calculator does either; CIF is the default.",
     },
     {
         question: "What does the cost increase percentage show?",
@@ -39,9 +43,12 @@ export default function LandedCostCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Landed Cost Calculator" direction="down" duration={0.6} />
+                <ToolPageTitle title="Landed cost calculator" direction="down" duration={0.6} />
                 <div className="mb-20">
                     <LandedCostCalculator />
+                </div>
+                <div className="mb-16">
+                    <RelatedProduct before="To compare supplier prices, collect a supplier's product list into a spreadsheet with" linkText="Web Scraper Pro's list scraper" href="/list-scraper" after="." />
                 </div>
                 <div className="max-w-5xl mx-auto space-y-16">
                     <FadeIn delay={0.2}>

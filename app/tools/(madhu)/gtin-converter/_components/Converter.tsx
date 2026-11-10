@@ -22,36 +22,14 @@ import { cn } from "@/lib/utils"
 import { CalculatorCardHeader, CalculatorInput, FadeIn } from "@/app/tools/_shared/components"
 import { useBarcodeScanner } from "@/app/tools/_shared/hooks/useBarcodeScanner"
 import { motion, AnimatePresence } from "framer-motion"
+import { checkGtin, type ConversionResult, type CheckDigitWorking } from "./calc"
 
 type BarcodeFormat = "GTIN-8" | "UPC-A" | "EAN-13" | "GTIN-14" | "Unknown"
-
-/** null means the number can't be written in that form. */
-interface ConversionResult {
-    gtin8: string | null
-    gtin12: string | null
-    gtin13: string | null
-    gtin14: string
-}
 
 const NOT_AVAILABLE: Record<"gtin8" | "gtin12" | "gtin13", string> = {
     gtin8: "Not available: GTIN-8 is a separate number assigned by GS1",
     gtin12: "Not available: this number needs 13 or 14 digits",
     gtin13: "Not available: this number needs 14 digits",
-}
-
-/**
- * GS1 rule: every GTIN is the same number right-aligned in 14 digits with leading zeros.
- * A shorter form exists only when the digits it drops are all zero, so the check digit never changes.
- */
-export function convertGtin(clean: string): ConversionResult {
-    const base14 = clean.padStart(14, "0")
-    const shorter = (len: number) => (/^0*$/.test(base14.slice(0, 14 - len)) ? base14.slice(-len) : null)
-    return {
-        gtin8: shorter(8),
-        gtin12: shorter(12),
-        gtin13: shorter(13),
-        gtin14: base14,
-    }
 }
 
 interface ValidationStatus {
@@ -76,44 +54,28 @@ export function Converter() {
         setIsMounted(true)
     }, [])
 
-    const calculateCheckDigitDetailed = (code: string) => {
-        const digits = code.split('').map(Number)
-        let sum = 0
-        const reversed = [...digits].reverse()
-        const steps: { step: number; description: string; value: string }[] = []
-        let weightingStr = ""
-        reversed.forEach((digit, i) => {
-            const weight = (i % 2 === 0) ? 3 : 1
-            const product = digit * weight
-            sum += product
-            weightingStr += `${digit}×${weight}${i < reversed.length - 1 ? " + " : ""}`
-        })
-        steps.push({ step: 1, description: "Reverse & Apply Weights (3, 1, 3...)", value: weightingStr })
-        steps.push({ step: 2, description: "Calculate Sum of Weighted Products", value: `Total Sum = ${sum}` })
-        const nextTen = Math.ceil(sum / 10) * 10
-        const checkDigitValue = (nextTen - sum) % 10
-        steps.push({ step: 3, description: "Find Next Multiple of 10", value: `${nextTen} - ${sum} = ${checkDigitValue}` })
-        steps.push({ step: 4, description: "Resulting Check Digit", value: `Final Digit: ${checkDigitValue}` })
-        return { checkDigit: checkDigitValue, steps }
-    }
+    const stepsFor = (w: CheckDigitWorking) => [
+        { step: 1, description: "Reverse & Apply Weights (3, 1, 3...)", value: w.weighting },
+        { step: 2, description: "Calculate Sum of Weighted Products", value: `Total Sum = ${w.sum}` },
+        { step: 3, description: "Find Next Multiple of 10", value: `${w.nextTen} - ${w.sum} = ${w.checkDigit}` },
+        { step: 4, description: "Resulting Check Digit", value: `Final Digit: ${w.checkDigit}` },
+    ]
 
     const validateAndConvert = useCallback((code: string): { status: ValidationStatus, result: ConversionResult | null } => {
-        const clean = code.replace(/[\s-]/g, "")
-        if (!clean) {
+        const c = checkGtin(code)
+        if (c.kind === "empty") {
             return { status: { isValid: false, message: "", format: "Unknown" }, result: null }
         }
-        if (!/^\d+$/.test(clean)) {
+        if (c.kind === "not-digits") {
             return {
                 status: { isValid: false, message: "Please enter numbers only (spaces and dashes are allowed)", format: "Unknown" },
                 result: null
             }
         }
-        
-        // Strict length validation for GTIN-8, 12, 13, 14
-        if (![8, 12, 13, 14].includes(clean.length)) {
+        if (c.kind === "bad-length") {
             const lengthError = (
                 <div className="space-y-1 mt-1">
-                    <p>Invalid length: {clean.length} digits entered.</p>
+                    <p>Invalid length: {c.length} digits entered.</p>
                     <p className="font-semibold text-xs opacity-90 mt-2">GTIN must contain exactly:</p>
                     <ul className="list-disc list-inside space-y-0.5 text-xs opacity-80 pl-1">
                         <li>8 digits (GTIN-8)</li>
@@ -125,43 +87,25 @@ export function Converter() {
             )
             return { status: { isValid: false, message: lengthError, format: "Unknown" }, result: null }
         }
-
-        const data = clean.slice(0, -1)
-        const providedCD = parseInt(clean.slice(-1))
-        const { checkDigit: expectedCD, steps } = calculateCheckDigitDetailed(data)
-
-        let format: BarcodeFormat = "Unknown"
-        if (clean.length === 8) format = "GTIN-8"
-        else if (clean.length === 12) format = "UPC-A"
-        else if (clean.length === 13) format = "EAN-13"
-        else if (clean.length === 14) format = "GTIN-14"
-
-        if (providedCD !== expectedCD) {
-            const corrected = data + expectedCD
+        const formats: Record<number, BarcodeFormat> = { 8: "GTIN-8", 12: "UPC-A", 13: "EAN-13", 14: "GTIN-14" }
+        const format = formats[c.clean.length] ?? "Unknown"
+        if (c.kind === "bad-check") {
             return {
                 status: {
                     isValid: false,
                     message: `Invalid check digit.`,
-                    format: format,
-                    expectedCheckDigit: expectedCD,
-                    foundCheckDigit: providedCD,
-                    correctedCode: corrected,
-                    calculationSteps: steps
+                    format,
+                    expectedCheckDigit: c.expected,
+                    foundCheckDigit: c.found,
+                    correctedCode: c.corrected,
+                    calculationSteps: stepsFor(c.working)
                 },
                 result: null
             }
         }
-
-        const conversionResult = convertGtin(clean)
-
         return {
-            status: {
-                isValid: true,
-                message: "Valid Format",
-                format,
-                calculationSteps: steps
-            },
-            result: conversionResult
+            status: { isValid: true, message: "Valid Format", format, calculationSteps: stepsFor(c.working) },
+            result: c.forms
         }
     }, [])
 
@@ -192,7 +136,6 @@ export function Converter() {
                     <FadeIn delay={0.2} direction="right">
                         <Card className="border border-slate-200 shadow-sm overflow-hidden bg-white dark:border-slate-800 dark:bg-slate-900">
                             <CalculatorCardHeader
-                                title="GTIN Converter"
                                 description="Enter your barcode number or upload an image below to convert between GTIN formats."
                                 guideId="how-to-use"
                                 tooltip="How to use this converter"
@@ -253,7 +196,7 @@ export function Converter() {
                                     
                                     {(status.isValid || (inputCode && !status.isValid)) ? (
                                         <motion.div
-                                            initial={{ opacity: 0 }}
+                                            initial={false}
                                             animate={{ opacity: 1 }}
                                             transition={{ duration: 0.4, ease: "easeInOut" }}
                                             className={cn(
@@ -277,7 +220,7 @@ export function Converter() {
                                         /* EMPTY STATE */
                                         <motion.div
                                             key="empty-state"
-                                            initial={{ opacity: 0 }}
+                                            initial={false}
                                             animate={{ opacity: 1 }}
                                             exit={{ opacity: 0 }}
                                             transition={{ duration: 0.4 }}
@@ -286,7 +229,7 @@ export function Converter() {
                                             <div className="relative">
                                                 <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
                                                     <motion.div
-                                                        initial={{ opacity: 0 }}
+                                                        initial={false}
                                                         animate={{ opacity: 1 }}
                                                         className="bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_8px_40px_rgba(59,130,246,0.12)] rounded-2xl px-6 py-5 flex flex-col items-center gap-3 w-fit max-w-[320px] pointer-events-auto dark:bg-slate-900/80 dark:border-slate-800"
                                                     >
@@ -341,7 +284,7 @@ export function Converter() {
                                         /* SINGLE RESULT STATE */
                                         <motion.div
                                             key="results-state"
-                                            initial={{ opacity: 0 }}
+                                            initial={false}
                                             animate={{ opacity: 1 }}
                                             exit={{ opacity: 0 }}
                                             transition={{ duration: 0.55 }}
@@ -352,7 +295,7 @@ export function Converter() {
                                                     {status.isValid && results ? (
                                                         <>
                                                             <motion.div
-                                                                initial={{ opacity: 0, scale: 0.98 }}
+                                                                initial={{ scale: 0.98 }}
                                                                 animate={{ opacity: 1, scale: 1 }}
                                                                 transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
                                                                 className="relative flex flex-col items-center text-center py-5 px-4 mb-2"
@@ -376,7 +319,7 @@ export function Converter() {
                                                                 ].map((item) => (
                                                                     <motion.div
                                                                         key={item.label}
-                                                                        initial={{ opacity: 0, y: 8 }}
+                                                                        initial={{ y: 8 }}
                                                                         animate={{ opacity: 1, y: 0 }}
                                                                         transition={{ duration: 0.3, delay: item.delay, ease: "easeOut" }}
                                                                         className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] flex flex-col justify-between dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
@@ -408,7 +351,7 @@ export function Converter() {
                                                         </>
                                                     ) : (
                                                         <motion.div
-                                                            initial={{ opacity: 0, y: 8 }}
+                                                            initial={{ y: 8 }}
                                                             animate={{ opacity: 1, y: 0 }}
                                                             transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
                                                             className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"

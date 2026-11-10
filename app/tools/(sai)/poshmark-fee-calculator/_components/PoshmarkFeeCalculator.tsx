@@ -1,7 +1,8 @@
 "use client"
 import { POSHMARK } from "@/app/tools/_data/feeRates";
 import { RatesChecked } from "@/app/tools/_shared/components";
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
+import { poshmarkFees } from "./calc"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tag, Truck, DollarSign, TrendingUp, Percent } from "lucide-react"
 import { CalculatorCardHeader, CalculatorInput, FadeIn, ResultSummaryCard } from "@/app/tools/_shared/components"
@@ -19,49 +20,15 @@ export function PoshmarkFeeCalculator() {
         setShippingDiscount("")
     }
 
-    // Results
-    const [poshFee, setPoshFee] = useState(0)
-    const [netEarnings, setNetEarnings] = useState(0)
-    const [netProfit, setNetProfit] = useState(0)
-    const [margin, setMargin] = useState(0)
-
-    useEffect(() => {
-        const price = Number(soldPrice) || 0
-        const cost = Number(costPrice) || 0
-        const shipDisc = Number(shippingDiscount) || 0
-
-        if (price === 0) {
-            setPoshFee(0)
-            setNetEarnings(0)
-            setNetProfit(0)
-            setMargin(0)
-            return
-        }
-
-        // Poshmark Fee Logic
-        // $15 and under: flat $2.95; above $15: 20% (Poshmark's terms, app/tools/_data/feeRates.ts)
-        let fee = 0
-        if (price <= POSHMARK.flatUpTo) {
-            fee = POSHMARK.flatFee
-        } else {
-            fee = price * POSHMARK.percent
-        }
-
-        // Net Earnings = Price - Fee - Shipping Discount (paid by seller)
-        const earnings = price - fee - shipDisc
-        // Net Profit = Earnings - Cost of Goods
-        const profit = earnings - cost
-        // Margin
-        const calcMargin = (profit / price) * 100
-
-        setPoshFee(fee)
-        setNetEarnings(earnings)
-        setNetProfit(profit)
-        setMargin(calcMargin)
-    }, [soldPrice, costPrice, shippingDiscount])
-
     const price = Number(soldPrice) || 0
-    const isValid = price > 0
+    // $15 and under: flat $2.95; above $15: 20% (Poshmark's terms, app/tools/_data/feeRates.ts)
+    const result = poshmarkFees(price, Number(costPrice) || 0, Number(shippingDiscount) || 0, POSHMARK)
+    const poshFee = result?.fee ?? 0
+    const netEarnings = result?.earnings ?? 0
+    const netProfit = result?.netProfit ?? 0
+    const margin = result?.margin ?? 0
+    // The price and the item cost are both needed before the profit or a verdict shows.
+    const isValid = result !== null && costPrice !== ""
 
     return (
         <FadeIn className="w-full max-w-6xl mx-auto py-8 px-4" duration={0.6}>
@@ -70,7 +37,6 @@ export function PoshmarkFeeCalculator() {
                 <div className="lg:col-span-7 space-y-3">
                     <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            title="Sale & Cost Details"
                             description="Enter your sale price, shipping discount, and item cost."
                             onReset={handleReset}
                             guideId="poshmark-guide"
@@ -140,7 +106,7 @@ export function PoshmarkFeeCalculator() {
                         }
                         dynamicMessages={{
                             positive: `You keep ${margin.toFixed(1)}% of the sale price as net profit after all fees and costs.`,
-                            negative: `Your costs exceed your earnings by the fee amount. Consider repricing to improve margin.`,
+                            negative: `Your item cost is more than what you earn after the fee and any shipping discount.`,
                             neutral: "You broke even on this sale. No profit, no loss."
                         }}
                         primaryResult={{

@@ -1,10 +1,11 @@
 "use client"
-import React, { useState, useEffect } from "react"
+import React, { useState, useMemo } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Package, Scissors, Clock, Hash, DollarSign, Percent } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { CalculatorCardHeader, CalculatorInput, FadeIn, ResultSummaryCard } from "@/app/tools/_shared/components"
 import { PackagingCostBreakdown } from "./PackagingCostBreakdown"
+import { packagingCost } from "./calc"
 
 export function PackagingCostCalculator() {
     const [currency, setCurrency] = useState("USD")
@@ -21,13 +22,6 @@ export function PackagingCostCalculator() {
     const [labelCost, setLabelCost] = useState<number | "">("")
     const [brandingCost, setBrandingCost] = useState<number | "">("")
 
-    // Computed results
-    const [totalMaterialCost, setTotalMaterialCost] = useState(0)
-    const [laborCostPerUnit, setLaborCostPerUnit] = useState(0)
-    const [totalPackagingCost, setTotalPackagingCost] = useState(0)
-    const [batchTotal, setBatchTotal] = useState(0)
-    const [addonCost, setAddonCost] = useState(0)
-
     const handleReset = () => {
         setBoxCost("")
         setPaddingCost("")
@@ -39,34 +33,28 @@ export function PackagingCostCalculator() {
         setOrderQuantity(1)
     }
 
-    useEffect(() => {
-        const box = Number(boxCost) || 0
-        const padding = Number(paddingCost) || 0
-        const tape = Number(tapeCost) || 0
-        const label = Number(labelCost) || 0
-        const branding = Number(brandingCost) || 0
-        const time = Number(laborTime) || 0
-        const wage = Number(hourlyWage) || 0
-        const qty = Math.max(Number(orderQuantity) || 1, 1)
-
-        const materials = box + padding + tape + label + branding
-        const labor = time > 0 && wage > 0 ? (time / 60) * wage : 0
-        const total = materials + labor
-        const batch = total * qty
-
-        const addons = padding + tape + label + branding
-
-        setTotalMaterialCost(materials)
-        setLaborCostPerUnit(labor)
-        setTotalPackagingCost(total)
-        setBatchTotal(batch)
-        setAddonCost(addons)
-    }, [boxCost, paddingCost, tapeCost, labelCost, brandingCost, laborTime, hourlyWage, orderQuantity])
-
-    const isValid = boxCost !== "" && laborTime !== "" && hourlyWage !== ""
-    const qty = Math.max(Number(orderQuantity) || 1, 1)
-
     const [showAdvanced, setShowAdvanced] = useState(false)
+    const num = (v: number | "") => (v === "" ? NaN : Number(v))
+    const result = useMemo(() => packagingCost({
+        box: num(boxCost),
+        minutes: num(laborTime),
+        hourlyWage: num(hourlyWage),
+        quantity: num(orderQuantity),
+        includeAddons: showAdvanced,
+        padding: num(paddingCost),
+        tape: num(tapeCost),
+        label: num(labelCost),
+        inserts: num(brandingCost),
+    }), [boxCost, laborTime, hourlyWage, orderQuantity, showAdvanced, paddingCost, tapeCost, labelCost, brandingCost])
+    const isValid = result !== null
+    const qty = result?.quantity ?? 1
+    const totalMaterialCost = result?.materials ?? 0
+    const laborCostPerUnit = result?.labour ?? 0
+    const totalPackagingCost = result?.perOrder ?? 0
+    const batchTotal = result?.batchTotal ?? 0
+    const addonCost = result?.addons ?? 0
+    // Add-ons only count while the panel is open
+    const addonValue = (v: number | "") => (showAdvanced ? Number(v) || 0 : 0)
 
     return (
         <FadeIn className="w-full max-w-6xl mx-auto py-8" duration={0.6}>
@@ -75,7 +63,7 @@ export function PackagingCostCalculator() {
                 <div className="lg:col-span-7 space-y-3 lg:sticky lg:top-8">
                     <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            title="Packaging Details"
+                            title="Packaging details"
                             description="Enter your per-unit material costs, packing time, and order quantity."
                             onReset={handleReset}
                             guideId="tool-guide"
@@ -101,7 +89,6 @@ export function PackagingCostCalculator() {
                                         tooltip="The cost of each shipping box or poly mailer you use per order."
                                         isCurrency
                                         currency={currency}
-                                        autoFocus
                                     />
                                     
                                     <CalculatorInput
@@ -163,7 +150,7 @@ export function PackagingCostCalculator() {
                                                     Advanced Settings
                                                 </span>
                                                 <span className="text-xs text-slate-600 dark:text-slate-300 font-medium">
-                                                    Tape, Label & Branding details
+                                                    Padding, tape, label and inserts; they count while this is open
                                                 </span>
                                             </div>
                                         </div>
@@ -304,11 +291,11 @@ export function PackagingCostCalculator() {
                         <PackagingCostBreakdown
                             totalMaterialCost={totalMaterialCost}
                             laborCostPerUnit={laborCostPerUnit}
-                            boxCost={Number(boxCost) || 0}
-                            paddingCost={Number(paddingCost) || 0}
-                            tapeCost={Number(tapeCost) || 0}
-                            labelCost={Number(labelCost) || 0}
-                            brandingCost={Number(brandingCost) || 0}
+                            boxCost={isValid ? Number(boxCost) || 0 : 0}
+                            paddingCost={addonValue(paddingCost)}
+                            tapeCost={addonValue(tapeCost)}
+                            labelCost={addonValue(labelCost)}
+                            brandingCost={addonValue(brandingCost)}
                             totalPackagingCost={totalPackagingCost}
                             currency={currency}
                         />

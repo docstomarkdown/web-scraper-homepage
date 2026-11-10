@@ -25,6 +25,10 @@ const faqs = [
         answer: "Many inventory systems, marketplaces and barcode tools reject or mangle characters such as @, # and /. A hyphen is the safe separator.",
     },
     {
+        question: "What stops two products getting the same SKU?",
+        answer: "The generator checks each new SKU against your list and won't add one that is already there. Two names that start the same, such as Shoes and Shorts at 3 characters, both become SHO; raise Char Pull Count or type a distinct code. The running number also steps up after every add.",
+    },
+    {
         question: "Can I use the UPC as my SKU?",
         answer: "You can, but a UPC says nothing about the product. A SKU you design tells you the brand, category and variant without looking it up.",
     },
@@ -34,7 +38,7 @@ export default function SkuGeneratorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="E-commerce SKU Generator" direction="down" duration={0.6} />
+                <ToolPageTitle title="SKU generator" direction="down" duration={0.6} />
                 <div className="mb-20">
                     <SKUGenerator />
                 </div>

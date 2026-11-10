@@ -149,7 +149,7 @@ export function ResultDateCard({
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
@@ -176,7 +176,7 @@ export function ResultDateCard({
                             totalCount > 0 && (
                                 <motion.div
                                     key="progress"
-                                    initial={{ opacity: 0 }}
+                                    initial={false}
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0, transition: { duration: 0.25 } }}
                                     transition={{ duration: 0.4, ease: "easeOut" }}
@@ -197,7 +197,7 @@ export function ResultDateCard({
                             showLiveBadge && (
                                 <motion.div
                                     key="live-badge"
-                                    initial={{ opacity: 0 }}
+                                    initial={false}
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0 }}
                                     transition={{ duration: 0.4, ease: "easeInOut" }}
@@ -220,7 +220,7 @@ export function ResultDateCard({
                         /* ═══════════ EMPTY STATE (matches ResultSummaryCard) ═══════════ */
                         <motion.div
                             key="empty-state"
-                            initial={{ opacity: 0 }}
+                            initial={false}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.4, ease: "easeInOut" }}
@@ -230,7 +230,7 @@ export function ResultDateCard({
                             <div className="relative">
                                 <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
                                     <motion.div
-                                        initial={{ opacity: 0 }}
+                                        initial={false}
                                         animate={{ opacity: 1 }}
                                         transition={{ duration: 0.55, ease: "easeOut" }}
                                         className="bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_8px_40px_rgba(59,130,246,0.12)] rounded-2xl px-6 py-5 flex flex-col items-center gap-3 w-fit max-w-[320px] pointer-events-auto dark:bg-slate-900/80 dark:border-slate-800"
@@ -295,7 +295,7 @@ export function ResultDateCard({
                         /* ═══════════ RESULTS STATE (matches ResultSummaryCard) ═══════════ */
                         <motion.div
                             key="results-state"
-                            initial={{ opacity: 0 }}
+                            initial={false}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.55, ease: "easeInOut" }}
@@ -303,14 +303,14 @@ export function ResultDateCard({
                         >
                             {/* ── Primary Hero (transparent, no border box) ── */}
                             <motion.div
-                                initial={{ opacity: 0, scale: 0.97 }}
+                                initial={{ scale: 0.97 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.4, delay: 0.05 }}
                                 className="relative flex flex-col items-center text-center py-6 px-4 bg-transparent"
                             >
                                     {displayLabel && (
                                         <motion.span
-                                            initial={{ opacity: 0, y: 3 }}
+                                            initial={{ y: 3 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.3, delay: 0.12 }}
                                             className="text-sm font-bold text-slate-700 dark:text-slate-200  tracking-[0.16em] leading-none mb-2 dark:text-slate-500"
@@ -320,7 +320,7 @@ export function ResultDateCard({
                                     )}
 
                                     <motion.div
-                                        initial={{ opacity: 0 }}
+                                        initial={false}
                                         animate={{ opacity: 1 }}
                                         transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
                                         className="flex items-baseline justify-center"
@@ -332,7 +332,7 @@ export function ResultDateCard({
 
                                     {displayDescription && (
                                         <motion.p
-                                            initial={{ opacity: 0 }}
+                                            initial={false}
                                             animate={{ opacity: 1 }}
                                             transition={{ duration: 0.3, delay: 0.22 }}
                                             className="text-sm text-slate-700 dark:text-slate-200 font-medium mt-2 max-w-[280px] mx-auto leading-relaxed dark:text-slate-400"
@@ -345,7 +345,7 @@ export function ResultDateCard({
                             {/* ── Date Section ── */}
                             <div className="px-5 pb-4">
                                 <motion.div
-                                    initial={{ opacity: 0, y: 8 }}
+                                    initial={{ y: 8 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.3, delay: 0.12, ease: "easeOut" }}
                                     className="group bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
@@ -369,7 +369,7 @@ export function ResultDateCard({
                             {/* ── Info Card ── */}
                             <div className="px-5 pb-5">
                                 <motion.div
-                                    initial={{ opacity: 0, y: 8 }}
+                                    initial={{ y: 8 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.3, delay: 0.17, ease: "easeOut" }}
                                     className="group bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"

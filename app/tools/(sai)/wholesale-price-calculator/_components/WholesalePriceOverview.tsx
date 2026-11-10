@@ -13,7 +13,7 @@ export function WholesalePriceOverview() {
                 facts={[
                     { stat: "Effective cost", label: "Cost × (1 + tax rate)", detail: "Include inbound shipping and anything else you pay to have the unit ready to sell." },
                     { stat: "Wholesale price", label: "Cost ÷ (1 − margin)", detail: "A $10 cost at a 40% margin is $16.67. Margin is profit ÷ price, markup is profit ÷ cost." },
-                    { stat: "30% to 50%", label: "Typical wholesale margins", detail: "Leaves the retailer room to roughly double the price. If your price lands above the market, the cost has to move." },
+                    { stat: "Markup", label: "Profit ÷ effective cost", detail: "The same profit as a share of cost. A 40% margin is a 66.7% markup." },
                 ]}
             />
         </div>

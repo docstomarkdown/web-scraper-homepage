@@ -19,6 +19,7 @@ import {
 } from "@/app/tools/_shared/components"
 import { cn } from "@/lib/utils"
 import { Card, CardContent } from "@/components/ui/card"
+import { calculateAffiliate } from "./calc"
 
 interface AffiliateState {
     affiliateTraffic: number | ""
@@ -49,32 +50,16 @@ export function AffiliateCommissionCalculator() {
         setValues(prev => ({ ...prev, [field]: value === "" ? "" : Number(value) }))
     }
 
-    // Results calculate only when mandatory fields are filled
-    const hasInputs = useMemo(() => {
-        return values.affiliateTraffic !== "" && values.averageOrderValue !== "" && values.affiliateCommission !== ""
-    }, [values])
-
-    const results = useMemo(() => {
-        const clicks = Number(values.affiliateTraffic) || 0
-        const convRate = Number(values.conversionRate) || 0
-        const aov = Number(values.averageOrderValue) || 0
-        const commissionPct = Number(values.affiliateCommission) || 0
-        const productCostPct = Number(values.productCost) || 0
-
-        const estimatedSales = clicks * (convRate / 100)
-        const totalRevenue = estimatedSales * aov
-        const affiliatePayout = totalRevenue * (commissionPct / 100)
-        const productCostAmount = totalRevenue * (productCostPct / 100)
-        const netProfit = totalRevenue - affiliatePayout - productCostAmount
-
-        return {
-            estimatedSales,
-            totalRevenue,
-            affiliatePayout,
-            productCostAmount,
-            netProfit
-        }
-    }, [values])
+    // Results calculate only when the required fields are filled with valid values
+    const calc = calculateAffiliate({
+        clicks: values.affiliateTraffic,
+        conversionPct: values.conversionRate,
+        aov: values.averageOrderValue,
+        commissionPct: values.affiliateCommission,
+        productCostPct: values.productCost,
+    })
+    const hasInputs = calc !== null
+    const results = calc ?? { sales: 0, revenue: 0, payout: 0, productCost: 0, netProfit: 0 }
 
     const handleReset = () => {
         setValues(DEFAULT_STATE)
@@ -88,7 +73,6 @@ export function AffiliateCommissionCalculator() {
                 <div className="lg:col-span-7 flex flex-col h-full">
                     <Card className="border border-slate-200/80 shadow-sm bg-white overflow-hidden h-full flex flex-col rounded-3xl dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            title="Affiliate Payout Calculator"
                             description="Enter traffic, pricing, and commission details to estimate affiliate payouts and profitability."
                             currency={currencyCode}
                             onCurrencyChange={setCurrencyCode}
@@ -175,10 +159,10 @@ export function AffiliateCommissionCalculator() {
                 {/* Right Column: Results */}
                 <div className="lg:col-span-5 h-full">
                     <ResultSummaryCard
-                        title="AFFILIATE PAYOUTS — Total Commission Paid"
+                        title="Total commission paid"
                         primaryResult={{
-                            value: Math.round(results.affiliatePayout).toLocaleString(),
-                            unit: currencySymbol,
+                            value: results.payout,
+                            isCurrency: true,
                             label: "Total Affiliate Payout",
                             key: "affiliatePayout"
                         }}
@@ -186,23 +170,23 @@ export function AffiliateCommissionCalculator() {
                             {
                                 key: "netProfit",
                                 label: "Net Profit",
-                                value: Math.round(results.netProfit).toLocaleString(),
-                                unit: currencySymbol,
+                                value: results.netProfit,
+                                isCurrency: true,
                                 tooltip: "Your take-home profit after deducting affiliate commissions and product costs. Calculated as Revenue − Affiliate Payout − Product Cost.",
                                 icon: TrendingUp,
                             },
                             {
                                 key: "totalRevenue",
                                 label: "Total Revenue",
-                                value: Math.round(results.totalRevenue).toLocaleString(),
-                                unit: currencySymbol,
+                                value: results.revenue,
+                                isCurrency: true,
                                 tooltip: "Total revenue generated from estimated sales. Calculated as Estimated Sales × Average Order Value.",
                                 icon: DollarSign,
                             },
                             {
                                 key: "estimatedSales",
                                 label: "Estimated Sales",
-                                value: Math.round(results.estimatedSales).toLocaleString(),
+                                value: (Math.round(results.sales * 100) / 100).toLocaleString(),
                                 unit: " sales",
                                 tooltip: "Number of actual purchases expected from the affiliate traffic. Calculated as Clicks × Conversion Rate.",
                                 icon: ShoppingCart,
@@ -210,15 +194,16 @@ export function AffiliateCommissionCalculator() {
                         ]}
                         isCalculated={hasInputs}
                         profitLossKey="netProfit"
+                        currency={currencyCode}
                         showLiveBadge={hasInputs}
-                        liveBadgeText={hasInputs ? "Commission Calculated" : "Draft"}
+                        validationBadgeText={{ valid: "Profitable", invalid: "Loss" }}
                         checklistItems={[
                             { key: 'traffic', label: 'Affiliate Traffic', isComplete: values.affiliateTraffic !== "" },
                             { key: 'aov', label: 'Average Order Value', isComplete: values.averageOrderValue !== "" },
                             { key: 'commission', label: 'Commission Rate', isComplete: values.affiliateCommission !== "" }
                         ]}
                         dynamicMessages={{
-                            positive: "Revenue comfortably exceeds payouts at this commission rate.",
+                            positive: "Revenue covers the payouts and product costs at this commission rate.",
                             negative: "Program is operating at a loss. Consider adjusting your commission rate.",
                             neutral: "Program is breaking even. Revenue exactly covers payouts and costs."
                         }}

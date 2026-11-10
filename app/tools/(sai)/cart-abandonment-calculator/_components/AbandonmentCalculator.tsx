@@ -1,28 +1,22 @@
 "use client"
 import React, { useState } from "react"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { ShoppingCart, ShoppingBag, Percent, UserMinus } from "lucide-react"
+import { ShoppingCart, RotateCcw, Percent, UserMinus } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { CalculatorCardHeader, CalculatorInput, FadeIn, ResultSummaryCard } from "@/app/tools/_shared/components"
+import { calculateAbandonment, ordersExceedCarts, RECOVERY_SHARE } from "./calc"
 export function AbandonmentCalculator() {
     const [carts, setCarts] = useState<number | "">("")
     const [transactions, setTransactions] = useState<number | "">("")
-    const val = (v: number | "") => (v === "" ? 0 : v)
     const handleReset = () => {
         setCarts("")
         setTransactions("")
     }
-    // Calculation
-    const cartsVal = val(carts)
-    const transactionsVal = val(transactions)
-    let rate = 0
-    let isValid = false
-    if (cartsVal > 0 && transactionsVal >= 0) {
-        if (transactionsVal <= cartsVal) {
-            rate = (1 - (transactionsVal / cartsVal)) * 100
-            isValid = true
-        }
-    }
+    const result = calculateAbandonment(carts, transactions)
+    const tooMany = ordersExceedCarts(carts, transactions)
+    const rate = result?.rate ?? 0
+    const isValid = result !== null
+    const band = result?.band
     return (
         <FadeIn className="w-full max-w-6xl mx-auto py-8 px-4" duration={0.6}>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -30,7 +24,6 @@ export function AbandonmentCalculator() {
                 <div className="lg:col-span-7 space-y-3 lg:sticky lg:top-8">
                     <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            title="Cart Drop-off Data"
                             description="Enter cart and transaction data."
                             onReset={handleReset}
                             guideId="abandonment-guide"
@@ -53,6 +46,7 @@ export function AbandonmentCalculator() {
                                 placeholder="150"
                                 max={1000000}
                                 tooltip="Number of carts that successfully resulted in a purchase."
+                                hint={tooMany ? "Completed transactions can't be more than carts created. Check both are for the same period." : undefined}
                             />
                         </CardContent>
                     </Card>
@@ -63,10 +57,10 @@ export function AbandonmentCalculator() {
                         title="Cart Abandonment Rate"
                         isCalculated={isValid}
                         liveBadgeText={
-                            rate < 60 ? "Excellent" : rate < 75 ? "Average" : "High"
+                            band === "better-than-most" ? "Below 65%" : band === "usual" ? "Usual range" : "Above 80%"
                         }
                         liveBadgeColor={
-                            rate < 60 ? "emerald" : rate < 75 ? "amber" : "rose"
+                            band === "better-than-most" ? "emerald" : band === "usual" ? "amber" : "rose"
                         }
                         primaryResult={{
                             value: rate.toFixed(2),
@@ -76,26 +70,33 @@ export function AbandonmentCalculator() {
                             {
                                 key: "abandoned",
                                 label: "Abandoned Carts",
-                                value: (cartsVal - transactionsVal).toLocaleString(),
+                                value: (result?.abandoned ?? 0).toLocaleString(),
                                 icon: UserMinus,
                                 tooltip: "Number of carts that did not convert into purchases."
                             },
                             {
                                 key: "conversion",
                                 label: "Conversion Rate",
-                                value: (isValid ? (100 - rate).toFixed(2) : 0),
+                                value: (result?.checkoutRate ?? 0).toFixed(2),
                                 unit: "%",
                                 icon: Percent,
                                 tooltip: "How many shoppers completed checkout out of all carts created."
+                            },
+                            {
+                                key: "recovered",
+                                label: `Orders from Recovering ${RECOVERY_SHARE * 100}%`,
+                                value: Math.round((result?.recoveredOrders ?? 0) * 100) / 100,
+                                icon: RotateCcw,
+                                tooltip: `Extra orders if you won back ${RECOVERY_SHARE * 100}% of the abandoned carts.`
                             }
                         ]}
                         emptyMessage="Abandonment rate"
                         description={
-                            rate < 60 
-                                ? "Good (Low Abandonment) → Checkout is healthy" 
-                                : rate < 75 
-                                    ? "Needs Improvement → Some friction exists" 
-                                    : "High Abandonment → Major issue, optimize checkout"
+                            band === "better-than-most"
+                                ? "Below 65%: better than most stores."
+                                : band === "usual"
+                                    ? "Between 65% and 80%: the usual range. Track the trend month to month."
+                                    : "Above 80%: worth checking the checkout for friction."
                         }
                     />
                 </div>

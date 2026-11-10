@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { DollarSign, ArrowRight, Wallet, Percent, TrendingUp, BarChart3 } from "lucide-react"
+import { paypalFee } from "./calc";
 import { CalculatorCardHeader, CalculatorInput, Counter, CurrencyCombobox, FadeIn, ResultFeedbackCard } from "@/app/tools/_shared/components"
 export function PayPalFeeCalculator() {
     const [currency, setCurrency] = useState("USD");
@@ -20,9 +21,11 @@ export function PayPalFeeCalculator() {
     // sets a different fixed fee for each currency.
     const ratePercent = PAYPAL.tiers[feeType].percent;
     const fixedFee = PAYPAL.tiers[feeType].fixed;
-    const totalFee = (amountVal * (ratePercent / 100)) + fixedFee;
-    const netAmount = amountVal - totalFee;
-    const toReceiveAmount = (amountVal + fixedFee) / (1 - (ratePercent / 100));
+    const result = paypalFee(amountVal, ratePercent, fixedFee);
+    const totalFee = result?.fee ?? 0;
+    const netAmount = result?.net ?? 0;
+    const toReceiveAmount = result?.askFor ?? 0;
+    const pct = (v: number | undefined, d: number) => (v === undefined ? "–" : `${v.toFixed(d)}%`);
     const formatCurrency = (v: number) => {
         return new Intl.NumberFormat('en-US', {
             style: 'currency', currency: currency, maximumFractionDigits: 2
@@ -76,7 +79,7 @@ export function PayPalFeeCalculator() {
                                 </div>
                                 <div className="text-right">
                                     <p className="text-xs font-bold text-slate-600 dark:text-slate-300 tracking-widest leading-none mb-1">Effective Rate</p>
-                                    <p className="text-base font-bold text-slate-900 dark:text-white">{((totalFee / (amountVal || 1)) * 100).toFixed(2)}%</p>
+                                    <p className="text-base font-bold text-slate-900 dark:text-white">{pct(result?.effectiveRate, 2)}</p>
                                 </div>
                             </div>
                         </CardContent>
@@ -112,7 +115,7 @@ export function PayPalFeeCalculator() {
                                 </div>
                                 <div className="flex justify-between items-center px-5 py-3.5">
                                     <span className="text-sm text-slate-600 dark:text-slate-300">Net Keep %</span>
-                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{((netAmount / (amountVal || 1)) * 100).toFixed(1)}%</span>
+                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{pct(result?.keepPercent, 1)}</span>
                                 </div>
                                 <div className="flex justify-between items-center px-5 py-4">
                                     <span className="text-sm font-bold text-emerald-700 dark:text-emerald-300">Ask For (To Cover Fees)</span>
@@ -139,20 +142,20 @@ export function PayPalFeeCalculator() {
                             <div className="h-4 bg-slate-100 rounded-full overflow-hidden border border-slate-200/50 p-1 flex items-center dark:bg-slate-800 dark:border-slate-800">
                                 <div
                                     className="h-2 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-500 transition-all duration-1000 ease-out shadow-[0_0_12px_rgba(16,185,129,0.4)]"
-                                    style={{ width: `${Math.min(100, (netAmount / (amountVal || 1)) * 100)}%` }}
+                                    style={{ width: `${Math.max(0, Math.min(100, result?.keepPercent ?? 0))}%` }}
                                 />
                             </div>
                             <div className="flex justify-between items-end">
                                 <div>
                                     <p className="text-xs font-bold text-slate-600 dark:text-slate-300 tracking-widest mb-1">Profit Retained</p>
                                     <p className="text-2xl font-black text-slate-900 leading-none dark:text-white">
-                                        {((netAmount / (amountVal || 1)) * 100).toFixed(1)}%
+                                        {pct(result?.keepPercent, 1)}
                                     </p>
                                 </div>
                                 <div className="text-right">
                                     <p className="text-xs font-bold text-slate-600 dark:text-slate-300 tracking-widest mb-1 leading-none">Fee Leakage</p>
                                     <p className="text-lg font-bold text-rose-700 dark:text-rose-300 leading-none dark:text-rose-400">
-                                        {((totalFee / (amountVal || 1)) * 100).toFixed(1)}%
+                                        {pct(result?.effectiveRate, 1)}
                                     </p>
                                 </div>
                             </div>

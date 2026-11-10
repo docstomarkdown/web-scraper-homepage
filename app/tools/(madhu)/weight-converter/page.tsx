@@ -8,14 +8,14 @@ import { WeightConverterGuide } from "./_components/WeightConverterGuide"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
     title: "Product Weight Converter: lb, oz, kg and g for Shipping",
-    description: "Convert a product's weight between pounds, ounces, kilograms and grams, see its carrier price band, and how much room is left before the next one.",
+    description: "Convert a product's weight between pounds, ounces, kilograms and grams from exact factors, for shipping labels, listings and supplier specs.",
     alternates: { canonical: "/tools/weight-converter" },
 }
 export default function WeightConverterPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Product Weight Converter" />
+                <ToolPageTitle title="Product weight converter" />
                 <div className="mb-20">
                     <WeightConverter />
                 </div>
@@ -38,20 +38,16 @@ export default function WeightConverterPage() {
                                     answer: "Divide by 16. 12 ounces is 0.75 pounds. The converter shows kilograms and grams at the same time.",
                                 },
                                 {
-                                    question: "Which carriers are included?",
-                                    answer: "The main US and international carriers, each with their standard and faster service levels. Pick the pair you ship with.",
+                                    question: "How do I convert kilograms to pounds?",
+                                    answer: "Multiply by 2.2046, or divide by 0.45359237. 5 kilograms is 11.0231 pounds.",
                                 },
                                 {
-                                    question: "How accurate are the shipping bands?",
-                                    answer: "They follow published rate cards at the time the converter was built. Carriers update them yearly, so confirm with the carrier before quoting.",
+                                    question: "Which conversion factors does it use?",
+                                    answer: "The exact definitions: 1 pound is 453.59237 grams and 1 ounce is 28.349523125 grams. Results show up to 4 decimal places.",
                                 },
                                 {
-                                    question: "What does the cost breakdown show?",
-                                    answer: "The band your item sits in, the bands above and below, and the weight you can add before the price steps up.",
-                                },
-                                {
-                                    question: "Why does it say contact carrier or freight?",
-                                    answer: "The weight is above the carrier's parcel limit, usually 70 pounds. Those shipments are priced as freight.",
+                                    question: "Does it show carrier prices?",
+                                    answer: "No. Carrier rates and weight steps change every year and differ by zone and service, so check the carrier's own rate card with the converted weight.",
                                 },
                             ]}
                         />

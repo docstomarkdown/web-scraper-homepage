@@ -11,7 +11,7 @@ export function InventoryTurnoverGuide() {
             items={[
                 {
                     title: "The formula, in words",
-                    description: "Average inventory is opening plus closing, divided by two. Turnover is cost of goods sold divided by average inventory. Days sales of inventory is the period's days divided by the turnover.",
+                    description: "Average inventory is opening plus closing, divided by two. Turnover is cost of goods sold divided by average inventory. Days sales of inventory is the period's days divided by the turnover. For days of stock left, the calculator divides units in stock by units sold a day.",
                     icon: Calculator,
                     stat: "COGS ÷ avg",
                     statLabel: "inventory",
@@ -29,7 +29,7 @@ export function InventoryTurnoverGuide() {
                     statColor: "text-emerald-700 dark:text-emerald-300",
                 },                {
                     title: "A worked example",
-                    description: "$150,000 of cost of goods sold, with inventory of $25,000 at the start and $35,000 at the end, averages $30,000. Turnover is 5 times a year, and days sales of inventory is 73 days.",
+                    description: "$150,000 of cost of goods sold, with inventory of $25,000 at the start and $35,000 at the end, averages $30,000. Turnover is 5 times a year, and days sales of inventory is 73 days. For stock left: 5,000 units at 150 a day is 33 days, 30 above a 500-unit buffer, so with a 21-day lead time you order within 9 days.",
                     icon: Table,
                     stat: "5.0",
                     statLabel: "turns a year",

@@ -3,7 +3,7 @@ import { PoshmarkFeeCalculator } from "./_components/PoshmarkFeeCalculator"
 import { PoshmarkFeeHowToUse } from "./_components/PoshmarkFeeHowToUse"
 import { PoshmarkFeeGuide } from "./_components/PoshmarkFeeGuide"
 import { PoshmarkOverview } from "./_components/PoshmarkOverview"
-import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
+import { FadeIn, RelatedProduct, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
@@ -39,9 +39,12 @@ export default function PoshmarkFeeCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Poshmark Fee Calculator" direction="down" duration={0.6} />
+                <ToolPageTitle title="Poshmark fee calculator" direction="down" duration={0.6} />
                 <div className="mb-20">
                     <PoshmarkFeeCalculator />
+                </div>
+                <div className="mb-16">
+                    <RelatedProduct before="To price against competitors, collect their listings and prices into a spreadsheet with" linkText="Web Scraper Pro's product details and reviews" href="/product-scraper" after="." />
                 </div>
                 <div className="max-w-5xl mx-auto space-y-16">
                     <FadeIn delay={0.2}>

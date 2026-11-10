@@ -24,14 +24,14 @@ export function MarginGuide() {
                 },
                 {
                     title: "Profit per unit",
-                    description: "Price − cost, in money. It is the figure to multiply by units sold to see what a product earns.",
+                    description: "Price − cost, in money. It is the figure to multiply by units sold to see what a product earns. If your price includes VAT or sales tax, enter the rate under advanced settings and the tax comes out of the price first.",
                     icon: Calculator,
                     iconBg: "bg-[#2772ED]/10 dark:bg-[#2772ED]/20",
                     iconColor: "text-[#1f5ec2] dark:text-[#7aa7ff]",
                 },
                 {
                     title: "A worked example",
-                    description: "You buy for $50 and sell for $100. Profit per unit is $50, markup is 100%, and margin is 50%. The same $50 is a different percentage depending on whether you divide by cost or by price.",
+                    description: "You buy for $50 and sell for $100. Profit per unit is $50, markup is 100%, and margin is 50%. For a target, price = cost ÷ (1 − margin): to keep 40% on goods that cost $7,500, charge $12,500. At $10,000 and a 40% target, the goods can cost at most $6,000.",
                     icon: Info,
                     iconBg: "bg-[#2772ED]/10 dark:bg-[#2772ED]/20",
                     iconColor: "text-[#1f5ec2] dark:text-[#7aa7ff]",

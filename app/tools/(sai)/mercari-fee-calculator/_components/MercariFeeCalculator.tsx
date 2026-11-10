@@ -11,6 +11,7 @@ import {
 } from "@/app/tools/_shared/components";
 import { MERCARI } from "@/app/tools/_data/feeRates";
 import { MercariFeeBreakdown } from "./MercariFeeBreakdown";
+import { mercariProfit } from "./calc";
 
 export function MercariFeeCalculator() {
     const [salePrice, setSalePrice] = useState<number | "">("")
@@ -37,18 +38,21 @@ export function MercariFeeCalculator() {
     const other = val(otherCosts);
     const quantity = Math.max(val(soldQuantity) || 1, 1);
 
-    const buyerShip = val(buyerShipping);
     // Mercari's 10% selling fee is on the item price plus the shipping the buyer pays, with no seller processing
     // fee (since 6 January 2025; app/tools/_data/feeRates.ts).
-    const revenue = price + buyerShip;
-    const sellingFee = revenue * MERCARI.sellingFee;
+    const result = mercariProfit({
+        salePrice: price, buyerShipping: val(buyerShipping), itemCost: cost, shippingCost: ship,
+        otherCosts: other, quantity, feeRate: MERCARI.sellingFee,
+    });
+    const revenue = result?.buyerPays ?? 0;
+    const sellingFee = result?.sellingFee ?? 0;
     const totalFees = sellingFee;
-    const totalExpenses = cost + ship + other + totalFees;
-    const netProfit = revenue - totalExpenses;
-    const margin = revenue > 0 ? (netProfit / revenue) * 100 : 0;
-    const batchProfit = netProfit * quantity;
+    const netProfit = result?.netProfit ?? 0;
+    const margin = result?.margin ?? 0;
+    const batchProfit = result?.batchProfit ?? 0;
 
-    const isCalculated = salePrice !== "";
+    // Sale price and item cost are both needed before the result or its badge shows.
+    const isCalculated = result !== null && itemCost !== "";
 
     const formatCurrency = (v: number) =>
         new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 }).format(v);
@@ -61,7 +65,6 @@ export function MercariFeeCalculator() {
                     <FadeIn delay={0.2} direction="right" className="h-full">
                         <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                             <CalculatorCardHeader
-                                title="Listing Details"
                                 description="Enter your sale price and cost breakdown to calculate net profit."
                                 onReset={handleReset}
                             />

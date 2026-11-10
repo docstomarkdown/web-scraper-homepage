@@ -7,6 +7,7 @@ import {
 import { cn } from "@/lib/utils"
 import { FadeIn, CalculatorInput, CalculatorCardHeader, ResultSummaryCard } from "../../../_shared/components"
 import { BudgetAllocation } from "./BudgetAllocation"
+import { calculateInfluencerRoi, totalCost } from "./calc"
 
 export function InfluencerROICalculator() {
     const [currency, setCurrency] = useState("USD")
@@ -41,20 +42,17 @@ export function InfluencerROICalculator() {
     const product = val(productCost)
     const shipping = val(shippingCost)
 
-    const detailedCost = fee + ad + product + shipping
+    const detailedCost = totalCost({ fee: influencerFee, adSpend, productCost, shipping: shippingCost })
 
-    const effectiveCost = showDetails ? detailedCost : val(campaignCost)
-    const rev = val(revenue)
-
-    const profitLoss = rev - effectiveCost
-    const roi = effectiveCost > 0 ? (profitLoss / effectiveCost) * 100 : 0
+    const effectiveCost = showDetails ? detailedCost : campaignCost
+    const result = calculateInfluencerRoi(effectiveCost, revenue)
+    const profitLoss = result?.profit ?? 0
+    const roi = result?.roi ?? 0
 
     // Checklist logic switches based on mode
     const hasDetailedCost = detailedCost > 0
 
-    const isCalculated = showDetails
-        ? hasDetailedCost && rev > 0
-        : val(campaignCost) > 0 && rev > 0
+    const isCalculated = result !== null
 
     const handleToggleDetails = () => {
         setShowDetails(v => !v)
@@ -103,7 +101,6 @@ export function InfluencerROICalculator() {
                 <div className="lg:col-span-7 space-y-3">
                     <Card className="border border-slate-200 shadow-xl shadow-slate-200/40 bg-white rounded-3xl overflow-hidden dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            title="Campaign Details"
                             description="Enter the campaign cost and the revenue it brought to see the return."
                             currency={currency}
                             onCurrencyChange={setCurrency}
@@ -252,19 +249,19 @@ export function InfluencerROICalculator() {
                         profitLossKey="profitLoss"
                         emptyResultLabel="Return on Investment"
                         dynamicMessages={{
-                            positive: "Great job! Your campaign is generating a positive return on investment.",
+                            positive: "The campaign brought in more than it cost.",
                             negative: "Your campaign is operating at a loss. Consider optimising your spend or improving conversions.",
-                            neutral: "Your campaign broke even — you made back exactly what you spent."
+                            neutral: "The campaign broke even: revenue equals the cost."
                         }}
                         checklistItems={
                             showDetails
                                 ? [
                                     { key: "detail", label: "Cost Breakdown", isComplete: hasDetailedCost },
-                                    { key: "revenue", label: "Revenue", isComplete: rev !== 0 },
+                                    { key: "revenue", label: "Revenue", isComplete: revenue !== "" },
                                 ]
                                 : [
                                     { key: "cost", label: "Total Campaign Cost", isComplete: val(campaignCost) !== 0 },
-                                    { key: "revenue", label: "Revenue", isComplete: rev !== 0 },
+                                    { key: "revenue", label: "Revenue", isComplete: revenue !== "" },
                                 ]
                         }
                     />

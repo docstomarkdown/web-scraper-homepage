@@ -19,7 +19,7 @@ const faqs = [
     },
     {
         question: "Should I count days out of stock?",
-        answer: "No. Enter them so the calculator removes them; those days had no sales because there was nothing to buy, not because demand fell.",
+        answer: "Not in the average. Enter them so the calculator removes them; those days had no sales because there was nothing to buy, not because demand fell. They must be fewer than the days in the period.",
     },
     {
         question: "How does velocity help with restocking?",
@@ -35,7 +35,7 @@ export default function SalesVelocityCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Sales Velocity Calculator" direction="down" duration={0.6} />
+                <ToolPageTitle title="Sales velocity calculator" direction="down" duration={0.6} />
                 <div className="mb-20">
                     <SalesVelocityCalculator />
                 </div>

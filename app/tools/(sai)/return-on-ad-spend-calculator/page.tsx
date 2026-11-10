@@ -22,7 +22,7 @@ const faqs = [
     },
     {
         question: "What is a good ROAS?",
-        answer: "Above your break-even ROAS, which is 1 ÷ your profit margin. Many sellers aim for 3.0 to 5.0; a thin-margin product needs more.",
+        answer: "Above your break-even ROAS, which is 1 ÷ your profit margin. Enter your margin and the calculator shows it: a 40% margin needs 2.5, a 20% margin needs 5.0.",
     },
     {
         question: "What is the difference between ROAS and ACoS?",
@@ -34,7 +34,7 @@ export default function ReturnOnAdSpendCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Return on Ad Spend (ROAS) Calculator" direction="down" duration={0.6} />
+                <ToolPageTitle title="Return on ad spend (ROAS) calculator" direction="down" duration={0.6} />
                 <div className="mb-20">
                     <ReturnOnAdSpendCalculator />
                 </div>

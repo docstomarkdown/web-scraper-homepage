@@ -12,6 +12,7 @@ import {
 import { cn } from "@/lib/utils"
 import { PieChart as RechartsPie, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip } from "recharts"
 import { ProfitAllocation } from "./ProfitAllocation"
+import { netProfit } from "./calc"
 export function NetProfitCalculator() {
     const [currency, setCurrency] = useState("USD")
     // Input States
@@ -19,7 +20,7 @@ export function NetProfitCalculator() {
     const [cogs, setCogs] = useState<number | "">("")
     const [adSpend, setAdSpend] = useState<number | "">("")
     const [overhead, setOverhead] = useState<number | "">("") // Includes software, rent, etc.
-    const [taxRate, setTaxRate] = useState<number | "">(20) // Default benchmark is 20%
+    const [taxRate, setTaxRate] = useState<number | "">("")
 
     const val = (v: number | "") => (v === "" ? 0 : v)
     const handleReset = () => {
@@ -27,22 +28,18 @@ export function NetProfitCalculator() {
         setCogs("")
         setAdSpend("")
         setOverhead("")
-        setTaxRate(20) // Reset to benchmark
+        setTaxRate("")
     }
-    // Calculations
+    // Calculations (see calc.ts)
+    const n = (v: number | "") => (v === "" ? null : v)
+    const result = netProfit({ revenue: n(revenue), cogs: n(cogs), adSpend: n(adSpend), overhead: n(overhead), taxRate: n(taxRate) })
     const r = val(revenue)
     const c = val(cogs)
     const ads = val(adSpend)
     const over = val(overhead)
-    const txRate = val(taxRate)
-    const grossProfit = r - c
-    const totalExpenses = c + ads + over
-    const operatingProfit = r - totalExpenses // EBITDA-ish
-    // Tax Calculation (on operating profit, assuming profit > 0)
-    const taxAmount = operatingProfit > 0 ? (operatingProfit * (txRate / 100)) : 0
-    const netProfit = operatingProfit - taxAmount
-    const netMargin = r > 0 ? (netProfit / r) * 100 : 0
-    const grossMargin = r > 0 ? (grossProfit / r) * 100 : 0
+    const taxAmount = result?.tax ?? 0
+    const netProfitValue = result?.netProfit ?? 0
+    const netMargin = result?.netMargin ?? 0
     const formatCurrency = (val: number) => {
         return new Intl.NumberFormat('en-US', {
             style: 'currency',
@@ -70,17 +67,6 @@ export function NetProfitCalculator() {
             maximumFractionDigits: 1
         }).format(val) + "%"
     }
-    // Progress bar checks
-    // We want to visualize where the money goes. 
-    // Revenue bar broken down into: COGS, Ads, Overhead, Tax, Profit.
-    const getPercent = (amount: number) => {
-        return r > 0 ? Math.min(Math.max((amount / r) * 100, 0), 100) : 0
-    }
-    const cogsPercent = getPercent(c)
-    const adsPercent = getPercent(ads)
-    const overheadPercent = getPercent(over)
-    const taxPercent = getPercent(taxAmount)
-    const profitPercent = getPercent(Math.max(netProfit, 0)) // Only show positive profit on bar
     return (
         <FadeIn className="w-full max-w-6xl mx-auto py-2 px-4" duration={0.6}>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
@@ -141,13 +127,11 @@ export function NetProfitCalculator() {
                                         label={`Estimated Tax Rate`}
                                         value={taxRate}
                                         onChange={setTaxRate}
-                                        placeholder="Avg: 20"
+                                        placeholder="20"
                                         max={100}
-                                        tooltip="Estimated income tax rate percentage. Typical range for small to medium businesses is 15% - 30%."
+                                        tooltip="Your effective tax rate on profit, from your accountant. Leave it blank to see profit before tax."
                                         isOptional={true}
                                         suffix="%"
-                                        hint="Industry average: 15% – 30%"
-                                        benchmarkBadge={true}
                                     />
                                 </div>
                             </div>
@@ -160,11 +144,29 @@ export function NetProfitCalculator() {
                         title="Profit Analysis"
                         primaryResult={{
                             label: "Net Profit",
-                            value: netProfit,
+                            value: netProfitValue,
                             isCurrency: true,
                             key: "net-profit"
                         }}
                         secondaryResults={[
+                            {
+                                key: "gross-profit",
+                                label: "Gross Profit",
+                                value: result?.grossProfit ?? 0,
+                                isCurrency: true,
+                                badge: `${(result?.grossMargin ?? 0).toFixed(2)}% margin`,
+                                tooltip: "Revenue minus cost of goods sold.",
+                                icon: DollarSign,
+                            },
+                            {
+                                key: "operating-profit",
+                                label: "Operating Profit",
+                                value: result?.operatingProfit ?? 0,
+                                isCurrency: true,
+                                badge: `${(result?.operatingMargin ?? 0).toFixed(2)}% margin`,
+                                tooltip: "Gross profit minus ad spend and overheads.",
+                                icon: Calculator,
+                            },
                             {
                                 key: "net-margin",
                                 label: "Net Margin",
@@ -184,21 +186,21 @@ export function NetProfitCalculator() {
                             {
                                 key: "total-expenses",
                                 label: "Total Expenses",
-                                value: totalExpenses + taxAmount,
+                                value: result?.totalExpenses ?? 0,
                                 isCurrency: true,
                                 tooltip: "Sum of all business costs: COGS, Ad Spend, Overhead, and Tax.",
                                 icon: CreditCard,
                             }
                         ]}
                         currency={currency}
-                        isCalculated={revenue !== "" && cogs !== ""}
+                        isCalculated={result !== null}
                         profitLossKey="net-profit"
                         checklistItems={[
                             { key: 'revenue', label: 'Total Revenue', isComplete: revenue !== "" },
                             { key: 'cogs', label: 'Cost of Goods Sold', isComplete: cogs !== "" }
                         ]}
                         dynamicMessages={{
-                            positive: "Great! Your business is generating a healthy net profit.",
+                            positive: "Your business made a net profit in this period.",
                             negative: "Your total expenses exceed your revenue. You are operating at a net loss.",
                             neutral: "Your business is breaking even. Revenue exactly covers all expenses."
                         }}
@@ -209,7 +211,7 @@ export function NetProfitCalculator() {
                             adSpend={ads}
                             overhead={over}
                             taxAmount={taxAmount}
-                            netProfit={netProfit}
+                            netProfit={netProfitValue}
                             currency={currency}
                         />
                     </ResultSummaryCard>

@@ -11,7 +11,7 @@ export function CubicFeetGuide() {
             items={[
                 {
                     title: "The formula, in words",
-                    description: "Volume is length multiplied by width multiplied by height. The calculator converts the three sizes to inches first, multiplies them, and divides by 1,728 for cubic feet. Cubic metres is cubic feet multiplied by 0.0283.",
+                    description: "Volume is length multiplied by width multiplied by height. The calculator converts the three sizes to inches first, multiplies them, and divides by 1,728 for cubic feet. Each size is also converted on its own, from 1 inch = 2.54 centimetres exactly, and the volume shows in cubic metres, cubic inches and litres.",
                     icon: Calculator,
                     stat: "÷ 1,728",
                     statLabel: "inches to feet",
@@ -29,9 +29,9 @@ export function CubicFeetGuide() {
                     statColor: "text-emerald-700 dark:text-emerald-300",
                 },                {
                     title: "A worked example",
-                    description: "A carton 12 by 10 by 8 inches is 960 cubic inches, which is 0.556 cubic feet. 100 of them take 55.6 cubic feet. At $2.50 per cubic foot a month, storage is about $139.",
+                    description: "A carton 12 by 10 by 8 inches is 30.48 by 25.4 by 20.32 centimetres. Its volume is 960 cubic inches, which is 0.56 cubic feet or 15.73 litres. 100 of them take 55.56 cubic feet. At $2.50 per cubic foot a month, storage is $138.89.",
                     icon: Table,
-                    stat: "0.556 ft³",
+                    stat: "0.56 ft³",
                     statLabel: "per carton",
                     iconBg: "bg-[#2772ED]/10 dark:bg-[#2772ED]/20",
                     iconColor: "text-[#1f5ec2] dark:text-[#7aa7ff]",

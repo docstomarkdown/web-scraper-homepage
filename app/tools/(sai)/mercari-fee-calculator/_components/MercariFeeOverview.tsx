@@ -8,7 +8,7 @@ export function MercariFeeOverview() {
             <ToolSectionHeader icon={Info} title="About this calculator" />
             <ToolOverview
                 heading="What the Mercari fee calculator does"
-                definition="It takes Mercari's two fees and your own costs off a sale price and shows the profit you keep, the margin, and the total for several identical items."
+                definition="It takes Mercari's 10% selling fee and your own costs off a sale price and shows the profit you keep, the margin, and the total for several identical items."
                 accent="blue"
                 facts={[
                     { stat: "10%", label: "Selling fee", detail: "Charged on the item price plus any shipping the buyer pays. Listing is free." },

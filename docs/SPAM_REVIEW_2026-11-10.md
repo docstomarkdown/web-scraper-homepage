@@ -6,7 +6,8 @@ Google's spam policies (scaled content abuse, doorway pages, thin content, hidde
 structured data). The site is `noindex` today, so none of this costs anything yet; it's what to fix before that comes off.
 
 ## Status (2026-11-10, after the fixes; re-crawled: 88 pages, no link to a missing page)
-- 1, the calculators: waits on the owner's decision.
+- 1, the calculators: reworked (docs/CALCULATORS_PLAN_2026-11-10.md): 51 listed tools, every one correct, tested and
+  sourced; still most of the site's pages, so whether they stay here remains the owner's call.
 - 2: fixed. Templates and in-text links list only published guides in production (`getLinkableGuides`, `RichText`);
   `/tools` links `/product-scraper`. A use case's guide list no longer claims screenshots.
 - 3: fixed. `/cloud` and `/mcp` are titled as coming soon, `noindex`, and out of the sitemap with every coming-soon page.

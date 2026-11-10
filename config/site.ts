@@ -43,20 +43,12 @@ export const toolsGroups = [
         href: "/tools/return-on-ad-spend-calculator",
       },
       {
-        title: "Cost Per Acquisition (CPA) Calculator",
-        href: "/tools/cpa-calculator",
-      },
-      {
         title: "Dimensional Weight Calculator",
         href: "/tools/dimensional-weight-calculator",
       },
       {
         title: "Free Shipping Threshold Calculator",
         href: "/tools/free-shipping-calculator",
-      },
-      {
-        title: "Inventory Reorder Point Calculator",
-        href: "/tools/inventory-reorder-calculator",
       },
       {
         title: "Safety Stock Calculator",
@@ -107,10 +99,6 @@ export const toolsGroups = [
         href: "/tools/acos-calculator",
       },
       {
-        title: "Total Advertising Cost of Sales (TACoS) Calculator",
-        href: "/tools/tacos-calculator",
-      },
-      {
         title: "Ad Spend Budget Planner",
         href: "/tools/ad-spend-budget-planner",
       },
@@ -121,10 +109,6 @@ export const toolsGroups = [
       {
         title: "Customer Lifetime Value (CLV) Calculator",
         href: "/tools/customer-lifetime-value-calculator",
-      },
-      {
-        title: "Time Zone Meeting Planner",
-        href: "/tools/time-zone-meeting-planner",
       },
       {
         title: "Mercari Fee Calculator",
@@ -184,10 +168,6 @@ export const toolsGroups = [
         href: "/tools/ab-test-duration-calculator",
       },
 
-      {
-        title: "Dimension Converter",
-        href: "/tools/dimension-converter",
-      },
 
 
       {
@@ -229,20 +209,12 @@ export const toolsGroups = [
         href: "/tools/economic-order-quantity-calculator",
       },
       {
-        title: "Days of Inventory Calculator",
-        href: "/tools/days-of-inventory-calculator",
-      },
-      {
         title: "Inventory Turnover Calculator",
         href: "/tools/inventory-turnover-calculator",
       },
       {
         title: "Cost of Goods Sold (COGS) Calculator",
         href: "/tools/cost-of-goods-sold-calculator",
-      },
-      {
-        title: "Gross Margin Calculator",
-        href: "/tools/gross-margin-calculator",
       },
       {
         title: "Net Profit Calculator",

@@ -1,6 +1,6 @@
 import { Lightbulb } from "lucide-react"
 import { Metadata } from "next"
-import { FadeIn, ToolFAQ, ToolPageTitle, ToolSectionHeader } from "@/app/tools/_shared/components"
+import { FadeIn, RelatedProduct, ToolFAQ, ToolPageTitle, ToolSectionHeader } from "@/app/tools/_shared/components"
 import { Converter } from "./_components/Converter"
 import { GTINInfo } from "./_components/GTINInfo"
 import { GTINHowToUse } from "./_components/GTINHowToUse"
@@ -15,9 +15,15 @@ export default function GTINConverterPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Global Trade Item Number (GTIN) Converter" />
-                <div className="mb-20">
+                <ToolPageTitle title="GTIN converter" />
+                <div className="mb-20 space-y-8">
                     <Converter />
+                    <RelatedProduct
+                        before="To export a Shopify store's products with their barcodes, use"
+                        linkText="Web Scraper Pro's Shopify store export"
+                        href="/shopify-scraper"
+                        after="."
+                    />
                 </div>
                 <div className="max-w-4xl mx-auto space-y-16">
                     <FadeIn delay={0.1}>

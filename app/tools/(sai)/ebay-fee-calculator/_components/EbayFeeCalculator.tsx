@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Tag, DollarSign, Percent } from "lucide-react"
 import { CalculatorCardHeader, CalculatorInput, FadeIn, ResultSummaryCard } from "@/app/tools/_shared/components"
 import { EbayFeeBreakdown } from "./EbayFeeBreakdown"
+import { ebayFees } from "./calc"
 
 export function EbayFeeCalculator() {
     const [currency, setCurrency] = useState("USD")
@@ -37,60 +38,26 @@ export function EbayFeeCalculator() {
         setAdRate("")
     }
 
-    // Results
-    const [totalRevenue, setTotalRevenue] = useState(0)
-    const [totalFees, setTotalFees] = useState(0)
-    const [netProfit, setNetProfit] = useState(0)
-    const [margin, setMargin] = useState(0)
-    const [fvfAmount, setFvfAmount] = useState(0)
-    const [adFeeAmount, setAdFeeAmount] = useState(0)
+    const result = ebayFees({
+        itemPrice: Number(soldPrice) || 0,
+        shippingCharged: Number(shippingCharged) || 0,
+        itemCost: Number(itemCost) || 0,
+        shippingCost: Number(shippingCost) || 0,
+        feePercent: Number(feeRate) || 0,
+        orderFee: fixedFee === "" ? null : Number(fixedFee),
+        adPercent: Number(adRate) || 0,
+        rates: EBAY,
+    })
+    const totalRevenue = result?.revenue ?? 0
+    const totalFees = result?.totalFees ?? 0
+    const netProfit = result?.netProfit ?? 0
+    const margin = result?.margin ?? 0
+    const fvfAmount = result?.finalValueFee ?? 0
+    const adFeeAmount = result?.adFee ?? 0
 
-    useEffect(() => {
-        const price = Number(soldPrice) || 0
-        const charge = Number(shippingCharged) || 0
-        const cost = Number(itemCost) || 0
-        const shipCost = Number(shippingCost) || 0
-        const rate = Number(feeRate) || 0
-        // Left blank, the order fee follows eBay's rule: $0.30 on orders of $10 or less, $0.40 above (feeRates.ts).
-        const revenueForFee = price + charge
-        const fixed = fixedFee !== "" && Number(fixedFee) >= 0 ? Number(fixedFee) : revenueForFee > EBAY.perOrderThreshold ? EBAY.perOrderLarge : EBAY.perOrderSmall
-        const ad = Number(adRate) || 0
-
-        const revenue = price + charge
-        
-        if (revenue === 0) {
-            setTotalRevenue(0)
-            setTotalFees(0)
-            setNetProfit(0)
-            setMargin(0)
-            setFvfAmount(0)
-            setAdFeeAmount(0)
-            return
-        }
-
-        // At eBay's standard rate, the part of a sale over $7,500 is charged at 2.35%. A custom rate applies to the whole sale.
-        const atStandardRate = rate === EBAY.finalValuePercent
-        const tiered = atStandardRate && revenue > EBAY.tierLimit
-            ? EBAY.tierLimit * (rate / 100) + (revenue - EBAY.tierLimit) * (EBAY.aboveTierPercent / 100)
-            : revenue * (rate / 100)
-        const fvf = tiered + fixed
-        const adFee = revenue * (ad / 100)
-        const fees = fvf + adFee
-
-        const totalExpenses = cost + shipCost + fees
-        const profit = revenue - totalExpenses
-        const calcMargin = (profit / revenue) * 100
-
-        setTotalRevenue(revenue)
-        setTotalFees(fees)
-        setNetProfit(profit)
-        setMargin(calcMargin)
-        setFvfAmount(fvf)
-        setAdFeeAmount(adFee)
-    }, [soldPrice, shippingCharged, itemCost, shippingCost, feeRate, fixedFee, adRate])
-
-    const isValid = soldPrice !== "" && itemCost !== "" && feeRate !== ""
-    const isLive = totalRevenue > 0
+    // Item price, product cost and the fee rate are needed before a result or a verdict shows; the order fee can stay
+    // blank (eBay's rule applies).
+    const isValid = result !== null && soldPrice !== "" && itemCost !== "" && feeRate !== ""
 
     return (
         <FadeIn className="w-full max-w-6xl mx-auto py-8 px-4" duration={0.6}>
@@ -99,7 +66,6 @@ export function EbayFeeCalculator() {
                 <div className="lg:col-span-7 space-y-3">
                     <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            title="Sale & Fee Details"
                             description="Enter sale price, costs, and eBay fees."
                             onReset={handleReset}
                             guideId="ebay-fee-guide"
@@ -209,7 +175,6 @@ export function EbayFeeCalculator() {
                                         tooltip="The extra percentage you pay eBay if a buyer clicks your promoted ad."
                                         suffix="%"
                                         isOptional
-                                        hint={Number(adRate) === 0 || adRate === "" ? "Typical range: 2% – 10%" : undefined}
                                     />
                                 </div>
                             </div>
@@ -240,7 +205,7 @@ export function EbayFeeCalculator() {
                         }
                         dynamicMessages={{
                             positive: `You keep ${margin.toFixed(1)}% of the sale price as net profit after all fees and costs.`,
-                            negative: `Your costs exceed your revenue by the amount of your fees.`,
+                            negative: `Your fees and costs come to more than the buyer pays.`,
                             neutral: "You broke even on this sale. No profit, no loss."
                         }}
                         primaryResult={{
@@ -270,8 +235,7 @@ export function EbayFeeCalculator() {
                         checklistItems={[
                             { key: "price", label: "Item Price", isComplete: soldPrice !== "" },
                             { key: "cost", label: "Product Cost", isComplete: itemCost !== "" },
-                            { key: "feeRate", label: "eBay Fee", isComplete: feeRate !== "" },
-                            { key: "fixedFee", label: "Order Fee", isComplete: fixedFee !== "" && Number(fixedFee) >= 0 }
+                            { key: "feeRate", label: "eBay Fee", isComplete: feeRate !== "" }
                         ]}
                     >
                     </ResultSummaryCard>

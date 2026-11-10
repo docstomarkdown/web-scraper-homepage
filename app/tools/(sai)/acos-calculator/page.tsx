@@ -8,7 +8,7 @@ import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
     title: "ACoS Calculator: Advertising Cost of Sales and Profit",
-    description: "Enter ad spend, ad revenue and your profit margin to get ACoS, ROAS, net profit after ads and the break-even ACoS for your product.",
+    description: "Enter ad spend, ad revenue and your profit margin to get ACoS, ROAS, net profit after ads and break-even ACoS. Add total sales to get TACoS.",
     alternates: { canonical: "/tools/acos-calculator" },
 }
 
@@ -16,7 +16,7 @@ export default function ACoSCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="ACoS Calculator" direction="down" duration={0.6} />
+                <ToolPageTitle title="ACoS calculator" direction="down" duration={0.6} />
                 <div className="mb-20">
                     <ACoSCalculator />
                 </div>
@@ -48,7 +48,19 @@ export default function ACoSCalculatorPage() {
                                     },
                                     {
                                         question: "What is break-even ACoS?",
-                                        answer: "Your profit margin before ads. At that ACoS, the ads cost exactly what they earn; the calculator shows it next to your actual ACoS."
+                                        answer: "Your profit margin before ads. At that ACoS, the ads cost exactly what they earn; the calculator shows it next to your actual ACoS when you enter a margin."
+                                    },
+                                    {
+                                        question: "What is TACoS?",
+                                        answer: "Total advertising cost of sales: ad spend divided by all your sales for the period, from ads and organic. Enter Total Revenue and the calculator shows TACoS and the margin left after ads across all sales."
+                                    },
+                                    {
+                                        question: "How does TACoS differ from ACoS?",
+                                        answer: "ACoS divides ad spend by the sales the ads produced. TACoS divides it by everything you sold. TACoS falling while sales grow means organic sales are carrying more of the business."
+                                    },
+                                    {
+                                        question: "Why is my TACoS rising?",
+                                        answer: "Either ad spend grew faster than sales, or organic sales fell. Check the two separately before cutting the budget."
                                     },
                                     {
                                         question: "Does this work for Amazon PPC only?",

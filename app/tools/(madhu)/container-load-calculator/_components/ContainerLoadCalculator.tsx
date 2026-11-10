@@ -17,76 +17,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Select, SelectContent, SelectItem, SelectTrigger } from "@/components/ui/select"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-const CONTAINERS = {
-    "custom": {
-        name: "Custom Container",
-        length: 0,
-        width: 0,
-        height: 0,
-        maxWeight: 0,
-        volume: 0 // m3
-    },
-    "20ft": {
-        name: "20ft Standard",
-        length: 5898,
-        width: 2352,
-        height: 2393,
-        maxWeight: 28200,
-        volume: 33.2 // m3
-    },
-    "40ft": {
-        name: "40ft Standard",
-        // Inside size and max payload 28,750 kg (32,500 kg gross, 3,750 kg tare), per Hapag-Lloyd's 40' Standard spec:
-        // https://www.hapag-lloyd.com/en/services-information/cargo-fleet/container/40-standard.html (checked 2026-11-10)
-        length: 12032,
-        width: 2352,
-        height: 2395,
-        maxWeight: 28750,
-        volume: 67.7 // m3
-    },
-    "40hc": {
-        name: "40ft High Cube",
-        length: 12032,
-        width: 2352,
-        height: 2698,
-        // Max payload 28,600 kg (32,500 kg gross, 3,900 kg tare), per Hapag-Lloyd's 40' Standard High Cube spec:
-        // https://www.hapag-lloyd.com/en/services-information/cargo-fleet/container/40-standard-high-cube.html
-        maxWeight: 28600,
-        volume: 76.4 // m3
-    },
-    "45hc": {
-        name: "45ft High Cube",
-        length: 13556,
-        width: 2352,
-        height: 2698,
-        maxWeight: 27700,
-        volume: 86.0 // m3
-    },
-    "20rf": {
-        name: "20ft Reefer",
-        length: 5444,
-        width: 2284,
-        height: 2267,
-        maxWeight: 27400,
-        volume: 28.3 // m3
-    },
-    "40rf": {
-        name: "40ft Reefer",
-        length: 11583,
-        width: 2284,
-        height: 2250,
-        maxWeight: 27700,
-        volume: 59.3 // m3
-    },
-    "40hr": {
-        name: "40ft HC Reefer",
-        length: 11583,
-        width: 2284,
-        height: 2532,
-        maxWeight: 29500,
-        volume: 67.3 // m3
-    }
-}
+import { CONTAINERS, containerLoad, MM_PER_CM, MM_PER_IN, KG_PER_LB, type LoadResult } from "./calc"
 export function ContainerLoadCalculator() {
     const { toast } = useToast()
     const scrollToSection = (id: string) => {
@@ -120,11 +51,12 @@ export function ContainerLoadCalculator() {
     const [palletLength, setPalletLength] = useState<number | "">("")
     const [palletWidth, setPalletWidth] = useState<number | "">("")
     const [palletHeight, setPalletHeight] = useState<number | "">("")
+    const [palletWeight, setPalletWeight] = useState<number | "">("")
     // Settings
     const [unitSystem, setUnitSystem] = useState<"metric" | "imperial">("metric")
     const [canRotate, setCanRotate] = useState(true)
     // Results
-    const [result, setResult] = useState<any>(null)
+    const [result, setResult] = useState<LoadResult | null>(null)
     const [hasScrolledToPallet, setHasScrolledToPallet] = useState(false)
     useEffect(() => {
         if (loadType === 'pallet' && length && width && height && weight && !hasScrolledToPallet) {
@@ -136,163 +68,20 @@ export function ContainerLoadCalculator() {
         }
     }, [length, width, height, weight, loadType, hasScrolledToPallet, scrollToPallet])
     useEffect(() => {
-        if (!length || !width || !height || (loadType === "pallet" && (!palletLength || !palletWidth || !palletHeight))) {
-            setResult(null)
-            return
-        }
-        if (selectedContainer === "custom" && (!customCLength || !customCWidth || !customCHeight || !customCWeight)) {
-            setResult(null)
-            return
-        }
-        const cartonL = Number(length)
-        const cartonW = Number(width)
-        const cartonH = Number(height)
-        const cartonWt = Number(weight) || 0
-        // Zero or negative sizes can't be packed: clear any earlier result instead of leaving it on screen
-        if (cartonL <= 0 || cartonW <= 0 || cartonH <= 0 || cartonWt < 0) {
-            setResult(null)
-            return
-        }
-        if (loadType === "pallet" && (Number(palletLength) <= 0 || Number(palletWidth) <= 0 || Number(palletHeight) <= 0)) {
-            setResult(null)
-            return
-        }
-        if (selectedContainer === "custom" && (Number(customCLength) <= 0 || Number(customCWidth) <= 0 || Number(customCHeight) <= 0 || Number(customCWeight) <= 0)) {
-            setResult(null)
-            return
-        }
-        let cL_mm, cW_mm, cH_mm, cWt_kg
-        let pL_mm, pW_mm, pH_mm
-        if (unitSystem === "metric") {
-            cL_mm = cartonL * 10
-            cW_mm = cartonW * 10
-            cH_mm = cartonH * 10
-            cWt_kg = cartonWt
-            pL_mm = Number(palletLength) * 10
-            pW_mm = Number(palletWidth) * 10
-            pH_mm = Number(palletHeight) * 10
-        } else {
-            cL_mm = cartonL * 25.4
-            cW_mm = cartonW * 25.4
-            cH_mm = cartonH * 25.4
-            cWt_kg = cartonWt * 0.453592
-            pL_mm = Number(palletLength) * 25.4
-            pW_mm = Number(palletWidth) * 25.4
-            pH_mm = Number(palletHeight) * 25.4
-        }
-        let container = { ...CONTAINERS[selectedContainer] }
-        if (selectedContainer === "custom") {
-            if (unitSystem === "metric") {
-                container.length = Number(customCLength) * 10
-                container.width = Number(customCWidth) * 10
-                container.height = Number(customCHeight) * 10
-                container.maxWeight = Number(customCWeight)
-            } else {
-                container.length = Math.round(Number(customCLength) * 25.4)
-                container.width = Math.round(Number(customCWidth) * 25.4)
-                container.height = Math.round(Number(customCHeight) * 25.4)
-                container.maxWeight = Math.round(Number(customCWeight) * 0.453592)
-            }
-            // Inside volume in m³ from the mm dimensions, so utilisation works for custom containers
-            container.volume = (container.length * container.width * container.height) / 1e9
-        }
-        const calculateMaxFit = (containerL: number, containerW: number, containerH: number, itemL: number, itemW: number, itemH: number) => {
-            let maxCount = 0
-            let bestArr = ""
-            const orientations = canRotate ? [
-                [itemL, itemW, itemH],
-                [itemL, itemH, itemW],
-                [itemW, itemL, itemH],
-                [itemW, itemH, itemL],
-                [itemH, itemL, itemW],
-                [itemH, itemW, itemL],
-            ] : [[itemL, itemW, itemH]]
-            orientations.forEach(([dim1, dim2, dim3]) => {
-                const countL = Math.floor(containerL / dim1)
-                const countW = Math.floor(containerW / dim2)
-                const countH = Math.floor(containerH / dim3)
-                const total = countL * countW * countH
-                if (total > maxCount) {
-                    maxCount = total
-                    bestArr = `${countL}L × ${countW}W × ${countH}H`
-                }
-            })
-            return { maxCount, bestArr }
-        }
-        const calculatePalletFit = (spaceL: number, spaceW: number, spaceH: number, palL: number, palW: number, palH: number) => {
-            const normL = Math.floor(spaceL / palL)
-            const normW = Math.floor(spaceW / palW)
-            const normH = Math.floor(spaceH / palH)
-            const totalNorm = normL * normW * normH
-            const rotL = Math.floor(spaceL / palW)
-            const rotW = Math.floor(spaceW / palL)
-            const rotH = Math.floor(spaceH / palH)
-            const totalRot = rotL * rotW * rotH
-            if (totalNorm >= totalRot) {
-                return { count: totalNorm, arr: `${normL}L × ${normW}W pallets` }
-            } else {
-                return { count: totalRot, arr: `${rotL}L × ${rotW}W pallets` }
-            }
-        }
-        if (loadType === "loose") {
-            const { maxCount: maxFit, bestArr } = calculateMaxFit(container.length, container.width, container.height, cL_mm, cW_mm, cH_mm)
-            const maxWeightCount = Math.floor(container.maxWeight / cWt_kg)
-            const finalCount = Math.min(maxFit, maxWeightCount)
-            const totalVol = (finalCount * cL_mm * cW_mm * cH_mm) / 1e9
-            const utilPct = container.volume > 0 ? (totalVol / container.volume) * 100 : 0
-            setResult({
-                units: finalCount,
-                palletsCount: 0,
-                boxesPerPallet: 0,
-                layers: 0,
-                limitReason: maxWeightCount < maxFit ? "Weight Limit" : (maxFit === 0 ? "Dimension Mismatch" : "Volume Limit"),
-                totalWeight: finalCount * cWt_kg,
-                totalVolume: totalVol,
-                utilization: utilPct,
-                arrangement: bestArr,
-                containerUsed: container,
-                noFit: maxFit === 0
-            })
-        } else {
-            const b_normL = Math.floor(pL_mm / cL_mm)
-            const b_normW = Math.floor(pW_mm / cW_mm)
-            const countLayer1 = b_normL * b_normW
-            const b_rotL = Math.floor(pL_mm / cW_mm)
-            const b_rotW = Math.floor(pW_mm / cL_mm)
-            const countLayer2 = b_rotL * b_rotW
-            const isRotatedBox = countLayer2 > countLayer1
-            const boxesPerLayer = Math.max(countLayer1, countLayer2)
-            const boxArrLayer = isRotatedBox ? `${b_rotL}L × ${b_rotW}W` : `${b_normL}L × ${b_normW}W`
-
-            const maxBoxHeightAvail = Math.max(0, container.height - pH_mm)
-            const layers = Math.floor(maxBoxHeightAvail / cH_mm)
-            const boxesPerPallet = boxesPerLayer * layers
-            const weightPerLoadedPallet = (boxesPerPallet * cWt_kg) // No empty pallet weight
-            
-            const { count: palletsInContainer, arr: palletArr } = calculatePalletFit(container.length, container.width, container.height, pL_mm, pW_mm, pH_mm + (layers * cH_mm))
-            const maxPalletsByWeight = weightPerLoadedPallet > 0 ? Math.floor(container.maxWeight / weightPerLoadedPallet) : palletsInContainer
-            const actualPallets = Math.min(palletsInContainer, maxPalletsByWeight)
-            const finalTotalBoxes = actualPallets * boxesPerPallet
-            
-            const totalVol = ((actualPallets * pL_mm * pW_mm * pH_mm) + (finalTotalBoxes * cL_mm * cW_mm * cH_mm)) / 1e9
-            const utilPct = container.volume > 0 ? (totalVol / container.volume) * 100 : 0
-            const arrText = `${palletArr} | Boxes: ${boxArrLayer} per layer × ${layers} layers`
-
-            setResult({
-                units: finalTotalBoxes,
-                palletsCount: actualPallets,
-                boxesPerPallet,
-                layers,
-                limitReason: maxPalletsByWeight < palletsInContainer ? "Weight Limit" : (palletsInContainer === 0 ? "Dimension Mismatch" : "Volume/Floor Limit"),
-                totalWeight: actualPallets * weightPerLoadedPallet,
-                totalVolume: totalVol,
-                utilization: utilPct,
-                arrangement: arrText,
-                containerUsed: container,
-                noFit: palletsInContainer === 0 || (boxesPerPallet === 0 && layers === 0)
-            })
-        }
-    }, [length, width, height, weight, unitSystem, selectedContainer, loadType, palletLength, palletWidth, palletHeight, canRotate, customCLength, customCWidth, customCHeight, customCWeight])
+        const mm = unitSystem === "metric" ? MM_PER_CM : MM_PER_IN
+        const kg = unitSystem === "metric" ? 1 : KG_PER_LB
+        const n = (v: number | "") => (v === "" ? 0 : Number(v))
+        const container = selectedContainer === "custom"
+            ? { ...CONTAINERS.custom, length: n(customCLength) * mm, width: n(customCWidth) * mm, height: n(customCHeight) * mm, maxWeight: n(customCWeight) * kg }
+            : CONTAINERS[selectedContainer]
+        setResult(containerLoad({
+            container,
+            loadType,
+            canRotate,
+            carton: { length: n(length) * mm, width: n(width) * mm, height: n(height) * mm, weight: n(weight) * kg },
+            pallet: { length: n(palletLength) * mm, width: n(palletWidth) * mm, height: n(palletHeight) * mm, weight: n(palletWeight) * kg },
+        }))
+    }, [length, width, height, weight, unitSystem, selectedContainer, loadType, palletLength, palletWidth, palletHeight, palletWeight, canRotate, customCLength, customCWidth, customCHeight, customCWeight])
     const clearAll = () => {
         setLength("")
         setWidth("")
@@ -301,6 +90,7 @@ export function ContainerLoadCalculator() {
         setPalletLength("")
         setPalletWidth("")
         setPalletHeight("")
+        setPalletWeight("")
         setCustomCLength("")
         setCustomCWidth("")
         setCustomCHeight("")
@@ -313,7 +103,7 @@ export function ContainerLoadCalculator() {
                 <div className="lg:col-span-12 xl:col-span-7 space-y-6">
                     <Card className="border-slate-200 shadow-sm relative overflow-visible bg-white rounded-3xl dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            title="Container Configuration"
+                            title="Container setup"
                             description="Specify your container dimensions, load type, and cargo details to optimize space utilization."
                             onReset={clearAll}
                         />
@@ -473,6 +263,15 @@ export function ContainerLoadCalculator() {
                                             tooltip="The initial thickness/height of the empty pallet structure."
                                             suffix={unitSystem === "metric" ? "cm" : "in"}
                                         />
+                                        <CalculatorInput
+                                            label="Pallet Weight"
+                                            value={palletWeight}
+                                            onChange={setPalletWeight}
+                                            placeholder={unitSystem === "metric" ? "25" : "55"}
+                                            isOptional={true}
+                                            tooltip="The empty pallet's own weight. It counts toward the container's weight limit."
+                                            suffix={unitSystem === "metric" ? "kg" : "lb"}
+                                        />
                                     </div>
                                 )}
                                 {/* end Detailed Specs Group */}
@@ -534,6 +333,13 @@ export function ContainerLoadCalculator() {
                                     icon: Box,
                                 },
                                 {
+                                    key: "total_weight",
+                                    label: "Total Weight",
+                                    value: result ? `${(unitSystem === "metric" ? result.totalWeight : result.totalWeight / KG_PER_LB).toLocaleString("en-US", { maximumFractionDigits: 0 })} ${unitSystem === "metric" ? "kg" : "lb"}${result.limitedBy === "weight" ? " (weight limit reached)" : ""}` : "-",
+                                    tooltip: "Cargo weight, including the pallets' own weight when given. When it reaches the container's limit, the count is cut back.",
+                                    icon: Scale,
+                                },
+                                {
                                     key: "utilization",
                                     label: "Space Utilization",
                                     value: result ? `${result.utilization.toFixed(1)}%` : "0%",
@@ -563,6 +369,13 @@ export function ContainerLoadCalculator() {
                                     icon: Box,
                                 },
                                 {
+                                    key: "total_weight",
+                                    label: "Total Weight",
+                                    value: result ? `${(unitSystem === "metric" ? result.totalWeight : result.totalWeight / KG_PER_LB).toLocaleString("en-US", { maximumFractionDigits: 0 })} ${unitSystem === "metric" ? "kg" : "lb"}${result.limitedBy === "weight" ? " (weight limit reached)" : ""}` : "-",
+                                    tooltip: "Cargo weight, including the pallets' own weight when given. When it reaches the container's limit, the count is cut back.",
+                                    icon: Scale,
+                                },
+                                {
                                     key: "utilization",
                                     label: "Space Utilization",
                                     value: result ? `${result.utilization.toFixed(1)}%` : "0%",
@@ -571,11 +384,7 @@ export function ContainerLoadCalculator() {
                                 }
                             ]}
                             emptyResultLabel="Capacity"
-                            dynamicMessages={{
-                                positive: "Optimization successful! Your cargo configuration maximizes container space usage.",
-                                negative: "Warning: Load exceeds container limits. Adjust dimensions or loading type.",
-                                neutral: "Ready to calculate your optimal container load configuration."
-                            }}
+                            description="The most cartons that fit by size, cut back if the weight limit is reached first."
                         />
 
                         {result && result.units === 0 ? (

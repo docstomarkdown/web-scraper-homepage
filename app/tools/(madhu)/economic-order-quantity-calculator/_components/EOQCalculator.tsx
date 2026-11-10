@@ -12,17 +12,20 @@ import {
     formatCurrencyValue,
 } from "@/app/tools/_shared/components"
 import { motion, AnimatePresence } from "framer-motion"
+import { economicOrderQuantity } from "./calc"
 
 interface EOQState {
     annualDemand: string | number
     orderCost: string | number
     holdingCost: string | number
+    moq: string | number
 }
 
 const DEFAULT_STATE: EOQState = {
     annualDemand: "",
     orderCost: "",
     holdingCost: "",
+    moq: "",
 }
 
 export function EOQCalculator() {
@@ -33,39 +36,21 @@ export function EOQCalculator() {
         setValues((prev) => ({ ...prev, [field]: value === "" ? "" : value.toString() }))
     }
 
-    const hasInputs = useMemo(() => {
-        return (
-            values.annualDemand !== "" &&
-            values.orderCost !== "" &&
-            values.holdingCost !== "" &&
-            Number(values.annualDemand) > 0 &&
-            Number(values.holdingCost) > 0
-        )
-    }, [values])
-
-    const results = useMemo(() => {
-        const D = Number(values.annualDemand) || 0
-        const S = Number(values.orderCost) || 0
-        const H = Number(values.holdingCost) || 0
-        if (D === 0 || H === 0)
-            return { eoq: 0, annualOrders: 0, orderFrequencyDays: 0, annualOrderCost: 0, annualHoldingCost: 0, totalCost: 0 }
-        
-        const eoq = Math.sqrt((2 * D * S) / H)
-        const annualOrders = D / eoq
-        const annualOrderCost = annualOrders * S
-        const annualHoldingCost = (eoq / 2) * H
-        const totalCost = annualOrderCost + annualHoldingCost
-        const orderFrequencyDays = annualOrders > 0 ? 365 / annualOrders : 0
-        
-        return {
-            eoq: Math.round(eoq),
-            annualOrders: Number(annualOrders.toFixed(1)),
-            orderFrequencyDays: Math.round(orderFrequencyDays),
-            annualOrderCost,
-            annualHoldingCost,
-            totalCost,
-        }
-    }, [values])
+    const calc = useMemo(() => economicOrderQuantity({
+        annualDemand: values.annualDemand === "" ? null : Number(values.annualDemand),
+        orderCost: values.orderCost === "" ? null : Number(values.orderCost),
+        holdingCost: values.holdingCost === "" ? null : Number(values.holdingCost),
+        moq: values.moq === "" ? null : Number(values.moq),
+    }), [values])
+    const hasInputs = calc !== null
+    const results = {
+        eoq: calc ? Math.round(calc.eoq) : 0,
+        annualOrders: calc ? Number(calc.ordersPerYear.toFixed(1)) : 0,
+        orderFrequencyDays: calc ? Math.round(calc.daysBetweenOrders) : 0,
+        annualOrderCost: calc?.annualOrderCost ?? 0,
+        annualHoldingCost: calc?.annualHoldingCost ?? 0,
+        totalCost: calc?.totalCost ?? 0,
+    }
 
     const formatCurrency = (val: number) => {
         return formatCurrencyValue(val, currency, 2)
@@ -147,6 +132,24 @@ export function EOQCalculator() {
                                         tooltip="Cost to store one unit for a full year — warehouse rent, insurance, and capital tied up in stock."
                                     />
                                 </div>
+
+                                <div className="space-y-0">
+                                    <div className="calculator-input-row max-w-[520px] mx-auto px-3 sm:px-5 pb-0">
+                                        <div className="h-px bg-slate-100/80 w-[calc(100%+48px)] -ml-6 mb-3 mt-1 dark:bg-slate-800" />
+                                    </div>
+                                    <CalculatorInput
+                                        hideSeparator={true}
+                                        label="Minimum Order Quantity (Units)"
+                                        value={values.moq}
+                                        onChange={(v) => handleInputChange("moq", v)}
+                                        placeholder="1000"
+                                        type="number"
+                                        isOptional
+                                        groupingTitle="Supplier Minimum"
+                                        groupingIcon={Scale}
+                                        tooltip="Your supplier's minimum order. If it is above the EOQ, the calculator shows what ordering the minimum costs you each year."
+                                    />
+                                </div>
                             </div>
                         </CardContent>
                     </Card>
@@ -155,7 +158,7 @@ export function EOQCalculator() {
                 {/* ═══ RIGHT: Results ═══ */}
                 <div className="lg:col-span-5 flex flex-col gap-3">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                         className="flex flex-col gap-3"
@@ -175,7 +178,7 @@ export function EOQCalculator() {
                                     {hasInputs ? (
                                         <motion.div
                                             key="live"
-                                            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                                            initial={false} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                                             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-slate-200/50 bg-emerald-100/50 text-xs font-bold text-emerald-700 dark:border-slate-800 dark:bg-emerald-900/40 dark:text-emerald-400"
                                         >
                                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse inline-block" />
@@ -184,7 +187,7 @@ export function EOQCalculator() {
                                     ) : (
                                         <motion.div
                                             key="idle"
-                                            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                                            initial={false} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                                             className="text-xs font-bold text-slate-600 dark:text-slate-300 px-2"
                                         >
                                             Awaiting input
@@ -198,7 +201,7 @@ export function EOQCalculator() {
                                     /* ── EMPTY STATE ── */
                                     <motion.div
                                         key="empty"
-                                        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                                        initial={false} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                                         transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="relative z-10 px-6 pb-6 pt-2"
                                     >
@@ -206,7 +209,7 @@ export function EOQCalculator() {
                                             {/* Frosted glass overlay */}
                                             <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
                                                 <motion.div
-                                                    initial={{ opacity: 0 }}
+                                                    initial={false}
                                                     animate={{ opacity: 1 }}
                                                     transition={{ duration: 0.55, ease: "easeOut" }}
                                                     className="bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_8px_40px_rgba(59,130,246,0.12)] rounded-2xl px-6 py-5 flex flex-col items-center gap-3 w-fit max-w-[320px] pointer-events-auto dark:bg-slate-900/80 dark:border-slate-800"
@@ -262,13 +265,13 @@ export function EOQCalculator() {
                                     /* ── RESULTS STATE ── */
                                     <motion.div
                                         key="results"
-                                        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                                        initial={false} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                                         transition={{ duration: 0.45, ease: "easeInOut" }}
                                         className="flex flex-col gap-3 px-5 pb-5 pt-2"
                                     >
                                         {/* 1 — Units to order each time (Hero) */}
                                         <motion.div
-                                            initial={{ opacity: 0, scale: 0.97 }}
+                                            initial={{ scale: 0.97 }}
                                             animate={{ opacity: 1, scale: 1 }}
                                             transition={{ duration: 0.4, delay: 0.05 }}
                                             className="relative flex flex-col items-center text-center py-6 px-4 bg-transparent"
@@ -276,7 +279,7 @@ export function EOQCalculator() {
                                             <span className="text-xs font-black text-slate-600 dark:text-slate-300 tracking-[0.18em] leading-none mb-2">Optimal Order Quantity</span>
                                             <motion.span
                                                 key={results.eoq}
-                                                initial={{ opacity: 0, y: 4 }}
+                                                initial={{ y: 4 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 transition={{ duration: 0.3 }}
                                                 className="text-[3.25rem] font-black text-blue-600 tracking-tighter leading-none dark:text-blue-400"
@@ -291,7 +294,7 @@ export function EOQCalculator() {
 
                                         {/* Card 1: Annual Orders */}
                                         <motion.div
-                                            initial={{ opacity: 0, y: 8 }}
+                                            initial={{ y: 8 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.35, delay: 0.08 }}
                                             className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] mb-1 dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
@@ -321,7 +324,7 @@ export function EOQCalculator() {
 
                                         {/* Card 2: Order Frequency */}
                                         <motion.div
-                                            initial={{ opacity: 0, y: 8 }}
+                                            initial={{ y: 8 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.35, delay: 0.1 }}
                                             className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] mb-1 dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
@@ -351,7 +354,7 @@ export function EOQCalculator() {
 
                                         {/* Card 3: Total Inventory Cost (Nested) */}
                                         <motion.div
-                                            initial={{ opacity: 0, y: 8 }}
+                                            initial={{ y: 8 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.35, delay: 0.15 }}
                                             className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] mb-1 dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
@@ -396,6 +399,23 @@ export function EOQCalculator() {
                                                 </div>
                                             </div>
                                         </motion.div>
+
+                                        {calc?.moq && (
+                                            <div className="bg-white border border-slate-200/70 rounded-xl p-4 mb-1 dark:bg-slate-900 dark:border-slate-800">
+                                                <div className="flex items-center justify-between mb-2">
+                                                    <div className="flex items-center gap-2">
+                                                        <Scale className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
+                                                        <span className="text-sm font-bold text-slate-600 dark:text-slate-300">At your minimum of {calc.moq.quantity.toLocaleString()} units</span>
+                                                    </div>
+                                                    <span className="text-[15px] font-bold text-slate-800 font-mono dark:text-slate-100">
+                                                        {formatCurrency(calc.moq.totalCost)}
+                                                    </span>
+                                                </div>
+                                                <p className="pl-6 text-sm text-slate-600 dark:text-slate-300">
+                                                    {formatCurrency(calc.moq.extraCost)} a year more than ordering the EOQ, with {formatCompact(Number(calc.moq.ordersPerYear.toFixed(1)), 1)} orders a year.
+                                                </p>
+                                            </div>
+                                        )}
 
                                     </motion.div>
                                 )}

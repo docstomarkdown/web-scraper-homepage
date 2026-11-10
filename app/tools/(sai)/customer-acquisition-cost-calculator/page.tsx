@@ -5,11 +5,10 @@ import { CACHowToUse } from "./_components/CACHowToUse"
 import { CACOverview } from "./_components/CACOverview"
 import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
-import { Target } from "lucide-react"
 
 export const metadata: Metadata = {
     title: "Customer Acquisition Cost Calculator: CAC Estimate",
-    description: "Divide your sales and marketing costs by the new customers they brought to get customer acquisition cost, and see how it compares with what a customer is worth.",
+    description: "Divide your sales and marketing costs by the new customers they brought to get customer acquisition cost (or CPA from CPC and conversion rate), and compare it with what a customer is worth.",
     alternates: { canonical: "/tools/customer-acquisition-cost-calculator" },
 }
 
@@ -20,7 +19,7 @@ export default function CACCalculatorPage() {
                 <div className="mb-10">
                     <FadeIn direction="down" duration={0.6}>
                         <ToolPageTitle
-                            title="Customer Acquisition Cost (CAC) Calculator"
+                            title="Customer acquisition cost (CAC) calculator"
                         />
                     </FadeIn>
                 </div>
@@ -51,11 +50,19 @@ export default function CACCalculatorPage() {
                                     },
                                     {
                                         question: "What is a good customer acquisition cost?",
-                                        answer: "One that's about a third of a customer's lifetime profit or less. A $40 CAC is fine when customers bring $120 of profit over time and poor when they bring $50."
+                                        answer: "One that's about a third of a customer's lifetime profit or less. A $40 CAC is fine when customers bring $120 of profit over time and poor when they bring $50. Enter Customer Lifetime Value to see the ratio."
                                     },
                                     {
                                         question: "How is CAC different from CPA?",
-                                        answer: "CAC counts all sales and marketing costs per new customer. CPA usually counts ad spend per conversion, and a conversion can be a lead or a sign-up rather than a paying customer."
+                                        answer: "CAC counts all sales and marketing costs per new customer. CPA (cost per acquisition) usually counts ad spend per conversion, and a conversion can be a lead or a sign-up rather than a paying customer. For CPA, enter ad spend and conversions in the same fields."
+                                    },
+                                    {
+                                        question: "How do I estimate CPA from cost per click?",
+                                        answer: "Divide the cost per click by the conversion rate. At $1.25 per click and a 2.5% conversion rate, each conversion takes 40 clicks, so the CPA is $50. Pick From CPC in the calculator to do this."
+                                    },
+                                    {
+                                        question: "What is a good CPA?",
+                                        answer: "One below the profit a customer brings. If a first order makes $30 of profit, a $25 CPA works and a $50 CPA doesn't, unless customers reorder. Enter your limit as the Target CAC to check."
                                     },
                                     {
                                         question: "How do I lower CAC?",

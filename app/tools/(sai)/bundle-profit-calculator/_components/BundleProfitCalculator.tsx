@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { DollarSign, Percent, Package, AlertCircle, Plus, Trash2 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { bundleProfit } from "./calc"
 import { CalculatorCardHeader, CalculatorInput, Counter, CurrencyCombobox, FadeIn, ResultFeedbackCard } from "@/app/tools/_shared/components"
 type Product = {
     id: string
@@ -35,30 +36,22 @@ export function BundleProfitCalculator() {
     const [bundleMode, setBundleMode] = useState<"percentage" | "fixed">("percentage")
     const [bundleValue, setBundleValue] = useState<number | "">("")
     const val = (v: number | "") => (v === "" ? 0 : v)
-    // Calculations
-    const totalCost = products.reduce((sum, p) => sum + val(p.cost), 0)
-    const originalPrice = products.reduce((sum, p) => sum + val(p.price), 0)
-    let bundlePrice = 0
-    let discountAmount = 0
-    let discountPercent = 0
-    if (showAdvanced) {
-        if (bundleMode === "percentage") {
-            discountPercent = val(bundleValue)
-            discountAmount = originalPrice * (discountPercent / 100)
-            bundlePrice = originalPrice - discountAmount
-        } else {
-            bundlePrice = val(bundleValue)
-            discountAmount = originalPrice - bundlePrice
-            discountPercent = originalPrice > 0 ? (discountAmount / originalPrice) * 100 : 0
-        }
-    } else {
-        // Simple Mode: Bundle price is just the sum of items
-        bundlePrice = originalPrice
-        discountAmount = 0
-        discountPercent = 0
-    }
-    const profit = bundlePrice - totalCost
-    const margin = bundlePrice > 0 ? (profit / bundlePrice) * 100 : 0
+    // Calculations (calc.ts). The bundle pricing counts only while the advanced options are on.
+    const result = bundleProfit(
+        products.map(p => ({ cost: val(p.cost), price: val(p.price) })),
+        !showAdvanced ? { mode: "full" }
+            : bundleMode === "percentage" ? { mode: "percentage", discountPercent: val(bundleValue) }
+            : { mode: "fixed", price: val(bundleValue) }
+    )
+    // Every product needs a cost and a price, and the bundle value when the advanced options are on.
+    const allFilled = products.every(p => p.cost !== "" && p.price !== "") && (!showAdvanced || bundleValue !== "")
+    const isCalculated = result !== null && allFilled
+    const totalCost = result?.totalCost ?? 0
+    const bundlePrice = result?.bundlePrice ?? 0
+    const discountAmount = result?.discountAmount ?? 0
+    const discountPercent = result?.discountPercent ?? 0
+    const profit = result?.profit ?? 0
+    const margin = result?.margin ?? 0
     const currencySymbols: Record<string, string> = {
         USD: '$', EUR: '€', GBP: '£', INR: '₹', AUD: 'A$', CAD: 'C$', JPY: '¥',
         CNY: '¥', AED: 'AED', SGD: 'S$', HKD: 'HK$', CHF: 'Fr', MXN: 'MX$',
@@ -219,6 +212,8 @@ export function BundleProfitCalculator() {
                                         onChange={setBundleValue}
                                         placeholder={bundleMode === "percentage" ? "15" : "0.00"}
                                         suffix={bundleMode === "percentage" ? "%" : undefined}
+                                        min={0}
+                                        max={bundleMode === "percentage" ? 100 : 1000000}
                                         tooltip={bundleMode === "percentage"
                                             ? "Percentage off the combined original prices."
                                             : "The final price you want to sell the bundle for."}
@@ -232,15 +227,15 @@ export function BundleProfitCalculator() {
                 <div className="lg:col-span-5 space-y-3 lg:sticky lg:top-8">
                     <ResultFeedbackCard
                         title="Bundle Profit Margin"
-                        titleLabel={margin >= 20 ? "Highly Profitable" : (margin > 0 ? "Profitable" : "Unprofitable")}
-                        labelClassName={margin >= 20 ? "text-blue-400" : (margin > 0 ? "text-yellow-400" : "text-red-400")}
+                        titleLabel={isCalculated ? (profit > 0 ? "Profitable" : profit < 0 ? "Loss" : "Break even") : undefined}
+                        labelClassName={profit > 0 ? "text-blue-400" : profit < 0 ? "text-red-400" : "text-yellow-400"}
                         mainValue={
-                            bundlePrice > 0 ?
+                            isCalculated ?
                                 <Counter value={margin} formatter={(v) => `${v.toFixed(2)}%`} /> :
                                 "—"
                         }
-                        valueColor={margin >= 20 ? "text-blue-400" : (margin > 0 ? "text-yellow-400" : (margin < 0 ? "text-red-400" : "text-white"))}
-                        secondaryMetrics={bundlePrice > 0 ? [
+                        valueColor={!isCalculated ? "text-white" : profit > 0 ? "text-blue-400" : profit < 0 ? "text-red-400" : "text-white"}
+                        secondaryMetrics={isCalculated ? [
                             {
                                 label: "Net Profit",
                                 value: <Counter value={profit} formatter={formatCurrency} key={currency} />,
@@ -253,19 +248,8 @@ export function BundleProfitCalculator() {
                             }
                         ] : []}
                     />
-                    {/* Indicator Badge */}
-                    {margin !== 0 && (
-                        <div className={cn(
-                            "px-4 py-3 rounded-xl border text-center text-sm font-semibold",
-                            margin >= 20 ? "bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-950/40 dark:border-blue-900/50 dark:text-blue-400" :
-                                margin > 0 ? "bg-yellow-50 border-yellow-200 text-yellow-700 dark:bg-yellow-950/40 dark:border-yellow-900/50 dark:text-yellow-400" :
-                                    "bg-red-50 border-red-200 text-red-700 dark:bg-red-950/40 dark:border-red-900/50 dark:text-red-400"
-                        )}>
-                            {margin >= 20 ? "Highly profitable bundle" : margin > 0 ? "Low-margin bundle" : "Unprofitable Bundle"}
-                        </div>
-                    )}
                     {/* Breakdown Card */}
-                    {margin !== 0 ? (
+                    {isCalculated ? (
                         <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500 dark:bg-slate-900 dark:border-slate-800">
                             <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800">
                                 <p className="text-xs font-bold text-slate-600 tracking-wider dark:text-slate-300">Profit Breakdown</p>
@@ -297,7 +281,13 @@ export function BundleProfitCalculator() {
                         </div>
                     ) : (
                         <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center dark:bg-slate-900 dark:border-slate-800">
-                            <p className="text-sm text-slate-600 dark:text-slate-300">Enter product details to calculate profit.</p>
+                            <p className="text-sm text-slate-600 dark:text-slate-300">
+                                {showAdvanced && bundleMode === "percentage" && val(bundleValue) >= 100
+                                    ? "A discount of 100% leaves no bundle price. Enter a discount below 100%."
+                                    : showAdvanced && bundleMode === "fixed" && bundleValue !== "" && val(bundleValue) <= 0
+                                        ? "Enter a bundle price above 0."
+                                        : "Enter each product's cost and selling price to calculate profit."}
+                            </p>
                         </div>
                     )}
                 </div>

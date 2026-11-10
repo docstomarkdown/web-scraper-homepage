@@ -8,50 +8,43 @@ import {
     CalculatorCardHeader,
 } from "@/app/tools/_shared/components"
 import { Card, CardContent } from "@/components/ui/card"
-import { Users, MousePointerClick, TrendingUp, CircleDollarSign } from "lucide-react"
+import { Users, MousePointerClick, TrendingUp, CircleDollarSign, Scale } from "lucide-react"
 import { CampaignResults } from "./CampaignResults"
+import { calculateEmailRoi, emailFunnel } from "./calc"
 
 export function EmailROICalculator() {
     const [currency, setCurrency] = useState("USD")
     const [listSize, setListSize] = useState<number | "">("")
-    const [campaignCost, setCampaignCost] = useState<number | "">(0)
+    const [campaignCost, setCampaignCost] = useState<number | "">("")
     const [openRate, setOpenRate] = useState<number | "">(20)
     const [clickThroughRate, setClickThroughRate] = useState<number | "">(2.5)
     const [conversionRate, setConversionRate] = useState<number | "">(3)
     const [averageOrderValue, setAverageOrderValue] = useState<number | "">(50)
 
-    const val = (v: number | "") => (v === "" ? 0 : v)
     const handleReset = () => {
         setListSize("")
-        setCampaignCost(0)
+        setCampaignCost("")
         setOpenRate(20)
         setClickThroughRate(2.5)
         setConversionRate(3)
         setAverageOrderValue(50)
     }
 
-    const size = val(listSize)
-    const cost = val(campaignCost)
-    const openPct = val(openRate)
-    const ctrPct = val(clickThroughRate)
-    const convPct = val(conversionRate)
-    const aov = val(averageOrderValue)
+    const inputs = { listSize, cost: campaignCost, openPct: openRate, clickPct: clickThroughRate, conversionPct: conversionRate, aov: averageOrderValue }
+    const result = calculateEmailRoi(inputs)
+    const funnel = emailFunnel(inputs)
+    const roi = result?.roi ?? 0
+    const netProfit = result?.profit ?? 0
+    const revenue = funnel.revenue
 
-    const opens = Math.round(size * (openPct / 100))
-    const clicks = Math.round(opens * (ctrPct / 100))
-    const conversions = Math.round(clicks * (convPct / 100))
-    const revenue = conversions * aov
-    const netProfit = revenue - cost
-    const roi = cost > 0 ? (netProfit / cost) * 100 : 0
-
-    const isCalculated = listSize !== ""
+    const isCalculated = result !== null
     const formatCurrency = (v: number) =>
         new Intl.NumberFormat("en-US", {
             style: "currency",
             currency: currency,
             maximumFractionDigits: 2,
         }).format(v)
-    const formatNumber = (v: number) => new Intl.NumberFormat("en-US").format(Math.round(v))
+    const formatNumber = (v: number) => new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(v)
 
     return (
         <FadeIn className="w-full max-w-6xl mx-auto py-2 px-4" duration={0.6}>
@@ -59,7 +52,6 @@ export function EmailROICalculator() {
                 <div className="lg:col-span-7 flex flex-col h-full space-y-3">
                     <Card className="border border-slate-200 shadow-xl shadow-slate-200/40 bg-white rounded-2xl overflow-hidden h-full flex flex-col dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            title="Campaign Data"
                             description="Essential metrics for quick ROI calculation."
                             currency={currency}
                             onCurrencyChange={setCurrency}
@@ -90,40 +82,35 @@ export function EmailROICalculator() {
                                 label="Open Rate"
                                 value={openRate}
                                 onChange={setOpenRate}
-                                placeholder="Avg: 20"
-                                tooltip="Percentage of subscribers who open your email. Industry average: 20–25%."
+                                placeholder="20"
+                                tooltip="Percentage of subscribers who open your email. Use the rate from your recent campaigns."
                                 suffix="%"
-                                hint="Industry standard range: 20% – 25%"
                                 groupingTitle="Email Performance"
                                 groupingIcon={MousePointerClick}
-                                benchmarkBadge={true}
                             />
                             <CalculatorInput
                                 label="Click Rate"
                                 value={clickThroughRate}
                                 onChange={setClickThroughRate}
-                                placeholder="Avg: 2.5"
-                                tooltip="Percentage of email openers who clicked a link. Industry average: 2–3%."
+                                placeholder="2.5"
+                                tooltip="Percentage of email openers who clicked a link."
                                 suffix="%"
-                                hint="Industry standard range: 2% – 3%"
                             />
                             <CalculatorInput
                                 label="Sales Conversion Rate"
                                 value={conversionRate}
                                 onChange={setConversionRate}
-                                placeholder="Avg: 3"
-                                tooltip="Percentage of link clickers who completed a purchase. Industry average: 2–5%."
+                                placeholder="3"
+                                tooltip="Percentage of link clickers who completed a purchase."
                                 suffix="%"
-                                hint="Industry standard range: 2% – 5%"
                             />
                             <CalculatorInput
                                 label="Average Order Value"
                                 value={averageOrderValue}
                                 onChange={setAverageOrderValue}
-                                placeholder="Avg: 50"
-                                tooltip="Average revenue from each purchase. If left empty, 50 is used."
+                                placeholder="50"
+                                tooltip="Average revenue from each purchase."
                                 currency={currency}
-                                hint="Industry standard range: $50 – $150"
                             />
 
                         </CardContent>
@@ -155,28 +142,36 @@ export function EmailROICalculator() {
                                 tooltip: "Total revenue generated minus the campaign cost.",
                                 icon: TrendingUp,
                             },
+                            {
+                                key: "breakEven",
+                                label: "Break-even List Size",
+                                value: result?.breakEvenListSize != null ? `${result.breakEvenListSize.toLocaleString("en-US")} subscribers` : "—",
+                                tooltip: result?.breakEvenListSize != null ? "The list size at which revenue equals the campaign cost, at these rates." : "Enter rates and an order value above 0 to see this.",
+                                icon: Scale,
+                            },
                         ]}
                         showLiveBadge={true}
                         isCalculated={isCalculated}
                         profitLossKey="netProfit"
                         emptyResultLabel="Return on Investment"
                         checklistItems={[
-                            { key: 'size', label: 'Email List Size', isComplete: listSize !== "" }
+                            { key: 'size', label: 'Email List Size', isComplete: listSize !== "" },
+                            { key: 'cost', label: 'Campaign Cost', isComplete: Number(campaignCost) > 0 }
                         ]}
                         dynamicMessages={{
-                            positive: "Great job! Your email campaign is profitable and generating a positive return.",
-                            negative: "Your campaign is currently at a loss. Try improving your Open Rate or CTR to boost results.",
-                            neutral: "Your campaign is breaking even. Consider optimizing your conversion path for profit."
+                            positive: "The campaign brings in more than it costs.",
+                            negative: "The campaign costs more than it brings in. Compare the list size with the break-even list size.",
+                            neutral: "The campaign breaks even."
                         }}
                     />
                     <CampaignResults
-                        opens={opens}
-                        clicks={clicks}
-                        conversions={conversions}
+                        opens={funnel.opens}
+                        clicks={funnel.clicks}
+                        conversions={funnel.orders}
                         revenue={revenue}
-                        openPct={openPct}
-                        ctrPct={ctrPct}
-                        convPct={convPct}
+                        openPct={Number(openRate) || 0}
+                        ctrPct={Number(clickThroughRate) || 0}
+                        convPct={Number(conversionRate) || 0}
                         formatNumber={formatNumber}
                         formatCurrency={formatCurrency}
                     />

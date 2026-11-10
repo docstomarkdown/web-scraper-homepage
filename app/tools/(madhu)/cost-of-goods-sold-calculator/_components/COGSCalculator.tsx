@@ -20,6 +20,7 @@ import {
 } from "@/app/tools/_shared/components"
 import { Card, CardContent } from "@/components/ui/card"
 import { currencies, formatCurrencyValue } from "@/app/tools/_shared/components/CurrencyCombobox"
+import { landedCogs } from "./calc"
 
 interface COGSState {
     productCost: string | number
@@ -27,6 +28,7 @@ interface COGSState {
     shippingCost: string | number
     packaging: string | number
     fulfillmentFee: string | number
+    sellingPrice: string | number
 }
 
 const DEFAULT_STATE: COGSState = {
@@ -34,7 +36,8 @@ const DEFAULT_STATE: COGSState = {
     quantity: "",
     shippingCost: "",
     packaging: "",
-    fulfillmentFee: ""
+    fulfillmentFee: "",
+    sellingPrice: ""
 }
 
 export function COGSCalculator() {
@@ -46,43 +49,31 @@ export function COGSCalculator() {
         setValues(prev => ({ ...prev, [field]: value === "" ? "" : value.toString() }))
     }
 
-    const hasInputs = useMemo(() => {
-        const mandatoryFields = [
-            values.productCost,
-            values.quantity,
-            values.shippingCost,
-            values.packaging,
-            values.fulfillmentFee
-        ]
-        return mandatoryFields.every(val => val !== "" && val !== null && val !== undefined)
-    }, [values])
-
     const selectedCurrency = useMemo(() =>
         currencies.find(c => c.code === currency) || currencies[0]
         , [currency])
 
-    const results = useMemo(() => {
-        const product = Number(values.productCost) || 0
-        const qty = Number(values.quantity) || 0
-        const shipping = Number(values.shippingCost) || 0
-        const pkg = Number(values.packaging) || 0
-        const fulfillment = Number(values.fulfillmentFee) || 0
-
-        const cogsPerUnit = product + shipping + pkg + fulfillment
-        const totalCogs = cogsPerUnit * qty
-
-        return { 
-            cogsPerUnit, 
-            totalCogs, 
-            qty,
-            breakdown: {
-                productTotal: product * qty,
-                shippingTotal: shipping * qty,
-                packagingTotal: pkg * qty,
-                fulfillmentTotal: fulfillment * qty,
-            }
-        }
-    }, [values])
+    const num = (v: string | number) => (v === "" ? null : Number(v))
+    const calc = useMemo(() => landedCogs({
+        productCost: num(values.productCost),
+        quantity: num(values.quantity),
+        shipping: num(values.shippingCost),
+        packaging: num(values.packaging),
+        fulfilment: num(values.fulfillmentFee),
+        sellingPrice: num(values.sellingPrice),
+    }), [values])
+    const hasInputs = calc !== null
+    const results = {
+        cogsPerUnit: calc?.cogsPerUnit ?? 0,
+        totalCogs: calc?.totalCogs ?? 0,
+        qty: Number(values.quantity) || 0,
+        breakdown: {
+            productTotal: calc?.breakdown.product ?? 0,
+            shippingTotal: calc?.breakdown.shipping ?? 0,
+            packagingTotal: calc?.breakdown.packaging ?? 0,
+            fulfillmentTotal: calc?.breakdown.fulfilment ?? 0,
+        },
+    }
 
     const handleReset = () => {
         setValues(DEFAULT_STATE)
@@ -96,8 +87,7 @@ export function COGSCalculator() {
                 <div className="lg:col-span-7 space-y-3 lg:sticky lg:top-28">
                     <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden h-full flex flex-col rounded-3xl dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            title="COGS Calculator"
-                            description="Calculate your Total Cost of Goods Sold and understand your unit economics."
+                            description="Add up the landed cost of each unit you buy and the total for an order."
                             onReset={handleReset}
                             currency={currency}
                             onCurrencyChange={setCurrency}
@@ -132,6 +122,7 @@ export function COGSCalculator() {
                                 placeholder="4.50"
                                 prefix={selectedCurrency.symbol}
                                 tooltip="Total freight and shipping costs to get goods to you and out to customers (per unit)"
+                                isOptional
                                 groupingTitle="Logistics & Fulfillment"
                                 groupingIcon={Truck}
                             />
@@ -142,6 +133,7 @@ export function COGSCalculator() {
                                 placeholder="0.75"
                                 prefix={selectedCurrency.symbol}
                                 tooltip="Cost of packaging, polybags, labels, etc. (per unit)"
+                                isOptional
                             />
                             <CalculatorInput
                                 label="Fulfillment"
@@ -150,6 +142,18 @@ export function COGSCalculator() {
                                 placeholder="3.50"
                                 prefix={selectedCurrency.symbol}
                                 tooltip="Cost to pick, pack, and process orders, such as FBA fees (per unit)"
+                                isOptional
+                            />
+                            <CalculatorInput
+                                label="Selling Price"
+                                value={values.sellingPrice}
+                                onChange={(v) => handleInputChange('sellingPrice', v)}
+                                placeholder="49.00"
+                                prefix={selectedCurrency.symbol}
+                                tooltip="Your price per unit. With it, the calculator shows the gross margin you keep after the cost per unit."
+                                groupingTitle="Price Check"
+                                groupingIcon={DollarSign}
+                                isOptional
                             />
 
                         </CardContent>
@@ -159,7 +163,7 @@ export function COGSCalculator() {
                 {/* Right Column: Results */}
                 <div className="lg:col-span-5 flex flex-col gap-3">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                         className="flex flex-col gap-3"
@@ -179,7 +183,7 @@ export function COGSCalculator() {
                                     {hasInputs ? (
                                         <motion.div
                                             key="live"
-                                            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                                            initial={false} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                                             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-slate-200/50 bg-emerald-100/50 text-xs font-bold text-emerald-700 dark:border-slate-800 dark:bg-emerald-900/40 dark:text-emerald-400"
                                         >
                                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse inline-block" />
@@ -188,7 +192,7 @@ export function COGSCalculator() {
                                     ) : (
                                         <motion.div
                                             key="idle"
-                                            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                                            initial={false} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                                             className="text-xs font-bold text-slate-600 dark:text-slate-300 px-2"
                                         >
                                             Awaiting input
@@ -202,14 +206,14 @@ export function COGSCalculator() {
                                     /* ── EMPTY STATE ── */
                                     <motion.div
                                         key="empty"
-                                        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                                        initial={false} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                                         transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="relative z-10 px-6 pb-6 pt-2"
                                     >
                                         <div className="relative">
                                             <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
                                                 <motion.div
-                                                    initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.55, ease: "easeOut" }}
+                                                    initial={false} animate={{ opacity: 1 }} transition={{ duration: 0.55, ease: "easeOut" }}
                                                     className="bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_8px_40px_rgba(59,130,246,0.12)] rounded-2xl px-6 py-5 flex flex-col items-center gap-3 w-fit max-w-[320px] pointer-events-auto dark:bg-slate-900/80 dark:border-slate-800"
                                                 >
                                                     <div className="relative flex items-center justify-center">
@@ -262,12 +266,12 @@ export function COGSCalculator() {
                                     /* ── RESULTS STATE ── */
                                     <motion.div
                                         key="results"
-                                        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                                        initial={false} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                                         transition={{ duration: 0.45, ease: "easeInOut" }}
                                         className="flex flex-col gap-3 px-5 pb-5 pt-2"
                                     >
                                         <motion.div
-                                            initial={{ opacity: 0, scale: 0.97 }}
+                                            initial={{ scale: 0.97 }}
                                             animate={{ opacity: 1, scale: 1 }}
                                             transition={{ duration: 0.4, delay: 0.05 }}
                                             className="relative flex flex-col items-center text-center py-6 px-4 bg-transparent"
@@ -277,14 +281,14 @@ export function COGSCalculator() {
                                                 {formatCurrencyValue(results.totalCogs, currency)}
                                             </span>
                                             <p className="text-[11.5px] text-slate-600 dark:text-slate-300 font-medium mt-3">
-                                                Your comprehensive total Cost of Goods Sold.
+                                                Cost per unit × quantity: the cash this order ties up.
                                             </p>
                                         </motion.div>
 
                                         {/* Secondary Result Cards */}
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                             <motion.div
-                                                initial={{ opacity: 0, y: 8 }}
+                                                initial={{ y: 8 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 transition={{ duration: 0.35, delay: 0.1 }}
                                                 className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] hover:border-slate-300 dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
@@ -301,7 +305,7 @@ export function COGSCalculator() {
                                             </motion.div>
 
                                             <motion.div
-                                                initial={{ opacity: 0, y: 8 }}
+                                                initial={{ y: 8 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 transition={{ duration: 0.35, delay: 0.15 }}
                                                 className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] hover:border-slate-300 dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
@@ -318,9 +322,18 @@ export function COGSCalculator() {
                                             </motion.div>
                                         </div>
 
+                                        {calc?.grossMarginPct != null && (
+                                            <div className="bg-white border border-slate-200/70 rounded-xl p-4 dark:bg-slate-900 dark:border-slate-800">
+                                                <div className="flex items-center justify-between">
+                                                    <span className="text-sm font-bold text-slate-600 dark:text-slate-300">Gross Margin at Your Price</span>
+                                                    <span className="font-bold text-[16px] text-slate-700 dark:text-slate-200">{calc.grossMarginPct.toFixed(1)}%</span>
+                                                </div>
+                                            </div>
+                                        )}
+
                                         {/* Cost Breakdown Collapsible */}
                                         <motion.div
-                                            initial={{ opacity: 0, y: 8 }}
+                                            initial={{ y: 8 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.35, delay: 0.2 }}
                                             className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl pt-1 pb-1 transition-all duration-200 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] hover:border-slate-300 dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"

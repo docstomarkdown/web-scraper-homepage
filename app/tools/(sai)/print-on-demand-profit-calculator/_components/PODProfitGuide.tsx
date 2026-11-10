@@ -10,7 +10,7 @@ export function PODProfitGuide() {
             items={[
                 {
                     title: "The formula",
-                    description: "Net profit = (item price + shipping charged) − product cost − shipping cost − fees. Fees are percentages of the total the customer pays, plus a fixed amount per order.",
+                    description: "Net profit = (item price + shipping charged) − product cost − shipping cost − fees. Fees are percentages of the total the customer pays, plus a fixed processing fee and any listing fee per order.",
                     icon: Calculator,
                     iconBg: "bg-[#2772ED]/10 dark:bg-[#2772ED]/20",
                     iconColor: "text-[#1f5ec2] dark:text-[#7aa7ff]",
@@ -31,7 +31,7 @@ export function PODProfitGuide() {
                 },
                 {
                     title: "A worked example",
-                    description: "A $25 shirt with $5 shipping charged, a $10 base cost and $4.50 provider shipping. With a 6.5% transaction fee, 3% + $0.25 processing and no other fees, the fees total $3.10 and net profit is $12.40, a 41% margin on the $30 order.",
+                    description: "A $25 shirt with $5 shipping charged, a $10 base cost and $4.50 provider shipping. With a 6.5% transaction fee, 3% + $0.25 processing and Etsy's $0.20 listing fee, the fees total $3.30 and net profit is $12.20, a 40.7% margin on the $30 order.",
                     icon: TrendingUp,
                     iconBg: "bg-[#2772ED]/10 dark:bg-[#2772ED]/20",
                     iconColor: "text-[#1f5ec2] dark:text-[#7aa7ff]",

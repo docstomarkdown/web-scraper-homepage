@@ -8,8 +8,8 @@ export function DropshippingHowToUse() {
         <ToolSteps
             steps={[
                 { title: "Enter the Purchase Price, Selling Price and Orders Received", description: "Purchase price is what the supplier charges you per unit; selling price is what the customer pays; orders received is the number of orders in the period.", icon: Tag },
-                { title: "Enter Cancelled Qty, Return to Origin (RTO %), Shipping Cost, Ads Cost per Product and Other Cost per Product", description: "Cancelled orders never ship. RTO is the share of orders the customer refuses on delivery, common with cash on delivery. Ads and other costs are per order received, because you paid them before the order was delivered.", icon: Truck },
-                { title: "Read the delivered orders, net profit and margin", description: "Only delivered orders bring revenue, but ads and other costs apply to every order and returned parcels cost shipping twice. The result shows how much is left and the return on your ad spend.", icon: PieChart }
+                { title: "Enter Cancelled Qty, Return to Origin (RTO %), Shipping Cost, Ads Cost per Product and Other Cost per Product", description: "Cancelled orders never ship. RTO is the share of shipped orders the customer refuses or misses on delivery, common with cash on delivery. Ads and other costs are per order received, because you paid them before the order was delivered.", icon: Truck },
+                { title: "Read the delivered orders, net profit and margin", description: "Only delivered orders bring revenue, but ads and other costs apply to every order and returned parcels cost shipping both ways. The result shows net profit, net margin and the return on your ad spend.", icon: PieChart }
             ]}
         />
     )

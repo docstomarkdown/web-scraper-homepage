@@ -1,5 +1,6 @@
 "use client"
 import React, { useState, useEffect } from "react"
+import { podProfit } from "./calc"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tag, DollarSign, Percent, Package } from "lucide-react"
 import { CalculatorCardHeader, CalculatorInput, FadeIn, ResultSummaryCard } from "@/app/tools/_shared/components"
@@ -22,6 +23,7 @@ export function PODProfitCalculator() {
     const [fixedProcessingFee, setFixedProcessingFee] = useState<number | "">("")
     const [platformFeePercent, setPlatformFeePercent] = useState<number | "">("")
     const [offsiteAdsPercent, setOffsiteAdsPercent] = useState<number | "">("")
+    const [listingFee, setListingFee] = useState<number | "">(0.2)
 
     useEffect(() => {
         if (transactionFeePercent === "") setTransactionFeePercent(6.5)
@@ -39,71 +41,30 @@ export function PODProfitCalculator() {
         setFixedProcessingFee(0.25)
         setPlatformFeePercent("")
         setOffsiteAdsPercent("")
+        setListingFee(0.2)
     }
 
-    // Results
-    const [totalRevenue, setTotalRevenue] = useState(0)
-    const [totalCosts, setTotalCosts] = useState(0)
-    const [totalFees, setTotalFees] = useState(0)
-    const [netProfit, setNetProfit] = useState(0)
-    const [margin, setMargin] = useState(0)
-    
-    // Amounts for breakdown
-    const [platformAmount, setPlatformAmount] = useState(0)
-    const [transactionAmount, setTransactionAmount] = useState(0)
-    const [paymentProcAmount, setPaymentProcAmount] = useState(0)
-    const [offsiteAdAmount, setOffsiteAdAmount] = useState(0)
+    const result = podProfit({
+        itemPrice: Number(itemPrice) || 0,
+        shippingCharged: Number(shippingCharged) || 0,
+        productCost: Number(productCost) || 0,
+        shippingCost: Number(shippingCost) || 0,
+        transactionPercent: Number(transactionFeePercent) || 0,
+        paymentPercent: Number(paymentProcessingPercent) || 0,
+        paymentFixed: Number(fixedProcessingFee) || 0,
+        listingFee: Number(listingFee) || 0,
+        platformPercent: Number(platformFeePercent) || 0,
+        offsiteAdsPercent: Number(offsiteAdsPercent) || 0,
+    })
+    const totalRevenue = result?.revenue ?? 0
+    const totalCosts = result?.totalCosts ?? 0
+    const totalFees = result?.totalFees ?? 0
+    const netProfit = result?.netProfit ?? 0
+    const margin = result?.margin ?? 0
+    const isUSD = currency === "USD"
 
-    useEffect(() => {
-        const price = Number(itemPrice) || 0
-        const charge = Number(shippingCharged) || 0
-        const pCost = Number(productCost) || 0
-        const sCost = Number(shippingCost) || 0
-        
-        const tFeePct = Number(transactionFeePercent) || 0
-        const ppFeePct = Number(paymentProcessingPercent) || 0
-        const fixFee = Number(fixedProcessingFee) >= 0 && fixedProcessingFee !== "" ? Number(fixedProcessingFee) : 0
-        const pFeePct = Number(platformFeePercent) || 0
-        const adsPct = Number(offsiteAdsPercent) || 0
-
-        const revenue = price + charge
-
-        if (revenue === 0) {
-            setTotalRevenue(0)
-            setTotalCosts(0)
-            setTotalFees(0)
-            setNetProfit(0)
-            setMargin(0)
-            setPlatformAmount(0)
-            setTransactionAmount(0)
-            setPaymentProcAmount(0)
-            setOffsiteAdAmount(0)
-            return
-        }
-
-        const platformFees = revenue * (pFeePct / 100)
-        const transFee = revenue * (tFeePct / 100)
-        const paymentProc = (revenue * (ppFeePct / 100)) + fixFee
-        const transactionTotal = transFee + paymentProc
-        const offsiteAds = revenue * (adsPct / 100)
-        
-        const sumFees = platformFees + transactionTotal + offsiteAds
-        const allCosts = pCost + sCost + sumFees
-        const profit = revenue - allCosts
-        const calcMargin = (profit / revenue) * 100
-
-        setTotalRevenue(revenue)
-        setTotalCosts(allCosts)
-        setTotalFees(sumFees)
-        setNetProfit(profit)
-        setMargin(calcMargin)
-        setPlatformAmount(platformFees)
-        setTransactionAmount(transFee)
-        setPaymentProcAmount(paymentProc)
-        setOffsiteAdAmount(offsiteAds)
-    }, [itemPrice, shippingCharged, productCost, shippingCost, transactionFeePercent, paymentProcessingPercent, fixedProcessingFee, platformFeePercent, offsiteAdsPercent])
-
-    const isValid = itemPrice !== "" && productCost !== "" && shippingCost !== "" && transactionFeePercent !== "" && paymentProcessingPercent !== "" && shippingCharged !== ""
+    // Shipping charged can stay blank (free shipping); the price, product cost and provider shipping are needed.
+    const isValid = result !== null && productCost !== "" && shippingCost !== "" && transactionFeePercent !== "" && paymentProcessingPercent !== ""
 
     return (
         <FadeIn className="w-full max-w-6xl mx-auto py-8">
@@ -111,7 +72,6 @@ export function PODProfitCalculator() {
                 <div className="lg:col-span-7 space-y-3">
                     <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            title="Product & Fee Details"
                             description="Enter your POD product costs, sale price, and platform fees."
                             onReset={handleReset}
                             guideId="pod-profit-guide"
@@ -145,9 +105,10 @@ export function PODProfitCalculator() {
                                         placeholder="5.00"
                                         max={100000}
                                         step={0.01}
-                                        tooltip="What the customer pays you for shipping."
+                                        tooltip="What the customer pays you for shipping. Leave it blank if you offer free shipping."
                                         isCurrency
                                         currency={currency}
+                                        isOptional
                                     />
                                 </div>
 
@@ -193,7 +154,7 @@ export function PODProfitCalculator() {
                                         min={0}
                                         max={100}
                                         tooltip="Fee applied per transaction, common on Etsy (6.5%) or similar marketplace."
-                                        hint={transactionFeePercent === 6.5 ? "Default Etsy transaction fee applied." : undefined}
+                                        hint={transactionFeePercent === 6.5 ? "Etsy's transaction fee" : undefined}
                                         ignoreChecklist={true}
                                     />
                                     <CalculatorInput
@@ -206,7 +167,7 @@ export function PODProfitCalculator() {
                                         min={0}
                                         max={100}
                                         tooltip="A percentage taken by the payment processor (like Stripe/PayPal)."
-                                        hint={paymentProcessingPercent === 3 ? "Standard industry default applied." : undefined}
+                                        hint={paymentProcessingPercent === 3 ? "Etsy's US payment processing rate" : undefined}
                                         ignoreChecklist={true}
                                     />
                                     <CalculatorInput
@@ -221,7 +182,21 @@ export function PODProfitCalculator() {
                                         isCurrency
                                         currency={currency}
                                         isOptional
-                                        hint={fixedProcessingFee === 0.25 ? "Etsy typically charges $0.25 or Stripe $0.30 fixed fee." : undefined}
+                                        hint={fixedProcessingFee === 0.25 && isUSD ? "Etsy's US fixed fee, $0.25" : undefined}
+                                    />
+                                    <CalculatorInput
+                                        label="Listing Fee"
+                                        value={listingFee}
+                                        onChange={setListingFee}
+                                        placeholder="0.20"
+                                        step={0.01}
+                                        min={0}
+                                        max={1000}
+                                        tooltip="A fixed fee per listing. Etsy charges $0.20 to list an item and renews the listing for another $0.20 when it sells; set it to 0 for platforms without one."
+                                        isCurrency
+                                        currency={currency}
+                                        isOptional
+                                        hint={listingFee === 0.2 && isUSD ? "Etsy's listing fee, $0.20" : undefined}
                                     />
                                     <CalculatorInput
                                         label="Platform Fee"
@@ -299,7 +274,7 @@ export function PODProfitCalculator() {
                                 value: totalCosts,
                                 isCurrency: true,
                                 icon: DollarSign,
-                                tooltip: "The combined cost of manufacturing the item and your supplier's shipping fee."
+                                tooltip: "The base product cost, your provider's shipping and all fees together."
                             },
                             {
                                 key: "totalFees",
@@ -307,12 +282,11 @@ export function PODProfitCalculator() {
                                 value: totalFees,
                                 isCurrency: true,
                                 icon: DollarSign,
-                                tooltip: "The sum of transaction, processing, and all optional platform fees."
+                                tooltip: "The sum of the transaction, processing and listing fees and any platform or offsite ads fee."
                             }
                         ]}
                         checklistItems={[
                             { key: "item", label: "Item Price", isComplete: itemPrice !== "" },
-                            { key: "shipchg", label: "Shipping Charge", isComplete: shippingCharged !== "" },
                             { key: "pcost", label: "Product Cost", isComplete: productCost !== "" },
                             { key: "scost", label: "Shipping Cost", isComplete: shippingCost !== "" }
                         ]}
@@ -322,10 +296,10 @@ export function PODProfitCalculator() {
                     <div className="mt-4">
                         <PODProfitBreakdown
                             netProfit={netProfit}
-                            platformFee={platformAmount}
-                            transactionFee={transactionAmount}
-                            paymentProcessingFee={paymentProcAmount}
-                            offsiteAdFee={offsiteAdAmount}
+                            platformFee={(result?.platformFee ?? 0) + (result?.listingFee ?? 0)}
+                            transactionFee={result?.transactionFee ?? 0}
+                            paymentProcessingFee={result?.paymentFee ?? 0}
+                            offsiteAdFee={result?.offsiteAdsFee ?? 0}
                             productCost={Number(productCost) || 0}
                             shippingCost={Number(shippingCost) || 0}
                             totalRevenue={totalRevenue}
@@ -336,4 +310,4 @@ export function PODProfitCalculator() {
             </div>
         </FadeIn>
     )
-}
+}

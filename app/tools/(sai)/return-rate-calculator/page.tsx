@@ -26,7 +26,7 @@ const faqs = [
     },
     {
         question: "What should I count as the cost of a return?",
-        answer: "Return shipping, inspection and repackaging time, any non-refundable payment fees, and the loss if the item can't be resold as new.",
+        answer: "Return shipping, inspection and repackaging time, and any non-refundable payment fees. Enter the share of returns you resell at full price; the refund on those comes back when they sell, so the calculator leaves it out of profit leakage.",
     },
 ]
 
@@ -34,7 +34,7 @@ export default function ReturnRateCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Return Rate Calculator" direction="down" duration={0.6} />
+                <ToolPageTitle title="Return rate calculator" direction="down" duration={0.6} />
                 <div className="mb-20">
                     <ReturnRateCalculator />
                 </div>

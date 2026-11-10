@@ -2,7 +2,7 @@ import { Metadata } from "next"
 import { DiscountCalculator } from "./_components/DiscountCalculator"
 import { DiscountGuide } from "./_components/DiscountGuide"
 import { DiscountHowToUse } from "./_components/DiscountHowToUse"
-import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
+import { FadeIn, RelatedProduct, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
     title: "Discount Calculator: Final Price and Percentage Off",
@@ -13,9 +13,12 @@ export default function DiscountCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Discount Percentage Calculator" direction="down" duration={0.6} />
+                <ToolPageTitle title="Discount percentage calculator" direction="down" duration={0.6} />
                 <div className="mb-20">
                     <DiscountCalculator />
+                </div>
+                <div className="mb-16">
+                    <RelatedProduct before="To price against competitors, collect their listings and prices into a spreadsheet with" linkText="Web Scraper Pro's product details and reviews" href="/product-scraper" after="." />
                 </div>
                 <div className="max-w-5xl mx-auto space-y-16">
                     <FadeIn delay={0.2}>

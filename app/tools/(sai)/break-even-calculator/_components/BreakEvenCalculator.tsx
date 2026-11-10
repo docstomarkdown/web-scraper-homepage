@@ -5,6 +5,7 @@ import { DollarSign, Tag, Building2, TrendingUp } from "lucide-react"
 import { FadeIn, CalculatorInput, CalculatorCardHeader } from "@/app/tools/_shared/components"
 import { ResultSummaryCard } from "@/app/tools/_shared/components/ResultSummaryCard"
 import { BreakEvenBreakdown } from "./BreakEvenBreakdown"
+import { breakEven } from "./calc"
 
 export function BreakEvenCalculator() {
     const [currency, setCurrency] = useState("USD")
@@ -20,17 +21,16 @@ export function BreakEvenCalculator() {
         setVariableCostPerUnit("")
     }
 
-    // Calculations
+    // Calculations (see calc.ts)
     const fixed = val(fixedCosts)
     const price = val(pricePerUnit)
     const variable = val(variableCostPerUnit)
-    
+    const n = (v: number | "") => (v === "" ? null : v)
+    const result = breakEven({ fixedCosts: n(fixedCosts), pricePerUnit: n(pricePerUnit), variableCostPerUnit: n(variableCostPerUnit) })
+    const isCalculated = result.ok
     const contributionMargin = price - variable
-    const breakEvenUnits = contributionMargin > 0 ? fixed / contributionMargin : 0
-    const breakEvenRevenue = breakEvenUnits * price
-    
-    // Check if fully calculated
-    const isCalculated = fixed > 0 && price > 0 && variable > 0 && contributionMargin > 0
+    const breakEvenUnits = result.ok ? result.breakEvenUnits : 0
+    const breakEvenRevenue = result.ok ? result.breakEvenRevenue : 0
 
     return (
         <FadeIn className="w-full max-w-6xl mx-auto py-8 px-4" duration={0.6}>
@@ -86,7 +86,9 @@ export function BreakEvenCalculator() {
                                     onChange={setVariableCostPerUnit}
                                     placeholder="30.00"
                                     max={1000000}
-                                    tooltip="Total direct costs to produce or acquire one unit (e.g., manufacturing, packaging, shipping)."
+                                    isOptional
+                                    hint={!result.ok && result.reason === "no-margin" ? "The price must be above the variable cost, or each sale loses money and there is no break-even point." : undefined}
+                                    tooltip="Total direct costs to produce or acquire one unit (e.g., manufacturing, packaging, shipping). Leave it blank or 0 for a digital product."
                                 />
                             </div>
                         </CardContent>
@@ -98,7 +100,7 @@ export function BreakEvenCalculator() {
                     {/* Main Result Card */}
                     <ResultSummaryCard
                         primaryResult={{
-                            value: Math.ceil(breakEvenUnits),
+                            value: breakEvenUnits.toLocaleString(),
                             unit: "units",
                             label: "Break-even Units",
                             key: "breakEvenUnits",
@@ -114,18 +116,17 @@ export function BreakEvenCalculator() {
                             },
                             {
                                 key: "contributionMargin",
-                                label: "Profit per Unit",
+                                label: "Contribution Margin per Unit",
                                 value: contributionMargin,
                                 isCurrency: true,
                                 icon: TrendingUp,
-                                tooltip: "Money you earn per product after costs"
+                                tooltip: "Price minus variable cost per unit: what each sale adds toward fixed costs, then profit."
                             }
                         ]}
                         currency={currency}
                         isCalculated={isCalculated}
                         emptyMessage="Break-even Units"
-                        liveBadgeText={contributionMargin > 0 ? (isCalculated ? "Target Found" : "Profitable Unit") : (price > 0 && variable > 0 ? "Negative Margin" : "Review Inputs")}
-                        liveBadgeColor={contributionMargin > 0 ? (isCalculated ? "emerald" : "blue") : (price > 0 && variable > 0 ? "rose" : "amber")}
+                        showLiveBadge={false}
                     />
 
                     {/* Breakdown Card */}

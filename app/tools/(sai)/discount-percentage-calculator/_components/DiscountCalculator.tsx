@@ -1,5 +1,6 @@
 "use client"
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
+import { discountPercent, priceAfterDiscount } from "./calc"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { TrendingDown, DollarSign, Percent, ArrowRight, ShoppingCart } from "lucide-react"
 import { motion } from "framer-motion"
@@ -12,11 +13,6 @@ export function DiscountCalculator() {
     const [originalPrice, setOriginalPrice] = useState<number | "">("")
     const [discountValue, setDiscountValue] = useState<number | "">("") // Can be % or price depending on mode
     const [quantity, setQuantity] = useState<number | "">("")
-    // Results
-    const [finalPrice, setFinalPrice] = useState<number>(0)
-    const [savings, setSavings] = useState<number>(0)
-    const [totalSavings, setTotalSavings] = useState<number>(0)
-    const [calculatedDiscount, setCalculatedDiscount] = useState<number>(0)
     const val = (v: number | "") => (v === "" ? 0 : v)
     const currencySymbols: Record<string, string> = {
         USD: '$', EUR: '€', GBP: '£', INR: '₹', AUD: 'A$', CAD: 'C$', JPY: '¥', CNY: '¥',
@@ -30,40 +26,16 @@ export function DiscountCalculator() {
         setOriginalPrice("")
         setDiscountValue("")
         setQuantity("")
-        setFinalPrice(0)
-        setSavings(0)
-        setTotalSavings(0)
-        setCalculatedDiscount(0)
     }
-    // Effect to calculate based on mode
-    useEffect(() => {
-        const price = val(originalPrice)
-        const secondVal = val(discountValue)
-        const qty = val(quantity) || 1
-        if (mode === "find-price") {
-            if (price > 0 && secondVal >= 0) {
-                const save = price * (secondVal / 100)
-                setSavings(save)
-                setTotalSavings(save * qty)
-                setFinalPrice((price - save) * qty)
-            } else {
-                setSavings(0)
-                setTotalSavings(0)
-                setFinalPrice(price * qty)
-            }
-        } else {
-            if (price > 0 && secondVal > 0) {
-                const save = price - secondVal
-                setSavings(Math.max(save, 0))
-                setTotalSavings(Math.max(save, 0) * qty)
-                setCalculatedDiscount(save > 0 ? (save / price) * 100 : 0)
-            } else {
-                setSavings(0)
-                setTotalSavings(0)
-                setCalculatedDiscount(0)
-            }
-        }
-    }, [originalPrice, discountValue, mode, quantity])
+    // Both fields are needed before any result shows (calc.ts).
+    const filled = originalPrice !== "" && discountValue !== ""
+    const result = !filled ? null : mode === "find-price"
+        ? priceAfterDiscount(val(originalPrice), val(discountValue), val(quantity))
+        : discountPercent(val(originalPrice), val(discountValue), val(quantity))
+    const finalPrice = result?.totalPrice ?? 0
+    const savings = result?.saving ?? 0
+    const calculatedDiscount = result?.percent ?? 0
+    const saleAboveOriginal = filled && mode === "find-discount" && val(discountValue) > val(originalPrice)
     const formatCurrency = (val: number) => {
         return new Intl.NumberFormat('en-US', {
             style: 'currency',
@@ -78,9 +50,8 @@ export function DiscountCalculator() {
                 <div className="lg:col-span-7 space-y-3">
                     <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            description="Enter your details."
+                            description="Find the final price from a percentage off, or the percentage off from two prices."
                             onReset={handleReset}
-                            guideId="discount-guide"
                             currency={currency}
                             onCurrencyChange={setCurrency}
                         />
@@ -130,7 +101,7 @@ export function DiscountCalculator() {
                                 />
                                 <motion.div
                                     layout
-                                    initial={{ opacity: 0, y: 10 }}
+                                    initial={{ y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     key={mode}
                                 >
@@ -172,7 +143,7 @@ export function DiscountCalculator() {
                     <ResultFeedbackCard
                         title={mode === "find-price" ? "Total Price" : "Discount Percentage"}
                         mainValue={
-                            mode === "find-price" ? (
+                            !result ? "–" : mode === "find-price" ? (
                                 <Counter value={finalPrice} formatter={formatCurrency} key={currency} />
                             ) : (
                                 <Counter value={calculatedDiscount} formatter={(v) => `${v.toFixed(2)}%`} />
@@ -181,35 +152,10 @@ export function DiscountCalculator() {
                         valueColor="text-white"
                         secondaryMetrics={[]}
                     />
-                    {/* Savings Indicator */}
-                    {(mode === "find-price" ? val(discountValue) > 0 : calculatedDiscount > 0) && (
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            className={cn(
-                                "px-4 py-3 rounded-xl border text-center text-sm font-semibold",
-                                (mode === "find-price" ? val(discountValue) : calculatedDiscount) >= 40
-                                    ? "bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-950/40 dark:border-blue-900/50 dark:text-blue-400"
-                                    : (mode === "find-price" ? val(discountValue) : calculatedDiscount) >= 20
-                                        ? "bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-950/40 dark:border-blue-900/50 dark:text-blue-400"
-                                        : (mode === "find-price" ? val(discountValue) : calculatedDiscount) >= 10
-                                            ? "bg-amber-50 border-amber-200 text-amber-700 dark:bg-amber-950/40 dark:border-amber-900/50 dark:text-amber-400"
-                                            : "bg-slate-50 border-slate-200 text-slate-600 dark:bg-slate-800/60 dark:border-slate-800 dark:text-slate-300"
-                            )}
-                        >
-                            {(mode === "find-price" ? val(discountValue) : calculatedDiscount) >= 40
-                                ? " Large discount"
-                                : (mode === "find-price" ? val(discountValue) : calculatedDiscount) >= 20
-                                    ? " Good discount"
-                                    : (mode === "find-price" ? val(discountValue) : calculatedDiscount) >= 10
-                                        ? " Decent Discount"
-                                        : " Modest Savings"}
-                        </motion.div>
-                    )}
                     {/* Price Breakdown */}
-                    {originalPrice && discountValue ? (
+                    {result ? (
                         <motion.div
-                            initial={{ opacity: 0, y: 10 }}
+                            initial={{ y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500 dark:bg-slate-900 dark:border-slate-800"
                         >
@@ -222,7 +168,7 @@ export function DiscountCalculator() {
                                     <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{formatCurrency(val(originalPrice))}</span>
                                 </div>
                                 <div className="flex justify-between items-center px-5 py-3.5">
-                                    <span className="text-sm text-slate-600 dark:text-slate-300">Discount ({mode === "find-price" ? `${val(discountValue)}%` : `${calculatedDiscount.toFixed(1)}%`})</span>
+                                    <span className="text-sm text-slate-600 dark:text-slate-300">Discount ({`${calculatedDiscount.toFixed(1)}%`})</span>
                                     <span className="text-sm font-semibold text-red-500 dark:text-red-400">
                                         - {formatCurrency(savings)}
                                     </span>
@@ -230,14 +176,18 @@ export function DiscountCalculator() {
                                 <div className="flex justify-between items-center px-5 py-3.5">
                                     <span className="text-sm text-slate-600 dark:text-slate-300">Price After Discount</span>
                                     <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">
-                                        {formatCurrency(val(originalPrice) - savings)}
+                                        {formatCurrency(result.unitPrice)}
                                     </span>
                                 </div>
-                                {val(quantity) > 1 && (
+                                {result.quantity > 1 && (
                                     <>
                                         <div className="flex justify-between items-center px-5 py-3.5 bg-slate-50/50 dark:bg-slate-800/60">
                                             <span className="text-sm text-slate-600 dark:text-slate-300">Quantity</span>
                                             <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">× {val(quantity)}</span>
+                                        </div>
+                                        <div className="flex justify-between items-center px-5 py-3.5">
+                                            <span className="text-sm text-slate-600 dark:text-slate-300">Total Saved</span>
+                                            <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{formatCurrency(result.totalSaving)}</span>
                                         </div>
                                         <div className="flex justify-between items-center px-5 py-4">
                                             <span className="text-sm font-bold text-blue-600 dark:text-blue-400">Grand Total</span>
@@ -245,7 +195,7 @@ export function DiscountCalculator() {
                                         </div>
                                     </>
                                 )}
-                                {val(quantity) === 1 && (
+                                {result.quantity === 1 && (
                                     <div className="flex justify-between items-center px-5 py-4">
                                         <span className="text-sm font-bold text-blue-600 dark:text-blue-400">Final Price</span>
                                         <span className="text-base font-bold text-blue-600 dark:text-blue-400">{formatCurrency(finalPrice)}</span>
@@ -255,7 +205,7 @@ export function DiscountCalculator() {
                         </motion.div>
                     ) : (
                         <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center dark:bg-slate-900 dark:border-slate-800">
-                            <p className="text-sm text-slate-600 dark:text-slate-300">Enter values to see the price breakdown.</p>
+                            <p className="text-sm text-slate-600 dark:text-slate-300">{saleAboveOriginal ? "The final price is above the original, so there's no discount. Check the two prices." : "Enter values to see the price breakdown."}</p>
                         </div>
                     )}
                 </div>

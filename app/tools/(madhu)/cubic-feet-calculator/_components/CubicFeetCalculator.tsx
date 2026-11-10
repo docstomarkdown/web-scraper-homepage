@@ -1,13 +1,11 @@
 "use client"
 import React, { useState, useMemo } from "react"
-import { Box, Layers, DollarSign, Ruler, RefreshCw, Package, Calculator, Info } from "lucide-react"
+import { Box, Layers, Ruler, RefreshCw, Package, Calculator } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Card, CardContent } from "@/components/ui/card"
 import { CalculatorInput, CalculatorCardHeader, getCurrencySymbol, formatCurrencyValue, CurrencyIcon } from "@/app/tools/_shared/components"
 import { motion, AnimatePresence } from "framer-motion"
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
-
-type DimensionUnit = "in" | "ft" | "cm" | "m"
+import { cubicVolume, DIMENSION_UNITS, type DimensionUnit } from "./calc"
 
 interface DimensionInputs {
     length: string
@@ -20,8 +18,8 @@ interface DimensionInputs {
 const UNIT_NAMES: Record<DimensionUnit, string> = {
     in: "Inches",
     ft: "Feet",
-    cm: "Centimeters",
-    m: "Meters"
+    cm: "Centimetres",
+    m: "Metres"
 }
 
 export function CubicFeetCalculator() {
@@ -39,46 +37,25 @@ export function CubicFeetCalculator() {
         setInputs(prev => ({ ...prev, [field]: value }))
     }
 
-    const results = useMemo(() => {
-        const l = parseFloat(inputs.length || "0")
-        const w = parseFloat(inputs.width || "0")
-        const h = parseFloat(inputs.height || "0")
-        const qty = parseFloat(inputs.quantity || "1") // default 1
-        const costPerVol = parseFloat(inputs.costPerVolume || "0")
-        
-        let volumeInCubicInches = 0
+    const calc = useMemo(() => cubicVolume({
+        length: parseFloat(inputs.length),
+        width: parseFloat(inputs.width),
+        height: parseFloat(inputs.height),
+        unit,
+        quantity: inputs.quantity ? parseFloat(inputs.quantity) : undefined,
+        costPerFt3: inputs.costPerVolume ? parseFloat(inputs.costPerVolume) : undefined,
+    }), [inputs, unit])
+    const results = {
+        singleCft: calc?.single.ft3 ?? 0,
+        cft: calc?.total.ft3 ?? 0,
+        cbm: calc?.total.m3 ?? 0,
+        inches: calc?.total.in3 ?? 0,
+        litres: calc?.total.litres ?? 0,
+        estimatedCost: calc?.cost ?? 0,
+    }
 
-        // Convert all to Inches first as base
-        switch (unit) {
-            case "in":
-                volumeInCubicInches = l * w * h
-                break
-            case "ft":
-                volumeInCubicInches = (l * 12) * (w * 12) * (h * 12)
-                break
-            case "cm":
-                volumeInCubicInches = (l / 2.54) * (w / 2.54) * (h / 2.54)
-                break
-            case "m":
-                volumeInCubicInches = (l * 39.3701) * (w * 39.3701) * (h * 39.3701)
-                break
-        }
-
-        const singleVolumeInches = volumeInCubicInches
-        const totalVolumeInches = volumeInCubicInches * qty
-        
-        const totalCft = totalVolumeInches / 1728
-
-        return {
-            singleCft: singleVolumeInches / 1728,
-            cft: totalCft,
-            cbm: totalVolumeInches / 61023.7,
-            inches: totalVolumeInches,
-            cm: totalVolumeInches * 16.3871,
-            estimatedCost: costPerVol > 0 ? totalCft * costPerVol : 0
-        }
-    }, [inputs, unit])
-
+    const formatFull = (val: number, decimals = 2): string =>
+        val.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: decimals })
     const formatCompact = (val: number, decimals = 2): string => {
         if (val === 0) return "0"
         if (Math.abs(val) < 100000)
@@ -90,10 +67,10 @@ export function CubicFeetCalculator() {
         return formatCurrencyValue(val, currency, 2)
     }
 
-    const isCalculated = !!(inputs.length && inputs.width && inputs.height && parseFloat(inputs.length) > 0)
-    const qtyNum = parseFloat(inputs.quantity || "1")
+    const isCalculated = calc !== null
+    const qtyNum = calc?.quantity ?? 1
     const hasMultipleUnits = qtyNum > 1
-    const hasCost = parseFloat(inputs.costPerVolume || "0") > 0
+    const hasCost = calc?.cost != null
 
     const handleReset = () => {
         setInputs({ length: "", width: "", height: "", quantity: "", costPerVolume: "" })
@@ -108,8 +85,7 @@ export function CubicFeetCalculator() {
                 <div className="lg:col-span-7 self-start lg:sticky lg:top-28">
                     <Card className="border-slate-200 shadow-sm relative overflow-hidden bg-white flex flex-col dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            title="Cubic Feet Calculator"
-                            description="Enter dimensions to calculate the cubic volume of your item or shipment."
+                            description="Enter the three sizes in any unit to get the volume and the sizes in inches, centimetres, feet and metres."
                             guideId="how-to-use"
                             tooltip="How to use this calculator"
                             currency={currency}
@@ -220,7 +196,7 @@ export function CubicFeetCalculator() {
                 {/* ═══ RIGHT COLUMN: Results Panel ═══ */}
                 <div className="lg:col-span-5 flex flex-col gap-3">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                         className="flex flex-col gap-3"
@@ -240,7 +216,7 @@ export function CubicFeetCalculator() {
                                     {isCalculated ? (
                                         <motion.div
                                             key="live"
-                                            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                                            initial={false} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                                             className={cn(
                                                 "flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-bold",
                                                 results.cft > 100 ? "bg-amber-100/50 text-amber-700 border-amber-200/50 dark:bg-amber-900/40 dark:text-amber-400 dark:border-amber-900/50" : "bg-emerald-100/50 text-emerald-700 border-slate-200/50 dark:bg-emerald-900/40 dark:text-emerald-400 dark:border-slate-800"
@@ -255,7 +231,7 @@ export function CubicFeetCalculator() {
                                     ) : (
                                         <motion.div
                                             key="idle"
-                                            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                                            initial={false} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                                             className="text-xs font-bold text-slate-600 dark:text-slate-300 px-2"
                                         >
                                             Awaiting input
@@ -269,7 +245,7 @@ export function CubicFeetCalculator() {
                                     /* ── EMPTY STATE ── */
                                     <motion.div
                                         key="empty"
-                                        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                                        initial={false} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                                         transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="relative z-10 px-6 pb-6 pt-2"
                                     >
@@ -277,7 +253,7 @@ export function CubicFeetCalculator() {
                                             {/* Frosted glass overlay */}
                                             <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
                                                 <motion.div
-                                                    initial={{ opacity: 0 }}
+                                                    initial={false}
                                                     animate={{ opacity: 1 }}
                                                     transition={{ duration: 0.55, ease: "easeOut" }}
                                                     className="bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_8px_40px_rgba(59,130,246,0.12)] rounded-2xl px-6 py-5 flex flex-col items-center gap-3 w-fit max-w-[320px] pointer-events-auto dark:bg-slate-900/80 dark:border-slate-800"
@@ -333,13 +309,13 @@ export function CubicFeetCalculator() {
                                     /* ── RESULTS STATE ── */
                                     <motion.div
                                         key="results"
-                                        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                                        initial={false} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                                         transition={{ duration: 0.45, ease: "easeInOut" }}
                                         className="flex flex-col gap-3 px-5 pb-5 pt-2"
                                     >
                                         {/* 1 — Target Volume (Valid-like Hero) */}
                                         <motion.div
-                                            initial={{ opacity: 0, scale: 0.97 }}
+                                            initial={{ scale: 0.97 }}
                                             animate={{ opacity: 1, scale: 1 }}
                                             transition={{ duration: 0.4, delay: 0.05 }}
                                             className="relative flex flex-col items-center text-center py-6 px-4 bg-transparent"
@@ -347,10 +323,11 @@ export function CubicFeetCalculator() {
                                             <span className="text-xs font-black text-slate-600 dark:text-slate-300 tracking-[0.18em] leading-none mb-2">Cubic Feet</span>
                                             <motion.span
                                                 key={results.singleCft}
-                                                initial={{ opacity: 0, y: 4 }}
+                                                initial={{ y: 4 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 transition={{ duration: 0.3 }}
                                                 className="text-[3.25rem] font-black text-blue-600 tracking-tighter leading-none dark:text-blue-400"
+                                                title={formatFull(results.singleCft, 4)}
                                             >
                                                 {formatCompact(results.singleCft, 2)}
                                             </motion.span>
@@ -363,7 +340,7 @@ export function CubicFeetCalculator() {
                                         {/* Optional Card: Total Volume if multiple units  */}
                                         {hasMultipleUnits && (
                                             <motion.div
-                                                initial={{ opacity: 0, y: 8 }}
+                                                initial={{ y: 8 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 transition={{ duration: 0.35, delay: 0.08 }}
                                                 className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] mb-1 dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
@@ -373,7 +350,7 @@ export function CubicFeetCalculator() {
                                                         <Package className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
                                                         <span className="text-sm sm:text-[14px] font-bold text-slate-600 dark:text-slate-300">Total Volume <span className="font-medium text-xs ml-1 opacity-70">(×{qtyNum} items)</span></span>
                                                     </div>
-                                                    <span className="text-[16px] sm:text-[17px] font-bold text-slate-700 tabular-nums dark:text-slate-200">
+                                                    <span className="text-[16px] sm:text-[17px] font-bold text-slate-700 tabular-nums dark:text-slate-200" title={formatFull(results.cft)}>
                                                         {formatCompact(results.cft, 2)} <span className="font-normal">ft³</span>
                                                     </span>
                                                 </div>
@@ -382,37 +359,70 @@ export function CubicFeetCalculator() {
 
                                         {/* Card 1: Other Units */}
                                         <motion.div
-                                            initial={{ opacity: 0, y: 8 }}
+                                            initial={{ y: 8 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.35, delay: 0.1 }}
                                             className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
                                         >
                                             <div className="flex items-center gap-2 mb-3">
                                                 <RefreshCw className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
-                                                <span className="text-sm sm:text-[14px] font-bold text-slate-600 dark:text-slate-300">Other Units</span>
+                                                <span className="text-sm sm:text-[14px] font-bold text-slate-600 dark:text-slate-300">Other Units{hasMultipleUnits && <span className="font-medium text-xs ml-1 opacity-70">(total)</span>}</span>
                                             </div>
                                             <div className="pl-7 space-y-2">
                                                 <div className="flex items-center justify-between mt-1">
                                                     <span className="text-xs text-slate-600 font-medium dark:text-slate-300">Cubic Meters</span>
-                                                    <span className="text-[16px] sm:text-[17px] font-bold text-slate-700 tabular-nums dark:text-slate-200">
+                                                    <span className="text-[16px] sm:text-[17px] font-bold text-slate-700 tabular-nums dark:text-slate-200" title={formatFull(results.cbm, 4)}>
                                                         {formatCompact(results.cbm, 4)}{" "}
                                                         <span className="font-normal text-xs">m³</span>
                                                     </span>
                                                 </div>
                                                 <div className="flex items-center justify-between mt-1">
                                                     <span className="text-xs text-slate-600 font-medium dark:text-slate-300">Cubic Inches</span>
-                                                    <span className="text-[16px] sm:text-[17px] font-bold text-slate-700 tabular-nums dark:text-slate-200">
+                                                    <span className="text-[16px] sm:text-[17px] font-bold text-slate-700 tabular-nums dark:text-slate-200" title={formatFull(results.inches)}>
                                                         {formatCompact(results.inches, 2)}{" "}
                                                         <span className="font-normal text-xs">in³</span>
+                                                    </span>
+                                                </div>
+                                                <div className="flex items-center justify-between mt-1">
+                                                    <span className="text-xs text-slate-600 font-medium dark:text-slate-300">Litres</span>
+                                                    <span className="text-[16px] sm:text-[17px] font-bold text-slate-700 tabular-nums dark:text-slate-200" title={formatFull(results.litres)}>
+                                                        {formatCompact(results.litres, 2)}{" "}
+                                                        <span className="font-normal text-xs">L</span>
                                                     </span>
                                                 </div>
                                             </div>
                                         </motion.div>
 
+                                        {/* Card: Dimensions in every unit (the dimension converter) */}
+                                        {calc && (
+                                            <motion.div
+                                                initial={{ y: 8 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ duration: 0.35, delay: 0.12 }}
+                                                className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
+                                            >
+                                                <div className="flex items-center gap-2 mb-3">
+                                                    <Ruler className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" aria-hidden="true" />
+                                                    <span className="text-sm sm:text-[14px] font-bold text-slate-600 dark:text-slate-300">Dimensions (L × W × H)</span>
+                                                </div>
+                                                <div className="pl-7 space-y-2">
+                                                    {DIMENSION_UNITS.map((u) => (
+                                                        <div key={u} className="flex items-center justify-between mt-1 gap-3">
+                                                            <span className="text-xs text-slate-600 font-medium dark:text-slate-300">{UNIT_NAMES[u]}</span>
+                                                            <span className="text-[14px] sm:text-[15px] font-bold text-slate-700 tabular-nums text-right dark:text-slate-200">
+                                                                {calc.dimensions[u].map((d) => formatFull(d, 2)).join(" × ")}{" "}
+                                                                <span className="font-normal text-xs">{u}</span>
+                                                            </span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </motion.div>
+                                        )}
+
                                         {/* Card 2: Estimated Cost */}
                                         {hasCost && (
                                             <motion.div
-                                                initial={{ opacity: 0, y: 8 }}
+                                                initial={{ y: 8 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 transition={{ duration: 0.35, delay: 0.15 }}
                                                 className="bg-white border border-blue-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-blue-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] bg-blue-50/30 dark:bg-slate-900 dark:border-blue-900/50 dark:hover:border-blue-800 dark:bg-blue-950/40"

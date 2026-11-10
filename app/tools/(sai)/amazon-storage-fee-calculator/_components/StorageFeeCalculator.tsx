@@ -6,18 +6,9 @@ import { Box, Layers, Info, Calendar, Clock, ChevronsUpDown, ChevronDown, Chevro
 import { FadeIn, CalculatorInput, ResultSummaryCard, CalculatorCardHeader } from "@/app/tools/_shared/components"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { cn } from "@/lib/utils"
+import { storageFee } from "./calc"
 
-// Constants for Fees (2024 Estimates)
-const RATES = {
-    standard: {
-        "jan-sept": 0.87,
-        "oct-dec": 2.40
-    },
-    oversize: {
-        "jan-sept": 0.56,
-        "oct-dec": 1.40
-    }
-}
+const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 export function StorageFeeCalculator() {
     const [currency, setCurrency] = useState("USD")
@@ -28,7 +19,7 @@ export function StorageFeeCalculator() {
     const [duration, setDuration] = useState<number | "">("")
 
     const [showAdvanced, setShowAdvanced] = useState(false)
-    const [season, setSeason] = useState<"jan-sept" | "oct-dec">("jan-sept")
+    const [startMonth, setStartMonth] = useState(0)
     const [sizeTier, setSizeTier] = useState<"standard" | "oversize" | "auto">("auto")
 
     const val = (v: number | "") => (v === "" ? 0 : v)
@@ -39,64 +30,27 @@ export function StorageFeeCalculator() {
         setHeight("")
         setQuantity("")
         setDuration("")
-        setSeason("jan-sept")
+        setStartMonth(0)
         setSizeTier("auto")
         setShowAdvanced(false)
     }
 
-    // Calculation vars
-    const l = val(length)
-    const w = val(width)
-    const h = val(height)
-    const qty = val(quantity)
-    const months = val(duration) || 1
+    // Each month is charged at its own season's rate, counted from the first month (calc.ts).
+    const result = storageFee({
+        length: val(length), width: val(width), height: val(height),
+        units: val(quantity), months: val(duration), startMonth, tier: sizeTier,
+    })
+    const monthlyFee = result?.firstMonthFee ?? 0
+    const longTermFee = result?.agedSurcharge ?? 0
+    const totalCost = result?.total ?? 0
 
-    // Auto-detect size tier
-    const activeSizeTier = React.useMemo(() => {
-        if (sizeTier !== "auto") return sizeTier;
-        if (l > 0 && w > 0 && h > 0) {
-            const dims = [l, w, h].sort((a, b) => b - a);
-            if (dims[0] <= 18 && dims[1] <= 14 && dims[2] <= 8) {
-                return "standard";
-            } else {
-                return "oversize";
-            }
-        }
-        return "standard";
-    }, [sizeTier, l, w, h]);
-
-    // Volume in Cubic Feet (L x W x H) / 1728
-    const volumePerUnit = (l * w * h) / 1728
-    const totalVolume = volumePerUnit * qty
-
-    // Fee Calculation
-    const rate = RATES[activeSizeTier][season]
-    const monthlyFee = totalVolume * rate
-
-    // Long Term Storage Fee logic (Aged inventory > 6 months)
-    let longTermFee = 0;
-    if (months > 6 && totalVolume > 0) {
-        // Simplified estimate: $1.50 per cubic foot per month beyond 6 months
-        longTermFee = totalVolume * 1.50 * (months - 6)
+    let insightText = "Estimated rates; check the storage fees in Seller Central."
+    if (result) {
+        if (val(duration) > 6) insightText = "Units stored over six months pay the long-term surcharge on top. Estimated rates; check Seller Central."
+        else if (result.peakMonths > 0) insightText = `${result.peakMonths} of these months fall in October to December, at the higher rate. Estimated rates; check Seller Central.`
     }
 
-    // Total Cost
-    const actualMonths = val(duration) === 0 ? 0 : months;
-    const totalCost = (monthlyFee * actualMonths) + longTermFee
-
-    // Insights
-    let insightText = "Add dimensions, duration, and quantity to see insights."
-    if (actualMonths > 0 && totalVolume > 0) {
-        if (actualMonths > 6) {
-            insightText = "Long-term fee risk — slow-moving inventory"
-        } else if (monthlyFee > 100) {
-            insightText = "High storage cost — reduce size or inventory"
-        } else {
-            insightText = "Efficient storage — low cost product"
-        }
-    }
-
-    const isCalculated = length !== "" && width !== "" && height !== "" && quantity !== ""
+    const isCalculated = result !== null
 
     return (
         <FadeIn className="w-full max-w-6xl mx-auto py-8 px-4" duration={0.6}>
@@ -105,10 +59,8 @@ export function StorageFeeCalculator() {
                 <div className="lg:col-span-7 space-y-3">
                     <Card className="border border-slate-200/80 shadow-sm bg-white overflow-hidden h-full flex flex-col rounded-3xl dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            title="Amazon Storage Fee Calculator"
                             description="Enter product dimensions and inventory details to estimate storage costs."
                             onReset={handleReset}
-                            guideId="storage-guide"
                         />
                         <CardContent className="p-4 md:p-6 pb-10 md:pb-14 space-y-3 flex-1 flex flex-col">
                             <div className="space-y-6 max-w-[520px] mx-auto w-full">
@@ -119,7 +71,7 @@ export function StorageFeeCalculator() {
                                         label="Length"
                                         value={length}
                                         onChange={setLength}
-                                        placeholder="Length"
+                                        placeholder="10"
                                         suffix="in"
                                         tooltip="Length of the unit in inches."
                                         groupingTitle="Product Size (inches)"
@@ -161,7 +113,7 @@ export function StorageFeeCalculator() {
                                         onChange={setDuration}
                                         placeholder="3"
                                         max={36}
-                                        tooltip="How long you plan to store these units on average. > 6 months incurs long-term fees."
+                                        tooltip="How long you plan to store these units on average. Over 6 months adds a long-term surcharge."
                                     />
                                 </div>
 
@@ -188,7 +140,7 @@ export function StorageFeeCalculator() {
                                                     Advanced Settings
                                                 </span>
                                                 <span className="text-xs text-slate-600 font-medium dark:text-slate-300">
-                                                    Season & Size Tier Rules
+                                                    First month & size tier
                                                 </span>
                                             </div>
                                         </div>
@@ -208,7 +160,7 @@ export function StorageFeeCalculator() {
                                         <FadeIn className="pt-4 space-y-5 max-w-[520px] mx-auto w-full px-1">
                                             <div className="flex items-center gap-3 w-full relative z-10">
                                                 <div className="flex items-center gap-2 flex-1 min-w-0 text-left">
-                                                    <label className="text-sm font-medium text-slate-600/90 cursor-pointer py-1 dark:text-slate-300">Season</label>
+                                                    <label className="text-sm font-medium text-slate-600/90 cursor-pointer py-1 dark:text-slate-300">First Month</label>
                                                     <Tooltip>
                                                         <TooltipTrigger asChild>
                                                             <button type="button" aria-label="About this field" className="text-slate-500 hover:text-blue-600 transition-colors cursor-help dark:text-slate-500 dark:hover:text-blue-400">
@@ -216,18 +168,17 @@ export function StorageFeeCalculator() {
                                                             </button>
                                                         </TooltipTrigger>
                                                         <TooltipContent className="bg-slate-900 text-white border-slate-800 text-xs dark:bg-slate-800 dark:border-slate-700">
-                                                            Amazon&apos;s monthly storage fees vary by season (Peak vs Standard).
+                                                            The month storage starts. October to December are charged at the higher rate, so each month uses its own season.
                                                         </TooltipContent>
                                                     </Tooltip>
                                                 </div>
                                                 <div className="w-36 sm:w-44 relative flex-shrink-0">
-                                                    <Select value={season} onValueChange={(v: "jan-sept" | "oct-dec") => setSeason(v)}>
+                                                    <Select value={String(startMonth)} onValueChange={(v: string) => setStartMonth(Number(v))}>
                                                         <SelectTrigger className="h-11 border-2 border-slate-200 bg-white font-semibold text-slate-600 focus:ring-4 focus:ring-blue-500/10 hover:border-blue-300 hover:shadow-sm focus:border-blue-500 text-right w-full rounded-xl transition-all [&>span]:w-full [&>span]:text-right [&>span]:pr-3 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-800">
                                                             <SelectValue />
                                                         </SelectTrigger>
                                                         <SelectContent>
-                                                            <SelectItem value="jan-sept">Jan - Sept</SelectItem>
-                                                            <SelectItem value="oct-dec">Oct - Dec</SelectItem>
+                                                            {MONTHS.map((m, i) => <SelectItem key={m} value={String(i)}>{m}</SelectItem>)}
                                                         </SelectContent>
                                                     </Select>
                                                 </div>
@@ -284,10 +235,10 @@ export function StorageFeeCalculator() {
                             secondaryResults={[
                                 {
                                     key: "monthly_fee",
-                                    label: "Monthly Storage Fee",
+                                    label: `Fee in ${MONTHS[startMonth]}`,
                                     value: monthlyFee,
                                     isCurrency: true,
-                                    tooltip: "Cost per month",
+                                    tooltip: result ? `Per month: ${result.offPeakMonthly.toFixed(2)} January to September, ${result.peakMonthly.toFixed(2)} October to December.` : "Cost for the first month",
                                     icon: Calendar
                                 },
                                 ...(longTermFee > 0 ? [{
@@ -295,12 +246,13 @@ export function StorageFeeCalculator() {
                                     label: "Long-Term Storage Fee",
                                     value: longTermFee,
                                     isCurrency: true,
-                                    tooltip: "Extra cost for aged inventory",
+                                    tooltip: "A flat estimate of $1.50 per cubic foot for each month beyond the sixth. Amazon's real surcharge rises in tiers with the inventory's age.",
                                     icon: Clock
                                 }] : [])
                             ]}
                             showLiveBadge={true}
-                            liveBadgeText={season === "oct-dec" ? "Peak Rates Active" : "Standard Rates Active"}
+                            liveBadgeText="Estimate"
+                            liveBadgeColor="slate"
                             isCalculated={isCalculated}
                             description={isCalculated ? insightText : "Fill in dimensions and inventory to see cost insights."}
                             emptyMessage="Storage Cost"

@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Tag, DollarSign, Percent, ChevronDown, ChevronUp, Settings2, CreditCard, Megaphone } from "lucide-react"
 import { CalculatorCardHeader, CalculatorInput, FadeIn, ResultSummaryCard } from "@/app/tools/_shared/components"
 import { EtsyFeeBreakdown } from "./EtsyFeeBreakdown"
+import { etsyFees } from "./calc"
 
 export function EtsyFeeCalculator() {
     const [currency, setCurrency] = useState("USD")
@@ -26,17 +27,6 @@ export function EtsyFeeCalculator() {
     const [paymentFeeFixed, setPaymentFeeFixed] = useState<number | "">("") // $0.25
     const [offsiteAdsFee, setOffsiteAdsFee] = useState<number | "">("") // 0 / 12 / 15%
 
-    // Results
-    const [totalRevenue, setTotalRevenue] = useState(0)
-    const [totalFees, setTotalFees] = useState(0)
-    const [netProfit, setNetProfit] = useState(0)
-    const [margin, setMargin] = useState(0)
-    // Breakdown sub-fees
-    const [calcListingFee, setCalcListingFee] = useState(0)
-    const [calcTransFee, setCalcTransFee] = useState(0)
-    const [calcPayFee, setCalcPayFee] = useState(0)
-    const [calcAdFee, setCalcAdFee] = useState(0)
-
     useEffect(() => {
         if (listingFee === "") setListingFee(0.20)
         if (transactionFeeVar === "") setTransactionFeeVar(6.5)
@@ -56,58 +46,32 @@ export function EtsyFeeCalculator() {
         setOffsiteAdsFee("")
     }
 
-    useEffect(() => {
-        const p = Number(price) || 0
-        const sc = Number(shippingCharged) || 0
-        const cost = Number(itemCost) || 0
-        const shipCost = Number(shippingCost) || 0
-        const lFee = Number(listingFee) || 0
-        const tRate = Number(transactionFeeVar) || 0
-        const payRate = Number(paymentFeeVar) || 0
-        const payFixed = Number(paymentFeeFixed) >= 0 && paymentFeeFixed !== "" ? Number(paymentFeeFixed) : 0
-        const adRate = Number(offsiteAdsFee) || 0
-
-        const revenue = p + sc
-
-        if (revenue === 0) {
-            setTotalRevenue(0)
-            setTotalFees(0)
-            setNetProfit(0)
-            setMargin(0)
-            setCalcListingFee(0)
-            setCalcTransFee(0)
-            setCalcPayFee(0)
-            setCalcAdFee(0)
-            return
-        }
-
-        const transFee = revenue * (tRate / 100)
-        const payFee = (revenue * (payRate / 100)) + payFixed
-        const adFee = revenue * (adRate / 100)
-        const fees = lFee + transFee + payFee + adFee
-
-        const totalCost = cost + shipCost + fees
-        const profit = revenue - totalCost
-        const calcMarginVal = (profit / revenue) * 100
-
-        setTotalRevenue(revenue)
-        setTotalFees(fees)
-        setNetProfit(profit)
-        setMargin(calcMarginVal)
-        setCalcListingFee(lFee)
-        setCalcTransFee(transFee)
-        setCalcPayFee(payFee)
-        setCalcAdFee(adFee)
-    }, [price, shippingCharged, itemCost, shippingCost, listingFee, transactionFeeVar, paymentFeeVar, paymentFeeFixed, offsiteAdsFee])
+    // Etsy caps the offsite ads fee at $100 per order (a US dollar amount, like the fixed fees).
+    const OFFSITE_ADS_CAP = 100
+    const result = etsyFees({
+        itemPrice: Number(price) || 0,
+        shippingCharged: Number(shippingCharged) || 0,
+        itemCost: Number(itemCost) || 0,
+        shippingCost: Number(shippingCost) || 0,
+        listingFee: Number(listingFee) || 0,
+        transactionPercent: Number(transactionFeeVar) || 0,
+        paymentPercent: Number(paymentFeeVar) || 0,
+        paymentFixed: Number(paymentFeeFixed) || 0,
+        offsiteAdsPercent: Number(offsiteAdsFee) || 0,
+        offsiteAdsCap: OFFSITE_ADS_CAP,
+    })
+    const totalRevenue = result?.revenue ?? 0
+    const totalFees = result?.totalFees ?? 0
+    const netProfit = result?.netProfit ?? 0
+    const margin = result?.margin ?? 0
 
     const isValid =
+        result !== null &&
         price !== "" &&
         itemCost !== "" &&
         transactionFeeVar !== "" &&
         paymentFeeVar !== "" &&
         paymentFeeFixed !== "" && Number(paymentFeeFixed) >= 0
-
-    const isLive = totalRevenue > 0
 
     return (
         <FadeIn className="w-full max-w-6xl mx-auto py-8 px-4" duration={0.6}>
@@ -116,7 +80,6 @@ export function EtsyFeeCalculator() {
                 <div className="lg:col-span-7 space-y-3">
                     <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            title="Sale & Fee Details"
                             description="Enter your item price, costs, and Etsy fee settings."
                             onReset={handleReset}
                             guideId="etsy-fee-guide"
@@ -291,9 +254,9 @@ export function EtsyFeeCalculator() {
                                                             step={0.01}
                                                             min={0}
                                                             max={100}
-                                                            tooltip="Only applies if a buyer found you through an Etsy Offsite Ad. Use 15% if under $10k/year sales, or 12% if over."
+                                                            tooltip="Only applies if a buyer found you through an Etsy offsite ad. Use 15%, or 12% if your shop sold over $10,000 in the past year. Etsy caps this fee at $100 per order."
                                                             isOptional
-                                                            hint={!offsiteAdsFee || Number(offsiteAdsFee) === 0 ? "Typical: 15% (opt-in) or 12% (>$10k sales)" : undefined}
+                                                            hint={result?.adCapped ? "Held at Etsy's $100 cap per order" : !offsiteAdsFee || Number(offsiteAdsFee) === 0 ? "15%, or 12% for shops over $10,000 a year" : undefined}
                                                         />
                                                     </div>
                                                 </div>
@@ -329,7 +292,7 @@ export function EtsyFeeCalculator() {
                         }
                         dynamicMessages={{
                             positive: `You keep ${margin.toFixed(1)}% of the sale price as net profit after all Etsy fees and costs.`,
-                            negative: `Your costs exceed your revenue. Consider raising your price or reducing fees.`,
+                            negative: `Your fees and costs come to more than the buyer pays.`,
                             neutral: "You broke even on this sale. No profit, no loss."
                         }}
                         primaryResult={{
@@ -369,16 +332,19 @@ export function EtsyFeeCalculator() {
                         <EtsyFeeBreakdown
                             isDetailed={showAdvanced}
                             netProfit={netProfit}
-                            listingFee={calcListingFee}
-                            transFee={calcTransFee}
-                            payFee={calcPayFee}
-                            adFee={calcAdFee}
+                            listingFee={result?.listingFee ?? 0}
+                            transFee={result?.transactionFee ?? 0}
+                            payFee={result?.paymentFee ?? 0}
+                            adFee={result?.adFee ?? 0}
                             productCost={Number(itemCost) || 0}
                             shippingCost={Number(shippingCost) || 0}
                             totalRevenue={totalRevenue}
                             currency={currency}
                         />
                         <RatesChecked source={ETSY.source} />
+                        {currency !== "USD" && (
+                            <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">The $0.20 listing fee, the $0.25 payment fee and the $100 offsite ads cap are Etsy&apos;s US dollar amounts. Change the fee fields to your country&apos;s rates.</p>
+                        )}
                     </div>
                 </div>
             </div>

@@ -16,7 +16,7 @@ export default function AmazonStorageFeeCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Amazon Storage Fee Calculator" />
+                <ToolPageTitle title="Amazon storage fee calculator" />
                 <div className="mb-20">
                     <StorageFeeCalculator />
                 </div>
@@ -35,11 +35,11 @@ export default function AmazonStorageFeeCalculatorPage() {
                             faqs={[
                                     {
                                         question: "How are Amazon FBA storage fees calculated?",
-                                        answer: "By volume: the cubic feet your units take, times a monthly rate that depends on the season and whether the item is standard-size or oversize. Units that stay more than six months pay a long-term surcharge on top."
+                                        answer: "By volume: the cubic feet your units take, times a monthly rate that depends on the season and whether the item is standard-size or oversize. Units that stay more than six months pay an aged-inventory surcharge on top."
                                     },
                                     {
                                         question: "What is the peak-season rate?",
-                                        answer: "From October to December, standard-size storage costs $2.40 per cubic foot a month instead of $0.87, and oversize $1.40 instead of $0.56, in the rate card this calculator uses."
+                                        answer: "October to December. In the estimated rates this calculator uses, standard-size storage is $2.40 per cubic foot a month then instead of $0.87, and oversize $1.40 instead of $0.56. Check the current rates in Seller Central."
                                     },
                                     {
                                         question: "What counts as oversize?",

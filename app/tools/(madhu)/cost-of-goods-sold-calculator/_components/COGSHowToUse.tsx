@@ -8,8 +8,8 @@ export function COGSHowToUse() {
             title="How to use this calculator"
             steps={[
                 { title: "Type the product cost and the quantity", description: "Product cost is what you pay the supplier for one unit. Quantity is how many units you're ordering; the total uses it.", icon: Coins },
-                { title: "Add shipping, packaging and fulfilment per unit", description: "Shipping is the inbound freight divided by the units in the shipment. Packaging is the box, filler and label. Fulfilment is the pick, pack and ship fee per order.", icon: Package },
-                { title: "Read the results", description: "The cost per unit is the main number; the total for the quantity sits beside it. Change any input and both update.", icon: Table },
+                { title: "Add shipping, packaging and fulfilment per unit", description: "Shipping is the inbound freight divided by the units in the shipment. Packaging is the box, filler and label. Fulfilment is the pick, pack and ship fee per order. Leave any of them blank if they don't apply.", icon: Package },
+                { title: "Read the results", description: "The total for the quantity is the main number, with the cost per unit beside it. Add a selling price to see the gross margin. Change any input and they update.", icon: Table },
             ]}
         />
     )

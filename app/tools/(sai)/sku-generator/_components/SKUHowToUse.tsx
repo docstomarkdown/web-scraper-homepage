@@ -19,7 +19,7 @@ export function SKUHowToUse() {
                 },
                 {
                     title: "Copy or export",
-                    description: "The SKU appears as you type. Add it to the list, repeat for other products, and download the list as a CSV for your inventory system.",
+                    description: "The SKU appears as you type, with spaces and symbols removed. Add it to the list; the running number steps up and a SKU already in the list is refused. Download the list as a CSV for your inventory system.",
                     icon: FileText,
                 },
             ]}

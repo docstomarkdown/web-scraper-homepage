@@ -5,14 +5,15 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import { TrendingUp, DollarSign, Percent, BarChart3 } from "lucide-react"
 import { CalculatorCardHeader, CalculatorInput, Counter, CurrencyCombobox, FadeIn, ResultFeedbackCard } from "@/app/tools/_shared/components"
+import { calculateRoi, daysBetween, localDateString, yearsFromLength } from "./calc"
 export function ROICalculator() {
     const [currency, setCurrency] = useState("USD")
     const [amountInvested, setAmountInvested] = useState<number | "">("")
     const [amountReturned, setAmountReturned] = useState<number | "">("")
     const [mode, setMode] = useState<"dates" | "length">("dates")
     // Date mode states
-    const [fromDate, setFromDate] = useState<string>(new Date().toISOString().split('T')[0])
-    const [toDate, setToDate] = useState<string>(new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0])
+    const [fromDate, setFromDate] = useState<string>(localDateString(new Date()))
+    const [toDate, setToDate] = useState<string>(localDateString(new Date(new Date().setFullYear(new Date().getFullYear() + 1))))
     // Length mode states
     const [lengthValue, setLengthValue] = useState<number | "">("")
     const [lengthUnit, setLengthUnit] = useState<"days" | "months" | "years">("years")
@@ -29,46 +30,18 @@ export function ROICalculator() {
         setAmountInvested("")
         setAmountReturned("")
         setLengthValue("")
-        setFromDate(new Date().toISOString().split('T')[0])
-        setToDate(new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0])
+        setFromDate(localDateString(new Date()))
+        setToDate(localDateString(new Date(new Date().setFullYear(new Date().getFullYear() + 1))))
     }
     // Calculations
     const invested = val(amountInvested)
     const returned = val(amountReturned)
-    // Calculate investment length in years
-    let years = 0
-    if (mode === "dates") {
-        const start = new Date(fromDate)
-        const end = new Date(toDate)
-        const diffTime = end.getTime() - start.getTime()
-        const diffDays = Math.max(0, Math.ceil(diffTime / (1000 * 60 * 60 * 24)))
-        years = diffDays / 365
-    } else {
-        const lv = val(lengthValue)
-        if (lengthUnit === "years") years = Math.max(0, lv)
-        else if (lengthUnit === "months") years = Math.max(0, lv / 12)
-        else if (lengthUnit === "days") years = Math.max(0, lv / 365)
-    }
-    const investmentGain = returned - invested
-    // Safety check for ROI calculation
-    const totalROI = (invested > 0 && Number.isFinite(investmentGain))
-        ? (investmentGain / invested) * 100
-        : 0
-    // Annualized ROI formula: ((Returned / Invested) ^ (1 / years) - 1) * 100
-    // We need to be very defensive here to prevent NaN/Infinity
-    let annualizedROI = 0
-    if (invested > 0 && returned > 0 && years > 0) {
-        const ratio = returned / invested
-        const result = (Math.pow(ratio, 1 / years) - 1) * 100
-        if (Number.isFinite(result)) {
-            annualizedROI = result
-        }
-    }
-    // Final safety check for all values passed to the UI
-    const safeROI = Number.isFinite(totalROI) ? totalROI : 0
-    const safeAnnualized = Number.isFinite(annualizedROI) ? annualizedROI : 0
-    const safeGain = Number.isFinite(investmentGain) ? investmentGain : 0
-    const safeYears = Number.isFinite(years) ? years : 0
+    // Investment length in years
+    const years = mode === "dates" ? daysBetween(fromDate, toDate) / 365 : yearsFromLength(lengthValue, lengthUnit)
+    const result = calculateRoi(amountInvested, amountReturned, years)
+    const safeROI = result?.roi ?? 0
+    const safeGain = result?.gain ?? 0
+    const safeYears = years
     const formatCurrency = (val: number) => {
         return new Intl.NumberFormat('en-US', {
             style: 'currency',
@@ -141,7 +114,7 @@ export function ROICalculator() {
                                 </div>
                                 <motion.div
                                     layout
-                                    initial={{ opacity: 0, y: 10 }}
+                                    initial={{ y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     key={mode}
                                     className="space-y-3"
@@ -207,9 +180,9 @@ export function ROICalculator() {
                         valueColor={safeGain > 0 ? "text-blue-400" : (safeGain < 0 ? "text-red-400" : "text-white")}
                     />
                     {/* Return Indicator */}
-                    {invested > 0 && returned > 0 && (
+                    {result && (
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
+                            initial={{ scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
                             className={cn(
                                 "px-4 py-3 rounded-xl border text-center text-sm font-semibold",
@@ -227,14 +200,14 @@ export function ROICalculator() {
                                 : safeROI >= 20
                                     ? " Strong return"
                                     : safeROI >= 0
-                                        ? " Positive Return"
-                                        : " Loss on Investment"}
+                                        ? " Positive return"
+                                        : " Loss on investment"}
                         </motion.div>
                     )}
                     {/* Investment Breakdown */}
-                    {invested > 0 || returned > 0 ? (
+                    {result ? (
                         <motion.div
-                            initial={{ opacity: 0, y: 10 }}
+                            initial={{ y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500 dark:bg-slate-900 dark:border-slate-800"
                         >
@@ -264,17 +237,15 @@ export function ROICalculator() {
                                         {safeYears >= 1 ? `${safeYears.toFixed(1)} years` : `${Math.round(safeYears * 365)} days`}
                                     </span>
                                 </div>
-                                {safeAnnualized !== 0 && (
-                                    <div className="flex justify-between items-center px-5 py-4 bg-blue-50/50 dark:bg-blue-950/40">
-                                        <span className="text-sm font-bold text-blue-700 dark:text-blue-400">Annualized Return</span>
-                                        <span className="text-base font-bold text-blue-700 dark:text-blue-400">{safeAnnualized.toFixed(2)}%</span>
-                                    </div>
-                                )}
+                                <div className="flex justify-between items-center px-5 py-4 bg-blue-50/50 dark:bg-blue-950/40">
+                                    <span className="text-sm font-bold text-blue-700 dark:text-blue-400">Annualized Return</span>
+                                    <span className="text-base font-bold text-blue-700 dark:text-blue-400">{result.annualised !== null ? `${result.annualised.toFixed(2)}%` : "Enter a period"}</span>
+                                </div>
                             </div>
                         </motion.div>
                     ) : (
                         <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center dark:bg-slate-900 dark:border-slate-800">
-                            <p className="text-sm text-slate-600 dark:text-slate-300">Enter values to see the investment breakdown.</p>
+                            <p className="text-sm text-slate-600 dark:text-slate-300">Ready when you are: enter the amount invested and returned to see the breakdown.</p>
                         </div>
                     )}
                 </div>

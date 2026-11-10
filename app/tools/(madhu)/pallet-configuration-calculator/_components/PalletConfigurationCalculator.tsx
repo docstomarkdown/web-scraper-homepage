@@ -19,6 +19,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { ResultFeedbackCard, ResultSummaryCard, CalculatorInput, CalculatorCardHeader } from "@/app/tools/_shared/components"
+import { palletConfig, PALLET_HEIGHT } from "./calc"
 
 type DimensionUnit = "in" | "cm"
 type PalletPreset = "standard" | "euro" | "custom"
@@ -39,7 +40,6 @@ const PALLET_PRESETS: Record<Exclude<PalletPreset, "custom">, PalletDimensions> 
     euro: { length: 47.24, width: 31.5 }, // 120cm × 80cm in inches
 }
 
-const PALLET_HEIGHT = 5.5 // Standard pallet thickness in inches
 
 // Converts a typed dimension between in and cm, rounded to 2 decimals. Blank or invalid input stays as typed.
 function convertDimension(value: string, to: DimensionUnit): string {
@@ -64,6 +64,7 @@ export function PalletConfigurationCalculator() {
     const [allowRotation, setAllowRotation] = useState(true)
     const [boxWeight, setBoxWeight] = useState("")
     const [maxPalletWeight, setMaxPalletWeight] = useState("")
+    const [palletWeight, setPalletWeight] = useState("")
     // Unit
     const [unit, setUnit] = useState<DimensionUnit>("in")
 
@@ -94,111 +95,32 @@ export function PalletConfigurationCalculator() {
     }, [unit])
 
     const results = useMemo(() => {
-        const boxL = parseFloat(boxDimensions.length || "0")
-        const boxW = parseFloat(boxDimensions.width || "0")
-        const boxH = parseFloat(boxDimensions.height || "0")
-        const bxWt = parseFloat(boxWeight || "0")
-        const maxWt = parseFloat(maxPalletWeight || "0")
-
-        if (boxL === 0 || boxW === 0 || boxH === 0) return null
-
-        const boxLIn = convertToInches(boxL)
-        const boxWIn = convertToInches(boxW)
-        const boxHIn = convertToInches(boxH)
-        // Blank fields fall back to the 48 × 40 in pallet and 72 in stack limit, whatever the unit
-        const palL = palletLength ? convertToInches(parseFloat(palletLength)) : 48
-        const palW = palletWidth ? convertToInches(parseFloat(palletWidth)) : 40
-        const maxH = maxStackHeight ? convertToInches(parseFloat(maxStackHeight)) : 72
-
-        const availableHeight = maxH - PALLET_HEIGHT
-
-        // Build orientations
-        const orientations = allowRotation
-            ? [
-                { name: "Standard", l: boxLIn, w: boxWIn, h: boxHIn },
-                { name: "Rotated 90°", l: boxWIn, w: boxLIn, h: boxHIn },
-                { name: "On Side (L)", l: boxHIn, w: boxWIn, h: boxLIn },
-                { name: "On Side (W)", l: boxLIn, w: boxHIn, h: boxWIn },
-                { name: "On End (L)", l: boxHIn, w: boxLIn, h: boxWIn },
-                { name: "On End (W)", l: boxWIn, w: boxHIn, h: boxLIn },
-            ]
-            : [{ name: "Standard", l: boxLIn, w: boxWIn, h: boxHIn }]
-
-        let best = {
-            unitsAlongLength: 0,
-            unitsAlongWidth: 0,
-            unitsPerLayer: 0,
-            layers: 0,
-            totalUnits: 0,
-            areaEfficiency: 0,
-            loadHeight: 0,
-            orientation: "Standard",
-        }
-
-        for (const o of orientations) {
-            if (o.l <= 0 || o.w <= 0) continue
-            const uL = Math.floor(palL / o.l)
-            const uW = Math.floor(palW / o.w)
-            const uPerLayer = uL * uW
-            if (uPerLayer === 0) continue
-
-            let layers = 0
-            if (o.h > 0 && availableHeight > 0) {
-                layers = Math.floor(availableHeight / o.h)
-            }
-
-            let totalUnits = uPerLayer * layers
-
-            // Weight constraint
-            if (bxWt > 0 && maxWt > 0 && totalUnits > 0) {
-                const maxByWeight = Math.floor(maxWt / bxWt)
-                totalUnits = Math.min(totalUnits, maxByWeight)
-                layers = uPerLayer > 0 ? Math.floor(totalUnits / uPerLayer) : 0
-                totalUnits = uPerLayer * layers
-            }
-
-            const usedArea = uPerLayer * (o.l * o.w)
-            const palletArea = palL * palW
-            const areaEfficiency = palletArea > 0 ? (usedArea / palletArea) * 100 : 0
-            const loadHeight = layers * (o.h > 0 ? o.h : 0) + PALLET_HEIGHT
-
-            const isBetter =
-                totalUnits > best.totalUnits ||
-                (totalUnits === best.totalUnits && totalUnits > 0 && areaEfficiency > best.areaEfficiency) ||
-                (best.totalUnits === 0 && totalUnits === 0 && uPerLayer > best.unitsPerLayer)
-
-            if (isBetter) {
-                best = {
-                    unitsAlongLength: uL,
-                    unitsAlongWidth: uW,
-                    unitsPerLayer: uPerLayer,
-                    layers,
-                    totalUnits,
-                    areaEfficiency,
-                    loadHeight,
-                    orientation: o.name,
-                }
-            }
-        }
-
-        const totalWeight = bxWt > 0 ? best.totalUnits * bxWt : null
-        const hasWeightInput = bxWt > 0
-
+        const num = (v: string) => parseFloat(v)
+        const best = palletConfig({
+            boxL: convertToInches(num(boxDimensions.length)),
+            boxW: convertToInches(num(boxDimensions.width)),
+            boxH: convertToInches(num(boxDimensions.height)),
+            // Blank fields fall back to the 48 × 40 in pallet and 72 in stack limit, whatever the unit
+            palletL: palletLength ? convertToInches(num(palletLength)) : 48,
+            palletW: palletWidth ? convertToInches(num(palletWidth)) : 40,
+            maxHeight: maxStackHeight ? convertToInches(num(maxStackHeight)) : 72,
+            allowRotation,
+            boxWeight: num(boxWeight),
+            maxWeight: num(maxPalletWeight),
+            palletWeight: num(palletWeight),
+        })
+        if (!best) return null
         const warnings: string[] = []
         if (best.areaEfficiency < 80 && best.unitsPerLayer > 0) warnings.push("Low area utilization — try a different pallet size")
-        if (best.loadHeight > 96) warnings.push("Height exceeds standard 96\" limit")
-        if (best.totalUnits === 0 && boxH > 0) warnings.push("Configuration not possible with given limits")
-
+        if (best.totalUnits === 0) warnings.push("Configuration not possible with given limits")
         return {
             ...best,
-            totalWeight,
-            hasWeightInput,
-            maxH,
+            hasWeightInput: best.totalWeight !== null,
+            maxH: maxStackHeight ? convertToInches(num(maxStackHeight)) : 72,
             warnings,
-            palL,
-            palW,
         }
-    }, [boxDimensions, palletLength, palletWidth, maxStackHeight, allowRotation, boxWeight, maxPalletWeight, convertToInches])
+    }, [boxDimensions, palletLength, palletWidth, maxStackHeight, allowRotation, boxWeight, maxPalletWeight, palletWeight, convertToInches])
+    const weightUnit = unit === "cm" ? "kg" : "lb"
 
     const arrangement = results
         ? `${results.unitsAlongLength} × ${results.unitsAlongWidth} × ${results.layers}`
@@ -211,7 +133,6 @@ export function PalletConfigurationCalculator() {
                 <div className="lg:col-span-7 h-full">
                     <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden h-full flex flex-col dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            title="Pallet Configuration Calculator"
                             description="Enter box dimensions and pallet details to find the optimal loading arrangement."
                             onReset={() => {
                                 setBoxDimensions({ length: "", width: "", height: "" })
@@ -222,6 +143,7 @@ export function PalletConfigurationCalculator() {
                                 setAllowRotation(true)
                                 setBoxWeight("")
                                 setMaxPalletWeight("")
+                                setPalletWeight("")
                                 setShowAdvanced(false)
                             }}
                         />
@@ -503,23 +425,32 @@ export function PalletConfigurationCalculator() {
                                             <CalculatorInput
                                                 hideSeparator={false}
                                                 label="Box Weight"
-                                                suffix="lb"
+                                                suffix={weightUnit}
                                                 value={boxWeight}
                                                 onChange={(val) => setBoxWeight(val.toString())}
                                                 placeholder="10.00"
                                                 type="number"
-                                                tooltip="Weight of a single box in pounds (optional)"
+                                                tooltip="Weight of a single box (optional)"
                                                 groupingTitle="Weight"
                                                 groupingIcon={Scale}
                                             />
                                             <CalculatorInput
                                                 label="Max Pallet Weight"
-                                                suffix="lb"
+                                                suffix={weightUnit}
                                                 value={maxPalletWeight}
                                                 onChange={(val) => setMaxPalletWeight(val.toString())}
                                                 placeholder="2500.00"
                                                 type="number"
-                                                tooltip="Maximum total weight this pallet can carry in pounds (optional)"
+                                                tooltip="Maximum total weight this pallet can carry, pallet included (optional)"
+                                            />
+                                            <CalculatorInput
+                                                label="Pallet Weight"
+                                                suffix={weightUnit}
+                                                value={palletWeight}
+                                                onChange={(val) => setPalletWeight(val.toString())}
+                                                placeholder={unit === "cm" ? "25.00" : "50.00"}
+                                                type="number"
+                                                tooltip="The empty pallet's own weight. It counts toward the limit and the total (optional)"
                                             />
                                         </div>
                                     )}
@@ -578,8 +509,8 @@ export function PalletConfigurationCalculator() {
                                     key: "totalWeight",
                                     label: "Total Weight",
                                     value: results.totalWeight ?? 0,
-                                    unit: "lb",
-                                    tooltip: "Total weight of all boxes on the pallet",
+                                    unit: weightUnit,
+                                    tooltip: "Total weight of the boxes plus the empty pallet",
                                     icon: Scale,
                                 }]
                                 : []),

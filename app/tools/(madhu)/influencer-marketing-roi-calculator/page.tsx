@@ -18,7 +18,7 @@ export default function InfluencerROICalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Influencer Marketing ROI Calculator" />
+                <ToolPageTitle title="Influencer marketing ROI calculator" />
                 <div className="mb-20">
                     <InfluencerROICalculator />
                 </div>
@@ -53,7 +53,7 @@ export default function InfluencerROICalculatorPage() {
                                 },
                                 {
                                     question: "What is a good influencer ROI?",
-                                    answer: "Many brands aim for at least 100%, meaning the campaign returns twice its cost. Awareness campaigns often accept less.",
+                                    answer: "One above 0%, which means the campaign brought in more than it cost; how far above depends on your margin, since ROI here is on revenue. A 100% ROI means revenue was twice the cost. Awareness campaigns often accept less.",
                                 },
                                 {
                                     question: "Should I use revenue or profit for the revenue field?",

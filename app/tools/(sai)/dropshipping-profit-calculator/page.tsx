@@ -2,7 +2,7 @@ import { Metadata } from "next"
 import { DropshippingCalculator } from "./_components/DropshippingCalculator"
 import { DropshippingHowToUse } from "./_components/DropshippingHowToUse"
 import { ProfitGuide } from "./_components/ProfitGuide"
-import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
+import { FadeIn, RelatedProduct, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
     title: "Dropshipping Profit Calculator: Net Profit After RTO",
@@ -13,8 +13,11 @@ export default function DropshippingCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Dropshipping Profit Calculator" direction="down" duration={0.6} />
+                <ToolPageTitle title="Dropshipping profit calculator" direction="down" duration={0.6} />
                 <DropshippingCalculator />
+                <div className="mt-8">
+                    <RelatedProduct before="To price against competitors, collect their listings and prices into a spreadsheet with" linkText="Web Scraper Pro's product details and reviews" href="/product-scraper" after="." />
+                </div>
                 <div className="max-w-4xl mx-auto mt-20 space-y-16">
                     <FadeIn delay={0.1}>
                         <DropshippingHowToUse />
@@ -32,7 +35,7 @@ export default function DropshippingCalculatorPage() {
                                     },
                                     {
                                         question: "What is RTO in dropshipping?",
-                                        answer: "Return to origin: the customer refuses or misses the delivery and the parcel comes back. You pay shipping both ways and the ad cost that produced the order, with no sale. With cash on delivery, 15% to 30% RTO is common."
+                                        answer: "Return to origin: the customer refuses or misses the delivery and the parcel comes back. You pay shipping both ways and the ad cost that produced the order, with no sale."
                                     },
                                     {
                                         question: "Why are ads counted on every order?",
@@ -40,7 +43,7 @@ export default function DropshippingCalculatorPage() {
                                     },
                                     {
                                         question: "What is a good margin for dropshipping?",
-                                        answer: "After all costs, 15% to 25% of revenue is a healthy range; below 10% one bad week of returns wipes it out. Work it out per product with this calculator rather than guessing from the gross markup."
+                                        answer: "There's no single figure. The net margin shown here is after ads, returns and shipping, so a thin one can disappear in a week of high returns. Work it out per product rather than guessing from the gross markup."
                                     },
                                     {
                                         question: "How do I calculate ads cost per product?",

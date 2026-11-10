@@ -104,7 +104,7 @@ export function SafetyStockBreakdown({
                                 Max Demand
                             </span>
                             <span className="text-xs sm:text-sm font-bold text-slate-900 tracking-tight dark:text-white">
-                                {pieTotal}
+                                {pieTotal.toLocaleString(undefined, { maximumFractionDigits: 2 })}
                             </span>
                             <span className="text-xs font-medium text-slate-600 dark:text-slate-300">units</span>
                         </div>
@@ -132,7 +132,7 @@ export function SafetyStockBreakdown({
                                 </div>
                                 <div className="flex items-center gap-3 shrink-0 ml-4">
                                     <span className="text-slate-600 dark:text-slate-300 font-semibold tabular-nums w-[76px] sm:w-[86px] text-right">
-                                        {item.value} units
+                                        {item.value.toLocaleString(undefined, { maximumFractionDigits: 2 })} units
                                     </span>
                                     <span className="font-extrabold text-slate-900 tabular-nums w-[32px] sm:w-[40px] text-right dark:text-white">
                                         {`${item.pct.toFixed(0)}%`}

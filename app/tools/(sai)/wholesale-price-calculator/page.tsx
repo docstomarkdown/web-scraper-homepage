@@ -3,7 +3,7 @@ import { WholesalePriceCalculator } from "./_components/WholesalePriceCalculator
 import { WholesalePriceHowToUse } from "./_components/WholesalePriceHowToUse"
 import { WholesalePriceGuide } from "./_components/WholesalePriceGuide"
 import { WholesalePriceOverview } from "./_components/WholesalePriceOverview"
-import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
+import { FadeIn, RelatedProduct, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
@@ -23,11 +23,11 @@ const faqs = [
     },
     {
         question: "How much lower should wholesale be than retail?",
-        answer: "Retailers usually mark wholesale up by 80% to 120%, so a $16.67 wholesale price supports a retail price around $30 to $35.",
+        answer: "It depends on the margin your retailers need. Ask them, or check what similar products sell for in shops, and make sure your wholesale price leaves room for their margin on top.",
     },
     {
         question: "What if the price comes out too high?",
-        answer: "Lower the cost, accept a smaller margin, or sell in larger quantities so fixed costs are spread thinner. The calculator shows the effect of each.",
+        answer: "Lower the cost or accept a smaller margin. Change either field to see the new price.",
     },
     {
         question: "Do I charge sales tax on wholesale sales?",
@@ -39,9 +39,12 @@ export default function WholesalePriceCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Wholesale Price Calculator" direction="down" duration={0.6} />
+                <ToolPageTitle title="Wholesale price calculator" direction="down" duration={0.6} />
                 <div className="mb-20">
                     <WholesalePriceCalculator />
+                </div>
+                <div className="mb-16">
+                    <RelatedProduct before="To price against competitors, collect their listings and prices into a spreadsheet with" linkText="Web Scraper Pro's product details and reviews" href="/product-scraper" after="." />
                 </div>
                 <div className="max-w-5xl mx-auto space-y-16">
                     <FadeIn delay={0.2}>

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const faqs = [
     {
         question: "How do I use safety stock in my reorder point?",
-        answer: "Add it to average daily sales × average lead time. With the example above, the reorder point is 140 + 280 = 420 units.",
+        answer: "Add it to average daily sales × average lead time. The calculator shows this as the reorder point: with 10 a day over 14 days and 280 units of safety stock, it is 140 + 280 = 420 units.",
     },
     {
         question: "Where do I find the worst-case numbers?",
@@ -39,7 +39,7 @@ export default function SafetyStockCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Safety Stock Calculator" direction="down" duration={0.6} />
+                <ToolPageTitle title="Safety stock calculator" direction="down" duration={0.6} />
                 <div className="mb-20">
                     <SafetyStockCalculator />
                 </div>

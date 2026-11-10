@@ -4,7 +4,8 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { RefreshCw, TrendingUp, TrendingDown, ArrowRight } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import { cn } from "@/lib/utils"
-import { CalculatorCardHeader, CalculatorInput, Counter, CurrencyCombobox, FadeIn, ResultFeedbackCard } from "@/app/tools/_shared/components"
+import { CalculatorCardHeader, CalculatorInput, Counter, FadeIn, ResultFeedbackCard } from "@/app/tools/_shared/components"
+import { priceElasticity } from "./calc"
 export function PriceElasticityCalculator() {
     const [currency, setCurrency] = useState("USD")
     const [initialPrice, setInitialPrice] = useState<number | "">("")
@@ -17,47 +18,38 @@ export function PriceElasticityCalculator() {
         setInitialQuantity("")
         setFinalQuantity("")
     }
-    const val = (v: number | "") => (v === "" ? 0 : v)
     const formatCurrency = (val: number) => {
         return new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: currency,
-            maximumFractionDigits: 0
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
         }).format(val)
     }
-    // --- Calculations ---
-    const p1 = val(initialPrice)
-    const p2 = val(finalPrice)
-    const q1 = val(initialQuantity)
-    const q2 = val(finalQuantity)
-    const percentChangePrice = p1 > 0 ? ((p2 - p1) / p1) : 0
-    const percentChangeQuantity = q1 > 0 ? ((q2 - q1) / q1) : 0
-    const ped = percentChangePrice !== 0 ? (percentChangeQuantity / percentChangePrice) : 0
-    const absolutePed = Math.abs(ped)
-    let elasticityType = "Unitary Elastic"
-    let elasticityColor = "text-blue-400"
-    let elasticityBg = "bg-blue-500/10"
-    let elasticityDescription = "Demand changes proportionally to price."
-    if (absolutePed > 1) {
-        elasticityType = "Elastic Demand"
-        elasticityColor = "text-orange-400"
-        elasticityBg = "bg-orange-500/10"
-        elasticityDescription = "Consumers are highly sensitive to price changes."
-    } else if (absolutePed < 1 && absolutePed > 0) {
-        elasticityType = "Inelastic Demand"
-        elasticityColor = "text-blue-400"
-        elasticityBg = "bg-blue-500/10"
-        elasticityDescription = "Demand is relatively stable despite price changes."
-    } else if (absolutePed === 0 && (p1 > 0 || q1 > 0)) {
-        elasticityType = "Perfectly Inelastic"
-        elasticityColor = "text-slate-600 dark:text-slate-300"
-        elasticityBg = "bg-slate-500/10"
-        elasticityDescription = "Demand does not change with price."
+    // --- Calculations (midpoint method, see calc.ts) ---
+    const n = (v: number | "") => (v === "" ? null : v)
+    const result = priceElasticity({ initialPrice: n(initialPrice), finalPrice: n(finalPrice), initialQuantity: n(initialQuantity), finalQuantity: n(finalQuantity) })
+    const hasResult = result.ok
+    const percentChangePrice = result.ok ? result.priceChangePct / 100 : 0
+    const percentChangeQuantity = result.ok ? result.quantityChangePct / 100 : 0
+    const absolutePed = result.ok ? Math.abs(result.ped) : 0
+    const TYPES = {
+        "elastic": { label: "Elastic Demand", color: "text-orange-400", bg: "bg-orange-500/10", text: "Buyers are sensitive to price: sales change by more than the price did." },
+        "inelastic": { label: "Inelastic Demand", color: "text-blue-400", bg: "bg-blue-500/10", text: "Demand is relatively stable despite price changes." },
+        "unitary": { label: "Unitary Elastic", color: "text-blue-400", bg: "bg-blue-500/10", text: "Demand changes proportionally to price." },
+        "perfectly-inelastic": { label: "Perfectly Inelastic", color: "text-slate-600 dark:text-slate-300", bg: "bg-slate-500/10", text: "Sales did not change with price." },
     }
-    const initialRevenue = p1 * q1
-    const finalRevenue = p2 * q2
-    const revenueChange = finalRevenue - initialRevenue
-    const revenueChangePercent = initialRevenue > 0 ? (revenueChange / initialRevenue) * 100 : 0
+    const t = result.ok ? TYPES[result.type] : null
+    const elasticityType = t?.label ?? ""
+    const elasticityColor = t?.color ?? "text-slate-600 dark:text-slate-300"
+    const elasticityBg = t?.bg ?? "bg-slate-500/10"
+    const elasticityDescription = t?.text ?? (!result.ok && result.reason === "price-unchanged"
+        ? "The price must change between the two periods to measure elasticity."
+        : "Enter both prices and both quantities to see how sensitive demand is.")
+    const initialRevenue = result.ok ? result.initialRevenue : 0
+    const finalRevenue = result.ok ? result.finalRevenue : 0
+    const revenueChange = result.ok ? result.revenueChange : 0
+    const revenueChangePercent = result.ok ? result.revenueChangePct : 0
     return (
         <FadeIn className="w-full max-w-6xl mx-auto py-8 px-4" duration={0.6}>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -66,6 +58,8 @@ export function PriceElasticityCalculator() {
                     <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             description="Enter price and quantity changes."
+                            currency={currency}
+                            onCurrencyChange={setCurrency}
                             onReset={handleReset}
                         />
                         <CardContent className="space-y-3 pt-6">
@@ -78,6 +72,8 @@ export function PriceElasticityCalculator() {
                                 <div className="space-y-3">
                                     <CalculatorInput
                                         label="Initial Price"
+                                        currency={currency}
+                                        step={0.01}
                                         value={initialPrice}
                                         onChange={setInitialPrice}
                                         placeholder="50.00"
@@ -102,6 +98,8 @@ export function PriceElasticityCalculator() {
                                 <div className="space-y-3">
                                     <CalculatorInput
                                         label="Final Price"
+                                        currency={currency}
+                                        step={0.01}
                                         value={finalPrice}
                                         onChange={setFinalPrice}
                                         placeholder="45.00"
@@ -139,10 +137,16 @@ export function PriceElasticityCalculator() {
                         labelClassName="bg-blue-500/10 text-blue-400"
                         mainValue={
                             <div className="flex items-baseline gap-2">
-                                <Counter value={absolutePed} formatter={(v) => v.toFixed(2)} />
-                                <span className={`text-lg font-medium px-3 py-1 rounded-full ${elasticityBg} ${elasticityColor}`}>
-                                    {elasticityType}
-                                </span>
+                                {hasResult ? (
+                                    <>
+                                        <Counter value={result.ok ? result.ped : 0} formatter={(v) => v.toFixed(2)} />
+                                        <span className={`text-lg font-medium px-3 py-1 rounded-full ${elasticityBg} ${elasticityColor}`}>
+                                            {elasticityType}
+                                        </span>
+                                    </>
+                                ) : (
+                                    <span>–</span>
+                                )}
                             </div>
                         }
                         valueColor="text-white"
@@ -209,7 +213,8 @@ export function PriceElasticityCalculator() {
                                 <div
                                     className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-2 border-slate-600 rounded-full shadow-md transition-all duration-500 dark:bg-slate-900"
                                     style={{
-                                        left: `${Math.min(Math.max((absolutePed / 3) * 100, 0), 100)}%`
+                                        left: `${Math.min(Math.max((absolutePed / 3) * 100, 0), 100)}%`,
+                                        visibility: hasResult ? "visible" : "hidden"
                                     }}
                                 />
                             </div>
@@ -233,7 +238,7 @@ export function PriceElasticityCalculator() {
                                     <p className="text-sm text-slate-600 leading-relaxed mb-4 dark:text-slate-300">
                                         {elasticityDescription}
                                     </p>
-                                    <div className={`text-sm p-4 rounded-xl border ${absolutePed > 1 ? "bg-orange-50 border-orange-100 text-orange-800" : "bg-blue-50 border-blue-100 text-blue-800"}`}>
+                                    {hasResult && <div className={`text-sm p-4 rounded-xl border ${absolutePed > 1 ? "bg-orange-50 border-orange-100 text-orange-800" : "bg-blue-50 border-blue-100 text-blue-800"}`}>
                                         <div className="flex items-center gap-2 font-bold mb-1">
                                             <ArrowRight className="w-4 h-4" />
                                             Recommendation
@@ -244,7 +249,7 @@ export function PriceElasticityCalculator() {
                                                 : "Increasing prices may increase revenue as volume drop-off is minimal."
                                             }
                                         </p>
-                                    </div>
+                                    </div>}
                                 </div>
                             </div>
                         </div>

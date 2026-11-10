@@ -86,7 +86,7 @@ export function ACoSBreakdown({
                         </ResponsiveContainer>
                     ) : (
                         <div className="absolute inset-0 flex items-center justify-center text-center p-3 text-slate-600 dark:text-slate-300 text-xs leading-tight font-medium border-2 border-dashed border-slate-200/70 rounded-full bg-slate-50/40 dark:border-slate-800 dark:bg-slate-800/60">
-                            Add data to see breakdown
+                            Add your margin to see the breakdown
                         </div>
                     )}
                     {pieTotal > 0 && (

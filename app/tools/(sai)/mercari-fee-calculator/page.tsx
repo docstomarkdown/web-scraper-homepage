@@ -3,7 +3,7 @@ import { MercariFeeCalculator } from "./_components/MercariFeeCalculator"
 import { MercariFeeHowToUse } from "./_components/MercariFeeHowToUse"
 import { MercariFeeGuide } from "./_components/MercariFeeGuide"
 import { MercariFeeOverview } from "./_components/MercariFeeOverview"
-import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
+import { FadeIn, RelatedProduct, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
@@ -31,7 +31,7 @@ const faqs = [
     },
     {
         question: "What is a good margin on Mercari?",
-        answer: "After the 10% fee, many resellers aim for a 20% to 40% net margin on the sale price. Below 15%, check whether the listing is worth the time.",
+        answer: "There's no single figure. It depends on how much time each listing takes and how fast the item sells. Compare the profit shown here with the time you spend sourcing, listing and shipping the item.",
     },
     {
         question: "Are these fees exact?",
@@ -43,9 +43,12 @@ export default function MercariFeeCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Mercari Fee Calculator" direction="down" duration={0.6} />
+                <ToolPageTitle title="Mercari fee calculator" direction="down" duration={0.6} />
                 <div className="mb-20">
                     <MercariFeeCalculator />
+                </div>
+                <div className="mb-16">
+                    <RelatedProduct before="To price against competitors, collect their listings and prices into a spreadsheet with" linkText="Web Scraper Pro's product details and reviews" href="/product-scraper" after="." />
                 </div>
                 <div className="max-w-5xl mx-auto space-y-16">
                     <FadeIn delay={0.2}>

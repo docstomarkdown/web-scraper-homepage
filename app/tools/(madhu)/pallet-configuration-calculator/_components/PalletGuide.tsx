@@ -11,16 +11,16 @@ export function PalletGuide() {
             items={[
                 {
                     title: "The formula, in words",
-                    description: "Per layer, the pallet length divided by the carton length (whole number) times the pallet width divided by the carton width. The calculator tries the carton turned 90 degrees and keeps the better. Layers are the usable height divided by the carton height. Total is per layer times layers.",
+                    description: "Per layer, the pallet length divided by the carton length (whole number) times the pallet width divided by the carton width. The calculator tries the carton in all 6 orientations (upright only if rotation is off) and keeps the one with the most cartons. Layers are the usable height divided by the carton height. Total is per layer times layers.",
                     icon: Calculator,
-                    stat: "2 orientations",
-                    statLabel: "best per layer",
+                    stat: "6 orientations",
+                    statLabel: "best total",
                     iconBg: "bg-[#2772ED]/10 dark:bg-[#2772ED]/20",
                     iconColor: "text-[#1f5ec2] dark:text-[#7aa7ff]",
                     statColor: "text-blue-700 dark:text-blue-300",
                 },                {
                     title: "Height and weight limits",
-                    description: "The usable height is the maximum stack height minus 5.5 inches for the pallet itself. If a carton weight is set, the total is also capped at the weight limit divided by the carton weight, and the layers are recalculated from that.",
+                    description: "The usable height is the maximum stack height minus 5.5 inches for the pallet itself. If a carton weight and a limit are set, the limit minus the empty pallet's weight, divided by the carton weight, caps the total in whole layers.",
                     icon: AlertTriangle,
                     stat: "− 5.5 in",
                     statLabel: "for the pallet",

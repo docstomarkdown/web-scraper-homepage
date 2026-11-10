@@ -19,7 +19,7 @@ export function ROASHowToUse() {
                 },
                 {
                     title: "Read the ROAS",
-                    description: "The calculator shows ROAS as a multiple and a percentage, and the profit from the ads before product costs.",
+                    description: "The calculator shows ROAS as a multiple and a percentage, and the revenue above ad spend. Add your profit margin to see break-even ROAS, profit after product costs and whether the ads make money.",
                     icon: BarChart3,
                 },
             ]}

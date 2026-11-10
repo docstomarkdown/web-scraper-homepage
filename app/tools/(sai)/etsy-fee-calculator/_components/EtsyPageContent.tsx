@@ -4,16 +4,19 @@ import { EtsyFeeCalculator } from "./EtsyFeeCalculator"
 import { EtsyFeeGuide } from "./EtsyFeeGuide"
 import { EtsyFeeHowToUse } from "./EtsyFeeHowToUse"
 import { EtsyOverview } from "./EtsyOverview"
-import { FadeIn, ToolPageTitle, ToolFAQ } from "@/app/tools/_shared/components"
+import { FadeIn, RelatedProduct, ToolPageTitle, ToolFAQ } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export default function EtsyPageContent() {
     return (
         <div className="container mx-auto px-4">
-            <ToolPageTitle title="Etsy Fee Calculator" direction="down" duration={0.6} />
+            <ToolPageTitle title="Etsy fee calculator" direction="down" duration={0.6} />
 
             <div className="mb-20">
                 <EtsyFeeCalculator />
+            </div>
+            <div className="mb-16">
+                <RelatedProduct before="To price against competitors, collect their listings and prices into a spreadsheet with" linkText="Web Scraper Pro's product details and reviews" href="/product-scraper" after="." />
             </div>
 
             <div className="max-w-5xl mx-auto space-y-16" id="etsy-fee-guide">
@@ -44,7 +47,7 @@ export default function EtsyPageContent() {
                                     },
                                     {
                                         question: "What is the Etsy offsite ads fee?",
-                                        answer: "A 15% fee on orders that come from Etsy's ads on Google, Facebook and other sites within 30 days of the click, 12% for shops that sold over $10,000 in the past year. Shops under that threshold can opt out."
+                                        answer: "A 15% fee on orders that come from Etsy's ads on Google, Facebook and other sites within 30 days of the click, 12% for shops that sold over $10,000 in the past year, capped at $100 per order. Shops under that threshold can opt out."
                                     },
                                     {
                                         question: "When is the listing fee charged?",
@@ -52,7 +55,7 @@ export default function EtsyPageContent() {
                                     },
                                     {
                                         question: "Are payment processing fees the same everywhere?",
-                                        answer: "No. 3% plus $0.25 is the US rate; other countries have their own percentage and fixed fee. Change the two payment fields to match your country."
+                                        answer: "No. 3% plus $0.25 is the US rate; other countries have their own percentage and fixed fee. Change the two payment fields to match your country. The fixed fees are in US dollars, so changing the currency doesn't convert them."
                                     },
                                     {
                                         question: "Is this calculator free?",

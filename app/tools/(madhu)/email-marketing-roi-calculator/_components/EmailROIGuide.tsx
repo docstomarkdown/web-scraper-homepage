@@ -29,9 +29,9 @@ export function EmailROIGuide() {
                     statColor: "text-emerald-700 dark:text-emerald-300",
                 },                {
                     title: "A worked example",
-                    description: "10,000 subscribers at a 20% open rate is 2,000 opens. A 2.5% click rate gives 50 clicks; a 3% conversion rate gives about 2 orders. At $50 each that's $100 of revenue, so a $500 campaign loses $400. Raising the list to 100,000 turns the same rates into $1,000 of revenue and a 100% ROI.",
+                    description: "10,000 subscribers at a 20% open rate is 2,000 opens. A 2.5% click rate gives 50 clicks; a 3% conversion rate gives 1.5 orders on average. At $50 each that's $75 of revenue, so a $500 campaign loses $425, an ROI of −85%. At the same rates the break-even list size is 66,667 subscribers, and 100,000 subscribers bring 15 orders, $750 of revenue and a 50% ROI.",
                     icon: Table,
-                    stat: "100%",
+                    stat: "50%",
                     statLabel: "ROI at 100,000 subscribers",
                     iconBg: "bg-[#2772ED]/10 dark:bg-[#2772ED]/20",
                     iconColor: "text-[#1f5ec2] dark:text-[#7aa7ff]",

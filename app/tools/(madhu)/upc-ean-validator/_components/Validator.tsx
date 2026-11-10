@@ -31,134 +31,21 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-type BarcodeFormat = "UPC-A" | "EAN-13" | "EAN-8" | "UPC-E" | "Unknown"
-interface CalculationStep {
-    step: number
-    description: string
-    value: string
-}
-interface ValidationResult {
-    isValid: boolean
-    format: BarcodeFormat
-    checkDigit: string
-    expectedCheckDigit: string
-    message: string
-    details: string[]
-    calculationSteps: CalculationStep[]
-}
+import { validateBarcode, extractBarcodes, resultsToCsv, SAMPLE_CSV, type ValidationResult } from "./calc"
 
+/** Hands the visitor a text file to save. */
+function downloadText(filename: string, text: string) {
+    const url = URL.createObjectURL(new Blob([text], { type: "text/csv;charset=utf-8" }))
+    const a = document.createElement("a")
+    a.href = url
+    a.download = filename
+    a.click()
+    URL.revokeObjectURL(url)
+}
 export function Validator() {
     const { toast } = useToast()
     const [inputCode, setInputCode] = useState("")
     const [result, setResult] = useState<ValidationResult | null>(null)
-    // Memoize the validator function to use in the hook callback
-    // We need to implement validateBarcode inside the component or outside?
-    // It is inside. We need to be careful with dependencies.
-    // Ideally validateBarcode shouldn't depend on state, which it doesn't seems to.
-    // Check Digit Calculation (GTIN standard)
-    const calculateCheckDigit = (digits: string): { checkDigit: number, steps: CalculationStep[] } => {
-        const reversed = digits.split('').reverse().map(Number)
-        let sum = 0;
-        const steps: CalculationStep[] = [];
-        // Step 1: Sum odd/even positions
-        let sumOdd = 0;
-        let sumEven = 0;
-        reversed.forEach((digit, idx) => {
-            if (idx % 2 === 0) { // Odd position (from right, 0-indexed) -> multiply by 3
-                sumOdd += digit;
-            } else { // Even position -> multiply by 1
-                sumEven += digit;
-            }
-        });
-        // The logic for GTIN check digit:
-        // iterate from right to left (which we did by reversing).
-        // positions 1, 3, 5... (indices 0, 2, 4...) are x3
-        // positions 2, 4, 6... (indices 1, 3, 5...) are x1
-        const totalSum = (sumOdd * 3) + sumEven;
-        steps.push({
-            step: 1,
-            description: "Sum of digits in odd positions (from right) × 3",
-            value: `${sumOdd} × 3 = ${sumOdd * 3}`
-        });
-        steps.push({
-            step: 2,
-            description: "Sum of digits in even positions",
-            value: `${sumEven}`
-        });
-        steps.push({
-            step: 3,
-            description: "Add results together",
-            value: `${sumOdd * 3} + ${sumEven} = ${totalSum}`
-        });
-        const nearestTen = Math.ceil(totalSum / 10) * 10
-        const checkDigit = nearestTen - totalSum
-        steps.push({
-            step: 4,
-            description: "Subtract sum from nearest equal or higher multiple of 10",
-            value: `${nearestTen} - ${totalSum} = ${checkDigit}`
-        });
-        return { checkDigit, steps }
-    }
-    const validateBarcode = useCallback((code: string): ValidationResult => {
-        const cleanCode = code.replace(/[\s-]/g, "")
-        if (!/^\d+$/.test(cleanCode)) {
-            return {
-                isValid: false,
-                format: "Unknown",
-                checkDigit: "-",
-                expectedCheckDigit: "-",
-                message: "Invalid characters detected. Only numbers are allowed.",
-                details: ["Remove spaces, dashes, or letters."],
-                calculationSteps: []
-            }
-        }
-        let format: BarcodeFormat = "Unknown"
-        let isValid = false
-        let checkDigit = "-"
-        let expectedCheckDigit = "-"
-        let message = "Invalid"
-        let details: string[] = []
-        // Determine format based on length
-        if (cleanCode.length === 12) format = "UPC-A"
-        else if (cleanCode.length === 13) format = "EAN-13"
-        else if (cleanCode.length === 8) {
-            format = "EAN-8"
-        } else {
-            return {
-                isValid: false,
-                format: "Unknown",
-                checkDigit: "-",
-                expectedCheckDigit: "-",
-                message: `Invalid Length (${cleanCode.length} digits).`,
-                details: [
-                    "UPC-A: 12 digits",
-                    "EAN-13: 13 digits",
-                    "EAN-8 / UPC-E: 8 digits"
-                ],
-                calculationSteps: []
-            }
-        }
-        // Validate Check Digit
-        const dataDigits = cleanCode.slice(0, -1)
-        const providedCheck = cleanCode.slice(-1)
-        const { checkDigit: calculatedCheck, steps } = calculateCheckDigit(dataDigits)
-        checkDigit = providedCheck
-        expectedCheckDigit = calculatedCheck.toString()
-        if (parseInt(providedCheck) === calculatedCheck) {
-            isValid = true
-            message = "Valid Barcode"
-            details = [`Structure matches ${format} standard.`, "Check digit is correct."]
-        } else {
-            isValid = false
-            message = "Invalid Check Digit"
-            details = [
-                `Expected Check Digit: ${expectedCheckDigit}`,
-                `Found: ${providedCheck}`,
-                "The last digit does not match the calculated checksum."
-            ]
-        }
-        return { isValid, format, checkDigit, expectedCheckDigit, message, details, calculationSteps: steps }
-    }, [])
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const val = e.target.value
         if (/^[\d\s-]*$/.test(val)) {
@@ -172,7 +59,7 @@ export function Validator() {
         }
         setResult(validateBarcode(inputCode))
         // Auto-close details on new input
-    }, [inputCode, validateBarcode])
+    }, [inputCode])
     const clearAll = () => {
         setInputCode("")
         setResult(null)
@@ -205,13 +92,11 @@ export function Validator() {
             if (!text) return
 
             // Parse lines — supports comma-separated, newline-separated, or mixed
-            const codes = text
-                .split(/[\n\r,;]+/)
-                .map(line => line.trim().replace(/[\s-]/g, ""))
-                .filter(line => line.length > 0 && /^\d+$/.test(line))
+            // The barcode column (named barcode/UPC/EAN/GTIN), or the first column
+            const codes = extractBarcodes(text)
 
             if (codes.length === 0) {
-                toast({ title: "No valid barcodes found", description: "The file should contain numeric barcodes, one per line or comma-separated.", variant: "destructive" })
+                toast({ title: "No valid barcodes found", description: "Put the codes in the first column, or in a column named barcode, UPC, EAN or GTIN.", variant: "destructive" })
                 return
             }
 
@@ -227,7 +112,7 @@ export function Validator() {
         }
         reader.readAsText(file)
         e.target.value = '' // reset input
-    }, [validateBarcode, toast])
+    }, [toast])
 
     // Drag and drop handlers
     const handleDragOver = useCallback((e: React.DragEvent) => {
@@ -303,8 +188,7 @@ export function Validator() {
                     <FadeIn delay={0.2} direction="right">
                         <Card className="border border-slate-200 shadow-sm overflow-hidden bg-white min-h-[360px] dark:border-slate-800 dark:bg-slate-900">
                             <CalculatorCardHeader
-                                title="UPC/EAN Validator"
-                                description="Enter a barcode / upload an image / import a CSV/TXT file to check status—with bulk validation support."
+                                description="Type a barcode number, upload a photo of the label, or upload a CSV or TXT file to check many at once."
                                 guideId="how-to-use"
                                 tooltip="How to use this validator"
                                 onReset={clearAll}
@@ -322,7 +206,7 @@ export function Validator() {
                                             }
                                         }}
                                         placeholder="Ex: 036000291452"
-                                        tooltip="Enter EAN / UPC (8, 12, or 13 digits) to validate."
+                                        tooltip="Enter an EAN-8, UPC-A, EAN-13 or GTIN-14 number (8, 12, 13 or 14 digits). UPC-E isn't supported."
                                         type="text"
                                     />
                                 </div>
@@ -339,7 +223,7 @@ export function Validator() {
                                     {bulkResults.length > 0 ? (
                                         <motion.div
                                             key="bulk-success"
-                                            initial={{ opacity: 0, scale: 0.97 }}
+                                            initial={{ scale: 0.97 }}
                                             animate={{ opacity: 1, scale: 1 }}
                                             exit={{ opacity: 0, scale: 0.97 }}
                                             transition={{ duration: 0.25 }}
@@ -358,6 +242,14 @@ export function Validator() {
                                                     </p>
                                                 </div>
                                                 <button
+                                                    type="button"
+                                                    className="text-xs font-semibold text-blue-600 hover:text-blue-800 bg-blue-100 hover:bg-blue-200 px-3 py-1.5 rounded-lg transition-colors flex-shrink-0 dark:text-blue-400 dark:hover:text-blue-400 dark:bg-blue-900/40"
+                                                    onClick={() => downloadText(bulkFileName.replace(/\.[^.]+$/, "") + "-results.csv", resultsToCsv(bulkResults))}
+                                                >
+                                                    Download CSV
+                                                </button>
+                                                <button
+                                                    type="button"
                                                     className="text-xs font-semibold text-blue-600 hover:text-blue-800 bg-blue-100 hover:bg-blue-200 px-3 py-1.5 rounded-lg transition-colors flex-shrink-0 dark:text-blue-400 dark:hover:text-blue-400 dark:bg-blue-900/40"
                                                     onClick={() => { setBulkResults([]); setBulkFileName("") }}
                                                 >
@@ -368,7 +260,7 @@ export function Validator() {
                                     ) : (
                                         <motion.div
                                             key="upload-options"
-                                            initial={{ opacity: 0 }}
+                                            initial={false}
                                             animate={{ opacity: 1 }}
                                             exit={{ opacity: 0 }}
                                             transition={{ duration: 0.2 }}
@@ -399,7 +291,7 @@ export function Validator() {
                                                             Drop file here or <span className="text-blue-600 hover:text-blue-700 transition-colors dark:text-blue-400 dark:hover:text-blue-400">browse</span>
                                                         </p>
                                                         <p className="text-[11.5px] text-slate-600 dark:text-slate-300 leading-relaxed">
-                                                            Supports barcode images, CSV, or TXT files
+                                                            A photo of a barcode, or a CSV or TXT file
                                                         </p>
                                                         <div className="flex items-center justify-center gap-2 pt-1">
                                                             <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100 dark:bg-blue-950/40 dark:border-blue-900/50">
@@ -414,6 +306,16 @@ export function Validator() {
                                                     </div>
                                                 </div>
                                             </div>
+                                            <p className="text-xs text-slate-600 dark:text-slate-300 mt-3 text-center">
+                                                For a CSV, put the codes in the first column or a column named barcode, UPC, EAN or GTIN.{" "}
+                                                <button
+                                                    type="button"
+                                                    className="font-semibold text-[#1f5ec2] underline underline-offset-2 dark:text-[#7aa7ff]"
+                                                    onClick={() => downloadText("upc-ean-sample.csv", SAMPLE_CSV)}
+                                                >
+                                                    Download a sample CSV
+                                                </button>
+                                            </p>
                                         </motion.div>
                                     )}
                                 </AnimatePresence>
@@ -427,7 +329,7 @@ export function Validator() {
                         <div className="space-y-3">
                             {/* Unified Result Card — shows bulk OR single, never both */}
                             <motion.div
-                                initial={{ opacity: 0, y: 20 }}
+                                initial={{ y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                             >
@@ -454,7 +356,7 @@ export function Validator() {
                                             </div>
                                         ) : result ? (
                                             <motion.div
-                                                initial={{ opacity: 0 }}
+                                                initial={false}
                                                 animate={{ opacity: 1 }}
                                                 transition={{ duration: 0.4, ease: "easeInOut" }}
                                                 className={cn(
@@ -478,7 +380,7 @@ export function Validator() {
                                             /* ═══════════ BULK STATE ═══════════ */
                                             <motion.div
                                                 key="bulk-state"
-                                                initial={{ opacity: 0 }}
+                                                initial={false}
                                                 animate={{ opacity: 1 }}
                                                 exit={{ opacity: 0 }}
                                                 transition={{ duration: 0.35, ease: "easeInOut" }}
@@ -487,7 +389,7 @@ export function Validator() {
                                                 {bulkResults.map((item, idx) => (
                                                     <motion.div
                                                         key={idx}
-                                                        initial={{ opacity: 0, y: 6 }}
+                                                        initial={{ y: 6 }}
                                                         animate={{ opacity: 1, y: 0 }}
                                                         transition={{ duration: 0.22, delay: idx * 0.025, ease: "easeOut" }}
                                                         className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-3.5 flex items-center justify-between gap-3 dark:bg-slate-900 dark:border-slate-800"
@@ -520,7 +422,7 @@ export function Validator() {
                                             /* ═══════════ EMPTY STATE ═══════════ */
                                             <motion.div
                                                 key="empty-state"
-                                                initial={{ opacity: 0 }}
+                                                initial={false}
                                                 animate={{ opacity: 1 }}
                                                 exit={{ opacity: 0 }}
                                                 transition={{ duration: 0.4, ease: "easeInOut" }}
@@ -529,7 +431,7 @@ export function Validator() {
                                                 <div className="relative">
                                                     <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
                                                         <motion.div
-                                                            initial={{ opacity: 0 }}
+                                                            initial={false}
                                                             animate={{ opacity: 1 }}
                                                             transition={{ duration: 0.55, ease: "easeOut" }}
                                                             className="bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_8px_40px_rgba(59,130,246,0.12)] rounded-2xl px-6 py-5 flex flex-col items-center gap-3 w-fit max-w-[320px] pointer-events-auto dark:bg-slate-900/80 dark:border-slate-800"
@@ -585,7 +487,7 @@ export function Validator() {
                                             /* ═══════════ RESULTS STATE ═══════════ */
                                             <motion.div
                                                 key="results-state"
-                                                initial={{ opacity: 0 }}
+                                                initial={false}
                                                 animate={{ opacity: 1 }}
                                                 exit={{ opacity: 0 }}
                                                 transition={{ duration: 0.55, ease: "easeInOut" }}
@@ -594,7 +496,7 @@ export function Validator() {
                                                 {/* ── Primary Hero: Valid / Invalid ── */}
                                                 <div className="px-5 pb-4">
                                                     <motion.div
-                                                        initial={{ opacity: 0 }}
+                                                        initial={false}
                                                         animate={{ opacity: 1 }}
                                                         transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
                                                         className="relative flex flex-col items-center text-center py-6 px-4 rounded-2xl bg-slate-50/70 border border-slate-100/80 dark:bg-slate-800/60 dark:border-slate-800"
@@ -602,7 +504,7 @@ export function Validator() {
 
 
                                                         <motion.div
-                                                            initial={{ opacity: 0 }}
+                                                            initial={false}
                                                             animate={{ opacity: 1 }}
                                                             transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
                                                             className="flex items-baseline justify-center"
@@ -616,7 +518,7 @@ export function Validator() {
                                                         </motion.div>
 
                                                         <motion.p
-                                                            initial={{ opacity: 0 }}
+                                                            initial={false}
                                                             animate={{ opacity: 1 }}
                                                             transition={{ duration: 0.3, delay: 0.2 }}
                                                             className="text-[12px] text-slate-600 dark:text-slate-300 font-medium max-w-[280px] mx-auto leading-relaxed mt-2.5"
@@ -636,7 +538,7 @@ export function Validator() {
                                                 <div className="px-5 pb-5 space-y-2.5">
                                                     {/* Format Check */}
                                                     <motion.div
-                                                        initial={{ opacity: 0, y: 8 }}
+                                                        initial={{ y: 8 }}
                                                         animate={{ opacity: 1, y: 0 }}
                                                         transition={{ duration: 0.3, delay: 0.12, ease: "easeOut" }}
                                                         className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
@@ -670,7 +572,7 @@ export function Validator() {
                                                     {/* Check Digit Analysis */}
                                                     {result.format !== "Unknown" && (
                                                         <motion.div
-                                                            initial={{ opacity: 0, y: 8 }}
+                                                            initial={{ y: 8 }}
                                                             animate={{ opacity: 1, y: 0 }}
                                                             transition={{ duration: 0.3, delay: 0.17, ease: "easeOut" }}
                                                             className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
@@ -705,7 +607,7 @@ export function Validator() {
                                                     {/* View Calculation Breakdown */}
                                                     {result.calculationSteps.length > 0 && (
                                                         <motion.div
-                                                            initial={{ opacity: 0, y: 8 }}
+                                                            initial={{ y: 8 }}
                                                             animate={{ opacity: 1, y: 0 }}
                                                             transition={{ duration: 0.3, delay: 0.22, ease: "easeOut" }}
                                                             className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
@@ -763,7 +665,7 @@ export function Validator() {
                                                                             {result.calculationSteps.map((step, idx) => (
                                                                                 <motion.div
                                                                                     key={idx}
-                                                                                    initial={{ opacity: 0, x: -10 }}
+                                                                                    initial={{ x: -10 }}
                                                                                     animate={{ opacity: 1, x: 0 }}
                                                                                     transition={{ duration: 0.4, delay: 0.1 + (idx * 0.1) }}
                                                                                     className="flex gap-4 relative"

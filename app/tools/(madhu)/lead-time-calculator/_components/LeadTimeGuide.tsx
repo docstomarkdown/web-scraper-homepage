@@ -11,7 +11,7 @@ export function LeadTimeGuide() {
             items={[
                 {
                     title: "The formula, in words",
-                    description: "Total lead time is supplier time plus shipping time plus the safety buffer. The arrival date is today plus that many days. Each part's share is its days divided by the total.",
+                    description: "Total lead time is supplier time plus shipping time plus the safety buffer. Part days round up to a whole day, and the arrival date is today plus that many days. Each part's share is its days divided by the total.",
                     icon: Calculator,
                     stat: "3 parts",
                     statLabel: "added up",

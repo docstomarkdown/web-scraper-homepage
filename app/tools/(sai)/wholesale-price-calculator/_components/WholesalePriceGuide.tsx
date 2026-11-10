@@ -23,8 +23,8 @@ export function WholesalePriceGuide() {
                     iconColor: "text-[#1f5ec2] dark:text-[#7aa7ff]",
                 },
                 {
-                    title: "Typical wholesale margins",
-                    description: "30% to 50% is common, leaving the retailer room to roughly double the wholesale price. If your price lands above what the market pays, the cost side has to move.",
+                    title: "Checking the price against the market",
+                    description: "Your wholesale price has to leave the retailer room for their own margin. If it lands above what the market pays, the cost side has to move.",
                     icon: Scale,
                     iconBg: "bg-[#2772ED]/10 dark:bg-[#2772ED]/20",
                     iconColor: "text-[#1f5ec2] dark:text-[#7aa7ff]",

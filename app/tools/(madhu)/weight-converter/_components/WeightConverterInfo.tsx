@@ -6,13 +6,13 @@ export function WeightConverterInfo() {
     return (
         <div id="overview">
             <ToolOverview
-                heading="What the Product Weight Converter does"
-                headingAccent="Product Weight Converter"
-                definition="Carriers price by weight band, and a product that weighs 15.9 ounces costs less to ship than one that weighs 16.1. Type the weight in any unit and the converter shows it in pounds, ounces, kilograms and grams, then picks the band for the carrier and speed you choose and tells you how much you can add before the price steps up."
+                heading="What the product weight converter does"
+                headingAccent="product weight converter"
+                definition="Carriers, marketplaces and suppliers each ask for weight in their own unit. Type the weight in any unit and the converter shows it in pounds, ounces, kilograms and grams, so a shipping label, a listing and a supplier spec can all be filled from one entry."
                 facts={[
                     { stat: "4 units", label: "at once", detail: "Pounds, ounces, kilograms and grams, from any one of them." },
-                    { stat: "Price band", label: "for your carrier", detail: "Which weight tier the item falls in, for the carrier and speed you pick." },
-                    { stat: "Headroom", label: "before the next band", detail: "How much weight you can add, or must cut, to stay in the band." },
+                    { stat: "Exact", label: "factors", detail: "1 pound is 453.59237 grams and 1 ounce is 28.349523125 grams, by definition." },
+                    { stat: "4 decimals", label: "in results", detail: "Enough precision for a label or a spec sheet; round up if a form wants whole numbers." },
                 ]}
             />
         </div>

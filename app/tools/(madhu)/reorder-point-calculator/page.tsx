@@ -8,7 +8,7 @@ import { CTA } from "@/components/sections/CTA"
 import { Metadata } from "next"
 export const metadata: Metadata = {
     title: "Reorder Point Calculator: Stock Level to Reorder At",
-    description: "Multiply daily sales by lead time and add safety stock to find the stock level at which to place the next order, and the days it covers.",
+    description: "Multiply daily sales by lead time and add safety stock to find the stock level at which to place the next order, the days it covers, and whether your current stock means order now.",
     alternates: { canonical: "/tools/reorder-point-calculator" },
 }
 export default function ReorderPointCalculatorPage() {
@@ -17,7 +17,7 @@ export default function ReorderPointCalculatorPage() {
             <div className="container mx-auto px-4">
                 <div className="mb-12">
                     <ToolPageTitle
-                        title="Reorder Point Calculator"
+                        title="Reorder point calculator"
                         direction="up"
                         duration={0.6}
                     />
@@ -50,6 +50,14 @@ export default function ReorderPointCalculatorPage() {
                                 {
                                     question: "How much safety stock should I keep?",
                                     answer: "Enough to cover your usual delivery overrun. For steady products, one to two weeks of sales; more for seasonal or long-lead items.",
+                                },
+                                {
+                                    question: "Can I enter safety stock in days?",
+                                    answer: "Yes. Switch the safety stock field to Days and the calculator multiplies the days by daily sales. 10 a day, 14 days and a 7-day buffer is a reorder point of 210.",
+                                },
+                                {
+                                    question: "What does days until reorder mean?",
+                                    answer: "It shows when you enter current stock: (current stock − reorder point) ÷ daily sales, rounded down. With 300 units at the 210 reorder point above, that is 9 days. 0 means order today.",
                                 },
                                 {
                                     question: "What if my daily sales change?",

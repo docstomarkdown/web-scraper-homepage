@@ -5,7 +5,7 @@ import { FreeShippingHowToUse } from "./_components/FreeShippingHowToUse"
 import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
-    title: "Shipping Threshold Calculator: Break-Even Check",
+    title: "Free Shipping Threshold Calculator: Break-Even Check",
     description: "Enter average order value, gross margin and shipping cost to see the profit per order with free shipping and the sales increase that pays for it.",
     alternates: { canonical: "/tools/free-shipping-calculator" },
 }
@@ -13,7 +13,7 @@ export default function FreeShippingCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Free Shipping Threshold Calculator" direction="down" duration={0.6} />
+                <ToolPageTitle title="Free shipping threshold calculator" direction="down" duration={0.6} />
                 <div className="mb-20">
                     <FreeShippingCalculator />
                 </div>

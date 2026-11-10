@@ -17,7 +17,7 @@ export default function ABDurationCalculatorPage() {
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
                 <ToolPageTitle
-                    title="A/B Test Duration Calculator"
+                    title="A/B test duration calculator"
                     direction="down"
                     duration={0.6}
                 />

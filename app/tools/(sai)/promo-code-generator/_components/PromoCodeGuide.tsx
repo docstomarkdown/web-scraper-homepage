@@ -31,7 +31,7 @@ export function PromoCodeGuide() {
                 },
                 {
                     title: "Avoid look-alike characters",
-                    description: "If people will type the code, leave out 0 and O, and 1 and I. Turn off symbols unless your store requires them.",
+                    description: "If people will type the code, turn on Avoid look-alike characters to leave out 0 and O, and 1 and I. Turn off symbols unless your store requires them.",
                     icon: Info,
                     iconBg: "bg-[#2772ED]/10 dark:bg-[#2772ED]/20",
                     iconColor: "text-[#1f5ec2] dark:text-[#7aa7ff]",

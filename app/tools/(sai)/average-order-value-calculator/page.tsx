@@ -14,7 +14,7 @@ export default function AOVCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Average Order Value Calculator" direction="down" duration={0.6} />
+                <ToolPageTitle title="Average order value calculator" direction="down" duration={0.6} />
                 <div className="mb-20">
                     <AOVCalculator />
                 </div>

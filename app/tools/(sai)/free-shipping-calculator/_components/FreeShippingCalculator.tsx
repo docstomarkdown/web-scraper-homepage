@@ -2,7 +2,8 @@
 import React, { useState } from "react"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { TrendingUp, DollarSign, Percent, AlertTriangle, CheckCircle2 } from "lucide-react"
-import { CalculatorCardHeader, CalculatorInput, Counter, CurrencyCombobox, FadeIn, ResultFeedbackCard } from "@/app/tools/_shared/components"
+import { CalculatorCardHeader, CalculatorInput, Counter, FadeIn, ResultFeedbackCard } from "@/app/tools/_shared/components"
+import { freeShipping } from "./calc"
 export function FreeShippingCalculator() {
     const [currency, setCurrency] = useState("USD")
     const [aov, setAov] = useState<number | "">("")
@@ -24,22 +25,16 @@ export function FreeShippingCalculator() {
         EGP: 'E£', PKR: '₨', BDT: '৳', NGN: '₦', KES: 'KSh'
     }
     const symbol = currencySymbols[currency] || "$"
-    // --- Calculations ---
-    const currentAOV = val(aov)
-    const margin = val(marginPercent) / 100
+    // --- Calculations (see calc.ts) ---
+    const n = (v: number | "") => (v === "" ? null : v)
+    const result = freeShipping({ aov: n(aov), marginPercent: n(marginPercent), shippingCost: n(shippingCost), threshold: n(proposedThreshold) })
+    const hasInputs = result.ok
     const shipCost = val(shippingCost)
-    const threshold = val(proposedThreshold)
-    // Today: the customer pays shipping, so profit per order = AOV × margin.
-    // With free shipping over the threshold: customers below it add items to qualify, so a
-    // free-shipping order is worth the higher of the AOV and the threshold, and you absorb the shipping.
-    // Sales increase needed = today's profit per order ÷ profit per free-shipping order − 1.
-    const hasInputs = currentAOV > 0 && margin > 0 && shipCost > 0 && threshold > 0
-    const qualifyingOrderValue = Math.max(currentAOV, threshold)
-    const currentProfitPerOrder = currentAOV * margin
-    const grossProfitPerOrder = qualifyingOrderValue * margin
-    const netProfitWithFreeShipping = grossProfitPerOrder - shipCost
-    const isViable = !hasInputs || netProfitWithFreeShipping > 0
-    const salesIncreaseNeeded = hasInputs && isViable ? (currentProfitPerOrder / netProfitWithFreeShipping - 1) * 100 : 0
+    const currentProfitPerOrder = result.ok ? result.profitToday : 0
+    const grossProfitPerOrder = result.ok ? result.grossProfitPerFreeOrder : 0
+    const netProfitWithFreeShipping = result.ok ? result.netProfitPerFreeOrder : 0
+    const isViable = !result.ok || result.salesIncreasePct !== null
+    const salesIncreaseNeeded = result.ok ? result.salesIncreasePct ?? 0 : 0
     const formatPct = (v: number) => `${v >= 0 ? "+" : ""}${v.toFixed(1)}%`
     const formatCurrency = (val: number) => {
         return new Intl.NumberFormat('en-US', {
@@ -123,7 +118,7 @@ export function FreeShippingCalculator() {
                     />
                     {/* Breakdown Card */}
                     {hasInputs ? (
-                        <div className={`bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4  dark:bg-slate-900 dark:border-slate-800${isViable ? 'border-l-blue-500' : 'border-l-red-500'}`}>
+                        <div className={`bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4  dark:bg-slate-900 dark:border-slate-800 ${isViable ? 'border-l-blue-500' : 'border-l-red-500'}`}>
                             <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800">
                                 <p className="text-xs font-bold text-slate-600 tracking-wider dark:text-slate-300">Price Breakdown</p>
                             </div>

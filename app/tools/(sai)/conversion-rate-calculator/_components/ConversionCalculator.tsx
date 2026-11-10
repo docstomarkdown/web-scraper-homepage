@@ -1,35 +1,26 @@
 "use client"
 import React, { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
-import { Users, MousePointerClick, TrendingUp, AlertCircle } from "lucide-react"
+import { TrendingUp, ShoppingBag, DollarSign } from "lucide-react"
 import { CalculatorCardHeader, CalculatorInput, FadeIn, ResultSummaryCard } from "@/app/tools/_shared/components"
+import { calculateConversion, conversionError, LIFT_POINTS } from "./calc"
 
 export function ConversionCalculator() {
     const [visitors, setVisitors] = useState<number | "">("")
     const [conversions, setConversions] = useState<number | "">("")
-
-    const val = (v: number | "") => (v === "" ? 0 : v)
+    const [aov, setAov] = useState<number | "">("")
+    const [currency, setCurrency] = useState("USD")
 
     const handleReset = () => {
         setVisitors("")
         setConversions("")
+        setAov("")
     }
 
-    // Calculation
-    const visitorsVal = val(visitors)
-    const conversionsVal = val(conversions)
-
-    let rate = 0
-    let isValid = false
-
-    if (visitorsVal > 0 && conversionsVal >= 0 && conversionsVal <= visitorsVal) {
-        rate = (conversionsVal / visitorsVal) * 100
-        isValid = true
-    } else if (conversionsVal > visitorsVal && visitorsVal > 0) {
-        // Handle invalid case where conversions > visitors
-        isValid = true
-        rate = (conversionsVal / visitorsVal) * 100
-    }
+    const result = calculateConversion(visitors, conversions, aov)
+    const error = conversionError(visitors, conversions)
+    const rate = result?.rate ?? 0
+    const isValid = result !== null
 
     return (
         <FadeIn className="w-full max-w-6xl mx-auto py-8 px-4" duration={0.6}>
@@ -38,10 +29,11 @@ export function ConversionCalculator() {
                 <div className="lg:col-span-7 space-y-3 lg:sticky lg:top-8">
                     <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden rounded-3xl dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            title="Traffic & Conversions"
-                            description="Enter traffic and conversion data."
+                            description="Enter traffic and conversion data. Add an order value to see what a lift is worth."
                             onReset={handleReset}
                             guideId="conversion-guide"
+                            currency={currency}
+                            onCurrencyChange={setCurrency}
                         />
                         <CardContent className="p-4 md:p-6 pb-10 md:pb-14 space-y-3">
                             <div className="space-y-6 max-w-[520px] mx-auto w-full">
@@ -62,7 +54,18 @@ export function ConversionCalculator() {
                                         onChange={setConversions}
                                         placeholder="50"
                                         max={1000000}
-                                        tooltip="The number of visitors who completed the desired action (e.g. purchase, signup)."
+                                        tooltip="The number of visitors who completed the action you count, such as a purchase or sign-up."
+                                        hint={error ? "Conversions can't be more than visitors. Check both are for the same period." : undefined}
+                                    />
+                                    <CalculatorInput
+                                        label="Average Order Value"
+                                        value={aov}
+                                        onChange={setAov}
+                                        isCurrency
+                                        currency={currency}
+                                        isOptional
+                                        placeholder="40.00"
+                                        tooltip="What a conversion is worth on average. Used to value a half-point lift."
                                     />
                                 </div>
                             </div>
@@ -85,20 +88,22 @@ export function ConversionCalculator() {
                             value: rate.toFixed(2),
                             unit: "%"
                         }}
+                        currency={currency}
                         secondaryResults={[
                             {
-                                key: "visitors",
-                                label: "Total Visitors",
-                                value: visitorsVal.toLocaleString(),
-                                icon: Users,
-                                tooltip: "Total unique visitors or sessions"
+                                key: "extraOrders",
+                                label: `Extra Orders at +${LIFT_POINTS} Points`,
+                                value: result ? Math.round(result.extraFromLift * 100) / 100 : 0,
+                                icon: ShoppingBag,
+                                tooltip: `Conversions you'd gain at the same traffic if the rate rose by ${LIFT_POINTS} percentage points.`
                             },
                             {
-                                key: "conversions",
-                                label: "Total Conversions",
-                                value: conversionsVal.toLocaleString(),
-                                icon: MousePointerClick,
-                                tooltip: "Total successful conversions"
+                                key: "extraRevenue",
+                                label: `Revenue at +${LIFT_POINTS} Points`,
+                                value: result?.extraRevenueFromLift != null ? result.extraRevenueFromLift : "—",
+                                isCurrency: result?.extraRevenueFromLift != null,
+                                icon: DollarSign,
+                                tooltip: result?.extraRevenueFromLift != null ? "Extra orders times your average order value." : "Enter an average order value to see this."
                             }
                         ]}
                         emptyMessage="Conversion rate"

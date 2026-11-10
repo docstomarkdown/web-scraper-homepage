@@ -7,14 +7,14 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
     title: "Coupon ROI Calculator: Profit from a Discount Campaign",
-    description: "Enter a coupon campaign's cost, redemptions, order value, discount and margin to see revenue, profit after discounts and goods, and the ROI.",
+    description: "Enter a coupon campaign's cost, redemptions, order value, discount and margin to see revenue, profit after discounts and goods, the ROI and the redemption rate.",
     alternates: { canonical: "/tools/coupon-roi-calculator" },
 }
 export default function CouponROICalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Coupon ROI Calculator" direction="down" duration={0.6} />
+                <ToolPageTitle title="Coupon ROI calculator" direction="down" duration={0.6} />
                 <div className="mb-20">
                     <CouponROICalculator />
                 </div>
@@ -37,7 +37,7 @@ export default function CouponROICalculatorPage() {
                                     },
                                     {
                                         question: "What is a good coupon redemption rate?",
-                                        answer: "For emails to existing customers, 5% to 15% is common; for printed or ad coupons, under 2% is normal. The example here redeems 12% of 1,000 coupons."
+                                        answer: "It varies by channel and audience, so compare against your own past campaigns. Enter coupons issued and the calculator shows the rate: the example here redeems 12% of 1,000 coupons."
                                     },
                                     {
                                         question: "Does the discount count as a cost?",

@@ -14,12 +14,12 @@ export function ReturnRateHowToUse() {
                 },
                 {
                     title: "Add the price and the cost of a return",
-                    description: "Enter the selling price, which is refunded, and what each return costs you in shipping, handling and repackaging.",
+                    description: "Enter the selling price, which is refunded, and what each return costs you in shipping, handling and repackaging. Add the share of returns you resell at full price.",
                     icon: CircleDollarSign,
                 },
                 {
                     title: "Read the rate and the money",
-                    description: "The calculator shows the return rate, the revenue refunded, the return handling cost, and the two together as profit leakage.",
+                    description: "The calculator shows the return rate, the revenue refunded, the return handling cost, and profit leakage: the refunds you don't win back by reselling, plus handling.",
                     icon: BarChart3,
                 },
             ]}

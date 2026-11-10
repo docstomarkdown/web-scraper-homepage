@@ -9,6 +9,7 @@ import { Info } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { CalculatorCardHeader, CalculatorInput, Counter, FadeIn, ResultFeedbackCard } from "@/app/tools/_shared/components"
+import { generateCodes, MAX_CODES, MAX_LENGTH } from "./calc"
 export function PromoCodeCalculator() {
     // --- State ---
     const [prefix, setPrefix] = useState("")
@@ -18,31 +19,28 @@ export function PromoCodeCalculator() {
     const [useUppercase, setUseUppercase] = useState(true)
     const [useNumbers, setUseNumbers] = useState(true)
     const [useSymbols, setUseSymbols] = useState(false)
+    const [avoidLookAlike, setAvoidLookAlike] = useState(false)
+    const [limitNote, setLimitNote] = useState<string | null>(null)
     const [showAdvanced, setShowAdvanced] = useState(false)
     const [generatedCodes, setGeneratedCodes] = useState<string[]>([])
     const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
-    // --- Helpers ---
-    const generateRandomString = (len: number) => {
-        let chars = ""
-        if (useUppercase) chars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        if (useNumbers) chars += "0123456789"
-        if (useSymbols) chars += "!@#$%^&*"
-        if (chars === "") chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789" // Fallback
-        let result = ""
-        for (let i = 0; i < len; i++) {
-            result += chars.charAt(Math.floor(Math.random() * chars.length))
-        }
-        return result
-    }
+    // --- Generation (see calc.ts: crypto random, no duplicates) ---
     const handleGenerate = () => {
-        const numCodes = count === "" ? 1 : Math.min(Math.max(1, count), 50)
-        const charLen = length === "" ? 8 : Math.min(Math.max(1, length), 32)
-        const newCodes = Array.from({ length: numCodes }, () => {
-            const randomPart = generateRandomString(charLen)
-            return `${prefix}${randomPart}${suffix}`.toUpperCase()
+        const result = generateCodes({
+            prefix,
+            suffix,
+            length: length === "" ? 8 : length,
+            count: count === "" ? 1 : count,
+            uppercase: useUppercase,
+            numbers: useNumbers,
+            symbols: useSymbols,
+            avoidLookAlike,
         })
-        setGeneratedCodes(newCodes)
-        toast.success(`Generated ${numCodes} promo codes`)
+        setGeneratedCodes(result.codes)
+        setLimitNote(result.limitedBySpace
+            ? `Only ${result.codes.length} unique codes are possible with this length and these characters, so you got ${result.codes.length} instead of ${result.requested}. Use a longer random part for more.`
+            : null)
+        toast.success(`Generated ${result.codes.length} unique promo code${result.codes.length === 1 ? "" : "s"}`)
     }
     const copyToClipboard = (text: string, index: number) => {
         navigator.clipboard.writeText(text)
@@ -63,7 +61,7 @@ export function PromoCodeCalculator() {
                     <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
                             description="Set your prefix, suffix and randomization rules."
-                            onReset={() => { setPrefix(""); setSuffix(""); setLength(8); setCount(5); setGeneratedCodes([]); }}
+                            onReset={() => { setPrefix(""); setSuffix(""); setLength(""); setCount(""); setAvoidLookAlike(false); setLimitNote(null); setGeneratedCodes([]); }}
                         />
                         <CardContent className="space-y-3 pt-6">
                             <div className="space-y-3">
@@ -72,14 +70,19 @@ export function PromoCodeCalculator() {
                                     value={length}
                                     onChange={setLength}
                                     placeholder="8"
-                                    tooltip="Number of randomized characters between prefix and suffix."
+                                    min={1}
+                                    max={MAX_LENGTH}
+                                    tooltip="Number of randomized characters between prefix and suffix, 1 to 32."
                                 />
                                 <CalculatorInput
                                     label="Number of Codes"
                                     value={count}
                                     onChange={setCount}
                                     placeholder="5"
-                                    tooltip="How many unique codes to generate at once."
+                                    min={1}
+                                    max={MAX_CODES}
+                                    hint="Up to 50 per batch"
+                                    tooltip="How many unique codes to generate at once, up to 50. No code repeats within a batch."
                                 />
                             </div>
                             <div className="pt-2">
@@ -163,6 +166,13 @@ export function PromoCodeCalculator() {
                                                             onChange={setUseSymbols}
                                                         />
                                                     </div>
+                                                    <CharacterChip
+                                                        label="Avoid look-alike characters"
+                                                        sub="Leaves out 0, O, 1 and I"
+                                                        icon={Type}
+                                                        checked={avoidLookAlike}
+                                                        onChange={setAvoidLookAlike}
+                                                    />
                                                 </div>
                                             </div>
                                         </motion.div>
@@ -178,6 +188,9 @@ export function PromoCodeCalculator() {
                             </Button>
                         </CardContent>
                     </Card>
+                    {limitNote && (
+                        <p className="text-sm text-slate-700 dark:text-slate-200 bg-amber-50 border border-amber-200 rounded-xl p-4 dark:bg-amber-950/40 dark:border-amber-900/50">{limitNote}</p>
+                    )}
                     {/* Codes List Card (only if generated) */}
                     {generatedCodes.length > 0 && (
                         <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden dark:border-slate-800 dark:bg-slate-900">

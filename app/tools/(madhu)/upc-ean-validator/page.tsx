@@ -4,7 +4,7 @@ import { Validator } from "./_components/Validator"
 import { ValidatorGuide } from "./_components/ValidatorGuide"
 import { ValidatorHowToUse } from "./_components/ValidatorHowToUse"
 import { ValidatorInfo } from "./_components/ValidatorInfo"
-import { FadeIn, ToolFAQ, ToolPageTitle, ToolSectionHeader } from "@/app/tools/_shared/components"
+import { FadeIn, RelatedProduct, ToolFAQ, ToolPageTitle, ToolSectionHeader } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
     title: "UPC and EAN Validator: Check Digit Checker",
@@ -15,9 +15,15 @@ export default function UPCEANValidatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="UPC/EAN Validator" />
-                <div className="mb-20">
+                <ToolPageTitle title="UPC and EAN validator" />
+                <div className="mb-20 space-y-8">
                     <Validator />
+                    <RelatedProduct
+                        before="To export a Shopify store's products with their barcodes, use"
+                        linkText="Web Scraper Pro's Shopify store export"
+                        href="/shopify-scraper"
+                        after="."
+                    />
                 </div>
                 <div className="max-w-4xl mx-auto space-y-16">
                     <FadeIn delay={0.15}>
@@ -35,7 +41,7 @@ export default function UPCEANValidatorPage() {
                             faqs={[
                                 {
                                     question: "What barcode formats does the validator support?",
-                                    answer: "UPC-A, EAN-13, EAN-8 and GTIN-14: 8, 12, 13 or 14 digits. All use the same check-digit rule.",
+                                    answer: "UPC-A, EAN-13, EAN-8 and GTIN-14: 8, 12, 13 or 14 digits. All use the same check-digit rule. An 8-digit number is checked as EAN-8; UPC-E codes aren't supported, because they have to be expanded to UPC-A first.",
                                 },
                                 {
                                     question: "What is a check digit?",
@@ -47,11 +53,11 @@ export default function UPCEANValidatorPage() {
                                 },
                                 {
                                     question: "Can I upload a barcode image instead of typing?",
-                                    answer: "Yes. Scan or photograph the label and the digits are read and checked.",
+                                    answer: "Yes. Upload a photo of the label and the digits are read from it and checked. There's no live camera scanning.",
                                 },
                                 {
                                     question: "Does it validate a whole spreadsheet?",
-                                    answer: "Yes. Upload a CSV with one code per row and download it back with a result column. A sample CSV shows the layout.",
+                                    answer: "Yes. Upload a CSV with one code per row, in the first column or a column named barcode, UPC, EAN or GTIN, then download the results as a CSV with a result column. The sample CSV shows the layout.",
                                 },
                                 {
                                     question: "Does valid mean the barcode belongs to my product?",

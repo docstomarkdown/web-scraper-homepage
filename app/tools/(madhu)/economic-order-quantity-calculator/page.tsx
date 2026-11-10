@@ -17,7 +17,7 @@ export default function EOQCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Economic Order Quantity (EOQ) Calculator" />
+                <ToolPageTitle title="Economic order quantity (EOQ) calculator" />
                 <div className="mb-20">
                     <EOQCalculator />
                 </div>
@@ -56,7 +56,7 @@ export default function EOQCalculatorPage() {
                                 },
                                 {
                                     question: "What if my supplier has a minimum order?",
-                                    answer: "Order the larger of the EOQ and the minimum. The calculator shows what the extra stock costs you to hold.",
+                                    answer: "Order the larger of the EOQ and the minimum. Enter the minimum and the calculator shows the yearly cost at that size and how much more it is than at the EOQ. In the example above, a 1,000-unit minimum costs $1,750 a year, $168.86 more.",
                                 },
                             ]}
                         />

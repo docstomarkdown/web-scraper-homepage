@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { DollarSign, ShoppingCart } from "lucide-react"
 import { FadeIn, CalculatorInput, ResultSummaryCard, CalculatorCardHeader } from "@/app/tools/_shared/components"
-import { cn } from "@/lib/utils"
+import { averageOrderValue } from "./calc"
 
 export function AOVCalculator() {
     const [currency, setCurrency] = useState("USD")
@@ -12,31 +12,16 @@ export function AOVCalculator() {
 
     const val = (v: number | "") => (v === "" ? 0 : v)
 
-    const currencySymbols: Record<string, string> = {
-        USD: '$', EUR: '€', GBP: '£', INR: '₹', AUD: 'A$', CAD: 'C$', JPY: '¥', CNY: '¥',
-        AED: 'AED', SGD: 'S$', HKD: 'HK$', CHF: 'Fr', MXN: 'MX$', BRL: 'R$', KRW: '₩',
-        RUB: '₽', ZAR: 'R', SEK: 'kr', NOK: 'kr', DKK: 'kr', PLN: 'zł', THB: '฿',
-        IDR: 'Rp', MYR: 'RM', PHP: '₱', VND: '₫', TRY: '₺', SAR: '﷼', NZD: 'NZ$',
-        EGP: 'E£', PKR: '₨', BDT: '৳', NGN: '₦', KES: 'KSh'
-    }
-
-    const symbol = currencySymbols[currency] || "$"
-
     const handleReset = () => {
         setRevenue("")
         setOrders("")
     }
 
-    // Calculation
     const revenueVal = val(revenue)
     const ordersVal = val(orders)
-    let aov = 0
-    let isValid = false
-
-    if (revenueVal > 0 && ordersVal > 0) {
-        aov = revenueVal / ordersVal
-        isValid = true
-    }
+    const result = averageOrderValue(revenue, orders)
+    const aov = result ?? 0
+    const isValid = result !== null
 
     return (
         <FadeIn className="w-full max-w-6xl mx-auto py-8 px-4" duration={0.6}>
@@ -45,7 +30,6 @@ export function AOVCalculator() {
                 <div className="lg:col-span-7 space-y-3">
                     <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            title="Revenue & Order Metrics"
                             description="Enter your gross revenue and total order count."
                             onReset={handleReset}
                             guideId="aov-guide"
@@ -60,6 +44,8 @@ export function AOVCalculator() {
                                 label="Total Revenue"
                                 value={revenue}
                                 onChange={setRevenue}
+                                isCurrency
+                                currency={currency}
                                 placeholder="50000.00"
                                 max={100000000}
                                 tooltip="Enter your total sales revenue for the selected period (before refunds and taxes)."
@@ -83,20 +69,7 @@ export function AOVCalculator() {
                         isCalculated={isValid}
                         currency={currency}
                         emptyMessage="AOV"
-                        liveBadgeText={
-                            isValid 
-                                ? aov > 150 ? "High Average Order" 
-                                : aov > 40 ? "Standard Average Order" 
-                                : "Low Average Order"
-                                : "Enter Data"
-                        }
-                        liveBadgeColor={
-                            isValid 
-                                ? aov > 150 ? "emerald" 
-                                : aov > 40 ? "blue" 
-                                : "amber"
-                                : "slate"
-                        }
+                        showLiveBadge={false}
                         primaryResult={{
                             value: aov,
                             label: "Average Order Value (AOV)",

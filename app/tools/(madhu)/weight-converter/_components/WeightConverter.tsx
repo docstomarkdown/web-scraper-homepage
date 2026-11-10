@@ -1,148 +1,14 @@
 "use client"
 import React, { useState, useEffect, useMemo } from "react"
-import { Scale, RefreshCw, Info, Package, ChevronDown, Truck, Check, CheckCircle2 } from "lucide-react";
+import { Scale, RefreshCw, Info, Package } from "lucide-react";
 import { cn } from "@/lib/utils"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { CalculatorCardHeader, CalculatorInput } from "../../../_shared/components"
 import { motion, AnimatePresence } from "framer-motion"
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
+import { convertWeight, type WeightUnit, type ConversionResult } from "./calc"
 
-type WeightUnit = "oz" | "lbs" | "g" | "kg"
-type ShippingMode = "carrier" | "class"
 
-interface ConversionResult {
-    oz: number
-    lbs: number
-    g: number
-    kg: number
-}
-
-// Extended Carriers and Classes
-type CarrierType = "usps" | "fedex" | "ups" | "dhl" | "royal_mail" | "canada_post" | "aus_post" | "other"
-type ShippingClassType = "standard" | "express" | "overnight"
-
-// Carrier shipping tiers (in lbs)
-const CARRIER_TIERS: Record<CarrierType, { label: string; group: string; tiers: { max: number; label: string; cost: string; color: string }[] }> = {
-    usps: {
-        label: "USPS", group: "US & Global",
-        tiers: [
-            { max: 0.219, label: "First Class (Light)", cost: "$4.50–$7.50", color: "emerald" },
-            { max: 1, label: "Priority (Env/Small)", cost: "$8.55–$19.95", color: "blue" },
-            { max: 25, label: "Priority (Medium)", cost: "$16.10–$70.00", color: "blue" },
-            { max: 70, label: "Priority (Large)", cost: "$21.90–$94.00", color: "amber" },
-            { max: Infinity, label: "Retail / Freight", cost: "Contact carrier", color: "slate" },
-        ]
-    },
-    fedex: {
-        label: "FedEx", group: "US & Global",
-        tiers: [
-            { max: 1, label: "FedEx One Rate (Small)", cost: "$10.25–$14.35", color: "emerald" },
-            { max: 10, label: "FedEx Home Delivery", cost: "$11.00–$28.00", color: "blue" },
-            { max: 25, label: "FedEx Ground (Standard)", cost: "$18.00–$52.00", color: "blue" },
-            { max: 70, label: "FedEx Express Saver", cost: "$28.00–$120.00", color: "amber" },
-            { max: 150, label: "FedEx 2Day / Overnight", cost: "$55.00–$250.00", color: "orange" },
-            { max: Infinity, label: "FedEx Freight", cost: "Quote Required", color: "slate" },
-        ]
-    },
-    ups: {
-        label: "UPS", group: "US & Global",
-        tiers: [
-            { max: 1, label: "UPS SurePost (Light)", cost: "$5.50–$9.00", color: "emerald" },
-            { max: 10, label: "UPS Ground (Standard)", cost: "$12.00–$29.00", color: "blue" },
-            { max: 30, label: "UPS Ground (Commercial)", cost: "$20.00–$58.00", color: "blue" },
-            { max: 70, label: "UPS 3 Day Select", cost: "$32.00–$130.00", color: "amber" },
-            { max: 150, label: "UPS 2nd Day Air", cost: "$55.00–$220.00", color: "orange" },
-            { max: Infinity, label: "UPS Freight", cost: "Quote Required", color: "slate" },
-        ]
-    },
-    dhl: {
-        label: "DHL", group: "US & Global",
-        tiers: [
-            { max: 0.5, label: "DHL SmartMail Parcel (XS)", cost: "$2.75–$5.50", color: "emerald" },
-            { max: 2, label: "DHL SmartMail Parcel (S)", cost: "$5.00–$10.00", color: "emerald" },
-            { max: 10, label: "DHL eCommerce (Standard)", cost: "$9.00–$22.00", color: "blue" },
-            { max: 30, label: "DHL Express Worldwide", cost: "$35.00–$85.00", color: "amber" },
-            { max: 70, label: "DHL Express (Heavy)", cost: "$80.00–$200.00", color: "orange" },
-            { max: Infinity, label: "DHL Freight / Custom", cost: "Quote Required", color: "slate" },
-        ]
-    },
-    royal_mail: {
-        label: "Royal Mail (UK)", group: "Regional",
-        tiers: [
-            { max: 0.22, label: "Large Letter", cost: "£1.55–£3.30", color: "emerald" },
-            { max: 4.4, label: "Small/Med Parcel", cost: "£3.69–£6.69", color: "blue" },
-            { max: 44, label: "Parcelforce Worldwide", cost: "£12.00+", color: "amber" },
-            { max: Infinity, label: "Freight", cost: "Consult Size", color: "slate" },
-        ]
-    },
-    canada_post: {
-        label: "Canada Post", group: "Regional",
-        tiers: [
-            { max: 1.1, label: "Oversize Lettermail", cost: "$1.94–$3.19 CAD", color: "emerald" },
-            { max: 11, label: "Regular Parcel", cost: "$10.00–$25.00 CAD", color: "blue" },
-            { max: 66, label: "Xpresspost", cost: "$15.00–$60.00 CAD", color: "amber" },
-            { max: Infinity, label: "Priority / Freight", cost: "Consult Size", color: "slate" },
-        ]
-    },
-    aus_post: {
-        label: "Australia Post", group: "Regional",
-        tiers: [
-            { max: 1.1, label: "Large Letter", cost: "$3.00–$5.50 AUD", color: "emerald" },
-            { max: 11, label: "Parcel Post", cost: "$10.60–$21.05 AUD", color: "blue" },
-            { max: 48, label: "Express Post", cost: "$14.10–$28.20 AUD", color: "amber" },
-            { max: Infinity, label: "Courier/Freight", cost: "Consult Size", color: "slate" },
-        ]
-    },
-    other: {
-        label: "Other Carrier", group: "Generic",
-        tiers: [
-            { max: 1, label: "Light Doc/Envelope", cost: "Custom pricing", color: "slate" },
-            { max: 10, label: "Standard Parcel", cost: "Custom pricing", color: "slate" },
-            { max: 50, label: "Heavy Box", cost: "Custom pricing", color: "slate" },
-            { max: Infinity, label: "Pallet / Freight", cost: "Contact carrier", color: "slate" }
-        ]
-    }
-}
-
-// Universal Shipping Speed / Class Estimates
-const SHIPPING_CLASSES: Record<ShippingClassType, { label: string; tiers: { max: number; label: string; cost: string; color: string }[] }> = {
-    standard: {
-        label: "Standard / Ground",
-        tiers: [
-            { max: 1, label: "Standard Envelope (Economy)", cost: "$3.00–$8.00", color: "emerald" },
-            { max: 15, label: "Standard Parcel", cost: "$10.00–$30.00", color: "blue" },
-            { max: 70, label: "Heavy Standard", cost: "$20.00–$70.00", color: "amber" },
-            { max: Infinity, label: "Standard Oversize", cost: "Requires Quote", color: "slate" }
-        ]
-    },
-    express: {
-        label: "Express / Expedited",
-        tiers: [
-            { max: 1, label: "Express Pouch", cost: "$8.00–$18.00", color: "emerald" },
-            { max: 15, label: "Express Parcel", cost: "$18.00–$60.00", color: "blue" },
-            { max: 70, label: "Express Freight (Heavy)", cost: "$50.00–$150.00", color: "amber" },
-            { max: Infinity, label: "Bulk Express", cost: "Requires Quote", color: "slate" }
-        ]
-    },
-    overnight: {
-        label: "Next Day / Air",
-        tiers: [
-            { max: 1, label: "Overnight Envelope", cost: "$25.00–$50.00", color: "emerald" },
-            { max: 15, label: "Overnight Parcel", cost: "$50.00–$120.00", color: "blue" },
-            { max: 70, label: "Overnight Freight", cost: "$100.00–$300.00", color: "amber" },
-            { max: Infinity, label: "Priority Airfreight", cost: "Requires Quote", color: "slate" }
-        ]
-    }
-}
 
 const UNIT_NAMES: Record<WeightUnit, string> = {
     oz: "Ounces",
@@ -158,22 +24,10 @@ const UNIT_ABBR: Record<WeightUnit, string> = {
     kg: "kg"
 }
 
-const TIER_COLORS: Record<string, { bg: string; border: string; text: string; dot: string; badge: string }> = {
-    emerald: { bg: "bg-emerald-50 dark:bg-emerald-950/40", border: "border-emerald-200/70 dark:border-emerald-900/50", text: "text-emerald-700 dark:text-emerald-400", dot: "bg-emerald-400", badge: "bg-emerald-100/80 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400" },
-    blue: { bg: "bg-blue-50 dark:bg-blue-950/40", border: "border-blue-200/70 dark:border-blue-900/50", text: "text-blue-700 dark:text-blue-400", dot: "bg-blue-400", badge: "bg-blue-100/80 text-blue-700 dark:bg-blue-900/40 dark:text-blue-400" },
-    amber: { bg: "bg-amber-50 dark:bg-amber-950/40", border: "border-amber-200/70 dark:border-amber-900/50", text: "text-amber-700 dark:text-amber-400", dot: "bg-amber-400", badge: "bg-amber-100/80 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400" },
-    orange: { bg: "bg-orange-50 dark:bg-orange-950/40", border: "border-orange-200/70 dark:border-orange-900/50", text: "text-orange-700 dark:text-orange-400", dot: "bg-orange-400", badge: "bg-orange-100/80 text-orange-700 dark:bg-orange-900/40 dark:text-orange-400" },
-    slate: { bg: "bg-slate-50 dark:bg-slate-800/60", border: "border-slate-200/70 dark:border-slate-800", text: "text-slate-600 dark:text-slate-300", dot: "bg-slate-400", badge: "bg-slate-100/80 text-slate-700 dark:bg-slate-800 dark:text-slate-200" },
-}
-
 export function WeightConverter() {
     const [inputValue, setInputValue] = useState<string>("")
     const [inputUnit, setInputUnit] = useState<WeightUnit>("lbs")
     const [targetUnit, setTargetUnit] = useState<WeightUnit>("kg")
-    const [shippingMode, setShippingMode] = useState<ShippingMode>("carrier")
-    const [carrier, setCarrier] = useState<CarrierType>("usps")
-    const [shippingClass, setShippingClass] = useState<ShippingClassType>("standard")
-    const [showBreakdown, setShowBreakdown] = useState(false)
 
     // Smart default switching
     useEffect(() => {
@@ -185,22 +39,7 @@ export function WeightConverter() {
         }
     }, [inputUnit, targetUnit])
 
-    const conversions = useMemo((): ConversionResult => {
-        const val = parseFloat(inputValue || "0")
-        let baseInGrams = 0
-        switch (inputUnit) {
-            case "oz": baseInGrams = val * 28.3495; break
-            case "lbs": baseInGrams = val * 453.592; break
-            case "g": baseInGrams = val; break
-            case "kg": baseInGrams = val * 1000; break
-        }
-        return {
-            oz: baseInGrams / 28.3495,
-            lbs: baseInGrams / 453.592,
-            g: baseInGrams,
-            kg: baseInGrams / 1000
-        }
-    }, [inputValue, inputUnit])
+    const conversions = useMemo((): ConversionResult => convertWeight(parseFloat(inputValue), inputUnit) ?? { oz: 0, lbs: 0, g: 0, kg: 0 }, [inputValue, inputUnit])
 
     const formatCompact = (val: number, decimals = 4): string => {
         if (val === 0) return "0"
@@ -214,35 +53,12 @@ export function WeightConverter() {
         return allUnits.filter(u => u !== inputUnit && u !== targetUnit)
     }, [inputUnit, targetUnit])
 
-    const isCalculated = !!inputValue && parseFloat(inputValue) > 0
+    const isCalculated = convertWeight(parseFloat(inputValue), inputUnit) !== null
 
-    // Shipping logic
-    const weightInLbs = conversions.lbs
-    const selectedShippingData = shippingMode === "carrier" ? CARRIER_TIERS[carrier] : SHIPPING_CLASSES[shippingClass]
-    const handleShippingChange = (val: string) => {
-        if (CARRIER_TIERS[val as CarrierType]) {
-            setShippingMode("carrier")
-            setCarrier(val as CarrierType)
-        } else if (SHIPPING_CLASSES[val as ShippingClassType]) {
-            setShippingMode("class")
-            setShippingClass(val as ShippingClassType)
-        }
-    }
-
-    const activeTier = useMemo(() => {
-        if (!isCalculated) return null
-        return selectedShippingData.tiers.find(t => weightInLbs <= t.max) || selectedShippingData.tiers[selectedShippingData.tiers.length - 1]
-    }, [isCalculated, weightInLbs, selectedShippingData])
-
-    // Breakdown: show all tiers with highlight on active
     const handleReset = () => {
         setInputValue("")
         setInputUnit("lbs")
         setTargetUnit("kg")
-        setShippingMode("carrier")
-        setCarrier("usps")
-        setShippingClass("standard")
-        setShowBreakdown(false)
     }
 
     return (
@@ -253,8 +69,7 @@ export function WeightConverter() {
                 <div className="lg:col-span-7 self-start lg:sticky lg:top-28">
                     <Card className="border-slate-200 shadow-sm relative overflow-hidden bg-white flex flex-col dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            title="Weight Converter"
-                            description="Enter your product weight and select target unit. Includes shipping tier estimator by carrier."
+                            description="Enter your product's weight and pick the unit you need it in."
                             guideId="how-to-use"
                             tooltip="How to use this converter"
                             onReset={handleReset}
@@ -356,111 +171,6 @@ export function WeightConverter() {
                                     </div>
                                 </div>
 
-                                {/* ── Shipping Details ── */}
-                                <div className="space-y-0">
-                                    <div className="calculator-input-row max-w-[520px] mx-auto px-3 sm:px-5 pb-0">
-                                        <div className="h-px bg-slate-100/80 w-[calc(100%+48px)] -ml-6 mb-3 mt-1 dark:bg-slate-800" />
-                                        <div className="relative w-full">
-                                            <div className="absolute left-[-19px] w-[1.5px] bg-blue-200/70 z-0" style={{ top: '14px', bottom: '0px' }} />
-                                            <div className="flex items-center justify-between -ml-[33px] mb-0.5 relative h-7 z-10 w-[calc(100%+33px)]">
-                                                <div className="flex items-center gap-2">
-                                                    <div className="w-7 h-7 rounded-lg bg-blue-50 ring-[6px] ring-white flex items-center justify-center flex-shrink-0 z-10 dark:bg-blue-950/40 dark:ring-slate-900">
-                                                        <Truck className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
-                                                    </div>
-                                                    <span className="text-[16px] font-bold text-slate-600 capitalize z-10 tracking-tight dark:text-slate-300">Shipping Estimator</span>
-                                                </div>
-                                            </div>
-                                            {/* Carrier Selector Row */}
-                                            <div className="flex items-center gap-3 w-full relative z-10 mt-3">
-                                                <div className="flex items-center gap-2 flex-1 min-w-0 text-left">
-                                                    <label className="text-[14.5px] font-medium text-slate-600/90 cursor-pointer py-1 dark:text-slate-300">
-                                                        Select Carrier
-                                                    </label>
-                                                    <Tooltip>
-                                                        <TooltipTrigger asChild>
-                                                            <button type="button" tabIndex={-1} aria-label="More about this field" className="text-slate-600 dark:text-slate-300 hover:text-blue-500 transition-colors cursor-help shrink-0 dark:hover:text-blue-400">
-                                                                <Info className="w-3.5 h-3.5" />
-                                                            </button>
-                                                        </TooltipTrigger>
-                                                        <TooltipContent side="top" className="max-w-xs text-sm font-normal bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
-                                                            Select your shipping carrier to see estimated rates.
-                                                        </TooltipContent>
-                                                    </Tooltip>
-                                                </div>
-                                                <div className="w-36 sm:w-44 flex-shrink-0">
-                                                    <Select 
-                                                        value={carrier} 
-                                                        onValueChange={(v) => {
-                                                            setCarrier(v as CarrierType)
-                                                            setShippingMode("carrier")
-                                                        }}
-                                                    >
-                                                        <SelectTrigger aria-label="Carrier" className="h-11 text-sm border border-slate-200 font-semibold transition-all px-3 bg-white text-slate-700 focus:ring-0 focus:ring-offset-0 focus:outline-none hover:border-slate-300 shadow-sm rounded-xl dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-slate-700">
-                                                            <SelectValue placeholder="Select..." />
-                                                        </SelectTrigger>
-                                                        <SelectContent align="end" className="max-h-[300px] border-slate-200 shadow-xl rounded-xl z-[1001] dark:border-slate-800">
-                                                            {Object.entries(
-                                                                Object.entries(CARRIER_TIERS).reduce((acc, [key, val]) => {
-                                                                    if (!acc[val.group]) acc[val.group] = [];
-                                                                    acc[val.group].push({ key, label: val.label });
-                                                                    return acc;
-                                                                }, {} as Record<string, {key: string, label: string}[]>)
-                                                            ).map(([group, carriers]) => (
-                                                                <SelectGroup key={group}>
-                                                                    <SelectLabel className="text-xs font-extrabold text-slate-600 dark:text-slate-300 tracking-[0.13em] px-2 py-1.5 bg-slate-50/80 mb-1 dark:bg-slate-800/60">{group}</SelectLabel>
-                                                                    {carriers.map(c => (
-                                                                        <SelectItem key={c.key} value={c.key} className="text-[12px] font-medium leading-tight py-1.5 cursor-pointer">{c.label}</SelectItem>
-                                                                    ))}
-                                                                </SelectGroup>
-                                                            ))}
-                                                        </SelectContent>
-                                                    </Select>
-                                                </div>
-                                            </div>
-
-                                            {/* Speed Selector Row */}
-                                            <div className="flex items-center gap-3 w-full relative z-10 mt-2 pb-1">
-                                                <div className="flex items-center gap-2 flex-1 min-w-0 text-left">
-                                                    <label className="text-[14.5px] font-medium text-slate-600/90 cursor-pointer py-1 dark:text-slate-300">
-                                                        Shipping Speed
-                                                    </label>
-                                                    <Tooltip>
-                                                        <TooltipTrigger asChild>
-                                                            <button type="button" tabIndex={-1} aria-label="More about this field" className="text-slate-600 dark:text-slate-300 hover:text-blue-500 transition-colors cursor-help shrink-0 dark:hover:text-blue-400">
-                                                                <Info className="w-3.5 h-3.5" />
-                                                            </button>
-                                                        </TooltipTrigger>
-                                                        <TooltipContent side="top" className="max-w-xs text-sm font-normal bg-slate-900 text-white border-slate-800 dark:bg-slate-800 dark:border-slate-700">
-                                                            Select general shipping speed for estimates.
-                                                        </TooltipContent>
-                                                    </Tooltip>
-                                                </div>
-                                                <div className="w-36 sm:w-44 flex-shrink-0">
-                                                    <Select 
-                                                        value={shippingClass} 
-                                                        onValueChange={(v) => {
-                                                            setShippingClass(v as ShippingClassType)
-                                                            setShippingMode("class")
-                                                        }}
-                                                    >
-                                                        <SelectTrigger aria-label="Shipping speed" className="h-11 text-sm border border-slate-200 font-semibold transition-all px-3 bg-white text-slate-700 focus:ring-0 focus:ring-offset-0 focus:outline-none hover:border-slate-300 shadow-sm rounded-xl dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-slate-700">
-                                                            <SelectValue placeholder="Select..." />
-                                                        </SelectTrigger>
-                                                        <SelectContent align="end" className="max-h-[300px] border-slate-200 shadow-xl rounded-xl z-[1001] dark:border-slate-800">
-                                                            <SelectGroup>
-                                                                <SelectLabel className="text-xs font-extrabold text-slate-600 dark:text-slate-300 tracking-[0.13em] px-2 py-1.5 bg-slate-50/80 mb-1 dark:bg-slate-800/60">Speed Types</SelectLabel>
-                                                                {Object.entries(SHIPPING_CLASSES).map(([key, val]) => (
-                                                                    <SelectItem key={key} value={key} className="text-[12px] font-medium leading-tight py-1.5 cursor-pointer">{val.label}</SelectItem>
-                                                                ))}
-                                                            </SelectGroup>
-                                                        </SelectContent>
-                                                    </Select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
                         </CardContent>
                     </Card>
@@ -469,7 +179,7 @@ export function WeightConverter() {
                 {/* ═══ RIGHT COLUMN: Results Panel ═══ */}
                 <div className="lg:col-span-5 flex flex-col gap-3">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                         className="flex flex-col gap-3"
@@ -489,26 +199,15 @@ export function WeightConverter() {
                                     {isCalculated ? (
                                         <motion.div
                                             key="live"
-                                            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                                            className={cn(
-                                                "flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-bold",
-                                                activeTier?.color === "emerald" ? "bg-emerald-100/50 text-emerald-700 border-emerald-200/50 dark:bg-emerald-900/40 dark:text-emerald-400 dark:border-emerald-900/50" :
-                                                activeTier?.color === "amber" || activeTier?.color === "orange" ? "bg-amber-100/50 text-amber-700 border-amber-200/50 dark:bg-amber-900/40 dark:text-amber-400 dark:border-amber-900/50" :
-                                                "bg-blue-100/50 text-blue-700 border-blue-200/50 dark:bg-blue-900/40 dark:text-blue-400 dark:border-blue-900/50"
-                                            )}
+                                            initial={false} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border bg-blue-50/80 border-blue-200/50 text-xs font-bold text-blue-600 shrink-0 dark:bg-blue-950/40 dark:border-blue-900/50 dark:text-blue-400"
                                         >
-                                            <span className={cn(
-                                                "w-1.5 h-1.5 rounded-full animate-pulse inline-block",
-                                                activeTier?.color === "emerald" ? "bg-emerald-500" :
-                                                activeTier?.color === "amber" || activeTier?.color === "orange" ? "bg-amber-500" :
-                                                "bg-blue-500"
-                                            )} />
-                                            {activeTier ? activeTier.label.split("(")[0].trim() : "Target Weight"}
+                                            {UNIT_ABBR[inputUnit]} → {UNIT_ABBR[targetUnit]}
                                         </motion.div>
                                     ) : (
                                         <motion.div
                                             key="idle"
-                                            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                                            initial={false} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                                             className="text-xs font-bold text-slate-600 dark:text-slate-300 px-2"
                                         >
                                             Awaiting input
@@ -522,7 +221,7 @@ export function WeightConverter() {
                                     /* ── EMPTY STATE (UPC/GTIN style: frosted overlay + blurred skeleton) ── */
                                     <motion.div
                                         key="empty"
-                                        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                                        initial={false} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                                         transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="relative z-10 px-6 pb-6 pt-2"
                                     >
@@ -530,7 +229,7 @@ export function WeightConverter() {
                                             {/* Frosted glass overlay */}
                                             <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
                                                 <motion.div
-                                                    initial={{ opacity: 0 }}
+                                                    initial={false}
                                                     animate={{ opacity: 1 }}
                                                     transition={{ duration: 0.55, ease: "easeOut" }}
                                                     className="bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_8px_40px_rgba(59,130,246,0.12)] rounded-2xl px-6 py-5 flex flex-col items-center gap-3 w-fit max-w-[320px] pointer-events-auto dark:bg-slate-900/80 dark:border-slate-800"
@@ -586,13 +285,13 @@ export function WeightConverter() {
                                     /* ── RESULTS STATE ── */
                                     <motion.div
                                         key="results"
-                                        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                                        initial={false} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                                         transition={{ duration: 0.45, ease: "easeInOut" }}
                                         className="flex flex-col gap-3 px-5 pb-5 pt-2"
                                     >
                                         {/* 1 — Target Conversion (Valid-like Hero) */}
                                         <motion.div
-                                            initial={{ opacity: 0, scale: 0.97 }}
+                                            initial={{ scale: 0.97 }}
                                             animate={{ opacity: 1, scale: 1 }}
                                             transition={{ duration: 0.4, delay: 0.05 }}
                                             className="relative flex flex-col items-center text-center py-6 px-4 bg-transparent"
@@ -600,7 +299,7 @@ export function WeightConverter() {
                                             <span className="text-xs font-black text-slate-600 dark:text-slate-300 tracking-[0.18em] leading-none mb-2">Target Conversion</span>
                                             <motion.span
                                                 key={`${conversions[targetUnit]}-${targetUnit}`}
-                                                initial={{ opacity: 0, y: 4 }}
+                                                initial={{ y: 4 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 transition={{ duration: 0.3 }}
                                                 className="text-[3.25rem] font-black text-blue-600 tracking-tighter leading-none dark:text-blue-400"
@@ -617,7 +316,7 @@ export function WeightConverter() {
                                         
                                         {/* Card 1: Other Units */}
                                         <motion.div
-                                            initial={{ opacity: 0, y: 8 }}
+                                            initial={{ y: 8 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.35, delay: 0.1 }}
                                             className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
@@ -647,107 +346,6 @@ export function WeightConverter() {
                                                 </div>
                                             </div>
                                         </motion.div>
-
-                                        {/* Card 2: Shipping Estimate */}
-                                        {activeTier && (
-                                            <motion.div
-                                                initial={{ opacity: 0, y: 8 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                transition={{ duration: 0.35, delay: 0.15 }}
-                                                className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
-                                            >
-                                                <div className="flex items-center justify-between mb-3">
-                                                    <div className="flex items-center gap-2">
-                                                        <Truck className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />
-                                                        <span className="text-sm sm:text-[14px] font-bold text-slate-600 dark:text-slate-300">
-                                                            {selectedShippingData.label} Estimate
-                                                        </span>
-                                                    </div>
-                                                    <span className="text-xs font-extrabold px-2 py-0.5 rounded bg-blue-100/80 text-blue-700 flex-shrink-0 dark:bg-blue-900/40 dark:text-blue-400">
-                                                        {activeTier.cost}
-                                                    </span>
-                                                </div>
-                                                <div className="pl-6 pt-0.5">
-                                                    <span className="font-bold tracking-tight block text-[16px] sm:text-[17px] text-slate-700 dark:text-slate-200">
-                                                        {activeTier.label}
-                                                    </span>
-                                                    <p className="text-xs font-medium text-slate-600 dark:text-slate-300 mt-1 flex items-baseline">
-                                                        {formatCompact(weightInLbs, 3)}<span className="ml-1 text-[0.8em]">lb</span>
-                                                    </p>
-                                                </div>
-                                            </motion.div>
-                                        )}
-
-                                        {/* Card 3: Breakdown Collapsible */}
-                                        <motion.div
-                                            initial={{ opacity: 0, y: 8 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            transition={{ duration: 0.35, delay: 0.2 }}
-                                            className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl pt-1 pb-1 transition-all duration-200 hover:border-slate-300 hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.08)] dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700"
-                                        >
-                                            <button
-                                                onClick={() => setShowBreakdown(v => !v)}
-                                                className="w-full flex items-center justify-between px-4 py-3 text-left transition-colors"
-                                            >
-                                                <div className="flex items-center gap-2">
-                                                    <Package className="w-4 h-4 text-blue-500 dark:text-blue-400" />
-                                                    <span className="text-sm sm:text-[14px] font-bold text-slate-600 dark:text-slate-300">View Cost Breakdown</span>
-                                                </div>
-                                                <motion.span
-                                                    animate={{ rotate: showBreakdown ? 180 : 0 }}
-                                                    transition={{ duration: 0.2 }}
-                                                >
-                                                    <ChevronDown className="w-4 h-4 text-slate-600 dark:text-slate-300" />
-                                                </motion.span>
-                                            </button>
-                                            <AnimatePresence>
-                                                {showBreakdown && (
-                                                    <motion.div
-                                                        initial={{ height: 0, opacity: 0 }}
-                                                        animate={{ height: "auto", opacity: 1 }}
-                                                        exit={{ height: 0, opacity: 0 }}
-                                                        transition={{ duration: 0.28, ease: "easeInOut" }}
-                                                        className="overflow-hidden"
-                                                    >
-                                                        <div className="border-t border-slate-100 divide-y divide-slate-100/60 mt-1 mx-2 dark:border-slate-800">
-                                                            {selectedShippingData.tiers.map((tier, idx) => {
-                                                                const isActive = activeTier?.label === tier.label
-                                                                const colors = TIER_COLORS[tier.color] || TIER_COLORS.slate
-                                                                return (
-                                                                    <div
-                                                                        key={idx}
-                                                                        className={cn(
-                                                                            "flex items-center justify-between px-3 py-2.5 transition-colors rounded hover:bg-slate-50/50 mb-1 mt-1 dark:hover:bg-slate-800/60",
-                                                                            isActive ? cn(colors.bg, "border-l-[3px]", colors.border.replace("border-", "border-l-")) : ""
-                                                                        )}
-                                                                    >
-                                                                        <div className="flex items-center gap-2 min-w-0">
-                                                                            <span className={cn("w-1.5 h-1.5 rounded-full shrink-0", isActive ? colors.dot : "bg-slate-300 dark:bg-slate-600")} />
-                                                                            <div className="min-w-0">
-                                                                                <p className={cn("text-xs font-semibold truncate", isActive ? colors.text : "text-slate-600 dark:text-slate-300")}>
-                                                                                    {tier.label}
-                                                                                </p>
-                                                                                <p className="text-xs text-slate-600 dark:text-slate-300">
-                                                                                    up to {tier.max === Infinity ? "∞" : `${tier.max} lb`}
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <span className={cn(
-                                                                            "text-xs font-bold shrink-0 ml-2",
-                                                                            isActive ? cn("px-2 py-0.5 rounded-md", colors.badge) : "text-slate-600 dark:text-slate-300"
-                                                                        )}>
-                                                                            {tier.cost}
-                                                                        </span>
-                                                                    </div>
-                                                                )
-                                                            })}
-                                                        </div>
-                                                    </motion.div>
-                                                )}
-                                            </AnimatePresence>
-                                        </motion.div>
-
-
 
                                     </motion.div>
                                 )}

@@ -9,8 +9,9 @@ export function ReorderPointHowToUse() {
             steps={[
                 { title: "Type the average daily units sold", description: "Use the average over the last month or quarter, or the rate you expect for the coming weeks.", icon: TrendingUp },
                 { title: "Type the delivery time in days", description: "The full lead time from order to goods on the shelf, from the lead time calculator or your last few orders.", icon: Clock },
-                { title: "Type the safety stock", description: "The units you keep back for a late delivery or a spike. Zero if you accept the occasional stock-out.", icon: Boxes },
-                { title: "Read the results", description: "The reorder point is the main number. When stock falls to it, order. Beside it are the lead-time demand and the days covered.", icon: Table },
+                { title: "Type the safety stock", description: "The units you keep back for a late delivery or a spike, or switch to Days to enter it as days of sales. Leave it blank if you accept the occasional stock-out.", icon: Boxes },
+                { title: "Add your current stock (optional)", description: "With it, the calculator says whether to order now or how many days are left before you must.", icon: Clock },
+                { title: "Read the results", description: "The reorder point is the main number. When stock falls to it, order. Beside it are the lead-time demand, the safety stock in units and the days covered.", icon: Table },
             ]}
         />
     )

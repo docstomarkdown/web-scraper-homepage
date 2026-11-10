@@ -8,8 +8,8 @@ export function WeightConverterHowToUse() {
             title="How to use this converter"
             steps={[
                 { title: "Type the weight and pick its unit", description: "Enter the packed weight and choose pounds, ounces, kilograms or grams. The other three appear at once.", icon: Scale },
-                { title: "Choose a carrier and a speed", description: "Pick the carrier and the service level you ship with. The converter looks up the weight band for that pair.", icon: Truck },
-                { title: "Open the cost breakdown", description: "The breakdown shows the band the item falls in, the bands either side, and how much weight separates them.", icon: Table },
+                { title: "Pick the unit you need", description: "Choose the target unit. It shows as the main result, with the other units below it.", icon: Truck },
+                { title: "Check the carrier's rate card", description: "Carriers charge in weight steps that change every year. Look up the converted weight on your carrier's own rate card.", icon: Table },
             ]}
         />
     )

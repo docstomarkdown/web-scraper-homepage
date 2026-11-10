@@ -1,10 +1,10 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Package, RotateCcw, AlertTriangle, DollarSign, Calculator } from "lucide-react";
 import { FadeIn, Counter, CalculatorInput, ResultFeedbackCard, CalculatorCardHeader } from "@/app/tools/_shared/components";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { returnRate as calcReturns } from "./calc";
 export function ReturnRateCalculator() {
     const [currency, setCurrency] = useState("USD");
     const [unitsSold, setUnitsSold] = useState<number | "">("")
@@ -12,56 +12,35 @@ export function ReturnRateCalculator() {
     // New Financial Inputs
     const [sellingPrice, setSellingPrice] = useState<number | "">("")
     const [returnCost, setReturnCost] = useState<number | "">("")
-    const [returnRate, setReturnRate] = useState<number>(0);
-    const [lostRevenue, setLostRevenue] = useState<number>(0);
-    const [totalReturnCost, setTotalReturnCost] = useState<number>(0);
-    const [profitLeakage, setProfitLeakage] = useState<number>(0);
-    const val = (v: number | "") => (v === "" ? 0 : v);
-    const sold = val(unitsSold);
-    const returned = val(unitsReturned);
-    const price = val(sellingPrice);
-    const cost = val(returnCost);
-    useEffect(() => {
-        if (sold > 0) {
-            const calculatedRate = (returned / sold) * 100;
-            setReturnRate(calculatedRate);
-            // Financial Impact
-            const revenueLost = returned * price;
-            const processingFees = returned * cost;
-            setLostRevenue(revenueLost);
-            setTotalReturnCost(processingFees);
-            setProfitLeakage(revenueLost + processingFees); // Total financial hit (Revenue Lost + Fees)
-            // Note: "Profit Leakage" definition can vary. 
-            // Often it's (Refund Amount + Return Cost) - (Salvage Value). 
-            // Simplified here as: Revenue Refunded + Processing Cost.
-        } else {
-            setReturnRate(0);
-            setLostRevenue(0);
-            setTotalReturnCost(0);
-            setProfitLeakage(0);
-        }
-    }, [sold, returned, price, cost]);
+    const [resoldPercent, setResoldPercent] = useState<number | "">("")
+    const n = (v: number | "") => (v === "" ? null : v);
+    const result = calcReturns({
+        unitsSold: n(unitsSold),
+        unitsReturned: n(unitsReturned),
+        sellingPrice: n(sellingPrice),
+        costPerReturn: n(returnCost),
+        resoldPercent: n(resoldPercent),
+    });
+    const hasResult = result.ok;
+    const sold = unitsSold === "" ? 0 : unitsSold;
+    const returned = unitsReturned === "" ? 0 : unitsReturned;
+    const returnRate = result.ok ? result.returnRate : 0;
+    const lostRevenue = result.ok ? result.refunded : 0;
+    const totalReturnCost = result.ok ? result.handlingCost : 0;
+    const recovered = result.ok ? result.recovered : 0;
+    const profitLeakage = result.ok ? result.profitLeakage : 0;
     const handleReset = () => {
         setUnitsSold("");
         setUnitsReturned("");
         setSellingPrice("");
         setReturnCost("");
+        setResoldPercent("");
     };
     const formatCurrency = (val: number) => {
         return new Intl.NumberFormat('en-US', {
-            style: 'currency', currency: currency, maximumFractionDigits: 0
+            style: 'currency', currency: currency, minimumFractionDigits: 2, maximumFractionDigits: 2
         }).format(val);
     };
-    // Determine Status
-    let status = "Calculate";
-    let statusColor = "text-slate-600 dark:text-slate-300";
-    let statusBg = "bg-slate-100 dark:bg-slate-800";
-    if (sold > 0) {
-        if (returnRate < 5) { status = "Excellent"; statusColor = "text-blue-600 dark:text-blue-400"; statusBg = "bg-blue-100 dark:bg-blue-900/40"; }
-        else if (returnRate < 10) { status = "Healthy"; statusColor = "text-blue-600 dark:text-blue-400"; statusBg = "bg-blue-100 dark:bg-blue-900/40"; }
-        else if (returnRate < 15) { status = "Warning"; statusColor = "text-amber-700 dark:text-amber-300"; statusBg = "bg-amber-100 dark:bg-amber-900/40"; }
-        else { status = "High Risk"; statusColor = "text-red-700 dark:text-red-300"; statusBg = "bg-red-100 dark:bg-red-900/40"; }
-    }
     return (
         <FadeIn className="w-full max-w-6xl mx-auto py-8 px-4" duration={0.6}>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -95,7 +74,8 @@ export function ReturnRateCalculator() {
                                     value={unitsReturned}
                                     onChange={setUnitsReturned}
                                     placeholder="50"
-                                    tooltip="Total items sent back by customers."
+                                    tooltip="Total items sent back by customers. Can't be more than units sold."
+                                    hint={!result.ok && result.reason === "returns-above-sales" ? "Units returned can't be more than units sold in the same period." : undefined}
                                 />
                             </div>
                             {/* Group 2: Financial Impact */}
@@ -107,18 +87,34 @@ export function ReturnRateCalculator() {
                                     <h2 className="text-sm font-black text-slate-600 tracking-widest dark:text-slate-300">Financial Impact</h2>
                                 </div>
                                 <CalculatorInput
-                                    label={`Avg. Selling Price (${currency})`}
+                                    label="Avg. Selling Price"
                                     value={sellingPrice}
                                     onChange={setSellingPrice}
+                                    currency={currency}
+                                    step={0.01}
                                     placeholder="25.00"
-                                    tooltip="The average revenue lost per return."
+                                    isOptional
+                                    tooltip="The average price refunded per return."
                                 />
                                 <CalculatorInput
-                                    label={`Est. Cost per Return (${currency})`}
+                                    label="Est. Cost per Return"
                                     value={returnCost}
                                     onChange={setReturnCost}
+                                    currency={currency}
+                                    step={0.01}
                                     placeholder="5.00"
+                                    isOptional
                                     tooltip="Shipping labels, restocking fees, and processing costs per item."
+                                />
+                                <CalculatorInput
+                                    label="Returns Resold"
+                                    value={resoldPercent}
+                                    onChange={setResoldPercent}
+                                    max={100}
+                                    suffix="%"
+                                    placeholder="0"
+                                    isOptional
+                                    tooltip="The share of returned units you restock and sell again at full price. Their refund comes back when they sell, so it is left out of profit leakage."
                                 />
                             </div>
                         </CardContent>
@@ -135,7 +131,11 @@ export function ReturnRateCalculator() {
                                     "text-base leading-relaxed max-w-lg transition-colors duration-300 font-medium",
                                     returned > 0 ? "text-slate-600 dark:text-slate-300" : "text-slate-600 dark:text-slate-300"
                                 )}>
-                                    Returns are more than lost sales. With the handling costs, these {returned} returns have taken <span className="font-bold text-red-700 dark:text-red-300">{formatCurrency(profitLeakage)}</span> from your bottom line this period.
+                                    {hasResult ? (
+                                        <>Returns are more than lost sales. With the handling costs, these {returned} returns have taken <span className="font-bold text-red-700 dark:text-red-300">{formatCurrency(profitLeakage)}</span> from your bottom line this period, after the refunds on resold items.</>
+                                    ) : (
+                                        <>Enter units sold and returned to see what returns cost you this period.</>
+                                    )}
                                 </p>
                             </div>
                         </div>
@@ -147,29 +147,39 @@ export function ReturnRateCalculator() {
                         title="Return Rate"
                         mainValue={
                             <div className="flex items-baseline gap-1">
-                                <Counter
-                                    value={returnRate}
-                                    formatter={(val) => val.toFixed(2)}
-                                    className="text-5xl font-bold"
-                                />
-                                <span className="text-3xl font-bold text-slate-600 dark:text-slate-300">%</span>
+                                {hasResult ? (
+                                    <>
+                                        <Counter
+                                            value={returnRate}
+                                            formatter={(val) => val.toFixed(2)}
+                                            className="text-5xl font-bold"
+                                        />
+                                        <span className="text-3xl font-bold text-slate-600 dark:text-slate-300">%</span>
+                                    </>
+                                ) : (
+                                    <span className="text-5xl font-bold">–</span>
+                                )}
                             </div>
                         }
                         secondaryMetrics={[
-                            { label: "Lost Revenue", value: formatCurrency(lostRevenue), color: "text-red-200" },
+                            { label: "Revenue Refunded", value: formatCurrency(lostRevenue), color: "text-red-200" },
                             { label: "Processing Costs", value: formatCurrency(totalReturnCost), color: "text-orange-400" }
                         ]}
                     />
                     {/* Breakdown Card */}
-                    {sold > 0 && (
+                    {hasResult && (
                         <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-red-500 dark:bg-slate-900 dark:border-slate-800">
                             <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800">
                                 <p className="text-xs font-bold text-slate-600 tracking-wider dark:text-slate-300">Financial Impact Breakdown</p>
                             </div>
                             <div className="divide-y divide-slate-100 dark:divide-slate-800">
                                 <div className="flex justify-between items-center px-5 py-3.5">
-                                    <span className="text-sm text-slate-600 dark:text-slate-300">Lost Revenue</span>
+                                    <span className="text-sm text-slate-600 dark:text-slate-300">Revenue Refunded</span>
                                     <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{formatCurrency(lostRevenue)}</span>
+                                </div>
+                                <div className="flex justify-between items-center px-5 py-3.5">
+                                    <span className="text-sm text-slate-600 dark:text-slate-300">Recovered by Reselling</span>
+                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">−{formatCurrency(recovered)}</span>
                                 </div>
                                 <div className="flex justify-between items-center px-5 py-3.5">
                                     <span className="text-sm text-slate-600 dark:text-slate-300">Processing Costs</span>
@@ -189,69 +199,28 @@ export function ReturnRateCalculator() {
                                 <RotateCcw className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                                 Return Health
                             </h2>
-                            {sold > 0 && (
-                                <span className={cn("text-xs font-bold  tracking-widest px-2 py-0.5 rounded-full", statusBg, statusColor)}>
-                                    {status}
-                                </span>
-                            )}
                         </div>
                         <div className="space-y-3">
                             <InsightItem
                                 label="Total Profit Leakage"
                                 value={formatCurrency(profitLeakage)}
-                                description="Total financial impact (Refunds + Costs)."
+                                description="Refunds not recovered by reselling, plus handling costs."
                                 icon={DollarSign}
                                 color="text-red-700 dark:text-red-300"
                                 bg="bg-red-50 dark:bg-red-950/40"
                             />
                             <InsightItem
                                 label="Units Returned"
-                                value={returned.toString()}
-                                description={`Out of ${sold} units sold.`}
+                                value={hasResult ? returned.toString() : "–"}
+                                description={hasResult ? `Out of ${sold} units sold.` : "Enter units sold and returned."}
                                 icon={Package}
                                 color="text-slate-600 dark:text-slate-300"
                                 bg="bg-slate-50 dark:bg-slate-800/60"
                             />
                         </div>
-                        <div className="pt-2">
-                            <div className="flex items-center justify-between mb-3">
-                                <p className="text-xs font-bold text-slate-600 dark:text-slate-300 tracking-widest">Rate Benchmarks</p>
-                                {sold > 0 && (
-                                    <span className={cn("text-xs font-bold px-2 py-0.5 rounded-md border",
-                                        returnRate < 5 ? "text-blue-600 bg-blue-50 border-blue-100 dark:text-blue-400 dark:bg-blue-950/40 dark:border-blue-900/50" :
-                                            returnRate < 10 ? "text-blue-600 bg-blue-50 border-blue-100 dark:text-blue-400 dark:bg-blue-950/40 dark:border-blue-900/50" :
-                                                "text-red-600 bg-red-50 border-red-100 dark:text-red-200 dark:bg-red-950/40 dark:border-red-900/50"
-                                    )}>
-                                        {returnRate.toFixed(1)}% Rate
-                                    </span>
-                                )}
-                            </div>
-                            <div className="relative pt-2 pb-1">
-                                {/* Visual Scale: Green -> Blue -> Red */}
-                                <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden flex dark:bg-slate-800">
-                                    <div className="h-full bg-blue-400" style={{ width: '25%' }} /> {/* < 5% */}
-                                    <div className="h-full bg-blue-400" style={{ width: '25%' }} /> {/* < 10% */}
-                                    <div className="h-full bg-amber-400" style={{ width: '25%' }} /> {/* < 15% */}
-                                    <div className="h-full bg-red-400" style={{ width: '25%' }} /> {/* > 15% */}
-                                </div>
-                                {/* Dynamic Pointer */}
-                                {sold > 0 && (
-                                    <motion.div
-                                        initial={{ left: 0 }}
-                                        animate={{
-                                            // Scale: 0% to 20% Rate. If Rate > 20%, caps at 100%.
-                                            left: `${Math.min((returnRate / 20) * 100, 100)}%`
-                                        }}
-                                        className="absolute top-0 -mt-0.5 w-4 h-4 bg-white border-2 border-slate-800 rounded-full shadow-md z-10 -ml-2 transition-all dark:bg-slate-900 dark:border-slate-700"
-                                    />
-                                )}
-                            </div>
-                            <div className="flex justify-between mt-2 text-xs font-bold text-slate-600 dark:text-slate-300 italic">
-                                <span>Excellent</span>
-                                <span>Healthy</span>
-                                <span>High Risk</span>
-                            </div>
-                        </div>
+                        <p className="text-sm text-slate-600 leading-relaxed dark:text-slate-300">
+                            Return rates differ by category, so compare with your own past periods and your category rather than one target.
+                        </p>
                     </Card>
                 </div>
             </div>

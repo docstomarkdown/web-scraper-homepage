@@ -11,7 +11,7 @@ export function ReorderPointGuide() {
             items={[
                 {
                     title: "The formula, in words",
-                    description: "Lead-time demand is daily sales multiplied by delivery days. The reorder point is lead-time demand plus safety stock, rounded up to a whole unit. Coverage is the reorder point divided by daily sales.",
+                    description: "Lead-time demand is daily sales multiplied by delivery days. The reorder point is lead-time demand plus safety stock, rounded up to a whole unit. Safety stock entered in days is multiplied by daily sales first. Coverage is the reorder point divided by daily sales.",
                     icon: Calculator,
                     stat: "D × L + S",
                     statLabel: "the formula",
@@ -29,7 +29,7 @@ export function ReorderPointGuide() {
                     statColor: "text-emerald-700 dark:text-emerald-300",
                 },                {
                     title: "A worked example",
-                    description: "25 units a day with a 14-day delivery is 350 units of lead-time demand. With 50 units of safety stock, the reorder point is 400. That covers 16 days of sales, so you order when stock hits 400 and the delivery lands with about 50 to spare.",
+                    description: "25 units a day with a 14-day delivery is 350 units of lead-time demand. With 50 units of safety stock, the reorder point is 400. That covers 16 days of sales, so you order when stock hits 400 and the delivery lands with about 50 to spare. With 500 units on hand, you have 4 days before you must order.",
                     icon: Table,
                     stat: "400",
                     statLabel: "units",

@@ -2,7 +2,7 @@ import { Metadata } from "next"
 import { PriceElasticityCalculator } from "./_components/PriceElasticityCalculator"
 import { PriceElasticityHowToUse } from "./_components/PriceElasticityHowToUse"
 import { PriceElasticityGuide } from "./_components/PriceElasticityGuide"
-import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
+import { FadeIn, RelatedProduct, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
@@ -25,6 +25,10 @@ const faqs = [
         answer: "You can raise the price with little loss of sales, so revenue goes up. Cutting the price mostly gives margin away.",
     },
     {
+        question: "Why does the calculator use the midpoint method?",
+        answer: "A plain percentage change depends on which price you start from: $50 to $45 is −10%, but $45 to $50 is +11.1%. The midpoint method measures both changes against the average of the two values, so the answer is the same in either direction.",
+    },
+    {
         question: "How accurate is this?",
         answer: "It assumes nothing else changed between the two periods. Seasonality, a competitor's move or an ad campaign can distort the result, so compare like with like.",
     },
@@ -34,9 +38,12 @@ export default function PriceElasticityCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Price Elasticity Calculator" direction="down" duration={0.6} />
+                <ToolPageTitle title="Price elasticity calculator" direction="down" duration={0.6} />
                 <div className="mb-20">
                     <PriceElasticityCalculator />
+                </div>
+                <div className="mb-16">
+                    <RelatedProduct before="To price against competitors, collect their listings and prices into a spreadsheet with" linkText="Web Scraper Pro's product details and reviews" href="/product-scraper" after="." />
                 </div>
                 <div className="max-w-5xl mx-auto space-y-16">
                     <FadeIn delay={0.2}>

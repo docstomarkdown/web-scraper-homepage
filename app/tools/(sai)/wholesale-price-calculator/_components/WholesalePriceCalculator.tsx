@@ -5,6 +5,7 @@ import { DollarSign, Percent, TrendingUp, Tag } from "lucide-react"
 import { CalculatorCardHeader, CalculatorInput, FadeIn } from "@/app/tools/_shared/components"
 import { ResultSummaryCard } from "@/app/tools/_shared/components/ResultSummaryCard"
 import { WholesaleBreakdown } from "./WholesaleBreakdown"
+import { wholesalePrice } from "./calc"
 
 export function WholesalePriceCalculator() {
     const [currency, setCurrency] = useState("USD")
@@ -20,14 +21,12 @@ export function WholesalePriceCalculator() {
 
     const val = (v: number | "") => (v === "" ? 0 : v)
 
-    // Calculations
-    const cost = val(costOfGoods)
     const margin = val(desiredMargin)
-    const tax = val(taxRate)
-    const effectiveCost = cost * (1 + tax / 100)
-    const wholesalePrice = margin < 100 && effectiveCost > 0 ? effectiveCost / (1 - margin / 100) : 0
-    const profitPerUnit = wholesalePrice - effectiveCost
-    const markup = effectiveCost > 0 ? (profitPerUnit / effectiveCost) * 100 : 0
+    const result = wholesalePrice(val(costOfGoods), margin, val(taxRate))
+    const effectiveCost = result?.effectiveCost ?? 0
+    const price = result?.price ?? 0
+    const profitPerUnit = result?.profit ?? 0
+    const markup = result?.markup ?? 0
 
     const formatCurrency = (v: number) =>
         new Intl.NumberFormat("en-US", {
@@ -36,7 +35,7 @@ export function WholesalePriceCalculator() {
             maximumFractionDigits: 2,
         }).format(v)
 
-    const isCalculated = cost > 0 && margin > 0 && margin < 100
+    const isCalculated = result !== null
 
     return (
         <FadeIn className="w-full max-w-6xl mx-auto py-8 px-4" duration={0.6}>
@@ -45,10 +44,8 @@ export function WholesalePriceCalculator() {
                 <div className="lg:col-span-7 space-y-3 lg:sticky lg:top-8">
                     <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            title="Pricing Details"
                             description="Enter product costs and your target margin."
                             onReset={handleReset}
-                            guideId="wholesale-guide"
                             currency={currency}
                             onCurrencyChange={setCurrency}
                         />
@@ -101,7 +98,7 @@ export function WholesalePriceCalculator() {
                 <div className="lg:col-span-5 space-y-3">
                     <ResultSummaryCard
                         primaryResult={{
-                            value: wholesalePrice,
+                            value: price,
                             isCurrency: true,
                             label: "Recommended Wholesale Price",
                             key: "wholesalePrice",
@@ -126,9 +123,10 @@ export function WholesalePriceCalculator() {
                         currency={currency}
                         isCalculated={isCalculated}
                         emptyMessage="Wholesale Price"
+                        description={isCalculated ? `Selling at this price keeps a ${margin}% margin on your effective cost.` : undefined}
                         profitLossKey="profitPerUnit"
-                        liveBadgeText={profitPerUnit > 0 ? "Profitable" : "Review Inputs"}
-                        liveBadgeColor={profitPerUnit > 0 ? "emerald" : "amber"}
+                        liveBadgeText={isCalculated ? "Calculated" : "Live"}
+                        liveBadgeColor="slate"
                         validationBadgeText={{ valid: "Profitable", invalid: "Loss" }}
                     />
 
@@ -137,7 +135,7 @@ export function WholesalePriceCalculator() {
                         <WholesaleBreakdown
                             effectiveCost={effectiveCost}
                             profitPerUnit={profitPerUnit}
-                            wholesalePrice={wholesalePrice}
+                            wholesalePrice={price}
                             targetMargin={margin}
                             currency={currency}
                         />

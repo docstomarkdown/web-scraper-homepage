@@ -1,11 +1,12 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Users, Target, Activity, Settings, ChevronDown, ChevronUp, Calendar, Info } from "lucide-react"
 import { FadeIn, CalculatorInput, ResultSummaryCard, CalculatorCardHeader } from "@/app/tools/_shared/components"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { cn } from "@/lib/utils"
+import { calculateDuration, durationError } from "./calc"
 
 export function ABDurationCalculator() {
     const [baselineRate, setBaselineRate] = useState<number | "">("")
@@ -14,9 +15,6 @@ export function ABDurationCalculator() {
     const [trafficSplit, setTrafficSplit] = useState<number | "">(50)
     const [settingsOpen, setSettingsOpen] = useState(false)
 
-    const [sampleSize, setSampleSize] = useState<number>(0)
-    const [duration, setDuration] = useState<number>(0)
-
     const handleReset = () => {
         setBaselineRate("")
         setMde("")
@@ -24,44 +22,17 @@ export function ABDurationCalculator() {
         setTrafficSplit(50)
     }
 
-    const val = (v: number | "") => (v === "" ? 0 : v)
-
-    useEffect(() => {
-        const p1 = val(baselineRate) / 100
-        const effect = val(mde) / 100
-        const visitors = val(dailyVisitors)
-        const split = val(trafficSplit) || 50
-
-        if (p1 > 0 && p1 < 1 && effect > 0 && visitors > 0 && split > 0 && split < 100) {
-            const Z_alpha = 1.96
-            const Z_beta = 0.84
-            const p2 = p1 * (1 + effect)
-
-            if (p2 > 0 && p2 < 1) {
-                const numerator = Math.pow(Z_alpha + Z_beta, 2) * (p1 * (1 - p1) + p2 * (1 - p2))
-                const denominator = Math.pow(p2 - p1, 2)
-                const n = Math.ceil(numerator / denominator)
-                setSampleSize(n)
-                const minFraction = Math.min(split, 100 - split) / 100
-                setDuration(Math.ceil(n / (visitors * minFraction)))
-            } else {
-                setSampleSize(0)
-                setDuration(0)
-            }
-        } else {
-            setSampleSize(0)
-            setDuration(0)
-        }
-    }, [baselineRate, mde, dailyVisitors, trafficSplit])
-
-    const isCalculated = duration > 0
-    const totalVisitorsNeeded = sampleSize * 2
-    const dailyPerVariant = Math.floor(val(dailyVisitors) * (val(trafficSplit) || 50) / 100)
+    const result = calculateDuration(baselineRate, mde, dailyVisitors, trafficSplit)
+    const error = durationError(baselineRate, mde)
+    const isCalculated = result !== null
+    const duration = result?.days ?? 0
+    const sampleSize = result?.perVariant ?? 0
+    const totalVisitorsNeeded = result?.totalVisitors ?? 0
 
     const insightMessage = isCalculated
         ? (duration <= 30
             ? "Your traffic is sufficient for a reliable test"
-            : "Low traffic — test will take longer")
+            : "Low traffic: the test will take longer")
         : "Estimate how long your experiment should run."
 
     const estimatedEndDate = isCalculated
@@ -76,7 +47,6 @@ export function ABDurationCalculator() {
                 <div className="lg:col-span-7 space-y-4 self-start lg:sticky lg:top-28">
                     <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden rounded-2xl dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            title="Test Parameters"
                             description="Enter your current conversion rate, expected improvement, and traffic details to calculate your test duration."
                             onReset={handleReset}
                             guideId="ab-guide"
@@ -108,7 +78,8 @@ export function ABDurationCalculator() {
                                 placeholder="10"
                                 max={1000}
                                 suffix="%"
-                                tooltip="The minimum uplift you want to detect—example: enter 10% if you expect your test version to convert 10% better."
+                                tooltip="The minimum uplift you want to detect. For example, enter 10% if you expect your test version to convert 10% better."
+                                hint={error ? "That improvement takes the new rate to 100% or more. Enter a smaller improvement." : undefined}
                             />
                             <CalculatorInput
                                 label="Traffic Split"
@@ -117,8 +88,8 @@ export function ABDurationCalculator() {
                                 onChange={setTrafficSplit}
                                 placeholder="50"
                                 max={99}
-                                suffix="/ 50"
-                                tooltip="How you divide visitors between Variant A and B (default: 50/50)."
+                                suffix="%"
+                                tooltip="The share of visitors sent to Variant B; Variant A gets the rest (default: 50). The smaller share sets the duration."
                             />
                         </CardContent>
                     </Card>
@@ -149,7 +120,7 @@ export function ABDurationCalculator() {
                                 label: "Total Visitors Needed",
                                 value: isCalculated ? totalVisitorsNeeded.toLocaleString() : "0",
                                 unit: "users",
-                                tooltip: "The total sample size required for a trustworthy result.",
+                                tooltip: "All visitors the test sees before the smaller variant reaches its sample: visitors per variant divided by the smaller share.",
                                 icon: Target
                             },
                             {

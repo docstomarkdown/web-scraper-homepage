@@ -10,185 +10,7 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, Command
 import { Info, ChevronsUpDown, ChevronDown, ChevronUp, Box, DollarSign, Layers, Calendar, Clock, Tag, Truck, CircleDollarSign } from "lucide-react"
 import { FadeIn, CalculatorInput, ResultSummaryCard, CalculatorCardHeader } from "@/app/tools/_shared/components"
 import { cn } from "@/lib/utils"
-// --- Market Configurations ---
-// Define fee structures and unit preferences for each region
-type MarketConfig = {
-    units: { weight: string, dim: string },
-    shippingZone?: boolean, // Some markets have zones (e.g. India)
-    currencyParams: { storagePerCubic: number, storageUnit: string } // NEW: Storage params
-    getFbaFee: (l: number, w: number, h: number, wt: number, price?: number) => number
-    getReferralFee: (price: number, category?: string) => number // UPDATED: Category aware
-    getClosingFee?: (price: number) => number // India specific
-}
-// --- Categories & Referral Fees ---
-const categories: Record<string, number> = {
-    "General (Default)": 0.15,
-    "Apparel & Accessories": 0.17,
-    "Baby Products": 0.08, // often 8% or 15% depending on price, simplifying
-    "Books": 0.15,
-    "Consumer Electronics": 0.08,
-    "Home & Garden": 0.15,
-    "Automotive": 0.12,
-    "Beauty": 0.08, // often 8% for <$10, 15% otherwise
-    "Toys & Games": 0.15,
-    "Sports": 0.15,
-}
-const markets: Record<string, MarketConfig> = {
-    // === UNITED STATES (Imperial) ===
-    USD: {
-        units: { weight: "lbs", dim: "in" },
-        currencyParams: { storagePerCubic: 0.89, storageUnit: "ft³" }, // 2026 Adjusted Avg
-        getFbaFee: (l, w, h, wt, price) => {
-            // Estimated 2026 US Rates (Base + Inflation Adjustment)
-            if (l === 0 || w === 0 || h === 0 || wt === 0) return 0;
-            let baseFee = 0;
-            // Small Standard
-            if (l <= 15 && w <= 12 && h <= 0.75 && wt <= 1) baseFee = 3.30; // +0.08 approx
-            // Large Standard
-            else if (l <= 18 && w <= 14 && h <= 8 && wt <= 20) {
-                if (wt <= 0.25) baseFee = 3.86;
-                else if (wt <= 0.5) baseFee = 3.96;
-                else if (wt <= 0.75) baseFee = 4.15;
-                else if (wt <= 1) baseFee = 4.75;
-                else if (wt <= 1.5) baseFee = 5.57;
-                else if (wt <= 2) baseFee = 5.86;
-                else if (wt <= 3) baseFee = 6.61;
-                else baseFee = 6.61 + ((Math.ceil(wt) - 3) * 0.38);
-            }
-            // Oversize
-            else baseFee = 9.98 + ((Math.ceil(wt) - 1) * 0.44);
-            // 2026 Low-Inventory / Inflation Surcharge Logic (Simplified)
-            // If price > 50, add ~$0.31, < 10 add ~$0.12 (Averaged to +0.10 for simplicity in this tool)
-            if (price) {
-                if (price < 10) baseFee += 0.12;
-                else if (price > 50) baseFee += 0.31;
-                else baseFee += 0.08;
-            }
-            return parseFloat(baseFee.toFixed(2));
-        },
-        getReferralFee: (price, category) => {
-            if (!price) return 0;
-            // Beauty, Health & Personal Care and Baby: 8% at $10 and under, 15% above (sell.amazon.com/pricing,
-            // checked 2026-11-10; app/tools/_data/feeRates.ts). Minimum $0.30.
-            const tiered = category === "Beauty" || category === "Baby Products"
-            const rate = tiered
-                ? (price <= AMAZON_REFERRAL.lowPriceThreshold ? AMAZON_REFERRAL.lowPriceCategoryPercent : AMAZON_REFERRAL.standardPercent) / 100
-                : category && categories[category] ? categories[category] : AMAZON_REFERRAL.standardPercent / 100;
-            return Math.max(AMAZON_REFERRAL.minimum, price * rate);
-        },
-    },
-    // === INDIA (Metric) ===
-    INR: {
-        units: { weight: "kg", dim: "cm" },
-        currencyParams: { storagePerCubic: 45, storageUnit: "ft³" }, // ~45 INR per cubic foot
-        getFbaFee: (l, w, h, wt, price) => {
-            // India FBA (Easy Ship / FBA National)
-            // Weight handling fees are based on slabs.
-            // First 500g: ~₹44 (National)
-            // Addl 500g: ~₹24
-            // Fixed Closing Fee based on price range
-            if (wt === 0) return 0;
-            const weightInGrams = wt * 1000;
-            // Volumetric weight (LxWxH / 5000)
-            const volWeight = (l * w * h) / 5000 * 1000;
-            const chargeableWeight = Math.max(weightInGrams, volWeight);
-            // Basic slab calculation (National standard estimate)
-            let fee = 0;
-            if (chargeableWeight <= 500) {
-                fee = 44; // First 500g
-            } else if (chargeableWeight <= 1000) {
-                fee = 44 + 24; // First 500 + Next 500
-            } else if (chargeableWeight <= 5000) {
-                // > 1kg
-                const extra500s = Math.ceil((chargeableWeight - 1000) / 500);
-                fee = 68 + (extra500s * 24);
-            } else {
-                // Heavy
-                const extraKg = Math.ceil((chargeableWeight - 5000) / 1000);
-                fee = 68 + (8 * 24) + (extraKg * 12); // rough estimate
-            }
-            return fee;
-        },
-        getClosingFee: (price) => {
-            if (price <= 250) return 4; // roughly
-            if (price <= 500) return 9;
-            if (price <= 1000) return 30;
-            return 61; // > 1000
-        },
-        getReferralFee: (price, category) => {
-            if (!price) return 0;
-            // In India, electronics can be very low, apparel can be high.
-            // We'll use the passed category % if available, else 12% default
-            const rate = category && categories[category] ? categories[category] : 0.12;
-            return Math.max(3, price * rate);
-        }
-    },
-    // === UK (Metric) ===
-    GBP: {
-        units: { weight: "kg", dim: "cm" },
-        currencyParams: { storagePerCubic: 0.88, storageUnit: "ft³" }, // ~£0.88
-        getFbaFee: (l, w, h, wt) => {
-            // 2024 UK Rates (rough estimates)
-            const weightG = wt * 1000;
-            if (l <= 35 && w <= 25 && h <= 12 && weightG <= 1000) {
-                // Small/Standard envelope/parcel
-                if (weightG <= 100) return 1.63; // Small envelope
-                if (weightG <= 500) return 2.27; // Standard envelope
-                if (weightG <= 1000) return 2.76;
-            }
-            if (l <= 45 && w <= 34 && h <= 26 && weightG <= 11900) {
-                // Standard Parcel
-                if (weightG <= 500) return 2.91;
-                if (weightG <= 1000) return 3.49;
-                if (weightG <= 2000) return 4.05;
-                return 5.50; // estimate for heavier
-            }
-            return 7.00 + (Math.ceil(wt) * 0.40); // Oversize estimate
-        },
-        getReferralFee: (price, category) => price > 0 ? Math.max(0.25, price * (category ? categories[category] : 0.153)) : 0
-    },
-    // === EUROPE (Metric - Generic EUR) ===
-    EUR: {
-        units: { weight: "kg", dim: "cm" },
-        currencyParams: { storagePerCubic: 26, storageUnit: "m³" }, // ~26 EUR per cubic METER
-        getFbaFee: (l, w, h, wt) => {
-            // Generic Pan-EU estimate (DE rates often baseline)
-            const weightG = wt * 1000;
-            if (weightG <= 100) return 1.95;
-            if (weightG <= 500) return 3.48;
-            if (weightG <= 1000) return 4.63;
-            if (weightG <= 1500) return 5.46;
-            if (weightG <= 2000) return 5.99;
-            return 7.00 + (Math.ceil(wt - 2) * 0.5);
-        },
-        getReferralFee: (price, category) => {
-            if (price <= 0) return 0;
-            // 2026 EU Rate Updates for Low Price Items
-            if (price <= 20 && (category === "Home & Garden" || category === "Beauty" || category === "Grocery")) {
-                return price * 0.08; // Reduced to 8% (some 5%, simplifying)
-            }
-            return Math.max(0.30, price * (category ? categories[category] : 0.15));
-        }
-    },
-    // === CANADA (Metric) ===
-    CAD: {
-        units: { weight: "kg", dim: "cm" },
-        currencyParams: { storagePerCubic: 35, storageUnit: "m³" }, // Approx
-        getFbaFee: (l, w, h, wt) => {
-            const weightG = wt * 1000;
-            // CA Rates 2024
-            if (weightG <= 100) return 4.59;
-            if (weightG <= 500) return 5.51;
-            if (weightG <= 1000) return 6.95; // large standard
-            if (weightG <= 2000) return 8.78;
-            if (weightG <= 3000) return 10.37;
-            return 11.00 + (Math.ceil(wt - 3) * 0.40);
-        },
-        getReferralFee: (price, category) => price > 0 ? Math.max(1.00, price * (category ? categories[category] : 0.15)) : 0
-    }
-}
-// Fallback for others
-const defaultMarket = markets.USD;
+import { categories, fbaEstimate, MARKETS, units as marketUnits, type MarketCode } from "./calc"
 export function FBACalculator() {
     // State for inputs
     const [currency, setCurrency] = useState("USD")
@@ -203,8 +25,9 @@ export function FBACalculator() {
     const [showAdvanced, setShowAdvanced] = useState(false)
     const [category, setCategory] = useState("General (Default)")
     const [storageMonths, setStorageMonths] = useState<number | "">("")
-    const market = markets[currency] || defaultMarket;
-    const units = market.units;
+    // Rate cards exist for these five marketplaces only; another currency gets no result rather than US rates.
+    const market: MarketCode | null = (MARKETS as string[]).includes(currency) ? (currency as MarketCode) : null;
+    const units = marketUnits[market ?? "USD"];
     // Helper to safely get number for calculation
     const val = (v: number | "") => (v === "" ? 0 : v)
     // Currency symbols map
@@ -226,55 +49,22 @@ export function FBACalculator() {
         setStorageMonths("")
     }
     const salesPriceVal = val(salesPrice)
-    const weightVal = val(weight)
-    const lengthVal = val(length)
-    const widthVal = val(width)
-    const heightVal = val(height)
-    // Calculate Fees
-    // Calculate Fees
-    const fbaFee = market.getFbaFee(lengthVal, widthVal, heightVal, weightVal, salesPriceVal)
-    const referralFee = market.getReferralFee(salesPriceVal, category)
-    const closingFee = market.getClosingFee ? market.getClosingFee(salesPriceVal) : 0;
-    // Storage Fee Calculation
-    const getStorageFee = () => {
-        if (lengthVal === 0 || widthVal === 0 || heightVal === 0) return 0;
-        const months = val(storageMonths) || 0;
-        if (months === 0) return 0;
-        // Calculate Volume
-        let volume = lengthVal * widthVal * heightVal; // base unit volume (e.g. in³ or cm³)
-        let volumeInFeeUnits = 0;
-        if (market.units.dim === "in" && market.currencyParams.storageUnit === "ft³") {
-            // in³ to ft³ => / 1728
-            volumeInFeeUnits = volume / 1728;
-        } else if (market.units.dim === "cm" && market.currencyParams.storageUnit === "ft³") {
-            // cm³ to ft³ => / 28316.8
-            volumeInFeeUnits = volume / 28316.8;
-        } else if (market.units.dim === "cm" && market.currencyParams.storageUnit === "m³") {
-            // cm³ to m³ => / 1,000,000
-            volumeInFeeUnits = volume / 1000000;
-        } else {
-            // Fallback approximation
-            return 0;
-        }
-        return volumeInFeeUnits * market.currencyParams.storagePerCubic * months;
-    }
-    const storageFee = getStorageFee();
-    const totalFees = fbaFee + referralFee + closingFee + storageFee;
-    // Size Tier Display (Rough Logic)
-    const getSizeTier = () => {
-        if (lengthVal === 0 || widthVal === 0 || heightVal === 0 || weightVal === 0) return "Unknown"
-        // Rough universal logic for display text
-        if (market.units.dim === "in") {
-            if (lengthVal <= 15 && widthVal <= 12 && heightVal <= 0.75 && weightVal <= 1) return "Small Standard"
-            if (lengthVal <= 18 && widthVal <= 14 && heightVal <= 8 && weightVal <= 20) return "Large Standard"
-        } else {
-            // Metric approximation
-            // 38 x 30 x 2 cm ~ Small ? 
-            // 45 x 34 x 26 cm ~ Standard
-            if (lengthVal <= 45 && widthVal <= 34 && heightVal <= 26 && weightVal <= 12) return "Standard Parcel"
-        }
-        return "Oversize / Heavy"
-    }
+    const result = market ? fbaEstimate({
+        market,
+        price: salesPriceVal,
+        weight: val(weight),
+        length: val(length),
+        width: val(width),
+        height: val(height),
+        category,
+        storageMonths: val(storageMonths) || 0,
+        referralRates: AMAZON_REFERRAL,
+    }) : null
+    const fbaFee = result?.fulfilmentFee ?? 0
+    const referralFee = result?.referralFee ?? 0
+    const closingFee = result?.closingFee ?? 0
+    const storageFee = result?.storageFee ?? 0
+    const totalFees = result?.totalFees ?? 0
     // Currency formatter
     const formatCurrency = (val: number) => {
         return new Intl.NumberFormat('en-US', {
@@ -292,10 +82,8 @@ export function FBACalculator() {
                     <FadeIn delay={0.2} direction="right" className="h-full">
                         <Card className="border border-slate-200/80 shadow-sm bg-white overflow-hidden h-full flex flex-col rounded-3xl dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            title="Amazon FBA Fee Calculator"
-                            description="Analyze FBA fees, storage costs, and net profitability."
+                            description="Estimate Amazon's fees on one unit and what's left of the price."
                             onReset={handleReset}
-                            guideId="fba-calculator-guide"
                             currency={currency}
                             onCurrencyChange={setCurrency}
                         />
@@ -457,7 +245,7 @@ export function FBACalculator() {
                                                     onChange={setStorageMonths}
                                                     placeholder="0"
                                                     max={12}
-                                                    tooltip="Average months inventory stays in Fulfillment by Amazon (FBA) warehouses."
+                                                    tooltip="Average months a unit stays in Amazon's warehouse. The estimate uses one flat monthly rate; the Amazon storage fee calculator splits it by season."
                                                 />
                                             </div>
                                         </FadeIn>
@@ -494,7 +282,8 @@ export function FBACalculator() {
                                     label: "Fulfillment Fee (FBA)",
                                     value: fbaFee,
                                     isCurrency: true,
-                                    badge: getSizeTier(),
+                                    badge: result?.tier,
+                                    tooltip: result?.shippingWeight != null ? `Charged on ${result.shippingWeight.toFixed(2)} lb: the greater of the unit weight and the dimensional weight (L × W × H ÷ 139).` : undefined,
                                     icon: Truck
                                 },
                                 ...(closingFee > 0 ? [{
@@ -510,14 +299,23 @@ export function FBACalculator() {
                                     value: storageFee,
                                     isCurrency: true,
                                     icon: Calendar
-                                }] : [])
+                                }] : []),
+                                {
+                                    key: "left",
+                                    label: "Left After Amazon Fees",
+                                    value: result?.left ?? 0,
+                                    isCurrency: true,
+                                    tooltip: "Selling price minus the fees above, before your product and shipping costs.",
+                                    icon: DollarSign
+                                }
                             ]}
                             showLiveBadge={true}
-                            isCalculated={salesPrice !== ""}
-                            description="Estimated fees based on dimensions, weight, and Amazon rates."
-                            emptyMessage="Fill in product details to calculate fees."
+                            isCalculated={result !== null}
+                            description="Fulfilment fees are estimates; check Amazon's rate card in Seller Central."
+                            emptyMessage={market ? "Fill in product details to calculate fees." : "Pick USD, GBP, EUR, CAD or INR: these are the marketplaces with a rate card here."}
                             emptyResultLabel="Total Amazon Fees"
                         />
+                        <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">Fulfilment fees are estimates; check Amazon&apos;s rate card in Seller Central.</p>
                     </FadeIn>
                 </div>
             </div>

@@ -10,7 +10,7 @@ export function ReturnRateGuide() {
             items={[
                 {
                     title: "The formulas",
-                    description: "Return rate = units returned ÷ units sold × 100. Lost revenue = units returned × selling price. Return cost = units returned × cost per return. Profit leakage adds the last two.",
+                    description: "Return rate = units returned ÷ units sold × 100. Lost revenue = units returned × selling price. Return cost = units returned × cost per return. Profit leakage is lost revenue minus the refunds on returns you resell, plus return cost.",
                     icon: Calculator,
                     iconBg: "bg-[#2772ED]/10 dark:bg-[#2772ED]/20",
                     iconColor: "text-[#1f5ec2] dark:text-[#7aa7ff]",
@@ -31,7 +31,7 @@ export function ReturnRateGuide() {
                 },
                 {
                     title: "A worked example",
-                    description: "1,000 units sold and 50 returned is a 5% return rate. At a $25 price and $5 per return, that is $1,250 refunded and $250 of handling: $1,500 of profit leakage.",
+                    description: "1,000 units sold and 50 returned is a 5% return rate. At a $25 price and $5 per return, that is $1,250 refunded and $250 of handling: $1,500 of profit leakage. If you resell 60% of the returns, $750 of the refunds comes back and the leakage is $750.",
                     icon: TrendingUp,
                     iconBg: "bg-[#2772ED]/10 dark:bg-[#2772ED]/20",
                     iconColor: "text-[#1f5ec2] dark:text-[#7aa7ff]",

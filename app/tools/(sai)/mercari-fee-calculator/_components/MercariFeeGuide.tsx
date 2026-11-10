@@ -17,7 +17,7 @@ export function MercariFeeGuide() {
                 },
                 {
                     title: "Who pays shipping",
-                    description: "If you offer free shipping, the label comes out of your payout. If the buyer pays shipping, leave the shipping cost blank. Labels for small items usually cost $5 to $12.",
+                    description: "If you offer free shipping, the label comes out of your payout. If the buyer pays shipping, leave the shipping cost blank.",
                     icon: Package,
                     iconBg: "bg-[#2772ED]/10 dark:bg-[#2772ED]/20",
                     iconColor: "text-[#1f5ec2] dark:text-[#7aa7ff]",

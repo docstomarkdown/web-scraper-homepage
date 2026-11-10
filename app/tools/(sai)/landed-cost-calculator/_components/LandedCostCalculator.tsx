@@ -9,6 +9,9 @@ import { Package, Ship, Percent, DollarSign, Receipt, TrendingUp, BarChart3, Inf
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { LandedCostBreakdown } from "./LandedCostBreakdown";
+import { landedCost, type DutyBasis } from "./calc";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
 
 export function LandedCostCalculator() {
     const [currency, setCurrency] = useState("USD");
@@ -18,6 +21,7 @@ export function LandedCostCalculator() {
     const [dutyRate, setDutyRate] = useState<number | "">("");
     const [insuranceCost, setInsuranceCost] = useState<number | "">("");
     const [otherFees, setOtherFees] = useState<number | "">("");
+    const [basis, setBasis] = useState<DutyBasis>("CIF");
 
     const handleReset = () => {
         setProductCost("");
@@ -26,6 +30,7 @@ export function LandedCostCalculator() {
         setDutyRate("");
         setInsuranceCost("");
         setOtherFees("");
+        setBasis("CIF");
     };
 
     const val = (v: number | "") => (v === "" ? 0 : v);
@@ -39,19 +44,18 @@ export function LandedCostCalculator() {
     };
     const symbol = currencySymbols[currency] || "$";
 
-    // Calculations
-    const unitCost = val(productCost);
-    const unitCount = val(units);
     const shipping = val(shippingCost);
-    const duty = val(dutyRate);
     const insurance = val(insuranceCost);
     const fees = val(otherFees);
-
-    const totalProductCost = unitCost * unitCount;
-    const dutyAmount = (totalProductCost * duty) / 100;
-    const totalLandedCost = totalProductCost + shipping + dutyAmount + insurance + fees;
-    const landedCostPerUnit = unitCount > 0 ? totalLandedCost / unitCount : 0;
-    const costUplift = unitCost > 0 ? ((landedCostPerUnit - unitCost) / unitCost) * 100 : 0;
+    const result = landedCost({
+        unitCost: val(productCost), units: val(units), shipping, insurance,
+        dutyPercent: val(dutyRate), otherFees: fees, basis,
+    });
+    const totalProductCost = result?.goodsValue ?? 0;
+    const dutyAmount = result?.duty ?? 0;
+    const totalLandedCost = result?.total ?? 0;
+    const landedCostPerUnit = result?.perUnit ?? 0;
+    const costUplift = result?.increasePercent ?? 0;
 
     const formatCurrency = (val: number) => {
         return new Intl.NumberFormat("en-US", {
@@ -61,15 +65,7 @@ export function LandedCostCalculator() {
         }).format(val);
     };
 
-    const isCalculated = unitCost > 0 && unitCount > 0;
-    const hasBreakdown = unitCount > 0;
-
-    const riskBadge = (() => {
-        if (!isCalculated) return { text: "Review Inputs", color: "amber" as const };
-        if (costUplift <= 20) return { text: "Efficient Import", color: "blue" as const };
-        if (costUplift <= 60) return { text: "Moderate Uplift", color: "amber" as const };
-        return { text: "High Cost Uplift", color: "rose" as const };
-    })();
+    const isCalculated = result !== null;
 
     return (
         <FadeIn className="w-full max-w-6xl mx-auto py-8 px-4" duration={0.6}>
@@ -78,10 +74,8 @@ export function LandedCostCalculator() {
                 <div className="lg:col-span-7 space-y-3 lg:sticky lg:top-8">
                     <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            title="Import Cost Details"
                             description="Enter your product and all import cost details below."
                             onReset={handleReset}
-                            guideId="landed-cost-guide"
                             currency={currency}
                             onCurrencyChange={setCurrency}
                         />
@@ -149,6 +143,20 @@ export function LandedCostCalculator() {
                                     isOptional
                                     tooltip="Percentage charged as customs or import tax"
                                 />
+                                <div className="space-y-2 pt-1">
+                                    <p className="text-base font-medium text-slate-700 dark:text-slate-200">Duty charged on</p>
+                                    <RadioGroup value={basis} onValueChange={(v: string) => setBasis(v as DutyBasis)} className="flex flex-wrap gap-4">
+                                        <div className="flex items-center space-x-2">
+                                            <RadioGroupItem value="CIF" id="duty-cif" />
+                                            <Label htmlFor="duty-cif">CIF: goods + freight + insurance</Label>
+                                        </div>
+                                        <div className="flex items-center space-x-2">
+                                            <RadioGroupItem value="FOB" id="duty-fob" />
+                                            <Label htmlFor="duty-fob">FOB: goods only</Label>
+                                        </div>
+                                    </RadioGroup>
+                                    <p className="text-sm text-slate-600 dark:text-slate-300">The EU, UK and India charge duty on CIF value; the US charges it on the goods value, so pick FOB there.</p>
+                                </div>
                                 <CalculatorInput
                                     label="Other Fees"
                                     value={otherFees}
@@ -194,8 +202,8 @@ export function LandedCostCalculator() {
                         currency={currency}
                         isCalculated={isCalculated}
                         emptyMessage="Landed Cost Per Unit"
-                        liveBadgeText={riskBadge.text}
-                        liveBadgeColor={riskBadge.color}
+                        liveBadgeText={`Duty on ${basis}`}
+                        liveBadgeColor="slate"
                     />
 
                     {/* Landed Cost Breakdown — outside main result card */}

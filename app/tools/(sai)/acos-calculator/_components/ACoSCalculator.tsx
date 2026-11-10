@@ -1,103 +1,48 @@
 "use client"
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
-import { TrendingUp, DollarSign, Percent, BarChart3, AlertCircle, CheckCircle2 } from "lucide-react"
-import { FadeIn, Counter, CalculatorInput, ResultFeedbackCard, CalculatorCardHeader } from "@/app/tools/_shared/components"
+import { TrendingUp, DollarSign, Percent, BarChart3, Scale, PieChart } from "lucide-react"
+import { FadeIn, CalculatorInput, CalculatorCardHeader } from "@/app/tools/_shared/components"
 import { ResultSummaryCard } from "@/app/tools/_shared/components/ResultSummaryCard"
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip } from "recharts"
-import { PieChart as PieChartIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { motion } from "framer-motion"
 import { ACoSBreakdown } from "./ACoSBreakdown"
+import { calculateAcos } from "./calc"
+
 export function ACoSCalculator() {
     const [currency, setCurrency] = useState<string>("USD")
     const [adSpend, setAdSpend] = useState<number | "">("")
     const [adRevenue, setAdRevenue] = useState<number | "">("")
     const [profitMargin, setProfitMargin] = useState<number | "">("")
-    const [acos, setAcos] = useState<number>(0)
-    const [roas, setRoas] = useState<number>(0)
-    const [netProfit, setNetProfit] = useState<number>(0)
-    const [breakevenAcos, setBreakevenAcos] = useState<number>(0)
-    useEffect(() => {
-        const spend = Number(adSpend) || 0
-        const revenue = Number(adRevenue) || 0
-        const margin = Number(profitMargin) || 0
-        if (revenue > 0) {
-            const calculatedAcos = (spend / revenue) * 100
-            setAcos(calculatedAcos)
-            setRoas(spend > 0 ? revenue / spend : 0)
-        } else {
-            setAcos(0)
-            setRoas(0)
-        }
-        if (revenue > 0 && margin > 0) {
-            // Breakeven ACoS is simply the Profit Margin %
-            setBreakevenAcos(margin)
-            // Net Profit = (Revenue * Margin%) - Spend
-            const profit = (revenue * (margin / 100)) - spend
-            setNetProfit(profit)
-        } else {
-            setBreakevenAcos(0)
-            setNetProfit(0)
-        }
-    }, [adSpend, adRevenue, profitMargin])
+    const [totalRevenue, setTotalRevenue] = useState<number | "">("")
+
+    const result = calculateAcos({ adSpend, adRevenue, marginPct: profitMargin, totalRevenue })
+    const hasMargin = result?.netProfit != null
+
     const handleReset = () => {
         setAdSpend("")
         setAdRevenue("")
         setProfitMargin("")
+        setTotalRevenue("")
     }
-    // Determine Status
-    let status = "Waiting"
-    // liveBadgeColor needs to be one of: "emerald" | "amber" | "rose" | "blue" | "slate"
-    let badgeColor: "blue" | "emerald" | "amber" | "rose" | "slate" = "slate"
 
-    if (acos > 0 && breakevenAcos > 0) {
-        if (acos < breakevenAcos) {
+    // A verdict only when the margin is known: ACoS below the margin makes money.
+    let status = ""
+    let badgeColor: "emerald" | "amber" | "rose" | "slate" = "slate"
+    if (result && result.breakEvenAcos !== null) {
+        if (Math.abs(result.acos - result.breakEvenAcos) < 0.1) {
+            status = "Break-even"
+            badgeColor = "amber"
+        } else if (result.acos < result.breakEvenAcos) {
             status = "Profitable"
             badgeColor = "emerald"
-        } else if (Math.abs(acos - breakevenAcos) < 0.1) {
-            status = "Breakeven"
-            badgeColor = "amber"
         } else {
             status = "Unprofitable"
             badgeColor = "rose"
         }
     }
 
-    // Prepare Breakdown Data
-    const cogs = (Number(adRevenue) || 0) * (1 - ((Number(profitMargin) || 0) / 100))
-    const spendValue = Number(adSpend) || 0
-    let breakdownData: { name: string; value: number; color: string }[] = []
-
-    if (Number(adRevenue) > 0) {
-        if (netProfit >= 0) {
-            breakdownData = [
-                { name: 'Product Costs', value: cogs, color: '#94a3b8' },
-                { name: 'Ad Spend', value: spendValue, color: '#f43f5e' },
-                { name: 'Net Profit', value: netProfit, color: '#10b981' }
-            ]
-        } else {
-            // Unprofitable scenario
-            breakdownData = [
-                { name: 'Product Costs', value: cogs, color: '#94a3b8' },
-                { name: 'Ad Spend', value: spendValue, color: '#f43f5e' }
-            ]
-        }
-    }
-
-    const CustomTooltip = ({ active, payload }: any) => {
-        if (active && payload && payload.length) {
-            return (
-                <div className="bg-slate-900 border border-slate-800 text-white p-3 rounded-lg shadow-xl text-sm dark:bg-slate-800 dark:border-slate-700">
-                    <p className="font-semibold mb-1">{payload[0].name}</p>
-                    <p className="text-slate-300 dark:text-slate-600">
-                        ${Number(payload[0].value).toFixed(2)}
-                    </p>
-                </div>
-            )
-        }
-        return null
-    }
+    const revenueValue = Number(adRevenue) || 0
+    const cogs = hasMargin ? revenueValue * (1 - (Number(profitMargin) || 0) / 100) : 0
+    const needMargin = "Enter your profit margin to see this."
 
     return (
         <FadeIn className="w-full max-w-6xl mx-auto py-8 px-4" duration={0.6}>
@@ -106,8 +51,7 @@ export function ACoSCalculator() {
                 <div className="lg:col-span-7 space-y-3 lg:sticky lg:top-8">
                     <Card className="border border-slate-200 shadow-sm bg-white overflow-hidden dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            title="ACoS Details"
-                            description="Enter your ad spend, revenue, and product margin."
+                            description="Enter your ad spend and ad revenue. Add your margin for profit, and your total sales for TACoS."
                             onReset={handleReset}
                             currency={currency}
                             onCurrencyChange={setCurrency}
@@ -124,7 +68,7 @@ export function ACoSCalculator() {
                                     currency={currency}
                                     value={adSpend}
                                     onChange={setAdSpend}
-                                    placeholder="200.00"
+                                    placeholder="500.00"
                                     min={0}
                                     tooltip="Total amount spent on advertising."
                                 />
@@ -134,9 +78,9 @@ export function ACoSCalculator() {
                                     currency={currency}
                                     value={adRevenue}
                                     onChange={setAdRevenue}
-                                    placeholder="800.00"
+                                    placeholder="2000.00"
                                     min={0}
-                                    tooltip="Total sales generated directly from ads."
+                                    tooltip="Sales your ad console credits to the ads."
                                 />
                             </div>
                             {/* Group 2: Product Metrics */}
@@ -149,10 +93,21 @@ export function ACoSCalculator() {
                                     isOptional
                                     value={profitMargin}
                                     onChange={setProfitMargin}
-                                    placeholder="40.0"
+                                    placeholder="30.0"
                                     min={0}
                                     max={100}
-                                    tooltip="Your profit percentage after all costs (used to check if ads are profitable)."
+                                    tooltip="Your profit margin before ads, as a percentage of the sale price. This is your break-even ACoS."
+                                />
+                                <CalculatorInput
+                                    label="Total Revenue"
+                                    isCurrency
+                                    currency={currency}
+                                    isOptional
+                                    value={totalRevenue}
+                                    onChange={setTotalRevenue}
+                                    placeholder="10000.00"
+                                    min={0}
+                                    tooltip="All your sales for the same period, from ads and organic. Used for TACoS."
                                 />
                             </div>
                         </CardContent>
@@ -161,38 +116,74 @@ export function ACoSCalculator() {
                 <div className="lg:col-span-5 space-y-3">
                     <ResultSummaryCard
                         primaryResult={{
-                            value: acos.toFixed(2),
+                            value: result ? result.acos.toFixed(2) : "0",
                             unit: "%",
-                            label: "Total ACoS Percentage",
+                            label: "ACoS",
                             key: "acos"
                         }}
                         secondaryResults={[
                             {
+                                key: "roas",
+                                label: "ROAS",
+                                value: result ? `${result.roas.toFixed(2)}×` : "—",
+                                icon: BarChart3,
+                                tooltip: "Ad revenue divided by ad spend."
+                            },
+                            {
+                                key: "breakEvenAcos",
+                                label: "Break-even ACoS",
+                                value: result?.breakEvenAcos != null ? `${result.breakEvenAcos.toFixed(2)}%` : "—",
+                                icon: Scale,
+                                tooltip: hasMargin ? "Your margin before ads. Keep ACoS below this to make money on ad sales." : needMargin
+                            },
+                            {
                                 key: "netProfit",
-                                label: "Net Profit",
-                                value: netProfit,
-                                isCurrency: true,
+                                label: "Net Profit After Ads",
+                                value: result?.netProfit != null ? result.netProfit : "—",
+                                isCurrency: hasMargin,
                                 icon: DollarSign,
-                                tooltip: "Estimated amount you gain or lose after ad spend."
+                                tooltip: hasMargin ? "Ad revenue × margin − ad spend." : needMargin
+                            },
+                            {
+                                key: "tacos",
+                                label: "TACoS",
+                                value: result?.tacos != null ? `${result.tacos.toFixed(2)}%` : "—",
+                                icon: PieChart,
+                                tooltip: result?.tacos != null ? "Ad spend divided by total revenue." : "Enter your total revenue to see TACoS."
+                            },
+                            {
+                                key: "marginAfterAds",
+                                label: "Margin After Ads (All Sales)",
+                                value: result?.marginAfterAds != null ? `${result.marginAfterAds.toFixed(2)}%` : "—",
+                                icon: Percent,
+                                tooltip: result?.marginAfterAds != null ? "Profit margin minus TACoS, in percentage points." : "Enter your profit margin and total revenue to see this."
                             }
                         ]}
-                        profitLossKey="netProfit"
+                        profitLossKey={hasMargin ? "netProfit" : undefined}
                         currency={currency}
-                        isCalculated={Number(adRevenue) > 0 && Number(adSpend) > 0}
+                        isCalculated={result !== null}
                         emptyMessage="ACoS"
                         emptyResultLabel="ACoS %"
+                        showLiveBadge={status !== ""}
                         liveBadgeText={status}
                         liveBadgeColor={badgeColor}
                         validationBadgeText={{ valid: "Profitable", invalid: "Unprofitable" }}
+                        description={hasMargin ? undefined : "Add your profit margin to see whether the ads make money."}
+                        dynamicMessages={{
+                            positive: "ACoS is below your margin, so the ads add profit.",
+                            negative: "ACoS is above your margin, so each ad sale loses money.",
+                            neutral: "ACoS equals your margin, so the ads break even."
+                        }}
                     />
 
                     {/* Breakdown Card */}
                     <FadeIn delay={0.1}>
                         <ACoSBreakdown
-                            revenue={Number(adRevenue) || 0}
+                            revenue={hasMargin ? revenueValue : 0}
                             spend={Number(adSpend) || 0}
                             cogs={cogs}
-                            netProfit={netProfit}
+                            netProfit={result?.netProfit ?? 0}
+                            currency={currency}
                         />
                     </FadeIn>
                 </div>

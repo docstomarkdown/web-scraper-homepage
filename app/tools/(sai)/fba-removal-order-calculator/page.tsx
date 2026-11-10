@@ -16,7 +16,7 @@ export default function FBARemovalOrderPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="FBA Removal vs Disposal Calculator" direction="down" duration={0.6} />
+                <ToolPageTitle title="FBA removal order calculator" direction="down" duration={0.6} />
 
                 <div className="mb-20">
                     <FBARemovalCalculator />
@@ -44,7 +44,7 @@ export default function FBARemovalOrderPage() {
                                     },
                                     {
                                         question: "Are disposal fees cheaper than removal fees?",
-                                        answer: "Not in the current US schedule; the per-unit fee is the same. The choice comes down to whether you can sell the returned units for more than the fee and the cost of selling them."
+                                        answer: "Check both in Seller Central, since Amazon sets them by size tier and weight and changes them. When the fees are close, the choice comes down to whether you can sell the returned units for more than the fee and the cost of selling them."
                                     },
                                     {
                                         question: "What should I enter as the expected selling price?",

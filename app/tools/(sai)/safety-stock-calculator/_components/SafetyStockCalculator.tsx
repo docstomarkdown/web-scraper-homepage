@@ -8,6 +8,7 @@ import { CalculatorCardHeader } from "@/app/tools/_shared/components/CalculatorC
 import { ShieldCheck, TrendingUp, Clock, Package, BarChart3 } from "lucide-react";
 import { Counter } from "@/app/tools/_shared/components/Counter";
 import { SafetyStockBreakdown } from "./SafetyStockBreakdown";
+import { safetyStock } from "./calc";
 
 export function SafetyStockCalculator() {
     const [maxDailySales, setMaxDailySales] = useState<number | "">("");
@@ -22,28 +23,18 @@ export function SafetyStockCalculator() {
         setAvgLeadTime("");
     };
 
-    const val = (v: number | "") => (v === "" ? 0 : v);
-
-    const maxSales = val(maxDailySales);
-    const maxLead = val(maxLeadTime);
-    const avgSales = val(avgDailySales);
-    const avgLead = val(avgLeadTime);
-
-    // Formula: (Max Daily Sales × Max Lead Time) - (Avg Daily Sales × Avg Lead Time)
-    const maxUsage = maxSales * maxLead;
-    const avgUsage = avgSales * avgLead;
-    const safetyStock = Math.max(0, Math.ceil(maxUsage - avgUsage));
-
-    const hasData = maxSales > 0 || maxLead > 0 || avgSales > 0 || avgLead > 0;
-    const isCalculated = maxSales > 0 && maxLead > 0 && avgSales > 0 && avgLead > 0;
-
-    const riskLevel = (() => {
-        if (!isCalculated) return { text: "Review Inputs", color: "amber" as const };
-        if (safetyStock === 0) return { text: "No Buffer Needed", color: "blue" as const };
-        if (safetyStock <= 30) return { text: "Low Buffer", color: "blue" as const };
-        if (safetyStock <= 100) return { text: "Moderate Buffer", color: "amber" as const };
-        return { text: "High Buffer", color: "rose" as const };
-    })();
+    const num = (v: number | "") => (v === "" ? null : v);
+    const result = safetyStock({
+        maxDailySales: num(maxDailySales),
+        maxLeadTimeDays: num(maxLeadTime),
+        avgDailySales: num(avgDailySales),
+        avgLeadTimeDays: num(avgLeadTime),
+    });
+    const isCalculated = result.ok;
+    const maxUsage = result.ok ? result.maxUsage : 0;
+    const avgUsage = result.ok ? result.avgUsage : 0;
+    const buffer = result.ok ? result.safetyStock : 0;
+    const fmt = (n: number) => n.toLocaleString(undefined, { maximumFractionDigits: 2 });
 
     return (
         <FadeIn className="w-full max-w-6xl mx-auto py-8 px-4" duration={0.6}>
@@ -102,7 +93,8 @@ export function SafetyStockCalculator() {
                 <div className="lg:col-span-5 space-y-3 lg:sticky lg:top-8">
                     <ResultSummaryCard
                         primaryResult={{
-                            value: safetyStock,
+                            value: fmt(buffer),
+                            unit: "Units",
                             label: "Safety Stock Buffer",
                             key: "safetyStock",
                         }}
@@ -110,22 +102,35 @@ export function SafetyStockCalculator() {
                             {
                                 key: "maxDemand",
                                 label: "Max Lead Time Demand",
-                                value: `${maxUsage} Units`,
+                                value: `${fmt(maxUsage)} Units`,
                                 icon: TrendingUp,
                                 tooltip: "Total units you'd sell in the worst-case: Max Daily Sales × Max Lead Time"
                             },
                             {
                                 key: "avgDemand",
                                 label: "Avg. Lead Time Demand",
-                                value: `${avgUsage} Units`,
+                                value: `${fmt(avgUsage)} Units`,
                                 icon: BarChart3,
                                 tooltip: "Units sold during a normal restock cycle: Avg Daily Sales × Avg Lead Time"
+                            },
+                            {
+                                key: "bufferDays",
+                                label: "Buffer in Days of Average Sales",
+                                value: `${result.ok ? fmt(result.bufferDays) : 0} Days`,
+                                icon: Clock,
+                                tooltip: "Safety stock ÷ average daily sales."
+                            },
+                            {
+                                key: "rop",
+                                label: "Reorder Point",
+                                value: `${result.ok ? fmt(result.reorderPoint) : 0} Units`,
+                                icon: Package,
+                                tooltip: "Average lead-time demand (rounded up) + safety stock. Order when stock falls to this level."
                             }
                         ]}
                         isCalculated={isCalculated}
                         emptyMessage="Safety Stock Buffer"
-                        liveBadgeText={riskLevel.text}
-                        liveBadgeColor={riskLevel.color}
+                        showLiveBadge={false}
                     >
                         <FadeIn delay={0.1}>
                             {/* Inventory Protection — stays inside the result card */}
@@ -139,8 +144,10 @@ export function SafetyStockCalculator() {
                                         <p className="text-sm text-slate-600 leading-relaxed dark:text-slate-300">
                                             {isCalculated ? (
                                                 <>
-                                                    To cover demand variability and supplier delays, hold <strong>{safetyStock} units</strong> as a permanent buffer. This ensures you stay in stock even if sales spike or a shipment arrives late.
+                                                    To cover demand variability and supplier delays, hold <strong>{fmt(buffer)} units</strong> as a permanent buffer. It covers the worst case you entered: peak sales during your longest delivery.
                                                 </>
+                                            ) : !result.ok && result.reason === "max-below-average" ? (
+                                                <>The worst-case figures must be at least the averages. Check max daily sales and max lead time.</>
                                             ) : (
                                                 <>Enter your sales and lead time figures to see your recommended buffer quantity.</>
                                             )}
@@ -155,7 +162,7 @@ export function SafetyStockCalculator() {
                     <FadeIn delay={0.2}>
                         <SafetyStockBreakdown
                             avgUsage={avgUsage}
-                            safetyStock={safetyStock}
+                            safetyStock={buffer}
                             maxUsage={maxUsage}
                         />
                     </FadeIn>

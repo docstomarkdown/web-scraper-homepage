@@ -1,11 +1,12 @@
 "use client"
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { DollarSign, Percent, ShoppingCart, Tag, BarChart } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
-import { CalculatorCardHeader, CalculatorInput, FadeIn, ResultSummaryCard, currencies } from "@/app/tools/_shared/components"
+import { CalculatorCardHeader, CalculatorInput, FadeIn, ResultSummaryCard } from "@/app/tools/_shared/components"
 import { CouponROIBreakdown } from "./CouponROIBreakdown"
+import { calculateCouponRoi } from "./calc"
 export function CouponROICalculator() {
     const [currency, setCurrency] = useState("USD")
     const [campaignCost, setCampaignCost] = useState<number | "">("")
@@ -14,63 +15,9 @@ export function CouponROICalculator() {
     const [aov, setAov] = useState<number | "">("")
     const [discountAmount, setDiscountAmount] = useState<number | "">("")
     const [margin, setMargin] = useState<number | "">("") // Profit margin %
-    const currencySymbol = currencies.find(c => c.code === currency)?.symbol || "$"
-    // Results
-    const [totalRevenue, setTotalRevenue] = useState(0)
-    const [totalCost, setTotalCost] = useState(0) // Includes goods + campaign + discount
-    const [netProfit, setNetProfit] = useState(0)
-    const [roi, setRoi] = useState(0)
-    const [grossRevenue, setGrossRevenue] = useState(0)
-    const [totalCOGS, setTotalCOGS] = useState(0)
-    const [totalDiscountOut, setTotalDiscountOut] = useState(0)
-    useEffect(() => {
-        const cCost = Number(campaignCost) || 0
-        const count = Number(redemptions) || 0
-        const orderValue = Number(aov) || 0
-        const discount = Number(discountAmount) || 0
-        const marginPercent = Number(margin) || 0
-        if (count === 0 || orderValue === 0) {
-            setTotalRevenue(0)
-            setTotalCost(0)
-            setNetProfit(0)
-            setRoi(0)
-            return
-        }
-        // 1. Total Gross Revenue (pre-discount)
-        // Usually AOV is what the customer pays *after* discount? Or list price?
-        // Let's assume AOV is the "List Price" / "Cart Value" before discount.
-        const grossRevenue = count * orderValue
-        // 2. Cost of Goods Sold (COGS)
-        // Margin = (Price - Cost) / Price  => Cost = Price * (1 - Margin)
-        // COGS applies to the base product value
-        const cogsPerUnit = orderValue * (1 - (marginPercent / 100))
-        const totalCOGS = cogsPerUnit * count
-        // 3. Total Discount Given
-        const totalDiscount = discount * count
-        // 4. Net Revenue (Real money in)
-        const netRevenue = grossRevenue - totalDiscount
-        // 5. Total Expenses
-        const totalExpenses = cCost + totalCOGS // Measuring profit against campaign + goods
-        // 6. Net Profit
-        const profit = netRevenue - totalExpenses
-        // 7. ROI
-        // ROI = (Net Profit / Total Investment) * 100
-        // Investment = Campaign Cost + COGS?
-        // Marketing ROI = (Net Profit / Campaign Cost) * 100 ?
-        // Let's use Marketing ROI as it's more specific to the tool "Coupon ROI"
-        // Net Profit = (Net Revenue - COGS) - Campaign Cost
-        // ROI = (Profit Lift / Campaign Cost) * 100
-        const grossProfit = netRevenue - totalCOGS
-        const profitAfterCampaign = grossProfit - cCost
-        const calcRoi = cCost > 0 ? (profitAfterCampaign / cCost) * 100 : (profitAfterCampaign > 0 ? 9999 : 0)
-        setGrossRevenue(grossRevenue)
-        setTotalCOGS(totalCOGS)
-        setTotalDiscountOut(totalDiscount)
-        setTotalRevenue(netRevenue)
-        setTotalCost(cCost + totalDiscount) // Showing "Cost of Campaign" (Media + Discounts)
-        setNetProfit(profitAfterCampaign)
-        setRoi(calcRoi)
-    }, [campaignCost, redemptions, aov, discountAmount, margin])
+    const result = calculateCouponRoi({ campaignCost, redemptions, aov, discountPerOrder: discountAmount, marginPct: margin, couponsIssued })
+    const roi = result?.roi ?? 0
+    const netProfit = result?.profit ?? 0
     const handleReset = () => {
         setCampaignCost("")
         setCouponsIssued("")
@@ -80,7 +27,7 @@ export function CouponROICalculator() {
         setMargin("")
     }
 
-    const isValid = campaignCost !== "" && redemptions !== "" && aov !== "" && discountAmount !== "" && margin !== ""
+    const isValid = result !== null
 
     return (
         <FadeIn className="w-full max-w-6xl mx-auto space-y-8">
@@ -88,7 +35,6 @@ export function CouponROICalculator() {
                 {/* Inputs */}
                 <Card className="lg:col-span-7 border-none shadow-lg bg-white/80 backdrop-blur-sm ring-1 ring-slate-900/5 dark:bg-slate-900/80">
                     <CalculatorCardHeader
-                        title="Campaign Details"
                         description="Enter your coupon efficiency metrics."
                         onReset={handleReset}
                         guideId="tool-guide"
@@ -115,7 +61,7 @@ export function CouponROICalculator() {
                                     value={couponsIssued}
                                     onChange={setCouponsIssued}
                                     placeholder="5000"
-                                    tooltip="Total coupons distributed."
+                                    tooltip="Total coupons sent out. Used for the redemption rate."
                                     isOptional={true}
                                 />
                                 <CalculatorInput
@@ -135,7 +81,7 @@ export function CouponROICalculator() {
                                     value={aov}
                                     onChange={setAov}
                                     placeholder="50.00"
-                                    tooltip="Average purchase amount per order."
+                                    tooltip="What a coupon order was worth before the discount."
                                     currency={currency}
                                 />
                                 <CalculatorInput
@@ -152,7 +98,7 @@ export function CouponROICalculator() {
                                     onChange={setMargin}
                                     placeholder="40"
                                     max={100}
-                                    tooltip="Profit margin before discount."
+                                    tooltip="Your gross margin before the discount: the share of the order value left after the cost of the goods."
                                     suffix="%"
                                 />
                             </div>
@@ -165,10 +111,11 @@ export function CouponROICalculator() {
                         isCalculated={isValid}
                         currency={currency}
                         emptyMessage="net profit ROI"
-                        liveBadgeText={roi > 0 ? "Positive ROI" : roi === 0 ? "Break-Even" : "Negative ROI"}
-                        liveBadgeColor={roi > 0 ? "emerald" : roi === 0 ? "slate" : "rose"}
+                        liveBadgeText="Break-even"
+                        liveBadgeColor="slate"
+                        validationBadgeText={{ valid: "Positive ROI", invalid: "Negative ROI" }}
                         primaryResult={{
-                            value: roi,
+                            value: roi.toFixed(2),
                             label: "Return on Investment",
                             isCurrency: false,
                             unit: "%",
@@ -180,7 +127,13 @@ export function CouponROICalculator() {
                                 label: "Net Profit",
                                 value: netProfit,
                                 isCurrency: true,
-                                tooltip: "Derived by subtracting your Campaign Spend, Total Granted Discounts, and COGS from top-line revenue."
+                                tooltip: "Revenue after discounts, minus the cost of goods and the campaign cost."
+                            },
+                            {
+                                key: "redemptionRate",
+                                label: "Redemption Rate",
+                                value: result?.redemptionRate != null ? `${result.redemptionRate.toFixed(2)}%` : "—",
+                                tooltip: result?.redemptionRate != null ? "Redemptions divided by coupons issued." : "Enter coupons issued (at least the number of redemptions) to see this."
                             }
                         ]}
                         checklistItems={[
@@ -191,15 +144,20 @@ export function CouponROICalculator() {
                             { key: "pm", label: "Profit Margin", isComplete: margin !== "" },
                         ]}
                         profitLossKey="netProfit"
+                        dynamicMessages={{
+                            positive: "The redeemed orders earned more than the campaign cost.",
+                            negative: "The redeemed orders earned less than the campaign cost.",
+                            neutral: "The campaign broke even."
+                        }}
                     >
                     </ResultSummaryCard>
                     {/* Breakdown */}
                     <CouponROIBreakdown
                         netProfit={netProfit}
-                        cogs={totalCOGS}
-                        campaignCost={Number(campaignCost) || 0}
-                        totalDiscount={totalDiscountOut}
-                        grossRevenue={grossRevenue}
+                        cogs={result?.cogs ?? 0}
+                        campaignCost={result ? Number(campaignCost) : 0}
+                        totalDiscount={result?.totalDiscount ?? 0}
+                        grossRevenue={result?.grossRevenue ?? 0}
                         currency={currency}
                         className="mt-3"
                     />

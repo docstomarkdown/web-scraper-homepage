@@ -9,7 +9,7 @@ import { Lightbulb } from "lucide-react"
 
 export const metadata: Metadata = {
     title: "COGS Calculator: Cost of Goods Sold per Unit",
-    description: "Add product, shipping, packaging and fulfilment costs to get the cost of goods sold per unit and for a whole order quantity.",
+    description: "Add product, shipping, packaging and fulfilment costs to get the landed cost of goods per unit and for a whole order quantity, and the gross margin at your price.",
     alternates: { canonical: "/tools/cost-of-goods-sold-calculator" },
 }
 
@@ -17,7 +17,7 @@ export default function COGSCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Cost of Goods Sold (COGS) Calculator" />
+                <ToolPageTitle title="Cost of goods sold (COGS) calculator" />
                 <div className="mb-20">
                     <COGSCalculator />
                 </div>
@@ -52,7 +52,11 @@ export default function COGSCalculatorPage() {
                                 },
                                 {
                                     question: "What if I don't know the fulfilment cost yet?",
-                                    answer: "Leave it at zero and add it when you have the rate card. The per-unit figure will rise by that amount.",
+                                    answer: "Leave it blank and add it when you have the rate card. The per-unit figure will rise by that amount.",
+                                },
+                                {
+                                    question: "Is this the same as COGS on my profit and loss?",
+                                    answer: "No. This calculator works out the landed cost per unit of an order. The accounting figure for a period is opening inventory plus purchases minus closing inventory, which you get from your books.",
                                 },
                                 {
                                     question: "Why does the total matter?",

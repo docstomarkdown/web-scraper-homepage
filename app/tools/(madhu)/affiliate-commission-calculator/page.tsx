@@ -15,7 +15,7 @@ export default function AffiliateCommissionCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Affiliate Commission Calculator" />
+                <ToolPageTitle title="Affiliate commission calculator" />
                 <div className="mb-20">
                     <AffiliateCommissionCalculator />
                 </div>

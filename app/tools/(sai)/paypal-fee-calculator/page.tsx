@@ -7,7 +7,7 @@ import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
     title: "PayPal Fee Calculator: Fee and Payout Check",
-    description: "See the PayPal fee on a payment, what you receive after it, and what to charge to receive a set amount, at checkout, card, international, micro and nonprofit rates.",
+    description: "See the PayPal fee on a payment, what you receive after it, and what to charge to receive a set amount, at checkout, card, international, micropayment and charity rates.",
     alternates: { canonical: "/tools/paypal-fee-calculator" },
 }
 
@@ -34,7 +34,7 @@ export default function PaypalFeeCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="PayPal Fee Calculator" direction="down" duration={0.6} />
+                <ToolPageTitle title="PayPal fee calculator" direction="down" duration={0.6} />
                 <div className="mb-20">
                     <PayPalFeeCalculator />
                 </div>

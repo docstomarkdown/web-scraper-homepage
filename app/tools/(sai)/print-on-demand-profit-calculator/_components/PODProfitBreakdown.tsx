@@ -44,7 +44,7 @@ export function PODProfitBreakdown({
         { name: "Shipping Cost", value: shippingCost, color: "#a855f7", isCost: true, isMandatory: true },
         { name: "Transaction Fee", value: transactionFee, color: "#0ea5e9", isCost: true, isMandatory: true },
         { name: "Processing Fee", value: paymentProcessingFee, color: "#2563eb", isCost: true, isMandatory: true },
-        { name: "Platform Fee", value: platformFee, color: "#3b82f6", isCost: true, isMandatory: false },
+        { name: "Listing & Platform", value: platformFee, color: "#3b82f6", isCost: true, isMandatory: false },
         { name: "Offsite Ads", value: offsiteAdFee, color: "#6366f1", isCost: true, isMandatory: false },
     ]
 

@@ -1,11 +1,16 @@
 "use client"
 import React, { useState } from "react"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { Info, TrendingUp, DollarSign, Percent, ChevronDown, ChevronUp, ChevronsUpDown } from "lucide-react"
+import { Info, TrendingUp, DollarSign, Percent, ChevronDown, ChevronUp, ChevronsUpDown, Target, Wallet } from "lucide-react"
+import { margin, maxCostForMargin, priceForMargin } from "./calc"
 import { cn } from "@/lib/utils"
 import { CalculatorCardHeader, CalculatorInput, Counter, CurrencyCombobox, FadeIn, ResultFeedbackCard } from "@/app/tools/_shared/components"
+type Mode = "margin" | "price" | "cost"
+
 export function MarginCalculator() {
+    const [mode, setMode] = useState<Mode>("margin")
     const [currency, setCurrency] = useState("USD")
+    const [targetMargin, setTargetMargin] = useState<number | "">("")
     const [costPrice, setCostPrice] = useState<number | "">("")
     const [salesPrice, setSalesPrice] = useState<number | "">("")
     const [quantity, setQuantity] = useState<number | "">("")
@@ -30,28 +35,28 @@ export function MarginCalculator() {
         setShippingCost("")
         setOtherCosts("")
         setTaxRate("")
+        setTargetMargin("")
     }
-    // Calculations
-    const cost = val(costPrice)
-    const price = val(salesPrice)
+    // Calculations (calc.ts). The advanced fields count only while the panel is open.
+    const result = margin({
+        price: val(salesPrice),
+        cost: val(costPrice),
+        shipping: showAdvanced ? val(shippingCost) : 0,
+        other: showAdvanced ? val(otherCosts) : 0,
+        taxIncludedPercent: showAdvanced ? val(taxRate) : 0,
+        quantity: val(quantity),
+    })
+    // A margin needs both numbers typed; a cost of 0 is allowed.
+    const marginReady = mode === "margin" && result !== null && costPrice !== ""
+    const target = mode === "price"
+        ? (costPrice !== "" && targetMargin !== "" ? priceForMargin(val(costPrice), val(targetMargin)) : null)
+        : mode === "cost"
+            ? (salesPrice !== "" && targetMargin !== "" ? maxCostForMargin(val(salesPrice), val(targetMargin)) : null)
+            : null
+    const targetTooHigh = targetMargin !== "" && (mode === "price" ? val(targetMargin) >= 100 : val(targetMargin) > 100)
     const qty = val(quantity) === 0 ? 1 : val(quantity)
-    const shipping = val(shippingCost)
-    const other = val(otherCosts)
-    const taxPercent = val(taxRate)
-    // Per Unit Calculations
-    const grossProfitPerUnit = price - cost
-    const taxAmountPerUnit = price > 0 ? (price * (taxPercent / 100)) : 0
-    const totalCostPerUnit = cost + shipping + other + taxAmountPerUnit
-    const netProfitPerUnit = price - totalCostPerUnit
-    // Totals
-    const totalRevenue = price * qty
-    const totalCostOfGoods = totalCostPerUnit * qty
-    const totalNetProfit = netProfitPerUnit * qty
-    // Margins
-    const grossMarginPercent = price > 0 ? (grossProfitPerUnit / price) * 100 : 0
-    const netMarginPercent = price > 0 ? (netProfitPerUnit / price) * 100 : 0
-    const markupPercent = totalCostPerUnit > 0 ? (netProfitPerUnit / totalCostPerUnit) * 100 : 0
-    const roiPercent = (cost + shipping + other) > 0 ? (netProfitPerUnit / (cost + shipping + other)) * 100 : 0
+    const totalNetProfit = result?.totalNetProfit ?? 0
+    const pct = (v: number | null | undefined) => (v === null || v === undefined ? "–" : `${v.toFixed(2)}%`)
     const formatCurrency = (val: number) => {
         return new Intl.NumberFormat('en-US', {
             style: 'currency',
@@ -66,29 +71,49 @@ export function MarginCalculator() {
                 <div className="lg:col-span-7 space-y-3">
                     <Card className="border border-slate-200 shadow-sm bg-white dark:border-slate-800 dark:bg-slate-900">
                         <CalculatorCardHeader
-                            description="Calculate your net profit and margin."
+                            description="Find the margin and markup from a price and a cost, or set a target margin to find the price or the most you can pay."
                             onReset={handleReset}
-                            guideId="margin-guide"
                             currency={currency}
                             onCurrencyChange={setCurrency}
                         />
                         <CardContent className="space-y-3 pt-6">
-                            <CalculatorInput
-                                label={`Cost Price (${symbol})`}
-                                value={costPrice}
-                                onChange={setCostPrice}
-                                placeholder="50.00"
-                                max={100000}
-                                tooltip="The total cost to produce or acquire one unit of the product."
-                            />
-                            <CalculatorInput
-                                label={`Selling Price (${symbol})`}
-                                value={salesPrice}
-                                onChange={setSalesPrice}
-                                placeholder="100.00"
-                                max={100000}
-                                tooltip="The price at which you sell one unit of the product."
-                            />
+                            <div className="grid grid-cols-3 gap-1.5 p-1 bg-slate-100 rounded-2xl border border-slate-200/60 dark:bg-slate-800 dark:border-slate-800">
+                                <ModeButton active={mode === "margin"} onClick={() => setMode("margin")} icon={Percent} label="Find margin" />
+                                <ModeButton active={mode === "price"} onClick={() => setMode("price")} icon={Target} label="Find price" />
+                                <ModeButton active={mode === "cost"} onClick={() => setMode("cost")} icon={Wallet} label="Find cost" />
+                            </div>
+                            {mode !== "cost" && (
+                                <CalculatorInput
+                                    label={`Cost Price (${symbol})`}
+                                    value={costPrice}
+                                    onChange={setCostPrice}
+                                    placeholder="50.00"
+                                    max={100000}
+                                    tooltip="What one unit costs you, or a period's cost of goods sold. 0 is allowed."
+                                />
+                            )}
+                            {mode !== "price" && (
+                                <CalculatorInput
+                                    label={`Selling Price (${symbol})`}
+                                    value={salesPrice}
+                                    onChange={setSalesPrice}
+                                    placeholder="100.00"
+                                    max={100000}
+                                    tooltip="The price of one unit, or a period's revenue."
+                                />
+                            )}
+                            {mode !== "margin" && (
+                                <CalculatorInput
+                                    label="Target Gross Margin (%)"
+                                    value={targetMargin}
+                                    onChange={setTargetMargin}
+                                    placeholder="40.0"
+                                    max={100}
+                                    tooltip={mode === "price" ? "The gross margin you want. It must be below 100%." : "The gross margin you need to keep, up to 100%."}
+                                />
+                            )}
+                            {mode === "margin" && (
+                            <>
                             <CalculatorInput
                                 label="Quantity (Optional)"
                                 value={quantity}
@@ -135,7 +160,7 @@ export function MarginCalculator() {
                                     </div>
                                 </div>
                                 {showAdvanced && (
-                                    <FadeIn className="marginTop-4 p-5 bg-slate-50/50 rounded-xl border border-slate-200/60 space-y-3 mt-4 dark:bg-slate-800/60 dark:border-slate-800">
+                                    <FadeIn className="p-5 bg-slate-50/50 rounded-xl border border-slate-200/60 space-y-3 mt-4 dark:bg-slate-800/60 dark:border-slate-800">
                                         <CalculatorInput
                                             label={`Shipping Cost per Unit (${symbol})`}
                                             value={shippingCost}
@@ -153,73 +178,64 @@ export function MarginCalculator() {
                                             tooltip="Any extra costs per unit (e.g. packaging, transaction fees)."
                                         />
                                         <CalculatorInput
-                                            label="Tax Rate (%)"
+                                            label="Tax Included in Price (%)"
                                             value={taxRate}
                                             onChange={setTaxRate}
-                                            placeholder="8.0"
+                                            placeholder="20"
                                             max={100}
-                                            tooltip="Sales tax rate passing through to expenses or reducing net."
+                                            tooltip="If your selling price includes VAT or sales tax, enter the rate and the tax is taken out of the price before the margin. Leave it blank when tax is added on top at checkout."
                                         />
                                     </FadeIn>
                                 )}
                             </div>
+                            </>
+                            )}
+                            {mode !== "margin" && targetTooHigh && (
+                                <p role="status" className="text-sm text-amber-800 dark:text-amber-300">
+                                    {mode === "price" ? "A margin of 100% or more has no price: the cost would have to be 0. Enter a target below 100%." : "Enter a target of 100% or less."}
+                                </p>
+                            )}
                         </CardContent>
                     </Card>
                 </div>
                 {/* Results Section */}
                 <div className="lg:col-span-5 space-y-3 lg:sticky lg:top-8">
+                    {mode === "margin" ? (
+                    <>
                     {/* Main Profit Card */}
                     <ResultFeedbackCard
                         title={(quantity && quantity > 1) ? 'Total Net Profit' : 'Net Profit per Unit'}
                         mainValue={
-                            <Counter value={totalNetProfit} formatter={formatCurrency} key={currency} />
+                            marginReady ? <Counter value={totalNetProfit} formatter={formatCurrency} key={currency} /> : "–"
                         }
-                        valueColor={totalNetProfit > 0 ? "text-blue-400" : (totalNetProfit < 0 ? "text-red-400" : "text-white")}
+                        valueColor={!marginReady ? "text-white" : totalNetProfit > 0 ? "text-blue-400" : (totalNetProfit < 0 ? "text-red-400" : "text-white")}
                         mainMetricColor={totalNetProfit >= 0 ? 'text-white' : 'text-red-200'}
                         secondaryMetrics={[
                             {
-                                label: "Net Margin",
-                                value: <Counter value={netMarginPercent} formatter={(v) => `${v.toFixed(2)}%`} />,
-                                color: totalNetProfit >= 0 ? 'text-blue-400' : 'text-red-400'
+                                label: "Gross Margin",
+                                value: marginReady ? pct(result?.grossMargin) : "–",
+                                color: "text-blue-400"
                             },
                             {
-                                label: "ROI",
-                                value: <Counter value={roiPercent} formatter={(v) => `${v.toFixed(2)}%`} />,
+                                label: "Markup",
+                                value: marginReady ? pct(result?.markup) : "–",
                                 color: "text-blue-400"
                             }
                         ]}
                     />
                     {/* Breakdown Card */}
-                    {totalRevenue > 0 ? (
+                    {marginReady && result ? (
                         <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500 dark:bg-slate-900 dark:border-slate-800">
                             <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800">
                                 <p className="text-xs font-bold text-slate-600 tracking-wider dark:text-slate-300">Financial Breakdown</p>
                             </div>
                             <div className="divide-y divide-slate-100 dark:divide-slate-800">
-                                <div className="flex justify-between items-center px-5 py-3.5">
-                                    <span className="text-sm text-slate-600 dark:text-slate-300">Total Revenue</span>
-                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">
-                                        {formatCurrency(totalRevenue)}
-                                    </span>
-                                </div>
-                                <div className="flex justify-between items-center px-5 py-3.5">
-                                    <span className="text-sm text-slate-600 dark:text-slate-300">Total Costs</span>
-                                    <span className="text-sm font-semibold text-red-700 dark:text-red-300">
-                                        - {formatCurrency(totalCostOfGoods)}
-                                    </span>
-                                </div>
-                                <div className="flex justify-between items-center px-5 py-3.5">
-                                    <span className="text-sm text-slate-600 dark:text-slate-300">Gross Margin</span>
-                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">
-                                        {grossMarginPercent.toFixed(2)}%
-                                    </span>
-                                </div>
-                                <div className="flex justify-between items-center px-5 py-4">
-                                    <span className="text-sm font-bold text-blue-600 dark:text-blue-400">Markup</span>
-                                    <span className="text-base font-bold text-blue-600 dark:text-blue-400">
-                                        {markupPercent.toFixed(2)}%
-                                    </span>
-                                </div>
+                                <Row label={qty > 1 ? "Total Revenue" : "Selling Price"} value={formatCurrency(result.totalRevenue)} />
+                                {result.tax > 0 && <Row label="Tax in the Price (per unit)" value={`- ${formatCurrency(result.tax)}`} negative />}
+                                <Row label="Gross Profit per Unit" value={formatCurrency(result.grossProfit)} />
+                                <Row label="Gross Margin" value={pct(result.grossMargin)} />
+                                {result.totalCost !== val(costPrice) && <Row label="Net Margin (after shipping and fees)" value={pct(result.netMargin)} />}
+                                <Row label="Markup" value={pct(result.markup)} strong />
                             </div>
                         </div>
                     ) : (
@@ -227,8 +243,59 @@ export function MarginCalculator() {
                             <p className="text-sm text-slate-600 dark:text-slate-300">Enter cost and selling price to see breakdown.</p>
                         </div>
                     )}
+                    </>
+                    ) : (
+                    <>
+                    <ResultFeedbackCard
+                        title={mode === "price" ? "Price to Charge" : "Most the Goods Can Cost"}
+                        mainValue={target ? <Counter value={mode === "price" ? target.price : target.cost} formatter={formatCurrency} key={currency + mode} /> : "–"}
+                        valueColor="text-white"
+                        secondaryMetrics={[
+                            { label: "Gross Profit", value: target ? formatCurrency(target.profit) : "–", color: "text-blue-400" },
+                            { label: "Markup", value: target ? pct(target.markup) : "–", color: "text-blue-400" },
+                        ]}
+                    />
+                    <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center dark:bg-slate-900 dark:border-slate-800">
+                        <p className="text-sm text-slate-600 dark:text-slate-300">
+                            {target
+                                ? (mode === "price"
+                                    ? `Selling at ${formatCurrency(target.price)} on a cost of ${formatCurrency(target.cost)} keeps a ${val(targetMargin)}% gross margin.`
+                                    : `At ${formatCurrency(target.price)}, goods costing ${formatCurrency(target.cost)} or less keep a ${val(targetMargin)}% gross margin.`)
+                                : mode === "price" ? "Enter the cost and a target margin below 100% to see the price." : "Enter the selling price and a target margin to see the most you can pay."}
+                        </p>
+                    </div>
+                    </>
+                    )}
                 </div>
             </div>
         </FadeIn>
+    )
+}
+
+function Row({ label, value, negative, strong }: { label: string; value: string; negative?: boolean; strong?: boolean }) {
+    return (
+        <div className={cn("flex justify-between items-center px-5", strong ? "py-4" : "py-3.5")}>
+            <span className={cn("text-sm", strong ? "font-bold text-blue-600 dark:text-blue-400" : "text-slate-600 dark:text-slate-300")}>{label}</span>
+            <span className={cn("font-semibold", strong ? "text-base font-bold text-blue-600 dark:text-blue-400" : negative ? "text-sm text-red-700 dark:text-red-300" : "text-sm text-slate-800 dark:text-slate-100")}>{value}</span>
+        </div>
+    )
+}
+
+function ModeButton({ active, onClick, icon: Icon, label }: { active: boolean; onClick: () => void; icon: React.ElementType; label: string }) {
+    return (
+        <button
+            type="button"
+            onClick={onClick}
+            aria-pressed={active}
+            className={cn(
+                "flex flex-col items-center justify-center gap-1.5 p-2 rounded-xl transition-all duration-300 border",
+                active
+                    ? "bg-white border-blue-200 shadow-sm text-blue-600 ring-2 ring-blue-100 dark:bg-slate-900 dark:border-blue-900/50 dark:text-blue-400 dark:ring-blue-900/40"
+                    : "border-transparent text-slate-600 hover:bg-white hover:text-slate-700 hover:shadow-sm dark:text-slate-300 dark:hover:bg-slate-900 dark:hover:text-slate-200"
+            )}
+        >
+            <Icon className={cn("w-4 h-4", active ? "stroke-[2.5px]" : "stroke-2")} aria-hidden="true" />
+            <span className="text-xs font-bold tracking-tight">{label}</span>
+        </button>
     )
 }

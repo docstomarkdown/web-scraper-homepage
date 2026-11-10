@@ -11,16 +11,16 @@ export function WeightConverterGuide() {
             items={[
                 {
                     title: "The conversion factors",
-                    description: "One pound is 16 ounces and 453.59 grams. One kilogram is 1,000 grams and 2.2046 pounds. The converter turns your weight into grams first, then into each other unit, so the four results always agree.",
+                    description: "One pound is 16 ounces and exactly 453.59237 grams, so one ounce is 28.349523125 grams. One kilogram is 1,000 grams and about 2.2046 pounds. The converter turns your weight into grams first, then into each other unit, so the four results always agree.",
                     icon: Calculator,
-                    stat: "453.59 g",
+                    stat: "453.59237 g",
                     statLabel: "per pound",
                     iconBg: "bg-[#2772ED]/10 dark:bg-[#2772ED]/20",
                     iconColor: "text-[#1f5ec2] dark:text-[#7aa7ff]",
                     statColor: "text-blue-700 dark:text-blue-300",
                 },                {
-                    title: "Why the band matters",
-                    description: "Carriers charge by steps, not by the gram. A product at the top of a band pays the same as one at the bottom; one gram over moves it up a step. Knowing the headroom tells you whether lighter packaging would save money.",
+                    title: "Why the exact weight matters",
+                    description: "Carriers charge by weight steps, not by the gram, and one gram over a step moves the parcel up a price. Convert the packed weight, then find the step on your carrier's current rate card.",
                     icon: Coins,
                     stat: "Steps",
                     statLabel: "not a smooth line",
@@ -29,7 +29,7 @@ export function WeightConverterGuide() {
                     statColor: "text-emerald-700 dark:text-emerald-300",
                 },                {
                     title: "A worked example",
-                    description: "12 ounces is 0.75 pounds, 340 grams and 0.34 kilograms. On a carrier whose standard service steps at 1 pound, the item has 4 ounces of headroom: a heavier box is fine, a second unit in the parcel is not.",
+                    description: "12 ounces is 0.75 pounds, 340.1943 grams and 0.3402 kilograms. If your carrier's next price step is at 1 pound, that leaves 4 ounces for the box and packing.",
                     icon: Table,
                     stat: "4 oz",
                     statLabel: "of headroom",
@@ -38,10 +38,10 @@ export function WeightConverterGuide() {
                     statColor: "text-blue-700 dark:text-blue-300",
                 },                {
                     title: "What it leaves out",
-                    description: "The bands are a snapshot of published rate cards and change with each carrier's annual update. Dimensional weight, surcharges and zones aren't modelled. Check the carrier's own calculator before you quote a customer.",
+                    description: "It converts weight only. Carrier prices, dimensional weight, surcharges and zones aren't included. Check the carrier's own calculator before you quote a customer.",
                     icon: AlertTriangle,
-                    stat: "Snapshot",
-                    statLabel: "of rate cards",
+                    stat: "Weight",
+                    statLabel: "not price",
                     iconBg: "bg-[#2772ED]/10 dark:bg-[#2772ED]/20",
                     iconColor: "text-[#1f5ec2] dark:text-[#7aa7ff]",
                     statColor: "text-amber-700 dark:text-amber-300",

@@ -17,7 +17,7 @@ export default function PalletConfigurationCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Pallet Configuration Calculator" />
+                <ToolPageTitle title="Pallet configuration calculator" />
                 <div className="mb-20">
                     <PalletConfigurationCalculator />
                 </div>
@@ -52,11 +52,11 @@ export default function PalletConfigurationCalculatorPage() {
                                 },
                                 {
                                     question: "What does area efficiency mean?",
-                                    answer: "The share of the pallet's top surface the bottom layer covers. Under 85% means a different carton size or orientation might fit more.",
+                                    answer: "The share of the pallet's top surface the bottom layer covers. Under 80% means a different carton size or orientation might fit more.",
                                 },
                                 {
                                     question: "Does it handle a weight limit?",
-                                    answer: "Yes. Enter the carton weight and the pallet limit, and the total cartons and layers are reduced to stay under it.",
+                                    answer: "Yes. Enter the carton weight and the pallet limit, and the total cartons and layers are reduced to stay under it. Add the empty pallet's own weight too: it counts toward the limit and the total weight.",
                                 },
                             ]}
                         />

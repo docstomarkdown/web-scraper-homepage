@@ -7,10 +7,10 @@ export function ValidatorHowToUse() {
         <ToolSteps
             title="How to use this validator"
             steps={[
-                { title: "Type or scan the number", description: "Enter 8, 12, 13 or 14 digits, or upload a photo of the barcode label. Spaces and dashes are removed.", icon: Barcode },
+                { title: "Type the number or upload a photo", description: "Enter 8, 12, 13 or 14 digits, or upload a photo of the barcode label. Spaces and dashes are removed.", icon: Barcode },
                 { title: "Read the verdict", description: "Valid means the check digit matches. Invalid shows the digit the number should end with, which is usually the one that was mistyped.", icon: CheckCircle2 },
                 { title: "Open the breakdown", description: "The calculation panel lists the digits, the weights, the sum and the check digit, step by step.", icon: ClipboardList },
-                { title: "Validate a file", description: "Switch to bulk mode, upload a CSV with one code per row, and download the same file with a valid or invalid column added.", icon: Table },
+                { title: "Validate a file", description: "Upload a CSV or TXT file with one code per row, in the first column or a column named barcode, UPC, EAN or GTIN. Download the results as a CSV with a valid or invalid column.", icon: Table },
             ]}
         />
     )

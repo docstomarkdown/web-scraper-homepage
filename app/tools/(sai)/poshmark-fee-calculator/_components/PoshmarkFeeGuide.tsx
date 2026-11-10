@@ -24,7 +24,7 @@ export function PoshmarkFeeGuide() {
                 },
                 {
                     title: "Bundles and sourcing",
-                    description: "Bundling low-priced items into one sale moves them above $15, where the fee is 20% rather than $2.95 each. Many clothing resellers list at three times what they paid.",
+                    description: "Bundling low-priced items into one sale moves them above $15, where the fee is 20% rather than $2.95 each.",
                     icon: Scale,
                     iconBg: "bg-[#2772ED]/10 dark:bg-[#2772ED]/20",
                     iconColor: "text-[#1f5ec2] dark:text-[#7aa7ff]",

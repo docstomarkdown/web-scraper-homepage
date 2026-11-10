@@ -26,8 +26,8 @@ const faqs = [
         answer: "Yes. It shows what you would pay someone else to do it and whether a packing service would cost more or less.",
     },
     {
-        question: "What is a typical packaging cost?",
-        answer: "Often $1 to $3 per order for small items in mailers, and $3 to $8 for boxed or fragile goods. Your own numbers matter more than the range.",
+        question: "Why don't padding and tape change the total?",
+        answer: "They count only while Advanced settings is open. Open it and enter padding, tape, label and inserts to include them.",
     },
     {
         question: "How does this help me price products?",
@@ -39,7 +39,7 @@ export default function PackagingCostCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Packaging Cost Calculator" direction="down" duration={0.6} />
+                <ToolPageTitle title="Packaging cost calculator" direction="down" duration={0.6} />
                 <div className="mb-20">
                     <PackagingCostCalculator />
                 </div>

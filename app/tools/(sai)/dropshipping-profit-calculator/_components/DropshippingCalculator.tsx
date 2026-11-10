@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { Info } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { dropshipProfit } from "./calc"
 import { CalculatorCardHeader, CalculatorInput, Counter, CurrencyCombobox, FadeIn, ResultFeedbackCard } from "@/app/tools/_shared/components"
 export function DropshippingCalculator() {
     // State for inputs - initialized as empty for placeholder effect
@@ -37,32 +38,36 @@ export function DropshippingCalculator() {
         setShippingCost("")
         setOtherCosts("")
     }
-    // Calculations
-    const purchasePriceVal = val(purchasePrice)
-    const salesPriceVal = val(salesPrice)
     const ordersReceivedVal = val(ordersReceived)
-    const cancelledQtyVal = val(cancelledQty)
-    const rtoPercentageVal = val(rtoPercentage)
-    const adsCostPerProductVal = val(adsCostPerProduct)
     const shippingCostVal = val(shippingCost)
-    const otherCostsVal = val(otherCosts)
-    const marginPerOrder = salesPriceVal - purchasePriceVal
-    const totalOrderValue = salesPriceVal * ordersReceivedVal
-    const rtoQty = Math.floor(ordersReceivedVal * (rtoPercentageVal / 100))
-    const deliveredOrders = Math.max(0, ordersReceivedVal - cancelledQtyVal - rtoQty)
-    const totalRtoCost = rtoQty * shippingCostVal
-    const totalAdsCost = ordersReceivedVal * adsCostPerProductVal
-    const totalOtherCosts = ordersReceivedVal * otherCostsVal
-    const totalPurchaseCost = deliveredOrders * purchasePriceVal
-    const revenueGenerated = deliveredOrders * salesPriceVal
-    const totalExpenses = totalPurchaseCost + totalAdsCost + totalRtoCost + (deliveredOrders * shippingCostVal) + totalOtherCosts
-    const netProfit = revenueGenerated - totalExpenses
+    const result = dropshipProfit({
+        purchasePrice: val(purchasePrice),
+        sellingPrice: val(salesPrice),
+        orders: ordersReceivedVal,
+        cancelled: val(cancelledQty),
+        rtoPercent: val(rtoPercentage),
+        shipping: shippingCostVal,
+        adsPerOrder: val(adsCostPerProduct),
+        otherPerOrder: val(otherCosts),
+    })
+    // Purchase price, selling price and orders are needed before any result or status shows.
+    const ready = result !== null && purchasePrice !== ""
+    const netProfit = ready ? result.netProfit : 0
+    const revenueGenerated = ready ? result.revenue : 0
+    const marginPerOrder = ready ? result.marginPerSale : 0
+    const deliveredOrders = ready ? result.delivered : 0
+    const rtoQty = ready ? result.rtoOrders : 0
+    const totalPurchaseCost = result?.goodsCost ?? 0
+    const totalAdsCost = result?.adsCost ?? 0
+    const totalRtoCost = result?.rtoShipping ?? 0
+    const totalOtherCosts = result?.otherCost ?? 0
     // Currency formatter
     const formatCurrency = (val: number) => {
         return new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: currency,
-            maximumFractionDigits: 0
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
         }).format(val)
     }
     const symbol = getSymbol()
@@ -110,7 +115,7 @@ export function DropshippingCalculator() {
                                     onChange={setShippingCost}
                                     placeholder="8"
                                     max={500}
-                                    tooltip="Average shipping cost per order. Applied to all delivered orders."
+                                    tooltip="Average shipping cost per parcel, one way. Delivered orders pay it once; RTO parcels pay it both ways."
                                 />
                                 <CalculatorInput
                                     label={`Ads Cost per Product (CPA) (${symbol})`}
@@ -118,7 +123,7 @@ export function DropshippingCalculator() {
                                     onChange={setAdsCostPerProduct}
                                     placeholder="20"
                                     max={5000}
-                                    tooltip="CPA (Cost Per Acquisition): The average amount you spend on ads to get just one successfully placed order."
+                                    tooltip="CPA (Cost Per Acquisition): the average ad spend for each order placed."
                                 />
                                 <CalculatorInput
                                     label="Return to Origin (RTO %)"
@@ -126,7 +131,7 @@ export function DropshippingCalculator() {
                                     onChange={setRtoPercentage}
                                     placeholder="15"
                                     max={100}
-                                    tooltip="RTO (Return to Origin): The percentage of orders that are sent back to you because they couldn't be delivered."
+                                    tooltip="RTO (Return to Origin): the percentage of shipped orders that come back because they couldn't be delivered. Cancelled orders aren't counted."
                                 />
                                 <CalculatorInput
                                     label="Cancelled Qty (Before Shipping)"
@@ -153,19 +158,18 @@ export function DropshippingCalculator() {
                     <FadeIn delay={0.4} direction="left" className="space-y-3">
                         <ResultFeedbackCard
                             title="Net Profit / Loss"
-                            titleLabel="Live"
                             labelClassName="text-white bg-slate-900/70 border-slate-700/50"
                             mainValue={
-                                <Counter value={netProfit} formatter={formatCurrency} key={currency} />
+                                ready ? <Counter value={netProfit} formatter={formatCurrency} key={currency} /> : "–"
                             }
-                            valueColor={netProfit > 0 ? "text-blue-400" : (netProfit < 0 ? "text-red-400" : "text-white")}
-                            mainMetricLabel="Status"
-                            mainMetricValue={deliveredOrders > 0 ? (netProfit >= 0 ? "PROFIT" : "LOSS") : "Waiting for Data"}
-                            mainMetricColor={deliveredOrders > 0 ? (netProfit >= 0 ? "text-blue-400" : "text-red-400") : "text-slate-500 dark:text-slate-400"}
+                            valueColor={!ready ? "text-white" : netProfit > 0 ? "text-blue-400" : (netProfit < 0 ? "text-red-400" : "text-white")}
+                            mainMetricLabel="Net Margin"
+                            mainMetricValue={ready && result.netMargin !== null ? `${result.netMargin.toFixed(1)}%` : "–"}
+                            mainMetricColor={ready ? (netProfit >= 0 ? "text-blue-400" : "text-red-400") : "text-slate-500 dark:text-slate-400"}
                             secondaryMetrics={[
                                 {
                                     label: "Revenue",
-                                    value: <Counter value={revenueGenerated} formatter={formatCurrency} key={currency} />,
+                                    value: ready ? <Counter value={revenueGenerated} formatter={formatCurrency} key={currency} /> : "–",
                                     color: "text-slate-100"
                                 }
                             ]}
@@ -175,31 +179,31 @@ export function DropshippingCalculator() {
                             <ResultFeedbackCard
                                 variant="compact"
                                 title="Margin per Sale"
-                                mainValue={<Counter value={marginPerOrder} formatter={formatCurrency} key={currency} />}
+                                mainValue={ready ? <Counter value={marginPerOrder} formatter={formatCurrency} key={currency} /> : "–"}
                                 tooltip="The profit you make on each sale before advertising and RTO costs. Calculated as: Selling Price - Product Cost."
                             />
                             <ResultFeedbackCard
                                 variant="compact"
                                 title="ROAS"
-                                mainValue={<><Counter value={totalAdsCost > 0 ? (revenueGenerated / totalAdsCost) : 0} formatter={(v) => v.toFixed(2)} />X</>}
-                                tooltip="ROAS (Return on Ad Spend): The money you make for every $1 spent on ads. Aim for 4X or more."
+                                mainValue={ready && result.roas !== null ? <><Counter value={result.roas} formatter={(v) => v.toFixed(2)} />x</> : "–"}
+                                tooltip="ROAS (return on ad spend): revenue from delivered orders for every 1 spent on ads."
                             />
                             <ResultFeedbackCard
                                 variant="compact"
                                 title="Delivered"
-                                mainValue={<Counter value={deliveredOrders} />}
+                                mainValue={ready ? <Counter value={deliveredOrders} /> : "–"}
                                 tooltip="Delivered Orders: Total orders that successfully reached your customers."
                             />
                             <ResultFeedbackCard
                                 variant="compact"
                                 title="RTO Orders"
-                                mainValue={<Counter value={rtoQty} />}
+                                mainValue={ready ? <Counter value={rtoQty} /> : "–"}
                                 valueColor="text-orange-600 dark:text-orange-400"
-                                tooltip="RTO (Return to Origin): Orders sent back to you. This costs you double shipping plus wasted ad money."
+                                tooltip="RTO (Return to Origin): parcels sent back to you. Each pays shipping both ways, and its ad cost brought no sale."
                             />
                         </div>
                         {/* Breakdown Card */}
-                        {deliveredOrders > 0 ? (
+                        {ready && deliveredOrders > 0 ? (
                             <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500 dark:bg-slate-900 dark:border-slate-800">
                                 <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800">
                                     <p className="text-xs font-bold text-slate-600 tracking-wider dark:text-slate-300">P&L Breakdown</p>
@@ -215,11 +219,11 @@ export function DropshippingCalculator() {
                                     </div>
                                     <div className="flex justify-between items-center px-5 py-3.5">
                                         <span className="text-sm text-slate-600 dark:text-slate-300">Total Shipping</span>
-                                        <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{formatCurrency(deliveredOrders * shippingCostVal)}</span>
+                                        <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{formatCurrency(result.deliveredShipping)}</span>
                                     </div>
                                     {(totalRtoCost > 0 || totalOtherCosts > 0) && (
                                         <div className="flex justify-between items-center px-5 py-3.5">
-                                            <span className="text-sm text-slate-600 dark:text-slate-300">RTO & Other Costs</span>
+                                            <span className="text-sm text-slate-600 dark:text-slate-300">RTO Shipping (Both Ways) & Other Costs</span>
                                             <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{formatCurrency(totalRtoCost + totalOtherCosts)}</span>
                                         </div>
                                     )}

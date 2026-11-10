@@ -5,6 +5,7 @@ import { TrendingUp, AlertTriangle, BarChart2, Calendar, DollarSign } from "luci
 import { CalculatorCardHeader, CalculatorInput, Counter, FadeIn } from "@/app/tools/_shared/components"
 import { ResultSummaryCard } from "@/app/tools/_shared/components/ResultSummaryCard"
 import { SalesVelocityBreakdown } from "./SalesVelocityBreakdown"
+import { salesVelocity } from "./calc"
 
 export function SalesVelocityCalculator() {
     const [currency, setCurrency] = useState("USD")
@@ -20,36 +21,21 @@ export function SalesVelocityCalculator() {
         setPrice("")
     }
 
-    const val = (v: number | "") => (v === "" ? 0 : v)
-
-    const currencySymbols: Record<string, string> = {
-        USD: '$', EUR: '€', GBP: '£', INR: '₹', AUD: 'A$', CAD: 'C$', JPY: '¥', CNY: '¥',
-        AED: 'AED', SGD: 'S$', HKD: 'HK$', CHF: 'Fr', MXN: 'MX$', BRL: 'R$', KRW: '₩',
-        RUB: '₽', ZAR: 'R', SEK: 'kr', NOK: 'kr', DKK: 'kr', PLN: 'zł', THB: '฿',
-        IDR: 'Rp', MYR: 'RM', PHP: '₱', VND: '₫', TRY: '₺', SAR: '﷼', NZD: 'NZ$',
-        EGP: 'E£', PKR: '₨', BDT: '৳', NGN: '₦', KES: 'KSh'
-    }
-    const symbol = currencySymbols[currency] || "$"
-
-    // --- Calculations ---
-    const totalSold = val(unitsSold)
-    const days = val(periodDays)
-    const oosDays = val(outOfStockDays)
-    const unitPrice = val(price)
-
-    const activeDays = Math.max(1, days - oosDays)
-
-    const rawVelocity = days > 0 ? totalSold / days : 0
-    const trueVelocity = activeDays > 0 ? totalSold / activeDays : 0
-
-    const monthlyRunRate = trueVelocity * 30
-    const revenueRunRate = monthlyRunRate * unitPrice
+    const n = (v: number | "") => (v === "" ? null : v)
+    const result = salesVelocity({ unitsSold: n(unitsSold), periodDays: n(periodDays), outOfStockDays: n(outOfStockDays), price: n(price) })
+    const isCalculated = result.ok
+    const rawVelocity = result.ok ? result.rawVelocity : 0
+    const trueVelocity = result.ok ? result.trueVelocity : 0
+    const monthlyRunRate = result.ok ? result.monthlyRunRate : 0
+    const revenueRunRate = result.ok ? result.monthlyRevenue ?? 0 : 0
+    const oosDays = outOfStockDays === "" ? 0 : outOfStockDays
 
     const formatCurrency = (val: number) => {
         return new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: currency,
-            maximumFractionDigits: 0
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
         }).format(val)
     }
 
@@ -62,6 +48,8 @@ export function SalesVelocityCalculator() {
                         <CalculatorCardHeader
                             title="Sales History"
                             description="Enter sales history and stockout details."
+                            currency={currency}
+                            onCurrencyChange={setCurrency}
                             onReset={handleReset}
                         />
                         <CardContent className="space-y-3 pt-6">
@@ -84,7 +72,9 @@ export function SalesVelocityCalculator() {
                                 value={outOfStockDays}
                                 onChange={setOutOfStockDays}
                                 placeholder="5"
-                                tooltip="Days the product lacked stock."
+                                tooltip="Days the product could not be bought. Must be fewer than the period length."
+                                hint={!result.ok && result.reason === "no-days-in-stock" ? "Out-of-stock days must be fewer than the period length, so there are days left to divide by." : undefined}
+                                isOptional
                             />
                             <CalculatorInput
                                 label={`Selling Price`}
@@ -92,6 +82,8 @@ export function SalesVelocityCalculator() {
                                 value={price}
                                 onChange={setPrice}
                                 placeholder="25.00"
+                                currency={currency}
+                                step={0.01}
                                 tooltip="Unit price for revenue calculation."
                             />
                         </CardContent>
@@ -119,24 +111,20 @@ export function SalesVelocityCalculator() {
                             {
                                 key: "monthlyRunRate",
                                 label: "Monthly Run Rate",
-                                value: monthlyRunRate.toFixed(0),
+                                value: monthlyRunRate.toLocaleString(undefined, { maximumFractionDigits: 1 }),
                                 unit: "Units",
                                 tooltip: "Projected monthly unit sales if perfectly in stock.",
                                 icon: Calendar
                             }
                         ]}
-                        isCalculated={days > 0 || totalSold > 0}
+                        isCalculated={isCalculated}
                         emptyMessage="True Sales Velocity"
                         liveBadgeText={
                             oosDays > 0
                                 ? "Stockout Adjusted"
                                 : "Fully In Stock"
                         }
-                        liveBadgeColor={
-                            oosDays > 0
-                                ? "amber"
-                                : "emerald"
-                        }
+                        liveBadgeColor="slate"
                     >
                         {/* Information inside the card */}
                         <div className="flex flex-col gap-3">
@@ -149,7 +137,7 @@ export function SalesVelocityCalculator() {
                                 <p className="text-sm text-slate-600 leading-relaxed pl-6 dark:text-slate-300">
                                     {oosDays > 0 ? (
                                         <>
-                                            You were out of stock for <strong>{oosDays} days</strong>. If you had been in stock, you likely would have sold <strong>{((trueVelocity * days) - totalSold).toFixed(0)} more units</strong>. Use the <strong>{trueVelocity.toFixed(1)}/day</strong> rate for future reordering.
+                                            You were out of stock for <strong>{oosDays} days</strong>. If you had been in stock, you likely would have sold <strong>{result.ok ? result.lostUnits.toLocaleString(undefined, { maximumFractionDigits: 1 }) : 0} more units</strong>. Use the <strong>{trueVelocity.toFixed(1)}/day</strong> rate for future reordering.
                                         </>
                                     ) : (
                                         <>
@@ -160,7 +148,7 @@ export function SalesVelocityCalculator() {
                             </div>
 
                             {/* Revenue Card */}
-                            {unitPrice > 0 && (
+                            {result.ok && result.monthlyRevenue !== null && (
                                 <div className="bg-white border border-slate-200/70 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-xl p-4 dark:bg-slate-900 dark:border-slate-800">
                                     <div className="flex items-center gap-2 mb-2">
                                         <DollarSign className="w-4 h-4 text-blue-500 flex-shrink-0 dark:text-blue-400" />

@@ -31,7 +31,7 @@ export function ROASGuide() {
                 },
                 {
                     title: "A worked example",
-                    description: "$100 of ads produced $500 of sales: ROAS 5.0, or 500%, and $400 of revenue above the ad cost. In Revenue goal mode, $100 at a target of 4.0 needs $400 of sales.",
+                    description: "$100 of ads produced $500 of sales: ROAS 5.0, or 500%, and $400 of revenue above the ad cost. At a 40% margin that's $100 of profit after product costs and ads. In Revenue goal mode, $100 at a target of 4.0 needs $400 of sales.",
                     icon: TrendingUp,
                     iconBg: "bg-[#2772ED]/10 dark:bg-[#2772ED]/20",
                     iconColor: "text-[#1f5ec2] dark:text-[#7aa7ff]",

@@ -9,7 +9,7 @@ export function PODProfitHowToUse() {
             steps={[
                 {
                     title: "Enter the sale",
-                    description: "Type the item price and any shipping you charge the customer.",
+                    description: "Type the item price and any shipping you charge the customer. Leave shipping blank if you offer free shipping.",
                     icon: Tag,
                 },
                 {
@@ -19,7 +19,7 @@ export function PODProfitHowToUse() {
                 },
                 {
                     title: "Add the fees",
-                    description: "Enter the marketplace transaction fee, payment processing percentage and fixed fee, and any platform or offsite-ads fee. The calculator shows net profit and margin.",
+                    description: "Enter the marketplace transaction fee, payment processing percentage and fixed fee, the listing fee, and any platform or offsite-ads fee. The calculator shows net profit and margin.",
                     icon: Receipt,
                 },
             ]}

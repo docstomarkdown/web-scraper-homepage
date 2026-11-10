@@ -85,6 +85,15 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Seller calculators retired or merged into another tool (calculator plan, 2026-11-10): each old address goes to
+      // the page that now answers its search.
+      { source: '/tools/time-zone-meeting-planner', destination: '/tools', permanent: true },
+      { source: '/tools/tacos-calculator', destination: '/tools/acos-calculator', permanent: true },
+      { source: '/tools/cpa-calculator', destination: '/tools/customer-acquisition-cost-calculator', permanent: true },
+      { source: '/tools/gross-margin-calculator', destination: '/tools/profit-margin-calculator', permanent: true },
+      { source: '/tools/inventory-reorder-calculator', destination: '/tools/reorder-point-calculator', permanent: true },
+      { source: '/tools/days-of-inventory-calculator', destination: '/tools/inventory-turnover-calculator', permanent: true },
+      { source: '/tools/dimension-converter', destination: '/tools/cubic-feet-calculator', permanent: true },
       {
         // No pricing is shown until billing is live; old links to /pricing land on the homepage. Temporary
         // (not permanent) so a real pricing page can take this address later.

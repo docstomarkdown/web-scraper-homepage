@@ -3,7 +3,7 @@ import { PODProfitCalculator } from "./_components/PODProfitCalculator"
 import { PODProfitHowToUse } from "./_components/PODProfitHowToUse"
 import { PODProfitGuide } from "./_components/PODProfitGuide"
 import { PODProfitOverview } from "./_components/PODProfitOverview"
-import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
+import { FadeIn, RelatedProduct, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
@@ -15,11 +15,11 @@ export const metadata: Metadata = {
 const faqs = [
     {
         question: "What is a good margin for print on demand?",
-        answer: "A net margin of 20% to 30% is a common target. Below that, one fee change or a shipping increase can wipe out the profit.",
+        answer: "There's no single figure. The thinner the margin, the more a fee change or a shipping increase can wipe out the profit, so compare designs and prices with the same fees included.",
     },
     {
         question: "Should I offer free shipping?",
-        answer: "If your buyers expect it, build the provider's shipping charge into the item price. Run both versions in the calculator and compare net profit, not the headline price.",
+        answer: "If your buyers expect it, build the provider's shipping charge into the item price. Run both versions in the calculator, leaving shipping charged blank for free shipping, and compare net profit, not the headline price.",
     },
     {
         question: "Do marketplace fees apply to the shipping I charge?",
@@ -27,7 +27,7 @@ const faqs = [
     },
     {
         question: "Where do I find the fee rates?",
-        answer: "On your marketplace's seller fee page and your payment processor's pricing page. Enter them as percentages; the fixed processing fee is usually $0.25 to $0.30.",
+        answer: "On your marketplace's seller fee page and your payment processor's pricing page. Enter them as percentages, with the fixed processing fee and listing fee in money.",
     },
     {
         question: "Does the calculator include my ad spend?",
@@ -39,9 +39,12 @@ export default function PrintOnDemandProfitCalculatorPage() {
     return (
         <div className="min-h-screen bg-slate-50 pt-32 pb-12 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <ToolPageTitle title="Print on Demand Profit Calculator" direction="down" duration={0.6} />
+                <ToolPageTitle title="Print on demand profit calculator" direction="down" duration={0.6} />
                 <div className="mb-20">
                     <PODProfitCalculator />
+                </div>
+                <div className="mb-16">
+                    <RelatedProduct before="To price against competitors, collect their listings and prices into a spreadsheet with" linkText="Web Scraper Pro's product details and reviews" href="/product-scraper" after="." />
                 </div>
                 <div className="max-w-5xl mx-auto space-y-16">
                     <FadeIn delay={0.2}>
