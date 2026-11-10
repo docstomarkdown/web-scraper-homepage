@@ -54,7 +54,7 @@ function DirectoryPage({ stage, reduceMotion }: { stage: number; reduceMotion: b
     return (
         <div className="flex flex-col h-full">
             {/* Directory header: the search and its count */}
-            <div className="px-2.5 py-2 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+            <div className="px-3.5 py-2.5 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
                 <div className="flex items-center gap-1.5 rounded-md border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 px-2 py-1 text-sm text-slate-600 dark:text-slate-300">
                     <Search className="w-3 h-3 shrink-0" />
                     <span className="truncate">Plumbers · Denver, CO</span>
@@ -62,9 +62,9 @@ function DirectoryPage({ stage, reduceMotion }: { stage: number; reduceMotion: b
                 <p className="mt-1.5 text-sm text-slate-600 dark:text-slate-300">96 results · page 1 of 4</p>
             </div>
             {/* Listings */}
-            <div className="p-2.5 space-y-2">
+            <div className="p-3.5 space-y-2.5">
                 {LISTINGS.map((l, idx) => (
-                    <Item key={l.name} idx={idx} stage={stage} reduceMotion={reduceMotion} className={`${card} p-2`}>
+                    <Item key={l.name} idx={idx} stage={stage} reduceMotion={reduceMotion} className={`${card} p-3`}>
                         <p className="text-sm font-semibold text-slate-800 dark:text-slate-100 truncate">{l.name}</p>
                         <p className="flex items-center gap-1 text-sm text-slate-600 dark:text-slate-300">
                             <Stars value={l.rating} />
@@ -94,14 +94,14 @@ const PRODUCTS = [
 
 function ProductsPage({ stage, reduceMotion }: { stage: number; reduceMotion: boolean }) {
     return (
-        <div className="p-2.5">
-            <div className="flex items-center justify-between mb-2">
+        <div className="p-3.5">
+            <div className="flex items-center justify-between mb-3">
                 <p className="text-sm font-semibold text-slate-800 dark:text-slate-100">Running shoes</p>
                 <p className="text-sm text-slate-600 dark:text-slate-300">126 results</p>
             </div>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-2.5">
                 {PRODUCTS.map((p, idx) => (
-                    <Item key={p.name} idx={idx} stage={stage} reduceMotion={reduceMotion} className={`${card} p-1.5`}>
+                    <Item key={p.name} idx={idx} stage={stage} reduceMotion={reduceMotion} className={`${card} p-2`}>
                         <div className={`h-14 rounded-md bg-gradient-to-br ${p.tile} flex items-center justify-center`}>
                             <Footprints className={`w-6 h-6 ${p.tint}`} strokeWidth={1.5} />
                         </div>
@@ -128,10 +128,10 @@ const HOMES = [
 
 function PropertyPage({ stage, reduceMotion }: { stage: number; reduceMotion: boolean }) {
     return (
-        <div className="p-2.5 space-y-2">
+        <div className="p-3.5 space-y-2.5">
             <p className="text-sm font-semibold text-slate-800 dark:text-slate-100">2-bed homes · 63 listings</p>
             {HOMES.map((h, idx) => (
-                <Item key={h.addr} idx={idx} stage={stage} reduceMotion={reduceMotion} className={`${card} p-1.5 flex gap-2`}>
+                <Item key={h.addr} idx={idx} stage={stage} reduceMotion={reduceMotion} className={`${card} p-2 flex gap-2`}>
                     <div className={`relative w-16 h-14 shrink-0 rounded-md bg-gradient-to-br ${h.tile} flex items-center justify-center`}>
                         <Home className="w-6 h-6 text-slate-600/70 dark:text-slate-300/70" strokeWidth={1.5} />
                         {h.tag && (
@@ -166,10 +166,10 @@ const JOBS = [
 
 function JobsPage({ stage, reduceMotion }: { stage: number; reduceMotion: boolean }) {
     return (
-        <div className="p-2.5 space-y-1.5">
+        <div className="p-3.5 space-y-2.5">
             <p className="text-sm font-semibold text-slate-800 dark:text-slate-100">Data analyst · Remote · 85 jobs</p>
             {JOBS.map((j, idx) => (
-                <Item key={j.role} idx={idx} stage={stage} reduceMotion={reduceMotion} className={`${card} p-2 flex gap-2`}>
+                <Item key={j.role} idx={idx} stage={stage} reduceMotion={reduceMotion} className={`${card} p-3 flex gap-2`}>
                     <span className={`w-6 h-6 shrink-0 rounded-md bg-gradient-to-br ${j.logo} flex items-center justify-center shadow-sm`}>
                         <j.mark className="w-3.5 h-3.5 text-white" strokeWidth={2.25} />
                     </span>
@@ -198,9 +198,9 @@ const BARS = [72, 14, 6, 3, 5];
 
 function ReviewsPage({ stage, reduceMotion }: { stage: number; reduceMotion: boolean }) {
     return (
-        <div className="p-2.5 space-y-2">
+        <div className="p-3.5 space-y-2.5">
             {/* Summary */}
-            <div className={`${card} p-2 flex gap-2.5`}>
+            <div className={`${card} p-3 flex gap-2.5`}>
                 <div className="shrink-0 text-center">
                     <p className="text-lg font-bold leading-none text-slate-900 dark:text-white">4.3</p>
                     <Stars value={4.3} />
@@ -218,7 +218,7 @@ function ReviewsPage({ stage, reduceMotion }: { stage: number; reduceMotion: boo
                 </div>
             </div>
             {REVIEWS.map((r, idx) => (
-                <Item key={r.who} idx={idx} stage={stage} reduceMotion={reduceMotion} className={`${card} p-2`}>
+                <Item key={r.who} idx={idx} stage={stage} reduceMotion={reduceMotion} className={`${card} p-3`}>
                     <div className="flex items-center justify-between">
                         <Stars value={r.stars} />
                         <span className="text-[8px] text-slate-600 dark:text-slate-300">{r.date}</span>
@@ -251,11 +251,11 @@ function ShopifyPage({ stage, reduceMotion }: { stage: number; reduceMotion: boo
     return (
         <div className="flex flex-col h-full">
             {/* Store header */}
-            <div className="flex items-center justify-between px-2.5 py-2 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+            <div className="flex items-center justify-between px-3.5 py-2.5 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
                 <p className="text-sm font-bold tracking-wide text-slate-900 dark:text-white">TRAIL GEAR CO.</p>
                 <ShoppingCart className="w-3.5 h-3.5 text-slate-600 dark:text-slate-300" />
             </div>
-            <div className="flex gap-1 px-2.5 pt-2">
+            <div className="flex gap-1 px-3.5 pt-3">
                 {["All", "Jackets", "Packs", "Footwear"].map((c, i) => (
                     <span
                         key={c}
@@ -265,9 +265,9 @@ function ShopifyPage({ stage, reduceMotion }: { stage: number; reduceMotion: boo
                     </span>
                 ))}
             </div>
-            <div className="p-2.5 grid grid-cols-2 gap-2">
+            <div className="p-3.5 grid grid-cols-2 gap-2.5">
                 {SHOP_ITEMS.map((p, idx) => (
-                    <Item key={p.name} idx={idx} stage={stage} reduceMotion={reduceMotion} className={`${card} p-1.5`}>
+                    <Item key={p.name} idx={idx} stage={stage} reduceMotion={reduceMotion} className={`${card} p-2`}>
                         <div className={`h-12 rounded-md bg-gradient-to-br ${p.tile} flex items-center justify-center`}>
                             <p.icon className={`w-5 h-5 ${p.tint}`} strokeWidth={1.5} />
                         </div>
@@ -277,7 +277,7 @@ function ShopifyPage({ stage, reduceMotion }: { stage: number; reduceMotion: boo
                     </Item>
                 ))}
             </div>
-            <p className="px-2.5 text-[9px] text-slate-600 dark:text-slate-300">Showing 4 of 1,248 products</p>
+            <p className="px-3.5 text-[9px] text-slate-600 dark:text-slate-300">Showing 4 of 1,248 products</p>
         </div>
     );
 }

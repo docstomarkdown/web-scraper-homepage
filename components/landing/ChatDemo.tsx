@@ -215,6 +215,7 @@ export default function ChatDemo({
     const sent = stage >= 1;
 
     return (
+        <div className="relative w-full">
         <div
             ref={rootRef}
             className="relative w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xl shadow-slate-200/60 dark:shadow-black/30 overflow-hidden"
@@ -222,13 +223,13 @@ export default function ChatDemo({
             aria-label={`Demo: the user types "${s.prompt}" in the extension chat. It collects ${s.total} rows with ${s.columns.join(", ")} columns and downloads ${s.file}.`}
         >
             {/* Browser chrome */}
-            <div className="flex items-center gap-2 px-3 py-2 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/60">
+            <div className="flex items-center gap-3 px-4 py-2.5 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/60">
                 <span className="flex gap-1.5">
                     <span className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-600" />
                     <span className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-600" />
                     <span className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-600" />
                 </span>
-                <div className="flex-1 min-w-0 flex items-center gap-1.5 rounded-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-2.5 py-1 text-sm text-slate-600 dark:text-slate-300">
+                <div className="flex-1 min-w-0 flex items-center gap-1.5 rounded-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-3 py-1.5 text-sm text-slate-600 dark:text-slate-300">
                     <Search className="w-3 h-3 shrink-0" />
                     <span className="truncate">{s.source}</span>
                 </div>
@@ -241,14 +242,14 @@ export default function ChatDemo({
                 </div>
 
                 {/* Extension side panel: chat */}
-                <div className="flex flex-col h-[410px]">
-                    <div className="flex items-center gap-1.5 px-3 py-2 border-b border-slate-100 dark:border-slate-800">
+                <div className="flex flex-col h-[490px]">
+                    <div className="flex items-center gap-2 px-4 py-3 border-b border-slate-100 dark:border-slate-800">
                         <Sparkles className="w-3.5 h-3.5 text-[#1f5ec2] dark:text-[#7aa7ff]" />
                         <p className="text-sm font-semibold text-slate-800 dark:text-slate-100">Web Scraper Pro</p>
                         <span className="ml-auto text-sm text-slate-600 dark:text-slate-300">Chat</span>
                     </div>
 
-                    <div className="flex-1 overflow-hidden px-3 py-2.5 space-y-2">
+                    <div className="flex-1 overflow-hidden px-4 py-4 space-y-3">
                         <AnimatePresence initial={false}>
                             {sent && (
                                 <motion.div
@@ -257,7 +258,7 @@ export default function ChatDemo({
                                     animate={{ opacity: 1, y: 0 }}
                                     className="flex justify-end"
                                 >
-                                    <p className="max-w-[85%] rounded-2xl rounded-br-sm bg-[#1f5ec2] px-3 py-1.5 text-sm text-white">{s.prompt}</p>
+                                    <p className="max-w-[85%] rounded-2xl rounded-br-sm bg-[#1f5ec2] px-3.5 py-2 text-sm text-white">{s.prompt}</p>
                                 </motion.div>
                             )}
                             {sent && (
@@ -283,10 +284,6 @@ export default function ChatDemo({
                                     animate={{ opacity: 1, y: 0 }}
                                     className="rounded-lg border border-slate-200 dark:border-slate-800 overflow-hidden"
                                 >
-                                    <div className="flex items-center gap-1.5 px-2 py-1 bg-slate-50 dark:bg-slate-800/60 border-b border-slate-200 dark:border-slate-800 text-sm text-slate-600 dark:text-slate-300">
-                                        <Table2 className="w-3 h-3" />
-                                        {s.total} rows
-                                    </div>
                                     <table className="w-full table-fixed border-collapse text-sm sm:text-sm">
                                         <colgroup>
                                             <col style={{ width: "38%" }} />
@@ -296,7 +293,7 @@ export default function ChatDemo({
                                         <thead>
                                             <tr className="border-b border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300">
                                                 {s.columns.map((c) => (
-                                                    <th key={c} className="px-2 py-1 text-left font-semibold">
+                                                    <th key={c} className="px-3 py-2 text-left font-semibold bg-slate-50 dark:bg-slate-800/60">
                                                         {c}
                                                     </th>
                                                 ))}
@@ -311,9 +308,9 @@ export default function ChatDemo({
                                                     animate={{ opacity: 1, x: 0 }}
                                                     transition={{ duration: 0.25, delay: reduceMotion ? 0 : 0.15 + idx * 0.3 }}
                                                 >
-                                                    <td className="px-2 py-1 truncate text-slate-800 dark:text-slate-100">{r[0]}</td>
-                                                    <td className="px-2 py-1 truncate text-slate-600 dark:text-slate-300">{r[1]}</td>
-                                                    <td className="px-2 py-1 truncate text-[#1f5ec2] dark:text-[#7aa7ff]">{r[2]}</td>
+                                                    <td className="px-3 py-2 truncate text-slate-800 dark:text-slate-100">{r[0]}</td>
+                                                    <td className="px-3 py-2 truncate text-slate-600 dark:text-slate-300">{r[1]}</td>
+                                                    <td className="px-3 py-2 truncate text-[#1f5ec2] dark:text-[#7aa7ff]">{r[2]}</td>
                                                 </motion.tr>
                                             ))}
                                         </tbody>
@@ -325,9 +322,9 @@ export default function ChatDemo({
                                     key={`d-${s.id}-${replayKey}`}
                                     initial={reduceMotion ? false : { opacity: 0, y: 6 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    className="space-y-1.5"
+                                    className="space-y-2.5 pt-1"
                                 >
-                                    <div className="flex flex-wrap items-center gap-1.5">
+                                    <div className="flex flex-wrap items-center gap-2">
                                         <DownloadChip icon={<FileSpreadsheet className="w-3 h-3" />} label="Excel" pressed={s.file.endsWith(".xlsx")} />
                                         <DownloadChip icon={<FileText className="w-3 h-3" />} label="CSV" pressed={s.file.endsWith(".csv")} />
                                         <DownloadChip icon={<Table2 className="w-3 h-3" />} label="Sheets" pressed={false} />
@@ -347,8 +344,8 @@ export default function ChatDemo({
                     </div>
 
                     {/* Composer */}
-                    <div className="px-3 pb-3">
-                        <div className="flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-2">
+                    <div className="px-4 pb-4">
+                        <div className="flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3.5 py-2.5">
                             <p className="flex-1 min-w-0 truncate text-sm">
                                 {stage === 0 ? (
                                     <span className="text-slate-800 dark:text-slate-100">
@@ -368,10 +365,11 @@ export default function ChatDemo({
                                 <ArrowUp className="w-3.5 h-3.5" />
                             </span>
                         </div>
-                        <p className="mt-1.5 text-sm text-slate-600 dark:text-slate-300">Sample data</p>
                     </div>
                 </div>
             </div>
+        </div>
+        <p className="mt-3 text-center text-sm text-slate-600 dark:text-slate-300">Sample data</p>
         </div>
     );
 }
