@@ -174,7 +174,6 @@ export const etsy: ScraperPageContent = {
     ],
     screenshots: ["ext/results-etsy"],
     feature: "list-scraper",
-    guide: "collect-store-listings-to-excel",
     useCase: "ecommerce",
     related: ["ebay", "walmart", "amazon"],
     faqs: [

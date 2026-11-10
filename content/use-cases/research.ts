@@ -168,7 +168,7 @@ export const research: UseCasePageContent = {
             "Decide what you may republish. Collected text belongs to its publisher; keep it for notes and analysis, and quote from the source.",
         ],
     },
-    guides: ["export-scholar-search-results", "save-a-pages-text-as-a-document", "collect-youtube-search-results", "collect-every-page-of-results"],
+    guides: [],
     faqs: [
         { q: "Is it free to use for research?", a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create. Install it, collect what you need, and remove it when you're done; your exports stay with you." },
         { q: "How do I scrape Google Scholar search results?", a: "Run the search, open the panel's List tab, choose how many pages, and click Collect. You get one row per result with title, authors, publication, year, citations and links, ready for Excel or Google Sheets." },

@@ -81,7 +81,7 @@ Choose **Collect more pages**. Most directories continue with a **Next page** li
 
 The results page opens and fills in page by page. Keep the tab in front, and click **Stop** if you have enough; the rows so far are kept.
 
-A directory split by letter, A to Z, or by category, has no Next link across the split. Collect each letter in turn, or paste the letter pages' addresses into **Bulk scrape**. Choose **Bulk scrape**, confirm the list once, and the run collects them into one merged table with a Source URL column. The [list of URLs guide](/guides/collect-from-a-list-of-urls-in-one-run) shows that run.
+A directory split by letter, A to Z, or by category, has no Next link across the split. Collect each letter in turn, or paste the letter pages' addresses into **Bulk scrape**. Choose **Bulk scrape**, confirm the list once, and the run collects them into one merged table with a Source URL column. The [list of URLs guide](/bulk-scraper) shows that run.
 
 ## Step 3 — Checking the Columns
 

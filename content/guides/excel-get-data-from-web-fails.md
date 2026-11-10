@@ -36,7 +36,7 @@ You opened **Data → Get Data → From Web** in Excel, pasted a page's address,
 ## Prerequisites
 
 - Microsoft Excel with Power Query (Excel 2016 or later, or Excel 365) for the first half.
-- Google Chrome with Web Scraper Pro installed (version 1.3.0 or later) for the second. The [extension beginner guide](/guides/use-a-web-scraper-chrome-extension) covers the install.
+- Google Chrome with Web Scraper Pro installed (version 1.3.0 or later) for the second.
 - The page with the list open in your browser, so you can compare what you see with what Excel found.
 
 ## Why Power Query Can't See the Table

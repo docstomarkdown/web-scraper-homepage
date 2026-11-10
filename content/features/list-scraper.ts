@@ -288,10 +288,6 @@ export const listScraper: FeaturePageContent = {
             q: "Does it work on a page I'm signed in to?",
             a: "Yes. It reads the page as you see it in your own browser, so a member directory or your own account pages are collected like any other. It never signs in for you.",
         },
-        {
-            q: "Is there a tutorial?",
-            a: "[How To Use a Web Scraper Chrome Extension](/guides/use-a-web-scraper-chrome-extension) walks through a first run from the install to the Excel file. Yes: How To Scrape Data from Any Website into Excel, No Code, with a screenshot for every step, and How To Scrape Every Page of a List, Not Only the First for lists that continue over pages.",
-        },
     ],
     related: ["ai-chat", "bulk-scraper", "export-to-google-sheets", "product-scraper", "email-extractor"],
 };

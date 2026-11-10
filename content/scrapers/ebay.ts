@@ -182,7 +182,6 @@ export const ebay: ScraperPageContent = {
     ],
     screenshots: ["ext/results-ebay"],
     feature: "list-scraper",
-    guide: "collect-store-listings-to-excel",
     useCase: "ecommerce",
     related: ["etsy", "walmart", "amazon"],
     faqs: [

@@ -165,7 +165,6 @@ export const yellowPages: ScraperPageContent = {
     ],
     screenshots: ["ext/list-tab-yellowpages", "ext/results-yellowpages"],
     feature: "list-scraper",
-    guide: "collect-business-listings-from-yellow-pages",
     useCase: "lead-generation",
     related: ["justdial", "bbb"],
     faqs: [

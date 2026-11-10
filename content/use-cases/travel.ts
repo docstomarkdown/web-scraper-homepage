@@ -149,7 +149,7 @@ export const travel: UseCasePageContent = {
             "Settle what you may reuse. Travel sites' terms restrict automated collection; collect for your own planning or research and check them first.",
         ],
     },
-    guides: ["scrape-booking-com-hotel-prices", "collect-every-page-of-results", "scrape-data-from-any-website-to-excel"],
+    guides: ["scrape-booking-com-hotel-prices"],
     faqs: [
         { q: "Is it free to scrape hotel prices?", a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create." },
         { q: "Which travel sites have ready-made columns?", a: "Hotels.com, verified on 1.3.0. Booking.com and Tripadvisor have setups that haven't been re-run on 1.3.0 yet, so check the first page's columns before a long run. On other sites the results list is found on the page and the columns are named from its labels." },

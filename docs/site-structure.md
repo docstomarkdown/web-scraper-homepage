@@ -30,6 +30,39 @@ product facts in `docs/personas.md`.
   mode keeps its URL and gets a new section. Don't rename a published URL. If one has to move, 301
   it and update the internal links.
 
+## 0a. Which site owns a topic, and the topic plan
+
+Settled 2026-11-10, when this site and mapsscraper.pro were checked side by side for pages answering the same search.
+
+- **This site owns every site and job except Maps:** lists from any website, directories, stores, Shopify, real
+  estate, travel, jobs, reviews, research, contacts from a list of websites, Excel and Sheets, and AI scraping in
+  general. **mapsscraper.pro owns everything about Maps**, including lead-generation-business how-tos. Here Maps is a
+  product fact with a link there, never a how-to.
+- **One page per search.** A feature, site or use-case page owns its search. A guide exists only for a search none of
+  them answers; a blog post only for an explainer or a release. A second page on the same search is folded into the
+  first.
+- **Folded on 2026-11-10** (all drafts, so no redirects): 19 guides and 4 blog posts that repeated a feature page
+  (lists, images, page text, Shopify, bulk, chat, emails, Sheets), a site page (Amazon, Zillow, Yellow Pages, Scholar,
+  YouTube, eBay/Etsy/Walmart), a use case (prices across stores, lead lists) or the homepage ("use a web scraper
+  extension"), plus the lead-generation-business post, which mapsscraper.pro owns. The homepage lost its Developers
+  section (`/mcp` and `/cloud` carry it) and the duplicate "Is it free?" question.
+
+**Topics kept, by hub** (content comes later):
+
+| Hub | Topics |
+|---|---|
+| Product (§2) | AI chat, MCP (soon), lists from any website, Shopify export, product details and reviews, emails and contacts, page text, images, bulk runs, edit and export, cloud (soon) |
+| Use cases (§3) | Lead generation (directories), e-commerce prices, real estate, Shopify agencies, freelance data work, research, travel |
+| Sites (§4) | Amazon, eBay, Etsy, Walmart, Zillow, Rightmove, Yellow Pages, Justdial, BBB, Hotels.com, Scholar, YouTube |
+| Guides: any site to a spreadsheet | Copy a table from a website, Excel "Get Data from Web" fails, pull prices into Excel, clean scraped data in Excel, a list then every detail page, a site that needs a login |
+| Guides: AI | Scrape a website with ChatGPT, with Claude |
+| Guides: leads and contacts | Phone numbers from a website, emails from Google search results, a member directory into a lead list, Yelp listings |
+| Guides: stores | Products from any online store, Amazon best sellers |
+| Guides: other sites | Google search results, news headlines, Reddit, Trustpilot reviews, YouTube comments, Booking.com hotel prices |
+| Guides: jobs | A company careers page, Indeed |
+| Blog | What is web scraping, AI web scraping explained, why scrapers get blocked, release posts (1.3.0) |
+| Compare | webscraper.io, Instant Data Scraper, Ultimate Web Scraper; the "best extensions" round-up moves here from the blog |
+
 ## 1. Navigation
 
 | Menu | Holds |

@@ -72,7 +72,7 @@ What the sheet holds, for a typical store category. The values are made up; the 
 | Review Count | 1,204 |
 | Product URL | the link to the product |
 
-Five pages of 24 products is 120 rows in about two minutes. The [any-website guide](/guides/scrape-data-from-any-website-to-excel) shows each click with a screenshot.
+Five pages of 24 products is 120 rows in about two minutes. The [lists page](/list-scraper) shows each step.
 
 ## Where your data goes
 
@@ -136,7 +136,7 @@ Each one costs an hour the first time and nothing the second.
 ## What this means for you
 
 - If you've ever copied a list from a web page into a spreadsheet by hand, that job is scraping, and a free extension does it in minutes.
-- Start with a real list you'd otherwise copy, open it in Chrome, and try the no-code route first. The [any-website guide](/guides/scrape-data-from-any-website-to-excel) takes about five minutes.
+- Start with a real list you'd otherwise copy, open it in Chrome, and try the no-code route first. The [lists page](/list-scraper) shows how, in about five minutes.
 - Keep to public pages and your own research, and read the site's rules before you reuse what you collected. If the job turns out to need a nightly crawl, you'll know what the data looks like before anyone builds anything.
 
 ## Sources

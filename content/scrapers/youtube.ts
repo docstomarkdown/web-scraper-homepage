@@ -179,7 +179,6 @@ export const youtube: ScraperPageContent = {
     ],
     screenshots: ["ext/results-youtube"],
     feature: "list-scraper",
-    guide: "collect-youtube-search-results",
     useCase: "research",
     related: [],
     faqs: [

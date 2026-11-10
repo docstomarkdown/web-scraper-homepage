@@ -151,7 +151,7 @@ export const realEstate: UseCasePageContent = {
             "Settle whether you may reuse the data. Listing sites' terms restrict automated collection; collect for your own research and check them first.",
         ],
     },
-    guides: ["export-zillow-listings-to-excel", "collect-every-page-of-results", "scrape-data-from-any-website-to-excel"],
+    guides: [],
     faqs: [
         { q: "Is this free?", a: "Yes. Web Scraper Pro is free to install and use. There's no paid plan, every feature is included, and there's no account to create." },
         { q: "Do I need to know anything technical?", a: "No. You search the site the way you always do, open the panel, and click Collect. There is nothing to set up and no code." },

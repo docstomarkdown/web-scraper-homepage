@@ -194,7 +194,6 @@ export const walmart: ScraperPageContent = {
     ],
     screenshots: ["ext/results-walmart"],
     feature: "list-scraper",
-    guide: "collect-store-listings-to-excel",
     useCase: "ecommerce",
     related: ["amazon", "ebay", "etsy"],
     faqs: [

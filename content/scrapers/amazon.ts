@@ -221,7 +221,6 @@ export const amazon: ScraperPageContent = {
     ],
     screenshots: ["ext/list-tab-amazon", "ext/results-amazon"],
     feature: "list-scraper",
-    guide: "collect-amazon-search-results",
     useCase: "ecommerce",
     related: [],
     faqs: [

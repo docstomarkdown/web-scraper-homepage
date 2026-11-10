@@ -102,8 +102,8 @@ const nextConfig = {
       // the four others were drafts, redirected in case their URLs were shared in review.
       { source: '/maps-leads', destination: 'https://mapsscraper.pro/', permanent: true },
       { source: '/scrapers/maps', destination: 'https://mapsscraper.pro/', permanent: true },
-      { source: '/guides/get-local-business-leads-from-maps', destination: 'https://mapsscraper.pro/guides/scrape-local-business-leads-free', permanent: true },
-      { source: '/guides/get-maps-leads-with-emails', destination: 'https://mapsscraper.pro/guides/get-emails-from-maps', permanent: true },
+      { source: '/guides/get-local-business-leads-from-maps', destination: 'https://mapsscraper.pro/use-cases/local-prospecting', permanent: true },
+      { source: '/guides/get-maps-leads-with-emails', destination: 'https://mapsscraper.pro/email-extractor', permanent: true },
       { source: '/guides/get-phone-numbers-from-maps', destination: 'https://mapsscraper.pro/guides/extract-phone-numbers-from-maps', permanent: true },
       // Blog posts and archives moved under /blog/ (they used to render at the site root).
       { source: '/author/:author', destination: '/blog/author/:author', permanent: true },

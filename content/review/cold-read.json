@@ -802,65 +802,6 @@
   "would_install": "maybe; honest tone, but 'nothing priced yet' worries me",
   "one_fix": "Add one line under the table saying what 'nothing priced yet' means for someone installing today."
  },
- "/blog/build-a-lead-list-without-buying-data": {
-  "route": "/blog/build-a-lead-list-without-buying-data",
-  "understood": 3,
-  "first_screen": "An article on making your own list of businesses to contact, using Google Maps and directories instead of buying one.",
-  "unclear_words": [
-   "Bulk scrape → Collect contacts",
-   "match on website",
-   "verification tool",
-   "The diff",
-   "List tab",
-   "Collected-on column"
-  ],
-  "stuck_steps": [
-   "Collect every page of a category, then run Bulk scrape → Collect contacts over the websites to add emails.",
-   "Combine them in a sheet, matching on website where two sources list the same business."
-  ],
-  "open_question": "Am I allowed to email the businesses on a list like this?",
-  "would_install": "maybe; the Google Maps part sounds simple enough",
-  "one_fix": "Put the 'Start with one search' section at the top so I know the first click before the five sources."
- },
- "/blog/get-website-data-into-google-sheets": {
-  "route": "/blog/get-website-data-into-google-sheets",
-  "understood": 3,
-  "first_screen": "An article comparing four ways to get data from a website into Google Sheets, ending with this extension.",
-  "unclear_words": [
-   "IMPORTHTML",
-   "IMPORTXML",
-   "XPath",
-   "Power Query",
-   "n8n",
-   "JavaScript-drawn list"
-  ],
-  "stuck_steps": [
-   "=IMPORTHTML(\"https://example.com/page\", \"table\", 1)",
-   "IMPORTXML takes anything you can name with an XPath, such as every link in a section."
-  ],
-  "open_question": "How do I know whether my page is a 'plain HTML table' or a 'JavaScript-drawn list'?",
-  "would_install": "maybe; route 4 is the only one I could do",
-  "one_fix": "Add a one-line test for non-technical readers, like 'if the list has a Next button or keeps loading as you scroll, skip to Route 4'."
- },
- "/blog/start-a-lead-generation-service": {
-  "route": "/blog/start-a-lead-generation-service",
-  "understood": 3,
-  "first_screen": "A guide to selling lists of businesses as a side business, using this extension to build them.",
-  "unclear_words": [
-   "Chat tab",
-   "Bulk scrape → Collect contacts",
-   "Enrichment only",
-   "compare on website or Google Maps link",
-   "anti-spam law where they send"
-  ],
-  "stuck_steps": [
-   "Chat offers to combine the three searches; accept, and the table has a column for which search each row came from",
-   "Don't sell lists from sites that need a sign-in or forbid it in their terms."
-  ],
-  "open_question": "Is selling these lists legal where I live, and how would I find out?",
-  "would_install": "maybe; the first order example makes it feel real",
-  "one_fix": "Link the words 'anti-spam law' and 'privacy law' to the legal guide right where they appear, not only at the end."
- },
  "/blog/web-scraper-pro-1-3-0-emails-in-the-same-maps-run": {
   "route": "/blog/web-scraper-pro-1-3-0-emails-in-the-same-maps-run",
   "understood": 3,
@@ -879,26 +820,6 @@
   "open_question": "Do I need to do anything to get version 1.3.0, or does Chrome update it on its own?",
   "would_install": "maybe; the 'Try it in two minutes' bit is tempting",
   "one_fix": "Add a line saying whether the update arrives on its own and how to check which version I have."
- },
- "/blog/web-scraping-with-claude-code": {
-  "route": "/blog/web-scraping-with-claude-code",
-  "understood": 2,
-  "first_screen": "An article for programmers comparing writing code with Claude against using this extension.",
-  "unclear_words": [
-   "Claude Code",
-   "headless browser",
-   "Playwright or Selenium",
-   "selector",
-   "regex for emails",
-   "MCP connection"
-  ],
-  "stuck_steps": [
-   "Write a Python script that takes a Google Maps search URL for \"plumbers in Denver\", collects each business's name, rating, phone and website",
-   "Google Maps draws its results with JavaScript and shows cards only as the list scrolls, so the script needs a real browser (Playwright or Selenium) and a scroll routine."
-  ],
-  "open_question": "Is this page for me at all, or only for developers?",
-  "would_install": "maybe; Route 2 is four sentences I could follow",
-  "one_fix": "Say at the top 'not a developer? skip to Route 2' so I don't give up in the code section."
  },
  "/blog/what-is-web-scraping": {
   "route": "/blog/what-is-web-scraping",
@@ -997,89 +918,6 @@
   "would_install": "maybe; collected data stays local, but it reads my email",
   "one_fix": "Explain in one line why the extension reads my browser's signed-in email when I never create an account, and fix the 'delete your account' sentence."
  },
- "/guides/collect-amazon-search-results": {
-  "route": "/guides/collect-amazon-search-results",
-  "understood": 4,
-  "first_screen": "A Chrome add-on that turns an Amazon search into an Excel sheet with name, price, rating and link for every page of results.",
-  "unclear_words": [
-   "side panel",
-   "ASIN",
-   "Rescan",
-   "Bulk scrape",
-   "JSON",
-   "Screenshot to capture: ext/list-tab-amazon"
-  ],
-  "stuck_steps": [
-   "Click the Web Scraper Pro icon and open the List tab.",
-   "Choose Collect more pages . The Next button is found on its own, so the panel shows Next button ready .",
-   "Amazon's terms restrict automated collection, and reusing product images or text needs their permission."
-  ],
-  "open_question": "Is this free, and can Amazon ban my account for doing it?",
-  "would_install": "maybe: looks like three clicks, but no price and the legal note worries me",
-  "one_fix": "Replace every 'Screenshot to capture: ext/...' placeholder with the real picture and say near the top whether it costs anything."
- },
- "/guides/collect-business-listings-from-yellow-pages": {
-  "route": "/guides/collect-business-listings-from-yellow-pages",
-  "understood": 3,
-  "first_screen": "It turns a Yellow Pages search into a spreadsheet of businesses with phone and address, and can add their emails.",
-  "unclear_words": [
-   "Bulk scrape icon",
-   "Use saved data",
-   "its Website column becomes the list of sites to read",
-   "stores the website under a different column key",
-   "Rescan",
-   "Justdial and BBB"
-  ],
-  "stuck_steps": [
-   "Click the Bulk scrape icon at the top of the side panel and choose Collect contacts . On the upload step pick Use saved data and choose this Yellow Pages collection; its Website column becomes the list of sites to read.",
-   "Add contact details is greyed out. The Yellow Pages table stores the website under a different column key, so the button doesn't see it."
-  ],
-  "open_question": "How long does the email step take for 5 pages of businesses, and is it included for free?",
-  "would_install": "maybe: the first two steps sound easy, the email step does not",
-  "one_fix": "Rewrite Step 3 as plain numbered clicks with a screenshot, without 'column key' or 'saved data'."
- },
- "/guides/collect-every-page-of-results": {
-  "route": "/guides/collect-every-page-of-results",
-  "understood": 4,
-  "first_screen": "It collects a list that runs over many pages into one spreadsheet after you pick the list and say how many pages.",
-  "unclear_words": [
-   "Auto scroll",
-   "Load more",
-   "rate-limited",
-   "throttled by Chrome",
-   "carousel",
-   "Remove duplicates in your sheet on the link column"
-  ],
-  "stuck_steps": [
-   "When it finds a method, it goes straight to that setup; otherwise it asks you to choose between Next page , Load more and Auto scroll .",
-   "Big sites slow down accounts that load hundreds of pages quickly, so collect in runs of a few hundred rows.",
-   "The site rate-limited or showed a verification."
-  ],
-  "open_question": "Will a website block me or my account for collecting all its pages?",
-  "would_install": "maybe: I understand the steps, I'm unsure about the risk",
-  "one_fix": "Add one plain sentence under 'When it goes wrong' saying what a verification page is and that it's normal and harmless."
- },
- "/guides/collect-from-a-list-of-urls-in-one-run": {
-  "route": "/guides/collect-from-a-list-of-urls-in-one-run",
-  "understood": 3,
-  "first_screen": "Paste a lot of web addresses and it goes through them all and gives one table.",
-  "unclear_words": [
-   "Bulk scrape",
-   "URLs",
-   "CSV or TXT file",
-   "a chip reads N valid URLs detected",
-   "embedded browser",
-   "Tested on version —"
-  ],
-  "stuck_steps": [
-   "Click the Web Scraper Pro icon, then the Bulk scrape icon (the layers icon at the top of the side panel). Choose what the run is for:",
-   "For a list site , confirm the list it found or pick an area on the page, and choose Next page , Load more or Auto scroll with a page limit if the list goes on.",
-   "Each one needs to start with http or https, one per line"
-  ],
-  "open_question": "Do I need an account for this, and does a long list cost extra?",
-  "would_install": "maybe: sounds powerful, but I'd start with a single page first",
-  "one_fix": "Open with one concrete example (ten shop pages pasted in, one sheet out) before the three-way choice table."
- },
  "/guides/collect-job-postings-from-a-careers-page": {
   "route": "/guides/collect-job-postings-from-a-careers-page",
   "understood": 4,
@@ -1099,67 +937,6 @@
   "open_question": "Is this free to use for my own job hunt?",
   "would_install": "maybe: clear enough, but the price is nowhere on the page",
   "one_fix": "Fill in the missing version number in 'Tested on version —' and add a line on cost next to Add to Chrome."
- },
- "/guides/collect-store-listings-to-excel": {
-  "route": "/guides/collect-store-listings-to-excel",
-  "understood": 4,
-  "first_screen": "It turns an eBay, Etsy or Walmart search into an Excel sheet with name, price, seller and rating across all pages.",
-  "unclear_words": [
-   "Properties tab",
-   "Rescan",
-   "Item ID",
-   "JSON",
-   "Bulk scrape",
-   "Tested on version —"
-  ],
-  "stuck_steps": [
-   "If the first card isn't the results, pick the card whose count matches.",
-   "How do I scrape eBay listings without getting blocked?"
-  ],
-  "open_question": "Can eBay or Etsy lock my shopping account because of this?",
-  "would_install": "maybe: steps look simple, the blocking question made me nervous",
-  "one_fix": "Shorten the three-store column table to the five columns I'd actually use, with the full list behind a 'show all' link."
- },
- "/guides/collect-youtube-search-results": {
-  "route": "/guides/collect-youtube-search-results",
-  "understood": 4,
-  "first_screen": "It turns a YouTube search or a channel's videos into a spreadsheet with title, views and date.",
-  "unclear_words": [
-   "Auto scroll detected",
-   "Collect to end",
-   "Properties tab",
-   "History",
-   "the research use case",
-   "Tested on version —"
-  ],
-  "stuck_steps": [
-   "Choose Collect more pages . YouTube has no Next button; it loads more as you scroll, so the panel shows Auto scroll detected . Click Collect to end .",
-   "run a search per topic and ask chat to combine the conversation's lists into one table"
-  ],
-  "open_question": "Is it allowed? The page says 'YouTube's terms restrict automated collection'.",
-  "would_install": "maybe: easy steps, unclear if I'm breaking a rule",
-  "one_fix": "Say in one plain sentence whether collecting public video titles and views is fine for personal research, instead of pointing me to the terms."
- },
- "/guides/compare-prices-across-stores-in-one-run": {
-  "route": "/guides/compare-prices-across-stores-in-one-run",
-  "understood": 3,
-  "first_screen": "Paste the search pages from several shops and get one free table of their prices side by side.",
-  "unclear_words": [
-   "Draft until these are checked in a real run on 1.3.0 and the screenshots exist",
-   "bulk-scraper facts",
-   "Bulk scrape",
-   "a chip reads N valid URLs detected",
-   "embedded browser",
-   "Source URL"
-  ],
-  "stuck_steps": [
-   "<!-- Draft until these are checked in a real run on 1.3.0 and the screenshots exist: - The Review sites step labels a store search page as a list page",
-   "Copy each search page's address from the address bar into a text file, one per line.",
-   "For each, confirm the list it found, and choose Next page with a page limit if you want more than the first page of results."
-  ],
-  "open_question": "The top says 'Free, no code' — is the whole extension free or just this part?",
-  "would_install": "maybe: it says free, but the setup feels like many steps",
-  "one_fix": "Remove the raw draft note at the top of the page; it reads like someone's to-do list and made me doubt the guide works."
  },
  "/guides/copy-a-table-from-a-website": {
   "route": "/guides/copy-a-table-from-a-website",
@@ -1181,104 +958,6 @@
   "would_install": "yes: this is exactly my problem, if it's free",
   "one_fix": "Remove the draft note at the top and add a one-line 'free, no account needed for Excel' next to the first step."
  },
- "/guides/download-all-images-on-a-page": {
-  "route": "/guides/download-all-images-on-a-page",
-  "understood": 5,
-  "first_screen": "It saves every picture on a web page as one ZIP file in three clicks.",
-  "unclear_words": [
-   "sprites and tracking pixels",
-   "Shopify store export",
-   "Rescan",
-   "Find images again"
-  ],
-  "stuck_steps": [
-   "Chrome asked for permission to download several files. Allow it once for the site."
-  ],
-  "open_question": "Is this free, or do I hit a limit after a few downloads?",
-  "would_install": "yes: I know what I'd get and what to click",
-  "one_fix": "Put the price (or 'free') next to the Add to Chrome button at the bottom."
- },
- "/guides/export-a-shopify-store-catalog": {
-  "route": "/guides/export-a-shopify-store-catalog",
-  "understood": 3,
-  "first_screen": "It downloads every product from an online shop into a spreadsheet, but only if the shop is a 'Shopify' one, which I can't tell.",
-  "unclear_words": [
-   "Shopify store",
-   "variant",
-   "SKU",
-   "product handle",
-   "Compare At Price",
-   "Shopify import CSV"
-  ],
-  "stuck_steps": [
-   "Because the site runs on Shopify, a Shopify stores card appears at the top with the store's product count",
-   "Name images by product handle names the downloaded image files after the product rather than the store's file names.",
-   "Option 1 to 3 name and value, SKU, Barcode, Grams, Requires Shipping, Taxable, Variant Image, Variant ID"
-  ],
-  "open_question": "What is a Shopify store and how do I know if the shop I'm looking at is one?",
-  "would_install": "maybe: this page seems written for shop owners, not me",
-  "one_fix": "Open with one sentence for shoppers: many small online shops run on Shopify, and you'll know because the card appears by itself."
- },
- "/guides/export-scholar-search-results": {
-  "route": "/guides/export-scholar-search-results",
-  "understood": 4,
-  "first_screen": "It turns a Google Scholar search into a spreadsheet of papers with authors, year and how often each is cited.",
-  "unclear_words": [
-   "citations and patents",
-   "Rescan",
-   "Cited By URL",
-   "Zotero or Mendeley",
-   "BibTeX",
-   "the research use case"
-  ],
-  "stuck_steps": [
-   "The panel says Google Scholar is showing a verification or unusual-traffic page and stops; what it has collected is kept.",
-   "Under Scholar pages to extract , keep the default of 10, type a number, or choose every page, then click Collect."
-  ],
-  "open_question": "Will Google flag my Google account if it shows an 'unusual traffic' page?",
-  "would_install": "maybe: clear steps, worried about my Google account",
-  "one_fix": "Say plainly that the verification page is Google's normal check and nothing happens to your account."
- },
- "/guides/export-zillow-listings-to-excel": {
-  "route": "/guides/export-zillow-listings-to-excel",
-  "understood": 4,
-  "first_screen": "It turns a Zillow search into an Excel sheet of homes with address, price, beds and baths.",
-  "unclear_words": [
-   "list panel",
-   "Rescan",
-   "Properties tab",
-   "Zillow Property ID",
-   "Rightmove",
-   "the real-estate use case"
-  ],
-  "stuck_steps": [
-   "If the Next button isn't found on its own, click Change and click Zillow's next arrow at the bottom of the list.",
-   "Zillow's terms restrict automated collection and reuse of its data."
-  ],
-  "open_question": "Is it legal for me to do this for my own house hunt?",
-  "would_install": "maybe: steps are clear, legal answer is not",
-  "one_fix": "Answer 'Is scraping Zillow allowed?' with a yes or no for personal use, then the caveat."
- },
- "/guides/extract-emails-from-a-website": {
-  "route": "/guides/extract-emails-from-a-website",
-  "understood": 4,
-  "first_screen": "Open a company's website, click once, and get its email, phone and social links in a row for Excel.",
-  "unclear_words": [
-   "Properties tab",
-   "Chat tab",
-   "Bulk scrape",
-   "JSON",
-   "JavaScript",
-   "separated by a bar"
-  ],
-  "stuck_steps": [
-   "Open the side panel's Properties tab and click Collect contacts .",
-   "Collect contacts isn't on the Properties tab. On a listing page the Properties tab shows Select a product on the page instead."
-  ],
-  "open_question": "The 'Is there a free online version?' answer never says if it's free, so is it?",
-  "would_install": "maybe: one click sounds great, price is dodged",
-  "one_fix": "Answer the free question with a direct yes or the price."
- },
  "/guides/extract-phone-numbers-from-a-website": {
   "route": "/guides/extract-phone-numbers-from-a-website",
   "understood": 4,
@@ -1297,48 +976,6 @@
   "open_question": "Is there a chat I type into, or a button, and which do I use first?",
   "would_install": "maybe: too short to tell what the extension is",
   "one_fix": "Pick one way (the button) for the main steps and fix the stray asterisks around Bulk scrape."
- },
- "/guides/get-emails-from-a-list-of-websites": {
-  "route": "/guides/get-emails-from-a-list-of-websites",
-  "understood": 3,
-  "first_screen": "Paste a list of website addresses and get one sheet with each company's email and phone.",
-  "unclear_words": [
-   "Bulk scrape icon (the layers icon",
-   "CSV or TXT file",
-   "Paste URLs",
-   "embedded browser",
-   "Reuse URLs from a saved table",
-   "dedupe on the Website column"
-  ],
-  "stuck_steps": [
-   "Click Continue → , check the sites it found, and click Continue to site configuration → .",
-   "Choose **Use saved data** on the Upload step (it then reads Reuse URLs from a saved table), pick the collection under Choose a saved table, then its website column.",
-   "The Configure step shows \"Choose at least one contact type for this site\" under the card that has none."
-  ],
-  "open_question": "How many websites can I paste, and does that cost anything?",
-  "would_install": "maybe: I'd want to see it work on one site first",
-  "one_fix": "Show a worked example of five pasted addresses and the finished sheet before the steps."
- },
- "/guides/save-a-pages-text-as-a-document": {
-  "route": "/guides/save-a-pages-text-as-a-document",
-  "understood": 4,
-  "first_screen": "A Chrome add-on that turns an article into a Word file with the title, author and date, in one click.",
-  "unclear_words": [
-   "Properties tab",
-   "Bulk scrape",
-   "for an AI tool",
-   "JSON",
-   "CSV",
-   "Tested on version — on 21 October 2026"
-  ],
-  "stuck_steps": [
-   "Screenshot to capture: ext/properties-collect-contacts",
-   "Click the Web Scraper Pro icon and open the Properties tab.",
-   "Paste the addresses or upload a CSV or TXT file, click Continue →, choose clean text, page details or both for each site"
-  ],
-  "open_question": "Is this free, and do I need to make an account before the one click?",
-  "would_install": "maybe — sounds like one click, but nothing says what it costs",
-  "one_fix": "Say in the first screen that it is free with no account, and replace the 'Screenshot to capture' lines with the pictures."
  },
  "/guides/scrape-a-list-then-every-detail-page": {
   "route": "/guides/scrape-a-list-then-every-detail-page",
@@ -1360,27 +997,6 @@
   "open_question": "What is a 'run', and why do I need two of them to get one list?",
   "would_install": "no — too many tabs, steps and exceptions; unsure what I'd get",
   "one_fix": "Open with one plain example (a news page: first the headlines, then each story) before the two tables and the three-way 'which second run' choice."
- },
- "/guides/scrape-a-website-by-asking": {
-  "route": "/guides/scrape-a-website-by-asking",
-  "understood": 4,
-  "first_screen": "I type what I want in a chat box, like 'collect the products on this page', and get a spreadsheet back.",
-  "unclear_words": [
-   "selectors",
-   "JSON",
-   "daily limit",
-   "Chrome profile's email",
-   "Shopify store's product feed",
-   "API key"
-  ],
-  "stuck_steps": [
-   "Chat says it reached the daily limit. Chat answers again the next day.",
-   "The first time you use chat, the extension connects to our servers on its own, using your Chrome profile's email if there is one.",
-   "Chat needs our servers to understand the request; the collecting still happens in your browser."
-  ],
-  "open_question": "What is the daily limit, and does it cost money once I hit it?",
-  "would_install": "maybe — easiest page so far, but limit and email use worry me",
-  "one_fix": "State the daily limit as a number and what happens after it, up near the top instead of only under 'When it goes wrong'."
  },
  "/guides/scrape-a-website-that-requires-login": {
   "route": "/guides/scrape-a-website-that-requires-login",
@@ -1445,27 +1061,6 @@
   "would_install": "yes — one list, clear file, says free",
   "one_fix": "Decide whether Rank is a column and say the same thing in the summary, the table and the troubleshooting."
  },
- "/guides/scrape-amazon-reviews-to-excel": {
-  "route": "/guides/scrape-amazon-reviews-to-excel",
-  "understood": 3,
-  "first_screen": "Every review of an Amazon product into Excel, free, from the page in my own browser.",
-  "unclear_words": [
-   "Properties tab",
-   "selected variant, offers",
-   "View product data",
-   "Point the extension at that button once when it asks",
-   "JSON",
-   "Draft until these are checked in a real run"
-  ],
-  "stuck_steps": [
-   "Amazon limits how many review pages it shows for one product, and that limit applies here too.",
-   "View all reviews collects only the first page. Amazon shows the review pages after a See more reviews click. Point the extension at that button once when it asks, and it pages through on its own.",
-   "The reviews stop at about a hundred."
-  ],
-  "open_question": "How many reviews do I actually get — all of them, or about a hundred?",
-  "would_install": "maybe — I want it, but 'every review' and 'about a hundred' clash",
-  "one_fix": "Replace 'every review' in the title and summary with the real number Amazon lets you reach."
- },
  "/guides/scrape-booking-com-hotel-prices": {
   "route": "/guides/scrape-booking-com-hotel-prices",
   "understood": 4,
@@ -1486,23 +1081,6 @@
   "open_question": "Was this actually tried on Booking.com? The top says 'Tested on version 1.3.0' and the body says there's no verified run.",
   "would_install": "maybe — useful, but the page doubts itself",
   "one_fix": "Remove the draft note and 'no verified setup' wording, or say in plain words what it means for me."
- },
- "/guides/scrape-data-from-any-website-to-excel": {
-  "route": "/guides/scrape-data-from-any-website-to-excel",
-  "understood": 5,
-  "first_screen": "Any list on a web page becomes an Excel file when I click Collect; no code.",
-  "unclear_words": [
-   "selectors",
-   "JSON",
-   "side panel",
-   "Bulk runs"
-  ],
-  "stuck_steps": [
-   "Screenshot to capture: ext/list-tab-detected"
-  ],
-  "open_question": "Is it free, and do I need an account?",
-  "would_install": "yes — short, clear, I can see the file",
-  "one_fix": "Add one line next to 'Add to Chrome' saying it is free with no account."
  },
  "/guides/scrape-google-search-results": {
   "route": "/guides/scrape-google-search-results",

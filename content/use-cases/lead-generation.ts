@@ -182,7 +182,7 @@ export const leadGeneration: UseCasePageContent = {
             "Collect people's personal details. It collects businesses and the contact details they publish.",
         ],
     },
-    guides: ["collect-business-listings-from-yellow-pages", "scrape-a-member-directory-into-a-lead-list", "get-emails-from-a-list-of-websites", "get-emails-from-google-search-results", "get-social-links-for-a-list-of-websites", "collect-job-postings-from-a-careers-page"],
+    guides: ["scrape-a-member-directory-into-a-lead-list", "get-emails-from-google-search-results", "collect-job-postings-from-a-careers-page"],
     faqs: [
         { q: "Is this free?", a: "Yes. Web Scraper Pro is free to install and use. There's no paid plan, every feature is included, and there's no account to create." },
         { q: "Do I need to know anything technical?", a: "No. You open a directory search, click the list in the side panel, and click a few buttons. There is nothing to set up and no code." },

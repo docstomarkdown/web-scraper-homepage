@@ -171,7 +171,6 @@ export const scholar: ScraperPageContent = {
     ],
     screenshots: ["ext/list-tab-scholar", "ext/results-scholar"],
     feature: "list-scraper",
-    guide: "export-scholar-search-results",
     useCase: "research",
     related: [],
     faqs: [

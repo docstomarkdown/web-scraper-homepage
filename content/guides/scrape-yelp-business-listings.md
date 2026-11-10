@@ -144,4 +144,4 @@ Sample data:
 
 ## Conclusion
 
-You collected a Yelp search into a spreadsheet with every page of results and each business's emails, ready for a call list or a market overview. The same steps work on other directories; see [How To Scrape Yellow Pages into Excel](/guides/collect-business-listings-from-yellow-pages) and the lead generation use case for the whole workflow from search to outreach.
+You collected a Yelp search into a spreadsheet with every page of results and each business's emails, ready for a call list or a market overview. The same steps work on other directories; see [the Yellow Pages page](/scrapers/yellow-pages) and the lead generation use case for the whole workflow from search to outreach.

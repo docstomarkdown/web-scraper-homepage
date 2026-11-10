@@ -45,7 +45,7 @@ Every online store shows its products as a grid on a category page, and Web Scra
 
 To follow this tutorial, you need:
 
-- Google Chrome with Web Scraper Pro installed (version 1.3.0 or later). The [extension beginner guide](/guides/use-a-web-scraper-chrome-extension) covers the install.
+- Google Chrome with Web Scraper Pro installed (version 1.3.0 or later).
 - A store's category page open in Chrome: a brand's "All products", a marketplace search, or a collection on a small shop.
 
 ## Does an Online Store Allow Scraping?
@@ -112,7 +112,7 @@ A WooCommerce card prints the currency symbol separately from the amount. A gene
 
 ### On a Shopify Store
 
-On a Shopify store you don't collect the category at all. The side panel shows a store card with the product count and collections. Click **Export catalog** and the whole store arrives, one row per product or per variant, straight from the store's own product data. The columns include SKU, price, compare-at price, stock status, images and tags. The [Shopify guide](/guides/export-a-shopify-store-catalog) walks through it. You don't need to check first; the card appears by itself on a Shopify store.
+On a Shopify store you don't collect the category at all. The side panel shows a store card with the product count and collections. Click **Export catalog** and the whole store arrives, one row per product or per variant, straight from the store's own product data. The columns include SKU, price, compare-at price, stock status, images and tags. The [Shopify guide](/shopify-scraper) walks through it. You don't need to check first; the card appears by itself on a Shopify store.
 
 ## Step 4 — Adding One Product's Full Details
 
@@ -128,7 +128,7 @@ Click **Export as** and choose **Microsoft Excel**, **CSV** or **JSON**. Google 
 
 ![](visual:ext/results-export-menu)
 
-For several categories of one store, paste their addresses into **Bulk scrape**, choose **Bulk scrape**, confirm the list once for the site, set the page limit, and click **Start collecting**. Each category is collected in turn and **View merged table** puts them together with a Source URL column saying which category each product came from. The [list of URLs guide](/guides/collect-from-a-list-of-urls-in-one-run) shows each step.
+For several categories of one store, paste their addresses into **Bulk scrape**, choose **Bulk scrape**, confirm the list once for the site, set the page limit, and click **Start collecting**. Each category is collected in turn and **View merged table** puts them together with a Source URL column saying which category each product came from. The [list of URLs guide](/bulk-scraper) shows each step.
 
 After export the sheet looks like this. Sample data; the products and prices are made up.
 

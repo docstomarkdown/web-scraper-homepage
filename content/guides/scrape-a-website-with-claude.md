@@ -29,7 +29,7 @@ faq:
 Facts to re-check before this leaves draft (2026-10-28):
 - Claude app: web search and page fetch exist on claude.ai; pasted text and fetched text are rewritten by the model, not copied. Claude in Chrome (the extension) reads open tabs; mention stays to one sentence.
 - Cowork: Anthropic's desktop agent; a built-in browser was announced on 26 August 2026 (claude.com/blog/cowork-built-in-browser); it is separate from the person's own browser, with no existing sign-ins or tabs; availability by plan has changed and should be read from Anthropic's page on the day of publishing, not stated here.
-- Claude Code: as in /blog/web-scraping-with-claude-code. No change.
+- Claude Code: from the former Claude Code blog post (removed 2026-11-10; in git history).
 - MCP: not shipped; /mcp is "coming soon" (config/pages.ts). Keep it that way until the owner says otherwise.
 - The extension's chat: collect_list with "every page" (DECISIONS.md D-027), "Add emails and social links" card when rows have a Website column, values copied from the page (Golden Rule 6: no page content reaches the model).
 -->
@@ -79,7 +79,7 @@ Cowork will do it, page by page, and tell you what it did.
 
 ## Route 3 — Asking Claude Code to Write a Scraper
 
-**What works:** a repeatable script for a developer. Describe the page, paste the HTML of one list page, and Claude Code writes a Python script that fetches the pages, pulls the columns and writes a spreadsheet. The [Claude Code post](/blog/web-scraping-with-claude-code) walks through one job, fix by fix.
+**What works:** a repeatable script for a developer. Describe the page, paste the HTML of one list page, and Claude Code writes a Python script that fetches the pages, pulls the columns and writes a spreadsheet.
 
 **Where it stops:** the same places every script stops. Pages drawn by JavaScript need a headless browser added, the script has no sign-ins, and sites that check for bots stop it. A layout change next month sends you back to the first prompt. Fine when the crawl repeats and the logic is yours; a detour when you need a list today.
 

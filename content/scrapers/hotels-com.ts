@@ -160,7 +160,6 @@ export const hotelsCom: ScraperPageContent = {
     ],
     screenshots: ["ext/results-hotels"],
     feature: "list-scraper",
-    guide: "collect-every-page-of-results",
     useCase: "travel",
     related: [],
     faqs: [

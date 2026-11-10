@@ -149,7 +149,7 @@ export const shopify: UseCasePageContent = {
             "Give you the right to resell the images, text or designs. Moving a client's own catalog is their call; copying someone else's is not.",
         ],
     },
-    guides: ["export-a-shopify-store-catalog", "download-all-images-on-a-page"],
+    guides: [],
     faqs: [
         { q: "Is the Shopify export free?", a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create. There's no per-row limit; image ZIPs split above 5,000 files." },
         { q: "Do I need the client's Shopify admin access?", a: "No. The public product data every Shopify store publishes is enough for the catalog, the variants and the images. Inventory counts and cost prices aren't public, so those come from the client." },

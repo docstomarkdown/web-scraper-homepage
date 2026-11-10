@@ -161,7 +161,6 @@ export const rightmove: ScraperPageContent = {
     ],
     screenshots: ["ext/results-rightmove"],
     feature: "list-scraper",
-    guide: "export-zillow-listings-to-excel",
     useCase: "real-estate",
     related: ["zillow"],
     faqs: [
