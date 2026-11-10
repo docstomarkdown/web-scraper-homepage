@@ -257,8 +257,8 @@ publishing a claim marked 1.3.0). Re-check before relying on them if much time h
   ratings and counts export as numbers (Settings → Results). (D-031, D-032, D-033)
 - **Chat follows every page (1.3.0).** After collecting a list, chat offers "Collect every page" and
   "Add emails and social links" when the rows have websites. (D-025, D-027)
-- **Google Sheets export needs a Google sign-in.** Until the OAuth consent screen is confirmed as
-  published, don't show Sheets export in a page or video; name Excel, CSV and JSON instead.
+- **Google Sheets export needs a one-time Google sign-in.** The OAuth consent screen is in production
+  (owner, 2026-11-10), so any Google account can export; pages and videos may show it.
 - **The side panel's help link says "Contact founder"** (1.3.0), not "Contact support".
 - **Google Maps returns ratings, not reviews.** Google Maps leads give the star rating and review count per place,
   not review text. Don't mention collecting Google Maps reviews.
