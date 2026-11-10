@@ -1,6 +1,9 @@
 # Homepage trim plan (2026-11-10)
 
-Reviewed in the browser at 1280 px and 375 px. Not built yet; each change waits for the owner's OK.
+Reviewed in the browser at 1280 px and 375 px. **Built 2026-11-10** (owner's OK): 6 sections, 663 words, 9,300 px on a
+phone. Where the build differs from the table: section 2 keeps 6 cards (any list, products, property, emails, directories,
+Shopify) because emails from a list of websites is its own feature; the FAQ keeps 9 questions, with the cloud and data ones;
+"Hundreds of URLs" became "Many web pages in one run".
 
 **Now:** 9 sections, 1,370 words, 9,800 px tall on a desktop and 15,900 px on a phone (about 20 phone screens).
 **Target:** 6 sections, about 700 words, under 9,000 px on a phone. One job for the page: show that any page becomes a

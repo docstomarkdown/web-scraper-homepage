@@ -287,10 +287,6 @@ export const navigationConfig = {
         href: "/#what-you-can-collect",
       },
       {
-        title: "Shopify stores",
-        href: "/#shopify-stores",
-      },
-      {
         title: "FAQ",
         href: "/#faq",
       },

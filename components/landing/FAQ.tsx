@@ -5,22 +5,19 @@ import Reveal from "@/components/landing/Reveal";
 import { JsonLd, faqJsonLd } from "@/components/seo/JsonLd";
 
 // Native <details> keeps every answer in the HTML (readable by search engines and without JS).
-// Pagination and export formats are covered in the Features section, so they're not repeated here.
+// Pagination and export formats are covered in the sections above, so they're not repeated here. Trimmed to the questions
+// people ask before installing (2026-11-10); the Shopify questions are on /shopify-scraper.
 const GROUPS = [
     {
         title: "Getting started",
         faqs: [
             {
                 q: "Is it free?",
-                a: "It's free, with no paid plan, no credits and no trial that ends. Everything on this site that isn't marked \"coming soon\" is in the extension today: collecting from any site, every page of results, emails and contact details, Shopify export, bulk runs and the exports. The one limit is that chat has a daily message limit; the List and Properties tabs keep working without it. \"Coming soon\" means the feature isn't built yet, not that it's behind a plan.",
+                a: "Yes. Every feature is included, with no paid plan, credits or trial that ends. Chat has a daily message limit; the List and Properties tabs work without it.",
             },
             {
                 q: "Do I need an account?",
-                a: "The extension works right after you install it. The cloud dashboard, coming soon, will use a Google sign-in.",
-            },
-            {
-                q: "Do I need to know how to code?",
-                a: "No. Type what you want in the chat, or click Collect. There are no selectors or scripts to set up.",
+                a: "No. The extension works right after you install it.",
             },
             {
                 q: "Which websites does it work on?",
@@ -41,28 +38,11 @@ const GROUPS = [
             },
             {
                 q: "Will websites block me?",
-                a: "Most sites work normally, because it runs in your own browser just like a regular visit. If a site shows a check or asks you to sign in, do that in the tab and carry on.",
-            },
-            {
-                q: "Can it check prices every day on its own?",
-                a: "That's coming soon with cloud runs, which can run on a schedule, daily or weekly. For now you run it whenever you need fresh numbers, and each run gives you a new table to compare.",
+                a: "It runs in your own browser, so a site sees a regular visit. If a site shows a check or asks you to sign in, do that in the tab and carry on.",
             },
             {
                 q: "What's the difference between the extension and the cloud?",
                 a: "The extension runs in your browser, on the page you have open. The cloud, coming soon, will run on our servers: you paste a list of URLs, close your laptop, and download the results later.",
-            },
-        ],
-    },
-    {
-        title: "Shopify stores",
-        faqs: [
-            {
-                q: "Does it work on any Shopify store?",
-                a: "On most of them. It reads the store's public product feed, so you get the whole catalog with variants and images. It can't read password-protected stores, and a few stores block these requests; for those, turn the store feed off in settings and it collects from the page like any other site.",
-            },
-            {
-                q: "Can I import the export into my own Shopify store?",
-                a: "Yes. On the store card in the side panel, click Download Shopify import CSV; the file uses Shopify's product import layout. Try it on a test store first, and review the products before importing into a live store.",
             },
         ],
     },

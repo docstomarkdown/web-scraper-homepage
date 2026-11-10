@@ -2,21 +2,14 @@
 
 import React, { useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowDown, ArrowRight, BookOpen, Calendar, Car, Chrome, FileText, Image, Mail, Plane, Plus } from "lucide-react";
+import { ArrowDown, ArrowRight, Chrome, Plus } from "lucide-react";
 import { motion } from "framer-motion";
 import { productConfig } from "@/config/product";
 import ChatDemo, { SCENARIOS } from "@/components/landing/ChatDemo";
 
-// Supported data types without their own demo scenario (all shipped in the extension).
-const MORE_TYPES = [
-    { label: "Emails & phones", icon: Mail },
-    { label: "Hotels & travel", icon: Plane },
-    { label: "Cars", icon: Car },
-    { label: "Events", icon: Calendar },
-    { label: "Research papers", icon: BookOpen },
-    { label: "Images & links", icon: Image },
-    { label: "Page text", icon: FileText },
-];
+// The hero shows four kinds of page and "any list"; the rest are on the Product and Sites menus (homepage trim,
+// 2026-11-10). Each chip plays its own scenario from ChatDemo.
+const HERO_SCENARIOS = SCENARIOS.filter((sc) => ["products", "property", "directory", "shopify"].includes(sc.id));
 
 export default function Hero() {
     const [scenarioIndex, setScenarioIndex] = useState(0);
@@ -31,7 +24,7 @@ export default function Hero() {
 
     // Auto-rotate through scenarios until the visitor picks one.
     const onCycleEnd = () => {
-        if (!pinnedRef.current) setScenarioIndex((i) => (i + 1) % SCENARIOS.length);
+        if (!pinnedRef.current) setScenarioIndex((i) => (i + 1) % HERO_SCENARIOS.length);
     };
 
     return (
@@ -90,7 +83,7 @@ export default function Hero() {
 
                     <p className="text-sm font-medium text-slate-700 dark:text-slate-200 mt-10 mb-3">What do you want to collect? <span className="font-normal text-slate-600 dark:text-slate-300">Pick one to see it work.</span></p>
                     <div className="flex flex-wrap justify-center lg:justify-start gap-2">
-                        {SCENARIOS.map((sc, idx) => {
+                        {HERO_SCENARIOS.map((sc, idx) => {
                             const active = idx === scenarioIndex;
                             return (
                                 <button
@@ -110,15 +103,6 @@ export default function Hero() {
                                 </button>
                             );
                         })}
-                        {MORE_TYPES.map((t) => (
-                            <span
-                                key={t.label}
-                                className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/60 px-3 py-1.5 text-sm text-slate-600 dark:text-slate-300"
-                            >
-                                <t.icon className="w-3.5 h-3.5 text-slate-600 dark:text-slate-300" />
-                                {t.label}
-                            </span>
-                        ))}
                         <span className="inline-flex items-center gap-1 rounded-full border border-dashed border-slate-300 dark:border-slate-700 px-3 py-1.5 text-sm text-slate-600 dark:text-slate-300">
                             <Plus className="w-3.5 h-3.5" />
                             Any list
@@ -133,7 +117,7 @@ export default function Hero() {
                     className="w-full lg:w-[58%] xl:w-[56%] lg:pt-12 xl:pt-16 scroll-mt-24"
                 >
                     <div className="relative w-full max-w-2xl mx-auto">
-                        <ChatDemo scenarioIndex={scenarioIndex} replayKey={replayKey} onCycleEnd={onCycleEnd} />
+                        <ChatDemo scenarios={HERO_SCENARIOS} scenarioIndex={scenarioIndex} replayKey={replayKey} onCycleEnd={onCycleEnd} />
                         <div className="absolute -z-10 -inset-3 bg-gradient-to-r from-[#2772ED]/6 to-transparent rounded-3xl blur-2xl" />
                     </div>
                 </motion.div>

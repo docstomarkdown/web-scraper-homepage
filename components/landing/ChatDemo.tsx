@@ -148,7 +148,8 @@ export const SCENARIOS: Scenario[] = [
 ];
 
 // Stage timeline (ms): 0 typing → 1 searching → 2 results → 3 download.
-const STAGE_MS = [1700, 1600, 2300, 2800];
+// The last stage is the finished table, the payoff: it stays long enough to read (4.5 s) before the next scenario.
+const STAGE_MS = [1700, 1600, 2300, 4500];
 type Stage = 0 | 1 | 2 | 3;
 
 export default function ChatDemo({

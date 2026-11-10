@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { BookOpen, BookUser, Briefcase, Calendar, Car, FileText, Home, Image, ListChecks, Mail, MessageSquareQuote, Plane, ShoppingBag } from "lucide-react";
+import { BookUser, Home, ListChecks, Mail, ShoppingBag, Store } from "lucide-react";
 import SectionHeading from "@/components/landing/SectionHeading";
 import Reveal from "@/components/landing/Reveal";
 import { publishedHref, type PageKind } from "@/config/pages";
@@ -10,7 +10,6 @@ const TYPES: {
     title: string;
     body: string;
     fields: string[];
-    goodFor: string;
     tint: string;
     /** Page this card leads to, shown once that page is published. */
     link?: { slug: string; kind?: PageKind; text: string };
@@ -20,7 +19,6 @@ const TYPES: {
         title: "Any list on any page",
         body: "On sites without a ready-made setup, it spots the lists on the page for you. Pick one and it names the columns and follows every page.",
         fields: ["Automatic columns", "Next page", "Load more", "Infinite scroll"],
-        goodFor: "directories, event lists, catalogues and tables on any other site.",
         tint: "text-[#1f5ec2] dark:text-[#7aa7ff] bg-[#2772ED]/10",
         link: { slug: "list-scraper", text: "Collect lists from any website" },
     },
@@ -29,7 +27,6 @@ const TYPES: {
         title: "Product prices and reviews",
         body: "Pull a store's product list across every page, then open each product for its full details and customer reviews.",
         fields: ["Product", "Price", "Sale price", "Rating", "Reviews", "Seller", "Image"],
-        goodFor: "checking competitor prices, researching what sells, gathering reviews for product ideas.",
         tint: "text-amber-500 bg-amber-50 dark:bg-amber-950/40",
         link: { slug: "product-scraper", text: "Collect product details and reviews" },
     },
@@ -38,25 +35,14 @@ const TYPES: {
         title: "Property listings",
         body: "Collect homes for sale or rent with price, size and location, ready to sort and compare in a spreadsheet.",
         fields: ["Address", "Price", "Beds", "Baths", "Sq ft", "Photos", "Listing link"],
-        goodFor: "comparing homes in a neighbourhood, pulling this week's new listings, building a list of rentals.",
         tint: "text-emerald-500 bg-emerald-50 dark:bg-emerald-950/40",
         link: { slug: "real-estate", kind: "use-case", text: "Collect property listings" },
-    },
-    {
-        icon: Briefcase,
-        title: "Job posts",
-        body: "Turn a job board search or a company's careers page into a clean list of roles you can filter by company, location and pay.",
-        fields: ["Role", "Company", "Location", "Salary", "Posted", "Job link"],
-        goodFor: "seeing who is hiring, tracking openings on company careers pages, researching salaries.",
-        tint: "text-indigo-500 bg-indigo-50 dark:bg-indigo-950/40",
-        link: { slug: "job-postings", kind: "use-case", text: "Collect job posts" },
     },
     {
         icon: Mail,
         title: "Emails and contact details",
         body: "Give it a list of websites, or the websites from a list you've already collected, and it finds the emails, phone numbers and social profiles on each one.",
         fields: ["Website", "Email", "Phone", "Social profiles"],
-        goodFor: "adding contact details to a list of companies before outreach.",
         tint: "text-sky-500 bg-sky-50 dark:bg-sky-950/40",
         link: { slug: "email-extractor", text: "Get emails from a list of websites" },
     },
@@ -65,21 +51,17 @@ const TYPES: {
         title: "Business directory leads",
         body: "Search Yellow Pages, Justdial, BBB or any business directory and get every listing as a row, then add the emails and social links from each business's own website.",
         fields: ["Name", "Category", "Address", "Phone", "Website", "Rating", "Email"],
-        goodFor: "building prospect lists by city and business type, finding local partners, sizing up competitors nearby.",
         tint: "text-rose-700 dark:text-rose-300 bg-rose-50 dark:bg-rose-950/40",
         link: { slug: "lead-generation", kind: "use-case", text: "Build a lead list from directories" },
     },
-];
-
-// Smaller data types, one line each (all supported by the extension today).
-const MORE: { icon: typeof ListChecks; title: string; body: string; slug?: string }[] = [
-    { icon: MessageSquareQuote, title: "Reviews", body: "Ratings, titles and review text, across every page of reviews." },
-    { icon: Plane, title: "Hotels and travel", body: "Hotel names, prices, ratings and locations from travel sites." },
-    { icon: Car, title: "Cars", body: "Car listings with their prices and details." },
-    { icon: Calendar, title: "Events", body: "Event names, dates and places from event listings." },
-    { icon: BookOpen, title: "Research papers", body: "Titles, authors, sources, snippets and full-text links from Google Scholar search results." },
-    { icon: Image, title: "Images and links", body: "Every image or link on a page, with its web address.", slug: "image-downloader" },
-    { icon: FileText, title: "Page text", body: "A page's readable text, saved as a document or ready to paste into an AI tool.", slug: "page-text" },
+    {
+        icon: Store,
+        title: "Shopify stores",
+        body: "Open a Shopify store and get its whole catalog at once, one row per product or variant, with a Shopify import CSV.",
+        fields: ["Title", "Variant", "SKU", "Price", "Compare-at price", "Images"],
+        tint: "text-[#1f5ec2] dark:text-[#7aa7ff] bg-[#2772ED]/10",
+        link: { slug: "shopify-scraper", text: "Export a Shopify store's catalog" },
+    },
 ];
 
 export default function Collect() {
@@ -90,7 +72,7 @@ export default function Collect() {
                     <SectionHeading
                         eyebrow="What you can collect"
                         title="The data you need, in named columns"
-                        intro="Ready-made for popular sites, automatic everywhere else. Every type below comes back as a clean table."
+                        intro="Ready-made for popular sites, automatic everywhere else. Each comes back as a table you can export."
                     />
                 </Reveal>
 
@@ -103,9 +85,6 @@ export default function Collect() {
                                 </span>
                                 <h3 className="mt-4 text-lg font-semibold text-slate-900 dark:text-white">{t.title}</h3>
                                 <p className="mt-2 text-base text-slate-700 dark:text-slate-200 leading-[1.65]">{t.body}</p>
-                                <p className="mt-3 text-sm text-slate-700 dark:text-slate-200 leading-[1.65]">
-                                    <span className="font-medium text-slate-700 dark:text-slate-200">Good for:</span> {t.goodFor}
-                                </p>
                                 <ul className="mt-4 flex flex-wrap gap-1.5" aria-label={`Columns for ${t.title.toLowerCase()}`}>
                                     {t.fields.map((f) => (
                                         <li
@@ -139,25 +118,16 @@ export default function Collect() {
                     </p>
                 </Reveal>
 
-                <Reveal className="mt-14">
-                    <h3 className="text-center text-sm font-semibold text-slate-900 dark:text-white">More you can collect</h3>
-                    <ul className="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-5">
-                        {MORE.map((m) => (
-                            <li key={m.title} className="flex gap-3">
-                                <m.icon className="w-4 h-4 mt-0.5 shrink-0 text-slate-600 dark:text-slate-300" aria-hidden="true" />
-                                <div>
-                                    <h4 className="text-sm font-semibold text-slate-800 dark:text-slate-100">
-                                        {m.slug && publishedHref(m.slug) ? (
-                                            <Link href={publishedHref(m.slug)!} className="hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff] hover:underline">{m.title}</Link>
-                                        ) : (
-                                            m.title
-                                        )}
-                                    </h4>
-                                    <p className="mt-0.5 text-sm text-slate-700 dark:text-slate-200 leading-[1.65]">{m.body}</p>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
+                <Reveal className="mt-10">
+                    {/* The ready-made sites in one line (homepage trim, 2026-11-10): the full list, by category, is on /scrapers.
+                        Names are the sites with their own page in content/sites.ts. */}
+                    <p className="text-center text-base text-slate-700 dark:text-slate-200 leading-[1.65]">
+                        <span className="font-semibold text-slate-900 dark:text-white">Ready-made</span> for Amazon, eBay, Walmart, Etsy, Zillow,
+                        Rightmove, Yellow Pages, Justdial, BBB, Hotels.com, Google Scholar and YouTube, and any list on any other site.{" "}
+                        <Link href="/scrapers" className="font-semibold text-[#1f5ec2] dark:text-[#7aa7ff] underline underline-offset-2">
+                            Every ready-made site
+                        </Link>
+                    </p>
                 </Reveal>
             </div>
         </section>

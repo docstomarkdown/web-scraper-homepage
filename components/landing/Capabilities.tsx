@@ -1,17 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import { Columns3, FileSpreadsheet, Layers, Link2, LockKeyhole, SquarePen } from "lucide-react";
+import { Layers, Link2, LockKeyhole, SquarePen } from "lucide-react";
 import SectionHeading from "@/components/landing/SectionHeading";
 import Reveal from "@/components/landing/Reveal";
 import { publishedHref } from "@/config/pages";
 
 const ITEMS: { icon: typeof Layers; title: string; body: string; link?: { slug: string; text: string } }[] = [
-    {
-        icon: Layers,
-        title: "Every page, not just the first",
-        body: "Next-page buttons, “Load more” and infinite scroll are all handled, so you get the whole list.",
-        link: { slug: "list-scraper", text: "How lists from any website work" },
-    },
     {
         icon: LockKeyhole,
         title: "Works where you're signed in",
@@ -19,25 +13,15 @@ const ITEMS: { icon: typeof Layers; title: string; body: string; link?: { slug: 
     },
     {
         icon: Link2,
-        title: "Hundreds of URLs at once",
-        body: "Paste or upload a list of URLs and get one combined table back.",
+        title: "Many web pages in one run",
+        body: "Paste or upload a list of web addresses and get one combined table back.",
         link: { slug: "bulk-scraper", text: "See bulk runs" },
-    },
-    {
-        icon: Columns3,
-        title: "Columns with real names",
-        body: "Columns come back named Price, Rating or Address, not col1 and col2.",
     },
     {
         icon: SquarePen,
         title: "Tidy up before you export",
         body: "Rename, reorder, hide or delete columns and rows in the built-in data viewer.",
         link: { slug: "export-to-google-sheets", text: "See editing and export" },
-    },
-    {
-        icon: FileSpreadsheet,
-        title: "Export anywhere",
-        body: "Excel, CSV and JSON, or send it straight to Google Sheets.",
     },
 ];
 
