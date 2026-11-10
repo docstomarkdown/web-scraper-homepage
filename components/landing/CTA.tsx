@@ -6,21 +6,10 @@ import { productConfig } from "@/config/product";
 
 export default function CTA() {
     return (
-        <section className="bg-white dark:bg-slate-950 px-6 md:px-12 pb-20 md:pb-24">
-            {/* A soft tinted panel, so the page closes on the same blue button and headline treatment as the hero. */}
-            <div className="relative overflow-hidden max-w-6xl mx-auto rounded-3xl border border-[#2772ED]/15 dark:border-slate-800 bg-gradient-to-br from-[#2772ED]/[0.07] via-white to-[#7CF2C4]/20 dark:from-[#2772ED]/20 dark:via-slate-900 dark:to-[#7CF2C4]/10 px-6 py-16 md:py-20 text-center">
-                <div
-                    className="absolute inset-0 pointer-events-none text-[#2772ED]/30 dark:text-slate-600"
-                    aria-hidden="true"
-                    style={{
-                        backgroundImage: "radial-gradient(currentColor 1px, transparent 1px)",
-                        backgroundSize: "22px 22px",
-                        maskImage: "radial-gradient(ellipse 60% 70% at 50% 50%, black 10%, transparent 75%)",
-                        WebkitMaskImage: "radial-gradient(ellipse 60% 70% at 50% 50%, black 10%, transparent 75%)",
-                        opacity: 0.5,
-                    }}
-                />
-                <Reveal className="relative max-w-3xl mx-auto">
+        <section className="bg-white dark:bg-slate-950 px-6 md:px-12">
+            {/* Plain on purpose: a hairline above, then the hero's headline treatment and the one blue button. */}
+            <div className="max-w-6xl mx-auto border-t border-slate-200 dark:border-slate-800 py-24 md:py-28 text-center">
+                <Reveal className="max-w-3xl mx-auto">
                     <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
                         Turn your next web page into a{" "}
                         <span className="relative inline-block whitespace-nowrap text-[#2470EB] dark:text-[#7aa7ff]">
