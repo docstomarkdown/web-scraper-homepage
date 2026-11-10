@@ -130,7 +130,7 @@ export function ProfitAllocation({
                     {/* Center Label */}
                     {revenue > 0 && (
                         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none p-2">
-                            <span className="text-[9px] font-bold text-slate-600 dark:text-slate-300 uppercase tracking-tighter">Total</span>
+                            <span className="text-[9px] font-bold text-slate-600 dark:text-slate-300 tracking-tighter">Total</span>
                             <span className={`text-center font-black leading-tight ${netProfit >= 0 ? 'text-slate-900' : 'text-red-600'} ${Math.abs(revenue) > 1000000000 ? 'text-[8px]' : 'text-xs'}`}>
                                 {formatCompact(revenue)}
                             </span>
@@ -142,7 +142,7 @@ export function ProfitAllocation({
                 <div className="flex-1 space-y-1.5 pt-1">
                     <LegendItem label="COGS" value={cogs} percent={cogsPercent} color="bg-slate-400" formatCurrency={formatCurrency} />
                     <LegendItem label="Ads" value={adSpend} percent={adsPercent} color="bg-blue-400" formatCurrency={formatCurrency} />
-                    <LegendItem label="Overhead" value={overhead} percent={overheadPercent} color="bg-purple-400" formatCurrency={formatCurrency} />
+                    <LegendItem label="Overhead" value={overhead} percent={overheadPercent} color="bg-blue-400" formatCurrency={formatCurrency} />
                     <LegendItem label="Tax" value={taxAmount} percent={taxPercent} color="bg-amber-400" formatCurrency={formatCurrency} />
                     <div className="pt-1 mt-1 border-t border-slate-100 dark:border-slate-800">
                         <LegendItem

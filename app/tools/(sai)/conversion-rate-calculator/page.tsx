@@ -8,7 +8,7 @@ import { CTA } from "@/components/sections/CTA"
 import { Lightbulb } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: "Conversion Rate Calculator: Free Rate from Visitors and Orders",
+    title: "Conversion Rate Calculator: Rate from Visitors and Orders",
     description: "Divide conversions by visitors to get your conversion rate, see how it compares with typical store rates, and work out what a small lift is worth in orders.",
     alternates: { canonical: "/tools/conversion-rate-calculator" },
 }

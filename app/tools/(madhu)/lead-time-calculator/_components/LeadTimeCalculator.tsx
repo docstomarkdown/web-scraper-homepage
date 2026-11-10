@@ -120,7 +120,7 @@ export function LeadTimeCalculator() {
                 {/* Right Column: Results */}
                 <div className="lg:col-span-5 flex flex-col space-y-8">
                     <ResultDateCard
-                        title="TOTAL LEAD TIME"
+                        title="Total lead time"
                         isCalculated={hasInputs}
                         customBadge={hasInputs ? {
                             text: totals.total > 60 ? "Long Lead Time" : totals.buffer > 0 ? "Protected Transit" : "Standard Delivery",
@@ -148,11 +148,11 @@ export function LeadTimeCalculator() {
                                 <div className="space-y-4 pt-1">
                                     <div className="grid grid-cols-2 gap-4">
                                         <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 dark:bg-slate-800/60 dark:border-slate-800">
-                                            <p className="text-xs font-bold text-slate-600 dark:text-slate-300 mb-1 uppercase tracking-wider">Supplier Time</p>
+                                            <p className="text-xs font-bold text-slate-600 dark:text-slate-300 mb-1 tracking-wider">Supplier Time</p>
                                             <p className="text-xl font-bold text-blue-600 dark:text-blue-400">{hasInputs ? Math.round(totals.pct.supplier) : 0}%</p>
                                         </div>
                                         <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 dark:bg-slate-800/60 dark:border-slate-800">
-                                            <p className="text-xs font-bold text-slate-600 dark:text-slate-300 mb-1 uppercase tracking-wider">Shipping Time</p>
+                                            <p className="text-xs font-bold text-slate-600 dark:text-slate-300 mb-1 tracking-wider">Shipping Time</p>
                                             <p className="text-xl font-bold text-blue-600 dark:text-blue-400">{hasInputs ? Math.round(totals.pct.shipping) : 0}%</p>
                                         </div>
                                     </div>

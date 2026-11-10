@@ -5,7 +5,7 @@ import { ProfitGuide } from "./_components/ProfitGuide"
 import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
-    title: "Dropshipping Profit Calculator: Free Net Profit After RTO",
+    title: "Dropshipping Profit Calculator: Net Profit After RTO",
     description: "Enter purchase and selling price, orders, cancellations, RTO rate, ad, shipping and other costs to see delivered orders and the real net profit.",
     alternates: { canonical: "/tools/dropshipping-profit-calculator" },
 }

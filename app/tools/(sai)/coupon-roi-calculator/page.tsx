@@ -6,7 +6,7 @@ import { CouponROIOverview } from "./_components/CouponROIOverview"
 import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
-    title: "Coupon ROI Calculator: Free Profit from a Discount Campaign",
+    title: "Coupon ROI Calculator: Profit from a Discount Campaign",
     description: "Enter a coupon campaign's cost, redemptions, order value, discount and margin to see revenue, profit after discounts and goods, and the ROI.",
     alternates: { canonical: "/tools/coupon-roi-calculator" },
 }

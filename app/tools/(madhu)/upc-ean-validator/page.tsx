@@ -7,7 +7,7 @@ import { ValidatorInfo } from "./_components/ValidatorInfo"
 import { FadeIn, ToolFAQ, ToolPageTitle, ToolSectionHeader } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
-    title: "UPC and EAN Validator: Free Check Digit Checker",
+    title: "UPC and EAN Validator: Check Digit Checker",
     description: "Check whether a UPC or EAN barcode number is valid, see the check digit calculation step by step, and validate a whole CSV of codes at once.",
     alternates: { canonical: "/tools/upc-ean-validator" },
 }

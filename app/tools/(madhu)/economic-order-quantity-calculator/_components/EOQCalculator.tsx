@@ -273,7 +273,7 @@ export function EOQCalculator() {
                                             transition={{ duration: 0.4, delay: 0.05 }}
                                             className="relative flex flex-col items-center text-center py-6 px-4 bg-transparent"
                                         >
-                                            <span className="text-xs font-black text-slate-600 dark:text-slate-300 uppercase tracking-[0.18em] leading-none mb-2">Optimal Order Quantity</span>
+                                            <span className="text-xs font-black text-slate-600 dark:text-slate-300 tracking-[0.18em] leading-none mb-2">Optimal Order Quantity</span>
                                             <motion.span
                                                 key={results.eoq}
                                                 initial={{ opacity: 0, y: 4 }}

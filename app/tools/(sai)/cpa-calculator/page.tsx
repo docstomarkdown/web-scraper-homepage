@@ -5,7 +5,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 import { Metadata } from "next"
 export const metadata: Metadata = {
-    title: "CPA Calculator: Free Cost Per Acquisition from Spend or CPC",
+    title: "CPA Calculator: Cost Per Acquisition from Spend or CPC",
     description: "Work out cost per acquisition from ad spend and conversions, or estimate it from CPC and conversion rate, and compare it with a target CPA.",
     alternates: { canonical: "/tools/cpa-calculator" },
 }

@@ -330,7 +330,7 @@ export function Validator() {
                                 {/* ── Divider ── */}
                                 <div className="relative flex items-center justify-center">
                                     <div className="w-full border-t border-slate-200/80 dark:border-slate-800"></div>
-                                    <span className="absolute px-3 bg-white text-xs font-bold text-slate-600 dark:text-slate-300 uppercase tracking-widest dark:bg-slate-900">
+                                    <span className="absolute px-3 bg-white text-xs font-bold text-slate-600 dark:text-slate-300 tracking-widest dark:bg-slate-900">
                                         Or
                                     </span>
                                 </div>

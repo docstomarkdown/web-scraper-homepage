@@ -5,7 +5,7 @@ import { BundleGuide } from './_components/BundleGuide';
 import { FadeIn, ToolFAQ, ToolPageTitle } from '@/app/tools/_shared/components';
 import { CTA } from '@/components/sections/CTA';
 export const metadata: Metadata = {
-    title: "Bundle Profit Calculator: Free Margin for a Product Bundle",
+    title: "Bundle Profit Calculator: Margin for a Product Bundle",
     description: "Add the products in a bundle with their cost and selling price, apply a percentage discount or set a fixed bundle price, and see the bundle's profit and margin.",
     alternates: { canonical: "/tools/bundle-profit-calculator" },
 };

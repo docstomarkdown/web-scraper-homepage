@@ -5,7 +5,7 @@ import { DiscountHowToUse } from "./_components/DiscountHowToUse"
 import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
-    title: "Discount Calculator: Free Final Price and Percentage Off",
+    title: "Discount Calculator: Final Price and Percentage Off",
     description: "Find the final price and saving from a price and a percentage off, or the percentage off from two prices, for one item or several.",
     alternates: { canonical: "/tools/discount-percentage-calculator" },
 }

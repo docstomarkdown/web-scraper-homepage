@@ -344,7 +344,7 @@ export function CubicFeetCalculator() {
                                             transition={{ duration: 0.4, delay: 0.05 }}
                                             className="relative flex flex-col items-center text-center py-6 px-4 bg-transparent"
                                         >
-                                            <span className="text-xs font-black text-slate-600 dark:text-slate-300 uppercase tracking-[0.18em] leading-none mb-2">Cubic Feet</span>
+                                            <span className="text-xs font-black text-slate-600 dark:text-slate-300 tracking-[0.18em] leading-none mb-2">Cubic Feet</span>
                                             <motion.span
                                                 key={results.singleCft}
                                                 initial={{ opacity: 0, y: 4 }}

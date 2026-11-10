@@ -6,7 +6,9 @@
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:tools": "node --test --experimental-strip-types --no-warnings \"app/tools/**/*.test.ts\"",
+    "check:rates": "node scripts/check-rates.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

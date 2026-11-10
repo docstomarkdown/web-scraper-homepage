@@ -194,7 +194,7 @@ export function StorageFeeCalculator() {
                                         </div>
                                         <div className="flex items-center gap-3">
                                             <span className={cn(
-                                                "text-xs px-2 py-0.5 rounded-full font-bold tracking-wide uppercase transition-colors",
+                                                "text-xs px-2 py-0.5 rounded-full font-bold tracking-wide transition-colors",
                                                 showAdvanced ? "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-400" : "bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-200"
                                             )}>
                                                 Optional

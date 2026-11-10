@@ -198,9 +198,9 @@ export function DiscountCalculator() {
                             )}
                         >
                             {(mode === "find-price" ? val(discountValue) : calculatedDiscount) >= 40
-                                ? " Amazing Deal!"
+                                ? " Large discount"
                                 : (mode === "find-price" ? val(discountValue) : calculatedDiscount) >= 20
-                                    ? " Great Savings!"
+                                    ? " Good discount"
                                     : (mode === "find-price" ? val(discountValue) : calculatedDiscount) >= 10
                                         ? " Decent Discount"
                                         : " Modest Savings"}
@@ -214,7 +214,7 @@ export function DiscountCalculator() {
                             className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500 dark:bg-slate-900 dark:border-slate-800"
                         >
                             <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800">
-                                <p className="text-xs font-bold text-slate-600 uppercase tracking-wider dark:text-slate-300">Price Breakdown</p>
+                                <p className="text-xs font-bold text-slate-600 tracking-wider dark:text-slate-300">Price Breakdown</p>
                             </div>
                             <div className="divide-y divide-slate-100 dark:divide-slate-800">
                                 <div className="flex justify-between items-center px-5 py-3.5">

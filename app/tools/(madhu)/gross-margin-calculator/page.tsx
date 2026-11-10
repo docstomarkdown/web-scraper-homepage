@@ -8,7 +8,7 @@ import { CTA } from "@/components/sections/CTA"
 import { Lightbulb } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: "Gross Margin Calculator: Free Margin, Revenue or COGS",
+    title: "Gross Margin Calculator: Margin, Revenue or COGS",
     description: "Enter any two of revenue, cost of goods sold and gross margin, and get the third, with the gross profit in money.",
     alternates: { canonical: "/tools/gross-margin-calculator" },
 }

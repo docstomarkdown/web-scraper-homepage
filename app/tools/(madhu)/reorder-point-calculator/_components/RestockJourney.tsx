@@ -88,7 +88,7 @@ export function RestockJourney({ hasInputs, reorderPoint, leadTime }: RestockJou
                 {/* Floating Overlay for Empty State - Transparent Background */}
                 {!hasInputs && (
                     <div className="absolute inset-0 z-20 flex items-start justify-end p-7 pointer-events-none">
-                        <span className="text-xs font-black text-blue-600 uppercase tracking-widest bg-white shadow-xl shadow-blue-500/10 px-3 py-1.5 rounded-full border border-blue-100 animate-in fade-in zoom-in duration-500 pointer-events-auto dark:text-blue-400 dark:bg-slate-900 dark:border-blue-900/50">
+                        <span className="text-xs font-black text-blue-600 tracking-widest bg-white shadow-xl shadow-blue-500/10 px-3 py-1.5 rounded-full border border-blue-100 animate-in fade-in zoom-in duration-500 pointer-events-auto dark:text-blue-400 dark:bg-slate-900 dark:border-blue-900/50">
                             Awaiting Data
                         </span>
                     </div>

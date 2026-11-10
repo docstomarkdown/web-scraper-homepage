@@ -9,7 +9,7 @@ import { Lightbulb } from "lucide-react"
 
 
 export const metadata: Metadata = {
-    title: "Influencer Marketing ROI Calculator: Free Campaign Return",
+    title: "Influencer Marketing ROI Calculator: Campaign Return",
     description: "Put the influencer fee, ad spend, product and shipping costs against the revenue a campaign brought, and get profit and return on investment.",
     alternates: { canonical: "/tools/influencer-marketing-roi-calculator" },
 }

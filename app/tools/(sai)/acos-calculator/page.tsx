@@ -7,7 +7,7 @@ import { ACoSOverview } from "./_components/ACoSOverview"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "ACoS Calculator: Free Advertising Cost of Sales and Profit",
+    title: "ACoS Calculator: Advertising Cost of Sales and Profit",
     description: "Enter ad spend, ad revenue and your profit margin to get ACoS, ROAS, net profit after ads and the break-even ACoS for your product.",
     alternates: { canonical: "/tools/acos-calculator" },
 }

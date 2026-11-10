@@ -7,7 +7,7 @@ import { CubicFeetHowToUse } from "./_components/CubicFeetHowToUse"
 import { CubicFeetGuide } from "./_components/CubicFeetGuide"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
-    title: "Cubic Feet Calculator: Free Volume for Freight and Storage",
+    title: "Cubic Feet Calculator: Volume for Freight and Storage",
     description: "Turn length, width and height into cubic feet, cubic metres and cubic inches, for one unit or a batch, with an optional cost per cubic foot.",
     alternates: { canonical: "/tools/cubic-feet-calculator" },
 }

@@ -660,7 +660,7 @@ function PalletTopView({ results }: TopViewProps) {
                                 <Box className="w-5 h-5 animate-pulse" />
                             </div>
                             <div className="flex flex-col items-center">
-                                <span className="text-slate-600 dark:text-slate-300 text-xs font-bold uppercase tracking-wider mb-0.5">Ready to design</span>
+                                <span className="text-slate-600 dark:text-slate-300 text-xs font-bold tracking-wider mb-0.5">Ready to design</span>
                                 <span className="text-slate-600 dark:text-slate-300">Enter box dimensions to preview</span>
                             </div>
                         </div>

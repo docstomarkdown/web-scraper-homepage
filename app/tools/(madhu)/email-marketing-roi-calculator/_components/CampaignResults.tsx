@@ -57,18 +57,18 @@ export function CampaignResults({
                     </div>
                 </div>
                 {/* Clicks */}
-                <div className="bg-purple-50/60 rounded-xl p-3 border border-purple-100 flex flex-col justify-between relative dark:bg-purple-950/40 dark:border-purple-900/50">
+                <div className="bg-blue-50/60 rounded-xl p-3 border border-blue-100 flex flex-col justify-between relative dark:bg-blue-950/40 dark:border-blue-900/50">
                     <div className="flex items-center justify-between mb-2">
-                        <div className="p-1.5 bg-purple-100 text-purple-600 rounded-lg dark:bg-purple-900/40 dark:text-purple-400">
+                        <div className="p-1.5 bg-blue-100 text-blue-600 rounded-lg dark:bg-blue-900/40 dark:text-blue-400">
                             <MousePointer className="w-3.5 h-3.5" />
                         </div>
-                        <span className="text-xs font-bold text-purple-600 bg-purple-100/60 px-1.5 py-0.5 rounded-full dark:text-purple-400 dark:bg-purple-900/40">
+                        <span className="text-xs font-bold text-blue-600 bg-blue-100/60 px-1.5 py-0.5 rounded-full dark:text-blue-400 dark:bg-blue-900/40">
                             {ctrPct}%
                         </span>
                     </div>
                     <div>
                         <p className="text-xs font-medium text-slate-600 dark:text-slate-300 mb-0.5">Total Clicks</p>
-                        <p className="text-sm font-bold text-purple-500 dark:text-purple-400">
+                        <p className="text-sm font-bold text-blue-500 dark:text-blue-400">
                             <Counter value={clicks} formatter={formatNumber} />
                         </p>
                     </div>

@@ -7,7 +7,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components";
 import { CTA } from "@/components/sections/CTA";
 
 export const metadata: Metadata = {
-    title: "Customer Lifetime Value Calculator: Free CLV and LTV to CAC",
+    title: "Customer Lifetime Value Calculator: CLV and LTV to CAC",
     description: "Multiply order value, purchases a year and lifespan for lifetime revenue, then add margin and acquisition cost for profit and the LTV to CAC ratio.",
     alternates: { canonical: "/tools/customer-lifetime-value-calculator" },
 };

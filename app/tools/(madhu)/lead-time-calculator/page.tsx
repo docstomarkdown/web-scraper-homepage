@@ -7,7 +7,7 @@ import { LeadTimeOverview } from "./_components/LeadTimeOverview"
 import { CTA } from "@/components/sections/CTA"
 import { Metadata } from "next"
 export const metadata: Metadata = {
-    title: "Lead Time Calculator: Free Order to Delivery Days",
+    title: "Lead Time Calculator: Order to Delivery Days",
     description: "Add supplier time, shipping time and a safety buffer to get the total lead time and the date stock arrives if you order today.",
     alternates: { canonical: "/tools/lead-time-calculator" },
 }

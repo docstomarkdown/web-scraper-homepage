@@ -245,7 +245,7 @@ export function MadhuToolTemplate({
                                                 </div>
                                                 <div className="flex-1">
                                                     <div className="mb-1">
-                                                        <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full uppercase tracking-wider dark:text-blue-400 dark:bg-blue-950/40">
+                                                        <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full tracking-wider dark:text-blue-400 dark:bg-blue-950/40">
                                                             Step {stepNumber}
                                                         </span>
                                                     </div>
@@ -267,7 +267,7 @@ export function MadhuToolTemplate({
                                         </div>
                                         <div className="flex-1">
                                             <div className="flex items-center gap-2 mb-3">
-                                                <span className="text-xs font-bold text-white bg-blue-600 px-3 py-1 rounded-full uppercase tracking-wider shadow-md">The Goal</span>
+                                                <span className="text-xs font-bold text-white bg-blue-600 px-3 py-1 rounded-full tracking-wider shadow-md">The Goal</span>
                                             </div>
                                             <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2 leading-tight dark:text-white">{howToUseGoal.title}</h3>
                                             <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-medium opacity-90 dark:text-slate-300" dangerouslySetInnerHTML={{ __html: howToUseGoal.description }} />
@@ -326,7 +326,7 @@ export function MadhuToolTemplate({
                                                 {/* Right: Takeaway Stat Panel */}
                                                 <div className="flex md:flex-col items-center justify-center gap-1.5 p-6 md:w-48 bg-slate-50/50 border-b md:border-b-0 md:border-l border-slate-100 order-1 md:order-2 dark:bg-slate-800/60 dark:border-slate-800">
                                                     <div className={`text-3xl font-bold ${insight.statColor} tracking-tight`}>{insight.stat}</div>
-                                                    <div className="text-xs font-bold uppercase tracking-widest text-slate-600 bg-slate-100/50 px-2 py-0.5 rounded-full dark:text-slate-300 dark:bg-slate-800">
+                                                    <div className="text-xs font-bold tracking-widest text-slate-600 bg-slate-100/50 px-2 py-0.5 rounded-full dark:text-slate-300 dark:bg-slate-800">
                                                         Takeaway
                                                     </div>
                                                     <div className="text-xs font-medium text-slate-600 dark:text-slate-300 text-center leading-tight mt-1 max-w-[120px]">

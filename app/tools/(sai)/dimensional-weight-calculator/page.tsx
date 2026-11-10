@@ -9,7 +9,7 @@ import { DimWeightGuide } from "./_components/DimWeightGuide";
 import { DimWeightOverview } from "./_components/DimWeightOverview";
 
 export const metadata: Metadata = {
-    title: "Dimensional Weight Calculator: Free Billable Shipping Weight",
+    title: "Dimensional Weight Calculator: Billable Shipping Weight",
     description: "Enter a parcel's length, width, height and weight to get its dimensional weight at your carrier's divisor and the billable weight you pay for.",
     alternates: { canonical: "/tools/dimensional-weight-calculator" },
 };

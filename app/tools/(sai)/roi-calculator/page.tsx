@@ -6,7 +6,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "ROI Calculator: Free Return on Investment",
+    title: "ROI Calculator: Return on Investment",
     description: "Enter what you put in and what you got back to see ROI as a percentage and a profit figure, with an annualised rate for a period you choose.",
     alternates: { canonical: "/tools/roi-calculator" },
 }

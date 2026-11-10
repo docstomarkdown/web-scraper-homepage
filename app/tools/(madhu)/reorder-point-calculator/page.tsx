@@ -7,7 +7,7 @@ import { ReorderPointOverview } from "./_components/ReorderPointOverview"
 import { CTA } from "@/components/sections/CTA"
 import { Metadata } from "next"
 export const metadata: Metadata = {
-    title: "Reorder Point Calculator: Free Stock Level to Reorder At",
+    title: "Reorder Point Calculator: Stock Level to Reorder At",
     description: "Multiply daily sales by lead time and add safety stock to find the stock level at which to place the next order, and the days it covers.",
     alternates: { canonical: "/tools/reorder-point-calculator" },
 }

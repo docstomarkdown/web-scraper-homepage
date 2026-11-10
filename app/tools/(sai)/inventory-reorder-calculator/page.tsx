@@ -7,7 +7,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "Reorder Point Calculator: Free Restock Trigger",
+    title: "Reorder Point Calculator: Restock Trigger",
     description: "Work out the stock level at which to reorder, from your daily sales, supplier lead time and safety buffer, and see how many days you have left.",
     alternates: { canonical: "/tools/inventory-reorder-calculator" },
 }

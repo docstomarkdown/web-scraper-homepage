@@ -7,7 +7,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "Landed Cost Calculator: Free Import Cost per Unit",
+    title: "Landed Cost Calculator: Import Cost per Unit",
     description: "Add shipping, import duty, insurance and fees to your supplier's price and see what one unit really costs once it reaches your warehouse.",
     alternates: { canonical: "/tools/landed-cost-calculator" },
 }

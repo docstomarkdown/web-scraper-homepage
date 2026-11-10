@@ -382,7 +382,7 @@ export function FBACalculator() {
                                         </div>
                                         <div className="flex items-center gap-3">
                                             <span className={cn(
-                                                "text-xs px-2 py-0.5 rounded-full font-bold tracking-wide uppercase transition-colors",
+                                                "text-xs px-2 py-0.5 rounded-full font-bold tracking-wide transition-colors",
                                                 showAdvanced ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400" : "bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-200"
                                             )}>
                                                 Optional

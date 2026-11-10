@@ -7,7 +7,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "Print on Demand Profit Calculator: Free Margin Check",
+    title: "Print on Demand Profit Calculator: Margin Check",
     description: "See what you keep on a print-on-demand sale after the base product cost, shipping both ways, marketplace fees and payment processing.",
     alternates: { canonical: "/tools/print-on-demand-profit-calculator" },
 }

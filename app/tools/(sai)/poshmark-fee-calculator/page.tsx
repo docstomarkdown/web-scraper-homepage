@@ -7,7 +7,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "Poshmark Fee Calculator: Free Seller Fee and Profit",
+    title: "Poshmark Fee Calculator: Seller Fee and Profit",
     description: "See Poshmark's fee on a sale, flat $2.95 at $15 and under or 20% above, and your net profit after the item cost and any shipping discount you offer.",
     alternates: { canonical: "/tools/poshmark-fee-calculator" },
 }

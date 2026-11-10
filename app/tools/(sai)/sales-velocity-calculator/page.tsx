@@ -7,7 +7,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "Sales Velocity Calculator: Free Units per Day",
+    title: "Sales Velocity Calculator: Units per Day",
     description: "Divide units sold by the days you were in stock to get your true daily sales rate, with the monthly units and revenue it implies.",
     alternates: { canonical: "/tools/sales-velocity-calculator" },
 }

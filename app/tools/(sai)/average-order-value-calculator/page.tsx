@@ -6,7 +6,7 @@ import { AOVOverview } from "./_components/AOVOverview"
 import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
-    title: "Average Order Value Calculator: Free AOV from Two Numbers",
+    title: "Average Order Value Calculator: AOV from Two Numbers",
     description: "Divide revenue by orders to get average order value, and see the three ways stores raise it: bundles, a free shipping threshold and add-ons.",
     alternates: { canonical: "/tools/average-order-value-calculator" },
 }

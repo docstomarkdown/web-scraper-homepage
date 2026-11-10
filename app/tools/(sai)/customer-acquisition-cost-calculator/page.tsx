@@ -8,7 +8,7 @@ import { CTA } from "@/components/sections/CTA"
 import { Target } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: "Customer Acquisition Cost Calculator: Free CAC Estimate",
+    title: "Customer Acquisition Cost Calculator: CAC Estimate",
     description: "Divide your sales and marketing costs by the new customers they brought to get customer acquisition cost, and see how it compares with what a customer is worth.",
     alternates: { canonical: "/tools/customer-acquisition-cost-calculator" },
 }

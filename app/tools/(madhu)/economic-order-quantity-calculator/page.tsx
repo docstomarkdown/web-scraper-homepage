@@ -8,7 +8,7 @@ import { Metadata } from "next"
 import { Lightbulb } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: "EOQ Calculator: Free Economic Order Quantity",
+    title: "EOQ Calculator: Economic Order Quantity",
     description: "Find the order size that keeps ordering and holding costs lowest, plus how many orders a year that means and how far apart they fall.",
     alternates: { canonical: "/tools/economic-order-quantity-calculator" },
 }

@@ -7,7 +7,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "FBA Removal vs Disposal Calculator: Free Stock Check",
+    title: "FBA Removal vs Disposal Calculator: Stock Check",
     description: "Compare removing stranded Amazon stock with disposing of it: units, per-unit fees, resale price and costs show which option loses less or earns more.",
     alternates: { canonical: "/tools/fba-removal-order-calculator" },
 }

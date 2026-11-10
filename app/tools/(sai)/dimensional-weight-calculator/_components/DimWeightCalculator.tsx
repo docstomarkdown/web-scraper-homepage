@@ -127,7 +127,7 @@ export function DimWeightCalculator() {
                                         <SelectContent className="rounded-xl border-slate-200 shadow-lg dark:border-slate-800">
                                             {dimUnit === "in" ? (
                                                 <SelectGroup>
-                                                    <SelectLabel className="text-xs font-bold text-slate-400 uppercase tracking-wider px-3 py-2 bg-slate-50 dark:text-slate-500 dark:bg-slate-800/60">Imperial — Inches / Lbs</SelectLabel>
+                                                    <SelectLabel className="text-xs font-bold text-slate-400 tracking-wider px-3 py-2 bg-slate-50 dark:text-slate-500 dark:bg-slate-800/60">Imperial — Inches / Lbs</SelectLabel>
                                                     <SelectItem value="139" className="py-3 px-3 cursor-pointer">
                                                         <div className="flex items-center justify-between w-full gap-6">
                                                             <span className="font-medium text-slate-700 dark:text-slate-200">UPS / FedEx Daily Rates</span>
@@ -149,7 +149,7 @@ export function DimWeightCalculator() {
                                                 </SelectGroup>
                                             ) : (
                                                 <SelectGroup>
-                                                    <SelectLabel className="text-xs font-bold text-slate-400 uppercase tracking-wider px-3 py-2 bg-slate-50 dark:text-slate-500 dark:bg-slate-800/60">Metric — Cm / Kg</SelectLabel>
+                                                    <SelectLabel className="text-xs font-bold text-slate-400 tracking-wider px-3 py-2 bg-slate-50 dark:text-slate-500 dark:bg-slate-800/60">Metric — Cm / Kg</SelectLabel>
                                                     <SelectItem value="5000" className="py-3 px-3 cursor-pointer">
                                                         <div className="flex items-center justify-between w-full gap-6">
                                                             <span className="font-medium text-slate-700 dark:text-slate-200">International Standard</span>

@@ -7,7 +7,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "A/B Test Duration Calculator: Free Sample Size and Days",
+    title: "A/B Test Duration Calculator: Sample Size and Days",
     description: "Enter your conversion rate, the lift you want to detect and your daily visitors to see how many visitors each variant needs and how many days the test runs.",
     alternates: { canonical: "/tools/ab-test-duration-calculator" },
 }

@@ -136,7 +136,7 @@ export function PriceElasticityCalculator() {
                     <ResultFeedbackCard
                         title="Price Elasticity of Demand (PED)"
                         titleLabel="Score"
-                        labelClassName="bg-indigo-500/10 text-indigo-400"
+                        labelClassName="bg-blue-500/10 text-blue-400"
                         mainValue={
                             <div className="flex items-baseline gap-2">
                                 <Counter value={absolutePed} formatter={(v) => v.toFixed(2)} />

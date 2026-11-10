@@ -96,11 +96,11 @@ export function BundleProfitCalculator() {
     const getBadgeColor = (index: number) => {
         const colors = [
             "bg-blue-100 text-blue-600 dark:bg-blue-900/40 dark:text-blue-400",
-            "bg-purple-100 text-purple-600 dark:bg-purple-900/40 dark:text-purple-400",
+            "bg-blue-100 text-blue-600 dark:bg-blue-900/40 dark:text-blue-400",
             "bg-blue-100 text-blue-600 dark:bg-blue-900/40 dark:text-blue-400",
             "bg-amber-100 text-amber-600 dark:bg-amber-900/40 dark:text-amber-400",
             "bg-rose-100 text-rose-600 dark:bg-rose-900/40 dark:text-rose-400",
-            "bg-indigo-100 text-indigo-600 dark:bg-indigo-900/40 dark:text-indigo-400",
+            "bg-blue-100 text-blue-600 dark:bg-blue-900/40 dark:text-blue-400",
         ]
         return colors[index % colors.length]
     }
@@ -268,7 +268,7 @@ export function BundleProfitCalculator() {
                     {margin !== 0 ? (
                         <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-blue-500 dark:bg-slate-900 dark:border-slate-800">
                             <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800">
-                                <p className="text-xs font-bold text-slate-600 uppercase tracking-wider dark:text-slate-300">Profit Breakdown</p>
+                                <p className="text-xs font-bold text-slate-600 tracking-wider dark:text-slate-300">Profit Breakdown</p>
                             </div>
                             <div className="divide-y divide-slate-100 dark:divide-slate-800">
                                 <div className="flex justify-between items-center px-5 py-3.5">

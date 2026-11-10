@@ -7,7 +7,7 @@ import { WeightConverterHowToUse } from "./_components/WeightConverterHowToUse"
 import { WeightConverterGuide } from "./_components/WeightConverterGuide"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
-    title: "Product Weight Converter: Free lb, oz, kg and g for Shipping",
+    title: "Product Weight Converter: lb, oz, kg and g for Shipping",
     description: "Convert a product's weight between pounds, ounces, kilograms and grams, see its carrier price band, and how much room is left before the next one.",
     alternates: { canonical: "/tools/weight-converter" },
 }

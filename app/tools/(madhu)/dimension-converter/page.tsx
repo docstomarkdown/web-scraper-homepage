@@ -8,7 +8,7 @@ import { CTA } from "@/components/sections/CTA"
 import { BookOpen } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: "Dimension Converter: Free Inches, cm, Feet and Metres",
+    title: "Dimension Converter: Inches, cm, Feet and Metres",
     description: "Convert a product's length, width and height between inches, centimetres, feet and metres in one go, with the volume for each unit.",
     alternates: { canonical: "/tools/dimension-converter" },
 }

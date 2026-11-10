@@ -8,7 +8,7 @@ import { CTA } from "@/components/sections/CTA"
 import { Lightbulb } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: "Net Profit Calculator: Free Profit After Costs and Tax",
+    title: "Net Profit Calculator: Profit After Costs and Tax",
     description: "From revenue, cost of goods, advertising, overheads and a tax rate to gross profit, operating profit, net profit and the margins.",
     alternates: { canonical: "/tools/net-profit-calculator" },
 }

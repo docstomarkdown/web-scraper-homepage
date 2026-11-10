@@ -7,7 +7,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "Wholesale Price Calculator: Free Price from Margin",
+    title: "Wholesale Price Calculator: Price from Margin",
     description: "Enter your cost per unit, any tax or duty, and the margin you need, and get the wholesale price, the markup it implies and the profit per unit.",
     alternates: { canonical: "/tools/wholesale-price-calculator" },
 }

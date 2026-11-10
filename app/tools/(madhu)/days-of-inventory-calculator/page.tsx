@@ -7,7 +7,7 @@ import { CTA } from "@/components/sections/CTA"
 import { Lightbulb } from "lucide-react"
 import { Metadata } from "next"
 export const metadata: Metadata = {
-    title: "Days of Inventory Calculator: Free Stock Runway",
+    title: "Days of Inventory Calculator: Stock Runway",
     description: "Divide the stock you hold by the units you sell a day to see how many days of inventory remain, with and without your safety buffer.",
     alternates: { canonical: "/tools/days-of-inventory-calculator" },
 }

@@ -15,8 +15,8 @@ export function ContainerLoadGuide() {
                     icon: Calculator,
                     stat: "2 tries",
                     statLabel: "per carton",
-                    iconBg: "bg-blue-50 dark:bg-blue-950/40",
-                    iconColor: "text-blue-700 dark:text-blue-300",
+                    iconBg: "bg-[#2772ED]/10 dark:bg-[#2772ED]/20",
+                    iconColor: "text-[#1f5ec2] dark:text-[#7aa7ff]",
                     statColor: "text-blue-700 dark:text-blue-300",
                 },                {
                     title: "Weight can be the limit",
@@ -24,8 +24,8 @@ export function ContainerLoadGuide() {
                     icon: Scale,
                     stat: "min()",
                     statLabel: "space or weight",
-                    iconBg: "bg-amber-50 dark:bg-amber-950/40",
-                    iconColor: "text-amber-700 dark:text-amber-300",
+                    iconBg: "bg-[#2772ED]/10 dark:bg-[#2772ED]/20",
+                    iconColor: "text-[#1f5ec2] dark:text-[#7aa7ff]",
                     statColor: "text-amber-700 dark:text-amber-300",
                 },                {
                     title: "A worked example",
@@ -33,8 +33,8 @@ export function ContainerLoadGuide() {
                     icon: Table,
                     stat: "392",
                     statLabel: "cartons in a 20ft",
-                    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
-                    iconColor: "text-emerald-700 dark:text-emerald-300",
+                    iconBg: "bg-[#2772ED]/10 dark:bg-[#2772ED]/20",
+                    iconColor: "text-[#1f5ec2] dark:text-[#7aa7ff]",
                     statColor: "text-emerald-700 dark:text-emerald-300",
                 },                {
                     title: "What it leaves out",
@@ -42,9 +42,9 @@ export function ContainerLoadGuide() {
                     icon: AlertTriangle,
                     stat: "Ceiling",
                     statLabel: "not a load plan",
-                    iconBg: "bg-violet-50 dark:bg-violet-950/40",
-                    iconColor: "text-violet-700 dark:text-violet-300",
-                    statColor: "text-violet-700 dark:text-violet-300",
+                    iconBg: "bg-[#2772ED]/10 dark:bg-[#2772ED]/20",
+                    iconColor: "text-[#1f5ec2] dark:text-[#7aa7ff]",
+                    statColor: "text-blue-700 dark:text-blue-300",
                 }
             ]}
         />

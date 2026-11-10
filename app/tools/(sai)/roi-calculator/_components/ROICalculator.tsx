@@ -223,9 +223,9 @@ export function ROICalculator() {
                             )}
                         >
                             {safeROI >= 100
-                                ? " Excellent Return!"
+                                ? " Excellent return"
                                 : safeROI >= 20
-                                    ? " Strong Return!"
+                                    ? " Strong return"
                                     : safeROI >= 0
                                         ? " Positive Return"
                                         : " Loss on Investment"}

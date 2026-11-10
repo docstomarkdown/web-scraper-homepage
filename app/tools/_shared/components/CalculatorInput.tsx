@@ -105,16 +105,8 @@ export function CalculatorInput({
 
     React.useEffect(() => {
         if (isFirstInput && isEmpty) {
-            const focusTimer = setTimeout(() => {
-                if (inputRef.current) {
-                    const activeEl = document.activeElement;
-                    const isInputFocused = activeEl?.tagName === 'INPUT' || activeEl?.classList.contains('calculator-input-field');
-                    if (!isInputFocused) {
-                        inputRef.current.focus();
-                    }
-                }
-            }, 100);
-            return () => clearTimeout(focusTimer);
+            // No focus on load: on a phone it opens the keyboard before the reader sees the page (calculator plan, phase 1).
+            return;
         }
     }, [isFirstInput, isEmpty, value])
 
@@ -123,14 +115,7 @@ export function CalculatorInput({
             if (inputRef.current) {
                 const allInputs = document.querySelectorAll('.calculator-input-field');
                 const isFirst = allInputs[0] === inputRef.current;
-                if (isFirst) {
-                    setIsFirstInput(true);
-                    if (!document.activeElement || document.activeElement === document.body) {
-                        inputRef.current.focus();
-                    }
-                } else if (autoFocus) {
-                    inputRef.current.focus();
-                }
+                if (isFirst) setIsFirstInput(true);
             }
         };
         checkIndex();
@@ -138,14 +123,28 @@ export function CalculatorInput({
         return () => clearTimeout(timer);
     }, [autoFocus])
 
+    // A number outside the field's range never reaches the maths: it's held at the limit and a line under the field
+    // says so (calculator plan, phase 1).
+    const [notice, setNotice] = React.useState<string | null>(null)
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const val = e.target.value
         if (type === "number") {
             if (val === "") {
+                setNotice(null)
                 onChange("")
             } else {
                 const parsed = parseFloat(val)
-                if (!isNaN(parsed)) {
+                if (!isFinite(parsed)) return
+                const lo = typeof min === "number" ? min : Number(min)
+                const hi = typeof max === "number" ? max : Number(max)
+                if (!isNaN(lo) && parsed < lo) {
+                    setNotice(`Enter ${lo} or more. It's set to ${lo.toLocaleString()} for now.`)
+                    onChange(lo)
+                } else if (!isNaN(hi) && parsed > hi) {
+                    setNotice(`Enter ${hi.toLocaleString()} or less. It's set to ${hi.toLocaleString()} for now.`)
+                    onChange(hi)
+                } else {
+                    setNotice(null)
                     onChange(parsed)
                 }
             }
@@ -336,6 +335,9 @@ export function CalculatorInput({
                     </div>
                 </div>
             </div>
+            {notice && (
+                <p role="status" className="mt-1.5 text-sm text-right text-amber-800 dark:text-amber-300">{notice}</p>
+            )}
         </div>
         </TooltipProvider>
     )

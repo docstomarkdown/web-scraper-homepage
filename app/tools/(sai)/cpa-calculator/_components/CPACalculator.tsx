@@ -222,7 +222,7 @@ export function CPACalculator() {
                             cpa <= (target || cpa) ? "border-l-blue-500" : "border-l-red-500"
                         )}>
                             <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800">
-                                <p className="text-xs font-bold text-slate-600 uppercase tracking-wider dark:text-slate-300">
+                                <p className="text-xs font-bold text-slate-600 tracking-wider dark:text-slate-300">
                                     {mode === "campaign-data" ? "Campaign Audit" : "Projection Breakdown"}
                                 </p>
                             </div>

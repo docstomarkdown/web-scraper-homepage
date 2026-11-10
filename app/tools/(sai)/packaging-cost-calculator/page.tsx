@@ -7,7 +7,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "Packaging Cost Calculator: Free Cost per Order",
+    title: "Packaging Cost Calculator: Cost per Order",
     description: "Add up the box, padding, tape, label, inserts and the minutes it takes to pack, and see what packaging costs per order and per batch.",
     alternates: { canonical: "/tools/packaging-cost-calculator" },
 }

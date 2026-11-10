@@ -7,7 +7,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 import { Lightbulb } from "lucide-react"
 export const metadata: Metadata = {
-    title: "Cart Abandonment Rate Calculator: Free Checkout Drop-off",
+    title: "Cart Abandonment Rate Calculator: Checkout Drop-off",
     description: "Enter the carts created and the orders completed in the same period to get your cart abandonment rate, with the benchmarks and the fixes that bring it down.",
     alternates: { canonical: "/tools/cart-abandonment-calculator" },
 }

@@ -407,7 +407,7 @@ export function WeightConverter() {
                                                                 }, {} as Record<string, {key: string, label: string}[]>)
                                                             ).map(([group, carriers]) => (
                                                                 <SelectGroup key={group}>
-                                                                    <SelectLabel className="text-xs font-extrabold text-slate-600 dark:text-slate-300 uppercase tracking-[0.13em] px-2 py-1.5 bg-slate-50/80 mb-1 dark:bg-slate-800/60">{group}</SelectLabel>
+                                                                    <SelectLabel className="text-xs font-extrabold text-slate-600 dark:text-slate-300 tracking-[0.13em] px-2 py-1.5 bg-slate-50/80 mb-1 dark:bg-slate-800/60">{group}</SelectLabel>
                                                                     {carriers.map(c => (
                                                                         <SelectItem key={c.key} value={c.key} className="text-[12px] font-medium leading-tight py-1.5 cursor-pointer">{c.label}</SelectItem>
                                                                     ))}
@@ -448,7 +448,7 @@ export function WeightConverter() {
                                                         </SelectTrigger>
                                                         <SelectContent align="end" className="max-h-[300px] border-slate-200 shadow-xl rounded-xl z-[1001] dark:border-slate-800">
                                                             <SelectGroup>
-                                                                <SelectLabel className="text-xs font-extrabold text-slate-600 dark:text-slate-300 uppercase tracking-[0.13em] px-2 py-1.5 bg-slate-50/80 mb-1 dark:bg-slate-800/60">Speed Types</SelectLabel>
+                                                                <SelectLabel className="text-xs font-extrabold text-slate-600 dark:text-slate-300 tracking-[0.13em] px-2 py-1.5 bg-slate-50/80 mb-1 dark:bg-slate-800/60">Speed Types</SelectLabel>
                                                                 {Object.entries(SHIPPING_CLASSES).map(([key, val]) => (
                                                                     <SelectItem key={key} value={key} className="text-[12px] font-medium leading-tight py-1.5 cursor-pointer">{val.label}</SelectItem>
                                                                 ))}
@@ -597,7 +597,7 @@ export function WeightConverter() {
                                             transition={{ duration: 0.4, delay: 0.05 }}
                                             className="relative flex flex-col items-center text-center py-6 px-4 bg-transparent"
                                         >
-                                            <span className="text-xs font-black text-slate-600 dark:text-slate-300 uppercase tracking-[0.18em] leading-none mb-2">Target Conversion</span>
+                                            <span className="text-xs font-black text-slate-600 dark:text-slate-300 tracking-[0.18em] leading-none mb-2">Target Conversion</span>
                                             <motion.span
                                                 key={`${conversions[targetUnit]}-${targetUnit}`}
                                                 initial={{ opacity: 0, y: 4 }}

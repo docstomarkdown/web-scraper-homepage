@@ -191,7 +191,7 @@ const formatTime = (minutesSinceMidnight: number) => {
 const getTimeOfDayStatus = (hour: number) => {
     if (hour >= 9 && hour < 17) return { label: "Business Hours", color: "text-blue-600 dark:text-blue-400", bg: "bg-blue-50 dark:bg-blue-950/40", border: "border-blue-100 dark:border-blue-900/50", icon: Sun };
     if (hour >= 6 && hour < 9) return { label: "Morning", color: "text-amber-700 dark:text-amber-300", bg: "bg-amber-50 dark:bg-amber-950/40", border: "border-amber-100 dark:border-amber-900/50", icon: Sun };
-    if (hour >= 17 && hour < 22) return { label: "Evening", color: "text-indigo-600 dark:text-indigo-400", bg: "bg-indigo-50 dark:bg-indigo-950/40", border: "border-indigo-100 dark:border-indigo-900/50", icon: Moon };
+    if (hour >= 17 && hour < 22) return { label: "Evening", color: "text-blue-600 dark:text-blue-400", bg: "bg-blue-50 dark:bg-blue-950/40", border: "border-blue-100 dark:border-blue-900/50", icon: Moon };
     return { label: "Off Hours", color: "text-slate-600 dark:text-slate-300", bg: "bg-slate-50 dark:bg-slate-800/60", border: "border-slate-200 dark:border-slate-800", icon: Moon };
 };
 export function TimeZonePlanner() {
@@ -471,7 +471,7 @@ export function TimeZonePlanner() {
                                             "group transition-all duration-500 hover:translate-y-[-8px] hover:shadow-2xl relative overflow-hidden",
                                             result.status.label === "Business Hours" ? "bg-blue-50 border-blue-100 dark:bg-blue-950/40 dark:border-blue-900/50" :
                                                 result.status.label === "Morning" ? "bg-amber-50 border-amber-100 dark:bg-amber-950/40 dark:border-amber-900/50" :
-                                                    result.status.label === "Evening" ? "bg-indigo-50 border-indigo-100 dark:bg-indigo-950/40 dark:border-indigo-900/50" :
+                                                    result.status.label === "Evening" ? "bg-blue-50 border-blue-100 dark:bg-blue-950/40 dark:border-blue-900/50" :
                                                         "bg-slate-50 border-slate-200 dark:bg-slate-800/60 dark:border-slate-800"
                                         )}
                                         mainValue={

@@ -7,7 +7,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "Safety Stock Calculator: Free Buffer Stock Formula",
+    title: "Safety Stock Calculator: Buffer Stock Formula",
     description: "Work out how many extra units to hold so a late supplier or a strong week doesn't leave you out of stock, from your worst-case and average sales and lead times.",
     alternates: { canonical: "/tools/safety-stock-calculator" },
 }

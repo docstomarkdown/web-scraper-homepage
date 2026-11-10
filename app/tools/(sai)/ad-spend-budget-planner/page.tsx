@@ -7,7 +7,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components";
 import { CTA } from "@/components/sections/CTA";
 
 export const metadata: Metadata = {
-    title: "Ad Budget Calculator: Free Spend Plan from a Revenue Goal",
+    title: "Ad Budget Calculator: Spend Plan from a Revenue Goal",
     description: "Turn a monthly revenue goal and a target ROAS into the ad budget and daily spend you need, plus the clicks and orders it should bring.",
     alternates: { canonical: "/tools/ad-spend-budget-planner" },
 };

@@ -7,7 +7,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "PPC Bid Calculator: Free Max Cost per Click",
+    title: "PPC Bid Calculator: Max Cost per Click",
     description: "Find the most you can pay per click without losing money, from your product price, conversion rate and profit margin, with an optional target ACoS.",
     alternates: { canonical: "/tools/ppc-bid-calculator" },
 }

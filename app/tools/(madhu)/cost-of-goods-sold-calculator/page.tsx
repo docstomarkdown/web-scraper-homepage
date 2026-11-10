@@ -8,7 +8,7 @@ import { CTA } from "@/components/sections/CTA"
 import { Lightbulb } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: "COGS Calculator: Free Cost of Goods Sold per Unit",
+    title: "COGS Calculator: Cost of Goods Sold per Unit",
     description: "Add product, shipping, packaging and fulfilment costs to get the cost of goods sold per unit and for a whole order quantity.",
     alternates: { canonical: "/tools/cost-of-goods-sold-calculator" },
 }

@@ -7,7 +7,7 @@ import { GTINHowToUse } from "./_components/GTINHowToUse"
 import { GTINGuide } from "./_components/GTINGuide"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
-    title: "GTIN Converter: Free UPC, EAN and GTIN-14 Formats",
+    title: "GTIN Converter: UPC, EAN and GTIN-14 Formats",
     description: "Check a barcode number's check digit and see it in GTIN-8, GTIN-12 (UPC), GTIN-13 (EAN) and GTIN-14 form, by typing it or uploading a photo of the label.",
     alternates: { canonical: "/tools/gtin-converter" },
 }

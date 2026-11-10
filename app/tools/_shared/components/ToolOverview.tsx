@@ -1,5 +1,5 @@
 "use client"
-import { motion, useReducedMotion } from "motion/react"
+import { motion, useReducedMotion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 import { ReactNode } from "react"
@@ -29,21 +29,21 @@ const accentStyles = {
         cardBg: "bg-white/70 dark:bg-slate-900/70",
     },
     indigo: {
-        headingAccent: "text-indigo-700 dark:text-indigo-300",
-        sectionBg: "bg-gradient-to-br from-indigo-50/80 via-slate-50/60 to-white dark:from-indigo-950/30 dark:via-slate-900 dark:to-slate-900",
-        border: "border-indigo-100/80 dark:border-indigo-900/50",
-        columnDivider: "bg-indigo-100/60 dark:bg-indigo-900/40",
-        statColor: "text-indigo-700 dark:text-indigo-300",
-        cardBorder: "border-indigo-100/50 dark:border-indigo-900/50",
+        headingAccent: "text-blue-700 dark:text-blue-300",
+        sectionBg: "bg-gradient-to-br from-blue-50/80 via-slate-50/60 to-white dark:from-blue-950/30 dark:via-slate-900 dark:to-slate-900",
+        border: "border-blue-100/80 dark:border-blue-900/50",
+        columnDivider: "bg-blue-100/60 dark:bg-blue-900/40",
+        statColor: "text-blue-700 dark:text-blue-300",
+        cardBorder: "border-blue-100/50 dark:border-blue-900/50",
         cardBg: "bg-white/70 dark:bg-slate-900/70",
     },
     violet: {
-        headingAccent: "text-violet-700 dark:text-violet-300",
-        sectionBg: "bg-gradient-to-br from-violet-50/80 via-slate-50/60 to-white dark:from-violet-950/30 dark:via-slate-900 dark:to-slate-900",
-        border: "border-violet-100/80 dark:border-violet-900/50",
-        columnDivider: "bg-violet-100/60 dark:bg-violet-900/40",
-        statColor: "text-violet-700 dark:text-violet-300",
-        cardBorder: "border-violet-100/50 dark:border-violet-900/50",
+        headingAccent: "text-blue-700 dark:text-blue-300",
+        sectionBg: "bg-gradient-to-br from-blue-50/80 via-slate-50/60 to-white dark:from-blue-950/30 dark:via-slate-900 dark:to-slate-900",
+        border: "border-blue-100/80 dark:border-blue-900/50",
+        columnDivider: "bg-blue-100/60 dark:bg-blue-900/40",
+        statColor: "text-blue-700 dark:text-blue-300",
+        cardBorder: "border-blue-100/50 dark:border-blue-900/50",
         cardBg: "bg-white/70 dark:bg-slate-900/70",
     },
     rose: {
@@ -93,7 +93,7 @@ export function ToolOverview({
 }: ToolOverviewProps) {
     const s = accentStyles[accent]
     const reduceMotion = useReducedMotion()
-    const reveal = reduceMotion ? {} : { initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, margin: "-80px" }, transition: { duration: 0.5, ease: "easeOut" as const } }
+    const reveal = reduceMotion ? {} : { initial: { y: 20 }, whileInView: { y: 0 }, viewport: { once: true, margin: "-80px" }, transition: { duration: 0.5, ease: "easeOut" as const } }
 
     const renderHeading = () => {
         if (!headingAccent) return <>{heading}</>
@@ -142,7 +142,7 @@ export function ToolOverview({
                         {facts.map((fact, idx) => (
                             <motion.div
                                 key={idx}
-                                {...(reduceMotion ? {} : { initial: { opacity: 0, y: 12 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, margin: "-60px" }, transition: { duration: 0.35, delay: idx * 0.08 } })}
+                                {...(reduceMotion ? {} : { initial: { y: 12 }, whileInView: { y: 0 }, viewport: { once: true, margin: "-60px" }, transition: { duration: 0.35, delay: idx * 0.08 } })}
                                 className={cn(
                                     "rounded-xl border px-4 py-3.5",
                                     "transition-all duration-200",

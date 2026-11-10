@@ -93,7 +93,7 @@ export function ReorderPointCalculator() {
                 {/* Right Column: Results */}
                 <div className="lg:col-span-5 space-y-3">
                     <ResultSummaryCard
-                        title="REORDER POINT"
+                        title="Reorder point"
                         description="Place your next order when inventory drops to this amount."
                         isCalculated={hasInputs}
                         liveBadgeText={values.safetyStock ? "Buffered Stock" : "Just-In-Time"}

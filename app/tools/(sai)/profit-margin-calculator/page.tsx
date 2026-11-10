@@ -6,7 +6,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "Profit Margin Calculator: Free Margin and Markup",
+    title: "Profit Margin Calculator: Margin and Markup",
     description: "Enter a selling price and a cost to see gross margin, markup and profit per unit, and learn why a 50% markup is not a 50% margin.",
     alternates: { canonical: "/tools/profit-margin-calculator" },
 }

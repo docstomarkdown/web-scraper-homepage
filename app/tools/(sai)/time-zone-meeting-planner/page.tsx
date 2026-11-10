@@ -6,7 +6,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "Time Zone Meeting Planner: Free Overlap Finder",
+    title: "Time Zone Meeting Planner: Overlap Finder",
     description: "Pick your country and the countries of your suppliers or team, choose a date, and see which hours fall inside everyone's working day before you set a call time.",
     alternates: { canonical: "/tools/time-zone-meeting-planner" },
 }

@@ -6,7 +6,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "ROAS Calculator: Free Return on Ad Spend",
+    title: "ROAS Calculator: Return on Ad Spend",
     description: "Divide the revenue your ads produced by what they cost to get your ROAS, or enter a target ROAS to see the revenue a budget needs to bring in.",
     alternates: { canonical: "/tools/return-on-ad-spend-calculator" },
 }

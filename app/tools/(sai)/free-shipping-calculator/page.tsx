@@ -5,7 +5,7 @@ import { FreeShippingHowToUse } from "./_components/FreeShippingHowToUse"
 import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 export const metadata: Metadata = {
-    title: "Free Shipping Threshold Calculator: Free Break-Even Check",
+    title: "Shipping Threshold Calculator: Break-Even Check",
     description: "Enter average order value, gross margin and shipping cost to see the profit per order with free shipping and the sales increase that pays for it.",
     alternates: { canonical: "/tools/free-shipping-calculator" },
 }

@@ -6,7 +6,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "Promo Code Generator: Free Random Discount Codes",
+    title: "Promo Code Generator: Random Discount Codes",
     description: "Make a batch of random discount codes with your own prefix or suffix, a length you choose, and letters, numbers or symbols, ready to paste into your store.",
     alternates: { canonical: "/tools/promo-code-generator" },
 }

@@ -8,7 +8,7 @@ import { Metadata } from "next"
 import { BookOpen } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: "Container Load Calculator: Free Cartons per Container",
+    title: "Container Load Calculator: Cartons per Container",
     description: "Find how many cartons or pallets fit in a 20ft, 40ft or custom container, which way to stack them, and how much of the space you use.",
     alternates: { canonical: "/tools/container-load-calculator" },
     keywords: ["container load calculator", "cargo space optimizer", "shipping calculator", "pallet loading", "20ft container capacity", "40ft container capacity"],

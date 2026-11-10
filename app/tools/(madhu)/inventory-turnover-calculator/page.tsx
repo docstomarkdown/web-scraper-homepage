@@ -8,7 +8,7 @@ import { CTA } from "@/components/sections/CTA"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-    title: "Inventory Turnover Calculator: Free Turnover Ratio and DSI",
+    title: "Inventory Turnover Calculator: Turnover Ratio and DSI",
     description: "Divide cost of goods sold by average inventory to get the turnover ratio, and the days it takes to sell through stock, for any period.",
     alternates: { canonical: "/tools/inventory-turnover-calculator" },
 }

@@ -57,7 +57,7 @@ export function SKUGenerator() {
         if (!generatedSKU) return
         navigator.clipboard.writeText(generatedSKU)
         setCopied(true)
-        toast.success("SKU copied to clipboard!")
+        toast.success("SKU copied to clipboard.")
         setTimeout(() => setCopied(false), 2000)
     }
     const resetFields = () => {

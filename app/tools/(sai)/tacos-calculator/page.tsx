@@ -7,7 +7,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "TACoS Calculator: Free Ad Spend to Total Sales",
+    title: "TACoS Calculator: Ad Spend to Total Sales",
     description: "Divide your ad spend by all your sales, organic and paid, to get TACoS, and see the margin left after ads from your gross margin.",
     alternates: { canonical: "/tools/tacos-calculator" },
 }

@@ -8,7 +8,7 @@ import { CTA } from "@/components/sections/CTA"
 import { Lightbulb } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: "Pallet Configuration Calculator: Free Cartons per Pallet",
+    title: "Pallet Configuration Calculator: Cartons per Pallet",
     description: "Find how many cartons fit on a standard or custom pallet, how many per layer and how many layers, within a height and weight limit.",
     alternates: { canonical: "/tools/pallet-configuration-calculator" },
 }

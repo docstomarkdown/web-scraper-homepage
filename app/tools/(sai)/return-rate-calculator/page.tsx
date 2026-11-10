@@ -6,7 +6,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "Return Rate Calculator: Free Returns and Lost Revenue",
+    title: "Return Rate Calculator: Returns and Lost Revenue",
     description: "Divide units returned by units sold to get your return rate, and see the revenue refunded and the handling cost those returns add up to.",
     alternates: { canonical: "/tools/return-rate-calculator" },
 }

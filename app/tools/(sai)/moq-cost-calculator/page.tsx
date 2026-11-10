@@ -7,7 +7,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "MOQ Cost Calculator: Free Order Investment Check",
+    title: "MOQ Cost Calculator: Order Investment Check",
     description: "Work out what a supplier's minimum order costs in total, the landed cost per unit, and how many months of stock it gives you at your sales rate.",
     alternates: { canonical: "/tools/moq-cost-calculator" },
 }

@@ -136,7 +136,7 @@ export function ABDurationCalculator() {
                             duration < 7 ? "amber" : duration > 30 ? "rose" : "emerald"
                         }
                         primaryResult={{
-                            label: "REQUIRED TEST DURATION",
+                            label: "Required test duration",
                             value: isCalculated ? `Run your test for: ${duration} days` : "—",
                             unit: "",
                             key: "duration"

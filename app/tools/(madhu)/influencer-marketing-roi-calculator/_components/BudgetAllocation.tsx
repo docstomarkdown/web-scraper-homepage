@@ -89,7 +89,7 @@ export function BudgetAllocation({
                         { label: "Influencer Fee", value: fee, pct: feePct, color: "bg-blue-500" },
                         { label: "Ad Spend", value: adSpend, pct: adPct, color: "bg-emerald-500" },
                         { label: "Product Costs", value: productCost, pct: productPct, color: "bg-amber-500" },
-                        { label: "Shipping Costs", value: shippingCost, pct: shippingPct, color: "bg-purple-500" },
+                        { label: "Shipping Costs", value: shippingCost, pct: shippingPct, color: "bg-blue-500" },
                     ].map((item) => (
                         <div key={item.label} className="flex items-center justify-between text-xs px-3 bg-white border border-slate-100 rounded-lg py-1.5 shadow-sm dark:bg-slate-900 dark:border-slate-800">
                             <div className="flex items-center gap-2 shrink-0">

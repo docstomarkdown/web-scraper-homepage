@@ -6,7 +6,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "Price Elasticity Calculator: Free Demand Sensitivity",
+    title: "Price Elasticity Calculator: Demand Sensitivity",
     description: "Compare sales before and after a price change to see how sensitive demand is, and whether a cut or a rise would bring in more revenue.",
     alternates: { canonical: "/tools/price-elasticity-calculator" },
 }

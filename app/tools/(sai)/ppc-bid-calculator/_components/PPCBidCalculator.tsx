@@ -180,7 +180,7 @@ export function PPCBidCalculator() {
 
                         <div className="px-6 pb-6 pt-2">
                             <div className="flex items-center justify-between mb-3 text-xs font-bold tracking-widest">
-                                <p className="text-slate-600 dark:text-slate-300 italic lowercase first-letter:uppercase">Aggressiveness Scale</p>
+                                <p className="text-slate-600 dark:text-slate-300 italic lowercase first-letter:">Aggressiveness Scale</p>
                                 {isCalculated && (
                                     <span className={cn(
                                         "px-2 py-0.5 rounded-md border",

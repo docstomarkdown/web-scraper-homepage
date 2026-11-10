@@ -6,7 +6,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "SKU Generator: Free Product Code Builder",
+    title: "SKU Generator: Product Code Builder",
     description: "Build consistent SKU codes from a brand prefix, category, product name and attributes such as colour and size, with a running number and a CSV export.",
     alternates: { canonical: "/tools/sku-generator" },
 }

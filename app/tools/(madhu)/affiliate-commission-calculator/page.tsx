@@ -7,7 +7,7 @@ import { AffiliateGuide } from "./_components/AffiliateGuide"
 import { CTA } from "@/components/sections/CTA"
 import { Metadata } from "next"
 export const metadata: Metadata = {
-    title: "Affiliate Commission Calculator: Free Payout and Profit",
+    title: "Affiliate Commission Calculator: Payout and Profit",
     description: "Work out what you'll pay affiliates and what you keep: clicks, conversion rate, order value and commission rate in, payout, revenue and net profit out.",
     alternates: { canonical: "/tools/affiliate-commission-calculator" },
 }

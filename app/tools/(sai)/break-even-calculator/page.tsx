@@ -7,7 +7,7 @@ import { FadeIn, ToolFAQ, ToolPageTitle } from "@/app/tools/_shared/components"
 import { CTA } from "@/components/sections/CTA"
 
 export const metadata: Metadata = {
-    title: "Break-Even Calculator: Free Units and Revenue to Break Even",
+    title: "Break-Even Calculator: Units and Revenue to Break Even",
     description: "Enter fixed costs, price per unit and variable cost per unit to see how many units you must sell, and the revenue that is, before any profit.",
     alternates: { canonical: "/tools/break-even-calculator" },
 }

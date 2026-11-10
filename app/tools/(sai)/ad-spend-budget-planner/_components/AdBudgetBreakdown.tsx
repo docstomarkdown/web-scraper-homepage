@@ -83,7 +83,7 @@ export function AdBudgetBreakdown({
                                     </span>
                                     <div className="text-right">
                                         <div className="text-[16px] font-black text-slate-800 dark:text-slate-100">{Math.round(estClicks).toLocaleString()}</div>
-                                        <div className="text-xs text-slate-400 uppercase font-extrabold tracking-wider mt-0.5 dark:text-slate-500" style={{ opacity: estClicks > 0 ? 1 : 0}}>@ {formatCurrency(cpc)} CPC</div>
+                                        <div className="text-xs text-slate-400 font-extrabold tracking-wider mt-0.5 dark:text-slate-500" style={{ opacity: estClicks > 0 ? 1 : 0}}>@ {formatCurrency(cpc)} CPC</div>
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +94,7 @@ export function AdBudgetBreakdown({
                                 </span>
                                 <div className="text-right">
                                     <div className="text-[18px] font-black text-blue-700 dark:text-blue-400">{Math.round(estOrders).toLocaleString()}</div>
-                                    <div className="text-xs text-blue-500/80 uppercase font-extrabold tracking-wider mt-0.5" style={{ opacity: estOrders > 0 ? 1 : 0}}>@ {conversionRate}% CR</div>
+                                    <div className="text-xs text-blue-500/80 font-extrabold tracking-wider mt-0.5" style={{ opacity: estOrders > 0 ? 1 : 0}}>@ {conversionRate}% CR</div>
                                 </div>
                             </div>
                         </motion.div>
