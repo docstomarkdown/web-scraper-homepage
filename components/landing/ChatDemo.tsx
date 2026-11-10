@@ -271,7 +271,7 @@ export default function ChatDemo({
                                     {stage === 1 ? (
                                         <Loader2 className="w-3.5 h-3.5 text-[#1f5ec2] dark:text-[#7aa7ff] animate-spin shrink-0" />
                                     ) : (
-                                        <Check className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-300 shrink-0" />
+                                        <Check className="w-3.5 h-3.5 text-[#0B7A5C] dark:text-[#7CF2C4] shrink-0" />
                                     )}
                                     <span>{stage === 1 ? s.working : stage === 2 ? s.found : `Done. ${s.total} rows ready.`}</span>
                                 </motion.div>
@@ -336,7 +336,7 @@ export default function ChatDemo({
                                         initial={reduceMotion ? false : { opacity: 0 }}
                                         animate={{ opacity: 1 }}
                                         transition={{ delay: reduceMotion ? 0 : 0.7 }}
-                                        className="inline-flex items-center gap-1.5 text-sm font-medium text-emerald-700 dark:text-emerald-300"
+                                        className="inline-flex items-center gap-1.5 text-sm font-medium text-[#0B7A5C] dark:text-[#7CF2C4]"
                                     >
                                         <Download className="w-3.5 h-3.5" />
                                         Downloaded {s.file}

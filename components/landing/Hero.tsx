@@ -41,7 +41,7 @@ export default function Hero() {
                         opacity: 0.7,
                     }}
                 />
-                <div className="absolute top-16 right-[4%] w-[620px] h-[520px] rounded-full bg-gradient-to-tr from-[#2772ED]/25 via-[#7c3aed]/15 to-[#06b6d4]/20 dark:from-[#2772ED]/30 dark:via-[#7c3aed]/25 dark:to-[#06b6d4]/15 blur-[110px]" />
+                <div className="absolute top-16 right-[4%] w-[620px] h-[520px] rounded-full bg-gradient-to-tr from-[#2772ED]/25 via-[#2772ED]/10 to-[#7CF2C4]/30 dark:from-[#2772ED]/30 dark:via-[#2772ED]/15 dark:to-[#7CF2C4]/10 blur-[110px]" />
                 <div className="absolute -top-24 -left-20 w-[420px] h-[420px] rounded-full bg-[#2772ED]/10 blur-[120px]" />
                 <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-b from-transparent to-white dark:to-slate-950" />
             </div>
@@ -55,7 +55,10 @@ export default function Hero() {
                 >
                     <h1 className="text-4xl sm:text-5xl lg:text-[2.6rem] xl:text-[3.4rem] font-bold tracking-tight text-slate-900 dark:text-white leading-[1.06]">
                         Turn any web page into a{" "}
-                        <span className="bg-gradient-to-r from-[#2772ED] via-[#4f46e5] to-[#7c3aed] dark:from-[#5b9bff] dark:via-[#818cf8] dark:to-[#a78bfa] bg-clip-text text-transparent">spreadsheet.</span>
+                        <span className="relative inline-block whitespace-nowrap text-[#1f5ec2] dark:text-[#7aa7ff]">
+                            <span className="relative z-10">spreadsheet.</span>
+                            <span className="absolute inset-x-0 -bottom-[0.06em] h-[0.14em] rounded-full bg-[#7CF2C4]" aria-hidden="true" />
+                        </span>
                     </h1>
 
                     <p className="text-xl text-slate-700 dark:text-slate-200 leading-[1.65] mt-6 max-w-md mx-auto lg:mx-0">

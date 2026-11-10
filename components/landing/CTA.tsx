@@ -6,34 +6,35 @@ import { productConfig } from "@/config/product";
 
 export default function CTA() {
     return (
-        <section className="relative overflow-hidden py-24 md:py-28 bg-white dark:bg-slate-950">
+        <section className="relative overflow-hidden py-24 md:py-28 bg-[#1f5ec2]">
+            {/* Background: masked dot grid + a soft mint glow (decorative) */}
             <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
                 <div
-                    className="absolute inset-0 text-slate-300 dark:text-slate-700"
+                    className="absolute inset-0 text-white"
                     style={{
                         backgroundImage: "radial-gradient(currentColor 1px, transparent 1px)",
                         backgroundSize: "22px 22px",
                         maskImage: "radial-gradient(ellipse 60% 70% at 50% 50%, black 20%, transparent 75%)",
                         WebkitMaskImage: "radial-gradient(ellipse 60% 70% at 50% 50%, black 20%, transparent 75%)",
-                        opacity: 0.6,
+                        opacity: 0.18,
                     }}
                 />
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[640px] h-[360px] rounded-full bg-gradient-to-tr from-[#2772ED]/20 via-[#7c3aed]/10 to-[#06b6d4]/15 blur-[100px]" />
+                <div className="absolute -right-24 -bottom-32 w-[520px] h-[360px] rounded-full bg-[#7CF2C4]/20 blur-[110px]" />
             </div>
 
             <div className="relative max-w-3xl mx-auto px-6 md:px-12 text-center">
                 <Reveal>
-                    <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
+                    <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white leading-tight">
                         Turn your next web page into a{" "}
-                        <span className="bg-gradient-to-r from-[#2772ED] via-[#4f46e5] to-[#7c3aed] dark:from-[#5b9bff] dark:via-[#818cf8] dark:to-[#a78bfa] bg-clip-text text-transparent">
+                        <span className="text-[#7CF2C4]">
                             spreadsheet.
                         </span>
                     </h2>
-                    <p className="mt-5 text-lg text-slate-600 dark:text-slate-300">Install it, open a page, and ask for the data you want.</p>
+                    <p className="mt-5 text-lg text-white">Install it, open a page, and ask for the data you want.</p>
                     <Link
                         href={`${productConfig.product.ctaUrl}?utm_source=website&utm_medium=cta_section&utm_campaign=chrome_install`}
                         target="_blank"
-                        className="mt-9 group inline-flex items-center justify-center gap-2 rounded-xl bg-[#1f5ec2] hover:bg-[#1a4fa3] px-8 py-4 text-base font-semibold text-white shadow-lg shadow-[#1f5ec2]/25 transition-all hover:-translate-y-px active:scale-[0.98]"
+                        className="mt-9 group inline-flex items-center justify-center gap-2 rounded-xl bg-white hover:bg-slate-100 px-8 py-4 text-base font-semibold text-[#1f5ec2] shadow-lg shadow-slate-900/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white transition-all hover:-translate-y-px active:scale-[0.98]"
                     >
                         <Chrome className="w-5 h-5" aria-hidden="true" />
                         Add to Chrome

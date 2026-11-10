@@ -96,6 +96,13 @@ text or as a button background. `#1f5ec2` is 6.1:1 on white; `#7aa7ff` is 8.5:1 
 Brand blue (`#1f5ec2`) is the **only** color for main action buttons, such as "Add to Chrome". Don't make buttons
 in the accent color.
 
+One exception: on a solid brand-blue band (the homepage's closing section), the button is white with `#1f5ec2`
+text, because a blue button can't sit on blue.
+
+Blue and mint are the only brand hues. Don't add violet, indigo or cyan to gradients, glows or badges. A key
+headline word is solid `#1f5ec2` (`#7aa7ff` in dark mode) with a Mint 300 underline bar, not a gradient; on a
+blue band the word itself is Mint 300.
+
 ### Mint accent
 
 Mint is the brand accent. Mint 300 is the brand color itself. The other shades exist because

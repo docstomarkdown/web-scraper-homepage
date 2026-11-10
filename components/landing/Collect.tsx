@@ -14,7 +14,6 @@ const TYPES: {
     title: string;
     body: string;
     fields: string[];
-    tint: string;
     /** Page this card leads to, shown once that page is published. */
     link?: { slug: string; kind?: PageKind; text: string };
 }[] = [
@@ -23,7 +22,6 @@ const TYPES: {
         title: "Any list on any page",
         body: "On sites without a ready-made setup, it spots the lists on the page for you. Pick one and it names the columns and follows every page.",
         fields: ["Automatic columns", "Next page", "Load more", "Infinite scroll"],
-        tint: "text-[#1f5ec2] dark:text-[#7aa7ff] bg-[#2772ED]/10",
         link: { slug: "list-scraper", text: "Collect lists from any website" },
     },
     {
@@ -31,7 +29,6 @@ const TYPES: {
         title: "Product prices and reviews",
         body: "Pull a store's product list across every page, then open each product for its full details and customer reviews.",
         fields: ["Product", "Price", "Sale price", "Rating", "Reviews", "Seller", "Image"],
-        tint: "text-amber-500 bg-amber-50 dark:bg-amber-950/40",
         link: { slug: "product-scraper", text: "Collect product details and reviews" },
     },
     {
@@ -39,7 +36,6 @@ const TYPES: {
         title: "Property listings",
         body: "Collect homes for sale or rent with price, size and location, ready to sort and compare in a spreadsheet.",
         fields: ["Address", "Price", "Beds", "Baths", "Sq ft", "Photos", "Listing link"],
-        tint: "text-emerald-500 bg-emerald-50 dark:bg-emerald-950/40",
         link: { slug: "real-estate", kind: "use-case", text: "Collect property listings" },
     },
     {
@@ -47,7 +43,6 @@ const TYPES: {
         title: "Emails and contact details",
         body: "Give it a list of websites, or the websites from a list you've already collected, and it finds the emails, phone numbers and social profiles on each one.",
         fields: ["Website", "Email", "Phone", "Social profiles"],
-        tint: "text-sky-500 bg-sky-50 dark:bg-sky-950/40",
         link: { slug: "email-extractor", text: "Get emails from a list of websites" },
     },
     {
@@ -55,7 +50,6 @@ const TYPES: {
         title: "Business directory leads",
         body: "Search Yellow Pages, Justdial, BBB or any business directory and get every listing as a row, then add the emails and social links from each business's own website.",
         fields: ["Name", "Category", "Address", "Phone", "Website", "Rating", "Email"],
-        tint: "text-rose-700 dark:text-rose-300 bg-rose-50 dark:bg-rose-950/40",
         link: { slug: "lead-generation", kind: "use-case", text: "Build a lead list from directories" },
     },
     {
@@ -63,7 +57,6 @@ const TYPES: {
         title: "Shopify stores",
         body: "Open a Shopify store and get its whole catalog at once, one row per product or variant, with a Shopify import CSV.",
         fields: ["Title", "Variant", "SKU", "Price", "Compare-at price", "Images"],
-        tint: "text-[#1f5ec2] dark:text-[#7aa7ff] bg-[#2772ED]/10",
         link: { slug: "shopify-scraper", text: "Export a Shopify store's catalog" },
     },
 ];
@@ -84,7 +77,7 @@ export default function Collect() {
                     {TYPES.map((t, i) => (
                         <Reveal key={t.title} delay={i * 0.05}>
                             <article className="h-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 transition-shadow hover:shadow-lg hover:shadow-slate-200/60 dark:hover:shadow-black/30">
-                                <span className={`inline-flex w-10 h-10 items-center justify-center rounded-xl ${t.tint}`} aria-hidden="true">
+                                <span className={`inline-flex w-10 h-10 items-center justify-center rounded-xl bg-[#2772ED]/10 text-[#1f5ec2] dark:text-[#7aa7ff]`} aria-hidden="true">
                                     <t.icon className="w-5 h-5" />
                                 </span>
                                 <h3 className="mt-4 text-lg font-semibold text-slate-900 dark:text-white">{t.title}</h3>
