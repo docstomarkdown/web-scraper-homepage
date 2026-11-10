@@ -184,3 +184,17 @@ The hub at `/use-cases` lists them all.
 4. The `/scrapers` hub, a shared sites data file, and the first per-site pages.
 5. Guides (one for each feature and use-case page), the changelog, and the legal explainer.
 6. Compare pages.
+
+## 8. Planned with the ChatGPT app
+
+Waiting for the app; none is built. ⚪ later.
+
+| Page | URL | New or existing |
+|---|---|---|
+| Web Scraper Pro for ChatGPT | `/chatgpt` | New product page; `/mcp` stays for Claude and other agents |
+| How to add Web Scraper Pro to ChatGPT | `/chatgpt/setup` | New help page |
+| How to scrape a website with ChatGPT | `/guides/scrape-a-website-with-chatgpt` | Existing guide, rewritten around the app (agent and Atlas as a section) |
+| ChatGPT vs Claude for web scraping | `/compare/chatgpt-vs-claude-for-web-scraping` | New comparison |
+| Which sites can ChatGPT scrape? | `/guides/which-sites-can-chatgpt-scrape` | New guide |
+| How to get a ChatGPT table into Excel or Google Sheets | `/guides/chatgpt-table-to-excel` | New guide |
+| Lead generation use case | `/use-cases/lead-generation` | Add the ChatGPT route |
