@@ -33,8 +33,8 @@ browsers use them for tabs; the SVG is the fallback.
 
 The master files live in the extension repo, not here:
 
-- `chrome-extension-source/web_store_assets/logo/logo.svg`: the master logo.
-- `chrome-extension-source/web_store_assets/logo/logo-16.svg`: the 16px version, with a larger dot
+- `chrome-extension-source/web_store_assets/web-scraper-pro/logo/logo.svg`: the master logo.
+- `chrome-extension-source/web_store_assets/web-scraper-pro/logo/logo-16.svg`: the 16px version, with a larger dot
   so the mint still shows at toolbar size.
 - `chrome-extension-source/scripts/build-icons.mjs`: renders the extension icon set from those two
   files.
@@ -58,14 +58,14 @@ show `logo-mark.svg` instead.
 
 These files are generated from `components/chat/ThinkingMark.tsx` in `chrome-extension-source` by
 `npx vite-node scripts/build-logo-animations.ts`, which writes them to
-`web_store_assets/logo/animations/`. Change the animation there, then copy the files here again.
+`web_store_assets/web-scraper-pro/logo/animations/`. Change the animation there, then copy the files here again.
 
 ### Changing the logo
 
-1. Edit the master files in `chrome-extension-source/web_store_assets/logo/`.
+1. Edit the master files in `chrome-extension-source/web_store_assets/web-scraper-pro/logo/`.
 2. In `chrome-extension-source`, run `node scripts/build-icons.mjs` to regenerate `public/icon/`.
 3. Copy the results into this repo:
-   - `web_store_assets/logo/logo.svg` → `public/logo.svg`
+   - `web_store_assets/web-scraper-pro/logo/logo.svg` → `public/logo.svg`
    - `public/icon/16.png` → `public/favicon-16.png`
    - `public/icon/32.png` → `public/favicon-32.png`
 4. Re-render `public/apple-touch-icon.png` at 180×180 from `public/logo.svg`.
