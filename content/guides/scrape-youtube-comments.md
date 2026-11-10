@@ -1,43 +1,36 @@
 ---
 title: "How To Scrape YouTube Comments into a Spreadsheet"
-description: "Collect every comment under a YouTube video into Excel, with the author, text, likes and date, as far as the page scrolls, with no code and no API key."
+description: "Collect the comments under a YouTube video into Excel, with each comment in its own row, as far as the page scrolls, with no code and no API key."
 status: draft
 date: 2026-10-21
-updated: 2026-10-21
+updated: 2026-11-10
 version: "1.3.0"
 author: vikram
 feature: list-scraper
 sites: [youtube]
 video: ""
 campaign: guide-scrape-youtube-comments
+# Facts checked against chrome-extension-source on 2026-11-10: the YouTube setup covers video lists on search results and the home feed (videos, playlists, Shorts), not comments: configs-prod/youtube.com.json, configs-prod/site-column-mappings/youtube.com.json, lib/platform/hooks/youtube.ts
+# Facts checked against chrome-extension-source on 2026-11-10: when a setup's list selectors find a list on the page, the generic list search is skipped, so other lists (such as comments) may not get a card; the item picker still works: lib/content/scanForListsCore.ts (skipGenericStrategies)
+# Facts checked against chrome-extension-source on 2026-11-10: the YouTube setup's paging mode is autoScroll: configs-prod/youtube.com.json
+# Facts checked against chrome-extension-source on 2026-11-10: "Choose from lists we found", "Choose an item on the page" (similar items picked with it), "Rescan page", "Collect more pages", Auto scroll, "Auto scroll detected", "Collect to end": components/scraper/ListTab.tsx, lib/tools/helpTopics.json
+# Facts checked against chrome-extension-source on 2026-11-10: "Filter rows" on the results page; Export as Google Sheets, Microsoft Excel, CSV, JSON: lib/tools/helpTopics.json
 faq:
   - q: "How do I scrape YouTube comments without the API?"
-    a: "Open the video in Chrome, scroll to the comments, open the Web Scraper Pro side panel's List tab, pick the comments list, choose Collect more pages with Auto scroll, and click Collect to end. No API key, no quota, no account."
+    a: "Open the video in Chrome, scroll to the comments, open the Web Scraper Pro side panel's List tab, and pick the comments: from the list cards, or with Choose an item on the page. Choose Collect more pages with Auto scroll and click Collect to end. No API key and no account."
   - q: "Which columns do I get?"
-    a: "Comments aren't part of the YouTube setup, so the columns come from the page: author, comment text, likes and date. Check them on a small run first and rename any column on the results page."
+    a: "Comments aren't part of the extension's YouTube setup, so the columns are named from the page. Check them on a short first run and rename any column on the results page."
   - q: "Does it collect replies?"
-    a: "Replies load when you click the Replies link under a comment. Open the ones you want on the page, click Rescan, and collect; they become rows beside the comments."
-  - q: "Can I collect the comments of many videos at once?"
-    a: "Yes. Paste the video addresses into Bulk scrape and each video is collected in turn with the same list setup."
+    a: "It collects what the page shows. Replies stay folded until you open them on the page, so open the threads you want first, then collect. Check on a short run how they come through."
   - q: "Can I get the commenters' emails?"
-    a: "No. YouTube doesn't show emails, and the extension never reads a channel's About page behind its verification."
+    a: "No. YouTube doesn't show commenters' emails, and the extension collects only what the page shows."
   - q: "Is scraping YouTube comments allowed?"
     a: "YouTube's terms restrict automated collection. You collect public comments in your own browser, at a person's pace, for your own research. Read our plain-words explainer on web scraping and the law first; it isn't legal advice."
   - q: "Will YouTube ban my channel or account?"
-    a: "The extension reads the comments on a public video in your own browser and never posts, signs in or touches your channel. YouTube may load comments more slowly after a long scroll; click Stop and keep what you have. Keep it to your own research."
+    a: "The extension reads the comments on a public video in your own browser and never posts or touches your channel. If comments start loading slowly after a long scroll, click Stop and keep what you have. Keep it to your own research."
 ---
 
-<!--
-Draft until a real run on 1.3.0 confirms: (1) the comment list on a watch page is detected by the List tab
-once the comments have loaded (the YouTube pack covers video lists only; comments are a generic list and must
-never be described as named columns, per content/scrapers/youtube.ts); (2) Auto scroll is detected on the
-comment section; (3) the page-given column names (author, text, likes, date); (4) whether replies that were
-expanded on the page come through as rows. Replace the sample table after the run. Title targets the YouTube
-comments cluster ("youtube comments scraper", 189 views/mo; "how to scrape emails from youtube" 516/mo is the
-neighbouring phrase and is answered "no" in the FAQ), 2026-10-21.
--->
-
-Web Scraper Pro turns the comments under a YouTube video into a spreadsheet, with the author, text, likes and date in their own columns. You scroll to the comments, pick the list, and let the run scroll to the end; there is no API key and no quota. This guide shows each step on version 1.3.0, with a screenshot of what you should see.
+Web Scraper Pro turns the comments under a YouTube video into a spreadsheet, one row per comment. You scroll to the comments, pick them in the side panel, and let the run scroll to the end. There is no API key and no quota, because the extension reads the page you have open.
 
 ## Does YouTube Allow Scraping?
 
@@ -54,44 +47,50 @@ To follow this tutorial, you need:
 
 ## What You Get
 
-The YouTube setup in the extension covers video lists, not comments. Comments are detected like any other list, so the columns are named from the page:
+The extension's YouTube setup covers lists of videos, such as search results, not comments. Comments are collected like a list on any site, so the columns are named from the page.
 
-| Column | Example |
+A comment usually shows these details, and each one the page shows becomes a column. Sample data: the names and text are made up.
+
+| Detail | Example |
 |---|---|
 | Author | @sample_viewer |
 | Comment | The step at 4:10 fixed it for me, thanks. |
 | Likes | 23 |
 | Posted | 2 weeks ago |
 
-Check the columns on a small run before a long one, and rename any of them on the results page.
+Check the columns on a short run before a long one, and rename any of them on the results page.
 
 ## Step 1 — Opening the Video and Loading the Comments
 
-In Chrome, open the video and scroll down until the comments appear; YouTube loads them only when they come into view. Under the comment count, open the **Sort by** menu and choose **Newest first** if you want the latest reactions rather than the most liked.
+In this step you get the comments onto the page. In Chrome, open the video and scroll down until the comments appear; YouTube loads them only when they come into view.
 
-Click the Web Scraper Pro icon to open the side panel and open the **List** tab. If you opened the panel before the comments loaded, click **Rescan**. Under **Choose from lists we found**, the comments show as a card whose count matches the comments you can see, usually 20.
+If you want the latest reactions rather than the top ones, change the comments' sort order to newest first using YouTube's sort menu above them. The extension collects in the order the page shows.
+
+The comments are on the page. Next, you pick them in the side panel.
+
+## Step 2 — Picking the Comments
+
+Click the Web Scraper Pro icon to open the side panel and open the **List** tab. If you opened the panel before the comments loaded, click **Rescan page** at the top of the List tab.
+
+Under **Choose from lists we found**, look for a card whose count matches the comments you can see. Hover a card and its list is outlined on the page.
 
 ![](visual:ext/list-tab-detected)
 
-If a different list shows first, such as the recommended videos on the right, pick the comments card, or click **Choose an item on the page** and click one comment. You have picked the list; next you let it scroll.
+The cards may show only the recommended videos, because the YouTube setup looks for video lists first. In that case, click **Choose an item on the page** and click one comment; similar comments are picked with it. You have picked the list; next you let it scroll.
 
-## Step 2 — Letting the Comments Scroll
+## Step 3 — Letting the Comments Scroll
 
-Choose **Collect more pages**. YouTube loads more comments as you scroll, so the panel shows **Auto scroll detected**. Click **Collect to end**.
+Under **How much to collect**, choose **Collect more pages**. YouTube loads more comments as you scroll, so choose **Auto scroll** if the panel doesn't show **Auto scroll detected** already. Click **Collect to end**.
 
 ![](visual:ext/list-tab-more-pages)
 
-The run scrolls the page and adds comments as they load. A video with thousands of comments takes a while; click **Stop** at any time to keep what it has. Keep the tab in front, because paging slows down in a background tab.
-
-## Step 3 — Adding Replies
-
-Replies sit folded under each comment behind a **Replies** link, and the run collects only what the page shows. Open the reply threads you want by clicking those links on the page, then click **Rescan** in the List tab and collect again. The replies come through as rows in the order they appear.
-
-For most research, top-level comments are enough. Skip this step unless the replies are the point.
+The run scrolls the page and adds comments as they load. A video with thousands of comments takes a while; click **Stop** at any time to keep what it has.
 
 ## Step 4 — Reviewing the Table
 
-The results page opens with one row per comment and the total in a chip at the top. Hover a column header to rename it with the pencil or remove it with the trash icon. Click **Filter rows** to keep comments with more than 10 likes, or type in the side panel's chat with the results tab in front:
+The results page opens with one row per comment. Check the column names first, because they come from the page.
+
+Hover a column header to rename it with the pencil or remove it with the trash icon. Click **Filter rows** to keep the comments that mention a word you care about, or type in the side panel's chat with the results tab in front:
 
 ```
 Only author, comment and likes, sorted by likes
@@ -99,34 +98,32 @@ Only author, comment and likes, sorted by likes
 
 ![](visual:ext/results-arranged)
 
-Search the Comment column in your sheet afterwards for the words you care about: a product name, "price", "doesn't work". That is where the themes are.
+Search the comment column in your sheet afterwards for the words you care about: a product name, "price", "doesn't work". That is where the themes are.
 
 ## Step 5 — Exporting
 
-Click **Export as** and choose **Microsoft Excel**, **CSV**, **JSON** or **Google Sheets**. Likes are saved as numbers. The collection stays in History.
+Click **Export as** and choose **Microsoft Excel**, **CSV**, **JSON** or **Google Sheets**. The collection stays in History.
 
 ![](visual:ext/results-export-menu)
 
-After export the sheet looks like this. Sample data; the names and comments are made up.
+After export the sheet looks like this, with your own column names. Sample data: the names and comments are made up.
 
 | Author | Comment | Likes | Posted |
 |---|---|---|---|
 | @sample_viewer | The step at 4:10 fixed it for me, thanks. | 23 | 2 weeks ago |
-| @another_viewer | Does this work on the free plan? | 8 | 2 weeks ago |
+| @another_viewer | Is there a written version of this? | 8 | 2 weeks ago |
 | @third_viewer | Audio is too quiet in the second half. | 41 | 3 weeks ago |
-
-For the comments on many videos, paste the video addresses into **Bulk scrape**; each video is collected in turn with the same list setup, and **View merged table** puts them in one table with a Source URL column.
 
 ## When It Goes Wrong
 
-**The run never ends.** A busy video keeps loading comments. Click Stop when you have enough; the rows so far are kept.
+**The run never ends.** A busy video keeps loading comments. Click **Stop** when you have enough; the rows so far are kept.
 
-**The List tab doesn't show the comments.** They load only after you scroll to them. Scroll down until they appear, then click Rescan.
+**The List tab doesn't show the comments.** They load only after you scroll to them, and the cards may show the recommended videos first. Scroll until the comments appear, click **Rescan page**, or click **Choose an item on the page** and click one comment.
 
-**Replies are missing.** They stay folded until you open them on the page. Click the Replies links you want, click Rescan, and collect again.
+**Replies are missing.** They stay folded until you open them on the page. Open the threads you want, click **Rescan page**, and collect again.
 
-**Comments are turned off on the video.** There is nothing to collect. The video list on the channel still works; see How To Export YouTube Search Results to Excel.
+**Comments are turned off on the video.** There is nothing to collect. The video lists on YouTube still work; see the [YouTube scraper page](/scrapers/youtube).
 
 ## Conclusion
 
-You collected the comments under a video into a spreadsheet you can sort by likes and search by word. For the videos themselves, with views, dates and durations, see the YouTube site page, which has a ready-made setup. For the same kind of thread on Reddit, see How To Scrape Reddit Posts and Comments into a Spreadsheet.
+You collected the comments under a video into a spreadsheet you can sort and search by word. For the videos themselves, with views, dates and durations in named columns, see the [YouTube scraper page](/scrapers/youtube), which has a ready-made setup. For the same kind of thread on Reddit, see How To Scrape Reddit Posts and Comments into a Spreadsheet.

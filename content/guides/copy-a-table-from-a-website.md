@@ -3,37 +3,37 @@ title: "How To Copy a Table from a Website into Google Sheets"
 description: "Copy a table from any web page into Excel or Google Sheets with the columns intact, including tables that break when pasted and tables that span pages."
 status: draft
 date: 2026-10-21
-updated: 2026-10-21
+updated: 2026-11-10
 version: "1.3.0"
 author: vikram
 feature: export-to-google-sheets
 sites: []
 video: ""
 campaign: guide-copy-a-table-from-a-website
+# Facts checked against chrome-extension-source on 2026-11-10:
+# A table body's rows are one of the list shapes the List tab looks for (tbody > tr): lib/content/scanForListsCore.ts (Strategy 2), DECISIONS.md D-048
+# Choose from lists we found, List N with items on this page, Choose an item on the page, This page only, Collect more pages, Next page / Load more / Auto scroll, Stop after, Collect from 5 pages: components/scraper/ListTab.tsx
+# The results page sorts a column as numbers when its cells read as numbers: lib/utils/sortValues.ts
+# Files write columns recognised as prices, ratings or review counts as numbers (Settings > Save prices, ratings and counts as numbers, on by default): DECISIONS.md D-033, lib/utils/fileNumbers.ts, components/scraper/ResultsSettingsCards.tsx
+# Edit column name on header hover: entrypoints/dataviewer/main.tsx
+# Export as Google Sheets: new sheet in the signed-in Chrome account after a one-time Google sign-in, sees only files it created (drive.file); consent screen in production: thinksolv-writing-system/products/web-scraper-pro.md
+# IMPORTHTML imports a table or list from a page's address: Google Docs Editors Help, support.google.com/docs/answer/3093339 (read 2026-11-10)
 faq:
   - q: "How do I copy a table from a website to Google Sheets?"
-    a: "Open the page, open the Web Scraper Pro side panel's List tab, pick the table, click Collect, then Export as → Google Sheets. A new sheet opens with one column per table column."
+    a: "Open the page, open the Web Scraper Pro side panel's List tab, pick the table, click Collect, then Export as > Google Sheets. A new sheet opens with one column for each column the extension read."
   - q: "Why does the table break when I paste it?"
-    a: "Copying takes the text as the page lays it out, so merged cells, line breaks inside cells and hidden rows land in the wrong places. Collecting reads each cell as a value, so the columns line up."
+    a: "Copying takes the text as the page lays it out, so merged cells, line breaks inside cells and hidden rows can land in the wrong places. Collecting reads each row of the table as one row of data."
   - q: "Can Google Sheets import a table from a website on its own?"
-    a: "For a plain table on one page, yes, with its import functions. They fail on pages that build the table with JavaScript, on tables that span pages, and on pages you're signed in to. Collecting with the extension handles those."
+    a: "Google Sheets has an IMPORTHTML function that imports a table or list from a page's address. If it returns nothing or the wrong rows, the table may be built by the page's scripts, split over pages, or behind a sign-in; the extension reads the page as your browser shows it."
   - q: "Can I get a table that spans several pages?"
     a: "Yes. Choose Collect more pages, confirm Next page, Load more or Auto scroll, set how many pages, and every page's rows land in one table."
   - q: "Does it keep the numbers as numbers?"
-    a: "Yes. Prices, ratings and counts are saved as numbers, so the sheet sorts and sums them without clean-up."
+    a: "The results page sorts a column as numbers when its cells read as numbers. In exported files, columns the extension recognises as prices, ratings or review counts are written as numbers; other columns keep the text the page shows."
   - q: "Can I export to Excel instead?"
     a: "Yes. Export as offers Microsoft Excel, CSV and JSON next to Google Sheets. Excel, CSV and JSON need no sign-in."
 ---
 
-<!--
-Facts to confirm with a verified run on 1.3.0 before this leaves draft:
-- An HTML table is detected by the List tab as a list with one column per table column (list-scraper facts: generic detection, column names from the page's own labels).
-- Google Sheets export needs a Google sign-in (drive.file scope); docs/personas.md asks to hold the Sheets claim until the OAuth consent screen is confirmed as published. Verify that status before this guide publishes (owner decision pending, 2026-10-28); the guide says what to do if Google refuses the sign-in.
-- Save prices, ratings and counts as numbers: Settings → Results (DECISIONS.md D-033).
-- New capture: ext/list-tab-table (the List tab with a page's table detected as a list).
--->
-
-Copying a table from a web page and pasting it into a spreadsheet works until it doesn't: merged cells shift columns, line breaks split rows, and a table built by the page's scripts pastes as a blank. Web Scraper Pro reads the table cell by cell and sends it to Google Sheets or Excel with the columns intact. In this guide you copy a table from a page into a sheet, including a table that continues over several pages.
+Copying a table from a web page and pasting it into a spreadsheet works until it doesn't: merged cells shift columns, line breaks split rows, and a table built by the page's scripts can paste as a blank. Web Scraper Pro reads the table in your browser row by row and sends it to Google Sheets or Excel. In this guide you copy a table from a page into a sheet, including a table that continues over several pages.
 
 ## Prerequisites
 
@@ -45,58 +45,53 @@ To follow this tutorial, you need:
 
 ## When Google Sheets' Own Import Works, and When It Doesn't
 
-Google Sheets can import a plain table from a page with its import functions, and for a single, static table that is the quickest route; Excel's Power Query does the same and fails in the same places, as [the Get Data from Web guide](/guides/excel-get-data-from-web-fails) explains.
+Google Sheets has an [IMPORTHTML function](https://support.google.com/docs/answer/3093339) that imports a table or list from a page's address. For a single table that is part of the page, it can be the quickest route. Excel's Power Query does a similar job, as [the Get Data from Web guide](/guides/excel-get-data-from-web-fails) explains.
 
-The functions fail in three cases: the table is built by the page's scripts after it loads, the table spans several pages, or the page is one you have to sign in to see. Collecting with the extension reads the page as your browser shows it, so all three work.
+If the function returns nothing or the wrong rows, the table may be built by the page's scripts after it loads, split over several pages, or on a page you have to sign in to see. The extension reads the page as your browser shows it, so it can collect in those cases too.
 
 ## What You Get
 
-One row per table row, one column per table column, named after the table's headers.
-
-| Column | Example |
-|---|---|
-| Team | Springfield Rovers |
-| Played | 12 |
-| Won | 8 |
-| Points | 26 |
+You get one row for each row of the table. The columns are named from the page, and you can rename any of them before you export.
 
 ## Step 1 — Opening the List Tab on the Page
 
-Go to the page with the table and open the side panel's **List** tab. Under **Choose from lists we found**, the table shows as a card with how many rows it has, such as **List 1, 20 items**. Hover the card and the table is outlined on the page.
+Go to the page with the table and open the side panel's **List** tab. Under **Choose from lists we found**, each list shows as a card such as **List 1**, with the number of items on this page. Hover a card and its items are outlined on the page.
 
 ![](visual:ext/list-tab-table)
 
-A page can hold more than one table, plus a menu or a sidebar that looks like a list. Pick the card whose count matches the table you want. If none matches, click **Choose an item on the page** and click one row of the table.
+A page can hold more than one table, plus a menu or a sidebar that looks like a list. Pick the card whose count matches the rows of the table you want. If none matches, click **Choose an item on the page** and click one row of the table.
 
 ## Step 2 — Collecting the Rows
 
-For a table on one page, leave **This page only** selected and click **Collect**. For a table that continues over pages, choose **Collect more pages**, confirm **Next page**, **Load more** or **Auto scroll**, set **Stop after**, and click **Collect from 5 pages** (or the number you set).
+For a table on one page, leave **This page only** selected and click the **Collect** button with the item count. For a table that continues over pages, choose **Collect more pages**, confirm **Next page**, **Load more** or **Auto scroll**, set **Stop after**, and click **Collect from 5 pages** (or the number you set).
 
 ![](visual:ext/list-tab-more-pages)
 
-The results page opens with the rows in a table, with one column per table column.
+When collection finishes, the results open in a new tab with one row for each table row.
 
 ## Step 3 — Checking the Columns
 
-The column names come from the table's header row. If a header was empty or the page used an icon, hover the column and click the pencil to name it. Numbers are saved as numbers, so a `Points` column sorts as 26, 24, 19 and not as text.
+Check that each column holds what you expect before you export. If a column has an unclear name, hover its header and click **Edit column name**. A column whose cells read as numbers sorts as numbers on the results page, so a `Points` column sorts as 26, 24, 19 and not as text.
 
 ![](visual:ext/results-arranged)
 
 ## Step 4 — Exporting to Google Sheets or Excel
 
-Click **Export as** and choose **Google Sheets**. The first time, Google asks you to sign in and allow Web Scraper Pro to create files in your Drive; it can only see the files it creates. A new sheet opens in a tab with the table in it. If Google refuses the sign-in or warns that the app isn't verified, the Sheets export isn't open to your account yet: export to **Microsoft Excel** or **CSV** and open the file in Sheets.
+Click **Export as** and choose **Google Sheets**. The first time, Google asks you to sign in and allow Web Scraper Pro to create files in your Drive; it can see only the sheets it creates. A new sheet is made in the Google account Chrome is signed in with.
 
 ![](visual:ext/results-export-menu)
 
 For a file instead, choose **Microsoft Excel**, **CSV** or **JSON**; none of them needs a sign-in. The collection stays in History, so you can export it again in another format later.
 
-After export, the sheet looks like this. The teams are made up.
+Here is the shape of a few rows after export, with the columns renamed. The teams are made up.
+
+Sample data:
 
 | Team | Played | Won | Drawn | Lost | Points |
 |---|---|---|---|---|---|
-| Springfield Rovers | 12 | 8 | 2 | 2 | 26 |
-| Riverside United | 12 | 7 | 3 | 2 | 24 |
-| Northside Athletic | 12 | 5 | 4 | 3 | 19 |
+| Sample Rovers | 12 | 8 | 2 | 2 | 26 |
+| Sample United | 12 | 7 | 3 | 2 | 24 |
+| Sample Athletic | 12 | 5 | 4 | 3 | 19 |
 
 ## When It Goes Wrong
 
@@ -104,11 +99,11 @@ After export, the sheet looks like this. The teams are made up.
 
 **Two columns were merged into one.** A table with cells that span columns is read as the page lays it out. Rename the combined column, or split it in the sheet after export.
 
-**The table is blank until I scroll.** The page loads rows as you scroll. Choose **Collect more pages** with **Auto scroll**, and the run scrolls until nothing new loads.
+**The table is blank until I scroll.** The page loads rows as you scroll. Choose **Collect more pages** with **Auto scroll**, and the extension scrolls and collects as new rows load.
 
-**Google Sheets asked me to sign in.** That's the one-time permission to create files in your Drive. Excel, CSV and JSON exports need no sign-in.
+**Google Sheets asked me to sign in.** That's the one-time permission to create sheets in your Drive. Excel, CSV and JSON exports need no sign-in.
 
-**Google refused the sign-in.** The Sheets export isn't open to your account yet. Export to Excel or CSV and open the file in Sheets; the table is the same.
+**The numbers are text in my file.** Files write columns the extension recognises as prices, ratings or review counts as numbers, while **Save prices, ratings and counts as numbers** is on in Settings. For other columns, convert them in the sheet with the `VALUE()` function.
 
 ## Conclusion
 

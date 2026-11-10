@@ -1,29 +1,34 @@
 import type { ScraperPageContent } from "@/components/pages/ScraperPage";
 
-// Facts checked against release 1.3.0 on 2026-10-21: the hotels.com pack in configs-prod/ (lodging cards, Load more paging)
-// and its column mapping (Hotel Name, Hotel URL, Location, Guest Rating (out of 10), Rating Label, Review Count, Price Per
-// Night, Original Price, Discount, Total Price (incl. taxes & fees), Rooms Left, Amenities, Badges, Booking Policies,
-// Sponsored, Image URL). Draft until a real run's screenshots are in the visuals library.
+// Facts checked against chrome-extension-source on 2026-11-10:
+// - Columns: configs-prod/site-column-mappings/hotels.com.json and in.hotels.com.json (Hotel Name, Hotel URL, Image Preview,
+//   Image URL, Location, Price Per Night, Original Price, Discount, Total Price (incl. taxes & fees), Guest Rating (out of
+//   10), Rating Label, Review Count, Amenities, Booking Policies, Rooms Left, Badges, Sponsored).
+// - Paging: configs-prod/hotels.com.json, mode loadMore by button[aria-label="Show more stays"]; the Load more choices
+//   (5, 10, 15 loads, To end): components/scraper/ListTab.tsx.
+// - Booking.com and Tripadvisor have their own setups (configs-prod/booking.com.json, tripadvisor.json); Expedia has none.
+// - Skip sponsored products applies to store sites only (lib/preferences/resultRows.ts), so this page filters Sponsored rows
+//   on the results page instead.
+// - Not stated, because only a run could confirm them: hotels per load, loads per city search, run times.
 // Title and headings target search phrases ("scrape hotel prices", "hotels.com scraper"), 2026-10-21.
 
-// Verify on a real run before publishing (added with the deeper sections, 2026-10-21): hotels per Load more (ten loads covering a city search is assumed), and that Sponsored rows are labelled on the results page.
 export const hotelsCom: ScraperPageContent = {
     slug: "hotels-com",
     category: "travel",
     site: { name: "Hotels.com", url: "https://www.hotels.com" },
     meta: {
         title: "How to Scrape Hotels.com Prices and Ratings into Excel",
-        description: "Search a city and your dates on Hotels.com and get every hotel as a row: price per night, total with taxes, guest rating, review count and policies. Free, no code.",
+        description: "Search a city and dates on Hotels.com and get every hotel as a row: price per night, total with taxes, guest rating and policies. Free, no code.",
     },
     h1: "How to scrape Hotels.com prices and ratings into a spreadsheet",
     intro: "Search a city and your dates on Hotels.com. Open the side panel and get one row per hotel with the price per night, the total with taxes and the guest rating. Sort the whole city by price in a sheet.",
     allowed: "Hotels.com's terms restrict automated collection, and the prices are for the dates and guests you searched. This page reads the results you have open, in your own browser, at a person's pace, for your own trip planning or market research. Read [Is web scraping legal?](/web-scraping-legal) first; it isn't legal advice.",
     status: "draft",
-    lastVerified: "2026-10-21",
+    lastVerified: "2026-11-10",
     version: "1.3.0",
     sample: {
         caption: "A two-night city search, after export. Hotels and prices are made up.",
-        columns: ["Hotel Name", "Guest Rating", "Review Count", "Price Per Night", "Total Price"],
+        columns: ["Hotel Name", "Guest Rating (out of 10)", "Review Count", "Price Per Night", "Total Price (incl. taxes & fees)"],
         rows: [
             ["Harbor View Hotel", "8.8", "1,204", "149", "341"],
             ["Northgate Inn", "8.2", "532", "109", "251"],
@@ -32,7 +37,7 @@ export const hotelsCom: ScraperPageContent = {
     },
     fields: {
         heading: "What you get for every hotel",
-        intro: "Prices and ratings are saved as numbers, and a column stays empty when the card doesn't show it.",
+        intro: "These columns come from the Hotels.com setup, and a column stays empty when the card doesn't show it.",
         items: [
             { name: "Hotel Name, Hotel URL, Location", description: "The hotel, its page and the location line with the distance to the centre." },
             { name: "Guest Rating (out of 10), Rating Label, Review Count", description: "The score, its label such as Wonderful, and how many reviews." },
@@ -53,8 +58,8 @@ export const hotelsCom: ScraperPageContent = {
             },
             {
                 title: "Pick the list and load more",
-                body: "Click the Web Scraper Pro icon and open the List tab. Choose the results list, then Collect more pages. Hotels.com uses a Load more button, so set Stop after to a number of loads or To end, and click Collect.",
-                points: ["Each load adds a page of hotels. Ten loads covers most city searches."],
+                body: "Click the Web Scraper Pro icon and open the List tab. Choose the results list, then Collect more pages. Hotels.com loads more hotels with a Show more stays button, which the setup knows, so choose Load more, set the number of loads or To end, and click Collect.",
+                points: ["Each load adds the hotels the Load more button brings in. Click Stop whenever you have enough; the rows so far are kept."],
             },
             {
                 title: "Review and export",
@@ -69,14 +74,14 @@ export const hotelsCom: ScraperPageContent = {
             "Prices are for the dates and guests you searched. Change the dates and collect again to compare. Both runs stay in History.",
             "Member prices show only when you're signed in. The extension collects what you see, so sign in first if you want them.",
             "The total includes taxes and fees as Hotels.com states them. Resort fees paid at the hotel may not be in it.",
-            "Booking.com and Tripadvisor have setups with similar columns that haven't been re-run on 1.3.0 yet; check the first page's columns there. See the travel sites list.",
+            "Booking.com and Tripadvisor have their own setups. Check the first page's columns there before a long run. See the travel sites list.",
             "Hotels.com's terms restrict automated collection. Collect for your own planning or research and check the terms before reusing anything.",
         ],
     },
     emptyWhen: [
         { column: "Original Price, Discount", when: "No deal on the card." },
         { column: "Rooms Left", when: "No scarcity note." },
-        { column: "Rating Label, Guest Rating", when: "A new property with no reviews." },
+        { column: "Rating Label, Guest Rating (out of 10)", when: "A new property with no reviews." },
         { column: "Amenities", when: "The card lists none." },
     ],
     pushback: [
@@ -93,9 +98,9 @@ export const hotelsCom: ScraperPageContent = {
             table: {
                 columns: ["Search", "Why", "Columns to keep"],
                 rows: [
-                    ["A city, your dates, free cancellation", "A traveller choosing by total price and rating, not by the first page.", "Hotel Name, Guest Rating, Review Count, Total Price, Booking Policies"],
-                    ["The same city, two different weekends", "A planner finding the cheaper weekend before booking flights.", "Hotel Name, Price Per Night, Total Price, Hotel URL"],
-                    ["A city, 4 stars and up, sorted by rating", "A hotel owner or analyst watching what competitors charge for the same nights.", "Hotel Name, Location, Guest Rating, Price Per Night, Original Price, Discount"],
+                    ["A city, your dates, free cancellation", "A traveller choosing by total price and rating, not by the first page.", "Hotel Name, Guest Rating (out of 10), Review Count, Total Price (incl. taxes & fees), Booking Policies"],
+                    ["The same city, two different weekends", "A planner finding the cheaper weekend before booking flights.", "Hotel Name, Price Per Night, Total Price (incl. taxes & fees), Hotel URL"],
+                    ["A city, 4 stars and up, sorted by rating", "A hotel owner or analyst watching what competitors charge for the same nights.", "Hotel Name, Location, Guest Rating (out of 10), Price Per Night, Original Price, Discount"],
                 ],
                 caption: "Member prices show only when you're signed in. Sign in first if you want them in the table.",
             },
@@ -108,8 +113,8 @@ export const hotelsCom: ScraperPageContent = {
             steps: [
                 { title: "Search.", body: "Enter the city, two nights and two guests on Hotels.com, then tick Free cancellation and set a price range." },
                 { title: "Pick the list.", body: "Open the List tab and choose the results list. Hotels.com uses a Load more button, so the panel offers Load more." },
-                { title: "Set the loads.", body: "Choose Collect more pages, set Stop after to 10 loads, and click Collect. Ten loads covers most city searches." },
-                { title: "Sort and export.", body: "Sort by Total Price, filter rows to Guest Rating of 8 and above, and click Export as, then Google Sheets to share it with whoever is travelling with you." },
+                { title: "Set the loads.", body: "Choose Collect more pages, set it to 10 loads, and click Collect. Click Stop whenever you have enough." },
+                { title: "Sort and export.", body: "Sort by Total Price (incl. taxes & fees), keep rows where Guest Rating (out of 10) is 8 or more, and click Export as, then Google Sheets to share it with whoever is travelling with you." },
             ],
         },
         {
@@ -118,8 +123,8 @@ export const hotelsCom: ScraperPageContent = {
             heading: "What to do with the Hotels.com table",
             paragraphs: ["The results page does the first pass, so the sheet you export is the one you wanted."],
             points: [
-                "Sort by Total Price, not Price Per Night, so taxes and fees are in the comparison.",
-                "Filter rows to a Guest Rating of 8 or more, or to Booking Policies that mention free cancellation.",
+                "Sort by Total Price (incl. taxes & fees), not Price Per Night, so taxes and fees are in the comparison.",
+                "Filter rows to keep a Guest Rating (out of 10) of 8 or more, or Booking Policies that mention free cancellation.",
                 "Run the search again for other dates and match on Hotel URL in your sheet to see how much the price moves.",
                 "Hide Sponsored rows, or keep the column and sort by it, so ads don't sit at the top of your shortlist.",
                 "Export to Google Sheets for a shared trip plan, or Excel for your own records.",
@@ -166,11 +171,11 @@ export const hotelsCom: ScraperPageContent = {
         { q: "Is this Hotels.com scraper free?", a: "Yes. Web Scraper Pro is free. There's no paid plan, every feature is included, and there's no account to create." },
         { q: "How do I scrape hotel prices from Hotels.com without coding?", a: "Search the city and dates on Hotels.com, open the side panel's List tab, pick the results list, choose Collect more pages and click Collect. The columns come out named, including the total with taxes." },
         { q: "Can I compare the same hotels across two date ranges?", a: "Yes. Run the search for each date range and export both. Hotel URL is the same across runs, so a lookup in your sheet lines them up." },
-        { q: "Are taxes and fees in the total?", a: "The Total Price column is the card's total including taxes and fees as Hotels.com states it. Resort fees paid at the hotel may not be in it." },
+        { q: "Are taxes and fees in the total?", a: "The Total Price (incl. taxes & fees) column is the card's total including taxes and fees as Hotels.com states it. Resort fees paid at the hotel may not be in it." },
         { q: "Does it collect the room types?", a: "The results card shows the lead price, not every room. Open a hotel's page and use the Properties tab for the details on that page." },
         { q: "Are the prices in my currency?", a: "In whatever currency Hotels.com shows you. Set it on the site before collecting." },
         { q: "Does it collect member prices?", a: "Only when you're signed in, because it collects what you see. Sign in first if you want them." },
-        { q: "Does it work on Expedia and Booking.com too?", a: "Booking.com and Tripadvisor have setups with named columns, not yet re-run on 1.3.0, so check the first page. Expedia is detected as a list without one, so its columns are named from the page's own labels." },
+        { q: "Does it work on Expedia and Booking.com too?", a: "Booking.com and Tripadvisor have their own setups with named columns; check the first page before a long run. Expedia has no setup. If the List tab finds its results as a list, the columns are named from the page, so check them on the first page." },
         { q: "Is scraping Hotels.com allowed?", a: "Hotels.com's terms restrict automated collection. Collect what you can see, for your own planning or research, and read the terms before reusing anything. Our plain-words explainer on web scraping and the law covers the rest; it isn't legal advice." },
     ],
 };

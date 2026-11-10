@@ -4,86 +4,95 @@ import { getPage } from "@/config/pages";
 // Persona: Arjun, lead-generation agency owner (docs/personas.md), written so a first-time, non-technical reader can
 // follow it too. Rewritten 2026-10-28 around the sources this site owns: business directories, a list of websites,
 // careers pages and member lists. Google Maps gets one paragraph that points at mapsscraper.pro, which covers Maps only.
-// Facts checked against release 1.3.0 on 2026-10-28: the List tab's list detection and paging (Collect more pages →
-// Next page, Stop after); the results page's Add contact details button, enabled only for a table with a column named
-// Website (DECISIONS.md D-024, lib/contactEnrichment/addWebsiteContacts.ts namedWebsiteColumn); chat's "every page"
-// run and its "Add emails and social links" card when the rows have a Website column (D-027); Bulk scrape → Collect
-// contacts → Use saved data over any saved table's URL column; the Yellow Pages column mapping names a Website column
-// (configs-prod/site-column-mappings/yellowpages.com.json), Justdial's and BBB's do not. The "half to two thirds with an
-// email" line is an estimate: verify against a real run before publishing. Draft until the workflow screenshots exist.
 // Title targets "web scraping for lead generation" (youtube-research/SEARCH_QUERIES.md, AUTOSUGGEST.md), 2026-10-21.
+//
+// Facts checked against chrome-extension-source on 2026-11-10 (no real run; sample rows are invented):
+// - Ready-made setups for Yellow Pages, Justdial, BBB and Yelp: configs-prod/{yellowpages.com,justdial.com,bbb.org,yelp}.json.
+//   Columns from configs-prod/site-column-mappings/: Yellow Pages has Business Name, Phone, Street Address, City, Rating,
+//   Review Count, Years in Business, Website and Sponsored; Justdial and BBB have Business Name, Phone and Address but no
+//   Website; BBB has BBB Rating; Yelp has Business Name, Rating, Review Count and Sponsored but no Phone or Website.
+// - List tab "Collect more pages" > "Next page", "Stop after", "Choose an item on the page", "Stop and save", "View
+//   results": components/scraper/ListTab.tsx, lib/tools/helpTopics.json.
+// - "Add contact details", enabled only for a table with a column named Website (D-024,
+//   lib/contactEnrichment/addWebsiteContacts.ts); added columns Emails, Website phones, Faxes and social links
+//   (lib/utils/resultsTable.ts); emails only from a business's own website (its page and one contact page), checked for
+//   shape, not for a working mailbox (lib/contactEnrichment/).
+// - Chat's "Add emails and social links" card when the rows have a Website column (D-027, lib/tools/listFollowUps.ts).
+// - Bulk scrape > Collect contacts > Use saved data: entrypoints/bulk/main.tsx.
+// - Settings > All results "Remove duplicates"; Settings > Shopping sites "Skip sponsored products":
+//   components/scraper/ResultsSettingsCards.tsx. Filter rows, rename, delete column, Export as: lib/tools/helpTopics.json.
+// - Google Maps in chat: up to 200 businesses per search in 1.3.0, emails in the same run (D-022, D-026, D-031).
 export const leadGeneration: UseCasePageContent = {
     page: getPage("lead-generation", "use-case"),
     meta: {
         title: "How to Use Web Scraping for Lead Generation, Free",
-        description: "Build a lead list of businesses by type and city from Yellow Pages, Yelp, Justdial, BBB or any directory, with phone, website and email. Free, no code.",
+        description: "Build a lead list of businesses by type and city from Yellow Pages, Justdial, BBB or another directory, with phone, website and any published email.",
     },
     h1: "How to use web scraping for lead generation",
-    intro: "Lead generation means building a list of businesses to contact. Open a business directory in Chrome, collect every listing with Web Scraper Pro, a free extension, and let it read each business's website for its email. In under an hour you have a spreadsheet with one business per row.",
+    intro: "Lead generation means building a list of businesses to contact. Open a business directory in Chrome, collect every listing with Web Scraper Pro, a free extension, and let it read each business's website for an email. You end with a spreadsheet of one business per row.",
     status: "draft",
-    lastUpdated: "2026-10-28",
+    lastUpdated: "2026-11-10",
     job: {
         heading: "The list you'd otherwise copy by hand",
         paragraphs: [
-            "You need every plumber in Denver, or every dental clinic in Houston, with a way to reach each one. Directories such as Yellow Pages, Yelp, Justdial and BBB already list them with a phone, an address and often a website. The emails are on each business's own site. Copying them one by one takes a day.",
-            "Web Scraper Pro does it for you, inside your Chrome browser. It collects the directory's listings page after page, then visits each business's website for the email, and puts everything in one table you can save as an Excel file.",
-            "You don't need to know anything technical. You pick the list in a side panel, or type what you want in plain words, and you watch the rows appear.",
+            "You need every plumber in Denver, or every dental clinic in Houston, with a way to reach each one. Directories such as Yellow Pages, Justdial and BBB already list them with a phone and an address, and Yellow Pages often lists a website. Any emails are on each business's own site.",
+            "Web Scraper Pro collects the directory's listings page after page, inside your Chrome browser. When the table has a Website column, it then visits each business's website for emails and puts everything in one table you can save as an Excel file.",
+            "You don't need to write code. You pick the list in the side panel, or type what you want in plain words.",
         ],
     },
     workflow: {
         heading: "From a directory search to a finished spreadsheet",
-        intro: "Five steps. The first three take about fifteen minutes for a hundred businesses, most of it waiting.",
+        intro: "Five steps, from a directory search to a file for your email tool or a client.",
         steps: [
             {
                 title: "Open the directory search",
-                body: "In Chrome, search the directory for a business type and a place: plumbers in Denver on Yellow Pages, or a service and a city on Justdial. Click the Web Scraper Pro icon. A panel opens on the right side of the browser; open its List tab.",
+                body: "In Chrome, search the directory for a business type and a place: plumbers in Denver on Yellow Pages, or a service and a city on Justdial. Click the Web Scraper Pro icon to open the side panel, then open its List tab.",
                 points: [
-                    "Yellow Pages, Justdial and BBB have ready-made columns, so Business Name, Phone, Address and the rest come out named.",
-                    "On Yelp or any other directory, the extension finds the lists on the page and names the columns from what the cards show.",
-                    "Wrong list? Click Choose an item on the page, then click one listing. Every similar listing is picked with it.",
+                    "Yellow Pages, Justdial, BBB and Yelp have ready-made setups, so the columns come out named, such as Business Name and Phone.",
+                    "On other directories, the List tab looks for the lists on the page and names the columns from the page.",
+                    "If it doesn't find the listings as one list, click Choose an item on the page, then click one listing. Similar listings are picked with it.",
                 ],
                 feature: "list-scraper",
                 screenshot: "ext/list-tab-yellowpages",
             },
             {
                 title: "Collect every page",
-                body: "Under the list, choose Collect more pages and confirm Next page. Set Stop after to the number of pages you want and click Collect. The table fills page by page; keep the tab in front while it works.",
+                body: "Under the list, choose Collect more pages, then Next page. Set Stop after to the number of pages you want and click Collect. Keep the tab open while it works.",
                 points: [
-                    "A Yellow Pages page holds about 30 listings, so 4 pages is about a hundred businesses.",
-                    "In the Chat tab you can type the same thing: Collect every plumber in this list.",
-                    "Click Stop at any time. What's collected so far is kept.",
+                    "In chat you can type the same thing: collect every page of this list.",
+                    "Click Stop and save at any time. What's collected so far is kept.",
                 ],
                 feature: "list-scraper",
                 screenshot: "ext/list-tab-more-pages",
             },
             {
                 title: "Add the emails from each website",
-                body: "When the run finishes, click View results. If the table has a column named Website, as Yellow Pages tables do, click Add contact details at the top of the results page. Each business's website and its Contact or About page are read, and new columns fill in on the same rows.",
+                body: "When the collection finishes, click View results. If the table has a column named Website, as Yellow Pages tables do, click Add contact details at the top of the results page. Each business's website and one contact page are read, and new columns fill in on the same rows.",
                 points: [
-                    "Emails, Website phones, Faxes and one column per social network are added.",
-                    "If the website column has another name, open Bulk scrape → Collect contacts → Use saved data and pick the table and that column.",
-                    "About four minutes per 50 websites. Some businesses never publish an email; those rows keep their phone and website.",
+                    "Emails, Website phones, Faxes and a column for each social network found are added.",
+                    "If the website column has another name, open the Bulk scrape menu, choose Collect contacts, then Use saved data, and pick the table and that column.",
+                    "Some businesses publish no email; those rows keep their phone and website.",
                 ],
                 feature: "email-extractor",
                 screenshot: "ext/results-add-contacts",
             },
             {
                 title: "Keep only the rows and columns you need",
-                body: "On the results page, click Filter rows to keep the rows with an email, or with a phone, depending on how you'll reach them. Click a column's name to rename it, or the trash icon to remove it. Remove duplicates takes out a business listed twice.",
+                body: "On the results page, click Filter rows to keep the rows you want. Hover a column's name and click the pencil to rename it, or the trash icon to delete it.",
                 points: [
-                    "Example: keep Business Name, Phone, Website and Emails, and the rows where Emails is not empty.",
-                    "Sponsored rows are marked, so you can filter them out.",
-                    "In chat you can say it instead: Only name, phone, website and emails, rows with an email.",
+                    "Example: keep Business Name, Phone, Website and Emails.",
+                    "On Yellow Pages, BBB and Yelp, sponsored listings are marked in a Sponsored column, so you can filter them out.",
+                    "To export only some columns, type in chat: download only the name, phone, website and emails as CSV.",
                 ],
                 feature: "export-to-google-sheets",
                 screenshot: "ext/results-filtered-leads",
             },
             {
-                title: "Save the file, and run it again next month",
-                body: "Click Export as and choose Excel, CSV or JSON. The file opens with your columns, ready for your email tool or a client. Every list is kept in History, so next month you run the same search again and compare.",
+                title: "Save the file, and collect again next month",
+                body: "Click Export as and choose Microsoft Excel, CSV, JSON or Google Sheets. Every collection is kept in History with the time it was saved, so next month you collect the same search again and compare.",
                 points: [
-                    "Export CSV with the columns your sales tool expects, renamed first.",
-                    "Match on Website or Phone between two runs to see which businesses are new.",
+                    "Rename the columns to what your sales tool expects before you export a CSV.",
+                    "Match on Website or Phone between two collections to see which businesses are new.",
                 ],
                 feature: "export-to-google-sheets",
                 screenshot: "ext/results-export-menu",
@@ -91,12 +100,12 @@ export const leadGeneration: UseCasePageContent = {
         ],
     },
     sample: {
-        caption: "This is what three rows look like after you save the file.",
+        caption: "Sample data: invented businesses, with Yellow Pages column names and the Emails column that Add contact details adds.",
         columns: ["Business Name", "Phone", "Website", "Emails"],
         rows: [
             ["Sample Plumbing Co.", "(555) 010-2231", "sampleplumbing.example", "hello@sampleplumbing.example"],
-            ["Riverside Pipe & Drain", "(555) 010-4410", "riversidepipe.example", ""],
-            ["Quick Fix Plumbing", "(555) 010-7782", "quickfixplumbing.example", "info@quickfixplumbing.example"],
+            ["Sample Pipe & Drain", "(555) 010-4410", "samplepipe.example", ""],
+            ["Sample Quick Fix Plumbing", "(555) 010-7782", "samplequickfix.example", "info@samplequickfix.example"],
         ],
     },
     sections: [
@@ -105,17 +114,17 @@ export const leadGeneration: UseCasePageContent = {
             eyebrow: "Where the lists are",
             heading: "Four sources, and what each one gives you",
             paragraphs: [
-                "Every lead list starts from a page that already lists the businesses. These four cover most briefs, and the extension collects all of them the same way: pick the list, collect every page, add the emails.",
+                "Every lead list starts from a page that already lists the businesses. These four cover many briefs, and the extension collects all of them the same way: pick the list, collect every page, add the emails.",
             ],
             table: {
                 columns: ["Source", "Start from", "What the rows carry", "Watch for"],
                 rows: [
-                    ["Business directories", "A Yellow Pages, Justdial or BBB search for a category and a place; Yelp or any other directory with a list", "Name, phone, address, rating and often the website; years in business on Yellow Pages, the bureau's grade on BBB", "Sponsored rows, marked so you can filter them; Yelp stops after about 24 pages"],
+                    ["Business directories", "A Yellow Pages, Justdial or BBB search for a category and a place, or another directory with a list", "Name, phone and address; on Yellow Pages also rating, years in business and website; on BBB the BBB Rating", "Justdial and BBB tables have no Website column, so emails need a website list from elsewhere"],
                     ["A list of websites you already have", "A client's spreadsheet of company websites, or the Website column of any saved table", "One row per site with Emails, Website phones and social links", "A site with no published email stays empty; nothing is guessed"],
-                    ["Careers pages and job boards", "A company's jobs page, or a job board search", "Role, location, department and link: a company that's hiring is a company that's spending", "Roles only, never candidates"],
-                    ["Member and vendor lists", "An association's member directory, a chamber of commerce, an exhibitor or vendor list", "Firm, city and website: the right businesses, verified by the body", "A list behind a sign-in comes with terms to read first; the extension never signs in for you"],
+                    ["Careers pages and job boards", "A company's jobs page, or a job board search", "The roles as a list, with columns named from the page: a company that's hiring is a company that's spending", "Roles only, never candidates"],
+                    ["Member and vendor lists", "An association's member directory, a chamber of commerce, an exhibitor or vendor list", "The firms the list shows, often with city and website, with columns named from the page", "A list behind a sign-in comes with terms to read first"],
                 ],
-                caption: "Whichever source you start from, the result is the same kind of table, so one client's list looks like the next.",
+                caption: "Whichever source you start from, the result is a table with named columns, so one client's list looks like the next.",
             },
         },
         {
@@ -123,22 +132,22 @@ export const leadGeneration: UseCasePageContent = {
             eyebrow: "Google Maps",
             heading: "Building the list from Google Maps instead",
             paragraphs: [
-                "Web Scraper Pro also collects from Google Maps: a search for a business type in a city returns every business with phone, website, rating and address, with the emails from each website in the same run. If Google Maps is your only source, [Maps Scraper Pro](https://mapsscraper.pro/) is the same engine, Maps only, with its own guides for city-by-city lead lists, emails and phone numbers.",
+                "Web Scraper Pro also collects from Google Maps: a search in chat for a business type in a city collects up to 200 businesses with phone, website, rating and address, and reads each website for emails in the same run. If Google Maps is your only source, [Maps Scraper Pro](https://mapsscraper.pro/) is our separate extension for it, with its own guides for city-by-city lead lists.",
             ],
         },
         {
             id: "worked-example",
             eyebrow: "Worked example",
-            heading: "One run, with the numbers",
+            heading: "One collection, step by step",
             paragraphs: [
-                "Here is a plumbers-in-Denver run on Yellow Pages from the first search to the export, with the counts and times the extension gives you. Your numbers will differ by directory, city and trade, but the shape holds.",
+                "Here is a plumbers-in-Denver list from Yellow Pages, from the first search to the export. Your counts will differ by directory, city and trade.",
             ],
             steps: [
-                { title: "Search Yellow Pages.", body: "Plumbers in Denver, CO. Open the List tab; the listings card shows about 30 items on this page." },
-                { title: "Collect 4 pages.", body: "Collect more pages → Next page → Stop after 4 → Collect. About 120 rows arrive in a few minutes, with Business Name, Phone, Address, Rating, Years in Business and Website named." },
-                { title: "Add contact details.", body: "View results, then Add contact details. About ten minutes for 120 websites; the notice counts the sites read and how many gave an email." },
-                { title: "Read the counts.", body: "Every row has a name, phone and address; most have a website; roughly half to two thirds have an email, because many small businesses publish none." },
-                { title: "Trim and export.", body: "Filter rows to keep Emails not empty, remove the Sponsored rows, then Export as → Excel. The run stays in History under its search." },
+                { title: "Search Yellow Pages.", body: "Plumbers in Denver, CO. Open the List tab and click the card for the listings." },
+                { title: "Collect 4 pages.", body: "Collect more pages > Next page > Stop after 4 > Collect. The columns come out named, among them Business Name, Phone, Street Address, Rating, Years in Business and Website." },
+                { title: "Add contact details.", body: "View results, then Add contact details. A notice shows the progress as each website is read." },
+                { title: "Read what you have.", body: "Rows without a website can't get an email, and many small businesses publish none, so expect empty cells in Emails." },
+                { title: "Trim and export.", body: "Filter rows to keep the rows you want, filter out the Sponsored rows, then Export as > Microsoft Excel. The collection stays in History." },
             ],
         },
         {
@@ -146,13 +155,13 @@ export const leadGeneration: UseCasePageContent = {
             eyebrow: "After the export",
             heading: "What to do with the table next",
             paragraphs: [
-                "A list is a start, not a campaign. These four moves turn the export into something a client or a sales rep can use the same day.",
+                "A list is a start, not a campaign. These four moves turn the export into something a client or a sales rep can use.",
             ],
             points: [
-                "Calling sheet: keep Business Name, Phone, Rating and Review Count, sort by Review Count, and hand it to whoever makes the calls. The best-established businesses are at the top.",
-                "Email campaign: Filter rows to keep rows with an email, export CSV, and import it into your email tool. Run the addresses through an email checker first; the extension doesn't verify them.",
-                "Websites to pitch: Filter rows where Website is empty. For an agency that builds websites, that filter is the lead list, and the phone column is how you reach them.",
-                "Next month's list: run the same search again. History keeps both runs with their dates; match on Website or Phone in your spreadsheet to see who's new.",
+                "Calling sheet: keep Business Name, Phone, Rating and Review Count, sort by Review Count, and hand it to whoever makes the calls.",
+                "Email campaign: keep the rows with an email, export CSV, and import it into your email tool. Run the addresses through an email checker first; the extension checks their shape, not whether the mailbox works.",
+                "Websites to pitch: keep the rows where Website is empty. For an agency that builds websites, that filter is the lead list, and the phone column is how you reach them.",
+                "Next month's list: collect the same search again. History keeps both collections with their saved times; match on Website or Phone in your spreadsheet to see who's new.",
             ],
         },
         {
@@ -160,15 +169,15 @@ export const leadGeneration: UseCasePageContent = {
             eyebrow: "Mistakes to avoid",
             heading: "Six things that waste a run",
             paragraphs: [
-                "Most bad lists come from the search, not the extension. Each of these costs an hour or a client.",
+                "Many bad lists come from the search, not the extension. Each of these costs time or a client.",
             ],
             points: [
-                "One broad category in a big city. Directories cap how many pages a search shows, so \"plumbers in Los Angeles\" misses most of them. Search by neighbourhood or zip code and combine the tables.",
+                "One broad category in a big city. Directories limit how many pages a search shows, so a broad search can miss many businesses. Search by neighborhood or zip code and combine the tables.",
                 "Expecting an email for every row. Only businesses that publish one on their website get one. Say so to the client before the job, not after.",
                 "Sending a campaign without checking the rules. Anti-spam and privacy laws differ by country and by whether you're contacting a business or a person. Read the [plain-words explainer on web scraping and the law](/web-scraping-legal) first.",
-                "Closing the tab. The run happens in your browser; keep the tab in front until the panel says it's done. Stop keeps what it has.",
-                "Keeping the sponsored rows. Directories mix paid listings into results; they're marked Sponsored so you can filter them out, or skip them in Settings → Results.",
-                "Collecting people instead of businesses. The extension collects businesses and the contact details they publish. Leave personal profiles out of the brief.",
+                "Closing the tab. The collection happens in your browser; keep the tab open until it's done. Stop and save keeps what it has.",
+                "Keeping the sponsored rows. Directories mix paid listings into results; on directories with a Sponsored column, filter them out.",
+                "Collecting people instead of businesses. Collect businesses and the contact details they publish. Leave personal profiles out of the brief.",
             ],
         },
     ],
@@ -178,21 +187,21 @@ export const leadGeneration: UseCasePageContent = {
         items: [
             "Find an email for every business. It finds the emails businesses publish on their own websites. Many small businesses don't publish one, and those rows show the phone and website only.",
             "Check that an email address still works. Run your list through an email checking tool before you send a campaign.",
-            "Collect from LinkedIn, Facebook or any site you have to sign in to see.",
-            "Collect people's personal details. It collects businesses and the contact details they publish.",
+            "Collect from LinkedIn: it isn't supported. The extension also never signs in to a site for you.",
+            "Collect people's personal profiles. Use it for businesses and the contact details they publish.",
         ],
     },
     guides: ["scrape-a-member-directory-into-a-lead-list", "get-emails-from-google-search-results", "collect-job-postings-from-a-careers-page"],
     faqs: [
-        { q: "Is this free?", a: "Yes. Web Scraper Pro is free to install and use. There's no paid plan, every feature is included, and there's no account to create." },
-        { q: "Do I need to know anything technical?", a: "No. You open a directory search, click the list in the side panel, and click a few buttons. There is nothing to set up and no code." },
-        { q: "How do I use web scraping for lead generation?", a: "Search a business type and a place on a directory, collect the results into a table across every page, and let the extension read each business's website for its email. Export to Excel or CSV and start calling or writing." },
-        { q: "Which directories work?", a: "Yellow Pages, Justdial and BBB have ready-made columns. Yelp and any other directory with a list are detected on the page, with columns named from what the cards show. Careers pages and member lists collect the same way." },
+        { q: "Is this free?", a: "Yes. Web Scraper Pro is free, with no paid plan, and there's no account to create." },
+        { q: "Do I need to know anything technical?", a: "No. You open a directory search, click the list in the side panel, and click a few buttons. There's no code." },
+        { q: "How do I use web scraping for lead generation?", a: "Search a business type and a place on a directory, collect the results into a table across every page, and, when the table has a Website column, let the extension read each business's website for emails. Export to Excel or CSV and start calling or writing." },
+        { q: "Which directories work?", a: "Yellow Pages, Justdial, BBB and Yelp have ready-made setups. On other directories, the List tab looks for the list on the page and names the columns from the page; if it doesn't find it, Choose an item on the page lets you click one listing. Careers pages and member lists collect the same way." },
         { q: "Can I get an email for every business?", a: "No. The extension finds the emails a business publishes on its own website, and many small businesses publish none. Those rows keep the phone and website from the directory." },
-        { q: "How long does it take?", a: "A hundred listings collect in a few minutes. Adding emails takes about four minutes per 50 websites, so a hundred businesses with emails is about fifteen minutes from the first click." },
-        { q: "Can I add emails to a list I already have?", a: "Yes. Open Bulk scrape → Collect contacts → Use saved data and pick the table and its website column, or upload a CSV of websites. Each site is read for emails, phone numbers and social links, one row per site." },
-        { q: "Does it remove duplicates?", a: "A business that appears twice while the list pages through is kept once. For tables you combine from several runs, click Remove duplicates on the results page." },
-        { q: "Can I export to my sales tool?", a: "Export CSV with the columns your tool expects, renamed on the results page first. Most sales and email tools import a CSV directly." },
+        { q: "How long does it take?", a: "It depends on the number of pages and websites. Listings collect page by page, and each website is read in turn for contact details, so a long list takes longer. The results page shows the progress." },
+        { q: "Can I add emails to a list I already have?", a: "Yes. Open the Bulk scrape menu, choose Collect contacts, then Use saved data and pick the table and its website column, or upload a file of websites. Each site is read for emails, phone numbers and social links, one row per site." },
+        { q: "Does it remove duplicates?", a: "Yes, while Remove duplicates is on in Settings > All results, which is the default: a business that shows up twice is kept once. For tables you combine from several collections, use your spreadsheet's remove-duplicates on the website or phone column." },
+        { q: "Can I export to my sales tool?", a: "Export CSV with the columns your tool expects, renamed on the results page first, then import the CSV into your tool." },
         { q: "Is it legal to use these leads?", a: "The details are what the businesses publish about themselves. Whether you may contact them depends on the anti-spam and privacy laws where you and they are. Check them before a campaign; our explainer on web scraping and the law covers the basics, and it isn't legal advice." },
     ],
 };

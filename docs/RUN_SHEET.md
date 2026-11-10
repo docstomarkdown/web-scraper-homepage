@@ -1,5 +1,12 @@
 # Run sheet: what the 45 draft pages wait for (2026-11-10)
 
+**Update, same day (owner's decision):** the drafts no longer wait for runs. 44 of them were reworked against the code
+instead: every column, button and setting checked against `configs-prod` and the extension source (cited in each
+file's facts comments), run figures and "tested on" lines removed, example tables labelled Sample data, and behaviour
+on sites without a setup written conditionally with a fallback. They stay `status: draft` until the owner approves each
+one. The runs below are now an upgrade: they add screenshots (already referenced, shown once taken) and, on site pages,
+`lastRun`. `pull-prices-from-website-into-excel` is someone else's draft and wasn't touched.
+
 Every draft on this site is already written. It stays a draft until a real run of the released extension (1.3.0 or
 later) confirms what it says and supplies its screenshots. This sheet is the whole list, grouped into four sittings so
 each site is opened once. Screenshots are taken into the library in

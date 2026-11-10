@@ -1,78 +1,93 @@
 ---
-title: "How To Scrape a Website with ChatGPT, and What It Can't Do"
-description: "ChatGPT can turn a pasted page into a table or write a scraper, but it can't page through a site or sign in. What works, and an alternative that does."
+title: "How To Scrape a Website with ChatGPT: Four Ways Compared"
+description: "ChatGPT can turn pasted text into a table, search the web, browse for you or write a scraper. What each route does, per OpenAI's help, and a fifth option."
 status: draft
 date: 2026-10-21
-updated: 2026-10-21
+updated: 2026-11-10
 version: "1.3.0"
 author: vikram
 feature: ai-chat
 sites: []
 video: ""
 campaign: guide-scrape-a-website-with-chatgpt
+# ChatGPT facts from OpenAI's Help Center, read 2026-11-10 (the pages show relative dates only):
+# ChatGPT search: answers with current information and links to sources; Free, Go, Plus, Pro, Business, Enterprise, Edu; results and citations "can be incomplete, outdated, or incorrect": help.openai.com/en/articles/9237897-chatgpt-search
+# Cloud browser: ChatGPT Work's own browser on a separate computer in the cloud; paid plans in supported regions, excluding Free and Go; can work on sites where you sign in, through a secure form; keeps its own cookies and sessions, separate from your device's browser; some sites restrict automated browser agents: help.openai.com/en/articles/20001280-using-cloud-browser-in-chatgpt
+# Built-in browser in the ChatGPT desktop app (macOS, Windows) uses its own browser state; for a task that needs your Chrome profile or signed-in session, OpenAI points to the ChatGPT browser extension: help.openai.com/en/articles/20001277-using-the-built-in-browser-in-the-chatgpt-desktop-app
+# ChatGPT agent is no longer available (replaced by the above): help.openai.com/en/articles/11752874-chatgpt-agent
+# Facts checked against chrome-extension-source on 2026-11-10:
+# Chat collects a list on the open page; cards under the result offer Collect every page and Add emails and social links: lib/tools/listFollowUps.ts, DECISIONS.md D-024, D-027
+# Messages go to our servers so chat can work; collected rows don't: lib/chat/chatClient.ts; daily message limit: lib/chat/chatErrors.ts
+# Reviews are collected in the Properties tab (Collect reviews), not by chat: components/scraper/PropertiesTab.tsx, lib/tools/capabilityTools.ts
+# No ChatGPT or other AI-agent connection to the extension in 1.3.0 (cloudLaunched: false): thinksolv-writing-system/products/web-scraper-pro.md
 faq:
   - q: "Can ChatGPT scrape a website by itself?"
-    a: "It can read a page you paste or, with browsing, fetch a page's text and pull a short list out of it. It can't follow every page of results, open each item for details, or read pages behind a sign-in, and it can mistype values when the list is long."
+    a: "It can turn text you paste into a table, search the web and link its sources, and, on paid plans, use a browser to work on websites for you. OpenAI's help pages describe what each of these does; none of them is a dedicated scraper, so check the values against the page."
   - q: "Is the code ChatGPT writes safe to run?"
-    a: "Read it first and run it only on sites you're allowed to collect from. It usually works on simple pages and breaks on pages that load their content with JavaScript or change their layout."
-  - q: "Why does the table have wrong numbers?"
-    a: "A language model rewrites text rather than copying it, so long lists get skipped rows and altered digits. Check a sample against the page before you rely on it."
+    a: "Read it first, and run it only on sites you're allowed to collect from. A script reads pages the way you write it to, so test it on one page before you rely on it."
+  - q: "Why does the table have wrong values?"
+    a: "When ChatGPT writes a table from text, the model writes each value. OpenAI's own help notes that search results and citations can be incomplete, outdated or incorrect. Check a sample against the page before you rely on it."
   - q: "What does Web Scraper Pro do differently?"
-    a: "The AI only reads your request. The rows come from the page itself, in your browser, so every value is what the page shows, and it can follow every page and open each item."
-  - q: "Can ChatGPT do web scraping with a prompt?"
-    a: "A prompt gets you a table from text you paste, or a script to run yourself. Neither pages through a site or opens each item, and the pasted route rewrites values. The prompts above show both."
+    a: "The extension's code reads the rows from the page in your own Chrome, so each value is what the page shows. Your chat messages go to our servers so chat can work; the collected rows don't."
+  - q: "Can I connect ChatGPT to Web Scraper Pro?"
+    a: "No. A connection for AI agents isn't available in the current version. The extension's own chat takes the same kind of request inside Chrome."
   - q: "Is Claude any different for web scraping?"
-    a: "Claude has the same two routes and the same limits, plus Cowork, a desktop agent with its own browser. The gap is the same one: a model generates text; it doesn't copy a page's values. How To Scrape a Website with Claude, and What It Can't Do walks through all three."
-  - q: "What about ChatGPT's browsing or agent mode?"
-    a: "Browsing fetches a page's text, which is enough for a short public list and not for a paged catalog or a signed-in page. Values still pass through the model, so check them."
+    a: "Claude has similar routes, and Anthropic's help pages describe them. See How To Scrape a Website with Claude for the same comparison."
 ---
 
-ChatGPT can help you scrape a website in two ways: turn text you paste into a table, or write a script you run yourself. Neither one pages through a site, opens each item, or works where you're signed in, and the table route rewrites values instead of copying them. This guide shows both routes, where each breaks, and the one-sentence alternative in Web Scraper Pro, tested on version 1.3.0.
+ChatGPT can help you scrape a website in four ways: turn text you paste into a table, search the web, work on a website in a browser, or write a script you run yourself. This guide describes each route as OpenAI's help pages did on 10 November 2026, where each one fits, and a fifth option: Web Scraper Pro, our Chrome extension, which reads the rows from the page itself.
 
 ## Prerequisites
 
-- A ChatGPT account for the first two routes.
-- Google Chrome with Web Scraper Pro installed (version 1.3.0 or later) for the last one.
-- A page you're allowed to collect from. Public listings are generally fine; check the site's terms first.
+- A ChatGPT account for the first four routes. Some features need a paid plan; OpenAI's help pages list which.
+- Google Chrome with [Web Scraper Pro](/) installed (version 1.3.0 or later) for the last one.
+- A page you're allowed to collect from. Check the site's terms first, and read [Is web scraping legal?](/web-scraping-legal); it isn't legal advice.
 
-## Route 1 — Pasting a page into ChatGPT
+## Route 1 — Pasting a Page into ChatGPT
 
-**What works:** a short list, when you only need it once. Select the page's text, copy it, and paste it with a request:
+**What works:** a short list you need once. Select the page's text, copy it, and paste it with a request:
 
 ```
-Turn this into a table with columns Name, Price and Rating. Keep every row.
+Turn this into a table with columns Name, Price and Rating. Keep every row and don't change any value.
 ```
 
-ChatGPT returns a table you can copy into a spreadsheet. For twenty rows this takes a minute and is usually right.
+ChatGPT returns a table you can copy into a spreadsheet, or a CSV if you ask for one.
 
-**Where it breaks:**
+**What to watch:**
 
-- **Long lists.** The paste hits the message limit, and past a few dozen rows the model starts skipping rows or merging two into one.
-- **Numbers.** A model generates text; it doesn't copy. Prices, phone numbers and counts come back changed often enough that you have to check them.
-- **One page.** Page 2 means another paste. A list of 30 pages means 30 pastes.
-- **Details inside each item.** The listing shows the name and price; the phone number is on each item's own page, which the paste never includes.
+- **The model writes the values.** The table is written from the text you pasted, not copied cell by cell. Check prices, phone numbers and counts against the page.
+- **One paste per page.** Page 2 of the results means another copy and paste.
+- **Details inside each item.** A listing shows the name and price; anything on each item's own page isn't in the paste.
 
-## Route 2 — Asking ChatGPT to write a scraper
+## Route 2 — Asking ChatGPT to Search the Web
 
-**What works:** a simple public page whose content is in the HTML. Ask for a script:
+**What works:** a question whose answer is spread across public pages. OpenAI's [ChatGPT search article](https://help.openai.com/en/articles/9237897-chatgpt-search) says ChatGPT can search the web for current information and link to its sources, on free and paid plans.
+
+**What to watch:** the same article says results and citations "can be incomplete, outdated, or incorrect," so open the sources it links before you use a value.
+
+## Route 3 — Letting ChatGPT Use a Browser
+
+**What works:** a task on a website that needs clicking or signing in. OpenAI describes three browsers:
+
+- **Cloud browser.** ChatGPT Work's own browser on a separate computer in the cloud, on paid plans other than Free and Go, in supported regions. OpenAI's [cloud browser article](https://help.openai.com/en/articles/20001280-using-cloud-browser-in-chatgpt) says it can work on sites where you sign in, through a secure form, and that it keeps its own cookies and sessions.
+- **Built-in browser.** A browser inside the ChatGPT desktop app for macOS and Windows, with its own browser state, per OpenAI's [built-in browser article](https://help.openai.com/en/articles/20001277-using-the-built-in-browser-in-the-chatgpt-desktop-app).
+- **ChatGPT browser extension.** The same article points to it for tasks that need your Chrome profile or signed-in session.
+
+**What to watch:** OpenAI notes that some sites restrict automated browser agents, and each site decides whether to allow them. The values in what ChatGPT writes back still come from the model reading the page, so check a sample.
+
+## Route 4 — Asking ChatGPT to Write a Scraper
+
+**What works:** a repeatable job for someone who runs code. Ask for a script, and paste the HTML of one list page so it matches the real structure:
 
 ```
 Write a Python script that collects the product name, price and link from this page's HTML and saves them as CSV.
 ```
 
-Paste the page's HTML so the script matches the real structure (right-click the page and choose View page source, then copy). Run it on your computer.
+**What to watch:** a script reads the page the way it's written to. A page that draws its list with scripts after it loads, a list over many pages, a sign-in or a site redesign each needs more code. You also need Python and a terminal.
 
-**Where it breaks:**
+## Route 5 — Asking Web Scraper Pro
 
-- **JavaScript pages.** Many stores and directories draw the list after the page loads. The script sees an empty page.
-- **More pages.** The script handles the first page unless you describe the site's next-page mechanism exactly, and endless scrolling needs a real browser.
-- **Sign-in and blocks.** The script has no cookies, so member pages are closed to it, and sites that check for bots stop it.
-- **Layout changes.** The script matches today's class names. When the site redesigns, it returns nothing, and you're back to ChatGPT.
-- **Setup.** Python, packages, a terminal. Fine for a developer; a detour for everyone else.
-
-## Route 3 — Asking Web Scraper Pro
-
-**What works:** the same request, run in your own browser, with the values copied from the page rather than rewritten. Open the page, open the side panel's **Chat** tab and type:
+**What works:** a list on a page you have open, collected in your own Chrome. Open the page, open the side panel's **Chat** tab and type:
 
 ```
 Collect the products on this page
@@ -80,7 +95,7 @@ Collect the products on this page
 
 ![](visual:ext/panel-chat-empty)
 
-The AI reads only your request. The extension finds the list on the page, reads each item into named columns, and shows the rows on a results page. When the list continues, a **What next** card offers **Collect every page**, and when the rows have websites, it offers to add each site's emails and social links.
+The extension finds the list on the page and reads each item into columns, so each value is what the page shows. Your messages go to our servers so chat can work; the collected rows don't. When the list continues, a card under the result offers **Collect every page**, and when the rows have websites, another offers **Add emails and social links**.
 
 ![](visual:ext/chat-collect-every-page)
 
@@ -92,38 +107,36 @@ Excel with name, price and the product link
 
 ![](visual:ext/results-export-menu)
 
-Because it runs in your Chrome window, it reads pages you're signed in to, and a site sees an ordinary visit from you.
+Because it runs in your own Chrome, it reads pages you're signed in to. Chat has a daily message limit; the **List** tab does the same job by clicking, without using it.
 
-## Side by side
+There is no connection between ChatGPT and Web Scraper Pro in the current version.
 
-| | Paste into ChatGPT | ChatGPT writes a script | Ask Web Scraper Pro |
-|---|---|---|---|
-| Setup | None | Python and packages | Install the extension |
-| Values | Rewritten by the model; check them | Copied, when the script works | Copied from the page |
-| Every page of results | One paste per page | Only if you describe the site's paging | Built in: Next page, Load more, Auto scroll |
-| Each item's own page | No | Extra code | Built in for product details |
-| JavaScript-drawn pages | Yes, you see them | Usually no | Yes, it's your browser |
-| Pages you're signed in to | Yes, by pasting | No | Yes |
-| When the site changes | Nothing to fix | Script breaks | The list is found again |
-| Best for | A short list, once | A developer, a simple site | Anyone, any list, repeated |
+## Side by Side
 
-## What Web Scraper Pro won't do either
+| | Paste into ChatGPT | ChatGPT search | ChatGPT with a browser | ChatGPT writes a script | Web Scraper Pro chat |
+|---|---|---|---|---|---|
+| Setup | None | None | A paid plan for cloud browser | Python and a terminal | Install the extension |
+| Where values come from | The model writes them | The model, with linked sources | The model, from the page it read | The script, when it works | The page, read by the extension |
+| Pages you're signed in to | Only what you paste | No sign-in described | Yes, per OpenAI's help | Extra code | Yes, in your own Chrome |
+| Best for | A short list, once | A question across public pages | A task with clicks and forms | A repeatable job for a developer | A list on the page you have open |
+
+## What Web Scraper Pro Won't Do Either
 
 - It collects what the page shows you. A site that needs a sign-in still needs you to sign in.
-- It doesn't collect reviews from chat; use **Collect reviews** in the side panel.
-- A Google Maps search stops at 200 businesses per run. Split big jobs into smaller searches.
-- Collecting personal data, or data a site's terms forbid, is on you, whatever tool you use.
+- Chat doesn't collect reviews; use **Collect reviews** in the **Properties** tab on a product page.
+- It doesn't get past a verification page; you complete it in the tab.
+- Collecting personal data, or data a site's terms forbid, is your decision and your responsibility, whatever tool you use.
 
-## When it goes wrong
+## When It Goes Wrong
 
-**The script returns an empty list.** The page draws its list with JavaScript, so a plain fetch sees nothing. Ask for a version that uses Playwright or Selenium, or collect the page with the extension instead.
+**The script returns an empty list.** The page may draw its list with scripts after it loads, so the downloaded HTML doesn't hold it. Ask for a version that uses a browser automation library, or collect the page with the extension.
 
-**The pasted table has wrong numbers.** A model rewrites text rather than copying it. Check a sample against the page; for long lists, use a tool that copies values from the page.
+**The pasted table has wrong values.** The model wrote the table. Check a sample against the page, paste fewer rows at a time, or use a tool that reads the values from the page.
 
-**The site blocked the script.** Scripts without a real browser stand out. Slow it down, or run the collection in your own browser, where the site sees an ordinary visit.
+**A site blocked ChatGPT's browser.** OpenAI notes that some sites restrict automated browser agents. Open the page in your own Chrome and collect it there.
 
 ## Conclusion
 
-ChatGPT is a good way to tidy a short list you've pasted, and a fair way to get a starter script if you're a developer. For a list that spans pages, lives behind a sign-in, or has to be right to the digit, ask Web Scraper Pro instead; the request is the same sentence, and the rows come from the page.
+ChatGPT tidies a short list you paste, searches public pages with sources, works on websites in its own browsers, and writes starter scripts. For a list on a page you have open, where each value should be what the page shows, Web Scraper Pro's chat takes the same sentence and reads the rows from the page.
 
-See How To Scrape a Website Without Coding, by Asking for the full walkthrough, and [How To Scrape a Website with Claude, and What It Can't Do](/guides/scrape-a-website-with-claude) for the same comparison on Claude.
+For the same comparison on Claude, see [How To Scrape a Website with Claude](/guides/scrape-a-website-with-claude). For more on the extension's chat, see the [AI chat page](/ai-chat).

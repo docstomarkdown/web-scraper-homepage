@@ -40,7 +40,7 @@ export default function ScrapersHub() {
                                             )}
                                             {/* Only a published site page carries a verified run; drafts and setups without a page haven't been re-run on 1.3.0. */}
                                             <span className="text-slate-600 dark:text-slate-300">
-                                                {page && page.status === "published" ? <>Last verified on {page.version}, <time dateTime={page.lastVerified}>{formatDate(page.lastVerified)}</time></> : "Setup in the extension; not yet re-run on 1.3.0"}
+                                                {page && page.status === "published" ? (page.lastRun ? <>Last run on {page.version}, <time dateTime={page.lastRun}>{formatDate(page.lastRun)}</time></> : <>Setup checked for {page.version}, <time dateTime={page.lastVerified}>{formatDate(page.lastVerified)}</time></>) : "Setup in the extension"}
                                             </span>
                                         </li>
                                     );

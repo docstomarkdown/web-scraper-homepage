@@ -3,13 +3,20 @@ title: "How To Scrape a Website That Requires Login, No Code"
 description: "Collect a list from a members-only directory, your own account pages or an MLS: sign in as usual, open the page, click Collect. It reads what you can see."
 status: draft
 date: 2026-10-21
-updated: 2026-10-21
+updated: 2026-11-10
 version: "1.3.0"
 author: vikram
 feature: list-scraper
 sites: []
 video: ""
 campaign: guide-scrape-a-website-that-requires-login
+# Facts checked against chrome-extension-source on 2026-11-10:
+# Runs in the person's own Chrome and reads the open page, including pages they're signed in to; no account needed: thinksolv-writing-system/products/web-scraper-pro.md, config/products.mjs (cloudLaunched: false)
+# The List tab has no sign-in step and stores no site password: components/scraper/ListTab.tsx
+# Choose from lists we found, Choose an item on the page, Collect more pages, Next page / Load more / Auto scroll, Stop after, Collect from 5 pages, Stop and save, Rescan page: components/scraper/ListTab.tsx
+# Results open in a new tab: lib/background/viewerNavigation.ts; Edit column name, Columns panel, Hide mostly empty columns on by default: entrypoints/dataviewer/main.tsx, lib/preferences/resultPreferences.ts
+# Export as Microsoft Excel, CSV, JSON, Google Sheets; History keeps collections: entrypoints/dataviewer/main.tsx, lib/db/historyService.ts
+# LinkedIn support is not claimed: thinksolv-writing-system/products/web-scraper-pro.md
 faq:
   - q: "How do I scrape a website that requires login without code?"
     a: "Sign in to the site in Chrome the way you always do, open the page with the list, and click Collect in the Web Scraper Pro side panel. The extension runs in your browser, so it sees the page as you see it."
@@ -18,22 +25,14 @@ faq:
   - q: "Can I scrape data from a website with login to Excel?"
     a: "Yes. After the list is collected, click Export as and choose Microsoft Excel, CSV, JSON or Google Sheets."
   - q: "Does it work on LinkedIn, Facebook or Instagram?"
-    a: "No. Those sites' terms forbid automated collection and they actively block it, so Web Scraper Pro doesn't support them. Member directories, portals, your own account pages and listing services such as an MLS are what this guide is for."
+    a: "Web Scraper Pro doesn't support social networks such as these, and this guide doesn't cover them. It is for member directories, portals, your own account pages and listing services such as an MLS."
   - q: "Can it get past a paywall?"
     a: "No. It collects the text and lists a page shows you. If you can't see the content, neither can the extension."
   - q: "Is it legal to scrape a site I'm signed in to?"
     a: "Your own account data is yours to export. For a members-only site, its terms decide what you may do with the data; read them before you share or sell anything. This isn't legal advice."
   - q: "Will the site ban my account for this?"
-    a: "It runs in your own browser at a person's pace, reads the pages you open, and never signs in for you, so to the site it looks like you browsing. Keep runs small and stop if the site shows a verification page or asks you to slow down. The site's own terms decide what you may do with the data."
+    a: "It runs in your own browser, reads the pages you open, and never signs in for you. A site can still notice many pages read in a row, so keep collections small and stop if the site shows a verification page or asks you to slow down. The site's own terms decide what you may do with the data."
 ---
-
-<!--
-Facts to confirm with a verified run on 1.3.0 before this leaves draft:
-- The List tab detects lists on a signed-in page the same way as on a public page (list-scraper facts, 2026-10-20).
-- "The page needs a sign-in. Sign in as you normally would, then collect" is already in the any-website guide.
-- The extension stores no site credentials and never signs in (docs/personas.md: no account, runs in the user's browser).
-- A new capture is needed for the signed-in member directory example: ext/list-tab-members-directory.
--->
 
 Web Scraper Pro runs inside your own Chrome window, so a page you're signed in to is collected like any other page. You sign in the way you always do, open the list, and click **Collect**; there are no cookies to export and no password to type anywhere. This guide collects a members-only directory into a spreadsheet, and the same steps work for your own account pages, a client portal or a property listing service.
 
@@ -46,20 +45,11 @@ To follow this tutorial, you need:
 
 ## Is It Allowed To Scrape a Site You're Signed In To?
 
-Data in your own account, such as your orders or your saved searches, is yours to export. For a members-only site, its terms decide what you may do with what you collect, and many allow personal use but not resale; read them before you share a list. Our page [Is web scraping legal?](/web-scraping-legal) explains the main rules in plain words.
+Data in your own account, such as your orders or your saved searches, is yours to export. For a members-only site, its terms decide what you may do with what you collect, so read them before you share a list. Our page [Is web scraping legal?](/web-scraping-legal) explains the main rules in plain words.
 
 ## What You Get
 
-A member directory becomes one row per member, with the columns the page shows. On a site without a ready-made setup, the names come from the page's own labels, and you can rename them on the results page.
-
-| Column | Example |
-|---|---|
-| Name | Sample Plumbing Co. |
-| Member since | 2021 |
-| City | Springfield |
-| Phone | (555) 010-2231 |
-| Website | sampleplumbing.example |
-| Profile link | members.example/profile/1 |
+A member directory becomes one row per member, with the details the page shows for each. On a site without a ready-made setup, the column names come from the page, and you can rename them on the results page before you export.
 
 ## Step 1 — Signing In and Opening the List
 
@@ -73,19 +63,19 @@ Click the Web Scraper Pro icon and open the **List** tab. Under **Choose from li
 
 ![](visual:ext/list-tab-members-directory)
 
-If the first card isn't the list you want, pick the card whose count matches. If none matches, click **Choose an item on the page** and click one member; every similar item is picked with it.
+If the first card isn't the list you want, pick the card whose count matches. If none matches, click **Choose an item on the page** and click one member; the similar items are picked with it.
 
 ## Step 3 — Collecting Every Page
 
-Choose **Collect more pages**. The panel works out how the list moves on and shows **Next page**, **Load more** or **Auto scroll**; confirm it or pick the right one. Under **Stop after**, set how many pages, then click **Collect from 5 pages** (or the number you set).
+Choose **Collect more pages**. The panel looks for how the list moves on; if it doesn't find the way, choose **Next page**, **Load more** or **Auto scroll** to match the page, and click the site's button when the panel asks. Under **Stop after**, set how many pages, then click the collect button, such as **Collect from 5 pages**.
 
 ![](visual:ext/list-tab-more-pages)
 
-Keep the tab in front while it runs. The tab title counts the rows as they come in, and **Stop** keeps what has been collected so far.
+Keep the tab in front while it collects. The side panel counts the rows as they come in, and **Stop and save** keeps what has been collected so far.
 
 ## Step 4 — Checking the Columns
 
-The results page opens with one row per member. Hover a column header to rename it with the pencil or remove it with the trash icon. Mostly empty columns are hidden on their own; click **Columns** to show any you need.
+The results open in a new tab with one row per member. Hover a column header and click **Edit column name** to rename it. Columns filled for fewer than a third of the rows are hidden to start with; click **Columns** to show any you need.
 
 ![](visual:ext/results-arranged)
 
@@ -95,24 +85,26 @@ Click **Export as** and choose **Microsoft Excel**, **CSV**, **JSON** or **Googl
 
 ![](visual:ext/results-export-menu)
 
-After export, the sheet looks like this. The members are made up.
+Here is the shape of a few rows after renaming the columns. The column names are examples, and the members are made up.
+
+Sample data:
 
 | Name | Member since | City | Phone | Website |
 |---|---|---|---|---|
-| Sample Plumbing Co. | 2021 | Springfield | (555) 010-2231 | sampleplumbing.example |
-| Riverside Pipe & Drain | 2019 | Springfield | (555) 010-4410 | riversidepipe.example |
-| Northside Plumbers | 2023 | Springfield | (555) 010-7782 | |
+| Sample Plumbing Co. | 2021 | Example City | (555) 010-2231 | sampleplumbing.example |
+| Sample Pipe & Drain | 2019 | Example City | (555) 010-4410 | samplepipe.example |
+| Sample Plumbers Ltd. | 2023 | Example Town | (555) 010-7782 | |
 
 ## When It Goes Wrong
 
-**The List tab found nothing, or found the sign-in form.** The page you're on isn't the list. Sign in, open the directory or search results, and click **Rescan** in the List tab.
+**The List tab found nothing, or found the sign-in form.** The page you're on isn't the list. Sign in, open the directory or search results, and click **Rescan page** at the top of the List tab.
 
-**The run stopped and the page shows a sign-in screen.** The site ended your session. Sign in again in the same tab and start the collection again; what was collected is kept in History.
+**The page switched to a sign-in screen while collecting.** The site ended your session. Click **Stop and save** to keep what was collected, sign in again in the same tab, and collect the rest.
 
 **The site showed a verification page.** Complete it in the tab and collect again. The extension never completes a check for you.
 
-**The columns have odd names.** On a site without a ready-made setup, names come from the page's own labels. Rename them once on the results page; the export uses your names.
+**The columns have odd names.** On a site without a ready-made setup, names come from the page. Rename them once on the results page; the export uses your names.
 
 ## Conclusion
 
-You collected a list from a page that only your signed-in browser can see, without exporting cookies or typing a password anywhere. The same steps work for your own account pages and for listing services such as an MLS. For a list that spans many pages on any site, see How To Scrape Every Page of a List, Not Only the First.
+You collected a list from a page that only your signed-in browser can see, without exporting cookies or typing a password anywhere. The same steps work for your own account pages and for listing services such as an MLS. For more on collecting lists across pages, see the [list scraper page](/list-scraper).

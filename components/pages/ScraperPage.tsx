@@ -33,9 +33,12 @@ export interface ScraperPageContent {
     allowed: string;
     /** Drafts render in local development only. */
     status: "draft" | "published";
-    /** When the setup was last run on the released extension, and which version. */
+    /** The day the page's columns and steps were checked against the extension's setup for this site (configs-prod),
+     * and the extension version that setup ships in. */
     lastVerified: string;
     version: string;
+    /** The day the setup was last run on the released extension, once someone has; the page then says so. */
+    lastRun?: string;
     /** Keep to five columns or fewer so it reads without scrolling. */
     sample: { caption: string; columns: string[]; rows: string[][] };
     fields: { heading: string; intro?: string; items: { name: string; description: string }[] };
@@ -120,7 +123,11 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
                             </a>
                         </div>
                         <p className="mt-5 text-base text-slate-600 dark:text-slate-300">
-                            Last run on version {c.version} on <time dateTime={c.lastVerified}>{formatDate(c.lastVerified)}</time>.
+                            {c.lastRun ? (
+                                <>Last run on version {c.version} on <time dateTime={c.lastRun}>{formatDate(c.lastRun)}</time>.</>
+                            ) : (
+                                <>Columns checked against version {c.version}&apos;s setup for this site on <time dateTime={c.lastVerified}>{formatDate(c.lastVerified)}</time>.</>
+                            )}
                         </p>
                     </Reveal>
                     <Glossary text={JSON.stringify(c)} className="mt-8" />
