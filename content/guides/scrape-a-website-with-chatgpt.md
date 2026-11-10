@@ -1,6 +1,6 @@
 ---
 title: "How To Scrape a Website with ChatGPT, and What It Can't Do"
-description: "ChatGPT can turn a page you paste into a table, and it can write a scraper for you. It can't page through a site, sign in, or guarantee the numbers it returns. What works, what doesn't, and the one-sentence alternative."
+description: "ChatGPT can turn a pasted page into a table or write a scraper, but it can't page through a site or sign in. What works, and an alternative that does."
 status: draft
 date: 2026-10-21
 updated: 2026-10-21
@@ -124,4 +124,6 @@ Because it runs in your Chrome window, it reads pages you're signed in to, and a
 
 ## Conclusion
 
-ChatGPT is a good way to tidy a short list you've pasted, and a fair way to get a starter script if you're a developer. For a list that spans pages, lives behind a sign-in, or has to be right to the digit, ask Web Scraper Pro instead; the request is the same sentence, and the rows come from the page. See How To Scrape a Website Without Coding, by Asking for the full walkthrough, and [How To Scrape a Website with Claude, and What It Can't Do](/guides/scrape-a-website-with-claude) for the same comparison on Claude.
+ChatGPT is a good way to tidy a short list you've pasted, and a fair way to get a starter script if you're a developer. For a list that spans pages, lives behind a sign-in, or has to be right to the digit, ask Web Scraper Pro instead; the request is the same sentence, and the rows come from the page.
+
+See How To Scrape a Website Without Coding, by Asking for the full walkthrough, and [How To Scrape a Website with Claude, and What It Can't Do](/guides/scrape-a-website-with-claude) for the same comparison on Claude.

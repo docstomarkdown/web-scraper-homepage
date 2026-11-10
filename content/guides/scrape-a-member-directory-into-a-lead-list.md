@@ -35,7 +35,9 @@ ext/list-tab-members-directory is already requested by the lead-generation page.
 (competitor corpus, 2026-10-28).
 -->
 
-Trade associations, chambers of commerce, trade shows and marketplaces all publish directories of their members, exhibitors or vendors. Those directories are the most precise lead lists there are: every firm on them belongs to the profession you sell to. Web Scraper Pro, a free Chrome extension, turns any such directory into a spreadsheet without a ready-made setup. It finds the list on the page and names the columns from what the page shows. In this guide you collect a member directory across its pages, then add each member's emails from its own website. Tested on version 1.3.0.
+Trade associations, chambers of commerce, trade shows and marketplaces all publish directories of their members, exhibitors or vendors. Those directories are the most precise lead lists there are: every firm on them belongs to the profession you sell to.
+
+Web Scraper Pro, a free Chrome extension, turns any such directory into a spreadsheet without a ready-made setup. It finds the list on the page and names the columns from what the page shows. In this guide you collect a member directory across its pages, then add each member's emails from its own website. Tested on version 1.3.0.
 
 ## Prerequisites
 
@@ -135,4 +137,6 @@ After export the sheet looks like this. Sample data; the firms are made up.
 
 ## Conclusion
 
-You collected a member directory across every page into named columns, added each firm's emails and social links from its own website, and exported the rows you can use. The same steps work on a chamber directory, an exhibitor list or a vendor marketplace, because none of them needs a ready-made setup. For the lead-list workflow end to end, see the [lead generation page](/use-cases/lead-generation). For emails from a list you already have, see How To Extract Emails from a List of Websites in Bulk. The [emails and contacts page](/email-extractor#rules) has the rules on using the addresses.
+You collected a member directory across every page into named columns, added each firm's emails and social links from its own website, and exported the rows you can use. The same steps work on a chamber directory, an exhibitor list or a vendor marketplace, because none of them needs a ready-made setup.
+
+For the lead-list workflow end to end, see the [lead generation page](/use-cases/lead-generation). For emails from a list you already have, see How To Extract Emails from a List of Websites in Bulk. The [emails and contacts page](/email-extractor#rules) has the rules on using the addresses.

@@ -34,7 +34,9 @@ Facts to re-check before this leaves draft (2026-10-28):
 - The extension's chat: collect_list with "every page" (DECISIONS.md D-027), "Add emails and social links" card when rows have a Website column, values copied from the page (Golden Rule 6: no page content reaches the model).
 -->
 
-Claude can help you scrape a website in three ways. The Claude app reads a page and gives you a table. Cowork, Anthropic's desktop agent, opens a page in its own browser and clicks through it. Claude Code writes a scraper you run yourself. Each is good at one kind of job and stops at a wall the others don't move either: paging through a site, your sign-ins, and copying values exactly. This guide shows the three routes, where each stops, and the one-sentence alternative in Web Scraper Pro's own chat, tested on version 1.3.0.
+Claude can help you scrape a website in three ways. The Claude app reads a page and gives you a table. Cowork, Anthropic's desktop agent, opens a page in its own browser and clicks through it. Claude Code writes a scraper you run yourself.
+
+Each is good at one kind of job and stops at a wall the others don't move either: paging through a site, your sign-ins, and copying values exactly. This guide shows the three routes, where each stops, and the one-sentence alternative in Web Scraper Pro's own chat, tested on version 1.3.0.
 
 ## Prerequisites
 
@@ -145,4 +147,6 @@ Not yet. An MCP connection, so that Claude or another agent can run the extensio
 
 ## Conclusion
 
-Claude is good company for scraping: the app tidies a short list, Cowork reaches a few pages nowhere else can, and Claude Code writes a scraper a developer can keep. None of them copies a page's values the way your own browser can, and none pages through a site for free. For a list that spans pages, lives behind your sign-in, or has to be right to the digit, type the sentence into Web Scraper Pro's chat; the rows come from the page. See How To Scrape a Website Without Coding, by Asking for the full walkthrough. The same comparison on ChatGPT is How To Scrape a Website with ChatGPT, and What It Can't Do.
+Claude is good company for scraping: the app tidies a short list, Cowork reaches a few pages nowhere else can, and Claude Code writes a scraper a developer can keep. None of them copies a page's values the way your own browser can, and none pages through a site for free.
+
+For a list that spans pages, lives behind your sign-in, or has to be right to the digit, type the sentence into Web Scraper Pro's chat; the rows come from the page. See How To Scrape a Website Without Coding, by Asking for the full walkthrough. The same comparison on ChatGPT is How To Scrape a Website with ChatGPT, and What It Can't Do.

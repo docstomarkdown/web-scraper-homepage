@@ -1,6 +1,6 @@
 ---
 title: "How To Scrape a List and Then Every Detail Page"
-description: "Collect a list page with its links, then get what the linked pages hold: each page's text in one bulk run, contact details from each site, or a product's full details from the Properties tab."
+description: "Collect a list page with its links, then what each linked page holds: its text, the site's contact details, or a product's full details."
 status: draft
 date: 2026-10-21
 updated: 2026-10-21

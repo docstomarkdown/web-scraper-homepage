@@ -39,7 +39,9 @@ Title targets "scrape products from any e-commerce website" (youtube-research, 2
 "Amazon product data and reviews"; this guide owns the any-store category run.
 -->
 
-Every online store shows its products as a grid on a category page, and Web Scraper Pro turns that grid into a spreadsheet. You get one row per product with its name, price, old price, rating and link, across every page of the category. It works on the big marketplaces and on a shop you've never heard of. WooCommerce stores get their own named columns, and Shopify stores hand over their whole catalog in one go. In this guide you collect a category from an independent store, see what changes on WooCommerce and Shopify, and add one product's full details. Tested on version 1.3.0.
+Every online store shows its products as a grid on a category page, and Web Scraper Pro turns that grid into a spreadsheet. You get one row per product with its name, price, old price, rating and link, across every page of the category. It works on the big marketplaces and on a shop you've never heard of.
+
+WooCommerce stores get their own named columns, and Shopify stores hand over their whole catalog in one go. In this guide you collect a category from an independent store, see what changes on WooCommerce and Shopify, and add one product's full details. Tested on version 1.3.0.
 
 ## Prerequisites
 

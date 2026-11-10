@@ -1,6 +1,6 @@
 ---
 title: "How To Scrape Phone Numbers from a Website"
-description: "Collect every phone number a web page publishes, with faxes in their own column, and export them to Excel in one click. Works on contact pages and directory listings."
+description: "Collect every phone number a web page publishes, with faxes in their own column, and export them to Excel. Works on contact pages and directories."
 status: draft
 date: 2026-10-20
 updated: 2026-10-21

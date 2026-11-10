@@ -8,7 +8,9 @@ category: Product updates
 tags: [release, maps leads, chat, emails]
 ---
 
-Version 1.3.0 of Web Scraper Pro is on the Chrome Web Store, and Chrome installs it for you: extensions update on their own within a day or so, and you can check your version under the extension's name at `chrome://extensions`. The headline change is one many of you asked for. A Google Maps search now comes back with each business's email, website phone numbers and social links, read from the business's own website during the same run. Chat learned three things too: collecting every page of a list, tidying the last collection in plain words, and combining several searches into one table.
+Version 1.3.0 of Web Scraper Pro is on the Chrome Web Store, and Chrome installs it for you: extensions update on their own within a day or so, and you can check your version under the extension's name at `chrome://extensions`. The headline change is one many of you asked for.
+
+A Google Maps search now comes back with each business's email, website phone numbers and social links, read from the business's own website during the same run. Chat learned three things too: collecting every page of a list, tidying the last collection in plain words, and combining several searches into one table.
 
 ## Emails in the same run
 

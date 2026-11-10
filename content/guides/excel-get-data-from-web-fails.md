@@ -31,7 +31,9 @@ detection, Collect more pages, Save prices as numbers, Export as Microsoft Excel
 library. Title targets "excel get data from web not working" and the Power Query searches in youtube-research (B72).
 -->
 
-You opened **Data → Get Data → From Web** in Excel, pasted a page's address, and the Navigator showed **Document** and nothing else, or a table that isn't the one on your screen. It's the most common dead end in Power Query, and it isn't your fault. Power Query fetches the page's raw HTML without running the page's scripts, and most stores, directories and listing sites draw their lists with scripts after the page loads. This guide explains what Power Query sees, gives the three fixes that sometimes work, and then shows the route that reads the page as your browser shows it and exports to Excel. By the end you have the table in Excel either way. Tested on version 1.3.0 of the extension.
+You opened **Data → Get Data → From Web** in Excel, pasted a page's address, and the Navigator showed **Document** and nothing else, or a table that isn't the one on your screen. It's a common dead end in Power Query, and it isn't your fault. Power Query fetches the page's raw HTML without running the page's scripts, and most stores, directories and listing sites draw their lists with scripts after the page loads.
+
+This guide explains what Power Query sees, gives the three fixes that sometimes work, and then shows the route that reads the page as your browser shows it and exports to Excel. By the end you have the table in Excel either way. Tested on version 1.3.0 of the extension.
 
 ## Prerequisites
 
@@ -115,4 +117,6 @@ Keep Power Query for the public tables it handles, because its Refresh is a real
 
 ## Conclusion
 
-You now know why Excel's Get Data from Web shows no table on a scripted page, and the three Power Query fixes worth trying. You also have the browser route, which reads the page as you see it and hands you an Excel file with named columns and numeric prices. For a plain table that does work in Power Query but breaks when pasted, see How To Copy a Table from a Website into Google Sheets. For the full set of options on the results page before export, see [how to get data from a website into Google Sheets or Excel](/export-to-google-sheets).
+You now know why Excel's Get Data from Web shows no table on a scripted page, and the three Power Query fixes worth trying. You also have the browser route, which reads the page as you see it and hands you an Excel file with named columns and numeric prices.
+
+For a plain table that does work in Power Query but breaks when pasted, see How To Copy a Table from a Website into Google Sheets. For the full set of options on the results page before export, see [how to get data from a website into Google Sheets or Excel](/export-to-google-sheets).

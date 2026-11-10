@@ -1,6 +1,6 @@
 ---
 title: "How To Scrape Job Listings from Any Company Career Page"
-description: "Turn a company's careers page, or a job board's search, into a spreadsheet of roles with title, location, department and link, across every page, with no code. Roles only, never candidates."
+description: "Turn a company's careers page or a job board search into a spreadsheet of roles: title, location, department and link, across every page, with no code."
 status: draft
 date: 2026-10-21
 updated: 2026-10-21

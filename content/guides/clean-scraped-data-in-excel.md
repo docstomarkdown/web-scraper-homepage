@@ -31,7 +31,9 @@ re-check the menu paths on the version in the screenshots before publishing, and
 later (TEXTJOIN, SEQUENCE, FILTER). Capture ids are requests for the visuals library.
 -->
 
-A collected table is only as useful as the sheet you can sort, sum and send. Most tables arrive nearly clean, and the extension's own results page removes duplicates, renames columns and saves numbers as numbers before you export. What's left is the clean-up every scraped file needs at some point. A price won't add up, phone numbers come in three formats, the same business appears twice, a space you can't see breaks a filter, and a column should be two. In this guide you fix each one in Excel with the formula and the menu path, on a sheet you exported from Web Scraper Pro. By the end you have a sheet that sums, filters and imports without surprises.
+A collected table is only as useful as the sheet you can sort, sum and send. Most tables arrive nearly clean, and the extension's own results page removes duplicates, renames columns and saves numbers as numbers before you export. What's left is the clean-up every scraped file needs at some point.
+
+A price won't add up, phone numbers come in three formats, the same business appears twice, a space you can't see breaks a filter, and a column should be two. In this guide you fix each one in Excel with the formula and the menu path, on a sheet you exported from Web Scraper Pro. By the end you have a sheet that sums, filters and imports without surprises.
 
 ## Prerequisites
 

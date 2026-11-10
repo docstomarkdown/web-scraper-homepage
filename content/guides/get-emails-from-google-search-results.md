@@ -131,4 +131,6 @@ For ten towns or ten trades, build one search address per keyword in a spreadshe
 
 ## Conclusion
 
-You turned a Google search into a list of websites, read each one for its emails, phone numbers and social links, and exported the rows you can use. The same two runs work from any list of links: a directory, a member list, a sheet a client sent. For the rules on using the addresses, read the [emails and contacts page](/email-extractor#rules). For the rest of the contact run's options, see How To Extract Emails from a List of Websites in Bulk. The [lead generation page](/use-cases/lead-generation) has the lead-list workflow end to end.
+You turned a Google search into a list of websites, read each one for its emails, phone numbers and social links, and exported the rows you can use. The same two runs work from any list of links: a directory, a member list, a sheet a client sent.
+
+For the rules on using the addresses, read the [emails and contacts page](/email-extractor#rules). For the rest of the contact run's options, see How To Extract Emails from a List of Websites in Bulk. The [lead generation page](/use-cases/lead-generation) has the lead-list workflow end to end.

@@ -33,8 +33,8 @@ const POINTS = [
     },
     {
         icon: Link2,
-        title: "Many stores at once",
-        body: "Paste a list of store URLs and get one catalog for each.",
+        title: "Or ask in chat",
+        body: "Ask chat for a store's products and it exports the catalog the same way.",
     },
 ];
 
