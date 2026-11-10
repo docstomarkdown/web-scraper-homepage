@@ -5,6 +5,17 @@ main text, titles, robots, schema, links and hidden text, then 6-word phrase ove
 Google's spam policies (scaled content abuse, doorway pages, thin content, hidden text, misleading pages, link spam,
 structured data). The site is `noindex` today, so none of this costs anything yet; it's what to fix before that comes off.
 
+## Status (2026-11-10, after the fixes; re-crawled: 88 pages, no link to a missing page)
+- 1, the calculators: waits on the owner's decision.
+- 2: fixed. Templates and in-text links list only published guides in production (`getLinkableGuides`, `RichText`);
+  `/tools` links `/product-scraper`. A use case's guide list no longer claims screenshots.
+- 3: fixed. `/cloud` and `/mcp` are titled as coming soon, `noindex`, and out of the sitemap with every coming-soon page.
+- 4: fixed. `/guides` and `/scrapers` are `noindex` while empty; `/blog` and its archives until they hold 3 posts, and the
+  sitemap follows; the homepage links `/scrapers` once a site page is live.
+- 5: fixed. `Reveal` and the hero slide without fading, so the text is visible in the server HTML. What remains at
+  opacity 0 is the hero's chat demo rows (sample data) and the calculators' result panels.
+- 6: fixed. "Free" stays in 2 titles (the homepage and the any-site page); the calculators wait on 1.
+
 ## To fix, most serious first
 
 | # | Signal | Policy | What the crawl found | Fix |

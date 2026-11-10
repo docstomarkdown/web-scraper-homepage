@@ -4,7 +4,8 @@ import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 /**
- * Fades content up once when it scrolls into view. Renders statically for reduced-motion users.
+ * Slides content up a little once when it scrolls into view. It never changes opacity, so the text is visible in the
+ * page before any script runs, for readers and for search engines alike. Renders statically for reduced-motion users.
  * Inside a `<ul>`/`<ol>`, pass `as="li"` so the list keeps `li` as its direct children: a wrapper `div`
  * between the list and its items makes screen readers announce the items as loose text.
  */
@@ -26,8 +27,8 @@ export default function Reveal({
     return (
         <MotionTag
             className={className}
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 18 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5, delay, ease: "easeOut" }}
         >

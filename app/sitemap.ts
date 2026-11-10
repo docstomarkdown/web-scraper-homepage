@@ -16,8 +16,10 @@ export const dynamic = "force-static";
 export default function sitemap(): MetadataRoute.Sitemap {
     const pages: MetadataRoute.Sitemap = [url("/", { priority: 1 })];
 
-    // Product, use-case, scraper and resource pages that are live or "coming soon", from the registry.
-    for (const p of publishedPages()) pages.push(url(p.href, { priority: 0.8 }));
+    // Product, use-case, scraper and resource pages that are live, from the registry. "Coming soon" pages are kept out
+    // of search until the feature ships (spam review, 2026-11-10).
+    const blogIndexed = getAllPosts().filter((p) => p.status === "published").length >= 3; // matches the blog's own robots
+    for (const p of publishedPages()) if (p.status === "live" && !p.comingSoon && (p.slug !== "blog" || blogIndexed)) pages.push(url(p.href, { priority: 0.8 }));
 
     pages.push(url("/support", { priority: 0.4 }), url("/privacy-policy", { priority: 0.3 }), url("/terms-of-service", { priority: 0.3 }));
 
@@ -30,9 +32,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     const posts = getAllPosts().filter((p) => p.status === "published");
     for (const post of posts) pages.push(url(`/blog/${post.slug}`, { lastModified: new Date(post.updated), priority: 0.7 }));
-    // Archives are listed only once they hold more than one post; a one-post archive is a thin page.
-    for (const a of getAllAuthors()) if (getPostsByAuthor(a).length > 1) pages.push(url(`/blog/author/${a}`, { priority: 0.4 }));
-    for (const c of getAllCategories()) if (getPostsByCategory(c).length > 1) pages.push(url(`/blog/category/${categorySlug(c)}`, { priority: 0.4 }));
+    // Archives are listed only once they hold three posts, as their robots say; a smaller archive is a thin page.
+    for (const a of getAllAuthors()) if (getPostsByAuthor(a).length >= 3) pages.push(url(`/blog/author/${a}`, { priority: 0.4 }));
+    for (const c of getAllCategories()) if (getPostsByCategory(c).length >= 3) pages.push(url(`/blog/category/${categorySlug(c)}`, { priority: 0.4 }));
 
     const seen = new Set<string>();
     return pages.filter((p) => !seen.has(p.url) && seen.add(p.url));

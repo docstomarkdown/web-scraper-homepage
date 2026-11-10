@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         title: `${name} posts`,
         description: `Posts about ${name.toLowerCase()} from the Web Scraper Pro blog.`,
         alternates: { canonical: `/blog/category/${category}` },
-        robots: posts.length > 1 ? undefined : { index: false, follow: true },
+        robots: posts.length >= 3 ? undefined : { index: false, follow: true },
     };
 }
 

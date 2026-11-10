@@ -17,12 +17,14 @@ import { getPage } from "@/config/pages";
 export const mcp: FeaturePageContent = {
     page: getPage("mcp"),
     meta: {
-        title: "How to Connect Claude or ChatGPT to a Web Scraper with MCP",
+        title: "MCP and AI Agents for Web Scraper Pro, Coming Soon",
         description:
             "Coming soon: connect Claude or another MCP client to Web Scraper Pro, so an AI agent can collect lists, contacts and product details from pages in your browser or on our servers.",
     },
     eyebrow: "MCP and AI agents",
-    h1: "How to connect Claude or ChatGPT to a web scraper with MCP",
+    h1: "Connecting AI agents is coming soon",
+    // Not built yet (the browser relay is off until cloud opens): out of search until it ships (spam review, 2026-11-10).
+    noindex: true,
     intro:
         "Coming soon. Claude and other MCP clients will be able to call Web Scraper Pro as a tool. Pages open in your browser go through the extension; lists of addresses go through the cloud.",
     lastUpdated: "2026-10-20",

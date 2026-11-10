@@ -8,6 +8,8 @@ export const metadata: Metadata = {
     title: "Guides",
     description: "Step-by-step tutorials for collecting data with Web Scraper Pro, each tested on the released extension.",
     alternates: { canonical: "/guides" },
+    // Empty until a guide is published: out of search until then (spam review, 2026-11-10).
+    robots: getGuides().length > 0 ? undefined : { index: false, follow: true },
 };
 
 export default function GuidesPage() {

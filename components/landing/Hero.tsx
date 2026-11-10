@@ -48,8 +48,8 @@ export default function Hero() {
 
             <div className="relative z-10 flex flex-col lg:flex-row items-center lg:items-start justify-between max-w-7xl mx-auto gap-12 lg:gap-10 xl:gap-14 w-full">
                 <motion.div
-                    initial={{ opacity: 0, y: 24 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ y: 24 }}
+                    animate={{ y: 0 }}
                     transition={{ duration: 0.6 }}
                     className="max-w-2xl text-center lg:text-left lg:w-[42%] xl:w-[44%] lg:pt-16 xl:pt-20"
                 >
@@ -111,8 +111,8 @@ export default function Hero() {
                 </motion.div>
 
                 <motion.div
-                    initial={{ opacity: 0, x: 30 }}
-                    animate={{ opacity: 1, x: 0 }}
+                    initial={{ x: 30 }}
+                    animate={{ x: 0 }}
                     transition={{ duration: 0.7, delay: 0.2 }}
                     className="w-full lg:w-[58%] xl:w-[56%] lg:pt-12 xl:pt-16 scroll-mt-24"
                 >

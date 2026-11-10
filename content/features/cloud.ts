@@ -16,12 +16,14 @@ import { getPage } from "@/config/pages";
 export const cloud: FeaturePageContent = {
     page: getPage("cloud"),
     meta: {
-        title: "How to Run a Web Scraper on a Schedule, Without Your Browser",
+        title: "Cloud Runs for Web Scraper Pro, Coming Soon",
         description:
             "Coming soon: paste a list of up to 200 URLs, run it on our servers, schedule it daily or weekly, and download the results as CSV, JSON or Excel.",
     },
     eyebrow: "Cloud runs",
-    h1: "How to run a web scraper on a schedule in the cloud",
+    h1: "Cloud runs are coming soon",
+    // Not built yet: out of search until it ships, titled as what it is (spam review, 2026-11-10).
+    noindex: true,
     intro:
         "Coming soon. Paste a list of pages, close your laptop, and download the results later. Run the same job every day or week, and reach it from your own code with a REST API.",
     lastUpdated: "2026-10-20",

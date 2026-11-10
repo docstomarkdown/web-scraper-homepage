@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { getAuthor, type Author } from "@/content/authors";
+import { showPlannedPages } from "@/config/pages";
 
 // Guides are tutorials: one task, done with the extension, tested on the released version. They're Markdown files in
 // content/guides/<slug>.md with YAML front matter:
@@ -71,6 +72,10 @@ export const getGuides = () => all().filter((g) => g.status === "published").sor
 
 /** Every guide, drafts included, for local preview. */
 export const getAllGuides = () => all().sort((a, b) => (a.updated < b.updated ? 1 : -1));
+
+/** The guides a page may link to: published ones in production, drafts too in local preview. A draft 404s in
+ * production, so templates must never list one there (spam review, 2026-11-10). */
+export const getLinkableGuides = () => (showPlannedPages ? getAllGuides() : getGuides());
 
 /** A guide's slug is its file name: lowercase letters, digits and hyphens. The slug comes from the URL, so
  * anything else (a dot, a slash, an encoded "../") is refused before it becomes part of a file path. */

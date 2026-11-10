@@ -7,7 +7,7 @@ import { Screenshot } from "@/components/Screenshot";
 import ProseSection, { type ContentSection } from "@/components/pages/ProseSection";
 import Glossary from "@/components/pages/Glossary";
 import RichText from "@/components/pages/RichText";
-import { getAllGuides } from "@/lib/guides";
+import { getLinkableGuides } from "@/lib/guides";
 import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/components/seo/JsonLd";
 import { productConfig } from "@/config/product";
 import { siteConfig } from "@/config/site";
@@ -90,7 +90,7 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
     const base = siteConfig.url.replace(/\/$/, "");
     const href = `/scrapers/${c.slug}`;
     const installUrl = `${productConfig.product.ctaUrl}?utm_source=website&utm_medium=scraper-${c.slug}&utm_campaign=chrome_install`;
-    const guides = getAllGuides().filter((g) => g.sites.includes(c.slug) || g.slug === c.guide);
+    const guides = getLinkableGuides().filter((g) => g.sites.includes(c.slug) || g.slug === c.guide);
 
     return (
         <main id="main" className="flex-1 bg-white dark:bg-slate-950">

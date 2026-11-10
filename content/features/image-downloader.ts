@@ -18,7 +18,7 @@ import { getPage } from "@/config/pages";
 export const imageDownloader: FeaturePageContent = {
     page: getPage("image-downloader"),
     meta: {
-        title: "How to Download All Images from a Website at Full Size, Free",
+        title: "How to Download All Images from a Website at Full Size",
         description:
             "Open a page, click once, and save every image on it as one ZIP file at the size the page serves. Images are grouped by size, so you take the photos and leave the icons. Free Chrome extension.",
     },

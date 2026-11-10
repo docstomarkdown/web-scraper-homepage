@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getLinkableGuides } from "@/lib/guides";
 
 // Content files hold their copy as plain strings. A sentence that needs a link writes it the Markdown way,
 // `[link text](/page)` or `[link text](https://other.site/)`, and this renders it: site-relative hrefs as
@@ -12,6 +13,13 @@ export const plainText = (s: string) => s.replace(LINK, "$1");
 
 const linkCls = "text-[#1f5ec2] dark:text-[#7aa7ff] underline underline-offset-2";
 
+/** A link to a guide that isn't published 404s in production, so it renders as plain text until the guide is live
+ * (spam review, 2026-11-10). Local preview links drafts too. */
+const guideLive = (href: string) => {
+    const slug = href.match(/^\/guides\/([a-z0-9-]+)/)?.[1];
+    return !slug || getLinkableGuides().some((g) => g.slug === slug);
+};
+
 export default function RichText({ text }: { text: string }) {
     const parts: React.ReactNode[] = [];
     let last = 0;
@@ -21,6 +29,11 @@ export default function RichText({ text }: { text: string }) {
         const at = m.index;
         if (at > last) parts.push(text.slice(last, at));
         const external = /^https?:\/\//.test(href);
+        if (!external && !guideLive(href)) {
+            parts.push(label);
+            last = at + whole.length;
+            continue;
+        }
         parts.push(
             external ? (
                 <a key={at} href={href} target="_blank" rel="noopener" className={linkCls}>{label}</a>

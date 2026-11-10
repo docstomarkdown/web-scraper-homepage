@@ -24,7 +24,7 @@ import { getPage } from "@/config/pages";
 export const emailExtractor: FeaturePageContent = {
     page: getPage("email-extractor"),
     meta: {
-        title: "How to Extract Email Addresses from Any Website, Free",
+        title: "How to Extract Email Addresses from Any Website",
         description:
             "Open a website and collect the emails, phone numbers and social links it publishes in one click. Give it a list of hundreds of websites and get one row per site. Free Chrome extension, no code.",
     },

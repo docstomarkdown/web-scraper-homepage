@@ -21,7 +21,7 @@ import { getPage } from "@/config/pages";
 export const pageText: FeaturePageContent = {
     page: getPage("page-text"),
     meta: {
-        title: "How to Scrape Text from a Website into a Document, Free",
+        title: "How to Scrape Text from a Website into a Document",
         description:
             "Open an article, click once, and get its readable text with the title, author, date and word count. Save it as a Word document or copy it for an AI tool. Free Chrome extension, no code.",
     },

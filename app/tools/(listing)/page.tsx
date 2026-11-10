@@ -196,8 +196,8 @@ export default function ToolsPage() {
                 <p className="mt-16 text-base text-slate-700 dark:text-slate-200 max-w-[56rem] leading-[1.65]">
                     These calculators are a side project of Web Scraper Pro, a free Chrome extension that turns web pages into
                     spreadsheets. For the prices, listings and reviews behind the numbers, see{" "}
-                    <Link href="/use-cases/ecommerce" className={`${linkBlue} underline underline-offset-2`}>
-                        how sellers track competitor prices
+                    <Link href="/product-scraper" className={`${linkBlue} underline underline-offset-2`}>
+                        collecting product prices and reviews
                     </Link>
                     .
                 </p>

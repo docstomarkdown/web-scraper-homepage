@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getLinkableGuides } from "@/lib/guides";
 import { ArrowRight, Chrome, Minus } from "lucide-react";
 import Reveal from "@/components/landing/Reveal";
 import CTA from "@/components/landing/CTA";
@@ -61,7 +62,9 @@ const link = "font-semibold text-[#1f5ec2] dark:text-[#7aa7ff] underline underli
 export default function UseCasePage({ content: c }: { content: UseCasePageContent }) {
     const base = siteConfig.url.replace(/\/$/, "");
     const installUrl = `${productConfig.product.ctaUrl}?utm_source=website&utm_medium=use-case-${c.page.slug}&utm_campaign=chrome_install`;
-    const guideTitle = (slug: string) => slug.replace(/-/g, " ").replace(/^\w/, (m) => m.toUpperCase());
+    // Only guides that are live (or any guide in local preview): a draft 404s in production.
+    const linkable = getLinkableGuides();
+    const guides = c.guides.map((g) => linkable.find((x) => x.slug === g)).filter((g): g is NonNullable<typeof g> => Boolean(g));
     return (
         <main id="main" className="flex-1 bg-white dark:bg-slate-950">
             <JsonLd data={[breadcrumbJsonLd([{ name: "Home", href: "/" }, { name: "Use cases", href: "/use-cases" }, { name: c.page.label, href: c.page.href }], base), ...(c.faqs.length ? [faqJsonLd(c.faqs)] : [])]} />
@@ -176,12 +179,11 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
                             ))}
                         </ul>
                     </Reveal>
-                    {c.guides.length > 0 && (
+                    {guides.length > 0 && (
                         <Reveal className="mt-14">
                             <h2 className="text-[1.75rem] font-semibold tracking-tight text-slate-800 dark:text-white">Guides for this job</h2>
-                            <p className={`mt-3 ${body}`}>Each guide shows every click with a screenshot, tested on the released extension.</p>
                             <ul className="mt-5 space-y-3 text-lg">
-                                {c.guides.map((g) => <li key={g}><Link href={`/guides/${g}`} className={link}>{guideTitle(g)} →</Link></li>)}
+                                {guides.map((g) => <li key={g.slug}><Link href={`/guides/${g.slug}`} className={link}>{g.title} →</Link></li>)}
                             </ul>
                         </Reveal>
                     )}

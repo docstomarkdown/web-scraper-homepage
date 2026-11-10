@@ -24,7 +24,7 @@ import { getPage } from "@/config/pages";
 export const productScraper: FeaturePageContent = {
     page: getPage("product-scraper"),
     meta: {
-        title: "How to Scrape Amazon Product Data and Reviews, Free",
+        title: "How to Scrape Amazon Product Data and Reviews",
         description:
             "Open a product on Amazon, Walmart, Flipkart or most online stores and get its price, list price, discount, rating, seller, variant and images in named fields, then every review across pages. Free, no code.",
     },

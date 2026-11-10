@@ -31,7 +31,7 @@ import { getPage } from "@/config/pages";
 export const aiChat: FeaturePageContent = {
     page: getPage("ai-chat"),
     meta: {
-        title: "How to Scrape Any Website with AI: Free Chrome Extension",
+        title: "How to Scrape Any Website with AI, in Your Browser",
         description:
             "Type what you need, such as \"find plumbers in Denver\" or \"collect the products on this page\", and get a spreadsheet back. The AI reads your request; the rows come from the page, in your browser. Free, no code.",
     },

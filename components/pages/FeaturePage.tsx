@@ -11,7 +11,7 @@ import { relatedPages, type SitePage } from "@/config/pages";
 import { Screenshot } from "@/components/Screenshot";
 import ProseSection, { type ContentSection } from "@/components/pages/ProseSection";
 import Glossary from "@/components/pages/Glossary";
-import { getAllGuides } from "@/lib/guides";
+import { getLinkableGuides } from "@/lib/guides";
 import { useCasePages } from "@/content/use-cases";
 import { getCapture } from "@/lib/visuals";
 import RichText from "@/components/pages/RichText";
@@ -22,6 +22,8 @@ export interface FeaturePageContent {
     meta: { title: string; description: string };
     eyebrow: string;
     h1: string;
+    /** Keep the page out of search: a page about a feature that isn't built yet (spam review, 2026-11-10). */
+    noindex?: boolean;
     intro: string;
     /** ISO date the page's claims were last checked against the released extension. */
     lastUpdated: string;
@@ -60,6 +62,7 @@ export function featureMetadata(c: FeaturePageContent): Metadata {
         title: c.meta.title,
         description: c.meta.description,
         alternates: { canonical: c.page.href },
+        ...(c.noindex ? { robots: { index: false, follow: true } } : {}),
         openGraph: {
             title: c.meta.title,
             description: c.meta.description,
@@ -76,7 +79,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
     const installUrl = `${productConfig.product.ctaUrl}?utm_source=website&utm_medium=${c.page.slug}&utm_campaign=chrome_install`;
     const heroVisual = visual ?? (c.hero && getCapture(c.hero) ? <Screenshot id={c.hero} className="my-0" /> : undefined);
     const cards = c.fields.items.some((f) => f.example);
-    const guides = getAllGuides().filter((g) => g.feature === c.page.slug);
+    const guides = getLinkableGuides().filter((g) => g.feature === c.page.slug);
     const jobs = Object.values(useCasePages).filter((u) => (u.status === "published" || process.env.NODE_ENV !== "production") && u.workflow.steps.some((st) => st.feature === c.page.slug));
     const linkCls = "text-[#1f5ec2] dark:text-[#7aa7ff] underline underline-offset-2";
 

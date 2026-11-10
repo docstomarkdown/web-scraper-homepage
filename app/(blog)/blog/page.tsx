@@ -7,6 +7,8 @@ export const metadata: Metadata = {
     title: "Blog",
     description: "Explainers, comparisons and news about collecting web data with Web Scraper Pro.",
     alternates: { canonical: "/blog" },
+    // A blog with fewer than three posts is a thin page: out of search until it holds more (spam review, 2026-11-10).
+    robots: getAllPosts().filter((p) => p.status === "published").length >= 3 ? undefined : { index: false, follow: true },
 };
 
 export default function BlogPage() {

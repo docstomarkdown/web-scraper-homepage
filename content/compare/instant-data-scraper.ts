@@ -11,7 +11,7 @@ export const instantDataScraper: ComparePageContent = {
     slug: "instant-data-scraper",
     competitor: { name: "Instant Data Scraper", short: "Instant Data Scraper", url: "https://webrobots.io/instantdata/" },
     meta: {
-        title: "A Free Instant Data Scraper Alternative, Compared Honestly",
+        title: "An Instant Data Scraper Alternative, Compared Honestly",
         description: "Two free Chrome extensions side by side: guessed columns or named ones, the next page, emails and product pages, support, and when the older tool is right.",
     },
     h1: "Web Scraper Pro vs Instant Data Scraper",

@@ -20,8 +20,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         title: `Posts by ${a.name}`,
         description: a.bio,
         alternates: { canonical: `/blog/author/${author}` },
-        // An archive with one post is thin; it's listed in the sitemap, and indexed, only once it holds more.
-        robots: posts.length > 1 ? undefined : { index: false, follow: true },
+        // An archive with fewer than three posts is thin; it's indexed only once it holds more.
+        robots: posts.length >= 3 ? undefined : { index: false, follow: true },
     };
 }
 

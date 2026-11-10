@@ -4,6 +4,10 @@ import { BookUser, Home, ListChecks, Mail, ShoppingBag, Store } from "lucide-rea
 import SectionHeading from "@/components/landing/SectionHeading";
 import Reveal from "@/components/landing/Reveal";
 import { publishedHref, type PageKind } from "@/config/pages";
+import { scraperPages } from "@/content/scrapers";
+
+// The ready-made sites hub is linked once it has a live site page (spam review, 2026-11-10).
+const sitesHubLive = Object.values(scraperPages).some((c) => c.status === "published");
 
 const TYPES: {
     icon: typeof ListChecks;
@@ -123,10 +127,15 @@ export default function Collect() {
                         Names are the sites with their own page in content/sites.ts. */}
                     <p className="text-center text-base text-slate-700 dark:text-slate-200 leading-[1.65]">
                         <span className="font-semibold text-slate-900 dark:text-white">Ready-made</span> for Amazon, eBay, Walmart, Etsy, Zillow,
-                        Rightmove, Yellow Pages, Justdial, BBB, Hotels.com, Google Scholar and YouTube, and any list on any other site.{" "}
-                        <Link href="/scrapers" className="font-semibold text-[#1f5ec2] dark:text-[#7aa7ff] underline underline-offset-2">
-                            Every ready-made site
-                        </Link>
+                        Rightmove, Yellow Pages, Justdial, BBB, Hotels.com, Google Scholar and YouTube, and any list on any other site.
+                        {sitesHubLive && (
+                            <>
+                                {" "}
+                                <Link href="/scrapers" className="font-semibold text-[#1f5ec2] dark:text-[#7aa7ff] underline underline-offset-2">
+                                    Every ready-made site
+                                </Link>
+                            </>
+                        )}
                     </p>
                 </Reveal>
             </div>

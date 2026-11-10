@@ -11,6 +11,8 @@ export const metadata: Metadata = {
     title: "Ready-made sites",
     description: "The sites Web Scraper Pro has a tuned setup for, with named columns and no configuration, grouped by what they're for.",
     alternates: { canonical: "/scrapers" },
+    // A hub with no live site page is thin: out of search until one is published (spam review, 2026-11-10).
+    robots: Object.values(scraperPages).some((c) => c.status === "published") ? undefined : { index: false, follow: true },
 };
 
 export default function ScrapersHub() {

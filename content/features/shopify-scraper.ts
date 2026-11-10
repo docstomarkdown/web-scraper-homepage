@@ -25,7 +25,7 @@ import { getPage } from "@/config/pages";
 export const shopifyScraper: FeaturePageContent = {
     page: getPage("shopify-scraper"),
     meta: {
-        title: "How to Scrape a Shopify Store's Products, Free, No Code",
+        title: "How to Scrape a Shopify Store's Products, No Code",
         description:
             "Open any public Shopify store and get every product and variant as a spreadsheet, with prices, SKUs, tags, descriptions and images, plus a CSV Shopify can import. Free, no code.",
     },
