@@ -24,7 +24,7 @@ export function ToolSteps({ steps, title = "How to use this calculator", icon = 
                     const Icon = step.icon
                     return (
                         <li key={index} className="relative flex md:block items-start gap-4">
-                            <span className="relative z-10 flex-shrink-0 w-9 h-9 md:absolute md:top-0 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 rounded-full bg-[#1f5ec2] flex items-center justify-center mt-1 md:mt-0 ring-4 ring-white dark:ring-slate-900" aria-hidden="true">
+                            <span className="relative z-10 flex-shrink-0 w-9 h-9 md:absolute md:top-0 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 rounded-full bg-[#2470EB] flex items-center justify-center mt-1 md:mt-0 ring-4 ring-white dark:ring-slate-900" aria-hidden="true">
                                 <span className="text-sm font-bold text-white leading-none">{index + 1}</span>
                             </span>
                             <div className="flex-1 bg-white rounded-2xl border border-slate-200 p-5 md:p-6 md:pt-9 h-full dark:bg-slate-900 dark:border-slate-800">

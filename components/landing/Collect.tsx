@@ -21,7 +21,7 @@ const TYPES: {
         icon: ListChecks,
         title: "Any list on any page",
         body: "On sites without a ready-made setup, it spots the lists on the page for you. Pick one and it names the columns and follows every page.",
-        fields: ["Automatic columns", "Next page", "Load more", "Infinite scroll"],
+        fields: ["Next page", "Load more", "Infinite scroll", "Automatic columns"],
         link: { slug: "list-scraper", text: "Collect lists from any website" },
     },
     {
@@ -73,16 +73,17 @@ export default function Collect() {
                     />
                 </Reveal>
 
-                <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                     {TYPES.map((t, i) => (
                         <Reveal key={t.title} delay={i * 0.05}>
-                            <article className="h-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 transition-shadow hover:shadow-lg hover:shadow-slate-200/60 dark:hover:shadow-black/30">
+                            <article className="h-full flex flex-col rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-7 transition-shadow hover:shadow-lg hover:shadow-slate-200/60 dark:hover:shadow-black/30">
                                 <span className={`inline-flex w-10 h-10 items-center justify-center rounded-xl bg-[#2772ED]/10 text-[#1f5ec2] dark:text-[#7aa7ff]`} aria-hidden="true">
                                     <t.icon className="w-5 h-5" />
                                 </span>
-                                <h3 className="mt-4 text-lg font-semibold text-slate-900 dark:text-white">{t.title}</h3>
-                                <p className="mt-2 text-base text-slate-700 dark:text-slate-200 leading-[1.65]">{t.body}</p>
-                                <ul className="mt-4 flex flex-wrap gap-1.5" aria-label={`Columns for ${t.title.toLowerCase()}`}>
+                                <h3 className="mt-5 text-lg font-semibold text-slate-900 dark:text-white">{t.title}</h3>
+                                <p className="mt-2.5 text-base text-slate-700 dark:text-slate-200 leading-[1.65]">{t.body}</p>
+                                {/* One row of chips: the row is one chip tall and clips the ones that wrap, at any card width. */}
+                                <ul className="mt-5 flex flex-wrap gap-x-2 gap-y-4 h-[26px] overflow-hidden" aria-label={`Columns for ${t.title.toLowerCase()}`}>
                                     {t.fields.map((f) => (
                                         <li
                                             key={f}
@@ -95,7 +96,7 @@ export default function Collect() {
                                 {t.link && publishedHref(t.link.slug, t.link.kind) && (
                                     <Link
                                         href={publishedHref(t.link.slug, t.link.kind)!}
-                                        className="mt-5 inline-block text-sm font-semibold text-[#1f5ec2] dark:text-[#7aa7ff] hover:underline"
+                                        className="mt-auto pt-6 inline-block text-sm font-semibold text-[#1f5ec2] dark:text-[#7aa7ff] hover:underline"
                                     >
                                         {t.link.text} →
                                     </Link>

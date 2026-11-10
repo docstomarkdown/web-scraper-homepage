@@ -105,7 +105,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                             <Link
                                 href={installUrl}
                                 target="_blank"
-                                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#1f5ec2] hover:bg-[#1a4fa3] px-6 py-3 text-base font-semibold text-white transition-colors"
+                                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#2470EB] hover:bg-[#1f5ec2] px-6 py-3 text-base font-semibold text-white transition-colors"
                             >
                                 <Chrome className="w-5 h-5" aria-hidden="true" />
                                 Add to Chrome, it&apos;s free
@@ -156,7 +156,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                                                 <ul className={`mt-4 space-y-2 ${body}`}>
                                                     {s.points.map((pt) => (
                                                         <li key={pt} className="flex gap-3">
-                                                            <span className="mt-[0.7em] h-2 w-2 shrink-0 rounded-full bg-[#1f5ec2] dark:bg-[#7aa7ff]" aria-hidden="true" />
+                                                            <span className="mt-[0.7em] h-2 w-2 shrink-0 rounded-full bg-[#2470EB] dark:bg-[#7aa7ff]" aria-hidden="true" />
                                                             <span><RichText text={pt} /></span>
                                                         </li>
                                                     ))}
@@ -187,7 +187,7 @@ export default function FeaturePage({ content: c, visual }: { content: FeaturePa
                                     <div className="h-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5">
                                         <h3 className="text-lg font-semibold text-slate-800 dark:text-white">{f.name}</h3>
                                         {f.example && (
-                                            <p className="mt-3 inline-block rounded-2xl rounded-br-sm bg-[#1f5ec2] px-3 py-1.5 text-base text-white">{f.example}</p>
+                                            <p className="mt-3 inline-block rounded-2xl rounded-br-sm bg-[#2470EB] px-3 py-1.5 text-base text-white">{f.example}</p>
                                         )}
                                         <p className="mt-3 text-base text-slate-700 dark:text-slate-200 leading-[1.65]"><RichText text={f.description} /></p>
                                     </div>

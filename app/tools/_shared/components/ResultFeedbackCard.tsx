@@ -78,11 +78,11 @@ export function ResultFeedbackCard({
                 <>
                     <div className={cn(
                         "absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none opacity-20",
-                        variant === "warning" ? "bg-red-600" : "bg-[#1f5ec2]"
+                        variant === "warning" ? "bg-red-600" : "bg-[#2470EB]"
                     )} />
                     <div className={cn(
                         "absolute bottom-0 left-0 w-48 h-48 rounded-full blur-3xl -ml-16 -mb-16 pointer-events-none opacity-10",
-                        variant === "warning" ? "bg-orange-600" : "bg-[#1f5ec2]"
+                        variant === "warning" ? "bg-orange-600" : "bg-[#2470EB]"
                     )} />
                 </>
             )}

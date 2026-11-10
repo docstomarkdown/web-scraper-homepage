@@ -111,7 +111,7 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
                         <h1 className="mt-4 text-[2rem] md:text-[2.5rem] font-semibold tracking-tight text-slate-800 dark:text-white leading-[1.2]">{c.h1}</h1>
                         <p className={`mt-5 ${body} md:text-xl`}>{c.intro}</p>
                         <div className="mt-7 flex flex-col sm:flex-row gap-3">
-                            <Link href={installUrl} target="_blank" className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#1f5ec2] hover:bg-[#1a4fa3] px-6 py-3 text-base font-semibold text-white transition-colors">
+                            <Link href={installUrl} target="_blank" className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#2470EB] hover:bg-[#1f5ec2] px-6 py-3 text-base font-semibold text-white transition-colors">
                                 <Chrome className="w-5 h-5" aria-hidden="true" />
                                 Add to Chrome, it&apos;s free
                             </Link>
@@ -172,7 +172,7 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
                                         {s.points && s.points.length > 0 && (
                                             <ul className={`mt-4 space-y-2 ${body}`}>
                                                 {s.points.map((pt) => (
-                                                    <li key={pt} className="flex gap-3"><span className="mt-[0.7em] h-2 w-2 shrink-0 rounded-full bg-[#1f5ec2] dark:bg-[#7aa7ff]" aria-hidden="true" /><span><RichText text={pt} /></span></li>
+                                                    <li key={pt} className="flex gap-3"><span className="mt-[0.7em] h-2 w-2 shrink-0 rounded-full bg-[#2470EB] dark:bg-[#7aa7ff]" aria-hidden="true" /><span><RichText text={pt} /></span></li>
                                                 ))}
                                             </ul>
                                         )}
@@ -241,7 +241,7 @@ export default function ScraperPage({ content: c, related }: { content: ScraperP
                         <h2 className={h2}>{c.notes.heading}</h2>
                         <ul className={`mt-6 space-y-3 ${body}`}>
                             {c.notes.items.map((n) => (
-                                <li key={n} className="flex gap-3"><span className="mt-[0.7em] h-2 w-2 shrink-0 rounded-full bg-[#1f5ec2] dark:bg-[#7aa7ff]" aria-hidden="true" /><span><RichText text={n} /></span></li>
+                                <li key={n} className="flex gap-3"><span className="mt-[0.7em] h-2 w-2 shrink-0 rounded-full bg-[#2470EB] dark:bg-[#7aa7ff]" aria-hidden="true" /><span><RichText text={n} /></span></li>
                             ))}
                         </ul>
                         {c.pushback && c.pushback.length > 0 && (

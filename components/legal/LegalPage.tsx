@@ -173,7 +173,7 @@ export default function LegalPage({ type, content, sections }: LegalPageProps) {
                                                     className="group scroll-mt-28 text-[1.35rem] font-semibold text-slate-800 dark:text-white mt-12 mb-4 pb-3 border-b border-slate-100 dark:border-slate-800 tracking-tight flex items-center gap-3"
                                                     {...props}
                                                 >
-                                                    <span className="w-1 h-5 rounded-full bg-[#1f5ec2] dark:bg-[#7aa7ff] shrink-0" aria-hidden="true" />
+                                                    <span className="w-1 h-5 rounded-full bg-[#2470EB] dark:bg-[#7aa7ff] shrink-0" aria-hidden="true" />
                                                     {children}
                                                 </h2>
                                             );
@@ -192,7 +192,7 @@ export default function LegalPage({ type, content, sections }: LegalPageProps) {
                                         ),
                                         li: ({ ...props }) => (
                                             <li className="flex items-start gap-3 text-slate-700 dark:text-slate-200 text-lg leading-[1.7]">
-                                                <span className="mt-[12px] w-1.5 h-1.5 rounded-full bg-[#1f5ec2] dark:bg-[#7aa7ff] shrink-0" aria-hidden="true" />
+                                                <span className="mt-[12px] w-1.5 h-1.5 rounded-full bg-[#2470EB] dark:bg-[#7aa7ff] shrink-0" aria-hidden="true" />
                                                 <span {...props} />
                                             </li>
                                         ),
@@ -268,7 +268,7 @@ export default function LegalPage({ type, content, sections }: LegalPageProps) {
                             </div>
                             <Link
                                 href="/support"
-                                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#1f5ec2] hover:bg-[#1a4fa3] text-white text-base font-semibold transition-all duration-200 shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 shrink-0"
+                                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#2470EB] hover:bg-[#1f5ec2] text-white text-base font-semibold transition-all duration-200 shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 shrink-0"
                             >
                                 <Mail className="w-4 h-4" aria-hidden="true" />
                                 Get help

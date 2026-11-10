@@ -33,7 +33,7 @@ export default function ChangelogPage() {
                             <ul className="mt-6 space-y-3">
                                 {r.changes.map((c) => (
                                     <li key={c.text} className="flex gap-3 text-base text-slate-700 dark:text-slate-200 leading-relaxed">
-                                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#1f5ec2]" aria-hidden="true" />
+                                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#2470EB]" aria-hidden="true" />
                                         <span>
                                             {c.text}
                                             {c.href && (

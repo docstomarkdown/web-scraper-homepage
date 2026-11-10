@@ -258,7 +258,7 @@ export default function ChatDemo({
                                     animate={{ opacity: 1, y: 0 }}
                                     className="flex justify-end"
                                 >
-                                    <p className="max-w-[85%] rounded-2xl rounded-br-sm bg-[#1f5ec2] px-3.5 py-2 text-sm text-white">{s.prompt}</p>
+                                    <p className="max-w-[85%] rounded-2xl rounded-br-sm bg-[#2470EB] px-3.5 py-2 text-sm text-white">{s.prompt}</p>
                                 </motion.div>
                             )}
                             {sent && (
@@ -359,7 +359,7 @@ export default function ChatDemo({
                             <span
                                 className={[
                                     "w-6 h-6 rounded-full flex items-center justify-center shrink-0 transition-colors",
-                                    stage === 0 && typed >= s.prompt.length ? "bg-[#1f5ec2] text-white" : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300",
+                                    stage === 0 && typed >= s.prompt.length ? "bg-[#2470EB] text-white" : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300",
                                 ].join(" ")}
                             >
                                 <ArrowUp className="w-3.5 h-3.5" />
@@ -381,7 +381,7 @@ function DownloadChip({ icon, label, pressed }: { icon: React.ReactNode; label: 
             transition={{ delay: 0.4, duration: 0.3 }}
             className={[
                 "inline-flex items-center gap-1 rounded-md border px-2 py-1 text-sm font-semibold",
-                pressed ? "bg-[#1f5ec2] border-[#1f5ec2] text-white" : "bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300",
+                pressed ? "bg-[#2470EB] border-[#2470EB] text-white" : "bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300",
             ].join(" ")}
         >
             {icon}

@@ -137,7 +137,7 @@ export default async function GuidePage({ params }: Props) {
                         <Link
                             href={installUrl}
                             target="_blank"
-                            className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#1f5ec2] hover:bg-[#1a4fa3] px-5 py-3 text-sm font-semibold text-white transition-colors"
+                            className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#2470EB] hover:bg-[#1f5ec2] px-5 py-3 text-sm font-semibold text-white transition-colors"
                         >
                             <Chrome className="w-4 h-4" aria-hidden="true" />
                             Add to Chrome

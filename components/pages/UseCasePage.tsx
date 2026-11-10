@@ -80,7 +80,7 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
                             <p className="mt-4 text-lg text-slate-700 dark:text-slate-200 leading-[1.6]">{c.intro}</p>
                             <Glossary text={JSON.stringify(c)} className="mt-6" />
                             <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-3">
-                                <Link href={installUrl} target="_blank" className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#1f5ec2] hover:bg-[#1a4fa3] px-5 py-3 text-base font-semibold text-white transition-colors"><Chrome className="w-5 h-5" aria-hidden="true" />Add to Chrome</Link>
+                                <Link href={installUrl} target="_blank" className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#2470EB] hover:bg-[#1f5ec2] px-5 py-3 text-base font-semibold text-white transition-colors"><Chrome className="w-5 h-5" aria-hidden="true" />Add to Chrome</Link>
                                 <a href="#workflow" className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-5 py-3 text-base font-semibold text-slate-800 dark:text-slate-100 hover:border-[#2772ED] transition-colors">See the steps<ArrowRight className="w-4 h-4" aria-hidden="true" /></a>
                             </div>
                             <p className="mt-5 text-base text-slate-600 dark:text-slate-300">Updated <time dateTime={c.lastUpdated}>{formatDate(c.lastUpdated)}</time></p>
@@ -132,7 +132,7 @@ export default function UseCasePage({ content: c }: { content: UseCasePageConten
                                                 {s.points && s.points.length > 0 && (
                                                     <ul className={`mt-4 space-y-2 ${body}`}>
                                                         {s.points.map((p) => (
-                                                            <li key={p} className="flex gap-3"><span className="mt-[0.7em] h-2 w-2 shrink-0 rounded-full bg-[#1f5ec2]" aria-hidden="true" /><span><RichText text={p} /></span></li>
+                                                            <li key={p} className="flex gap-3"><span className="mt-[0.7em] h-2 w-2 shrink-0 rounded-full bg-[#2470EB]" aria-hidden="true" /><span><RichText text={p} /></span></li>
                                                         ))}
                                                     </ul>
                                                 )}

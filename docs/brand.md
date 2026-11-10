@@ -87,13 +87,17 @@ These files are generated from `components/chat/ThinkingMark.tsx` in `chrome-ext
 | Token | Hex | Use |
 |---|---|---|
 | Brand blue | `#2772ED` | The logo tile, gradients, tints (`/10`, `/5`) and decorative fills only |
-| Brand blue, text and buttons | `#1f5ec2` | Text, links, icons, eyebrows and button backgrounds under white text, with `dark:text-[#7aa7ff]` for text and icons in dark mode. Hover on buttons: `#1a4fa3` |
+| Brand blue, fills | `#2470EB` | Button backgrounds and any other solid blue area under white text (active chips, step tiles, the closing band). Hover on buttons: `#1f5ec2` |
+| Brand blue, text | `#1f5ec2` | Text, links, icons and eyebrows, with `dark:text-[#7aa7ff]` for text and icons in dark mode |
 
-`#2772ED` is 4.5:1 on white (just under WCAG AA for text, and the same for white text on it), so it is never used for
-text or as a button background. `#1f5ec2` is 6.1:1 on white; `#7aa7ff` is 8.5:1 on slate-950. The audit on
-2026-10-21 (docs/SITE_REVIEW_2026-10-21.md, A1) made this split.
+`#2772ED` is 4.46:1 against white, just under WCAG AA (4.5:1) for normal-size text, so it is never used for text or
+under white button text. `#2470EB` is the logo blue darkened by about 1% so white text on it reaches 4.57:1; the
+two look the same side by side, which keeps buttons and the logo one color (2026-11-10). `#1f5ec2` is 6.1:1 on
+white and stays the text color, because small blue text also sits on pale grey sections where `#2470EB` would
+fall under 4.5:1. `#7aa7ff` is 8.5:1 on slate-950. The audit on 2026-10-21 (docs/SITE_REVIEW_2026-10-21.md, A1)
+first split text from the logo blue.
 
-Brand blue (`#1f5ec2`) is the **only** color for main action buttons, such as "Add to Chrome". Don't make buttons
+Brand blue (`#2470EB`) is the **only** color for main action buttons, such as "Add to Chrome". Don't make buttons
 in the accent color.
 
 One exception: on a solid brand-blue band (the homepage's closing section), the button is white with `#1f5ec2`

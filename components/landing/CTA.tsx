@@ -6,7 +6,7 @@ import { productConfig } from "@/config/product";
 
 export default function CTA() {
     return (
-        <section className="relative overflow-hidden py-24 md:py-28 bg-[#1f5ec2]">
+        <section className="relative overflow-hidden py-24 md:py-28 bg-[#2470EB]">
             {/* Background: masked dot grid + a soft mint glow (decorative) */}
             <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
                 <div

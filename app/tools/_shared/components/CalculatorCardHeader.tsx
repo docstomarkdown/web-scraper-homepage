@@ -80,7 +80,7 @@ export function CalculatorCardHeader({
                         <button
                             type="button"
                             onClick={onReset}
-                            className="flex items-center justify-center h-10 w-10 text-slate-700 hover:text-[#1f5ec2] bg-white border border-slate-300 hover:border-[#1f5ec2] rounded-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1f5ec2] dark:text-slate-200 dark:hover:text-[#7aa7ff] dark:bg-slate-900 dark:border-slate-700"
+                            className="flex items-center justify-center h-10 w-10 text-slate-700 hover:text-[#1f5ec2] bg-white border border-slate-300 hover:border-[#2470EB] rounded-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1f5ec2] dark:text-slate-200 dark:hover:text-[#7aa7ff] dark:bg-slate-900 dark:border-slate-700"
                             aria-label="Reset the calculator"
                         >
                             <RotateCw className="h-4 w-4" aria-hidden="true" />

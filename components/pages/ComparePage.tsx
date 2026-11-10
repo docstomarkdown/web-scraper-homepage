@@ -140,7 +140,7 @@ export default function ComparePage({ content: c }: { content: ComparePageConten
                             <li key={s.url}><a href={s.url} rel="nofollow noopener" target="_blank" className="text-[#1f5ec2] dark:text-[#7aa7ff] underline underline-offset-2">{s.label}</a></li>
                         ))}
                     </ul>
-                    <Link href={installUrl} target="_blank" className="mt-8 inline-flex items-center gap-2 rounded-xl bg-[#1f5ec2] hover:bg-[#1a4fa3] px-5 py-3 text-sm font-semibold text-white transition-colors">
+                    <Link href={installUrl} target="_blank" className="mt-8 inline-flex items-center gap-2 rounded-xl bg-[#2470EB] hover:bg-[#1f5ec2] px-5 py-3 text-sm font-semibold text-white transition-colors">
                         <Chrome className="w-4 h-4" aria-hidden="true" />
                         Add Web Scraper Pro to Chrome
                     </Link>

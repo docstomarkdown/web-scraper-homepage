@@ -127,7 +127,7 @@ export default function ToolsPage() {
                             <input
                                 id="tool-search"
                                 type="search"
-                                className="block w-full pl-10 pr-3 py-3 text-base border border-slate-300 rounded-xl bg-white text-slate-900 placeholder:text-slate-500 focus:outline-none focus:border-[#1f5ec2] focus:ring-2 focus:ring-[#1f5ec2]/30 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-400"
+                                className="block w-full pl-10 pr-3 py-3 text-base border border-slate-300 rounded-xl bg-white text-slate-900 placeholder:text-slate-500 focus:outline-none focus:border-[#2470EB] focus:ring-2 focus:ring-[#1f5ec2]/30 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-400"
                                 placeholder="Search, for example profit or weight"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -142,8 +142,8 @@ export default function ToolsPage() {
                                     aria-pressed={activeCategory === category}
                                     className={`whitespace-nowrap px-4 py-2 rounded-full text-base font-medium border transition-colors motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1f5ec2] ${
                                         activeCategory === category
-                                            ? "bg-[#1f5ec2] text-white border-[#1f5ec2]"
-                                            : "bg-white text-slate-700 border-slate-300 hover:border-[#1f5ec2] dark:bg-slate-900 dark:text-slate-200 dark:border-slate-700"
+                                            ? "bg-[#2470EB] text-white border-[#2470EB]"
+                                            : "bg-white text-slate-700 border-slate-300 hover:border-[#2470EB] dark:bg-slate-900 dark:text-slate-200 dark:border-slate-700"
                                     }`}
                                 >
                                     {category}
