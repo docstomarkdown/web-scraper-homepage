@@ -55,7 +55,7 @@ export default function Hero() {
                 >
                     <h1 className="text-4xl sm:text-5xl lg:text-[2.6rem] xl:text-[3.4rem] font-bold tracking-tight text-slate-900 dark:text-white leading-[1.06]">
                         Turn any web page into a{" "}
-                        <span className="relative inline-block whitespace-nowrap text-[#1f5ec2] dark:text-[#7aa7ff]">
+                        <span className="relative inline-block whitespace-nowrap text-[#2470EB] dark:text-[#7aa7ff]">
                             <span className="relative z-10">spreadsheet.</span>
                             <span className="absolute inset-x-0 -bottom-[0.06em] h-[0.14em] rounded-full bg-[#7CF2C4]" aria-hidden="true" />
                         </span>
@@ -97,7 +97,7 @@ export default function Hero() {
                                     className={[
                                         "inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium transition-colors",
                                         active
-                                            ? "bg-[#2470EB] border-[#2470EB] text-white shadow-sm shadow-[#2470EB]/30"
+                                            ? "bg-[#2772ED]/10 dark:bg-[#2772ED]/20 border-[#2772ED]/30 text-[#1f5ec2] dark:text-[#7aa7ff]"
                                             : "bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:border-[#2772ED]/50 hover:text-[#1f5ec2] dark:hover:text-[#7aa7ff]",
                                     ].join(" ")}
                                 >

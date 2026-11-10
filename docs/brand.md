@@ -87,7 +87,7 @@ These files are generated from `components/chat/ThinkingMark.tsx` in `chrome-ext
 | Token | Hex | Use |
 |---|---|---|
 | Brand blue | `#2772ED` | The logo tile, gradients, tints (`/10`, `/5`) and decorative fills only |
-| Brand blue, fills | `#2470EB` | Button backgrounds and any other solid blue area under white text (active chips, step tiles, the closing band). Hover on buttons: `#1f5ec2` |
+| Brand blue, fills | `#2470EB` | Button backgrounds and any other solid blue area under white text (step tiles, the closing band). Hover on buttons: `#1f5ec2` |
 | Brand blue, text | `#1f5ec2` | Text, links, icons and eyebrows, with `dark:text-[#7aa7ff]` for text and icons in dark mode |
 
 `#2772ED` is 4.46:1 against white, just under WCAG AA (4.5:1) for normal-size text, so it is never used for text or
@@ -100,11 +100,15 @@ first split text from the logo blue.
 Brand blue (`#2470EB`) is the **only** color for main action buttons, such as "Add to Chrome". Don't make buttons
 in the accent color.
 
+The main action button is the only solid blue control on a screen. Selected chips, the demo's chat message and
+other "current" states use the soft tint instead: `bg-[#2772ED]/10` (`/20` in dark mode), a `#2772ED`/30 border
+and `#1f5ec2` text (2026-11-10).
+
 One exception: on a solid brand-blue band (the homepage's closing section), the button is white with `#1f5ec2`
 text, because a blue button can't sit on blue.
 
 Blue and mint are the only brand hues. Don't add violet, indigo or cyan to gradients, glows or badges. A key
-headline word is solid `#1f5ec2` (`#7aa7ff` in dark mode) with a Mint 300 underline bar, not a gradient; on a
+headline word is solid `#2470EB` (`#7aa7ff` in dark mode; large text needs only 3:1) with a Mint 300 underline bar, not a gradient; on a
 blue band the word itself is Mint 300.
 
 ### Mint accent
